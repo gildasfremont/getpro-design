@@ -52,10 +52,10 @@
     line-height: var(--lh-card-title);
   }
 
-  /* Vertical bucket nav (left side) */
+  /* Panel body : 3 columns — tabs | profils (1 col) | témoignages candidats */
   .panel-body {
     display: grid;
-    grid-template-columns: minmax(160px, 0.7fr) minmax(0, 3fr);
+    grid-template-columns: minmax(120px, 0.5fr) minmax(0, 1fr) minmax(0, 1.6fr);
     gap: clamp(28px, 4vw, 60px);
     align-items: start;
   }
@@ -82,35 +82,20 @@
     text-underline-offset: 4px;
   }
 
-  /* Profiles area: adaptive 1 / 2 / 3 columns */
+  /* Profiles : single column flat list */
   .profiles-area {
     font-size: var(--fs-body);
     line-height: 1.4;
-  }
-  /* Flat buckets: CSS columns with count set by JS via data-cols */
-  .profiles-area[data-cols="1"] { column-count: 1; }
-  .profiles-area[data-cols="2"] { column-count: 2; }
-  .profiles-area[data-cols="3"] { column-count: 3; }
-  .profiles-area[data-cols] {
-    column-gap: clamp(24px, 4vw, 60px);
-  }
-
-  /* With sub-categories: grid auto-fit blocks */
-  .profiles-area--subs {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: clamp(28px, 4vw, 60px);
-    align-items: start;
-  }
-
-  .profiles-block {
-    break-inside: avoid;
-    margin-bottom: clamp(24px, 3vw, 40px);
     display: flex;
     flex-direction: column;
-    gap: clamp(10px, 1.2vw, 16px);
   }
-
+  .profiles-block {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2px, 0.3vw, 6px);
+    margin-bottom: clamp(20px, 2vw, 30px);
+  }
+  .profiles-block:last-child { margin-bottom: 0; }
   .profiles-sub-label {
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -118,12 +103,10 @@
     opacity: 0.55;
     margin-bottom: clamp(2px, 0.3vw, 6px);
   }
-
   .profile {
     color: inherit;
     display: block;
-    padding: clamp(4px, 0.5vw, 6px) 0;
-    break-inside: avoid;
+    padding: clamp(3px, 0.4vw, 5px) 0;
   }
 
   .empty-state {
@@ -133,85 +116,70 @@
     font-size: var(--fs-body);
   }
 
-  /* Testimonial cards (below panel) */
+  /* Testimonials : right column inside the panel */
   .testimonials {
     display: flex;
     flex-direction: column;
-    gap: clamp(20px, 2.5vw, 40px);
-    margin-top: clamp(24px, 3vw, 50px);
+    gap: clamp(28px, 3vw, 44px);
   }
 
   .testimonial-card {
-    display: grid;
-    grid-template-columns: clamp(240px, 30vw, 440px) minmax(0, 1fr);
-    background: var(--white);
-    overflow: hidden;
-  }
-
-  /* Testimonial cover : aplat noir + logo de la boîte en blanc, centré */
-  .testimonial-photo {
-    aspect-ratio: 1 / 1;
-    background: var(--ink);
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 18%;
+    flex-direction: column;
+    gap: clamp(16px, 1.8vw, 24px);
+    padding-bottom: clamp(20px, 2.2vw, 30px);
+    border-bottom: 1px solid var(--line);
   }
-  .testimonial-photo img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    filter: invert(1) brightness(2);
-  }
-  .testimonial-photo .brand-text {
-    color: var(--bg);
-    font-size: clamp(20px, 2.6vw, 36px);
-    line-height: 1.1;
-    text-align: center;
-    letter-spacing: -0.02em;
-  }
-
-  .testimonial-body {
-    padding: clamp(30px, 4.5vw, 70px) clamp(30px, 5vw, 80px);
-    display: grid;
-    grid-template-rows: 1fr auto;
-    gap: clamp(20px, 2.5vw, 40px);
+  .testimonial-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
   }
 
   .testimonial-quote {
-    font-size: var(--fs-card-sub);
-    line-height: var(--lh-card-sub);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
   }
 
-  .testimonial-footer {
+  .testimonial-author {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 20px;
+    align-items: center;
+    gap: clamp(12px, 1.4vw, 20px);
   }
-
-  .testimonial-author .name { font-size: var(--fs-body); line-height: 1.3; }
-  .testimonial-author .role { font-size: var(--fs-body); line-height: 1.3; opacity: 0.7; }
-
-  .client-mark {
+  .author-logo {
     flex: none;
-    width: clamp(70px, 7vw, 100px);
-    height: clamp(20px, 2vw, 30px);
-  }
-  .client-mark img {
-    height: 100%;
-    width: 100%;
+    height: clamp(24px, 2.4vw, 32px);
+    width: auto;
+    max-width: clamp(80px, 9vw, 120px);
     object-fit: contain;
-    object-position: right center;
+    object-position: left center;
   }
+  .author-name-fallback {
+    flex: none;
+    font-size: var(--fs-body);
+    line-height: 1.3;
+    opacity: 0.6;
+  }
+  .author-meta { display: flex; flex-direction: column; min-width: 0; }
+  .author-meta .name { font-size: var(--fs-body); line-height: 1.3; }
+  .author-meta .role { font-size: var(--fs-body); line-height: 1.3; opacity: 0.7; }
 
+  @media (max-width: 1100px) {
+    .panel-body { grid-template-columns: minmax(120px, 0.5fr) minmax(0, 1fr) minmax(0, 1.4fr); }
+  }
+  @media (max-width: 900px) {
+    .panel-body {
+      grid-template-columns: minmax(120px, 0.5fr) minmax(0, 1fr);
+    }
+    .testimonials {
+      grid-column: 1 / -1;
+      margin-top: clamp(20px, 2.5vw, 30px);
+    }
+  }
   @media (max-width: 800px) {
     .panel-title { max-width: none; }
     .solutions-title-row { flex-direction: column; align-items: flex-start; }
     .panel-body { grid-template-columns: 1fr; }
     .subtabs { flex-direction: row; flex-wrap: wrap; gap: 12px 24px; }
-    .testimonial-card { grid-template-columns: 1fr; }
-    .testimonial-photo { aspect-ratio: 4 / 3; }
   }
 </style>
 </head>
@@ -258,10 +226,10 @@
           </div>
 
           <div class="profiles-area" id="profiles-area"></div>
+
+          <div class="testimonials" id="candidate-testimonials"></div>
         </div>
       </div>
-
-      <div class="testimonials" id="candidate-testimonials"></div>
 
     </section>
 
@@ -284,12 +252,8 @@
         const data = metiers[activeBucket];
         if (!data) return;
 
-        profilesArea.removeAttribute('data-cols');
-        profilesArea.classList.remove('profiles-area--subs');
-
-        // Bucket with sub-categories (tech, product)
+        // Bucket with sub-categories : labels stacked vertically (single column)
         if (data.sub) {
-          profilesArea.classList.add('profiles-area--subs');
           const subs = Object.values(data.sub).filter(s => s.postes.length > 0);
           profilesArea.innerHTML = subs.map(s => {
             const list = s.postes.map(p => `<span class="profile">${escape(p.name)}</span>`).join('');
@@ -301,13 +265,11 @@
           return;
         }
 
-        // Flat bucket: 1 col up to 12 items, 2 cols up to 22, 3 cols beyond
+        // Flat bucket : single column, plain list
         const postes = data.postes;
-        const cols = postes.length <= 12 ? 1 : postes.length <= 22 ? 2 : 3;
-        profilesArea.setAttribute('data-cols', String(cols));
-        profilesArea.innerHTML = postes.map(p =>
-          `<span class="profile">${escape(p.name)}</span>`
-        ).join('');
+        profilesArea.innerHTML = `<div class="profiles-block">${
+          postes.map(p => `<span class="profile">${escape(p.name)}</span>`).join('')
+        }</div>`;
       }
 
       function filteredCandidates() {
@@ -321,20 +283,18 @@
           return;
         }
         container.innerHTML = list.map((c) => {
-          const cover = c.has_logo
-            ? `<img src="assets/${c.company_slug}.svg" alt="${escape(c.company_name)}" />`
-            : `<span class="brand-text">${escape(c.company_name)}</span>`;
           const role = c.poste_canonique || c.intitule_original || 'Recruté';
+          const logoOrName = c.has_logo
+            ? `<img class="author-logo" src="assets/${c.company_slug}.svg" alt="${escape(c.company_name)}" />`
+            : `<span class="author-name-fallback">${escape(c.company_name)}</span>`;
           return `
             <article class="testimonial-card">
-              <div class="testimonial-photo" role="img" aria-label="${escape(c.company_name)}">${cover}</div>
-              <div class="testimonial-body">
-                <p class="testimonial-quote">“${escape(c.text)}”</p>
-                <div class="testimonial-footer">
-                  <div class="testimonial-author">
-                    <div class="name">${escape(c.consumer_name)}</div>
-                    <div class="role">${escape(role)} chez ${escape(c.company_name)}</div>
-                  </div>
+              <p class="testimonial-quote">“${escape(c.text)}”</p>
+              <div class="testimonial-author">
+                ${logoOrName}
+                <div class="author-meta">
+                  <div class="name">${escape(c.consumer_name)}</div>
+                  <div class="role">${escape(role)} chez ${escape(c.company_name)}</div>
                 </div>
               </div>
             </article>`;
