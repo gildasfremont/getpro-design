@@ -16,7 +16,7 @@
     <nav class="menu">
       <a href="index.html" class="brand" aria-label="GetPro"></a>
       <div class="menu-right">
-        <a href="solutions.html" class="menu-item"${aria('solutions.html')}>Solutions de recrutement</a>
+        <a href="solutions.html" class="menu-item"${aria('solutions.html')}>Solutions<span class="menu-long"> de recrutement</span></a>
         <a href="clients.html" class="menu-item"${aria('clients.html')}>Clients</a>
         <a href="#" class="btn-menu">Contact</a>
       </div>

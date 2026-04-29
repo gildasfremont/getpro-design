@@ -84,6 +84,10 @@ button { font-family: inherit; cursor: pointer; }
   justify-content: space-between;
   padding-block: clamp(12px, 1.4vw, 20px);
   gap: clamp(16px, 3vw, 55px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
 }
 
 .brand {
@@ -200,6 +204,9 @@ button { font-family: inherit; cursor: pointer; }
   max-width: 100%;
 }
 
+@media (max-width: 800px) {
+  .menu-item .menu-long { display: none; }
+}
 @media (max-width: 460px) {
   .menu { gap: 10px; }
   .menu-right { gap: 10px; }
