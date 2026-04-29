@@ -331,10 +331,15 @@
         }
         renderList();
 
-        // Scroll into view if we deep-linked to one
+        // Scroll into view if we deep-linked to one. The <li> is display:contents
+        // so we anchor on the rendered .name-link, with an offset to leave room
+        // below for the absolutely-positioned testimonial overlay.
         if (activeSlug) {
-          const li = namesHost.querySelector(`li.row[data-slug="${activeSlug}"]`);
-          if (li) li.scrollIntoView({ behavior: 'instant', block: 'start' });
+          const nameEl = namesHost.querySelector(`li.row[data-slug="${activeSlug}"] a.name-link`);
+          if (nameEl) {
+            const targetY = nameEl.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: Math.max(0, targetY), behavior: 'auto' });
+          }
         }
       }).catch(err => console.error('Failed to load clients:', err));
     })();
