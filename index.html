@@ -268,14 +268,18 @@
     opacity: 0.65;
   }
 
-  /* Right column : "Voir tous" stays sticky as the user scrolls the logos */
+  /* Right column : "Tous nos clients" stays sticky as the user scrolls the logos.
+     pointer-events: none on the column so it never blocks clicks on whatever
+     visually overlaps below it ; only the link itself stays interactive. */
   .cta-col {
     display: block;
+    pointer-events: none;
   }
   .cta-col .see-all {
     position: sticky;
     top: clamp(20px, 3vw, 40px);
     display: inline-block;
+    pointer-events: auto;
     font-size: var(--fs-menu);
     line-height: 1.25;
     text-decoration: underline;
@@ -530,5 +534,20 @@
 
   </main>
   <script src="partials.js" defer></script>
+  <script>
+    // Fade out the sticky "Tous nos clients" once the footer comes into view
+    (function() {
+      const link = document.querySelector('.cta-col .see-all');
+      const footer = document.querySelector('.site-footer');
+      if (!link || !footer || !('IntersectionObserver' in window)) return;
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          link.style.opacity = e.isIntersecting ? '0' : '';
+          link.style.pointerEvents = e.isIntersecting ? 'none' : '';
+        }
+      });
+      io.observe(footer);
+    })();
+  </script>
 </body>
 </html>
