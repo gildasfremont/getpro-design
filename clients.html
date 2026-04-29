@@ -24,67 +24,24 @@
     gap: clamp(20px, 3vw, 50px);
   }
 
-  /* Panel */
+  /* Panel: filters | alphabet | names+testimonial-area */
   .clients-panel {
     background: var(--white);
     padding: clamp(28px, 3.4vw, 50px) clamp(20px, 3vw, 50px);
     display: grid;
-    grid-template-columns: minmax(200px, 0.9fr) auto minmax(0, 2.5fr);
+    grid-template-columns: minmax(200px, 0.8fr) auto minmax(0, 3fr);
     gap: clamp(20px, 3vw, 50px);
     align-items: start;
   }
-  /* When a testimonial is open, panel switches to: collapsed filters | alphabet | names | testimonial */
-  .clients[data-mode="detail"] .clients-panel {
-    grid-template-columns: auto auto minmax(0, 1.2fr) minmax(0, 2fr);
-  }
 
-  /* ---------- Filters zone ---------- */
-  .filters-zone { min-width: 0; }
-  .filters-full {
+  /* Filters (always visible) */
+  .filters {
     display: flex;
     flex-direction: column;
     gap: clamp(10px, 1vw, 14px);
     font-size: var(--fs-body);
     line-height: 1.4;
   }
-  .filters-collapsed { display: none; }
-  .clients[data-mode="detail"] .filters-full { display: none; }
-  .clients[data-mode="detail"] .filters-collapsed { display: flex; }
-
-  .filters-collapsed {
-    flex-direction: column;
-    gap: clamp(10px, 1vw, 14px);
-    align-items: flex-start;
-  }
-  .filters-collapsed .toggle-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    color: inherit;
-    font-family: inherit;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    line-height: 1;
-  }
-  .filters-collapsed .toggle-btn svg {
-    width: clamp(20px, 1.8vw, 26px);
-    height: clamp(20px, 1.8vw, 26px);
-  }
-  .filters-collapsed .toggle-btn:hover { opacity: 0.7; }
-  .filters-collapsed .chips {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .filters-collapsed .chip {
-    padding: 4px 10px;
-    border: 1px solid var(--line);
-    font-size: clamp(11px, 1vw, 14px);
-    line-height: 1.2;
-    white-space: nowrap;
-  }
-
   .checkbox {
     display: inline-flex;
     align-items: center;
@@ -111,7 +68,7 @@
     margin: clamp(6px, 0.7vw, 10px) 0;
   }
 
-  /* ---------- Alphabet ---------- */
+  /* Alphabet */
   .alphabet {
     display: flex;
     flex-direction: column;
@@ -124,7 +81,7 @@
   .alphabet a { color: inherit; text-decoration: none; }
   .alphabet a:hover { opacity: 1; }
 
-  /* ---------- Names list (logo right after name, on hover) ---------- */
+  /* Names list — each row is itself a 2-col grid: name | testimonial slot */
   .clients-list {
     list-style: none;
     margin: 0;
@@ -135,22 +92,28 @@
     font-size: clamp(18px, 2vw, 28px);
     line-height: 1.25;
   }
-  .clients-list li {
+  .client-row {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
+    column-gap: clamp(20px, 3vw, 50px);
+    align-items: start;
+  }
+  .row-line {
     display: flex;
     align-items: center;
     gap: clamp(12px, 1.4vw, 20px);
+    min-width: 0;
   }
-  .clients-list a { color: inherit; }
-  .clients-list .has-tm {
+  .client-row a.name { color: inherit; }
+  .client-row .has-tm {
     text-decoration: underline;
     text-underline-offset: 4px;
     cursor: pointer;
   }
-  .clients-list .has-tm::after {
-    content: " →";
-  }
-  .clients-list .plain { cursor: default; pointer-events: none; }
-  .clients-list .selected { text-decoration-thickness: 2px; }
+  .client-row .has-tm::after { content: " →"; }
+  .client-row.expanded .has-tm::after { content: " ↓"; }
+  .client-row .plain { cursor: default; pointer-events: none; }
+
   .row-logo {
     height: clamp(20px, 2vw, 28px);
     width: auto;
@@ -160,15 +123,16 @@
     opacity: 0;
     transition: opacity 0.15s ease;
   }
-  .clients-list li:hover .row-logo { opacity: 1; }
+  .client-row:hover .row-logo,
+  .client-row.expanded .row-logo { opacity: 1; }
 
-  /* ---------- Testimonial pane (right side, only in detail mode) ---------- */
-  .testimonial-pane {
+  /* Inline testimonial — sits in column 2 of the row, "en face" of the clicked name */
+  .testimonial-inline {
     display: none;
     flex-direction: column;
-    gap: clamp(20px, 2.7vw, 40px);
+    gap: clamp(18px, 2vw, 30px);
   }
-  .clients[data-mode="detail"] .testimonial-pane { display: flex; }
+  .client-row.expanded .testimonial-inline { display: flex; }
 
   .testimonial-quote {
     font-size: var(--fs-card-sub);
@@ -182,10 +146,10 @@
     opacity: 0.85;
   }
 
-  /* Logo + site web (ou raison) en bas du témoignage */
+  /* Footer of the testimonial : logo + website / defunct */
   .testimonial-footer {
-    margin-top: clamp(8px, 1vw, 16px);
-    padding-top: clamp(20px, 2.2vw, 30px);
+    margin-top: clamp(4px, 0.6vw, 10px);
+    padding-top: clamp(16px, 1.8vw, 26px);
     border-top: 1px solid var(--line);
     display: flex;
     align-items: center;
@@ -219,17 +183,21 @@
     text-align: right;
   }
 
-  @media (max-width: 1100px) {
-    .clients-panel { grid-template-columns: minmax(180px, 0.8fr) auto minmax(0, 2fr); }
-    .clients[data-mode="detail"] .clients-panel { grid-template-columns: auto auto minmax(0, 1fr) minmax(0, 1.6fr); }
+  @media (max-width: 1000px) {
+    .client-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); }
   }
   @media (max-width: 800px) {
     .clients-title-row { flex-direction: column; align-items: flex-start; }
     .ratings-row { flex-wrap: wrap; }
-    .clients-panel,
-    .clients[data-mode="detail"] .clients-panel { grid-template-columns: 1fr; }
+    .clients-panel { grid-template-columns: 1fr; }
     .alphabet { flex-direction: row; flex-wrap: wrap; gap: 4px; }
-    .row-logo { display: none; }  /* hide on mobile (no hover) */
+    .client-row { grid-template-columns: 1fr; }
+    .client-row.expanded .testimonial-inline {
+      margin-top: clamp(14px, 2vw, 24px);
+      padding-top: clamp(14px, 2vw, 24px);
+      border-top: 1px solid var(--line);
+    }
+    .row-logo { display: none; }
   }
 </style>
 </head>
@@ -238,7 +206,7 @@
 
     <header class="header section" data-nav></header>
 
-    <section class="clients section" data-mode="list">
+    <section class="clients section">
       <div class="clients-head">
         <div class="clients-title-row">
           <h1 class="page-title">Clients</h1>
@@ -260,52 +228,38 @@
       </div>
 
       <div class="clients-panel">
-        <div class="filters-zone">
-          <!-- Full filters (list mode) -->
-          <div class="filters-full" id="filters">
-            <label class="checkbox">
-              <input type="checkbox" data-filter="all" checked />
-              <span class="checkbox-mark"></span>
-              <span>Tout</span>
-            </label>
-            <label class="checkbox">
-              <input type="checkbox" data-filter="testimonial" />
-              <span class="checkbox-mark"></span>
-              <span>Avec retour d'expérience (69)</span>
-            </label>
-            <div class="filter-divider" aria-hidden="true"></div>
-            <label class="checkbox">
-              <input type="checkbox" data-filter="finance" />
-              <span class="checkbox-mark"></span>
-              <span>Finance &amp; Assurance (50)</span>
-            </label>
-            <label class="checkbox">
-              <input type="checkbox" data-filter="sante" />
-              <span class="checkbox-mark"></span>
-              <span>Santé (26)</span>
-            </label>
-            <label class="checkbox">
-              <input type="checkbox" data-filter="beaute" />
-              <span class="checkbox-mark"></span>
-              <span>Beauté (8)</span>
-            </label>
-            <label class="checkbox">
-              <input type="checkbox" data-filter="education" />
-              <span class="checkbox-mark"></span>
-              <span>Éducation (8)</span>
-            </label>
-          </div>
-
-          <!-- Collapsed filters (detail mode) -->
-          <div class="filters-collapsed">
-            <button type="button" class="toggle-btn" id="back-to-filters" aria-label="Revenir aux filtres">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="1"/>
-                <line x1="9" y1="3" x2="9" y2="21"/>
-              </svg>
-            </button>
-            <div class="chips" id="active-chips"></div>
-          </div>
+        <div class="filters" id="filters">
+          <label class="checkbox">
+            <input type="checkbox" data-filter="all" checked />
+            <span class="checkbox-mark"></span>
+            <span>Tout</span>
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" data-filter="testimonial" />
+            <span class="checkbox-mark"></span>
+            <span>Avec retour d'expérience (69)</span>
+          </label>
+          <div class="filter-divider" aria-hidden="true"></div>
+          <label class="checkbox">
+            <input type="checkbox" data-filter="finance" />
+            <span class="checkbox-mark"></span>
+            <span>Finance &amp; Assurance (50)</span>
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" data-filter="sante" />
+            <span class="checkbox-mark"></span>
+            <span>Santé (26)</span>
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" data-filter="beaute" />
+            <span class="checkbox-mark"></span>
+            <span>Beauté (8)</span>
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" data-filter="education" />
+            <span class="checkbox-mark"></span>
+            <span>Éducation (8)</span>
+          </label>
         </div>
 
         <nav class="alphabet" aria-label="Filtre alphabétique">
@@ -319,8 +273,6 @@
         </nav>
 
         <ul class="clients-list" id="clients-names" role="list"></ul>
-
-        <div class="testimonial-pane" id="testimonial-pane"></div>
       </div>
     </section>
 
@@ -330,25 +282,13 @@
   <script src="partials.js" defer></script>
   <script>
     (function() {
-      const root = document.querySelector('.clients');
       const filtersHost = document.getElementById('filters');
       const namesHost = document.getElementById('clients-names');
-      const testimonialPane = document.getElementById('testimonial-pane');
-      const chipsHost = document.getElementById('active-chips');
-      const backBtn = document.getElementById('back-to-filters');
       const escape = (s) => (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-
-      const FILTER_LABELS = {
-        testimonial: "Avec retour d'expérience",
-        finance: 'Finance & Assurance',
-        sante: 'Santé',
-        beaute: 'Beauté',
-        education: 'Éducation',
-      };
 
       let clients = [];
       let activeFilters = new Set();
-      let activeSlug = null;
+      let expandedSlug = null;
 
       function filteredClients() {
         if (activeFilters.has('testimonial')) {
@@ -357,68 +297,50 @@
         return clients;
       }
 
+      function rowHTML(c) {
+        const isExpanded = c.slug === expandedSlug;
+        const cls = c.has_testimonial ? 'has-tm' : 'plain';
+        const logoTag = c.has_logo
+          ? `<img class="row-logo" src="assets/${c.slug}.svg" alt="" loading="lazy" />`
+          : `<span></span>`;
+        let tmHTML = '<div class="testimonial-inline"></div>';
+        if (c.has_testimonial) {
+          const websiteOrDefunct = c.status_label
+            ? `<span class="defunct">${escape(c.status_label)}</span>`
+            : c.domaine
+              ? `<a class="website" href="https://${escape(c.domaine.replace(/^https?:\/\//,''))}" target="_blank" rel="noopener">${escape(c.domaine.replace(/^https?:\/\//,''))} ↗</a>`
+              : '';
+          const footerLogo = c.has_logo
+            ? `<img class="footer-logo" src="assets/${c.slug}.svg" alt="${escape(c.name)}" />`
+            : `<span class="footer-name">${escape(c.name)}</span>`;
+          tmHTML = `
+            <div class="testimonial-inline">
+              <p class="testimonial-quote">"${escape(c.verbatim || '')}"</p>
+              <div class="testimonial-author">
+                <div class="name">${escape(c.contact_name || '')}</div>
+                <div class="role">${escape(c.contact_role || '')}</div>
+              </div>
+              ${c.description ? `<p class="case-description">${escape(c.description)}</p>` : ''}
+              <div class="testimonial-footer">
+                ${footerLogo}
+                ${websiteOrDefunct}
+              </div>
+            </div>`;
+        }
+        return `<li class="client-row${isExpanded ? ' expanded' : ''}">
+          <div class="row-line">
+            <a href="#" data-slug="${c.slug}" class="name ${cls}">${escape(c.name)}</a>
+            ${logoTag}
+          </div>
+          ${tmHTML}
+        </li>`;
+      }
+
       function renderList() {
         const list = filteredClients();
-        namesHost.innerHTML = list.map(c => {
-          const isActive = c.slug === activeSlug ? ' selected' : '';
-          const cls = c.has_testimonial ? 'has-tm' + isActive : 'plain';
-          const logoTag = c.has_logo
-            ? `<img class="row-logo" src="assets/${c.slug}.svg" alt="" loading="lazy" />`
-            : `<span></span>`;
-          return `<li>
-            <a href="#" data-slug="${c.slug}" class="${cls}">${escape(c.name)}</a>
-            ${logoTag}
-          </li>`;
-        }).join('');
+        namesHost.innerHTML = list.map(rowHTML).join('');
       }
 
-      function renderChips() {
-        const active = [...activeFilters].filter(f => FILTER_LABELS[f]);
-        chipsHost.innerHTML = active.map(f =>
-          `<span class="chip">${FILTER_LABELS[f]}</span>`
-        ).join('');
-      }
-
-      function renderTestimonial() {
-        const c = clients.find(x => x.slug === activeSlug);
-        if (!c) return;
-        const footerLogo = c.has_logo
-          ? `<img class="footer-logo" src="assets/${c.slug}.svg" alt="${escape(c.name)}" />`
-          : `<span class="footer-name">${escape(c.name)}</span>`;
-        const websiteOrDefunct = c.status_label
-          ? `<span class="defunct">${escape(c.status_label)}</span>`
-          : c.domaine
-            ? `<a class="website" href="https://${escape(c.domaine.replace(/^https?:\/\//,''))}" target="_blank" rel="noopener">${escape(c.domaine.replace(/^https?:\/\//,''))} ↗</a>`
-            : '';
-        testimonialPane.innerHTML = `
-          <p class="testimonial-quote">"${escape(c.verbatim || 'Témoignage à venir.')}"</p>
-          <div class="testimonial-author">
-            <div class="name">${escape(c.contact_name || '')}</div>
-            <div class="role">${escape(c.contact_role || '')}</div>
-          </div>
-          ${c.description ? `<p class="case-description">${escape(c.description)}</p>` : ''}
-          <div class="testimonial-footer">
-            ${footerLogo}
-            ${websiteOrDefunct}
-          </div>
-        `;
-      }
-
-      function setMode(mode) {
-        root.dataset.mode = mode;
-        if (mode === 'detail') {
-          renderChips();
-          renderTestimonial();
-        }
-        renderList();
-      }
-
-      function dismissTestimonial() {
-        activeSlug = null;
-        setMode('list');
-      }
-
-      // Filter change
       filtersHost.addEventListener('change', (e) => {
         const input = e.target.closest('input[data-filter]');
         if (!input) return;
@@ -436,20 +358,18 @@
           const allInput = filtersHost.querySelector('input[data-filter="all"]');
           allInput.checked = activeFilters.size === 0;
         }
+        expandedSlug = null;
         renderList();
       });
 
-      // Click on name → testimonial
       namesHost.addEventListener('click', (e) => {
         const a = e.target.closest('a.has-tm[data-slug]');
         if (!a) return;
         e.preventDefault();
-        activeSlug = a.dataset.slug;
-        setMode('detail');
+        const slug = a.dataset.slug;
+        expandedSlug = (expandedSlug === slug) ? null : slug;
+        renderList();
       });
-
-      // "← Filtres" — go back to list (filters expanded)
-      backBtn.addEventListener('click', dismissTestimonial);
 
       fetch('clients.json').then(r => r.json()).then(data => {
         clients = data;
