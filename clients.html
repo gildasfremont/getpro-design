@@ -24,26 +24,31 @@
     gap: clamp(20px, 3vw, 50px);
   }
 
-  /* Filter tabs above the panel */
+  /* Filter tabs above the panel — same style as .subtabs in solutions.html */
   .clients-tabs {
     display: flex;
     flex-wrap: wrap;
-    gap: clamp(20px, 3vw, 40px);
+    gap: clamp(20px, 3vw, 50px);
+    border-bottom: 1px solid var(--line);
   }
   .clients-tabs .tab {
+    padding: 14px 0;
+    font-size: var(--fs-body);
+    line-height: 1.25;
+    cursor: pointer;
     background: none;
     border: none;
-    padding: 0;
     color: inherit;
     font-family: inherit;
-    font-size: var(--fs-body);
-    line-height: 1.4;
-    cursor: pointer;
-    text-align: left;
+    position: relative;
+    white-space: nowrap;
   }
-  .clients-tabs .tab[aria-current="true"] {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+  .clients-tabs .tab[aria-current="true"]::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: var(--ink);
   }
 
   /* Panel : just a card holding the list */
