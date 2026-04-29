@@ -113,6 +113,14 @@
     background: var(--ink);
   }
 
+  /* Each subtab body keeps the same vertical rhythm as the .panel itself */
+  .subtab-body {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(36px, 4.5vw, 70px);
+  }
+  .subtab-body[hidden] { display: none; }
+
   .panel-section {
     display: flex;
     flex-direction: column;

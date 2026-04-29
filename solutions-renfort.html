@@ -113,6 +113,14 @@
     background: var(--ink);
   }
 
+  /* Each subtab body keeps the same vertical rhythm as the .panel itself */
+  .subtab-body {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(36px, 4.5vw, 70px);
+  }
+  .subtab-body[hidden] { display: none; }
+
   .panel-section {
     display: flex;
     flex-direction: column;
@@ -254,7 +262,6 @@
             <button class="subtab" role="tab" data-subtab="rpo">RPO mensuel</button>
             <button class="subtab" role="tab" data-subtab="outils">Outils &amp; ATS</button>
           </div>
-          <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
         </div>
 
         <div class="subtab-body" data-subtab="drh">
