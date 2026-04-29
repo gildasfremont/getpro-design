@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GetPro — Solutions</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .solutions {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: var(--gap-section);
+  }
+
+  .solutions-head {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 1.4vw, 20px);
+  }
+
+  .solutions-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: clamp(20px, 3vw, 50px);
+  }
+
+  /* Ratings — moved to shared styles.css */
+
+  /* Two-line top tabs : main label on top + subtitle below */
+  .tabs-2 {
+    display: flex;
+    gap: clamp(30px, 4vw, 70px);
+  }
+  .tab-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+  }
+  .tab-2 .main {
+    font-size: var(--fs-tab);
+    line-height: 1.2;
+  }
+  .tab-2 .sub {
+    font-size: clamp(13px, 1.2vw, 18px);
+    line-height: 1.3;
+    opacity: 0.6;
+  }
+  .tab-2[aria-current="true"] .sub { opacity: 1; }
+  .tab-2[aria-current="true"]::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: var(--ink);
+    width: clamp(40px, 5vw, 80px);
+    right: auto;
+  }
+
+  .panel {
+    background: var(--white);
+    padding: var(--pad-card-y) var(--pad-card-x);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(36px, 4.5vw, 70px);
+  }
+
+  .panel-title {
+    font-size: var(--fs-card-title);
+    line-height: var(--lh-card-title);
+  }
+
+  .subtabs-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(20px, 2vw, 30px);
+  }
+  .subtabs {
+    display: flex;
+    gap: clamp(20px, 3vw, 50px);
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--line);
+    flex: 1;
+  }
+  .subtab {
+    padding: 14px 0;
+    font-size: var(--fs-body);
+    line-height: 1.25;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    position: relative;
+    white-space: nowrap;
+  }
+  .subtab[aria-current="true"] {}
+  .subtab[aria-current="true"]::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: var(--ink);
+  }
+
+  .panel-section {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(24px, 3vw, 40px);
+  }
+  .panel-section h3 {
+    font-size: clamp(20px, 2.2vw, 32px);
+    line-height: 1.25;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 3vw, 50px);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+  .two-col p { margin-bottom: clamp(12px, 1.4vw, 20px); }
+  .two-col p:last-child { margin-bottom: 0; }
+
+  /* Cas clients : text à gauche, logo à droite */
+  .cases-rows { display: flex; flex-direction: column; gap: clamp(24px, 3vw, 40px); }
+  .case-row {
+    display: grid;
+    grid-template-columns: 1fr clamp(180px, 22vw, 320px);
+    gap: clamp(20px, 4vw, 60px);
+    align-items: center;
+  }
+  .case-row p {
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    max-width: 36ch;
+  }
+  .case-logo-mark {
+    height: clamp(36px, 4.5vw, 64px);
+    background-color: var(--ink);
+    -webkit-mask: left center / contain no-repeat;
+            mask: left center / contain no-repeat;
+  }
+  .case-logo-mark.electra {
+    -webkit-mask-image: url('assets/electra.svg');
+            mask-image: url('assets/electra.svg');
+  }
+  .case-logo-mark.japhy {
+    -webkit-mask-image: url('assets/japhy.svg');
+            mask-image: url('assets/japhy.svg');
+  }
+
+  /* Consultants section */
+  .consultants-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+  }
+  .consultants-grid .photo {
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-position: 50% 22%;
+    background-repeat: no-repeat;
+    background-color: #d8e0d3;
+  }
+  .photo-romain  { background-image: url('assets/consultant-romain.jpg'); }
+  .photo-emile   { background-image: url('assets/consultant-emile.jpg'); }
+  .photo-tony    { background-image: url('assets/consultant-tony.jpg'); }
+  .photo-claire  { background-image: url('assets/consultant-claire.jpg'); }
+  .photo-hugo    { background-image: url('assets/consultant-hugo.jpg'); }
+
+  @media (max-width: 1000px) {
+    .consultants-grid { grid-template-columns: repeat(3, 1fr); }
+    .consultants-grid .photo:nth-child(n+4) { display: none; }
+  }
+  @media (max-width: 800px) {
+    .solutions-title-row { flex-direction: column; align-items: flex-start; }
+    .two-col { grid-template-columns: 1fr; }
+    .panel-title { max-width: none; }
+    .subtabs-row { flex-direction: column; align-items: flex-start; }
+    .case-row { grid-template-columns: 1fr; }
+    .consultants-grid { grid-template-columns: repeat(2, 1fr); }
+    .consultants-grid .photo:nth-child(n+3) { display: none; }
+    .tab-2 .super { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+  <main class="home">
+
+    <header class="header section" data-nav></header>
+
+    <section class="solutions section">
+      <div class="solutions-head">
+        <div class="solutions-title-row">
+          <h1 class="page-title">Solutions</h1>
+          <div class="ratings-row">
+            <div class="rating">
+              <img src="assets/trustpilot.svg" alt="Trustpilot" class="rating-logo" />
+              <span class="rating-stars">5 ★★★★★</span>
+            </div>
+            <div class="rating">
+              <img src="assets/trustfolio.svg" alt="Trustfolio" class="rating-logo" />
+              <span class="rating-stars">4,8 ★★★★★</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs-2" role="tablist">
+          <button class="tab-2" role="tab" aria-current="true">
+            <span class="main">Chasse</span>
+            <span class="sub">Cabinet</span>
+          </button>
+          <button class="tab-2" role="tab">
+            <span class="main">Renfort RH</span>
+            <span class="sub">Conseil et outils pour le recrutement</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2 class="panel-title">A chaque besoin de recrutement son équipe</h2>
+
+        <div class="subtabs-row">
+          <div class="subtabs" role="tablist">
+            <button class="subtab" role="tab">Recrutement continu</button>
+            <button class="subtab" role="tab" aria-current="true">Ponctuel et stratégique</button>
+            <button class="subtab" role="tab">Freelance</button>
+          </div>
+          <a href="solutions-profils.html" class="btn-outline">Profils couverts →</a>
+        </div>
+
+        <section class="panel-section">
+          <h3>Ponctuel et stratégique</h3>
+          <div class="two-col">
+            <div>
+              <p>Le travail commence par un kick-off court, on passe la fiche, les équipes, les critères durs et les critères mous, et nos chasseurs attaquent directement le marché.</p>
+              <p>Pas de sourcing de masse, pas de CVthèque retournée à l'envers, des conversations posées une par une avec les candidats que nous suivons déjà ou que nous allons chercher nommément.</p>
+            </div>
+            <div>
+              <p>Chaque profil que nous présentons a été qualifié en échange, a compris votre projet, a envie d'y être. Trois candidats, parfois quatre, pas cinquante, parce que notre travail c'est de filtrer pas de transmettre.</p>
+              <p>Mission lancée sous 48 heures après la signature, première shortlist qualifiée sous 48 heures après le kick-off sur la plupart des missions, reporting hebdomadaire sur les volumes et les qualifications.</p>
+            </div>
+          </div>
+          <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
+        </section>
+
+        <section class="panel-section">
+          <h3>Méthode</h3>
+          <div class="two-col">
+            <div>
+              <p>Le travail commence par un kick-off court, on passe la fiche, les équipes, les critères durs et les critères mous, et nos chasseurs attaquent directement le marché.</p>
+              <p>Pas de sourcing de masse, pas de CVthèque retournée à l'envers, des conversations posées une par une avec les candidats que nous suivons déjà ou que nous allons chercher nommément.</p>
+              <p>Chaque profil que nous présentons a été qualifié en échange, a compris votre projet, a envie d'y être. Trois candidats, parfois quatre, pas cinquante, parce que notre travail c'est de filtrer pas de transmettre.</p>
+            </div>
+            <div>
+              <p>Mission lancée sous 48 heures après la signature, première shortlist qualifiée sous 48 heures après le kick-off sur la plupart des missions, reporting hebdomadaire sur les volumes et les qualifications.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <h3>Cas clients</h3>
+          <div class="cases-rows">
+            <div class="case-row">
+              <p>Chez Electra, nous avons opéré l'ensemble des recrutements tech et produit sur les douze derniers mois.</p>
+              <span class="case-logo-mark electra" aria-label="Electra"></span>
+            </div>
+            <div class="case-row">
+              <p>Chez Japhy, structuration de l'équipe Tech et Sales sur deux ans, du seed à la Série A.</p>
+              <span class="case-logo-mark japhy" aria-label="Japhy"></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <h3>Consultants</h3>
+          <div class="consultants-grid">
+            <div class="photo photo-romain" role="img" aria-label="Romain Pichou"></div>
+            <div class="photo photo-emile" role="img" aria-label="Émile Pennes"></div>
+            <div class="photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
+            <div class="photo photo-claire" role="img" aria-label="Claire Hubert"></div>
+            <div class="photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
+          </div>
+          <p style="font-size: var(--fs-body); line-height: var(--lh-body);">Une équipe d'experts qui couvre la chasse stratégique pour scale-ups et PME. Diplômés des meilleures écoles, dix ans d'expérience cumulée sur le marché tech français.</p>
+        </section>
+      </div>
+    </section>
+
+    <footer class="site-footer" data-footer></footer>
+
+  </main>
+  <script src="partials.js" defer></script>
+</body>
+</html>

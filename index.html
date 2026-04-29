@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GetPro — Home</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* ---------- Hero ---------- */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-section);
+    padding-bottom: var(--gap-section);
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 2.1vw, 30px);
+  }
+
+  .hero-title {
+    font-size: var(--fs-hero);
+    line-height: var(--lh-hero);
+  }
+
+  /* ---------- Image grid ---------- */
+  .grid-images {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    aspect-ratio: 1359 / 617.97;
+  }
+
+  .grid-images .tile {
+    /* 140% height = 37% extra vertical overflow → enough room to land eyes at 22% of every tile */
+    background-size: auto 140%;
+    background-repeat: no-repeat;
+    background-color: #d8e0d3;
+    background-position: 50% 50%;
+  }
+  /* Eye-aligned focal points: each value moves the image so the subject's eyes land at ~22% from the top of the tile */
+  .tile-1  { background-image: url('assets/Gemini_Generated_Image_rkgiq6rkgiq6rkgi.jpg'); background-position: 50%  4%; }
+  .tile-2  { background-image: url('assets/Gemini_Generated_Image_kpi1lnkpi1lnkpi1.jpg'); background-position: 50% 22%; }
+  .tile-3  { background-image: url('assets/Gemini_Generated_Image_ltlyt9ltlyt9ltly.jpg'); background-position: 50% 52%; }
+  .tile-4  { background-image: url('assets/Gemini_Generated_Image_khiwg4khiwg4khiw.jpg'); background-position: 50% 52%; }
+  .tile-5  { background-image: url('assets/Gemini_Generated_Image_elgv4qelgv4qelgv.jpg'); background-position: 50% 59%; }
+  .tile-6  { background-image: url('assets/Gemini_Generated_Image_ge52d7ge52d7ge52.jpg'); background-position: 50% 37%; }
+  .tile-7  { background-image: url('assets/Gemini_Generated_Image_nplq8pnplq8pnplq.jpg'); background-position: 50% 52%; }
+  .tile-8  { background-image: url('assets/Gemini_Generated_Image_6ak9i86ak9i86ak9.jpg'); background-position: 50% 29%; }
+  .tile-9  { background-image: url('assets/Gemini_Generated_Image_cwq10dcwq10dcwq1.jpg'); background-position: 50% 41%; }
+  .tile-10 { background-image: url('assets/Gemini_Generated_Image_xcajtfxcajtfxcaj.jpg'); background-position: 50% 37%; }
+
+  /* ---------- Cases ---------- */
+  .cases {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-section);
+    padding-block: var(--gap-section);
+  }
+
+  .case-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-card);
+    padding: var(--pad-card-y) var(--pad-card-x);
+    background: var(--white);
+  }
+
+  .case-logo {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.4vw, 20px);
+  }
+  /* Mistral aligns the flag at the baseline with the wordmark text */
+  .case-logo--mistral { align-items: flex-end; padding-bottom: clamp(2px, 0.3vw, 4px); }
+
+  .case-logo .name {
+    font-size: var(--fs-card-name);
+    line-height: var(--lh-card-name);
+  }
+
+  .case-logo .symbol {
+    flex: none;
+    background-color: var(--ink);
+    -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+    -webkit-mask-position: left center;
+            mask-position: left center;
+  }
+  /* Mistral flag (icon-only SVG) */
+  .case-logo .symbol-mistral {
+    width: clamp(24px, 3.6vw, 52px);
+    height: clamp(16px, 2.5vw, 36px);
+    -webkit-mask-image: url('assets/mistral-ai.svg');
+            mask-image: url('assets/mistral-ai.svg');
+    -webkit-mask-size: contain;
+            mask-size: contain;
+  }
+  /* Lucca icon (cropped from wordmark, viewBox 975.94×320) */
+  .case-logo .symbol-lucca {
+    width: clamp(28px, 3.9vw, 56px);
+    height: clamp(28px, 3.9vw, 56px);
+    -webkit-mask-image: url('assets/lucca.svg');
+            mask-image: url('assets/lucca.svg');
+    -webkit-mask-size: auto 100%;
+            mask-size: auto 100%;
+  }
+  /* Filigran icon (cropped from wordmark, viewBox 161×41) */
+  .case-logo .symbol-filigran {
+    width: clamp(28px, 3.9vw, 56px);
+    height: clamp(28px, 3.9vw, 56px);
+    -webkit-mask-image: url('assets/filigran.svg');
+            mask-image: url('assets/filigran.svg');
+    -webkit-mask-size: auto 100%;
+            mask-size: auto 100%;
+  }
+
+  .case-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-text);
+  }
+  .case-text h2  { font-size: var(--fs-card-title); line-height: var(--lh-card-title); }
+  .case-text .sub{ font-size: var(--fs-card-sub);   line-height: var(--lh-card-sub); }
+
+  .case-image {
+    width: 100%;
+    aspect-ratio: 1219 / 490;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #cfd9c5;
+  }
+  .case-image-mistral { background-image: url('assets/initial-arthur-mensch-mistral-ai-portrait.jpg'); }
+  .case-image-lucca   { background-image: url('assets/Gsatge-0224-6.jpg'); }
+  .case-image-filigran{ background-image: linear-gradient(120deg, #243a1c, #607e52); }
+
+  /* ---------- Process / consultant ---------- */
+  .process {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(24px, 3vw, 40px);
+    padding-block: var(--gap-section);
+  }
+
+  .process-title {
+    padding-inline: clamp(0px, 4.8vw, 70px) clamp(0px, 3.5vw, 50px);
+  }
+  .process-title h2 {
+    font-size: var(--fs-section-title);
+    line-height: var(--lh-section-title);
+  }
+
+  .process-row {
+    display: grid;
+    grid-template-columns: minmax(0, 594fr) minmax(0, 765fr);
+    align-items: stretch;
+  }
+
+  .quote-wrap {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+  }
+
+  .quote-card {
+    background: var(--white);
+    padding: clamp(28px, 6.8vw, 100px) clamp(24px, 4.8vw, 70px);
+  }
+  .quote-card p {
+    font-size: var(--fs-quote);
+    line-height: var(--lh-quote);
+  }
+
+  .quote-image {
+    flex: 1;
+    background: url('assets/Gemini_Generated_Image_kpi1lnkpi1lnkpi1.jpg') center/cover no-repeat;
+    min-height: clamp(220px, 30vw, 494px);
+  }
+
+  .process-text {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2.7vw, 40px);
+    padding: clamp(28px, 6.8vw, 100px) clamp(24px, 6.8vw, 100px) clamp(28px, 6.8vw, 100px) clamp(24px, 4.8vw, 70px);
+  }
+  .process-text p {
+    font-size: var(--fs-quote);
+    line-height: var(--lh-quote);
+  }
+
+  /* ---------- Logos / fonds ---------- */
+  .logos-section {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(30px, 4.8vw, 70px);
+    padding: clamp(30px, 4.8vw, 70px) var(--pad-x);
+  }
+
+  .logos-title {
+    padding-inline: clamp(0px, 3.5vw, 50px);
+  }
+  .logos-title h2 {
+    font-size: var(--fs-section-title);
+    line-height: var(--lh-section-title);
+    max-width: clamp(280px, 68vw, 950px);
+  }
+
+  .logos-row {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(40px, 6.8vw, 100px);
+    padding-inline: clamp(0px, 3.5vw, 50px);
+  }
+
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.4vw, 20px);
+    flex: 0 0 clamp(140px, 14vw, 201px);
+  }
+  .nav-list .nav-item {
+    font-size: var(--fs-menu);
+    line-height: 1.25;
+  }
+
+  .logos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(20px, 2.7vw, 40px);
+  }
+
+  .logo-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(80px, 8.3vw, 121.6px);
+    height: clamp(60px, 7.8vw, 113.68px);
+    padding: 12px 10px;
+  }
+  .logo-cell img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+  /* ---------- Breakpoints (structural changes only) ---------- */
+  @media (max-width: 800px) {
+    .process-row { grid-template-columns: 1fr; }
+    .logos-row { flex-direction: column; gap: 30px; }
+    .nav-list { flex: none; }
+  }
+</style>
+</head>
+<body>
+  <main class="home">
+
+    <header class="header section" data-nav></header>
+
+    <!-- Hero -->
+    <section class="hero section">
+      <div class="hero-inner">
+        <h1 class="hero-title">
+          Depuis 2015, nous trouvons les profils les plus pointus et difficiles à approcher pour les meilleurs entreprises technologiques françaises.
+        </h1>
+
+        <div class="grid-images" role="img" aria-label="Galerie consultants">
+          <div class="tile tile-1"></div>
+          <div class="tile tile-2"></div>
+          <div class="tile tile-3"></div>
+          <div class="tile tile-4"></div>
+          <div class="tile tile-5"></div>
+          <div class="tile tile-6"></div>
+          <div class="tile tile-7"></div>
+          <div class="tile tile-8"></div>
+          <div class="tile tile-9"></div>
+          <div class="tile tile-10"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cases -->
+    <section class="cases section">
+      <article class="case-card">
+        <header class="case-logo case-logo--mistral" aria-label="Mistral AI">
+          <span class="name">Mistral AI</span>
+          <span class="symbol symbol-mistral" aria-hidden="true"></span>
+        </header>
+        <div class="case-text">
+          <h2>Convaincre face à Google et Anthropic</h2>
+          <div class="sub">110+ recrutements avec GetPro en 2025 pour le géant français de l'IA</div>
+        </div>
+        <div class="case-image case-image-mistral" role="img" aria-label="Arthur Mensch"></div>
+      </article>
+
+      <article class="case-card">
+        <header class="case-logo" aria-label="Lucca">
+          <span class="name">Lucca</span>
+          <span class="symbol symbol-lucca" aria-hidden="true"></span>
+        </header>
+        <div class="case-text">
+          <h2>Passer d'un management de startup à scale-up</h2>
+          <div class="sub">De 40 à 800 salariés, 10 ans de partenariat avec GetPro</div>
+        </div>
+        <div class="case-image case-image-lucca" role="img" aria-label="Lucca"></div>
+      </article>
+
+      <article class="case-card">
+        <header class="case-logo" aria-label="Filigran">
+          <span class="name">Filigran</span>
+          <span class="symbol symbol-filigran" aria-hidden="true"></span>
+        </header>
+        <div class="case-text">
+          <h2>Embaucher rapidement avec un modèle hybride</h2>
+          <div class="sub">10 recrutements en RPO + 20 par le cabinet en 6 mois</div>
+        </div>
+        <div class="case-image case-image-filigran" role="img" aria-label="Filigran"></div>
+      </article>
+    </section>
+
+    <!-- Process / quote -->
+    <section class="process section">
+      <div class="process-title">
+        <h2>Recruter prends du temps. Depuis 10 ans ça nous prend tout ce temps qui nous permet d'avoir toujours une longueur d'avance.</h2>
+      </div>
+
+      <div class="process-row">
+        <div class="quote-wrap">
+          <div class="quote-card">
+            <p>Émile a passé 172 heures au téléphone, échangé avec 43 employeurs et déjeuné avec 18 candidats avant de trouver le futur DG de Lucca.</p>
+          </div>
+          <div class="quote-image" role="img" aria-label="Émile, consultant GetPro"></div>
+        </div>
+
+        <div class="process-text">
+          <p>Nous intervenons à des moments critiques et d'urgence : un profil compliqué à identifier, un recrutement repriorisé. Ces crises sont notre quotidien.</p>
+          <p>Dix ans de crises, c'est aussi ce qu'il faut pour connaître personnellement les gens qu'on recommande.</p>
+          <p>Le recrutement n'est pas qu'un jeu de chaises musicales, c'est pourquoi nous allons chercher les talents en dehors des sentiers battus et pour tous les profils au service de l'innovation : ingénieurs, managers, vendeurs, dirigeants et créatifs.</p>
+          <a href="#" class="btn-outline">Echanger avec un consultant</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logos / fonds -->
+    <section class="logos-section">
+      <div class="logos-title">
+        <h2>Nous réalisons les plans de recrutement portées par les fonds qui comptent sur le marché tech et IA</h2>
+      </div>
+
+      <div class="logos-row">
+        <div class="nav-list">
+          <span class="nav-item">Cathay</span>
+          <span class="nav-item">Eurazeo</span>
+          <span class="nav-item">Partech</span>
+          <span class="nav-item">Seaya Ventures</span>
+          <span class="nav-item">Sofinnova Partners</span>
+          <span class="nav-item">EQT Ventures</span>
+        </div>
+
+        <div class="logos-grid">
+          <div class="logo-cell"><img src="assets/oscaro.svg" alt="Oscaro" /></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer" data-footer></footer>
+
+  </main>
+  <script src="partials.js" defer></script>
+</body>
+</html>

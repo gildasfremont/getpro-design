@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GetPro — Clients · Cas et témoignages</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .clients {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: var(--gap-section);
+  }
+  .clients-head {
+    margin-bottom: clamp(14px, 1.4vw, 20px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 1.4vw, 20px);
+  }
+
+  .clients-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: clamp(20px, 3vw, 50px);
+  }
+
+  /* Ratings — shared in styles.css */
+
+  .top-tabs {
+    display: flex;
+    gap: clamp(20px, 3vw, 50px);
+  }
+  .top-tab {
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 14px 0;
+    font-size: var(--fs-tab);
+    line-height: 1.2;
+    position: relative;
+  }
+  .top-tab[aria-current="true"] {}
+  .top-tab[aria-current="true"]::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: var(--ink);
+  }
+
+  /* Panel: cases list | testimonial detail | download */
+  .cases-panel {
+    background: var(--white);
+    padding: clamp(28px, 3.4vw, 50px) clamp(20px, 3vw, 50px);
+    display: grid;
+    grid-template-columns: minmax(160px, 0.8fr) minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: clamp(20px, 3vw, 50px);
+    align-items: start;
+  }
+
+  .cases-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 0.8vw, 12px);
+    font-size: clamp(18px, 2vw, 28px);
+    line-height: 1.25;
+  }
+  .cases-list a { color: inherit; }
+  .cases-list .active {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cases-list .active::before {
+    content: "→";
+  }
+
+  .testimonial-detail {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 2.7vw, 40px);
+  }
+
+  .testimonial-quote {
+    font-size: var(--fs-card-sub);
+    line-height: var(--lh-card-sub);
+  }
+
+  .testimonial-author .name { font-size: var(--fs-body); line-height: 1.3; }
+  .testimonial-author .role { font-size: var(--fs-body); line-height: 1.3; opacity: 0.8; }
+
+  .case-mini {
+    display: flex;
+    gap: clamp(16px, 1.4vw, 20px);
+    align-items: flex-start;
+  }
+  .case-mini-img {
+    flex: 0 0 clamp(120px, 12vw, 160px);
+    aspect-ratio: 4 / 3;
+    background-size: cover;
+    background-position: center;
+    background-color: #d8e0d3;
+  }
+  .case-mini-img.lucca-img    { background-image: url('assets/Gsatge-0224-6.jpg'); }
+  .case-mini-img.electra-img  { background-image: url('assets/electra-cover.jpg'); }
+  .case-mini-img.corwave-img  { background-image: linear-gradient(135deg, #2a4220, #6c8a5a); }
+  .case-mini-text {
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+
+  /* Right column: download block */
+  .download-block {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 1.4vw, 20px);
+    align-items: flex-start;
+  }
+  .download-preview {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid var(--line);
+    background: var(--white);
+  }
+  .download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--fs-body);
+    line-height: 1.3;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 1000px) {
+    .cases-panel { grid-template-columns: minmax(160px, 0.7fr) minmax(0, 1fr); }
+    .download-block { grid-column: span 2; flex-direction: row; align-items: flex-start; gap: 30px; }
+    .download-preview { flex: 0 0 200px; aspect-ratio: 1 / 1; }
+  }
+  @media (max-width: 800px) {
+    .clients-title-row { flex-direction: column; align-items: flex-start; }
+    .ratings-row { flex-wrap: wrap; }
+    .cases-panel { grid-template-columns: 1fr; }
+    .download-block { grid-column: auto; flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+  <main class="home">
+
+    <header class="header section" data-nav></header>
+
+    <section class="clients section">
+      <div class="clients-head">
+        <div class="clients-title-row">
+          <h1 class="page-title">Clients</h1>
+          <div class="ratings-row">
+            <div class="rating">
+              <img src="assets/trustpilot.svg" alt="Trustpilot" class="rating-logo" />
+              <span class="rating-stars">5 ★★★★★</span>
+            </div>
+            <div class="rating">
+              <img src="assets/trustfolio.svg" alt="Trustfolio" class="rating-logo" />
+              <span class="rating-stars">4,8 ★★★★★</span>
+            </div>
+            <div class="rating">
+              <img src="assets/google.svg" alt="Google" class="rating-logo" />
+              <span class="rating-stars">4,3 ★★★★★</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="top-tabs" role="tablist">
+          <a href="clients.html" class="top-tab" role="tab">Références (389)</a>
+          <button class="top-tab" role="tab" aria-current="true">Cas et témoignages (69)</button>
+        </div>
+      </div>
+
+      <div class="cases-panel">
+        <ul class="cases-list" id="cases-list" role="list"></ul>
+
+        <div class="testimonial-detail" id="testimonial-detail"></div>
+
+        <div class="download-block">
+          <div class="download-preview" aria-hidden="true"></div>
+          <a href="#" class="download-link">Télécharger le use case <span aria-hidden="true">⇣</span></a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer" data-footer></footer>
+
+  </main>
+  <script src="partials.js" defer></script>
+  <script>
+    (function() {
+      let cases = [];
+      let activeIdx = 0;
+      const list = document.getElementById('cases-list');
+      const detail = document.getElementById('testimonial-detail');
+
+      const imgClassFor = (slug) => {
+        if (slug === 'lucca') return 'lucca-img';
+        if (slug === 'electra') return 'electra-img';
+        return 'corwave-img';
+      };
+
+      function renderList() {
+        list.innerHTML = cases.map((c, i) => {
+          const cls = i === activeIdx ? ' class="active"' : '';
+          return `<li><a href="#" data-idx="${i}"${cls}>${c.name}</a></li>`;
+        }).join('');
+      }
+      function renderDetail() {
+        const c = cases[activeIdx];
+        if (!c) return;
+        detail.innerHTML = `
+          <p class="testimonial-quote">“${c.verbatim || 'Témoignage à venir.'}”</p>
+          <div class="testimonial-author">
+            <div class="name">${c.contact_name || c.name}</div>
+            <div class="role">${c.contact_role || ''}</div>
+          </div>
+          <div class="case-mini">
+            <div class="case-mini-img ${imgClassFor(c.slug)}" role="img" aria-label="${c.name}"></div>
+            <p class="case-mini-text">${c.description || ''}</p>
+          </div>
+        `;
+      }
+
+      list.addEventListener('click', (e) => {
+        const a = e.target.closest('a[data-idx]');
+        if (!a) return;
+        e.preventDefault();
+        activeIdx = parseInt(a.dataset.idx, 10);
+        renderList();
+        renderDetail();
+        detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+
+      fetch('cases.json').then(r => r.json()).then(data => {
+        cases = data;
+        // Default to Lucca if found, else first
+        const luccaIdx = cases.findIndex(c => c.slug === 'lucca');
+        activeIdx = luccaIdx >= 0 ? luccaIdx : 0;
+        renderList();
+        renderDetail();
+      }).catch(err => console.error('Failed to load cases:', err));
+    })();
+  </script>
+</body>
+</html>

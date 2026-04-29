@@ -1,0 +1,772 @@
+{
+  "tech": {
+    "label": "Tech",
+    "sub": {
+      "software": {
+        "label": "Software",
+        "total": 673,
+        "postes": [
+          {
+            "name": "QA Engineer",
+            "count": 188
+          },
+          {
+            "name": "Développeur",
+            "count": 125
+          },
+          {
+            "name": "Développeur full-stack",
+            "count": 75
+          },
+          {
+            "name": "Software Engineer (généraliste)",
+            "count": 59
+          },
+          {
+            "name": "Développeur front-end",
+            "count": 36
+          },
+          {
+            "name": "Développeur back-end",
+            "count": 33
+          },
+          {
+            "name": "Ingénieur DevOps / SRE / Cloud",
+            "count": 29
+          },
+          {
+            "name": "Tech Lead",
+            "count": 28
+          },
+          {
+            "name": "Administrateur système / réseau",
+            "count": 17
+          },
+          {
+            "name": "Architecte SI / cloud",
+            "count": 17
+          },
+          {
+            "name": "Engineering Manager",
+            "count": 16
+          },
+          {
+            "name": "Développeur mobile",
+            "count": 8
+          },
+          {
+            "name": "Cybersécurité / Analyste SOC",
+            "count": 8
+          },
+          {
+            "name": "Consultant cybersécurité / risques",
+            "count": 8
+          },
+          {
+            "name": "Intégrateur web",
+            "count": 6
+          },
+          {
+            "name": "Consultant architecture IT",
+            "count": 5
+          },
+          {
+            "name": "Founding Engineer",
+            "count": 3
+          },
+          {
+            "name": "Security Program Manager",
+            "count": 3
+          },
+          {
+            "name": "Helpdesk / Support informatique",
+            "count": 3
+          },
+          {
+            "name": "Technicien support",
+            "count": 3
+          },
+          {
+            "name": "Staff/Principal Engineer",
+            "count": 2
+          },
+          {
+            "name": "Architecte (généraliste)",
+            "count": 1
+          }
+        ]
+      },
+      "ia": {
+        "label": "IA",
+        "total": 11,
+        "postes": [
+          {
+            "name": "Ingénieur ML / IA",
+            "count": 10
+          },
+          {
+            "name": "AI / ML Researcher",
+            "count": 1
+          }
+        ]
+      },
+      "hardware": {
+        "label": "Hardware",
+        "total": 185,
+        "postes": [
+          {
+            "name": "Ingénieur (généraliste)",
+            "count": 120
+          },
+          {
+            "name": "Technicien de maintenance / méthodes",
+            "count": 21
+          },
+          {
+            "name": "Ingénieur qualité",
+            "count": 7
+          },
+          {
+            "name": "Ingénieur géophysique",
+            "count": 4
+          },
+          {
+            "name": "Ingénieur procédés",
+            "count": 4
+          },
+          {
+            "name": "Ingénieur électronique de puissance",
+            "count": 4
+          },
+          {
+            "name": "Conducteur de travaux",
+            "count": 4
+          },
+          {
+            "name": "Ingénieur hardware",
+            "count": 3
+          },
+          {
+            "name": "Ingénieur structures / génie civil",
+            "count": 3
+          },
+          {
+            "name": "Développeur embarqué",
+            "count": 2
+          },
+          {
+            "name": "Chargé d'études exécution",
+            "count": 2
+          },
+          {
+            "name": "Ingénieur automatisme",
+            "count": 2
+          },
+          {
+            "name": "Ingénieur HSE / sûreté",
+            "count": 2
+          },
+          {
+            "name": "Ingénieur production / industrialisation",
+            "count": 2
+          },
+          {
+            "name": "Technicien",
+            "count": 2
+          },
+          {
+            "name": "Ingénieur conception mécanique / intégration",
+            "count": 1
+          },
+          {
+            "name": "Ingénieur électromécanique",
+            "count": 1
+          },
+          {
+            "name": "Ingénieur énergie",
+            "count": 1
+          }
+        ]
+      }
+    }
+  },
+  "product": {
+    "label": "Product",
+    "sub": {
+      "designer": {
+        "label": "Designer",
+        "total": 43,
+        "postes": [
+          {
+            "name": "Designer (autre)",
+            "count": 19
+          },
+          {
+            "name": "Product Designer",
+            "count": 13
+          },
+          {
+            "name": "UX Designer",
+            "count": 5
+          },
+          {
+            "name": "Brand Designer",
+            "count": 2
+          },
+          {
+            "name": "Directeur artistique",
+            "count": 1
+          },
+          {
+            "name": "Graphic Designer",
+            "count": 1
+          },
+          {
+            "name": "Motion Designer",
+            "count": 1
+          },
+          {
+            "name": "UI Designer",
+            "count": 1
+          }
+        ]
+      },
+      "pm": {
+        "label": "PM",
+        "total": 112,
+        "postes": [
+          {
+            "name": "Product Manager",
+            "count": 99
+          },
+          {
+            "name": "Senior / Lead Product Manager",
+            "count": 11
+          },
+          {
+            "name": "Product Marketing Manager",
+            "count": 2
+          }
+        ]
+      },
+      "project": {
+        "label": "Project",
+        "total": 110,
+        "postes": [
+          {
+            "name": "Chef de projet",
+            "count": 28
+          },
+          {
+            "name": "Chef de projet digital",
+            "count": 23
+          },
+          {
+            "name": "Consultant logiciels métiers / ERP",
+            "count": 12
+          },
+          {
+            "name": "Consultant (généraliste)",
+            "count": 8
+          },
+          {
+            "name": "Chef de projet énergie",
+            "count": 7
+          },
+          {
+            "name": "Business Analyst",
+            "count": 6
+          },
+          {
+            "name": "Consultant AMOA",
+            "count": 5
+          },
+          {
+            "name": "Consultant transformation digitale",
+            "count": 5
+          },
+          {
+            "name": "Chef de projet ERP / SI",
+            "count": 4
+          },
+          {
+            "name": "Chef de projet technique",
+            "count": 4
+          },
+          {
+            "name": "Agile Delivery Manager",
+            "count": 2
+          },
+          {
+            "name": "Coach Agile",
+            "count": 2
+          },
+          {
+            "name": "PMO",
+            "count": 1
+          },
+          {
+            "name": "Scrum Master",
+            "count": 1
+          },
+          {
+            "name": "Chef de projet marketing / CRM",
+            "count": 1
+          },
+          {
+            "name": "Chef de projet événementiel",
+            "count": 1
+          }
+        ]
+      }
+    }
+  },
+  "data": {
+    "label": "Data",
+    "total": 119,
+    "postes": [
+      {
+        "name": "Data Engineer",
+        "count": 65
+      },
+      {
+        "name": "Data Analyst",
+        "count": 24
+      },
+      {
+        "name": "Data Scientist",
+        "count": 12
+      },
+      {
+        "name": "Data (autre)",
+        "count": 6
+      },
+      {
+        "name": "Data Architect",
+        "count": 3
+      },
+      {
+        "name": "Data Governance / Product Owner",
+        "count": 3
+      },
+      {
+        "name": "Analytics Engineer",
+        "count": 2
+      },
+      {
+        "name": "DataOps Engineer",
+        "count": 2
+      },
+      {
+        "name": "BI Engineer",
+        "count": 1
+      },
+      {
+        "name": "Consultant data / analytics",
+        "count": 1
+      }
+    ]
+  },
+  "sales": {
+    "label": "Sales & Customer",
+    "total": 232,
+    "postes": [
+      {
+        "name": "Commercial",
+        "count": 39
+      },
+      {
+        "name": "Customer Success Manager",
+        "count": 37
+      },
+      {
+        "name": "Customer Support",
+        "count": 25
+      },
+      {
+        "name": "Account Executive",
+        "count": 21
+      },
+      {
+        "name": "Key Account Manager",
+        "count": 16
+      },
+      {
+        "name": "Technico-commercial",
+        "count": 16
+      },
+      {
+        "name": "SDR",
+        "count": 12
+      },
+      {
+        "name": "Category Manager",
+        "count": 10
+      },
+      {
+        "name": "BDR",
+        "count": 9
+      },
+      {
+        "name": "Chargé(e) d'affaires",
+        "count": 9
+      },
+      {
+        "name": "Account Manager",
+        "count": 8
+      },
+      {
+        "name": "Technical Account Manager",
+        "count": 6
+      },
+      {
+        "name": "Pre-Sales / Solutions Engineer",
+        "count": 5
+      },
+      {
+        "name": "Agent commercial",
+        "count": 3
+      },
+      {
+        "name": "Partnership Manager",
+        "count": 3
+      },
+      {
+        "name": "Customer Onboarding Specialist",
+        "count": 3
+      },
+      {
+        "name": "Account (générique)",
+        "count": 2
+      },
+      {
+        "name": "Inside Sales / Sales Rep",
+        "count": 2
+      },
+      {
+        "name": "Responsable développement réseau",
+        "count": 2
+      },
+      {
+        "name": "Consultant avant-vente",
+        "count": 2
+      },
+      {
+        "name": "Business Developer",
+        "count": 1
+      },
+      {
+        "name": "Revenue Operations",
+        "count": 1
+      }
+    ]
+  },
+  "marketing": {
+    "label": "Marketing",
+    "total": 98,
+    "postes": [
+      {
+        "name": "Acquisition Manager",
+        "count": 18
+      },
+      {
+        "name": "Marketing (autre)",
+        "count": 14
+      },
+      {
+        "name": "Growth Marketer",
+        "count": 13
+      },
+      {
+        "name": "Social Media Manager",
+        "count": 6
+      },
+      {
+        "name": "Community Manager",
+        "count": 5
+      },
+      {
+        "name": "E-commerce Manager",
+        "count": 4
+      },
+      {
+        "name": "Chargé(e) de marketing",
+        "count": 3
+      },
+      {
+        "name": "Content Marketing Manager",
+        "count": 3
+      },
+      {
+        "name": "CRM Manager",
+        "count": 3
+      },
+      {
+        "name": "SEO Specialist",
+        "count": 3
+      },
+      {
+        "name": "Communication",
+        "count": 3
+      },
+      {
+        "name": "Communication événementielle",
+        "count": 3
+      },
+      {
+        "name": "Assistant(e) marketing",
+        "count": 2
+      },
+      {
+        "name": "Performance Marketing Manager",
+        "count": 2
+      },
+      {
+        "name": "Pricing Manager",
+        "count": 2
+      },
+      {
+        "name": "Traffic Manager",
+        "count": 2
+      },
+      {
+        "name": "Communication digitale",
+        "count": 2
+      },
+      {
+        "name": "Relations Presse",
+        "count": 2
+      },
+      {
+        "name": "Copywriter",
+        "count": 1
+      },
+      {
+        "name": "Lifecycle Marketing",
+        "count": 1
+      },
+      {
+        "name": "Marketing Manager",
+        "count": 1
+      },
+      {
+        "name": "Responsable de marché",
+        "count": 1
+      },
+      {
+        "name": "Responsable formation commerciale / produit",
+        "count": 1
+      },
+      {
+        "name": "SEM Specialist",
+        "count": 1
+      },
+      {
+        "name": "Webmarketeur",
+        "count": 1
+      },
+      {
+        "name": "Communication corporate",
+        "count": 1
+      }
+    ]
+  },
+  "ops": {
+    "label": "Ops. & Admin",
+    "total": 67,
+    "postes": [
+      {
+        "name": "Comptable",
+        "count": 16
+      },
+      {
+        "name": "Contrôleur de gestion",
+        "count": 7
+      },
+      {
+        "name": "Achats",
+        "count": 7
+      },
+      {
+        "name": "Supply Chain",
+        "count": 4
+      },
+      {
+        "name": "Office Manager",
+        "count": 4
+      },
+      {
+        "name": "Operations / Ops",
+        "count": 4
+      },
+      {
+        "name": "Analyste financier / FP&A",
+        "count": 3
+      },
+      {
+        "name": "Logistique",
+        "count": 3
+      },
+      {
+        "name": "Compliance Officer",
+        "count": 3
+      },
+      {
+        "name": "Accueil / Secrétariat",
+        "count": 3
+      },
+      {
+        "name": "Gestionnaire (sinistres / back-office)",
+        "count": 2
+      },
+      {
+        "name": "Recovery Audit Manager",
+        "count": 2
+      },
+      {
+        "name": "Policy Advocate",
+        "count": 2
+      },
+      {
+        "name": "Actuaire",
+        "count": 1
+      },
+      {
+        "name": "Auditeur",
+        "count": 1
+      },
+      {
+        "name": "CG Sup",
+        "count": 1
+      },
+      {
+        "name": "Acheteur",
+        "count": 1
+      },
+      {
+        "name": "Consultant banque-assurance / compliance",
+        "count": 1
+      },
+      {
+        "name": "Juriste",
+        "count": 1
+      },
+      {
+        "name": "Assistant(e) de direction",
+        "count": 1
+      }
+    ]
+  },
+  "hr": {
+    "label": "HR",
+    "total": 58,
+    "postes": [
+      {
+        "name": "Recruteur RPO",
+        "count": 19
+      },
+      {
+        "name": "Talent Acquisition",
+        "count": 16
+      },
+      {
+        "name": "Recruteur",
+        "count": 4
+      },
+      {
+        "name": "Consultant RH",
+        "count": 3
+      },
+      {
+        "name": "Formateur / Consultant formation",
+        "count": 3
+      },
+      {
+        "name": "Paie",
+        "count": 3
+      },
+      {
+        "name": "Responsable formation",
+        "count": 3
+      },
+      {
+        "name": "RH (autre)",
+        "count": 3
+      },
+      {
+        "name": "HRBP",
+        "count": 2
+      },
+      {
+        "name": "Responsable RH",
+        "count": 2
+      }
+    ]
+  },
+  "c-level": {
+    "label": "C-level",
+    "total": 143,
+    "postes": [
+      {
+        "name": "VP / Head of Sales-Marketing",
+        "count": 43
+      },
+      {
+        "name": "VP / Head of Tech-Produit",
+        "count": 32
+      },
+      {
+        "name": "CTO",
+        "count": 18
+      },
+      {
+        "name": "Direction fonctionnelle (Ops, Finance, Supply, Conformité)",
+        "count": 17
+      },
+      {
+        "name": "Direction générale (DG / Country / Site)",
+        "count": 11
+      },
+      {
+        "name": "CMO",
+        "count": 4
+      },
+      {
+        "name": "DRH / Head of People",
+        "count": 4
+      },
+      {
+        "name": "Chief of Staff",
+        "count": 3
+      },
+      {
+        "name": "CHRO",
+        "count": 3
+      },
+      {
+        "name": "CPO Product",
+        "count": 2
+      },
+      {
+        "name": "CPTO",
+        "count": 2
+      },
+      {
+        "name": "CEO",
+        "count": 1
+      },
+      {
+        "name": "COO",
+        "count": 1
+      },
+      {
+        "name": "CSO / CRO",
+        "count": 1
+      },
+      {
+        "name": "CFO / DAF",
+        "count": 1
+      }
+    ]
+  }
+}

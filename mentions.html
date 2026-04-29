@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GetPro — Mentions légales</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .legal {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 3.4vw, 50px);
+    padding-bottom: var(--gap-section);
+  }
+
+  .legal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 5vw, 80px);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+
+  .legal-col {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(24px, 2.7vw, 40px);
+  }
+
+  .legal-block {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 0.7vw, 12px);
+  }
+
+  .legal-block h2 {
+    font-size: clamp(15px, 1.2vw, 18px);
+    line-height: 1.3;
+    margin-bottom: clamp(4px, 0.4vw, 6px);
+  }
+
+  .legal-block p { margin: 0; }
+  .legal-block .stack > * + * { margin-top: 4px; }
+
+  .legal a { text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (max-width: 800px) {
+    .legal-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+  <main class="home">
+
+    <header class="header section" data-nav></header>
+
+    <section class="legal section">
+      <h1 class="page-title">Mentions légales</h1>
+
+      <div class="legal-grid">
+        <div class="legal-col">
+          <div class="legal-block">
+            <h2>Editeur</h2>
+            <div class="stack">
+              <p>GetPro</p>
+              <p>41 rue Faidherbe, 75011 Paris</p>
+              <p>SIRET 81210513800034</p>
+            </div>
+          </div>
+
+          <div class="legal-block">
+            <h2>Président</h2>
+            <p>Romain Pichou</p>
+          </div>
+
+          <div class="legal-block">
+            <h2>Hébergement</h2>
+            <p>Ce site est hébergé par Google Cloud Platform, rue de Londres 75009 Paris</p>
+          </div>
+
+          <div class="legal-block">
+            <h2>Conception et réalisation</h2>
+            <div class="stack">
+              <p><strong>Direction éditoriale :</strong><br>Romain Pichou et Émile Pennes</p>
+              <p><strong>Direction de projet :</strong><br>Jonathan Banigo</p>
+              <p><strong>Photographies :</strong><br>Laura Bousquet, modifiées avec Gemini</p>
+              <p><strong>Développement et intégration :</strong><br>Ben Jerjini</p>
+              <p><strong>Web design :</strong><br>Quentin Timouy, Adrien Moulias, Gildas Frémont</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="legal-col">
+          <div class="legal-block">
+            <h2>Confidentialité</h2>
+            <div class="stack">
+              <p>La loi Informatique et Libertés du 06 janvier 1978 vous permet à tout moment de modifier ou supprimer les renseignements liés vous concernant et stockés dans nos bases de données. Getpro respecte la législation française sur la protection de la vie privée.</p>
+              <p>Selon l'article 34 de la loi « Informatique et Libertés », vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données qui vous concernent.</p>
+              <p>Pour exercer ce droit, merci de nous contacter directement à l'adresse <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer" data-footer></footer>
+
+  </main>
+  <script src="partials.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GetPro — Clients</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .clients {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: var(--gap-section);
+  }
+  .clients-head { margin-bottom: clamp(14px, 1.4vw, 20px); }
+  .clients-head { display: flex; flex-direction: column; gap: clamp(14px, 1.4vw, 20px); }
+
+  .clients-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: clamp(20px, 3vw, 50px);
+  }
+
+  /* Ratings — shared in styles.css */
+
+  /* Top-level tabs (Références / Cas et témoignages) */
+  .top-tabs {
+    display: flex;
+    gap: clamp(20px, 3vw, 50px);
+  }
+  .top-tab {
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 14px 0;
+    font-size: var(--fs-tab);
+    line-height: 1.2;
+    position: relative;
+  }
+  .top-tab[aria-current="true"] {}
+  .top-tab[aria-current="true"]::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: var(--ink);
+  }
+
+  /* Panel layout */
+  .clients-panel {
+    background: var(--white);
+    padding: clamp(28px, 3.4vw, 50px) clamp(20px, 3vw, 50px);
+    display: grid;
+    grid-template-columns: minmax(160px, 0.7fr) auto minmax(0, 1.5fr) minmax(0, 1.5fr);
+    gap: clamp(20px, 3vw, 50px);
+    align-items: start;
+  }
+
+  /* Filters (left) */
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1vw, 14px);
+    font-size: var(--fs-body);
+    line-height: 1.4;
+  }
+  .checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+  .checkbox-mark {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--ink);
+    border-radius: 2px;
+    flex: none;
+    position: relative;
+  }
+  .checkbox input { display: none; }
+  .checkbox input:checked + .checkbox-mark::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: var(--ink);
+  }
+
+  /* Alphabet column */
+  .alphabet {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(12px, 1vw, 14px);
+    line-height: 1.4;
+    color: var(--ink);
+    opacity: 0.6;
+    user-select: none;
+  }
+  .alphabet a { color: inherit; text-decoration: none; }
+  .alphabet a:hover { opacity: 1; }
+
+  /* Client names list (single column) */
+  .clients-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 0.8vw, 12px);
+    font-size: clamp(18px, 2vw, 28px);
+    line-height: 1.25;
+  }
+  .clients-list a { color: inherit; }
+  .clients-list .active {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Logos preview (right) — faded */
+  .logos-preview {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 0.8vw, 12px);
+    opacity: 0.35;
+  }
+  .logos-preview li {
+    height: clamp(22px, 2.5vw, 35px);
+    display: flex;
+    align-items: center;
+  }
+  .logos-preview img {
+    max-height: 100%;
+    max-width: 140px;
+    object-fit: contain;
+    object-position: left center;
+  }
+  .logos-preview .no-logo span {
+    font-size: clamp(11px, 1.1vw, 14px);
+    line-height: 1.2;
+  }
+
+  @media (max-width: 1100px) {
+    .clients-panel { grid-template-columns: minmax(140px, 0.7fr) auto minmax(0, 1fr); }
+    .logos-preview { display: none; }
+  }
+  @media (max-width: 800px) {
+    .clients-title-row { flex-direction: column; align-items: flex-start; }
+    .ratings-row { flex-wrap: wrap; }
+    .clients-panel { grid-template-columns: 1fr; }
+    .alphabet { flex-direction: row; flex-wrap: wrap; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+  <main class="home">
+
+    <header class="header section" data-nav></header>
+
+    <section class="clients section">
+      <div class="clients-head">
+        <div class="clients-title-row">
+          <h1 class="page-title">Clients</h1>
+          <div class="ratings-row">
+            <div class="rating">
+              <img src="assets/trustpilot.svg" alt="Trustpilot" class="rating-logo" />
+              <span class="rating-stars">5 ★★★★★</span>
+            </div>
+            <div class="rating">
+              <img src="assets/trustfolio.svg" alt="Trustfolio" class="rating-logo" />
+              <span class="rating-stars">4,8 ★★★★★</span>
+            </div>
+            <div class="rating">
+              <img src="assets/google.svg" alt="Google" class="rating-logo" />
+              <span class="rating-stars">4,3 ★★★★★</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="top-tabs" role="tablist">
+          <button class="top-tab" role="tab" aria-current="true">Références (389)</button>
+          <a href="clients-cas.html" class="top-tab" role="tab">Cas et témoignages (69)</a>
+        </div>
+      </div>
+
+      <div class="clients-panel">
+        <div class="filters">
+          <label class="checkbox">
+            <input type="checkbox" checked />
+            <span class="checkbox-mark"></span>
+            <span>Tout</span>
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" />
+            <span class="checkbox-mark"></span>
+            <span>Finance &amp; Assurance (50)</span>
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" />
+            <span class="checkbox-mark"></span>
+            <span>Santé (26)</span>
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" />
+            <span class="checkbox-mark"></span>
+            <span>Beauté (8)</span>
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" />
+            <span class="checkbox-mark"></span>
+            <span>Education (8)</span>
+          </label>
+        </div>
+
+        <nav class="alphabet" aria-label="Filtre alphabétique">
+          <a href="#A">A</a><a href="#B">B</a><a href="#C">C</a><a href="#D">D</a>
+          <a href="#E">E</a><a href="#F">F</a><a href="#G">G</a><a href="#H">H</a>
+          <a href="#I">I</a><a href="#J">J</a><a href="#K">K</a><a href="#L">L</a>
+          <a href="#M">M</a><a href="#N">N</a><a href="#O">O</a><a href="#P">P</a>
+          <a href="#Q">Q</a><a href="#R">R</a><a href="#S">S</a><a href="#T">T</a>
+          <a href="#U">U</a><a href="#V">V</a><a href="#W">W</a><a href="#X">X</a>
+          <a href="#Y">Y</a><a href="#Z">Z</a>
+        </nav>
+
+        <ul class="clients-list" id="clients-names" role="list"></ul>
+
+        <ul class="logos-preview" id="clients-logos" role="list" aria-hidden="true"></ul>
+      </div>
+    </section>
+
+    <footer class="site-footer" data-footer></footer>
+
+  </main>
+  <script src="partials.js" defer></script>
+  <script>
+    // Inject names + logos lists from the same alphabetical client array
+    (function() {
+      fetch('clients.json').then(r => r.json()).then(clients => {
+        const names = document.getElementById('clients-names');
+        const logos = document.getElementById('clients-logos');
+        const active = 'waves';
+        names.innerHTML = clients.map(c => {
+          const cls = c.slug === active ? ' class="active"' : '';
+          return `<li><a href="#"${cls}>${c.name}</a></li>`;
+        }).join('');
+        logos.innerHTML = clients.map(c => {
+          if (c.has_logo) {
+            return `<li><img src="assets/${c.slug}.svg" alt="${c.name}" loading="lazy" /></li>`;
+          }
+          return `<li class="no-logo"><span>${c.name}</span></li>`;
+        }).join('');
+      }).catch(err => console.error('Failed to load clients:', err));
+    })();
+  </script>
+</body>
+</html>

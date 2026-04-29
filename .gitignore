@@ -1,0 +1,7 @@
+.DS_Store
+.playwright-mcp/
+*.log
+.vercel/
+assets/_orig/
+node_modules/
+.vercel

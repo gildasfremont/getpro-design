@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GetPro — Équipe</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .equipe {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: var(--gap-section);
+  }
+  .equipe-head { margin-bottom: clamp(28px, 3.4vw, 50px); }
+  /* no gap between tabs-row and the team grid — they touch */
+
+  .equipe-head {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 1.4vw, 20px);
+  }
+
+  .equipe-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: clamp(16px, 2vw, 30px);
+  }
+  .equipe-subtitle {
+    font-size: var(--fs-card-sub);
+    line-height: var(--lh-card-sub);
+  }
+
+  .glassdoor {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+  }
+  .glassdoor-logo {
+    height: clamp(16px, 1.5vw, 22px);
+    width: auto;
+    display: block;
+  }
+  .glassdoor-stars {
+    font-size: clamp(11px, 1vw, 14px);
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+  }
+
+  .equipe-tabs-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .equipe-tabs-row .tabs {
+    border-bottom: none;
+  }
+
+  .grid-team {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 2vw, 30px);
+  }
+
+  .member-card {
+    background: var(--white);
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+  }
+
+  .member-text {
+    flex: 1;
+    padding: clamp(20px, 2.7vw, 40px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1vw, 16px);
+  }
+
+  .member-name {
+    font-size: clamp(16px, 1.65vw, 24px);
+    line-height: 1.25;
+  }
+  .member-role {
+    font-size: clamp(13px, 1.2vw, 18px);
+    line-height: 1.3;
+    opacity: 0.7;
+    margin-bottom: clamp(6px, 0.7vw, 10px);
+  }
+  .member-bio {
+    font-size: clamp(13px, 1.2vw, 18px);
+    line-height: 1.45;
+  }
+
+  .member-photo {
+    flex: 0 0 clamp(140px, 18vw, 260px);
+    background-size: cover;
+    background-position: 50% 22%;
+    background-repeat: no-repeat;
+    background-color: #d8e0d3;
+  }
+
+  /* Real consultants */
+  .photo-romain  { background-image: url('assets/consultant-romain.jpg'); }
+  .photo-emile   { background-image: url('assets/consultant-emile.jpg'); }
+  .photo-tony    { background-image: url('assets/consultant-tony.jpg'); }
+  .photo-claire  { background-image: url('assets/consultant-claire.jpg'); }
+  .photo-hugo    { background-image: url('assets/consultant-hugo.jpg'); }
+  .photo-mansour { background-image: url('assets/consultant-mansour.jpg'); }
+  .photo-camelia { background-image: url('assets/consultant-camelia.jpg'); }
+  /* Placeholders */
+  .photo-ph-1 { background-image: url('assets/Gemini_Generated_Image_nplq8pnplq8pnplq.jpg'); background-position: 50% 52%; }
+  .photo-ph-2 { background-image: url('assets/Gemini_Generated_Image_khiwg4khiwg4khiw.jpg'); background-position: 50% 52%; }
+  .photo-ph-3 { background-image: url('assets/Gemini_Generated_Image_ltlyt9ltlyt9ltly.jpg'); background-position: 50% 52%; }
+  .photo-ph-4 { background-image: url('assets/Gemini_Generated_Image_xcajtfxcajtfxcaj.jpg'); background-position: 50% 37%; }
+  .photo-ph-5 { background-image: url('assets/Gemini_Generated_Image_ge52d7ge52d7ge52.jpg'); background-position: 50% 37%; }
+
+  @media (max-width: 800px) {
+    .equipe-title-row { flex-direction: column; align-items: flex-start; }
+    .glassdoor { align-items: flex-start; }
+    .grid-team { grid-template-columns: 1fr; }
+    .member-photo { flex-basis: 140px; }
+  }
+
+  @media (max-width: 480px) {
+    .equipe-tabs-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .member-card { flex-direction: column; }
+    .member-photo { aspect-ratio: 4/3; flex-basis: auto; }
+  }
+</style>
+</head>
+<body>
+  <main class="home">
+
+    <header class="header section" data-nav></header>
+
+    <section class="equipe section">
+      <div class="equipe-head">
+        <div class="equipe-title-row">
+          <h1 class="page-title">Équipe</h1>
+          <div class="glassdoor" aria-label="Note Glassdoor 4.3 sur 5">
+            <img src="assets/glassdoor.svg" alt="Glassdoor" class="glassdoor-logo" />
+            <span class="glassdoor-stars">4.3 ★★★★★</span>
+          </div>
+        </div>
+        <p class="equipe-subtitle">La condition pour nous rejoindre est d'être honnête. Celle pour rester est d'obtenir des résultats.</p>
+      </div>
+
+      <div class="equipe-tabs-row">
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" aria-current="true">Consultants</button>
+          <button class="tab" role="tab">Support</button>
+        </div>
+        <a href="#" class="btn-outline">Rejoindre Getpro</a>
+      </div>
+
+      <div class="grid-team">
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Romain Pichou</div>
+              <div class="member-role">Cofondateur, CEO</div>
+            </div>
+            <p class="member-bio">Cofondateur et CEO de GetPro depuis 2015. Avant, il participe au développement de Winamax et Betclic, puis rejoint Lucca où il devient le premier VP Sales, avant de passer chez ContentSquare comme Business Performance Manager. Diplômé de l'ESCP. Aborde le recrutement comme un levier de croissance, pas comme un acte RH isolé.</p>
+          </div>
+          <div class="member-photo photo-romain" role="img" aria-label="Romain Pichou"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Émile Pennes</div>
+              <div class="member-role">Cofondateur, COO</div>
+            </div>
+            <p class="member-bio">Cofondateur et COO de GetPro depuis 2016. Avant, audit chez Bosch, contrôle de gestion à São Paulo après une spécialisation finance à la FGV, direction administrative puis VP dans des PME brésiliennes. Diplômé d'Audencia. Aborde le recrutement par les chiffres, le coût par embauche, la rétention réelle.</p>
+          </div>
+          <div class="member-photo photo-emile" role="img" aria-label="Émile Pennes"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Tony Beaugez</div>
+              <div class="member-role">Associate</div>
+            </div>
+            <p class="member-bio">Associate chez GetPro. Spécialiste du recrutement de profils tech et produit pour des scale-ups SaaS et marketplaces. Pilote des missions stratégiques de C-level à expert technique senior, en privilégiant la qualité de la qualification candidat sur la quantité.</p>
+          </div>
+          <div class="member-photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Claire Hubert</div>
+              <div class="member-role">Consultante senior</div>
+            </div>
+            <p class="member-bio">Consultante senior chez GetPro. Accompagne les scale-ups françaises dans la structuration de leurs équipes Sales, Marketing et Customer Success. Approche hybride entre chasse directe et qualification longue, avec un suivi candidat soigné jusqu'à l'onboarding.</p>
+          </div>
+          <div class="member-photo photo-claire" role="img" aria-label="Claire Hubert"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Hugo Merdrignac</div>
+              <div class="member-role">Consultant</div>
+            </div>
+            <p class="member-bio">Consultant chez GetPro, spécialisé dans les profils tech et data. Travaille principalement sur des missions ML &amp; IA, Software Eng et Product, en exclusivité avec des fondateurs et CTO. Privilégie la conversation directe à la CVthèque.</p>
+          </div>
+          <div class="member-photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Mansour</div>
+              <div class="member-role">Recruteur RPO</div>
+            </div>
+            <p class="member-bio">Recruteur RPO chez GetPro. Intervient en renfort RH directement chez les clients pour piloter le recrutement opérationnel sur les volumes importants. Approche méthodique, ATS, KPIs, et ramp-up rapide des équipes.</p>
+          </div>
+          <div class="member-photo photo-mansour" role="img" aria-label="Mansour"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Camélia</div>
+              <div class="member-role">Consultante</div>
+            </div>
+            <p class="member-bio">Consultante chez GetPro. Pilote des missions de recrutement sur les fonctions opérations, juridique et finance pour les scale-ups et PME en croissance. Travaille en lien direct avec les CFO et DAF pour qualifier les profils.</p>
+          </div>
+          <div class="member-photo photo-camelia" role="img" aria-label="Camélia"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Jonathan Banigo</div>
+              <div class="member-role">Direction de projet</div>
+            </div>
+            <p class="member-bio">Direction de projet chez GetPro. Coordonne les missions complexes, notamment celles impliquant plusieurs équipes ou plusieurs vagues de recrutement. Garant de la qualité du livrable et du respect des engagements pris au kick-off.</p>
+          </div>
+          <div class="member-photo photo-ph-1" role="img" aria-label="Jonathan Banigo"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Honorine Crespel</div>
+              <div class="member-role">Consultante</div>
+            </div>
+            <p class="member-bio">Consultante GetPro spécialisée sur les profils Marketing et Brand. Travaille en exclusivité avec les fondateurs sur des positions stratégiques où la fit culturel est aussi important que les compétences.</p>
+          </div>
+          <div class="member-photo photo-ph-2" role="img" aria-label="Honorine Crespel"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Cedric Hervet</div>
+              <div class="member-role">Consultant</div>
+            </div>
+            <p class="member-bio">Consultant senior chez GetPro. Pilote des recrutements de C-level pour les scale-ups en hyper-croissance. Spécialiste des profils CRO, COO et VP Sales sur les marchés français et européens.</p>
+          </div>
+          <div class="member-photo photo-ph-3" role="img" aria-label="Cedric Hervet"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Guillaume</div>
+              <div class="member-role">Consultant</div>
+            </div>
+            <p class="member-bio">Consultant chez GetPro. Travaille principalement sur des missions Tech avec un focus sur les profils Backend, Infrastructure et Platform Engineering. Approche par la conversation, pas par la CVthèque.</p>
+          </div>
+          <div class="member-photo photo-ph-4" role="img" aria-label="Guillaume"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Thomas</div>
+              <div class="member-role">Consultant</div>
+            </div>
+            <p class="member-bio">Consultant chez GetPro, spécialisé dans le recrutement de profils Product (PM, Designer, Researcher) pour des scale-ups SaaS B2B. Privilégie une qualification candidat approfondie avant tout shortlist.</p>
+          </div>
+          <div class="member-photo photo-ph-5" role="img" aria-label="Thomas"></div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="site-footer" data-footer></footer>
+
+  </main>
+  <script src="partials.js" defer></script>
+</body>
+</html>
