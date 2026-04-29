@@ -111,23 +111,6 @@ button { font-family: inherit; cursor: pointer; }
   white-space: nowrap;
 }
 
-.menu-item .arrow {
-  width: clamp(14px, 1.5vw, 22px);
-  height: clamp(14px, 1.5vw, 22px);
-  position: relative;
-  flex: none;
-}
-.menu-item .arrow::before {
-  content: "";
-  position: absolute;
-  left: 25%;
-  top: 15%;
-  width: 50%;
-  height: 50%;
-  border-right: 1.5px solid var(--ink);
-  border-bottom: 1.5px solid var(--ink);
-  transform: rotate(45deg);
-}
 
 .btn-menu {
   display: inline-flex;
@@ -220,7 +203,6 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 460px) {
   .menu { gap: 10px; }
   .menu-right { gap: 10px; }
-  .menu-item .arrow { width: 10px; height: 10px; }
   .btn-menu { padding: 6px 10px; }
 }
 
