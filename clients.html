@@ -140,29 +140,13 @@
   .testimonial-quote { line-height: 1.3; }
   .testimonial-author .name { line-height: 1.3; }
   .testimonial-author .role { line-height: 1.3; opacity: 0.7; }
-  .case-description { line-height: 1.4; opacity: 0.85; }
 
-  /* Footer of the testimonial : logo + website / defunct */
+  /* Footer of the testimonial : just the website (or defunct status) */
   .testimonial-footer {
-    margin-top: clamp(4px, 0.6vw, 10px);
-    padding-top: clamp(16px, 1.8vw, 26px);
-    border-top: 1px solid var(--line);
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: clamp(20px, 3vw, 40px);
     flex-wrap: wrap;
-  }
-  .testimonial-footer .footer-logo {
-    height: clamp(28px, 3vw, 44px);
-    width: auto;
-    max-width: clamp(120px, 14vw, 200px);
-    object-fit: contain;
-    object-position: left center;
-  }
-  .testimonial-footer .footer-name {
-    line-height: 1.3;
-    opacity: 0.6;
   }
   .testimonial-footer .website {
     line-height: 1.3;
@@ -173,7 +157,6 @@
     line-height: 1.3;
     opacity: 0.6;
     font-style: italic;
-    text-align: right;
   }
 
   @media (max-width: 800px) {
@@ -267,9 +250,6 @@
             : c.domaine
               ? `<a class="website" href="https://${escape(c.domaine.replace(/^https?:\/\//,''))}" target="_blank" rel="noopener">${escape(c.domaine.replace(/^https?:\/\//,''))} ↗</a>`
               : '';
-          const footerLogo = c.has_logo
-            ? `<img class="footer-logo" src="assets/${c.slug}.svg" alt="${escape(c.name)}" />`
-            : `<span class="footer-name">${escape(c.name)}</span>`;
           tmCell = `<span class="row-tm">
             <span class="tm-line">"${escape(c.verbatim || '')}"</span>
             <div class="tm-full">
@@ -278,11 +258,7 @@
                 <div class="name">${escape(c.contact_name || '')}</div>
                 <div class="role">${escape(c.contact_role || '')}</div>
               </div>
-              ${c.description ? `<p class="case-description">${escape(c.description)}</p>` : ''}
-              <div class="testimonial-footer">
-                ${footerLogo}
-                ${websiteOrDefunct}
-              </div>
+              ${websiteOrDefunct ? `<div class="testimonial-footer">${websiteOrDefunct}</div>` : ''}
             </div>
           </span>`;
         }
