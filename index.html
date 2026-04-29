@@ -212,43 +212,29 @@
   }
 
   .logos-row {
-    display: flex;
-    align-items: flex-start;
-    gap: clamp(40px, 6.8vw, 100px);
+    display: grid;
+    grid-template-columns: clamp(140px, 14vw, 201px) minmax(0, 1fr) clamp(140px, 14vw, 201px);
+    gap: clamp(30px, 5vw, 80px);
     padding-inline: clamp(0px, 3.5vw, 50px);
+    /* align-items default = stretch : permet à .cta-col de remplir la hauteur
+       de la rangée pour que position:sticky ait toute la zone à scroller. */
   }
 
   .nav-list {
     display: flex;
     flex-direction: column;
     gap: clamp(8px, 1.4vw, 20px);
-    flex: 0 0 clamp(140px, 14vw, 201px);
   }
   .nav-list .nav-item {
     font-size: var(--fs-menu);
     line-height: 1.25;
-    background: none;
-    border: none;
-    padding: 0;
-    color: inherit;
-    font-family: inherit;
     text-align: left;
-    transition: opacity 0.15s ease;
-  }
-  .nav-list button.nav-item { cursor: pointer; opacity: 0.7; }
-  .nav-list button.nav-item:hover { opacity: 1; }
-  .nav-list button.nav-item[aria-current="true"] {
-    opacity: 1;
-    text-decoration: underline;
-    text-underline-offset: 4px;
   }
 
   .logos-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: clamp(20px, 2.7vw, 40px);
-    row-gap: clamp(16px, 2vw, 28px);
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 1.6vw, 22px);
     min-width: 0;
   }
 
@@ -256,7 +242,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    height: clamp(40px, 5vw, 60px);
+    height: clamp(24px, 2.6vw, 34px);
     padding: 0;
     text-decoration: none;
     color: inherit;
@@ -281,6 +267,23 @@
     line-height: 1.2;
     opacity: 0.65;
   }
+
+  /* Right column : "Voir tous" stays sticky as the user scrolls the logos */
+  .cta-col {
+    display: block;
+  }
+  .cta-col .see-all {
+    position: sticky;
+    top: clamp(20px, 3vw, 40px);
+    display: inline-block;
+    font-size: var(--fs-menu);
+    line-height: 1.25;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    color: inherit;
+    transition: opacity 0.15s ease;
+  }
+  .cta-col .see-all:hover { opacity: 0.7; }
 
   /* ---------- Breakpoints (structural changes only) ---------- */
   @media (max-width: 800px) {
@@ -386,23 +389,23 @@
       </div>
 
       <div class="logos-row">
-        <div class="nav-list" id="fund-filter" role="group" aria-label="Filtrer par fonds">
-          <button type="button" class="nav-item" data-fund="accel">Accel</button>
-          <button type="button" class="nav-item" data-fund="alven">Alven</button>
-          <button type="button" class="nav-item" data-fund="ardian">Ardian</button>
-          <button type="button" class="nav-item" data-fund="bain-capital">Bain Capital</button>
-          <button type="button" class="nav-item" data-fund="battery-ventures">Battery Ventures</button>
-          <button type="button" class="nav-item" data-fund="bpi-france">Bpi France</button>
-          <button type="button" class="nav-item" data-fund="eurazeo">Eurazeo</button>
-          <button type="button" class="nav-item" data-fund="highland-europe">Highland Europe</button>
-          <button type="button" class="nav-item" data-fund="idinvest">IDinvest</button>
-          <button type="button" class="nav-item" data-fund="iris-capital">Iris Capital</button>
-          <button type="button" class="nav-item" data-fund="kima-ventures">Kima Ventures</button>
-          <button type="button" class="nav-item" data-fund="kkr">KKR</button>
-          <button type="button" class="nav-item" data-fund="partech">Partech</button>
-          <button type="button" class="nav-item" data-fund="sequoia">Sequoia</button>
-          <button type="button" class="nav-item" data-fund="sofinnova-partners">Sofinnova Partners</button>
-          <button type="button" class="nav-item" data-fund="tiger-global">Tiger Global</button>
+        <div class="nav-list" aria-label="Quelques fonds qui investissent dans nos clients">
+          <span class="nav-item">Accel</span>
+          <span class="nav-item">Alven</span>
+          <span class="nav-item">Ardian</span>
+          <span class="nav-item">Bain Capital</span>
+          <span class="nav-item">Battery Ventures</span>
+          <span class="nav-item">Bpi France</span>
+          <span class="nav-item">Eurazeo</span>
+          <span class="nav-item">Highland Europe</span>
+          <span class="nav-item">IDinvest</span>
+          <span class="nav-item">Iris Capital</span>
+          <span class="nav-item">Kima Ventures</span>
+          <span class="nav-item">KKR</span>
+          <span class="nav-item">Partech</span>
+          <span class="nav-item">Sequoia</span>
+          <span class="nav-item">Sofinnova Partners</span>
+          <span class="nav-item">Tiger Global</span>
         </div>
 
         <div class="logos-grid">
@@ -492,6 +495,10 @@
           <span class="logo-cell logo-text">Système U</span>
           <span class="logo-cell logo-text">Transavia</span>
         </div>
+
+        <aside class="cta-col">
+          <a href="clients.html" class="see-all">Voir tous →</a>
+        </aside>
       </div>
     </section>
 
@@ -499,36 +506,5 @@
 
   </main>
   <script src="partials.js" defer></script>
-  <script>
-    // Fund filter on the logos grid
-    (function() {
-      const nav = document.getElementById('fund-filter');
-      const grid = document.querySelector('.logos-grid');
-      if (!nav || !grid) return;
-      let activeFund = null;
-      nav.addEventListener('click', (e) => {
-        const btn = e.target.closest('button.nav-item[data-fund]');
-        if (!btn) return;
-        const fund = btn.dataset.fund;
-        if (activeFund === fund) {
-          // Toggle off
-          activeFund = null;
-          btn.removeAttribute('aria-current');
-          grid.querySelectorAll('.logo-cell').forEach(c => c.removeAttribute('hidden'));
-          return;
-        }
-        activeFund = fund;
-        nav.querySelectorAll('button.nav-item').forEach(b => {
-          if (b === btn) b.setAttribute('aria-current', 'true');
-          else b.removeAttribute('aria-current');
-        });
-        grid.querySelectorAll('.logo-cell').forEach(c => {
-          const funds = (c.dataset.funds || '').split(' ').filter(Boolean);
-          if (funds.includes(fund)) c.removeAttribute('hidden');
-          else c.setAttribute('hidden', '');
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
