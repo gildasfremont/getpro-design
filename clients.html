@@ -228,73 +228,36 @@
       const escape = (s) => (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
       const norm = (s) => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
-      // Cool ranking : lower number = higher in the list. 99 = no special priority.
-      // Tier 1 : IA / hottest (Mistral, Eleven Labs, Dust, Filigran, etc.)
-      // Tier 2 : grosses levées récentes / scale-ups B+ connues
-      // Tier 3 : grandes marques françaises
-      // Tier 4 : tech bien identifiée
-      const COOL_RANK = {
-        // Tier 1 — IA
-        'mistral-ai': 1,
-        'eleven-labs': 1,
-        'dust': 1,
-        'filigran': 1,
-        'kili-technology': 1,
-        'mindee': 1,
-        'unifai': 1,
-        'autrice-ai': 1,
-        'webyn-ai': 1,
-        'ai-cargo-foundation': 1,
-        'harfanglab': 1,
-        'sipearl': 1,
-        // Tier 2 — Scale-ups gros tour
-        'electra': 2,
-        'contentsquare': 2,
-        'doctrine': 2,
-        'evaneos': 2,
-        'jobteaser': 2,
-        'pigment': 2,
-        'lucca': 2,
-        'partoo': 2,
-        'getaround': 2,
-        'matera': 2,
-        'agicap': 2,
-        // Tier 3 — Grandes marques
-        'blablacar': 3,
-        'carrefour': 3,
-        'carrefour-2': 3,
-        'decathlon': 3,
-        'jcdecaux': 3,
-        'canal-plus': 3,
-        'rakuten': 3,
-        'rakuten-dx': 3,
-        'prestashop': 3,
-        'total': 3,
-        'porsche-france': 3,
-        'edf-enr': 3,
-        'oscaro': 3,
-        // Tier 4 — Tech identifiable
-        'flaire': 4,
-        'lemlist': 4,
-        'manomano': 4,
-        'libeo': 4,
-        'leetchi': 4,
-        'kard': 4,
-        'foodles': 4,
-        'jus-mundi': 4,
-        'spiko': 4,
-        'mytraffic': 4,
-        'aircall': 4,
-        'meilisearch': 4,
-        'malt': 4,
-        'cybelangel': 4,
-        'twicpics': 4,
-      };
+      // Cool order : the array order IS the display order — pas d'alpha entre eux.
+      // Le reste des clients (non listés ici) tombe en queue, en ordre alpha.
+      const COOL_ORDER = [
+        // — IA hot
+        'mistral-ai', 'eleven-labs', 'dust', 'filigran', 'kili-technology',
+        'mindee', 'harfanglab', 'sipearl', 'unifai', 'autrice-ai',
+        'webyn-ai', 'ai-cargo-foundation',
+        // — Réseaux sociaux & marques avec présence média / consumer
+        'yubo', 'voggt', 'voodoo', 'kisskissbankbank', 'joko',
+        'cheerz', 'lunii', 'mwm', 'madbox', 'kabeen', 'ron-dorff',
+        'lemlist', 'onefinestay', 'splio',
+        // — Scale-ups B+ connues / grosses levées
+        'electra', 'contentsquare', 'doctrine', 'evaneos', 'jobteaser',
+        'pigment', 'lucca', 'partoo', 'getaround', 'matera', 'agicap',
+        // — Grandes marques françaises
+        'blablacar', 'carrefour', 'carrefour-2', 'decathlon', 'jcdecaux',
+        'canal-plus', 'rakuten', 'rakuten-dx', 'total', 'porsche-france',
+        'edf-enr', 'oscaro', 'prestashop',
+        // — Tech identifiable B2B
+        'flaire', 'manomano', 'libeo', 'leetchi', 'kard', 'foodles',
+        'spiko', 'cybelangel', 'twicpics', 'jus-mundi', 'mytraffic',
+      ];
+      const RANK = new Map(COOL_ORDER.map((slug, i) => [slug, i]));
+      const rankOf = (slug) => RANK.has(slug) ? RANK.get(slug) : Infinity;
 
       const sortClients = (list) => list.slice().sort((a, b) => {
-        const ra = COOL_RANK[a.slug] || 99;
-        const rb = COOL_RANK[b.slug] || 99;
+        const ra = rankOf(a.slug);
+        const rb = rankOf(b.slug);
         if (ra !== rb) return ra - rb;
+        // Tie-break (only fires for the unranked rest) : alpha
         return a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
       });
 
