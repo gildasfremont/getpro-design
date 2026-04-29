@@ -76,8 +76,7 @@
     align-items: center;
     gap: clamp(10px, 1.4vw, 20px);
   }
-  /* Mistral aligns the flag at the baseline with the wordmark text */
-  .case-logo--mistral { align-items: flex-end; padding-bottom: clamp(2px, 0.3vw, 4px); }
+  /* Default alignment (center) is right for Mistral too — flag at mid-cap-height */
 
   .case-logo .name {
     font-size: var(--fs-card-name);
@@ -101,16 +100,18 @@
     -webkit-mask-size: contain;
             mask-size: contain;
   }
-  /* Lucca icon (figure carrée, à gauche du wordmark dans assets/lucca.svg) */
+  /* Lucca icon (assets/lucca-icon.svg : juste le bonhomme dans son carré
+     arrondi, viewBox 320×320, déjà colorié en --ink + --bg) */
   .case-logo .symbol-lucca {
     width: clamp(28px, 3.9vw, 56px);
     height: clamp(28px, 3.9vw, 56px);
-    -webkit-mask-image: url('assets/lucca.svg');
-            mask-image: url('assets/lucca.svg');
-    -webkit-mask-size: auto 100%;
-            mask-size: auto 100%;
-    -webkit-mask-position: left center;
-            mask-position: left center;
+    background-color: transparent;
+    background-image: url('assets/lucca-icon.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-mask-image: none;
+            mask-image: none;
   }
   /* Filigran icon (cropped from wordmark, viewBox 161×41) */
   .case-logo .symbol-filigran {
