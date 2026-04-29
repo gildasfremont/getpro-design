@@ -109,7 +109,16 @@
   .clients-list .plain { cursor: default; pointer-events: none; flex: 0 0 auto; }
   .clients-list li.active .has-tm { text-decoration-thickness: 2px; }
 
-  /* Preview : première ligne du verbatim en transparence */
+  .row-logo {
+    flex: 0 0 auto;
+    height: clamp(20px, 2vw, 28px);
+    width: auto;
+    max-width: clamp(80px, 9vw, 130px);
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  /* Preview : première ligne du verbatim en transparence, jusqu'au bout */
   .row-preview {
     flex: 1 1 auto;
     min-width: 0;
@@ -121,19 +130,6 @@
     text-overflow: ellipsis;
   }
   .clients-list li.active .row-preview { display: none; }
-
-  .row-logo {
-    flex: 0 0 auto;
-    height: clamp(20px, 2vw, 28px);
-    width: auto;
-    max-width: clamp(80px, 9vw, 130px);
-    object-fit: contain;
-    object-position: right center;
-    opacity: 0;
-    transition: opacity 0.15s ease;
-  }
-  .clients-list li:hover .row-logo,
-  .clients-list li.active .row-logo { opacity: 1; }
 
   /* Testimonial slot — column 4, vertical offset is set by JS to align with the clicked row */
   .testimonial-slot {
@@ -321,8 +317,8 @@
           : '';
         return `<li${isActive}>
           <a href="#" data-slug="${c.slug}" class="${cls}">${escape(c.name)}</a>
-          ${previewTag}
           ${logoTag}
+          ${previewTag}
         </li>`;
       }
 
