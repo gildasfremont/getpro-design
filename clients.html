@@ -24,30 +24,36 @@
     gap: clamp(20px, 3vw, 50px);
   }
 
-  /* Filter tabs above the panel (flush, no hairline, no gap) */
-  .clients-tabs {
+  /* Search bar above the panel (flush, no hairline) */
+  .clients-search {
     display: flex;
-    flex-wrap: wrap;
-    gap: clamp(20px, 3vw, 50px);
-  }
-  .clients-tabs .tab {
+    align-items: center;
+    gap: clamp(12px, 1.4vw, 20px);
     padding: 14px 0;
-    font-size: var(--fs-body);
-    line-height: 1.25;
-    cursor: pointer;
+    border-bottom: 1px solid var(--line);
+  }
+  .clients-search input {
+    flex: 1 1 0;
+    min-width: 0;
     background: none;
     border: none;
+    outline: none;
     color: inherit;
     font-family: inherit;
-    position: relative;
-    white-space: nowrap;
+    font-size: var(--fs-body);
+    line-height: 1.25;
+    padding: 0;
   }
-  .clients-tabs .tab[aria-current="true"]::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    height: 2px;
-    background: var(--ink);
+  .clients-search input::placeholder {
+    color: var(--ink);
+    opacity: 0.4;
+  }
+  .clients-search .results-count {
+    flex: 0 0 auto;
+    font-size: var(--fs-body);
+    line-height: 1.25;
+    opacity: 0.5;
+    white-space: nowrap;
   }
 
   /* Panel : just a card holding the list */
@@ -199,13 +205,9 @@
             </div>
           </div>
         </div>
-        <div class="clients-tabs" role="tablist" id="filters">
-          <button class="tab" role="tab" data-filter="all" aria-current="true">Tout (381)</button>
-          <button class="tab" role="tab" data-filter="testimonial">Avec retour d'expérience (69)</button>
-          <button class="tab" role="tab" data-filter="finance">Finance &amp; Assurance (50)</button>
-          <button class="tab" role="tab" data-filter="sante">Santé (26)</button>
-          <button class="tab" role="tab" data-filter="beaute">Beauté (8)</button>
-          <button class="tab" role="tab" data-filter="education">Éducation (8)</button>
+        <div class="clients-search">
+          <input type="search" id="clients-search" placeholder="Rechercher un client" autocomplete="off" />
+          <span class="results-count" id="results-count">381 clients</span>
         </div>
       </div>
 
@@ -220,19 +222,91 @@
   <script src="partials.js" defer></script>
   <script>
     (function() {
-      const filtersHost = document.getElementById('filters');
+      const searchInput = document.getElementById('clients-search');
+      const resultsCount = document.getElementById('results-count');
       const namesHost = document.getElementById('clients-names');
       const escape = (s) => (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      const norm = (s) => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+      // Cool ranking : lower number = higher in the list. 99 = no special priority.
+      // Tier 1 : IA / hottest (Mistral, Eleven Labs, Dust, Filigran, etc.)
+      // Tier 2 : grosses levées récentes / scale-ups B+ connues
+      // Tier 3 : grandes marques françaises
+      // Tier 4 : tech bien identifiée
+      const COOL_RANK = {
+        // Tier 1 — IA
+        'mistral-ai': 1,
+        'eleven-labs': 1,
+        'dust': 1,
+        'filigran': 1,
+        'kili-technology': 1,
+        'mindee': 1,
+        'unifai': 1,
+        'autrice-ai': 1,
+        'webyn-ai': 1,
+        'ai-cargo-foundation': 1,
+        'harfanglab': 1,
+        'sipearl': 1,
+        // Tier 2 — Scale-ups gros tour
+        'electra': 2,
+        'contentsquare': 2,
+        'doctrine': 2,
+        'evaneos': 2,
+        'jobteaser': 2,
+        'pigment': 2,
+        'lucca': 2,
+        'partoo': 2,
+        'getaround': 2,
+        'matera': 2,
+        'agicap': 2,
+        // Tier 3 — Grandes marques
+        'blablacar': 3,
+        'carrefour': 3,
+        'carrefour-2': 3,
+        'decathlon': 3,
+        'jcdecaux': 3,
+        'canal-plus': 3,
+        'rakuten': 3,
+        'rakuten-dx': 3,
+        'prestashop': 3,
+        'total': 3,
+        'porsche-france': 3,
+        'edf-enr': 3,
+        'oscaro': 3,
+        // Tier 4 — Tech identifiable
+        'flaire': 4,
+        'lemlist': 4,
+        'manomano': 4,
+        'libeo': 4,
+        'leetchi': 4,
+        'kard': 4,
+        'foodles': 4,
+        'jus-mundi': 4,
+        'spiko': 4,
+        'mytraffic': 4,
+        'aircall': 4,
+        'meilisearch': 4,
+        'malt': 4,
+        'cybelangel': 4,
+        'twicpics': 4,
+      };
+
+      const sortClients = (list) => list.slice().sort((a, b) => {
+        const ra = COOL_RANK[a.slug] || 99;
+        const rb = COOL_RANK[b.slug] || 99;
+        if (ra !== rb) return ra - rb;
+        return a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
+      });
 
       let clients = [];
-      let activeFilter = 'all';
+      let sorted = [];
+      let searchQuery = '';
       let activeSlug = null;
 
       function filteredClients() {
-        if (activeFilter === 'testimonial') {
-          return clients.filter(c => c.has_testimonial);
-        }
-        return clients;
+        if (!searchQuery) return sorted;
+        const q = norm(searchQuery);
+        return sorted.filter(c => norm(c.name).includes(q));
       }
 
       function rowHTML(c) {
@@ -273,17 +347,16 @@
       function renderList() {
         const list = filteredClients();
         namesHost.innerHTML = list.map(rowHTML).join('');
+        const total = sorted.length;
+        if (searchQuery) {
+          resultsCount.textContent = `${list.length} / ${total}`;
+        } else {
+          resultsCount.textContent = `${total} clients`;
+        }
       }
 
-      filtersHost.addEventListener('click', (e) => {
-        const btn = e.target.closest('button.tab[data-filter]');
-        if (!btn) return;
-        e.preventDefault();
-        activeFilter = btn.dataset.filter;
-        filtersHost.querySelectorAll('button.tab').forEach(b => {
-          if (b === btn) b.setAttribute('aria-current', 'true');
-          else b.removeAttribute('aria-current');
-        });
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
         activeSlug = null;
         renderList();
       });
@@ -301,6 +374,7 @@
 
       fetch('clients.json').then(r => r.json()).then(data => {
         clients = data;
+        sorted = sortClients(data);
         renderList();
       }).catch(err => console.error('Failed to load clients:', err));
     })();
