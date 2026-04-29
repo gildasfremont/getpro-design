@@ -242,7 +242,12 @@
     width: clamp(80px, 8.3vw, 121.6px);
     height: clamp(60px, 7.8vw, 113.68px);
     padding: 12px 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.15s ease;
   }
+  a.logo-cell { cursor: pointer; opacity: 0.75; }
+  a.logo-cell:hover { opacity: 1; }
   .logo-cell img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
   /* ---------- Breakpoints (structural changes only) ---------- */
@@ -350,16 +355,33 @@
 
       <div class="logos-row">
         <div class="nav-list">
-          <span class="nav-item">Cathay</span>
+          <span class="nav-item">Alven</span>
+          <span class="nav-item">Bain Capital</span>
+          <span class="nav-item">Bpi France</span>
           <span class="nav-item">Eurazeo</span>
+          <span class="nav-item">IDinvest</span>
+          <span class="nav-item">Kima Ventures</span>
+          <span class="nav-item">KKR</span>
           <span class="nav-item">Partech</span>
-          <span class="nav-item">Seaya Ventures</span>
-          <span class="nav-item">Sofinnova Partners</span>
-          <span class="nav-item">EQT Ventures</span>
         </div>
 
         <div class="logos-grid">
-          <div class="logo-cell"><img src="assets/oscaro.svg" alt="Oscaro" /></div>
+          <a class="logo-cell" href="clients.html#contentsquare"><img src="assets/contentsquare.svg" alt="Contentsquare" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#lucca"><img src="assets/lucca.svg" alt="Lucca" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#eleven-labs"><img src="assets/eleven-labs.svg" alt="Eleven Labs" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#sipearl"><img src="logos-mono/sipearl.png" alt="SiPearl" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#oscaro"><img src="assets/oscaro.svg" alt="Oscaro" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#madbox"><img src="assets/madbox.svg" alt="Madbox" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#thom"><img src="assets/thom.svg" alt="THOM" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#foodles"><img src="assets/foodles.svg" alt="Foodles" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#silae"><img src="assets/silae.svg" alt="Silae" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#front"><img src="assets/front.svg" alt="Front" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#stoik"><img src="assets/stoik.svg" alt="Stoïk" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#ivalua"><img src="assets/ivalua.svg" alt="Ivalua" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#mytraffic"><img src="logos-mono/mytraffic.png" alt="MyTraffic" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#sinch"><img src="assets/sinch.svg" alt="Sinch" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#dayuse"><img src="assets/dayuse.svg" alt="Dayuse" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#weward"><img src="assets/weward.svg" alt="WeWard" loading="lazy" /></a>
         </div>
       </div>
     </section>
