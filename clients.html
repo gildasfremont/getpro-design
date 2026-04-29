@@ -24,48 +24,36 @@
     gap: clamp(20px, 3vw, 50px);
   }
 
-  /* 3-col panel: filters | alphabet | content (which is itself a 2-col grid) */
+  /* Filter tabs above the panel */
+  .clients-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(20px, 3vw, 40px);
+  }
+  .clients-tabs .tab {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font-family: inherit;
+    font-size: var(--fs-body);
+    line-height: 1.4;
+    cursor: pointer;
+    text-align: left;
+  }
+  .clients-tabs .tab[aria-current="true"] {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* 2-col panel: alphabet | content */
   .clients-panel {
     background: var(--white);
     padding: clamp(28px, 3.4vw, 50px) clamp(20px, 3vw, 50px);
     display: grid;
-    grid-template-columns: minmax(180px, 0.8fr) auto minmax(0, 4fr);
+    grid-template-columns: auto minmax(0, 1fr);
     gap: clamp(20px, 3vw, 50px);
     align-items: start;
-  }
-
-  /* Filters (always visible) */
-  .filters {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(10px, 1vw, 14px);
-    font-size: var(--fs-body);
-    line-height: 1.4;
-  }
-  .checkbox {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-  }
-  .checkbox-mark {
-    width: 16px;
-    height: 16px;
-    border: 1.5px solid var(--ink);
-    flex: none;
-    position: relative;
-  }
-  .checkbox input { display: none; }
-  .checkbox input:checked + .checkbox-mark::after {
-    content: "";
-    position: absolute;
-    inset: 3px;
-    background: var(--ink);
-  }
-  .filter-divider {
-    height: 1px;
-    background: var(--line);
-    margin: clamp(6px, 0.7vw, 10px) 0;
   }
 
   /* Alphabet */
@@ -81,14 +69,14 @@
   .alphabet a { color: inherit; text-decoration: none; }
   .alphabet a:hover { opacity: 1; }
 
-  /* The content grid : every row contributes 2 cells (name-cell | row-tm) */
+  /* The content grid : 3 cells per row → name | logo | testimonial */
   .clients-list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.6fr);
-    column-gap: clamp(20px, 3vw, 50px);
+    grid-template-columns: auto auto minmax(0, 1fr);
+    column-gap: clamp(12px, 1.4vw, 20px);
     row-gap: clamp(8px, 0.8vw, 12px);
     align-items: baseline;
     /* Une seule taille de typo pour toute la zone : nom, preview, témoignage */
@@ -97,25 +85,26 @@
   }
   .row { display: contents; }
 
-  /* Left cell : name + logo */
-  .name-cell {
-    display: flex;
-    align-items: center;
-    gap: clamp(12px, 1.4vw, 20px);
-    min-width: 0;
+  /* Col 1 : name */
+  .clients-list a.name-link {
+    color: inherit;
+    pointer-events: none;
+    align-self: baseline;
   }
-  .name-cell a { color: inherit; flex: 0 0 auto; pointer-events: none; }
-  .name-cell .has-tm {
+  .clients-list a.has-tm {
     text-decoration: underline;
     text-underline-offset: 4px;
   }
-  .row.active .name-cell .has-tm { text-decoration-thickness: 2px; }
+  .row.active a.has-tm { text-decoration-thickness: 2px; }
 
-  /* Whole row is clickable when there is a testimonial */
-  .row.clickable .name-cell,
-  .row.clickable .row-tm { cursor: pointer; }
+  /* Col 2 : logo */
+  .logo-cell {
+    display: block;
+    align-self: center;
+    min-height: clamp(20px, 2vw, 28px);
+  }
   .row-logo {
-    flex: 0 0 auto;
+    display: block;
     height: clamp(20px, 2vw, 28px);
     width: auto;
     max-width: clamp(80px, 9vw, 130px);
@@ -123,8 +112,14 @@
     object-position: left center;
   }
 
-  /* Right cell : preview + (absolute) full testimonial */
+  /* Whole row is clickable when there is a testimonial */
+  .row.clickable a.name-link,
+  .row.clickable .logo-cell,
+  .row.clickable .row-tm { cursor: pointer; }
+
+  /* Col 3 : preview + (absolute) full testimonial */
   .row-tm {
+    display: block;
     position: relative;
     min-width: 0;
   }
@@ -190,22 +185,16 @@
     text-align: right;
   }
 
-  @media (max-width: 1100px) {
-    .clients-list { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr); }
-  }
   @media (max-width: 800px) {
     .clients-title-row { flex-direction: column; align-items: flex-start; }
     .ratings-row { flex-wrap: wrap; }
     .clients-panel { grid-template-columns: 1fr; }
     .alphabet { flex-direction: row; flex-wrap: wrap; gap: 4px; }
     .clients-list {
-      grid-template-columns: 1fr;
+      grid-template-columns: auto minmax(0, 1fr);
       row-gap: clamp(8px, 0.8vw, 12px);
     }
-    .row-tm {
-      grid-column: 1;
-      padding-left: clamp(12px, 2vw, 20px);
-    }
+    .logo-cell { display: none; }
     .tm-full {
       position: relative;
       padding-top: clamp(16px, 2vw, 24px);
@@ -238,43 +227,17 @@
             </div>
           </div>
         </div>
+        <div class="clients-tabs" role="tablist" id="filters">
+          <button class="tab" role="tab" data-filter="all" aria-current="true">Tout (381)</button>
+          <button class="tab" role="tab" data-filter="testimonial">Avec retour d'expérience (69)</button>
+          <button class="tab" role="tab" data-filter="finance">Finance &amp; Assurance (50)</button>
+          <button class="tab" role="tab" data-filter="sante">Santé (26)</button>
+          <button class="tab" role="tab" data-filter="beaute">Beauté (8)</button>
+          <button class="tab" role="tab" data-filter="education">Éducation (8)</button>
+        </div>
       </div>
 
       <div class="clients-panel">
-        <div class="filters" id="filters">
-          <label class="checkbox">
-            <input type="checkbox" data-filter="all" checked />
-            <span class="checkbox-mark"></span>
-            <span>Tout</span>
-          </label>
-          <label class="checkbox">
-            <input type="checkbox" data-filter="testimonial" />
-            <span class="checkbox-mark"></span>
-            <span>Avec retour d'expérience (69)</span>
-          </label>
-          <div class="filter-divider" aria-hidden="true"></div>
-          <label class="checkbox">
-            <input type="checkbox" data-filter="finance" />
-            <span class="checkbox-mark"></span>
-            <span>Finance &amp; Assurance (50)</span>
-          </label>
-          <label class="checkbox">
-            <input type="checkbox" data-filter="sante" />
-            <span class="checkbox-mark"></span>
-            <span>Santé (26)</span>
-          </label>
-          <label class="checkbox">
-            <input type="checkbox" data-filter="beaute" />
-            <span class="checkbox-mark"></span>
-            <span>Beauté (8)</span>
-          </label>
-          <label class="checkbox">
-            <input type="checkbox" data-filter="education" />
-            <span class="checkbox-mark"></span>
-            <span>Éducation (8)</span>
-          </label>
-        </div>
-
         <nav class="alphabet" aria-label="Filtre alphabétique">
           <a href="#A">A</a><a href="#B">B</a><a href="#C">C</a><a href="#D">D</a>
           <a href="#E">E</a><a href="#F">F</a><a href="#G">G</a><a href="#H">H</a>
@@ -300,11 +263,11 @@
       const escape = (s) => (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
       let clients = [];
-      let activeFilters = new Set();
+      let activeFilter = 'all';
       let activeSlug = null;
 
       function filteredClients() {
-        if (activeFilters.has('testimonial')) {
+        if (activeFilter === 'testimonial') {
           return clients.filter(c => c.has_testimonial);
         }
         return clients;
@@ -314,9 +277,9 @@
         const cls = c.has_testimonial ? 'has-tm' : 'plain';
         const clickableCls = c.has_testimonial ? ' clickable' : '';
         const activeCls = c.slug === activeSlug ? ' active' : '';
-        const logoTag = c.has_logo
-          ? `<img class="row-logo" src="assets/${c.slug}.svg" alt="" loading="lazy" />`
-          : '';
+        const logoCell = c.has_logo
+          ? `<span class="logo-cell"><img class="row-logo" src="assets/${c.slug}.svg" alt="" loading="lazy" /></span>`
+          : '<span class="logo-cell"></span>';
 
         let tmCell = '<span class="row-tm"></span>';
         if (c.has_testimonial) {
@@ -346,10 +309,8 @@
         }
 
         return `<li class="row${clickableCls}${activeCls}" data-slug="${c.slug}">
-          <span class="name-cell">
-            <a href="#" class="${cls}" data-slug="${c.slug}">${escape(c.name)}</a>
-            ${logoTag}
-          </span>
+          <a href="#" class="name-link ${cls}" data-slug="${c.slug}">${escape(c.name)}</a>
+          ${logoCell}
           ${tmCell}
         </li>`;
       }
@@ -359,23 +320,15 @@
         namesHost.innerHTML = list.map(rowHTML).join('');
       }
 
-      filtersHost.addEventListener('change', (e) => {
-        const input = e.target.closest('input[data-filter]');
-        if (!input) return;
-        const fid = input.dataset.filter;
-        if (fid === 'all') {
-          if (input.checked) {
-            activeFilters.clear();
-            filtersHost.querySelectorAll('input[data-filter]').forEach(i => {
-              if (i.dataset.filter !== 'all') i.checked = false;
-            });
-          }
-        } else {
-          if (input.checked) activeFilters.add(fid);
-          else activeFilters.delete(fid);
-          const allInput = filtersHost.querySelector('input[data-filter="all"]');
-          allInput.checked = activeFilters.size === 0;
-        }
+      filtersHost.addEventListener('click', (e) => {
+        const btn = e.target.closest('button.tab[data-filter]');
+        if (!btn) return;
+        e.preventDefault();
+        activeFilter = btn.dataset.filter;
+        filtersHost.querySelectorAll('button.tab').forEach(b => {
+          if (b === btn) b.setAttribute('aria-current', 'true');
+          else b.removeAttribute('aria-current');
+        });
         activeSlug = null;
         renderList();
       });
