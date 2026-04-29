@@ -241,15 +241,30 @@
         <h2 class="panel-title">A chaque besoin de recrutement son équipe</h2>
 
         <div class="subtabs-row">
-          <div class="subtabs" role="tablist">
-            <button class="subtab" role="tab">Recrutement continu</button>
-            <button class="subtab" role="tab" aria-current="true">Ponctuel et stratégique</button>
-            <button class="subtab" role="tab">Freelance</button>
+          <div class="subtabs" role="tablist" data-subtabs-for="chasse">
+            <button class="subtab" role="tab" data-subtab="continu">Recrutement continu</button>
+            <button class="subtab" role="tab" data-subtab="ponctuel" aria-current="true">Ponctuel et stratégique</button>
+            <button class="subtab" role="tab" data-subtab="freelance">Freelance</button>
           </div>
           <a href="solutions-profils.html" class="btn-outline">Profils couverts →</a>
         </div>
 
-        <section class="panel-section">
+        <section class="panel-section" data-subtab="continu" hidden>
+          <h3>Recrutement continu (RPO)</h3>
+          <div class="two-col">
+            <div>
+              <p>Vous avez plusieurs postes à ouvrir en parallèle, sur plusieurs mois. Nous mettons à disposition un binôme consultant + chargé de recherche dédié, qui ouvre, qualifie et closes vos rôles en flux continu.</p>
+              <p>Forfait mensuel sur le nombre de postes en cours, pas d'honoraires au succès, pas de relance commerciale en cours de mission. Notre équipe pilote la chasse comme une fonction interne externalisée.</p>
+            </div>
+            <div>
+              <p>Idéal pour les scale-ups en hypercroissance qui ouvrent 5 à 30 rôles par an sur des familles de métiers cohérentes (Tech, Sales, Product). Démarrage sous 5 jours, calibrage hebdomadaire avec le DRH.</p>
+              <p>Reporting consolidé : pipeline par rôle, taux de transformation par étape, retours marché sur la rémunération et les attentes candidats.</p>
+            </div>
+          </div>
+          <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
+        </section>
+
+        <section class="panel-section" data-subtab="ponctuel">
           <h3>Ponctuel et stratégique</h3>
           <div class="two-col">
             <div>
@@ -259,6 +274,21 @@
             <div>
               <p>Chaque profil que nous présentons a été qualifié en échange, a compris votre projet, a envie d'y être. Trois candidats, parfois quatre, pas cinquante, parce que notre travail c'est de filtrer pas de transmettre.</p>
               <p>Mission lancée sous 48 heures après la signature, première shortlist qualifiée sous 48 heures après le kick-off sur la plupart des missions, reporting hebdomadaire sur les volumes et les qualifications.</p>
+            </div>
+          </div>
+          <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
+        </section>
+
+        <section class="panel-section" data-subtab="freelance" hidden>
+          <h3>Freelance</h3>
+          <div class="two-col">
+            <div>
+              <p>Pour les besoins ponctuels et urgents — un seul rôle, un single-mission, ou une mission de quelques semaines — nous proposons un consultant freelance senior en exclusivité, payé en TJM ou au forfait court.</p>
+              <p>Le freelance reste piloté par un consultant lead GetPro. Vous bénéficiez du même standard de qualification, des mêmes viviers, mais avec un engagement plus léger et un démarrage immédiat.</p>
+            </div>
+            <div>
+              <p>Format adapté aux séries A en quête d'un VP, aux fondateurs qui ouvrent leur premier hire, ou aux directions qui veulent tester un poste avant d'engager une mission cabinet plus large.</p>
+              <p>Démarrage sous 48 heures, mission cadrée sur deux à six semaines, livrable en shortlist commentée. Pas de frais cachés, pas de commitment au-delà de la mission.</p>
             </div>
           </div>
           <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
@@ -309,15 +339,29 @@
         <h2 class="panel-title">Renforcer vos équipes RH sans grossir la structure</h2>
 
         <div class="subtabs-row">
-          <div class="subtabs" role="tablist">
-            <button class="subtab" role="tab">RPO mensuel</button>
-            <button class="subtab" role="tab" aria-current="true">Mission ponctuelle</button>
-            <button class="subtab" role="tab">Conseil &amp; outils</button>
+          <div class="subtabs" role="tablist" data-subtabs-for="renfort">
+            <button class="subtab" role="tab" data-subtab="rpo">RPO mensuel</button>
+            <button class="subtab" role="tab" data-subtab="mission" aria-current="true">Mission ponctuelle</button>
+            <button class="subtab" role="tab" data-subtab="conseil">Conseil &amp; outils</button>
           </div>
           <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
         </div>
 
-        <section class="panel-section">
+        <section class="panel-section" data-subtab="rpo" hidden>
+          <h3>RPO mensuel</h3>
+          <div class="two-col">
+            <div>
+              <p>Un recruteur GetPro intégré à votre équipe RH, à temps plein ou partiel, pour piloter le recrutement opérationnel sur la durée. Forfait mensuel sur le nombre de postes en cours, contrat reconductible, sortie possible avec un préavis court.</p>
+              <p>Le recruteur travaille sous votre direction, sur votre ATS, avec votre marque employeur. Il reste suivi en interne par un consultant lead GetPro qui garantit le standard de qualité et la formation continue.</p>
+            </div>
+            <div>
+              <p>Pour les scale-ups en croissance constante qui ouvrent un volume régulier de postes (Tech, Sales, Ops). Idéal en transition avant l'internalisation de la fonction recrutement.</p>
+              <p>Onboarding en deux semaines, premier reporting mensuel à J+30, point trimestriel avec le DRH pour ajuster le périmètre.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-section" data-subtab="mission">
           <h3>Mission ponctuelle</h3>
           <div class="two-col">
             <div>
@@ -327,6 +371,20 @@
             <div>
               <p>Démarrage sous deux semaines, ramp-up rapide grâce à des recruteurs habitués à plusieurs ATS (Lever, Greenhouse, Welcome Kit). Nous calons un rythme de feedback hebdomadaire avec le DRH ou le Hiring Manager désigné.</p>
               <p>À l'issue de la mission, nous vous laissons un livrable structuré : viviers, scorecards, métriques, recommandations sur les fiches de poste et la stratégie de canaux.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-section" data-subtab="conseil" hidden>
+          <h3>Conseil &amp; outils</h3>
+          <div class="two-col">
+            <div>
+              <p>Audit de votre fonction recrutement, conception de scorecards, refonte de fiches de poste, choix d'ATS, structuration du parcours candidat. Nous intervenons en mode conseil court, sans opérer le recrutement nous-mêmes.</p>
+              <p>Format à la journée ou en mission cadrée sur quelques semaines. Livrables structurés, transmissibles à vos équipes, prêts à être appliqués sans dépendance à GetPro.</p>
+            </div>
+            <div>
+              <p>Idéal pour les fondateurs qui veulent professionnaliser leur talent acquisition sans recruter un Head of Talent, ou pour les DRH qui veulent benchmarker leur process avec ceux des scale-ups que nous accompagnons.</p>
+              <p>Nous mobilisons un consultant senior sur l'audit et la conception, et un opérateur GetPro sur la mise en œuvre des outils. Restitution sous trois à six semaines selon le périmètre.</p>
             </div>
           </div>
         </section>
@@ -377,20 +435,41 @@
   <script src="partials.js" defer></script>
   <script>
     (function() {
-      const tabsHost = document.getElementById('solutions-tabs');
+      // Top tabs : Chasse / Renfort RH
+      const topTabs = document.getElementById('solutions-tabs');
       const panels = document.querySelectorAll('.panel[data-solution]');
-      tabsHost.addEventListener('click', (e) => {
+      topTabs.addEventListener('click', (e) => {
         const btn = e.target.closest('button.tab-2[data-solution]');
         if (!btn) return;
         e.preventDefault();
         const target = btn.dataset.solution;
-        tabsHost.querySelectorAll('button.tab-2').forEach(b => {
+        topTabs.querySelectorAll('button.tab-2').forEach(b => {
           if (b === btn) b.setAttribute('aria-current', 'true');
           else b.removeAttribute('aria-current');
         });
         panels.forEach(p => {
           if (p.dataset.solution === target) p.removeAttribute('hidden');
           else p.setAttribute('hidden', '');
+        });
+      });
+
+      // Subtabs (one set per panel) — switches the matching panel-section
+      document.querySelectorAll('[data-subtabs-for]').forEach(subHost => {
+        const panel = subHost.closest('.panel');
+        if (!panel) return;
+        subHost.addEventListener('click', (e) => {
+          const btn = e.target.closest('button.subtab[data-subtab]');
+          if (!btn) return;
+          e.preventDefault();
+          const target = btn.dataset.subtab;
+          subHost.querySelectorAll('button.subtab').forEach(b => {
+            if (b === btn) b.setAttribute('aria-current', 'true');
+            else b.removeAttribute('aria-current');
+          });
+          panel.querySelectorAll('section.panel-section[data-subtab]').forEach(s => {
+            if (s.dataset.subtab === target) s.removeAttribute('hidden');
+            else s.setAttribute('hidden', '');
+          });
         });
       });
     })();
