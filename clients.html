@@ -54,7 +54,8 @@
     padding: clamp(28px, 3.4vw, 50px) clamp(20px, 3vw, 50px);
   }
 
-  /* The content grid : 3 cells per row → name | logo | testimonial */
+  /* The content grid : parent grid defines the 3 column tracks, each <li.row>
+     is a real subgrid item that inherits those tracks. No display:contents. */
   .clients-list {
     list-style: none;
     margin: 0;
@@ -63,12 +64,18 @@
     grid-template-columns: minmax(0, 1fr) clamp(80px, 9vw, 130px) minmax(0, 3fr);
     column-gap: clamp(20px, 3vw, 50px);
     row-gap: clamp(8px, 0.8vw, 12px);
-    align-items: baseline;
     /* Une seule taille de typo pour toute la zone : nom, preview, témoignage */
     font-size: clamp(18px, 2vw, 28px);
     line-height: 1.25;
   }
-  .row { display: contents; }
+  .row {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    align-items: baseline;
+    position: relative;
+  }
+  .row.clickable { cursor: pointer; }
 
   /* Col 1 : name (titre tronqué, pas de retour ligne) */
   .clients-list a.name-link {
@@ -100,11 +107,6 @@
     object-fit: contain;
     object-position: left center;
   }
-
-  /* Whole row is clickable when there is a testimonial */
-  .row.clickable a.name-link,
-  .row.clickable .logo-cell,
-  .row.clickable .row-tm { cursor: pointer; }
 
   /* Col 3 : preview + (absolute) full testimonial */
   .row-tm {
@@ -164,6 +166,7 @@
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       row-gap: clamp(8px, 0.8vw, 12px);
     }
+    .row { grid-column: 1 / -1; }
     .logo-cell { display: none; }
     .tm-full {
       position: relative;
@@ -331,13 +334,11 @@
         }
         renderList();
 
-        // Scroll into view if we deep-linked to one. The <li> is display:contents
-        // so we anchor on the rendered .name-link, with an offset to leave room
-        // below for the absolutely-positioned testimonial overlay.
+        // Scroll the active row into a comfortable viewport position
         if (activeSlug) {
-          const nameEl = namesHost.querySelector(`li.row[data-slug="${activeSlug}"] a.name-link`);
-          if (nameEl) {
-            const targetY = nameEl.getBoundingClientRect().top + window.scrollY - 80;
+          const li = namesHost.querySelector(`li.row[data-slug="${activeSlug}"]`);
+          if (li) {
+            const targetY = li.getBoundingClientRect().top + window.scrollY - 80;
             window.scrollTo({ top: Math.max(0, targetY), behavior: 'auto' });
           }
         }
