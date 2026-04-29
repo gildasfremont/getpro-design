@@ -30,15 +30,26 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0;
-    aspect-ratio: 1359 / 617.97;
   }
 
   .grid-images .tile {
+    aspect-ratio: 272 / 309;
     /* 140% height = 37% extra vertical overflow → enough room to land eyes at 22% of every tile */
     background-size: auto 140%;
     background-repeat: no-repeat;
     background-color: #d8e0d3;
     background-position: 50% 50%;
+  }
+  /* Mid screen : 4 cols × 2 rows = 8 tiles visible (hide tiles 9 & 10) */
+  @media (max-width: 1100px) {
+    .grid-images { grid-template-columns: repeat(4, 1fr); }
+    .grid-images .tile:nth-child(n+9) { display: none; }
+  }
+  /* Small screen : 3 cols × 3 rows = 9 tiles visible (only hide tile 10) */
+  @media (max-width: 700px) {
+    .grid-images { grid-template-columns: repeat(3, 1fr); }
+    .grid-images .tile:nth-child(9) { display: block; }
+    .grid-images .tile:nth-child(10) { display: none; }
   }
   /* Eye-aligned focal points: each value moves the image so the subject's eyes land at ~22% from the top of the tile */
   .tile-1  { background-image: url('assets/Gemini_Generated_Image_rkgiq6rkgiq6rkgi.jpg'); background-position: 50%  4%; }
