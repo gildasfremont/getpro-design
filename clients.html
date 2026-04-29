@@ -47,13 +47,6 @@
     color: var(--ink);
     opacity: 0.4;
   }
-  .clients-search .results-count {
-    flex: 0 0 auto;
-    font-size: var(--fs-body);
-    line-height: 1.25;
-    opacity: 0.5;
-    white-space: nowrap;
-  }
 
   /* Panel : just a card holding the list */
   .clients-panel {
@@ -206,7 +199,6 @@
         </div>
         <div class="clients-search">
           <input type="search" id="clients-search" placeholder="Rechercher un client" autocomplete="off" />
-          <span class="results-count" id="results-count">381 clients</span>
         </div>
       </div>
 
@@ -222,7 +214,6 @@
   <script>
     (function() {
       const searchInput = document.getElementById('clients-search');
-      const resultsCount = document.getElementById('results-count');
       const namesHost = document.getElementById('clients-names');
       const escape = (s) => (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
       const norm = (s) => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -309,12 +300,6 @@
       function renderList() {
         const list = filteredClients();
         namesHost.innerHTML = list.map(rowHTML).join('');
-        const total = sorted.length;
-        if (searchQuery) {
-          resultsCount.textContent = `${list.length} / ${total}`;
-        } else {
-          resultsCount.textContent = `${total} clients`;
-        }
       }
 
       searchInput.addEventListener('input', (e) => {
