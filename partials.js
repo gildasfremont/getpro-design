@@ -6,7 +6,7 @@
   const isCurrent = (href) => {
     if (path === href) return true;
     // Solutions sub-pages share the "Solutions de recrutement" navbar item
-    if (href === 'solutions.html' && path === 'solutions-profils.html') return true;
+    if (href === 'solutions.html' && (path === 'solutions-profils.html' || path === 'solutions-renfort.html')) return true;
     return false;
   };
 
