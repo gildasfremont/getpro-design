@@ -46,37 +46,20 @@
     text-underline-offset: 4px;
   }
 
-  /* 2-col panel: alphabet | content */
+  /* Panel : just a card holding the list */
   .clients-panel {
     background: var(--white);
     padding: clamp(28px, 3.4vw, 50px) clamp(20px, 3vw, 50px);
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: clamp(20px, 3vw, 50px);
-    align-items: start;
   }
 
-  /* Alphabet */
-  .alphabet {
-    display: flex;
-    flex-direction: column;
-    font-size: clamp(12px, 1vw, 14px);
-    line-height: 1.4;
-    color: var(--ink);
-    opacity: 0.6;
-    user-select: none;
-  }
-  .alphabet a { color: inherit; text-decoration: none; }
-  .alphabet a:hover { opacity: 1; }
-
-  /* The content grid : 3 cells per row → name | logo | testimonial */
+  /* The content grid : 3 cells per row → name | logo | testimonial (équilatéral) */
   .clients-list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: auto auto minmax(0, 1fr);
-    column-gap: clamp(12px, 1.4vw, 20px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: clamp(20px, 3vw, 50px);
     row-gap: clamp(8px, 0.8vw, 12px);
     align-items: baseline;
     /* Une seule taille de typo pour toute la zone : nom, preview, témoignage */
@@ -85,11 +68,15 @@
   }
   .row { display: contents; }
 
-  /* Col 1 : name */
+  /* Col 1 : name (titre tronqué, pas de retour ligne) */
   .clients-list a.name-link {
+    display: block;
     color: inherit;
     pointer-events: none;
-    align-self: baseline;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .clients-list a.has-tm {
     text-decoration: underline;
@@ -188,10 +175,8 @@
   @media (max-width: 800px) {
     .clients-title-row { flex-direction: column; align-items: flex-start; }
     .ratings-row { flex-wrap: wrap; }
-    .clients-panel { grid-template-columns: 1fr; }
-    .alphabet { flex-direction: row; flex-wrap: wrap; gap: 4px; }
     .clients-list {
-      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       row-gap: clamp(8px, 0.8vw, 12px);
     }
     .logo-cell { display: none; }
@@ -238,16 +223,6 @@
       </div>
 
       <div class="clients-panel">
-        <nav class="alphabet" aria-label="Filtre alphabétique">
-          <a href="#A">A</a><a href="#B">B</a><a href="#C">C</a><a href="#D">D</a>
-          <a href="#E">E</a><a href="#F">F</a><a href="#G">G</a><a href="#H">H</a>
-          <a href="#I">I</a><a href="#J">J</a><a href="#K">K</a><a href="#L">L</a>
-          <a href="#M">M</a><a href="#N">N</a><a href="#O">O</a><a href="#P">P</a>
-          <a href="#Q">Q</a><a href="#R">R</a><a href="#S">S</a><a href="#T">T</a>
-          <a href="#U">U</a><a href="#V">V</a><a href="#W">W</a><a href="#X">X</a>
-          <a href="#Y">Y</a><a href="#Z">Z</a>
-        </nav>
-
         <ul class="clients-list" id="clients-names" role="list"></ul>
       </div>
     </section>
