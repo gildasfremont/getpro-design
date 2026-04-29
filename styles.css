@@ -76,7 +76,15 @@ button { font-family: inherit; cursor: pointer; }
 .section { padding-inline: var(--pad-x); }
 
 /* ---------- Header ---------- */
-.header { padding-block: 0 var(--gap-section); }
+.header {
+  padding-block: 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+}
+/* Restore the spacing that .header's padding-bottom used to provide */
+.header + * { margin-top: var(--gap-section); }
 
 .menu {
   display: flex;
@@ -84,10 +92,6 @@ button { font-family: inherit; cursor: pointer; }
   justify-content: space-between;
   padding-block: clamp(12px, 1.4vw, 20px);
   gap: clamp(16px, 3vw, 55px);
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: var(--bg);
 }
 
 .brand {
