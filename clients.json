@@ -3,31 +3,46 @@
     "slug": "360learning",
     "name": "360Learning",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.360learning.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "a2mac1",
     "name": "A2MAC1",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.a2mac1.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "absys-cyborg",
     "name": "Absys Cyborg",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.absyscyborg.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "acolyt",
     "name": "Acolyt",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.acolyt.co",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "activeviam",
     "name": "ActiveViam",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.activeviam.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "ad-s-up-consulting",
@@ -37,43 +52,64 @@
     "verbatim": "À la recherche d'un poste stratégique, Get pro nous a accompagnés dans ce recrutement avec sérieux et réactivité.  Le recrutement a été finalisé en moins d'un mois. Grande efficacité et réactivité.",
     "contact_name": "Davidson Li",
     "contact_role": "Head of Display & Social Ads, Partner",
-    "description": "Ad's up Consulting est une agence française spécialisée en SEA, Social Ads, Programmatic Display et SEO, créée en 2012 à Paris par Antoine Gurwitch (CEO, également Partner au niveau groupe European Digital Group depuis le rapprochement..."
+    "description": "Ad's up Consulting est une agence française spécialisée en SEA, Social Ads, Programmatic Display et SEO, créée en 2012 à Paris par Antoine Gurwitch (CEO, également Partner au niveau groupe European Digital Group depuis le rapprochement...",
+    "domaine": "www.ads-up.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "adagio",
     "name": "Adagio",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.adagio.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "agence-dn-d",
     "name": "Agence Dn'D",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.dnd.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "agicap",
     "name": "Agicap",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.agicap.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "ai-cargo-foundation",
     "name": "AI Cargo Foundation",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.aicargofoundation.org",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "airbus-protect",
     "name": "Airbus Protect",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "protect.airbus.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "algonomia",
     "name": "Algonomia",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.algonomia.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "alsid",
@@ -83,49 +119,73 @@
     "verbatim": "De très beaux recrutements réalisés courant 2020 sur des postes difficiles et stratégiques pour notre croissance (CSM, Pre-Sales). Chasse de qualité et très bon suivi de la part du cabinet. Continuez comme ça :)",
     "contact_name": "Guillaume Miche",
     "contact_role": "Talent Acquisition Specialist",
-    "description": "Alsid est une ancienne cybersécurité française pure-play Active Directory (SaaS de monitoring sécurité AD en temps réel), SAS SIREN 820862340 créée 2016-06-30, siège 3e étage Patchwork Montholon 26 rue de Montholon 75009 Paris. Fondée par..."
+    "description": "Alsid est une ancienne cybersécurité française pure-play Active Directory (SaaS de monitoring sécurité AD en temps réel), SAS SIREN 820862340 créée 2016-06-30, siège 3e étage Patchwork Montholon 26 rue de Montholon 75009 Paris. Fondée par...",
+    "domaine": "www.alsid.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "altarea",
     "name": "Altarea",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.altarea.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "amazingcontent",
     "name": "AmazingContent",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.amazingcontent.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "andjaro",
     "name": "Andjaro",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.andjaro.com",
+    "statut": "inactif",
+    "status_label": "Activité cessée"
   },
   {
     "slug": "appenin",
     "name": "Appenin",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.appenin.fr",
+    "statut": "inactif-cessation",
+    "status_label": "Activité cessée"
   },
   {
     "slug": "aston-itf",
     "name": "Aston iTF",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.astonitf.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "autoplay",
     "name": "Autoplay",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.autoplay.ai",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "autrice-ai",
     "name": "Autrice.ai",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.autrice.ai",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "avanteam",
@@ -135,19 +195,28 @@
     "verbatim": "Pour renforcer les équipes de Strasbourg, recrutement de devs C#+JS, profils junior. GETPRO a fait un sourcing pertinent correspondant à notre besoin. 3 candidats proposés par GETPRO, 2 embauchés, en moins de 3 mois entre le début du sourcing et l'arrivé du deuxième candidat.",
     "contact_name": "Richard Garcia",
     "contact_role": "Responsable agence Toulouse",
-    "description": "Avanteam est un éditeur français de logiciel GED / BPM et archivage électronique (Avanteam Process Suite), positionné midmarket et grands comptes avec une forte présence CAC 40, créé le 15 septembre 2003 par Jean-Marie Louis (fondateur et..."
+    "description": "Avanteam est un éditeur français de logiciel GED / BPM et archivage électronique (Avanteam Process Suite), positionné midmarket et grands comptes avec une forte présence CAC 40, créé le 15 septembre 2003 par Jean-Marie Louis (fondateur et...",
+    "domaine": "www.avanteam.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "axione",
     "name": "Axione",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.axione.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "b-workshop",
     "name": "b.workshop",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.bworkshop.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "bdl-capital-management",
@@ -157,19 +226,28 @@
     "verbatim": "Nous souhaitions embaucher un profil tech pour notre équipe mais le profil idéal n'était pas du tout arrêté. Grâce à Get Pro, j'ai pu raffiner ma demande et trouver le profil qui nous correspond bien. L'intégration fut bonne et rapide. Nous sommes vraiment contents de ce recrutement.",
     "contact_name": "Jean-Baptiste Beuzelin",
     "contact_role": "CTO",
-    "description": "BDL Capital Management est une société de gestion indépendante parisienne spécialisée en actions européennes de conviction, créée en mars 2005 par Hughes Beuzelin (Président, responsable des investissements) et Thierry Dupont, Bertrand..."
+    "description": "BDL Capital Management est une société de gestion indépendante parisienne spécialisée en actions européennes de conviction, créée en mars 2005 par Hughes Beuzelin (Président, responsable des investissements) et Thierry Dupont, Bertrand...",
+    "domaine": "www.bdlcm.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "beam",
     "name": "Beam",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": null,
+    "statut": "inactif",
+    "status_label": "Activité cessée"
   },
   {
     "slug": "beeldi",
     "name": "Beeldi",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.beeldi.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "bene-bono",
@@ -179,37 +257,55 @@
     "verbatim": "GetPro nous a aidé à recruter à la suite de notre deuxième levée de fonds. Au-delà des recrutements, cela a permis de renforcer les process de recrutement. Nous avons recruté ensemble plus d'une dizaine de profils, sur un temps très court.",
     "contact_name": "Sven Ripoche",
     "contact_role": "Co-founder",
-    "description": "Bene Bono est une foodtech française anti-gaspillage fondée en avril 2020 par Grégoire Carlier (CEO), Sven Ripoche et Claire Laurent, spécialisée dans les paniers de fruits et légumes bio hors calibres livrés à domicile. Le SIREN BDD..."
+    "description": "Bene Bono est une foodtech française anti-gaspillage fondée en avril 2020 par Grégoire Carlier (CEO), Sven Ripoche et Claire Laurent, spécialisée dans les paniers de fruits et légumes bio hors calibres livrés à domicile. Le SIREN BDD...",
+    "domaine": "www.benebono.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "biodiv-wind",
     "name": "Biodiv-Wind",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.biodiv-wind.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "biron",
     "name": "Biron",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.biron.com/fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "blablacar",
     "name": "BlaBlaCar",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.blablacar.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "blacksales",
     "name": "Blacksales",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.blacksales.co",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "blank",
     "name": "Blank",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.blank.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "bluekango",
@@ -219,19 +315,28 @@
     "verbatim": "Recrutement d'un profil Expert Systèmes Cloud / DevOps. Recrutement validé pour un profil à 25 ans XP",
     "contact_name": "Sylvain Plantard",
     "contact_role": "Directeur Technique",
-    "description": "BlueKanGo est un éditeur français de plateforme SaaS QHSE et RSE/ESG propulsée par IA, fondé en octobre 1998 à Cesson-Sévigné (SIREN 420710097, 90 rue Robert Keller Cesson-Sévigné 35510). Une des rares success stories SaaS B2B nées avant..."
+    "description": "BlueKanGo est un éditeur français de plateforme SaaS QHSE et RSE/ESG propulsée par IA, fondé en octobre 1998 à Cesson-Sévigné (SIREN 420710097, 90 rue Robert Keller Cesson-Sévigné 35510). Une des rares success stories SaaS B2B nées avant...",
+    "domaine": "www.bluekango.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "bm-a-partners",
     "name": "BM&A Partners",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.bma-groupe.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "deeplomath",
     "name": "Bondzai",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.bondzai.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "bowo",
@@ -241,13 +346,19 @@
     "verbatim": "Nous avons fait appel à Getpro pour la recherche d'un développeur web full-stack. Getpro nous a accompagné dans tout le process de recrutement de manière efficace. Thomas nous a aidé à  préciser le type de profile recherché. Getpro nous a présenté rapidement quatres candidats en adéquation avec notre recherche. Nous avons apprécié le suivi effectué par l'équipe à chaque étape du recrutement (sourcing, entretien, suivi et proposition).",
     "contact_name": "Romain Catajar",
     "contact_role": "CTO, Co-founder",
-    "description": "Bowo est une startup française hospitality tech fondée en 2017 par Jonathan Cheniere (CEO) et Romain Catajar (CTO), éditeur d'une Guest Relationship Platform (ex-Guest App) web et mobile custom-brandée pour chaque hôtel, agrégeant online..."
+    "description": "Bowo est une startup française hospitality tech fondée en 2017 par Jonathan Cheniere (CEO) et Romain Catajar (CTO), éditeur d'une Guest Relationship Platform (ex-Guest App) web et mobile custom-brandée pour chaque hôtel, agrégeant online...",
+    "domaine": "www.bowo.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "branded",
     "name": "Branded",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.gobranded.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "bridger",
@@ -257,7 +368,10 @@
     "verbatim": "Nous avions besoin de recruter rapidement un Social Media & Content Manager ainsi qu'un Growth Manager. Le recrutement n'était pas nécessairement évident car Bridger était une société en cours de création, avec peu d'informations disponibles pour rassurer les candidats potentiels. Tout s'est déroulé à la perfection : nous n'avons eu que des entretiens de qualité, nous avons trouvé deux profils répondant parfaitement à nos besoins dans un délai relativement court. La communication avec GetPro éta",
     "contact_name": "Valentin",
     "contact_role": "Head of Growth & Community",
-    "description": "Bridger / BridgeRev est une agence HubSpot Elite Partner et cabinet de conseil en Revenue Operations basée à Oklahoma City (États-Unis), rebrandée vers Clevyr (clevyr.com) selon le site partenaire, date exacte non précisée. Identité légale..."
+    "description": "Bridger / BridgeRev est une agence HubSpot Elite Partner et cabinet de conseil en Revenue Operations basée à Oklahoma City (États-Unis), rebrandée vers Clevyr (clevyr.com) selon le site partenaire, date exacte non précisée. Identité légale...",
+    "domaine": "www.clevyr.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "buildrz",
@@ -267,55 +381,82 @@
     "verbatim": "projet de recrutement complexe sur un poste en création avec peu d occurrences en France. Recrutement complet < 2 mois, 7 candidats rencontrés dont le bon et 3 shortlistés : efficacité totale. une réponse très rapide a notre besoin et un candidat tout juste arrivé qui apporte déjà beaucoup à l'équipe",
     "contact_name": "Emmanuelle Carlier",
     "contact_role": "Directrice Des Oprations",
-    "description": "Buildrz est une proptech française de generative AI pour la prospection et les études de faisabilité immobilière, fondée en 2016 à Paris, SAS SIREN 822111795 créée 2016-08-18, siège 137 boulevard de Sébastopol Paris 75002. Plateforme SaaS..."
+    "description": "Buildrz est une proptech française de generative AI pour la prospection et les études de faisabilité immobilière, fondée en 2016 à Paris, SAS SIREN 822111795 créée 2016-08-18, siège 137 boulevard de Sébastopol Paris 75002. Plateforme SaaS...",
+    "domaine": "www.buildrz.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "c2s",
     "name": "C2S Bouygues",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.c2s-bouygues.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "cacd2",
     "name": "CACD2 (Crédit Agricole Conseil & Développement Digital)",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.cacd2.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "canal-plus",
     "name": "Canal+",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.canalplus.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "capco",
     "name": "Capco",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.capco.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "carrefour",
     "name": "Carrefour",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.carrefour.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "carrefour-2",
     "name": "Carrefour Banque",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.carrefour-banque.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "cheerz",
     "name": "Cheerz",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.cheerz.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "claimy",
     "name": "Claimy",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.claimy.co",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "clap-partners",
@@ -325,55 +466,82 @@
     "verbatim": "Nous avons missionné Getpro sur un besoin de recrutement sur des profils de consultants en déploiement de SI ou Interfaces. Nous avons pu valider 3 profils interface avec de l'expérience sur la technologie qu'ils seront amenés à utiliser, et nous avons des pistes pour d'autres consultants. Les profils proposés par Camille ont toujours été de qualité, pas d'erreurs de casting comme nous avons pu expérimenter chez d'autres acteurs pourtant \"spécialisés\". Cela optimise pour nous le nombre et le tem",
     "contact_name": "Clap Partners",
     "contact_role": "Manager",
-    "description": "CLAP Partners est un cabinet français de conseil et d'intégration SAP Cloud spécialisé RH (SuccessFactors, Concur, Callidus), Gold Partner SAP SuccessFactors depuis 2012, créé le 28 mars 2014 sous la dénomination CLAP Integration puis..."
+    "description": "CLAP Partners est un cabinet français de conseil et d'intégration SAP Cloud spécialisé RH (SuccessFactors, Concur, Callidus), Gold Partner SAP SuccessFactors depuis 2012, créé le 28 mars 2014 sous la dénomination CLAP Integration puis...",
+    "domaine": "www.clap-partners.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "codspeed",
     "name": "CodSpeed",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.codspeed.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "collock",
     "name": "Collock",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.collock.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "comand",
     "name": "Comand AI",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.comand.ai",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "comete",
     "name": "Comet",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.comet.co",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "conecs",
     "name": "Conecs",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.conecs.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "contentsquare",
     "name": "Contentsquare",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.contentsquare.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "corma",
     "name": "Corma",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.corma.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "corum-lepargne",
     "name": "CORUM L'Épargne",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.corum.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "corwave",
@@ -383,55 +551,82 @@
     "verbatim": "Nous avons fait appel à GetPro pour nous accompagner dans la phase de déploiement de structuration du process de recrutement et surtout pour la prise en charge de nos opérations de recrutement.  - Accompagnement au déploiement du process défini  - Prise en charge et pourvoi des postes vacants  - Amélioration de la relation manager / relation de service client interne  - Renouvellement de la confiance au service RH",
     "contact_name": "Fairuz HASNI",
     "contact_role": "Vice-Presidente Ressources Humaines",
-    "description": "CorWave est une medtech française basée à Clichy (92) développant une pompe cardiaque implantable (LVAD) à membrane ondulante qui reproduit le flux pulsatile biomimétique du cœur, rupture par rapport aux LVAD à flux continu dominant..."
+    "description": "CorWave est une medtech française basée à Clichy (92) développant une pompe cardiaque implantable (LVAD) à membrane ondulante qui reproduit le flux pulsatile biomimétique du cœur, rupture par rapport aux LVAD à flux continu dominant...",
+    "domaine": "www.corwave.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "cosem",
     "name": "COSEM",
     "has_logo": false,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.cosem.fr",
+    "statut": "liquidation-judiciaire-avec-reprise-partielle-ramsay",
+    "status_label": "En liquidation, reprise partielle par Ramsay"
   },
   {
     "slug": "pono",
     "name": "Covalt",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.covalt.eu",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "cve-biogaz-services",
     "name": "CVE Group",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.cvegroup.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "cybelangel",
     "name": "CybelAngel",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.cybelangel.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "cycle",
     "name": "CycleBar",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.cyclebar.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "d-edge",
     "name": "D-EDGE Hospitality Solutions",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.d-edge.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "datakalab",
     "name": "Datakalab",
     "has_logo": false,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.datakalab.com",
+    "statut": "inactif-post-acquisition",
+    "status_label": "Activité absorbée après acquisition"
   },
   {
     "slug": "dayuse",
     "name": "Dayuse.com",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.dayuse.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "decathlon",
@@ -441,7 +636,10 @@
     "verbatim": "recrutement en data . pas mal de candidats et des successful hires  aide sur la stratégie de recrutement",
     "contact_name": "",
     "contact_role": "",
-    "description": "Decathlon France est la filiale française du groupe Decathlon SE, distributeur spécialiste articles de sport à modèle intégré fabrication-distribution. SAS SIREN 500569405 créée le 5 octobre 2007, siège 4 boulevard de Mons 59650..."
+    "description": "Decathlon France est la filiale française du groupe Decathlon SE, distributeur spécialiste articles de sport à modèle intégré fabrication-distribution. SAS SIREN 500569405 créée le 5 octobre 2007, siège 4 boulevard de Mons 59650...",
+    "domaine": "www.decathlon.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "deepmove",
@@ -451,55 +649,82 @@
     "verbatim": "GetPro m'a accompagné pour recruter les profils stratégiques de mes entreprises : le COO et le CTO de ma première société / le Head of Engineering de ma seconde société. Ils nous ont aidés à définir clairement nos besoins RH, et quelles compétences nous recherchions. Les profils convertis se sont avérés excellents, tant sur le plan professionnel que personnel.  Ces recrutements ont été déterminants pour notre croissance. En effet, il s'agissait de profils recherchés et difficilement accessibles.",
     "contact_name": "Georges Ryssen",
     "contact_role": "CEO",
-    "description": "[Cessation d'activité confirmée via Pitchbook, 2025-2026.] DeepMove est une startup française de computer vision / deep learning spécialisée dans la reconnaissance de mouvements corporels sur vidéo (analyse performance sportive,..."
+    "description": "[Cessation d'activité confirmée via Pitchbook, 2025-2026.] DeepMove est une startup française de computer vision / deep learning spécialisée dans la reconnaissance de mouvements corporels sur vidéo (analyse performance sportive,...",
+    "domaine": "www.deepmove.ai",
+    "statut": "inactif-cessation",
+    "status_label": "Activité cessée"
   },
   {
     "slug": "didask",
     "name": "Didask",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.didask.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "digital-village",
     "name": "Digital Village",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.digital-village.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "doctrine",
     "name": "Doctrine",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.doctrine.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "dolead",
     "name": "Dolead",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.dolead.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "dotfile",
     "name": "Dotfile",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.dotfile.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "dsflow",
     "name": "Dsflow",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.dsflow.ai",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "dust",
     "name": "Dust",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.dust.tt",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "dedale-ex-software-club",
     "name": "Dédale (ex-Software Club)",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.dedale.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "e2-cad",
@@ -509,19 +734,28 @@
     "verbatim": "Recrutement d'un ingénieur qualité Software. Nous avons rapidement reçu 3 candidats en entretien qui étaient parfaitement pertinents. Le recrutement a été prononcé les jours suivants.",
     "contact_name": "Jacques Berçot",
     "contact_role": "Founder",
-    "description": "E2-CAD est un cabinet français de conseil et d'ingénierie en électronique automobile et systèmes embarqués (hardware, firmware, validation), créé le 1er octobre 2001, siège Immeuble Le Regent, 13 rue Rosa Luxemburg, 95610 Eragny. SAS SIREN..."
+    "description": "E2-CAD est un cabinet français de conseil et d'ingénierie en électronique automobile et systèmes embarqués (hardware, firmware, validation), créé le 1er octobre 2001, siège Immeuble Le Regent, 13 rue Rosa Luxemburg, 95610 Eragny. SAS SIREN...",
+    "domaine": "www.e2-cad.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "ecosolar",
     "name": "Ecosolar",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.ecosolar.energy",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "edf-enr",
     "name": "EDF ENR PWT",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.edfenr.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "electra",
@@ -531,19 +765,28 @@
     "verbatim": "Electra est une startup ambitieuse qui démarre fort. Nous avions besoin de recruter un product designer talentueux pour poser les premières pierres de l'équipe produit. Dans un contexte de marché Product très tendu, GetPro nous a accompagné pour trouver la perle rare en un temps record. Une compréhension très bonne de notre recherche, de son contexte et des attentes d'Electra. Des itérations rapides avec GetPro pour conserver / écarter les candidats. Une recherche efficace et ciblée qui s'est so",
     "contact_name": "Brice Bourreau",
     "contact_role": "CPO",
-    "description": "Electra est un opérateur français de bornes de recharge rapide pour véhicules électriques (CPO), fondé le 11 novembre 2020 par Aurélien de Meaux (Président), Julien Belliato et Augustin Derville. SAS SIREN 891624884 siège 104 rue de..."
+    "description": "Electra est un opérateur français de bornes de recharge rapide pour véhicules électriques (CPO), fondé le 11 novembre 2020 par Aurélien de Meaux (Président), Julien Belliato et Augustin Derville. SAS SIREN 891624884 siège 104 rue de...",
+    "domaine": "www.go-electra.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "eleven-labs",
     "name": "Eleven Labs",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.eleven-labs.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "elevo",
     "name": "Elevo",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.elevo.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "elogen",
@@ -553,31 +796,46 @@
     "verbatim": "Recrutement de poste non staffé depuis 18 mois ! Isis a su proposer des alternatives et avancer sur les sujets. Succès du staffing",
     "contact_name": "",
     "contact_role": "",
-    "description": "Elogen est un équipementier industriel français de l'hydrogène vert, concepteur et fabricant d'électrolyseurs PEM (membrane échangeuse de protons) de 1 MW à plusieurs dizaines de MW, basé aux Ulis (91940) au 8 avenue du Parana ZA de..."
+    "description": "Elogen est un équipementier industriel français de l'hydrogène vert, concepteur et fabricant d'électrolyseurs PEM (membrane échangeuse de protons) de 1 MW à plusieurs dizaines de MW, basé aux Ulis (91940) au 8 avenue du Parana ZA de...",
+    "domaine": "www.elogenh2.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "enerdata",
     "name": "Enerdata",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.enerdata.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "enerpur",
     "name": "Enerpur",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.enerpur.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "enginn-technologies",
     "name": "Enginn Technologies",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.enginn.ai",
+    "statut": "inactif-cessation",
+    "status_label": "Activité cessée"
   },
   {
     "slug": "enioka-conseil",
     "name": "Enioka Conseil",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "consulting.enioka.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "enioka-haute-couture",
@@ -587,49 +845,73 @@
     "verbatim": "Recrutement d'un tech lead pour renforcer notre équipe de développement au sein d'une société de service en développement logiciel. Recrutement réussi",
     "contact_name": "Thomas Cordival",
     "contact_role": "Directeur Général",
-    "description": "Enioka Haute Couture est la SAS de développement logiciel sur-mesure du groupe Enioka (conseil + haute couture + ITLM), créée le 25 juin 2018 au 13 rue du Mail Paris 75002. SIREN 840655393"
+    "description": "Enioka Haute Couture est la SAS de développement logiciel sur-mesure du groupe Enioka (conseil + haute couture + ITLM), créée le 25 juin 2018 au 13 rue du Mail Paris 75002. SIREN 840655393",
+    "domaine": "haute-couture.enioka.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "enioka-itts",
     "name": "Enioka ITTS",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "itts.enioka.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "eovolt",
     "name": "Eovolt",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.eovolt.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "epicery",
     "name": "Epicery",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.epicery.com",
+    "statut": "cessation-probable-fin-2024",
+    "status_label": "Cessation probable fin 2024"
   },
   {
     "slug": "epiconcept",
     "name": "Epiconcept",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.epiconcept.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "escp-alumni",
     "name": "ESCP Alumni",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.escpalumni.org",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "etix-everywhere",
     "name": "Etix Everywhere",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.etixeverywhere.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "eurasolis",
     "name": "Eurasolis",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.eurasolis.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "europmarkets",
@@ -639,7 +921,10 @@
     "verbatim": "j'avais besoin de recruter un responsable pour le service Back Office export. ce poste demande des compétences très particulières qui ne se trouvent que dans le secteur du négoce international. Getpro a très rapidement compris nos besoins et trouvé des candidats valables parmi lesquels j'ai trouvé la personne que je recherchais.",
     "contact_name": "nataf stephane",
     "contact_role": "PDG",
-    "description": "SOC EUROPMARKETS est un négociant grossiste français historique spécialisé dans le commerce de céréales, tabac brut, semences et aliments pour le bétail (NAF 4621Z), avec activité complémentaire de courtage et affrètement maritime. SA..."
+    "description": "SOC EUROPMARKETS est un négociant grossiste français historique spécialisé dans le commerce de céréales, tabac brut, semences et aliments pour le bétail (NAF 4621Z), avec activité complémentaire de courtage et affrètement maritime. SA...",
+    "domaine": null,
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "eurecia",
@@ -649,31 +934,46 @@
     "verbatim": "Nous avons fait appel à Getpro pour le recrutement d'un poste de Directeur. Ils nous ont accompagné de A à Z. Nous avons pu rencontrer plusieurs candidats de qualité et avons proposé le poste à un candidat qui arrive dans quelques mois.",
     "contact_name": "Marianne CORDRAY LAFARGUE",
     "contact_role": "VP of Human Resources",
-    "description": "Eurécia est un SIRH SaaS français dédié aux PME, créé en 2006 à Castanet-Tolosan (Toulouse) par Pascal Grémiaux (Président toujours en fonction, également élu au CA de l'AFDEL). SAS, SIREN à reconstituer via Pappers"
+    "description": "Eurécia est un SIRH SaaS français dédié aux PME, créé en 2006 à Castanet-Tolosan (Toulouse) par Pascal Grémiaux (Président toujours en fonction, également élu au CA de l'AFDEL). SAS, SIREN à reconstituer via Pappers",
+    "domaine": "www.eurecia.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "evaneos",
     "name": "Evaneos",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.evaneos.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "evermaps",
     "name": "Evermaps",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.evermaps.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "excelya",
     "name": "Excelya",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.excelya.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "expaceo",
     "name": "Expaceo",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.expaceo.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "experene",
@@ -683,31 +983,46 @@
     "verbatim": "GetPro nous a accompagné dans le recrutement d'un développeur Full Stack Senior. L'expertise de GetPro a été très précieuse et au-delà ce que nous attendions de la part d'un cabinet de recrutement  :  - pour définir au mieux le profil du candidat recherché et nous faire évoluer dans la compréhension et la formulation de notre besoin - pour nous accompagner et nous coacher dans la préparation et le suivi des différentes étapes de recrutement. Les candidats présentés étaient de qualité et le suivi",
     "contact_name": "Bertrand Maccarini",
     "contact_role": "Head of Marketing Communications",
-    "description": "Experene est une ancienne société française de conseil et services aux professionnels en performance énergétique, SAS SIREN 828250555 créée 2017-03-01, siège 198 avenue de France 75013 Paris. Société en liquidation : dissolution effective..."
+    "description": "Experene est une ancienne société française de conseil et services aux professionnels en performance énergétique, SAS SIREN 828250555 créée 2017-03-01, siège 198 avenue de France 75013 Paris. Société en liquidation : dissolution effective...",
+    "domaine": "www.experene.com",
+    "statut": "inactif",
+    "status_label": "Activité cessée"
   },
   {
     "slug": "fabrick",
     "name": "Fabrick",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.fabrick.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "faks",
     "name": "Faks",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.faks.co",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "familiar",
     "name": "Familiar",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": null,
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "famoco",
     "name": "Famoco",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.famoco.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "fasterize",
@@ -717,7 +1032,10 @@
     "verbatim": "En recherche d'un poste plutôt nouveau de CPTO, recrutement d'un profil expérimenté niveau Comité de Direction. Rapidité et suivi rigoureux. Candidats de haut niveau qui respectent le brief et bon résumé des candidats. Notre choix a été éclairé et les candidats semblent bien accompagnés également",
     "contact_name": "stephane rios",
     "contact_role": "CEO",
-    "description": "Fasterize est un éditeur SaaS français martech / webperf front-end optimization, fondé le 28 juin 2011 par Stéphane Rios (Président, ex-CTO Rue du Commerce), SAS SIREN 533589768 siège 30-32 boulevard de Sébastopol 75004 Paris. Plateforme..."
+    "description": "Fasterize est un éditeur SaaS français martech / webperf front-end optimization, fondé le 28 juin 2011 par Stéphane Rios (Président, ex-CTO Rue du Commerce), SAS SIREN 533589768 siège 30-32 boulevard de Sébastopol 75004 Paris. Plateforme...",
+    "domaine": "www.fasterize.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "filigran",
@@ -727,7 +1045,10 @@
     "verbatim": "Sourcing de profils tech atypiques, prestation de RPO en phase de scaling, accompagnement humain lors d'un audit de sécurité. Propositions pertinentes, dans un calendrier contraint. Très bonnes propositions de profils, nos attentes ont été parfaitement comprises et entendues.",
     "contact_name": "Sophie Hubaut",
     "contact_role": "Senior HR & Legal Manager",
-    "description": "Filigran est un éditeur français open-source de plateformes de cyber threat intelligence (OpenCTI), attack emulation (OpenBAS) et GRC (OpenGRC), fondé le 18 juin 2021 par Samuel Hassine (CEO, ex-responsable cyber-opérations et threat..."
+    "description": "Filigran est un éditeur français open-source de plateformes de cyber threat intelligence (OpenCTI), attack emulation (OpenBAS) et GRC (OpenGRC), fondé le 18 juin 2021 par Samuel Hassine (CEO, ex-responsable cyber-opérations et threat...",
+    "domaine": "www.filigran.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "fincome",
@@ -737,25 +1058,37 @@
     "verbatim": "Recrutement d'un Account Executive. Profil de qualité identifié dans un délai raisonnable. Accompagnement de qualité tout au long du process",
     "contact_name": "Vincent Gouedard",
     "contact_role": "CEO et co-founder",
-    "description": "Fincome est une fintech SaaS française fondée en 2021 par Vincent Gouedard (CEO, ex-Private Equity Manager Abénex), Martin Courau et Lucas Gonzalez Leclercq, spécialisée dans la subscription analytics temps réel pour éditeurs SaaS. SIREN..."
+    "description": "Fincome est une fintech SaaS française fondée en 2021 par Vincent Gouedard (CEO, ex-Private Equity Manager Abénex), Martin Courau et Lucas Gonzalez Leclercq, spécialisée dans la subscription analytics temps réel pour éditeurs SaaS. SIREN...",
+    "domaine": "www.fincome.co",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "fisher-investments-luxembourg",
     "name": "Fisher Investments Luxembourg",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.fisherinvestments.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "flaire",
     "name": "Flaire",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.flaire-recruiting.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "fluxym",
     "name": "Fluxym",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.fluxym.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "foodles",
@@ -765,61 +1098,91 @@
     "verbatim": "Chez Foodles, nous sommes dans un contexte d'hyper-croissance, compte tenu du volume de postes sur lesquels nous recrutons, il est indispensable de pouvoir s'appuyer sur des partenaires fiables et efficaces quand il s'agit de recruter des fonctions tech dans un marché pénurique et tendu. Getpro a été notre partenaire à plusieurs reprises pour le recrutement de profils Développeurs Fullstack Seniors. 2 recrutements finalisés à date, 2 succès, 2 nouveaux collaborateurs qui matchent parfaitement av",
     "contact_name": "Aurore Baudry",
     "contact_role": "Talent Acquisition Manager Senior",
-    "description": "Foodles est une foodtech française B2B2C de restauration d'entreprise nouvelle génération fondée en 2015 par Clément Bonhomme et Michael Ormancey (tous deux chefs cuisiniers), pionnier du marché de la 'cantine cloud' avec frigos connectés..."
+    "description": "Foodles est une foodtech française B2B2C de restauration d'entreprise nouvelle génération fondée en 2015 par Clément Bonhomme et Michael Ormancey (tous deux chefs cuisiniers), pionnier du marché de la 'cantine cloud' avec frigos connectés...",
+    "domaine": "www.foodles.co",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "foodpilot",
     "name": "Foodpilot",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.foodpilot.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "foods-international",
     "name": "Foods International",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.foodsinternational.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "front",
     "name": "Front",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.front.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "federation-francaise-de-tennis",
     "name": "Fédération Française de Tennis",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.fft.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "galian-smabtp",
     "name": "Galian-SMABTP",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.galian-smabtp.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "gatling",
     "name": "Gatling",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.gatling.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "getaround",
     "name": "Getaround",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.getaround.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "green-lighthouse",
     "name": "GLHD (Green Lighthouse Développement)",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.glhd.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "greenweez",
     "name": "Greenweez.com",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.greenweez.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "groupe-la-centrale",
@@ -829,103 +1192,154 @@
     "verbatim": "Consultante qui a très bien compris notre besoin, qui était toujours présente et pro active (pas vraiment besoin de la relancer contrairement à d'autres consultants de cabinets).",
     "contact_name": "Cely Rodrigues",
     "contact_role": "Responsable Ressources Humaines",
-    "description": "Groupe La Centrale est un groupe media automobile français historique (ex-Car&Boat Media), société éditrice de plusieurs sites de petites annonces et contenus auto : La Centrale (site historique grand public), Caradisiac (média éditorial),..."
+    "description": "Groupe La Centrale est un groupe media automobile français historique (ex-Car&Boat Media), société éditrice de plusieurs sites de petites annonces et contenus auto : La Centrale (site historique grand public), Caradisiac (média éditorial),...",
+    "domaine": "www.lacentrale.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "groupe-roullier",
     "name": "Groupe Roullier",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.roullier.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "sprint-mob",
     "name": "Groupe Sprint",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.sprint.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "hardis-groupe",
     "name": "Hardis Group",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.hardis-group.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "harfanglab",
     "name": "HarfangLab",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.harfanglab.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "hdf-energy",
     "name": "HDF Energy",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.hdf-energy.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "hedgeguard",
     "name": "HedgeGuard",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.hedgeguard.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "heetch",
     "name": "Heetch",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.heetch.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "heyteam",
     "name": "HeyTeam",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.heyteam.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "hightekers",
     "name": "Hightekers",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.hightekers.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "hipay",
     "name": "HiPay",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.hipay.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "homeexchange",
     "name": "HomeExchange",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.homeexchange.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "horiz-io",
     "name": "Horiz.io",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.horiz.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "hors-normes",
     "name": "Hors Normes Immobilier",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.hors-normes-immobilier.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "horysons",
     "name": "Horysons",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.horysons.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "hysetco",
     "name": "HysetCo",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.hysetco.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "icomme-fluides",
     "name": "Icomme Fluides",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.icomme-ingenierie.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "id-capture",
@@ -935,97 +1349,145 @@
     "verbatim": "Nous avions besoin de faire grandir notre équipe technique en cherchant les talents qui se complètent par leur personnalité et leurs compétences. Getpro nous a fait gagner du temps en faisant la recherche de candidats qualifiés selon nos critère. Leur capacité à adapter les recherches en fonction des besoins qui évoluent et s'affinent au cours du processus a été un facteur important dans la réussite de nos recrutement.",
     "contact_name": "Camille Troillard",
     "contact_role": "Directeur technique",
-    "description": "ID Capture est un éditeur SaaS français spécialisé en gestion de chantier, dématérialisation et pilotage financier pour les métiers du bâtiment et des travaux publics, créé le 29 juillet 2011 par Cyril Sébastien Gavard (Président et..."
+    "description": "ID Capture est un éditeur SaaS français spécialisé en gestion de chantier, dématérialisation et pilotage financier pour les métiers du bâtiment et des travaux publics, créé le 29 juillet 2011 par Cyril Sébastien Gavard (Président et...",
+    "domaine": "www.idcapture.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "iel-etudes-et-installations",
     "name": "IEL — Initiatives et Energies Locales",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.iel-energie.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "igraal",
     "name": "iGraal",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.igraal.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "ika-technology",
     "name": "IKA Technology",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.ika-technology.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "imt-transfert",
     "name": "IMT Transfert",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.imt-transfert.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "in-store-media-france",
     "name": "In-Store Media",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.in-storemedia.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "infinite-square",
     "name": "Infinite Square",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.inwink.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "ingeniance",
     "name": "Ingéniance",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.ingeniance.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "inthy",
     "name": "Inthy",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.inthy.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "invenis",
     "name": "Invenis",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.invenis.co",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "invivo-group",
     "name": "InVivo (Groupe)",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.invivo-group.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "ipsi",
     "name": "IPSI",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.ipsi.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "isochronix",
     "name": "Isochronix",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.isochronix.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "isograd",
     "name": "Isograd",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.isograd.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "ivalua",
     "name": "Ivalua",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.ivalua.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "japhy",
     "name": "Japhy",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.japhy.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "javelo",
@@ -1035,7 +1497,10 @@
     "verbatim": "Nous avons travaillé ensemble sur le recrutement de profils sales, profils très sollicités sur le marché en ce moment. Un recrutement fait en 9 jours, le top ! Merci beaucoup pour votre réactivité et votre travail, on est super satisfait. De plus, la disponibilité et la sympathie d'Adrien et Illiana est top !",
     "contact_name": "Jade Vandelook",
     "contact_role": "Talent Acquisition",
-    "description": "Javelo est un éditeur SaaS français de performance management continu (entretiens, feedback 360, OKR, alignement managers-collaborateurs), fondé à Paris en juin 2016 par Anne-Sophie Vasseur (CEO), Gautier Machelon, David Guillermain et..."
+    "description": "Javelo est un éditeur SaaS français de performance management continu (entretiens, feedback 360, OKR, alignement managers-collaborateurs), fondé à Paris en juin 2016 par Anne-Sophie Vasseur (CEO), Gautier Machelon, David Guillermain et...",
+    "domaine": "www.javelo.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "jcdecaux",
@@ -1045,7 +1510,10 @@
     "verbatim": "Nous avons travaillé sur un recrutement d'architecte cloud. Un collègue m'a parlé de Getpro et nous avons débuté notre collaboration. Recrutement très rapide pour un poste en tension. Je suis très satisfait d'être tombé sur le bon candidat dès les premiers CVs envoyés. Anne-Claire a fourni un excellent travail en prenant en compte nos attentes.",
     "contact_name": "Alexandre Phrasathane",
     "contact_role": "IT Talent Acquisition Manager",
-    "description": "JCDecaux France est la filiale opérationnelle France du groupe JCDecaux SE, n°1 mondial de la communication extérieure (mobilier urbain, affichage, transport) fondé en 1964 par Jean-Claude Decaux (mobilier urbain financé par la publicité,..."
+    "description": "JCDecaux France est la filiale opérationnelle France du groupe JCDecaux SE, n°1 mondial de la communication extérieure (mobilier urbain, affichage, transport) fondé en 1964 par Jean-Claude Decaux (mobilier urbain financé par la publicité,...",
+    "domaine": "www.jcdecaux.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "jeudimerci",
@@ -1055,25 +1523,37 @@
     "verbatim": "GetPro nous a accompagné dans le recrutement de notre CTO. GetPro nous a présenté des candidats ultra-qualifiés, et nous a accompagnés dans l'évaluation de leurs connaissances, mais aussi de leurs soft-skills. L'équipe GetPro a été très à l'écoute, transparente et force de proposition pour que nous réussissions à sourcer plus de candidats. Et en plus, nos candidats étaient très satisfaits de leurs échanges avec l'équipe GetPro. Bref, très belle expérience :)",
     "contact_name": "Leonie de Verdelhan",
     "contact_role": "Co-fondatrice & CEO",
-    "description": "JeudiMerci est une startup française marketing B2B spécialisée dans l'envoi de cadeaux d'affaires personnalisés à l'échelle, créée en 2019 par Léonie de Verdelhan Williamson (SAS SIREN 879226009, 51 bd des Alpes Meylan 38240, Grenoble)...."
+    "description": "JeudiMerci est une startup française marketing B2B spécialisée dans l'envoi de cadeaux d'affaires personnalisés à l'échelle, créée en 2019 par Léonie de Verdelhan Williamson (SAS SIREN 879226009, 51 bd des Alpes Meylan 38240, Grenoble)....",
+    "domaine": "www.jeudimerci.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "jimmy-energy",
     "name": "Jimmy Energy",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.jimmy-energy.eu",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "jobteaser",
     "name": "JobTeaser",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.jobteaser.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "join",
     "name": "Join",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.join-stories.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "joko",
@@ -1083,31 +1563,46 @@
     "verbatim": "Recrutement d'un poste difficile en Marketing. Nous avons trouvé la perle rare au bout de quelques semaines !",
     "contact_name": "Alarba Yatte",
     "contact_role": "Talent Acquisition Specialist",
-    "description": "Entité BDD JOKO SIREN 485012017 créée 2005-11-08 à Bourg-lès-Valence (26500), 11 allée Nicolas Copernic, gérant Joseph Kazazian, site joko.com. Cette entité historique Drôme est sans lien documenté avec la fintech Joko (scale-up..."
+    "description": "Entité BDD JOKO SIREN 485012017 créée 2005-11-08 à Bourg-lès-Valence (26500), 11 allée Nicolas Copernic, gérant Joseph Kazazian, site joko.com. Cette entité historique Drôme est sans lien documenté avec la fintech Joko (scale-up...",
+    "domaine": "www.joko.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "jooxter",
     "name": "Jooxter",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.jooxter.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "jse",
     "name": "JSE (cible à clarifier)",
     "has_logo": false,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": null,
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "julhiet-sterwen",
     "name": "Julhiet Sterwen",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.julhiet-sterwen.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "jus-mundi",
     "name": "Jus Mundi",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.jusmundi.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "kabeen",
@@ -1117,7 +1612,10 @@
     "verbatim": "Recrutement d'un développeur fullstack junior avec un mindset adapté à notre contexte d'entreprise. La mission à été rempli en à peine un mois. Les profils proposés étaient très pertinents, remplissant les principales contraintes que nous avions posés.  Résultat : un recrutement de qualité en un temps record (17 jours :) )",
     "contact_name": "Damien Charon",
     "contact_role": "CTO, Co-founder",
-    "description": "Kabeen est une start-up française SaaS B2B d'IT management proposant une plateforme centralisée de gestion du parc applicatif et de la satisfaction utilisateurs (monitoring applicatif + SaaS management + mesure de la performance perçue),..."
+    "description": "Kabeen est une start-up française SaaS B2B d'IT management proposant une plateforme centralisée de gestion du parc applicatif et de la satisfaction utilisateurs (monitoring applicatif + SaaS management + mesure de la performance perçue),...",
+    "domaine": "www.kabeen.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "kactus",
@@ -1127,13 +1625,19 @@
     "verbatim": "Nous avons fait appel à GetPro pour recruter un développeur rails senior (marché assez difficile). Il s'agissait de notre deuxième recrutement avec GetPro. L'expérience a été fructueuse avec une découverte rapide du candidat idéal en moins de deux mois. Chaque profil suggéré par GetPro était hautement qualifié. Pour nos prochains recrutements, nous réitérerons avec plaisir notre collaboration avec GetPro.",
     "contact_name": "",
     "contact_role": "Head Of Engineering",
-    "description": "Kactus est une plateforme SaaS française de réservation et gestion d'événements professionnels (séminaires, conférences, soirées d'entreprise, team building, pilotage budgétaire), créée fin 2016 à Paris. SAS, SIREN à reconstituer via..."
+    "description": "Kactus est une plateforme SaaS française de réservation et gestion d'événements professionnels (séminaires, conférences, soirées d'entreprise, team building, pilotage budgétaire), créée fin 2016 à Paris. SAS, SIREN à reconstituer via...",
+    "domaine": "www.kactus.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "kard",
     "name": "Kard",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.kard.eu",
+    "statut": "liquide",
+    "status_label": "Société liquidée"
   },
   {
     "slug": "kardinal",
@@ -1143,7 +1647,10 @@
     "verbatim": "Nous avions une équipe Produit à reconstruire de zéro, et nous devions recruter rapidement un Lead Designer et un Product Manager. Rapidement, GetPro a su mettre en place un processus de recrutement pragmatique, très professionnel, avec une partie importante dédiée à l'écoute de nos besoins. Les premières suggestions de candidats ont très vite tapé très juste. Nous avons vu moins de 5 candidats pour chaque poste, tous très bien qualifiés, pour des recrutements en 2 mois environ.",
     "contact_name": "Cédric Hervet",
     "contact_role": "CPO",
-    "description": "Kardinal est un éditeur SaaS français de logistics-tech, fondé le 5 janvier 2015 par Jonathan Bouaziz (Président) et Cédric Hervet (CPO), SAS SIREN 809234586 siège 10 rue de Penthièvre 75008 Paris. Plateforme d'optimisation continue de..."
+    "description": "Kardinal est un éditeur SaaS français de logistics-tech, fondé le 5 janvier 2015 par Jonathan Bouaziz (Président) et Cédric Hervet (CPO), SAS SIREN 809234586 siège 10 rue de Penthièvre 75008 Paris. Plateforme d'optimisation continue de...",
+    "domaine": "www.kardinal.ai",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "keon",
@@ -1153,19 +1660,28 @@
     "verbatim": "Sur le recrutement de près de 30 postes ouverts pour la société, pour une mission de RPO de 3 mois initialement, prolongée d'un mois. Au départ du RPO Get Pro, il restait moins d'une demie douzaine de postes ouverts. Plus de la moitié des recrutements sont directement du fait du RPO Get Pro, Louis",
     "contact_name": "PATRICK FOLTZENLOGEL",
     "contact_role": "CFO groupe",
-    "description": "Keon Group est un groupe français intégré de la méthanisation agricole et du biométhane, construit comme une holding faîtière (SAS KEON SIREN 852690130 créée le 13 juin 2019, siège 52 rue Paul Vaillant-Couturier, 92240 Malakoff) fédérant..."
+    "description": "Keon Group est un groupe français intégré de la méthanisation agricole et du biométhane, construit comme une holding faîtière (SAS KEON SIREN 852690130 créée le 13 juin 2019, siège 52 rue Paul Vaillant-Couturier, 92240 Malakoff) fédérant...",
+    "domaine": "www.keon-group.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "kheoos",
     "name": "Kheoos",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.kheoos.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "khome",
     "name": "Khome",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.khome.immo",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "kidizz",
@@ -1175,13 +1691,19 @@
     "verbatim": "Nous avions besoin d'un recrutement en \"urgence\" pour notre société. Après 35 jours de collaboration avec Claire de GetPro, nous avons une nouvelle collaboratrice qui arrive à la fin du mois !",
     "contact_name": "Alice Lefebvre",
     "contact_role": "Chargée de Développement Commercial",
-    "description": "Kidizz est une startup edtech française de logiciel tout-en-un pour crèches, garderies et centres de loisirs, créée en 2014 à Paris par Thierry Alexandre Schmitt et Baptiste Thomas. Équipe ~20 % des crèches FR (notée 4,4/5 Play Store,..."
+    "description": "Kidizz est une startup edtech française de logiciel tout-en-un pour crèches, garderies et centres de loisirs, créée en 2014 à Paris par Thierry Alexandre Schmitt et Baptiste Thomas. Équipe ~20 % des crèches FR (notée 4,4/5 Play Store,...",
+    "domaine": "www.kidizz.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "kietta",
     "name": "Kietta",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.kietta.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "kili-technology",
@@ -1191,7 +1713,10 @@
     "verbatim": "Nous avons fait appel à Getpro dans le cadre du recrutement de notre équipe commercial (plusieurs AE et Pre-sales).  Nous avons atteint grâce à Getpro nos objectifs de recrutement. Getpro a été plus efficace que la moyenne des agences avec lesquelles nous avons travaillé",
     "contact_name": "Antoine dLR",
     "contact_role": "Head of Sales",
-    "description": "Kili Technology est une AI tech française fondée en 2018 par François-Xavier Leduc (CEO) et Édouard d'Archimbaud (CTO, ex-responsable du AI Lab BNP Paribas), éditant une plateforme SaaS enterprise de training data pour modèles IA,..."
+    "description": "Kili Technology est une AI tech française fondée en 2018 par François-Xavier Leduc (CEO) et Édouard d'Archimbaud (CTO, ex-responsable du AI Lab BNP Paribas), éditant une plateforme SaaS enterprise de training data pour modèles IA,...",
+    "domaine": "www.kili-technology.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "kisskissbankbank",
@@ -1201,31 +1726,46 @@
     "verbatim": "Une recherche ciblée, sur des stacks rares, pour des recrutements de lead tech.  Grâce à l'écoute attentive de nos besoins, Getpro a su trouver en quelques semaines des profils pertinents qui nous ont permis de boucler notre recrutement en quelques semaines.",
     "contact_name": "Mouna Aoun",
     "contact_role": "Secrétaire Générale",
-    "description": "KissKissBankBank est une plateforme française de crowdfunding don + récompense fondée 2009, créée 2009-04-28 sous la SAS KISSKISSBANKBANK & CO SIREN 512211004, siège 115 rue de Sèvres 75006 Paris. Plus de 28 000 projets financés depuis..."
+    "description": "KissKissBankBank est une plateforme française de crowdfunding don + récompense fondée 2009, créée 2009-04-28 sous la SAS KISSKISSBANKBANK & CO SIREN 512211004, siège 115 rue de Sèvres 75006 Paris. Plus de 28 000 projets financés depuis...",
+    "domaine": "www.kisskissbankbank.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "kms",
     "name": "KMS Insurance Solutions",
     "has_logo": false,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": null,
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "knowmore",
     "name": "Knowmore",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.knowmoreplatform.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "kolecto",
     "name": "Kolecto",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.kolecto.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "kolsquare",
     "name": "Kolsquare",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.kolsquare.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "komodal",
@@ -1235,13 +1775,19 @@
     "verbatim": "Nous sommes une PME dans la tech, notre bizz dev principal passait sur de nouvelles missions, nous devions lui trouver un/e remplaçant(e) en moins de 3 mois. Le vrai challenge était de trouver une personne à la fois assez proche de notre domaine technique (Métavers) ou en tous cas très à l'aise pour pouvoir très vite monter en compétence, avec une certaine séniorité, et capable d'être totalement autonome sur l'entièreté du cycle de vente (de la prospection au closing). On partait super défaitist",
     "contact_name": "Maroua EL",
     "contact_role": "Head of Growth",
-    "description": "Komodal est une startup française metaverse / VR B2B (conception et exploitation de mondes et environnements virtuels pour organisations publiques et privées : événementiel virtuel, formation, bureaux virtuels, ventes et commerce), SAS..."
+    "description": "Komodal est une startup française metaverse / VR B2B (conception et exploitation de mondes et environnements virtuels pour organisations publiques et privées : événementiel virtuel, formation, bureaux virtuels, ventes et commerce), SAS...",
+    "domaine": "www.komodal.co",
+    "statut": "liquide",
+    "status_label": "Société liquidée"
   },
   {
     "slug": "konverso",
     "name": "Konverso",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.konverso.ai",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "kostango",
@@ -1251,85 +1797,127 @@
     "verbatim": "Recrutement d'un profil atypique tech / métier. Getpro s'est clairement démarquée des autres cabinets avec lesquels nous avons travaillé par son expertise de chasse ciblée et sa capacité à s'adapter rapidement aux feedback des premiers entretiens. Au final un recrutement complexe réussi ! Je recommande vivement.",
     "contact_name": "Alexandre Johann",
     "contact_role": "CEO, Co-founder",
-    "description": "Kostango est une startup SaaS française B2B qui édite la 'première solution low-code dédiée au Operation Management', créée le 1er février 2016 à Paris par Alexandre Johann (CEO), Pawel Greim et Laurence Gendron. SAS SIREN 818279572 au 33..."
+    "description": "Kostango est une startup SaaS française B2B qui édite la 'première solution low-code dédiée au Operation Management', créée le 1er février 2016 à Paris par Alexandre Johann (CEO), Pawel Greim et Laurence Gendron. SAS SIREN 818279572 au 33...",
+    "domaine": "www.kostango.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "kulzer-france",
     "name": "Kulzer France",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.kulzer.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "bourse-aux-livres",
     "name": "La Bourse aux Livres",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.labourseauxlivres.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "la-combe-du-lion-vert",
     "name": "La Combe du Lion Vert (absorbée par Arolla)",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "blog.lacombedulionvert.vercel.app",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "la-fabrique-2",
     "name": "La Fabrique by CA",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.lafabriquebyca.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "laboratoires-audevard",
     "name": "Laboratoires Audevard",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.audevard.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "le-wagon",
     "name": "Le Wagon",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.lewagon.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "leetchi",
     "name": "Leetchi",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.leetchi.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "legalife",
     "name": "LegaLife",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.legalife.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "legalplace",
     "name": "LegalPlace",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.legalplace.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "legalstart",
     "name": "Legalstart",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.legalstart.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "lemens-partners",
     "name": "Lemens & Partners",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.lemensandpartners.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "lemlist",
     "name": "Lemlist",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.lemlist.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "lendopolis",
     "name": "Lendopolis",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.lendopolis.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "les-cuistots-migrateurs",
@@ -1339,19 +1927,28 @@
     "verbatim": "Nous cherchions un Directeur Commercial pour encadrer nos équipes, structurer tout le pôle Sales et développer l'acquisition de nouveaux clients . Très bon contact avec leur équipe commerciale puis le recruteur Marc. L'équipe est venue sur site pour bien comprendre notre culture, et je pense que ça a beaucoup joué dans le recrutement. Nous avons eu très vite des propositions de candidats et l'échange a été très bon et très naturel. Les profils proposés étaient pertinents, en adéquation avec le p",
     "contact_name": "Louis Jacquot",
     "contact_role": "DG",
-    "description": "Entité composite : une activité de traiteur solidaire (lescuistotsmigrateurs.com) et une école de formation à l'insertion (ecoledescuistotsmigrateurs.com) financée en partie par crowdfunding et fonds publics (Ministère du Travail, Investir..."
+    "description": "Entité composite : une activité de traiteur solidaire (lescuistotsmigrateurs.com) et une école de formation à l'insertion (ecoledescuistotsmigrateurs.com) financée en partie par crowdfunding et fonds publics (Ministère du Travail, Investir...",
+    "domaine": "www.lescuistotsmigrateurs.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "libeo",
     "name": "Libeo",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.libeo.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "liberkeys",
     "name": "Liberkeys",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.liberkeys.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "link-mobility",
@@ -1361,7 +1958,10 @@
     "verbatim": "Nous avions besoin d'aide pour recruter un developer avec des besoins assez spécifiques.  Getpro a immédiatement cerné le profil bien que très spécial. Le premier candidat présenté a été immediatement identifié comme étant parfait par tous les membres de l'équipe.",
     "contact_name": "",
     "contact_role": "",
-    "description": "Link Mobility (entité française) est la filiale française du groupe CPaaS norvégien Link Mobility Group AS (Oslo), SAS SIREN 418712477 créée le 23 avril 1998, siège 62 avenue Émile Zola 92100 Boulogne-Billancourt. DG France et COO Western..."
+    "description": "Link Mobility (entité française) est la filiale française du groupe CPaaS norvégien Link Mobility Group AS (Oslo), SAS SIREN 418712477 créée le 23 avril 1998, siège 62 avenue Émile Zola 92100 Boulogne-Billancourt. DG France et COO Western...",
+    "domaine": "www.linkmobility.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "linkurious",
@@ -1371,7 +1971,10 @@
     "verbatim": "GetPro nous a accompagné sur le recrutement d'un Engineering Manager pour un équipe de 15 personnes.  GetPro nous a présenté un candidat très pertinent en 48 heures. Nous avons pu boucler ce recrutement en une semaine grâce à leur réactivité.",
     "contact_name": "David Rapin",
     "contact_role": "CTO & Co-founder",
-    "description": "Linkurious est un éditeur français de logiciel d'analyse de graphes fondé en 2013 par Sébastien Heymann (CEO), David Rapin et Jean Villedieu, héritier direct du projet open source Gephi co-fondé par Sébastien Heymann lors de ses études..."
+    "description": "Linkurious est un éditeur français de logiciel d'analyse de graphes fondé en 2013 par Sébastien Heymann (CEO), David Rapin et Jean Villedieu, héritier direct du projet open source Gephi co-fondé par Sébastien Heymann lors de ses études...",
+    "domaine": "www.linkurious.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "linxo",
@@ -1381,13 +1984,19 @@
     "verbatim": "Processus de recrutement au poste de Senior Sales Executive. Clarisse m'a contacté via Linkedin pour ce poste qui correspondait parfaitement à mon futur projet professionnel.",
     "contact_name": "",
     "contact_role": "",
-    "description": "Linxo est une fintech française leader de l'agrégation bancaire et de l'open banking, fondée en 2010 à Aix-en-Provence par Bruno Van Haetsdaele et Hugues Pisapia. SAS Linxo Group SIREN 522515667, siège Espace Wagner Bâtiment E 10 rue du..."
+    "description": "Linxo est une fintech française leader de l'agrégation bancaire et de l'open banking, fondée en 2010 à Aix-en-Provence par Bruno Van Haetsdaele et Hugues Pisapia. SAS Linxo Group SIREN 522515667, siège Espace Wagner Bâtiment E 10 rue du...",
+    "domaine": "www.linxo.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "lithosquare",
     "name": "Lithosquare",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.lithosquare.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "logipren",
@@ -1397,7 +2006,10 @@
     "verbatim": "Nous recherchions un candidat parfaitement bilingue en anglais possédant la culture des pays anglo-saxons. De nombreux cabinets confondaient l'anglais courant et l'anglais bilingue. Getpro a compris notre besoin et a rapidement identifié plusieurs candidats, dont une d'exception. Démarche très professionnelle et structurée, résultats rapides.",
     "contact_name": "Laurent Conrad-Bruat",
     "contact_role": "Cofounder & General Manager",
-    "description": "Logipren est un éditeur SaaS healthtech français spécialisé sur la prescription médicamenteuse en néonatologie et réanimation pédiatrique, leader de marché en France avec 85 % des services de réanimation néonatale français abonnés et 90+..."
+    "description": "Logipren est un éditeur SaaS healthtech français spécialisé sur la prescription médicamenteuse en néonatologie et réanimation pédiatrique, leader de marché en France avec 85 % des services de réanimation néonatale français abonnés et 90+...",
+    "domaine": "www.logipren.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "lucca",
@@ -1407,7 +2019,10 @@
     "verbatim": "Getpro nous a aidé à trouver un profil C-level rare dans des délais très courts. L'équipe a été d'une efficacité remarquable et a toujours été présente pour nous aider dans ce difficile recrutement. Merci à eux ! La principale réussite est d'avoir réussi à nous trouver un candidat qui réponde à des critères d'exigence très élevés et accepte la culture et la politique de rémunération très atypiques de Lucca. C'était une vraie gageure. Je tiens également à souligner les délais et le nombre de cand",
     "contact_name": "Damien Grandemenge",
     "contact_role": "Directeur Général",
-    "description": "Lucca est un éditeur français SaaS SIRH modulaire, créé le 1er mars 2002 par Gilles Satge (Président SAS, co-fondateur), SAS SIREN 441637691 siège 151 avenue de France 75013 Paris. Suite empilable à la carte : paie, congés, notes de frais,..."
+    "description": "Lucca est un éditeur français SaaS SIRH modulaire, créé le 1er mars 2002 par Gilles Satge (Président SAS, co-fondateur), SAS SIREN 441637691 siège 151 avenue de France 75013 Paris. Suite empilable à la carte : paie, congés, notes de frais,...",
+    "domaine": "www.lucca.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "lucile-woodward",
@@ -1417,49 +2032,73 @@
     "verbatim": "Nous faisons face à une forte croissance et les besoins de recrutement se sont multipliés depuis la fin de l'année dernière. GetPro nous a déjà accompagné sur 2 recrutements avec succès! Nous n'aurions certainement pas pu recruter seules un profil aussi qualifié pour le poste de Marketing Team Lead. Nous leur avons depuis confié 4 autres recrutements.   Les deux premiers recrutements correspondent tout à fait à nos attentes, que ce soit niveau qualifications, ou culture d'entreprise. Les équipes",
     "contact_name": "Marion Juredieu",
     "contact_role": "CEO, Co-founder",
-    "description": "Marque fondée autour de Lucile Woodward (coach sportive et journaliste scientifique, figure médiatique du fitness en ligne) avec Marion Juredieu (CEO co-fondatrice, partenaire opérationnelle). La société a annoncé en 2023 le déploiement..."
+    "description": "Marque fondée autour de Lucile Woodward (coach sportive et journaliste scientifique, figure médiatique du fitness en ligne) avec Marion Juredieu (CEO co-fondatrice, partenaire opérationnelle). La société a annoncé en 2023 le déploiement...",
+    "domaine": "www.lucilewoodward.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "lunettes-pour-tous",
     "name": "Lunettes Pour Tous",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.lunettespourtous.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "lunii",
     "name": "Lunii",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.lunii.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "madbox",
     "name": "Madbox",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.madbox.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "magnolia-fr",
     "name": "Magnolia.fr",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.magnolia.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "manomano",
     "name": "ManoMano",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.manomano.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "marcel",
     "name": "Marcel",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.marcel.ai",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "margo-conseil",
     "name": "Margo Conseil",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.margo.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "matera",
@@ -1469,19 +2108,28 @@
     "verbatim": "Nous avons collaboré avec Getpro car nous avions besoin d'aide pour soutenir notre rythme croissance avec notamment le recrutement de nombreux collaborateurs dans un lapse de temps très court. Nous avons, grâce à Jonathan, atteint nos objectifs de recrutement ! Toute l'équipe à apprécié sa collaboration.",
     "contact_name": "Gaïane Millet",
     "contact_role": "Head of HR",
-    "description": "Matera est une proptech française SaaS de gestion digitale de copropriétés, fondée en 2017 sous le nom illiCopro et rebrandée Matera en janvier 2020 concomitamment à la Série A menée par Index Ventures. Co-fondateurs : Raphaël Di Meglio..."
+    "description": "Matera est une proptech française SaaS de gestion digitale de copropriétés, fondée en 2017 sous le nom illiCopro et rebrandée Matera en janvier 2020 concomitamment à la Série A menée par Index Ventures. Co-fondateurs : Raphaël Di Meglio...",
+    "domaine": "www.matera.eu",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "may",
     "name": "May",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.may.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "mecosun",
     "name": "Mecosun",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.mecosun.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "medialog",
@@ -1491,31 +2139,46 @@
     "verbatim": "Embauche d'un senior en ingénierie assurance qualité pour du développement logiciel. Sujet technique et pointu, profile rare. Suite à une première mission de recherche compliquée et sans résultats, excellente réactivité et remise en question de la part de GetPro. Lancement d'une deuxième mission quasi parfaite : rapide, ciblée, et efficace. On a pu trouver en quelques semaines le profile rare que l'on cherchait depuis presque deux ans.",
     "contact_name": "",
     "contact_role": "reponsable développement logiciel",
-    "description": "Medialog est un éditeur français historique de logiciels hôteliers (PMS) et restauration (POS), créé en 1988, siège 150 bd Masséna Paris 75013. SARL, SIREN à reconstituer via Pappers, PME indépendante avec capital détenu par dirigeants..."
+    "description": "Medialog est un éditeur français historique de logiciels hôteliers (PMS) et restauration (POS), créé en 1988, siège 150 bd Masséna Paris 75013. SARL, SIREN à reconstituer via Pappers, PME indépendante avec capital détenu par dirigeants...",
+    "domaine": "www.medialog.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "mindee",
     "name": "Mindee",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.mindee.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "mindmesh",
     "name": "Mindmesh",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.mindmesh.global",
+    "statut": "a-verifier",
+    "status_label": null
   },
   {
     "slug": "mistral-ai",
     "name": "Mistral AI",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.mistral.ai",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "modeo",
     "name": "Modeo",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.modeo.ai",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "mojix",
@@ -1525,13 +2188,19 @@
     "verbatim": "Nous faisons appel à GetPro pour tout nos recrutements Produit et Projet qui sont clés pour notre croissance. Les équipes de GetPro sont à l'écoute, flexible et fiables - elles savent à chaque fois s'adapter à nos besoins. Une attention particulière est portée sur le fait de nous proposer des candidats en ligne avec notre culture et la dynamique d'équipe. Nous sommes ravis des recrutements réalisés ensemble, les personnes arrivées dans l'équipe collent parfaitement à nos besoins.",
     "contact_name": "Estelle Huynh",
     "contact_role": "COO",
-    "description": "Mojix est un groupe international dont le HQ est à Boca Raton (Floride). L'entité française (ex-Tagsys RFID puis CXignited) a fusionné avec Mojix en 2017, donnant une présence européenne à Paris"
+    "description": "Mojix est un groupe international dont le HQ est à Boca Raton (Floride). L'entité française (ex-Tagsys RFID puis CXignited) a fusionné avec Mojix en 2017, donnant une présence européenne à Paris",
+    "domaine": "www.mojix.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "mojo",
     "name": "Mojo",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.mojo.video",
+    "statut": "a-clarifier",
+    "status_label": null
   },
   {
     "slug": "mona-energy",
@@ -1541,61 +2210,91 @@
     "verbatim": "Recherche de chef de projet IRVE avec une bonne experience terrain. Bon filtre amont, ce qui a limité le nombre de candidat reçu. Le 2eme candidat reçu était le bon.",
     "contact_name": "",
     "contact_role": "",
-    "description": "Mona Energy est une startup française mobilité électrique / infrastructure de recharge pour véhicules et flottes, créée 2023-03-09 à Sainte-Hélène-du-Lac (73800, Savoie Technolac) comme SAS SIREN 949827729 siège 355 voie Galilée. Activité..."
+    "description": "Mona Energy est une startup française mobilité électrique / infrastructure de recharge pour véhicules et flottes, créée 2023-03-09 à Sainte-Hélène-du-Lac (73800, Savoie Technolac) comme SAS SIREN 949827729 siège 355 voie Galilée. Activité...",
+    "domaine": "www.monaenergy.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "monbanquet-fr",
     "name": "MonBanquet.fr",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.monbanquet.fr",
+    "statut": "actif-sous-b2b-food",
+    "status_label": null
   },
   {
     "slug": "motion-society",
     "name": "Motion Society",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.motionsociety.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "murprotec",
     "name": "Murprotec",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.murprotec.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "mwm",
     "name": "MWM",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.mwmfg.co",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "myelefant",
     "name": "myElefant",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "connect.myelefant.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "mylight150",
     "name": "myLight150",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.mylight150.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "mym",
     "name": "MYM",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "mym.fans",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "mypiscine",
     "name": "MyPiscine",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.mypiscine.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "myre",
     "name": "MYRE",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.getmyre.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "mytraffic",
@@ -1605,121 +2304,181 @@
     "verbatim": "J'ai travaillé au côté de Juliette sur du recrutement et la mise en place de projet RH au sein de l'équipe. Il est très agréable de travailler à ces côtés pour sa bienveillance, sa bonne humeur et sa capacité de résolution de problématique RH/ recrutement.   J'ai appris à ces côtés et nous avons pu mettre en place plusieurs projets RH.",
     "contact_name": "",
     "contact_role": "",
-    "description": "Mytraffic est une plateforme SaaS française de location intelligence / footfall analytics fondée en 2016 à Paris par Hakim Saadaoui (CEO, ex-Areva + Rothschild M&A) et Gautier Machelon (serial entrepreneur, également co-fondateur de..."
+    "description": "Mytraffic est une plateforme SaaS française de location intelligence / footfall analytics fondée en 2016 à Paris par Hakim Saadaoui (CEO, ex-Areva + Rothschild M&A) et Gautier Machelon (serial entrepreneur, également co-fondateur de...",
+    "domaine": "www.mytraffic.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "nass-wind",
     "name": "Nass&Wind",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.nassetwind.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "neoen",
     "name": "Neoen",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.neoen.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "netwo",
     "name": "Netwo",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.netwo.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "nexworld",
     "name": "Nexworld",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.nexworld.tv",
+    "statut": "inactif-depuis-2022-12-31-absorbe-onepoint",
+    "status_label": "Absorbée par Onepoint en 2022"
   },
   {
     "slug": "nfinite",
     "name": "Nfinite",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.nfinite.app",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "nonna-lab",
     "name": "Nonna Lab",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.nonnalab.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "novalend",
     "name": "NovaLend",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.novalend.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "novaptech",
     "name": "Novaptech",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.novaptech.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "novelty",
     "name": "Novelty",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.novelty.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "numbr",
     "name": "Numbr",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.numbr.co",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "okali",
     "name": "Okali",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.okali.eu",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "olenbee",
     "name": "Olenbee",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.olenbee.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "olix",
     "name": "Olix Computing",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.olix.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "onatera",
     "name": "Onatera",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.onatera.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "onefinestay",
     "name": "onefinestay",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.onefinestay.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "ooakdata",
     "name": "Ooak Data",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.ooakdata.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "ooblada",
     "name": "Ooblada",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.ooblada.net",
+    "statut": "liquidation-judiciaire",
+    "status_label": "En liquidation judiciaire"
   },
   {
     "slug": "openvalue",
     "name": "Openvalue",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.openvalue.ai",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "orchestrade",
     "name": "Orchestrade",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.orchestrade.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "orkestra",
@@ -1729,91 +2488,136 @@
     "verbatim": "Recrutement d'un dévelopeur senior pour notre startup, avec des stacks et un profil/charactère bien définis.  Le premier candidat proposé présentait bien tous les critères recherchés. Getpro a su être à l'écoute et proposer un profil qui cochait la quasi totalité des cases.",
     "contact_name": "Mostafa El Ayoubi",
     "contact_role": "CEO",
-    "description": "Orkestra est une startup française early-stage spécialisée dans les outils BIM low-code pour architectes, ingénieurs et constructeurs (AEC), fondée en septembre 2020 à Paris par Mostafa El Ayoubi El Idrissi. SAS SIREN 890008451 au 70 rue..."
+    "description": "Orkestra est une startup française early-stage spécialisée dans les outils BIM low-code pour architectes, ingénieurs et constructeurs (AEC), fondée en septembre 2020 à Paris par Mostafa El Ayoubi El Idrissi. SAS SIREN 890008451 au 70 rue...",
+    "domaine": "orkestra.online",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "oscaro",
     "name": "Oscaro",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.oscaro.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "oxalys",
     "name": "Oxalys",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.oxalys.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "padoa",
     "name": "Padoa",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.padoa.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "padok",
     "name": "Padok",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.padok.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "paladin",
     "name": "Paladin",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.paladin.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "palo-it",
     "name": "Palo IT",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.palo-it.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "parmentine",
     "name": "Parmentine",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.parmentine.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "partoo",
     "name": "Partoo",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.partoo.co",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "phenix",
     "name": "Phenix",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.wearephenix.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "pigment",
     "name": "Pigment",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.pigment.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "planet-cards",
     "name": "Planet Cards",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.planet-cards.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "platan",
     "name": "Platan",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.platan.fr",
+    "statut": "liquidation-judiciaire",
+    "status_label": "En liquidation judiciaire"
   },
   {
     "slug": "plebicom",
     "name": "Plebicom",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.plebicom.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "porsche-france",
     "name": "Porsche France SAS",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.porsche.com/france",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "premium-energy",
@@ -1823,79 +2627,118 @@
     "verbatim": "Recrutement d'un profil coordinateur, recrutement d'un gestionnaire. Suivi régulier et à l'écoute",
     "contact_name": "",
     "contact_role": "",
-    "description": "Premium Energy est une SAS française d'efficacité énergétique B2B fondée en 2010 par Benjamin Emmanuel Gary Cohen-Zardi, SIREN 522019322 créée 2010-05-01 à Aubervilliers 93300 (155 avenue Jean Jaurès), spécialisée dans l'identification..."
+    "description": "Premium Energy est une SAS française d'efficacité énergétique B2B fondée en 2010 par Benjamin Emmanuel Gary Cohen-Zardi, SIREN 522019322 créée 2010-05-01 à Aubervilliers 93300 (155 avenue Jean Jaurès), spécialisée dans l'identification...",
+    "domaine": "www.premiumenergyfrance.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "prestashop",
     "name": "Prestashop",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.prestashop.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "prevision-io",
     "name": "Prevision.io",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.prevision.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "pricemoov",
     "name": "Pricemoov",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.pricemoov.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "processfirst",
     "name": "ProcessFirst",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.processfirst.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "product-live",
     "name": "Product-Live",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.product-live.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "protected",
     "name": "Protected",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.protected.eu",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "pumpkin-app",
     "name": "Pumpkin",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.pumpkin-app.com",
+    "statut": "radie",
+    "status_label": "Société radiée"
   },
   {
     "slug": "qualisocial",
     "name": "Qualisocial",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.qualisocial.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "qualitadd",
     "name": "Qualitadd",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.qualitadd.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "quipment",
     "name": "Quipment",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.quipment.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "rakuten",
     "name": "Rakuten",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "fr.shopping.rakuten.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "rakuten-dx",
     "name": "Rakuten DX",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.rakuten-dx.com",
+    "statut": "inactif",
+    "status_label": "Activité cessée"
   },
   {
     "slug": "red-alert-labs",
@@ -1905,79 +2748,118 @@
     "verbatim": "Recrutement de profils d'experts cybersécurité IoT (consultant et évaluateur). Nous avons réussi à embaucher un profil évaluateur suite à la collaboration (1 profil sur deux prévus)",
     "contact_name": "Ayman Khalil",
     "contact_role": "Managing Partner & COO",
-    "description": "Red Alert Labs est une scale-up française cybersécurité IoT spécialisée dans l'évaluation de sécurité et la certification d'objets connectés (labo indépendant agréé CSPN ANSSI, Common Criteria, SESIP, EN 303 645, RED Delegated Act, NIST..."
+    "description": "Red Alert Labs est une scale-up française cybersécurité IoT spécialisée dans l'évaluation de sécurité et la certification d'objets connectés (labo indépendant agréé CSPN ANSSI, Common Criteria, SESIP, EN 303 645, RED Delegated Act, NIST...",
+    "domaine": "www.redalertlabs.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "reelevant",
     "name": "Reelevant",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.reelevant.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "refashion",
     "name": "Refashion",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.refashion.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "renovation-man",
     "name": "Renovation Man",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.renovationman.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "rent-a-car",
     "name": "Rent A Car",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.rentacar.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "riviera-imagerie",
     "name": "Riviera Imagerie Médicale",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.riviera-imagerie.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "ron-dorff",
     "name": "Ron Dorff",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.rondorff.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "rosaly",
     "name": "Rosaly",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.rosaly.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "runview",
     "name": "Runview",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.runview.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "santiane",
     "name": "Santiane",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.santiane.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "saqara",
     "name": "Saqara",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.saqara.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "satelia",
     "name": "Satelia",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.satelia.eu",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "satt-axlr",
     "name": "SATT AxLR",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.axlr.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "sdec-france",
@@ -1987,37 +2869,55 @@
     "verbatim": "En pleine construction de notre équipe commerciale, GetPro est un réel partenaire. Professionnalisme, sérieux. Les profils proposés sont pertinents et répondent à nos exigences. Très bon suivi des candidats après intégration à souligner également. Grâce à GetPro nous avons intégré de très bons profils avec des compétences solides et des personnalités en adéquation avec nos équipes en place.",
     "contact_name": "Peggy Bochereau",
     "contact_role": "Responsable commerciale",
-    "description": "SDEC France est un fabricant français indépendant d'instruments de mesure pour l'étude et la surveillance de l'environnement (atmosphère, eaux, sols), créé le 1er avril 1991, siège ZI de la Gare, 37310 Reignac-sur-Indre. SAS SIREN 381427582"
+    "description": "SDEC France est un fabricant français indépendant d'instruments de mesure pour l'étude et la surveillance de l'environnement (atmosphère, eaux, sols), créé le 1er avril 1991, siège ZI de la Gare, 37310 Reignac-sur-Indre. SAS SIREN 381427582",
+    "domaine": "www.sdec-france.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "segat",
     "name": "Segat",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.segat.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "selceon",
     "name": "Selceon",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.selceon.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "semikron-danfoss",
     "name": "Semikron Danfoss",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.semikron-danfoss.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "serfim-industrie",
     "name": "SERFIM Industrie",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.serfim-ci.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "sesame",
     "name": "Sesame",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.sesamecare.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "silae",
@@ -2027,109 +2927,163 @@
     "verbatim": "2 candidats nous ont fait faux bons pour négocier leur salaire avec leur employeur actuel. Nous avons davantage verrouiller l'intérêt pour sécuriser le recrutement",
     "contact_name": "Lucie Dalleau",
     "contact_role": "Directrice commerciale",
-    "description": "Silae est un éditeur français de logiciel de paie SaaS HR-tech, créé le 24 novembre 2009, SAS SIREN 518892211 siège Bâtiment D5 ZI des Milles, Europarc de Pichaury, 1330 avenue J.R.G. Gautier de la Lauzière, 13080 Aix-en-Provence"
+    "description": "Silae est un éditeur français de logiciel de paie SaaS HR-tech, créé le 24 novembre 2009, SAS SIREN 518892211 siège Bâtiment D5 ZI des Milles, Europarc de Pichaury, 1330 avenue J.R.G. Gautier de la Lauzière, 13080 Aix-en-Provence",
+    "domaine": "www.silae.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "sinch",
     "name": "Sinch",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.sinch.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "sipearl",
     "name": "SiPearl",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.sipearl.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "sites",
     "name": "SITES",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.sites.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "skysun",
     "name": "Skysun",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.skysunsolar.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "smart-impulse",
     "name": "Smart Impulse",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.smart-impulse.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "smartrenting",
     "name": "Smartrenting",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.smart-renting.com",
+    "statut": "inactif",
+    "status_label": "Activité cessée"
   },
   {
     "slug": "smoteo",
     "name": "Smoteo",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.smoteo.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "snapdesk",
     "name": "Snapdesk",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.snapdesk.co",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "soap",
     "name": "Soap (NFT)",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.soap.tech",
+    "statut": "inactif-cessation",
+    "status_label": "Activité cessée"
   },
   {
     "slug": "societe-com",
     "name": "Societe.com",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.societe.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "source",
     "name": "Source by Bouygues Telecom",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.sourcemobile.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "spacefill",
     "name": "Spacefill",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.spacefill.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "spark-cleantech",
     "name": "Spark Cleantech",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.spark-cleantech.eu",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "spiko",
     "name": "Spiko",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.spiko.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "spinergie",
     "name": "Spinergie",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.spinergie.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "splio",
     "name": "Splio",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.splio.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "sponsorlive",
     "name": "Sponsorlive",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": null,
+    "statut": "statut_en_redressement-judiciaire",
+    "status_label": "En redressement judiciaire"
   },
   {
     "slug": "spotlight-earth",
@@ -2139,19 +3093,28 @@
     "verbatim": "Recrutement sur des postes scientifiques \"niches\" et redressement de notre ratio H/F  Zaia a été redoutable pour relancer les recherches mêmes longues de plusieurs mois et ré alimenter ses pipes de profils. Nous avons embauché avec succès une Technical sales, une docteur en géophysique, deux Géophysicien.ne.s senior et une Directrice des Sytemes Informatiques.  Nous avons intégré notre première développeuse avec un aspects mentorat extrêmement intéressant pour notre startup de géophysique. Nous ",
     "contact_name": "Elodie Morgan",
     "contact_role": "CTO and co-founder",
-    "description": "SpotLight Earth est une deeptech géophysique française développant une technologie de monitoring sismique haute fréquence pour le stockage géologique de CO2 (CCS) et la gestion des sous-sols, créée en 2017 à Massy (91300) par Habib Al..."
+    "description": "SpotLight Earth est une deeptech géophysique française développant une technologie de monitoring sismique haute fréquence pour le stockage géologique de CO2 (CCS) et la gestion des sous-sols, créée en 2017 à Massy (91300) par Habib Al...",
+    "domaine": "www.spotlight-earth.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "stan-bio",
     "name": "Stan.bio",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.stan.bio",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "stowia",
     "name": "Stowia",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.stowia.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "stoik",
@@ -2161,73 +3124,109 @@
     "verbatim": "Nous avons mandaté GetPro pour nous accompagner dans le recrutement de quatre profils techniques. GetPro nous a rapidement mis en relation avec plusieurs dizaines de candidats qualifiés, et nous avons recruté quatre profils tech en un temps record !",
     "contact_name": "Nicolas Sayer",
     "contact_role": "Co-founder — CPTO",
-    "description": "Stoïk est une insurtech française de cyber-assurance PME / ETI européennes, fondée en juin 2021 par Jules Veyrat (CEO) et Nicolas Sayer (CPTO), SAS SIREN 900293887 siège 4 rue Euler 75008 Paris. Offre intégrée assurance + prévention cyber..."
+    "description": "Stoïk est une insurtech française de cyber-assurance PME / ETI européennes, fondée en juin 2021 par Jules Veyrat (CEO) et Nicolas Sayer (CPTO), SAS SIREN 900293887 siège 4 rue Euler 75008 Paris. Offre intégrée assurance + prévention cyber...",
+    "domaine": "www.stoik.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "sublime",
     "name": "SUBLIME Energie",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "sublime-energie.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "sunelis",
     "name": "Sunelis",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.sunelis.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "surfe",
     "name": "Surfe",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.surfe.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "swapn",
     "name": "Swapn",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.swapn.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "syspertec-communication",
     "name": "SysperTec Communication",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.syspertec.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "systemes-u",
     "name": "Système U Sud",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.u-emploi.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "tabsters",
     "name": "Tabsters",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.tabsters.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "talentia-software",
     "name": "Talentia Software",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.talentia-software.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "talentoday",
     "name": "Talentoday",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.talentoday.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "teamagine",
     "name": "Teamagine",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.teamagine.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "tech-talents",
     "name": "Tech' Talents",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.linkedin.com/company/tech-talentsfr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "ten-ten",
@@ -2237,43 +3236,64 @@
     "verbatim": "Nous étions à la recherche de candidats hautement qualifiés — GetPro nous a aidé sur l’identification de candidats qualifiés, la gestion du flux de candidatures et l’amélioration de l’expérience candidat. Le professionnalisme et le dévouement d’Anne-Claire et de Thomas ont été exceptionnels tout au long du processus de recrutement. Dès le début, ils ont pris le temps de comprendre nos besoins spécifiques et ont travaillé en étroite collaboration avec nous pour trouver les candidats les plus qual",
     "contact_name": "Jule Comar",
     "contact_role": "CEO",
-    "description": "Ten Ten est une startup française consumer social / communication app, SAS SIREN 905238903 siège 229 rue Saint-Honoré 75001 Paris, créée 2021-11-03, co-fondée par Jules Comar (CEO, 34 ans, background marketing + product design) et Antoine..."
+    "description": "Ten Ten est une startup française consumer social / communication app, SAS SIREN 905238903 siège 229 rue Saint-Honoré 75001 Paris, créée 2021-11-03, co-fondée par Jules Comar (CEO, 34 ans, background marketing + product design) et Antoine...",
+    "domaine": "www.tenten.co",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "the-staffing-company",
     "name": "The Staffing Company",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.thestaffing.company",
+    "statut": "radiee",
+    "status_label": "Société radiée"
   },
   {
     "slug": "thom",
     "name": "Thom Group",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.thomgroup.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "tiime",
     "name": "Tiime",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.tiime.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "tilt",
     "name": "Tilt Energy",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "tilt-energy.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "tinubu",
     "name": "Tinubu",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.tinubu.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "total",
     "name": "TotalEnergies",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "totalenergies.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "transaction-connect",
@@ -2283,31 +3303,46 @@
     "verbatim": "J'ai fais appel à GETPRO dans un contexte de crise de croissance de notre scale up avec un fort enjeu de ramp up de nos équipes de développeurs et de nos équipes Sales & CSM tout en adressant les sujets de fonds (structure des équipes, bench mark de rémunération / préparation de la série A, études de scénario d'organisation interne des équipes).  En 12 mois nous avons doublé la taille des équipes, avec un ratio de 75% de sourcing direct (sans cabinet ou recours à la préembauches ou aux freelance",
     "contact_name": "Arnaud Gien-Pawlicki",
     "contact_role": "Head of Talent I Retailtech, Machine Learning, Payment Data",
-    "description": "Transaction Connect (anciennement connue sous la marque Spaycial côté Crunchbase) est une fintech/retailtech française fondée en 2016 par Didier Gasté et Maxime Dellerie. SAS SIREN 822619185, 9 rue des Colonnes Paris 75002"
+    "description": "Transaction Connect (anciennement connue sous la marque Spaycial côté Crunchbase) est une fintech/retailtech française fondée en 2016 par Didier Gasté et Maxime Dellerie. SAS SIREN 822619185, 9 rue des Colonnes Paris 75002",
+    "domaine": "www.transactionconnect.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "trust-place",
     "name": "Trust-Place",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.trust-place.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "trustpair",
     "name": "Trustpair",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.trustpair.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "twicpics",
     "name": "TwicPics",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.twicpics.com",
+    "statut": "actif-post-acquisition",
+    "status_label": null
   },
   {
     "slug": "twin",
     "name": "Twin",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.twin.so",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "unifai",
@@ -2317,7 +3352,10 @@
     "verbatim": "J'adore travailler avec GePro et notre consultante Albane est merveilleuse : nous avons trouvé notre CSM en un rien de temps !",
     "contact_name": "Jesse Créange",
     "contact_role": "Co-founder, CEO",
-    "description": "Unifai est une plateforme IA française de collecte, nettoyage, catégorisation et enrichissement de données produits pour systèmes PIM, rachetée par Akeneo en septembre 2023. Fondée en novembre 2017 à Nantes par Jesse Créange (CEO..."
+    "description": "Unifai est une plateforme IA française de collecte, nettoyage, catégorisation et enrichissement de données produits pour systèmes PIM, rachetée par Akeneo en septembre 2023. Fondée en novembre 2017 à Nantes par Jesse Créange (CEO...",
+    "domaine": "www.akeneo.com",
+    "statut": "actif-filiale",
+    "status_label": null
   },
   {
     "slug": "untienots",
@@ -2327,13 +3365,19 @@
     "verbatim": "Notre recherche de développeur frontend trainaient dans le temps et il était compliqué de trouver des candidats. A la base nous avions un seul poste ouvert. Comme nous avons eu deux candidats qui répondaient parfaitement au besoin, nous avons décidé de recruter les deux.",
     "contact_name": "Vincent Mezino",
     "contact_role": "Head Of Software Engineering",
-    "description": "Acquise par Eagle Eye (UK, coté LSE) en novembre 2022. Entité désormais communiquée sous la double marque UntieNots / EagleAI, filiale française opérationnelle de Eagle Eye Solutions Group."
+    "description": "Acquise par Eagle Eye (UK, coté LSE) en novembre 2022. Entité désormais communiquée sous la double marque UntieNots / EagleAI, filiale française opérationnelle de Eagle Eye Solutions Group.",
+    "domaine": "www.untienots.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "upciti",
     "name": "Upciti",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.upciti.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "upflow",
@@ -2343,85 +3387,127 @@
     "verbatim": "Aminata a fait un travail remarquable ! Non seulement sur ce recrutement, mais tout le temps. Elle est à l'écoute et comprend bien les enjeux. Elle incarne tout ce qu'on attend d'un TOP profil commercial. Merci et encore bravo, Aminata !  Un recrutement réussi, de superbes rencontres et plein de bons moments à rigoler tout en faisant avancer les dossiers. Le travail dans la bonne humeur, je ne demande que cela.",
     "contact_name": "Antoine Dumas-Martin",
     "contact_role": "Senior Recruiter",
-    "description": "Upflow est une fintech française SaaS B2B de cash collection et accounts receivable automation, créée en 2018 à Paris comme spin-off du studio eFounders (eF18) par Alexandre Louisy (CEO), Barnaby Malet et Thibaud Elzière (co-fondateur..."
+    "description": "Upflow est une fintech française SaaS B2B de cash collection et accounts receivable automation, créée en 2018 à Paris comme spin-off du studio eFounders (eF18) par Alexandre Louisy (CEO), Barnaby Malet et Thibaud Elzière (co-fondateur...",
+    "domaine": "www.upflow.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "uptime",
     "name": "Uptime",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.up-time.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "urb-it",
     "name": "Urb-It France",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.urb-it.com",
+    "statut": "liquidation-judiciaire",
+    "status_label": "En liquidation judiciaire"
   },
   {
     "slug": "vertone",
     "name": "Vertone",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.vertone.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "via-sana",
     "name": "Via Sana",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.centreviasana.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "vibe",
     "name": "Vibe (Soyaux)",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.vibe.co",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "viraaal",
     "name": "Viraaal",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.viraaal.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "vitec",
     "name": "Vitec",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.vitec.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "vivlio",
     "name": "Vivlio",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.vivlio.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "voggt",
     "name": "Voggt",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.voggt.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "voisinmalin",
     "name": "VoisinMalin",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.voisin-malin.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "voldoizo",
     "name": "Voldoizo",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.voldoizo.com",
+    "statut": "inactif-domaine-revente",
+    "status_label": "Domaine revendu, activité cessée"
   },
   {
     "slug": "waves",
     "name": "Waves",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.waves.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "wavestone",
     "name": "Wavestone",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.wavestone.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "wavo",
@@ -2431,7 +3517,10 @@
     "verbatim": "Nous étions en phase d’amorçage, avec un premier produit validé, une levée de fonds récente et un vrai besoin de structuration tech. L’objectif : recruter un Founding Engineer de très haut niveau, capable de co-construire un produit scalable avec les fondateurs. Nous avons fait appel à GetPro pour nous accompagner sur ce recrutement stratégique, dans un contexte exigeant où les bons profils sont rares et très sollicités. GetPro a su comprendre rapidement nos enjeux et nos critères. Le process a ",
     "contact_name": "",
     "contact_role": "",
-    "description": "Wavo est une plateforme fintech française de financement de stocks pour TPE et PME de revente, créée en décembre 2022 à Lyon (Tour Part-Dieu, 129 rue Servient 69003) sous la dénomination initiale Finkicks par Julien Decherf-Mathiolon..."
+    "description": "Wavo est une plateforme fintech française de financement de stocks pour TPE et PME de revente, créée en décembre 2022 à Lyon (Tour Part-Dieu, 129 rue Servient 69003) sous la dénomination initiale Finkicks par Julien Decherf-Mathiolon...",
+    "domaine": "www.wavo.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "webyn-ai",
@@ -2441,7 +3530,10 @@
     "verbatim": "Nous avons travaillé sur le recrutement d'un premier Product Manager en startup. Getpro nous a trouvé en un mois le profil idéal que nous avons recruté.",
     "contact_name": "Vincent Oliveira",
     "contact_role": "CEO",
-    "description": "Webyn est une plateforme IA française d'optimisation des parcours digitaux (Conversion Rate Optimization et UX), créée en 2023 à Paris par Vincent Oliveira (CEO, ex-CTO et co-fondateur Tiller, acquis par SumUp) et Alexandre Farhat. SAS,..."
+    "description": "Webyn est une plateforme IA française d'optimisation des parcours digitaux (Conversion Rate Optimization et UX), créée en 2023 à Paris par Vincent Oliveira (CEO, ex-CTO et co-fondateur Tiller, acquis par SumUp) et Alexandre Farhat. SAS,...",
+    "domaine": "www.webyn.ai",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "wechooz",
@@ -2451,7 +3543,10 @@
     "verbatim": "Sur notre recherche d'un développeur confirmé fullstack, GetPro a fait preuve de beaucoup d'écoute & empathie puis d'un sérieux, d'une implication et d'une réactivité sans faille afin de nous permettre de recruter un candidat 24 jours après le lancement de la mission et ce malgré les congés d'été ! Embauche du candidat correspondant parfaitement à notre profil, dans un délai très rapide.",
     "contact_name": "Max Godet",
     "contact_role": "Co-fondateur, Directeur du Dveloppement",
-    "description": "WeChooz est une legaltech / HRTech française spécialisée dans le dialogue social en entreprise, créée en 2017 à Paris par Axel Geny, Max Godet (CEO) et Edouard Georgy depuis le cabinet d'avocats La Garanderie & Associés (droit social),..."
+    "description": "WeChooz est une legaltech / HRTech française spécialisée dans le dialogue social en entreprise, créée en 2017 à Paris par Axel Geny, Max Godet (CEO) et Edouard Georgy depuis le cabinet d'avocats La Garanderie & Associés (droit social),...",
+    "domaine": "www.wechooz.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "wefiit",
@@ -2461,13 +3556,19 @@
     "verbatim": "GetPro nous a accompagné sur une recherche de Talent Recruiter, ainsi qu'une recherche d'un profil Sales. Les recruteurs de GetPro ont très bien pris mon brief, ont sur me challenger, et ont su s'adapter pour toujours plus affiner leurs recherches. En quelques semaines, de bons profils nous ont été présentés, ce qui nous a permis de concrétiser 2x recrutements très rapidement.",
     "contact_name": "Théo Gacouin",
     "contact_role": "Lead Talent Recruiter",
-    "description": "WeFiiT est un cabinet de conseil français spécialisé Product Management, Product Data & IA, Product Marketing et Product Quality, co-fondé par Matthieu Pecheul (Head of Sales) et son équipe, qui accompagne ses clients sur tout le cycle de..."
+    "description": "WeFiiT est un cabinet de conseil français spécialisé Product Management, Product Data & IA, Product Marketing et Product Quality, co-fondé par Matthieu Pecheul (Head of Sales) et son équipe, qui accompagne ses clients sur tout le cycle de...",
+    "domaine": "www.wefiit.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "welkin-and-meraki",
     "name": "Welkin & Meraki",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.industriousoffice.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "wematch-live",
@@ -2477,25 +3578,37 @@
     "verbatim": "J'ai eu besoin d'accompagnement pour trouver un developeur Full stack sur Paris. Mes criteres étaient plutot restreints, et le marché très competitif.  GetPro a su trouver des candidats qui cochaient toutes les cases. La fréquence des profils était d'environ 2 à 3 par semaine, et ce juste après que la mission commence. Le filtrage des candidats est d'excellente facture: les candidats sont deja interessés par le role et la mission des le premier entretient, ce qui fait gagner un temps precieux ! ",
     "contact_name": "Elie Slama",
     "contact_role": "CTO, Co-founder",
-    "description": "Wematch.live est un groupe fintech international dont le centre historique est en Israël et Royaume-Uni. L'entité française WEMATCH.LIVE TECH SUPPORT EUROPE (Courbevoie, 2019) est une filiale de support tech/opérations pour l'Europe..."
+    "description": "Wematch.live est un groupe fintech international dont le centre historique est en Israël et Royaume-Uni. L'entité française WEMATCH.LIVE TECH SUPPORT EUROPE (Courbevoie, 2019) est une filiale de support tech/opérations pour l'Europe...",
+    "domaine": "www.wematch.live",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "weward",
     "name": "WeWard",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.wewardapp.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "whoz",
     "name": "Whoz",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.whoz.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "wiifor",
     "name": "Wiifor",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.wiifor.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "wildsense",
@@ -2505,60 +3618,90 @@
     "verbatim": "Recrutement d'une chief people officer. Blouclé en moins de 30 jours. C'était très bien.",
     "contact_name": "Thibault Sorret",
     "contact_role": "CEO",
-    "description": "Wildsense est une startup climatech française spécialisée dans la certification de crédits carbone volontaires par télédétection satellite et données terrain pour les petits projets forestiers, créée le 20 décembre 2020 à Paris par..."
+    "description": "Wildsense est une startup climatech française spécialisée dans la certification de crédits carbone volontaires par télédétection satellite et données terrain pour les petits projets forestiers, créée le 20 décembre 2020 à Paris par...",
+    "domaine": "www.wildsense.ai",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "woorton",
     "name": "Woorton",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.woorton.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "wop",
     "name": "WOP",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.wop-app.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "xpollens",
     "name": "Xpollens",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.xpollens.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "yogosha",
     "name": "Yogosha",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.yogosha.com",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "yubo",
     "name": "Yubo",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.yubo.live",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "yuso",
     "name": "Yuso",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.yuso.com",
+    "statut": "radiee",
+    "status_label": "Société radiée"
   },
   {
     "slug": "zealy",
     "name": "Zealy",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.zealy.io",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "zefir",
     "name": "Zefir",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.zefir.fr",
+    "statut": "actif",
+    "status_label": null
   },
   {
     "slug": "open-digital-education",
     "name": "Édifice (ex Open Digital Education)",
     "has_logo": true,
-    "has_testimonial": false
+    "has_testimonial": false,
+    "domaine": "www.edifice.io",
+    "statut": "actif",
+    "status_label": null
   }
 ]
