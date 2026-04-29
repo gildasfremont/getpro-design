@@ -208,8 +208,10 @@ button { font-family: inherit; cursor: pointer; }
   max-width: 100%;
 }
 
+.menu-label-short { display: none; }
 @media (max-width: 800px) {
-  .menu-item .menu-long { display: none; }
+  .menu-label-full { display: none; }
+  .menu-label-short { display: inline; }
 }
 @media (max-width: 460px) {
   .menu { gap: 10px; }
