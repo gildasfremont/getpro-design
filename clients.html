@@ -56,13 +56,13 @@
     padding: clamp(28px, 3.4vw, 50px) clamp(20px, 3vw, 50px);
   }
 
-  /* The content grid : 3 cells per row → name | logo | testimonial (équilatéral) */
+  /* The content grid : 3 cells per row → name | logo | testimonial */
   .clients-list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr) clamp(80px, 9vw, 130px) minmax(0, 3fr);
     column-gap: clamp(20px, 3vw, 50px);
     row-gap: clamp(8px, 0.8vw, 12px);
     align-items: baseline;
