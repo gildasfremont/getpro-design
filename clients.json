@@ -2166,10 +2166,13 @@
     "slug": "mistral-ai",
     "name": "Mistral AI",
     "has_logo": true,
-    "has_testimonial": false,
+    "has_testimonial": true,
     "domaine": "www.mistral.ai",
     "statut": "actif",
-    "status_label": null
+    "status_label": null,
+    "verbatim": "Mistral est en hypercroissance et recrute plusieurs centaines de profils sur un pool de talents mondialisé. Les collaborateurs de GetPro ont bien saisi le challenge : sur un marché tech sous tension, ce qui contraint la croissance n'est pas le volume de candidatures mais la qualité de chaque sélection, la vélocité du processus et l'adéquation culturelle. Les shortlists qualifiées, les opportunités de responsabilités chez Mistral et le rythme des entretiens maintiennent un taux d'acceptation élevé. Les quatre RPO se sont bien intégrés à nos équipes et leur savoir-faire nous permet de scaler sans rupture opérationnelle.",
+    "contact_name": "Charles de Fréminville",
+    "contact_role": "DRH, Mistral AI"
   },
   {
     "slug": "modeo",

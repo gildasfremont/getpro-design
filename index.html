@@ -66,7 +66,10 @@
     gap: var(--gap-card);
     padding: var(--pad-card-y) var(--pad-card-x);
     background: var(--white);
+    color: inherit;
+    text-decoration: none;
   }
+  a.case-card { cursor: pointer; }
 
   .case-logo {
     display: flex;
@@ -279,7 +282,7 @@
 
     <!-- Cases -->
     <section class="cases section">
-      <article class="case-card">
+      <a class="case-card" href="clients.html#mistral-ai" aria-label="Mistral AI · voir le témoignage">
         <header class="case-logo case-logo--mistral" aria-label="Mistral AI">
           <span class="name">Mistral AI</span>
           <span class="symbol symbol-mistral" aria-hidden="true"></span>
@@ -289,9 +292,9 @@
           <div class="sub">110+ recrutements avec GetPro en 2025 pour le géant français de l'IA</div>
         </div>
         <div class="case-image case-image-mistral" role="img" aria-label="Arthur Mensch"></div>
-      </article>
+      </a>
 
-      <article class="case-card">
+      <a class="case-card" href="clients.html#lucca" aria-label="Lucca · voir le témoignage">
         <header class="case-logo" aria-label="Lucca">
           <span class="name">Lucca</span>
           <span class="symbol symbol-lucca" aria-hidden="true"></span>
@@ -301,9 +304,9 @@
           <div class="sub">De 40 à 800 salariés, 10 ans de partenariat avec GetPro</div>
         </div>
         <div class="case-image case-image-lucca" role="img" aria-label="Lucca"></div>
-      </article>
+      </a>
 
-      <article class="case-card">
+      <a class="case-card" href="clients.html#filigran" aria-label="Filigran · voir le témoignage">
         <header class="case-logo" aria-label="Filigran">
           <span class="name">Filigran</span>
           <span class="symbol symbol-filigran" aria-hidden="true"></span>
@@ -313,7 +316,7 @@
           <div class="sub">10 recrutements en RPO + 20 par le cabinet en 6 mois</div>
         </div>
         <div class="case-image case-image-filigran" role="img" aria-label="Filigran"></div>
-      </article>
+      </a>
     </section>
 
     <!-- Process / quote -->

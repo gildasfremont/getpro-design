@@ -319,10 +319,23 @@
         renderList();
       });
 
-      fetch('clients.json').then(r => r.json()).then(data => {
+      fetch('clients.json', { cache: 'no-store' }).then(r => r.json()).then(data => {
         clients = data;
         sorted = sortClients(data);
+
+        // Deep-link : open the testimonial of the slug in the URL hash (e.g. clients.html#mistral-ai)
+        const hash = decodeURIComponent((location.hash || '').replace(/^#/, ''));
+        if (hash) {
+          const target = clients.find(c => c.slug === hash && c.has_testimonial);
+          if (target) activeSlug = target.slug;
+        }
         renderList();
+
+        // Scroll into view if we deep-linked to one
+        if (activeSlug) {
+          const li = namesHost.querySelector(`li.row[data-slug="${activeSlug}"]`);
+          if (li) li.scrollIntoView({ behavior: 'instant', block: 'start' });
+        }
       }).catch(err => console.error('Failed to load clients:', err));
     })();
   </script>
