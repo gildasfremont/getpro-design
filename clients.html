@@ -24,12 +24,12 @@
     gap: clamp(20px, 3vw, 50px);
   }
 
-  /* Panel: filters | alphabet | names+testimonial-area */
+  /* 4-col panel: filters | alphabet | names list | testimonial slot */
   .clients-panel {
     background: var(--white);
     padding: clamp(28px, 3.4vw, 50px) clamp(20px, 3vw, 50px);
     display: grid;
-    grid-template-columns: minmax(200px, 0.8fr) auto minmax(0, 3fr);
+    grid-template-columns: minmax(180px, 0.8fr) auto minmax(0, 1fr) minmax(0, 1.6fr);
     gap: clamp(20px, 3vw, 50px);
     align-items: start;
   }
@@ -81,58 +81,67 @@
   .alphabet a { color: inherit; text-decoration: none; }
   .alphabet a:hover { opacity: 1; }
 
-  /* Names list — each row is itself a 2-col grid: name | testimonial slot */
+  /* Names list */
   .clients-list {
     list-style: none;
     margin: 0;
     padding: 0;
+    position: relative; /* offsetParent for inner li */
     display: flex;
     flex-direction: column;
     gap: clamp(8px, 0.8vw, 12px);
     font-size: clamp(18px, 2vw, 28px);
     line-height: 1.25;
   }
-  .client-row {
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
-    column-gap: clamp(20px, 3vw, 50px);
-    align-items: start;
-  }
-  .row-line {
+  .clients-list li {
     display: flex;
     align-items: center;
     gap: clamp(12px, 1.4vw, 20px);
     min-width: 0;
   }
-  .client-row a.name { color: inherit; }
-  .client-row .has-tm {
+  .clients-list a { color: inherit; }
+  .clients-list .has-tm {
     text-decoration: underline;
     text-underline-offset: 4px;
     cursor: pointer;
+    flex: 0 0 auto;
   }
-  .client-row .has-tm::after { content: " →"; }
-  .client-row.expanded .has-tm::after { content: " ↓"; }
-  .client-row .plain { cursor: default; pointer-events: none; }
+  .clients-list .plain { cursor: default; pointer-events: none; flex: 0 0 auto; }
+  .clients-list li.active .has-tm { text-decoration-thickness: 2px; }
+
+  /* Preview : première ligne du verbatim en transparence */
+  .row-preview {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: var(--fs-body);
+    line-height: 1.3;
+    opacity: 0.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .clients-list li.active .row-preview { display: none; }
 
   .row-logo {
+    flex: 0 0 auto;
     height: clamp(20px, 2vw, 28px);
     width: auto;
     max-width: clamp(80px, 9vw, 130px);
     object-fit: contain;
-    object-position: left center;
+    object-position: right center;
     opacity: 0;
     transition: opacity 0.15s ease;
   }
-  .client-row:hover .row-logo,
-  .client-row.expanded .row-logo { opacity: 1; }
+  .clients-list li:hover .row-logo,
+  .clients-list li.active .row-logo { opacity: 1; }
 
-  /* Inline testimonial — sits in column 2 of the row, "en face" of the clicked name */
-  .testimonial-inline {
+  /* Testimonial slot — column 4, vertical offset is set by JS to align with the clicked row */
+  .testimonial-slot {
     display: none;
     flex-direction: column;
     gap: clamp(18px, 2vw, 30px);
   }
-  .client-row.expanded .testimonial-inline { display: flex; }
+  .testimonial-slot.visible { display: flex; }
 
   .testimonial-quote {
     font-size: var(--fs-card-sub);
@@ -183,21 +192,22 @@
     text-align: right;
   }
 
-  @media (max-width: 1000px) {
-    .client-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); }
+  @media (max-width: 1100px) {
+    .clients-panel {
+      grid-template-columns: minmax(160px, 0.8fr) auto minmax(0, 1fr) minmax(0, 1.4fr);
+    }
   }
   @media (max-width: 800px) {
     .clients-title-row { flex-direction: column; align-items: flex-start; }
     .ratings-row { flex-wrap: wrap; }
     .clients-panel { grid-template-columns: 1fr; }
     .alphabet { flex-direction: row; flex-wrap: wrap; gap: 4px; }
-    .client-row { grid-template-columns: 1fr; }
-    .client-row.expanded .testimonial-inline {
-      margin-top: clamp(14px, 2vw, 24px);
-      padding-top: clamp(14px, 2vw, 24px);
+    .row-logo { display: none; }
+    .testimonial-slot {
+      margin-top: 0 !important;
+      padding-top: clamp(20px, 2.5vw, 30px);
       border-top: 1px solid var(--line);
     }
-    .row-logo { display: none; }
   }
 </style>
 </head>
@@ -273,6 +283,8 @@
         </nav>
 
         <ul class="clients-list" id="clients-names" role="list"></ul>
+
+        <div class="testimonial-slot" id="testimonial-slot"></div>
       </div>
     </section>
 
@@ -284,11 +296,12 @@
     (function() {
       const filtersHost = document.getElementById('filters');
       const namesHost = document.getElementById('clients-names');
+      const slot = document.getElementById('testimonial-slot');
       const escape = (s) => (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
       let clients = [];
       let activeFilters = new Set();
-      let expandedSlug = null;
+      let activeSlug = null;
 
       function filteredClients() {
         if (activeFilters.has('testimonial')) {
@@ -298,47 +311,69 @@
       }
 
       function rowHTML(c) {
-        const isExpanded = c.slug === expandedSlug;
         const cls = c.has_testimonial ? 'has-tm' : 'plain';
+        const isActive = c.slug === activeSlug ? ' class="active"' : '';
         const logoTag = c.has_logo
           ? `<img class="row-logo" src="assets/${c.slug}.svg" alt="" loading="lazy" />`
-          : `<span></span>`;
-        let tmHTML = '<div class="testimonial-inline"></div>';
-        if (c.has_testimonial) {
-          const websiteOrDefunct = c.status_label
-            ? `<span class="defunct">${escape(c.status_label)}</span>`
-            : c.domaine
-              ? `<a class="website" href="https://${escape(c.domaine.replace(/^https?:\/\//,''))}" target="_blank" rel="noopener">${escape(c.domaine.replace(/^https?:\/\//,''))} ↗</a>`
-              : '';
-          const footerLogo = c.has_logo
-            ? `<img class="footer-logo" src="assets/${c.slug}.svg" alt="${escape(c.name)}" />`
-            : `<span class="footer-name">${escape(c.name)}</span>`;
-          tmHTML = `
-            <div class="testimonial-inline">
-              <p class="testimonial-quote">"${escape(c.verbatim || '')}"</p>
-              <div class="testimonial-author">
-                <div class="name">${escape(c.contact_name || '')}</div>
-                <div class="role">${escape(c.contact_role || '')}</div>
-              </div>
-              ${c.description ? `<p class="case-description">${escape(c.description)}</p>` : ''}
-              <div class="testimonial-footer">
-                ${footerLogo}
-                ${websiteOrDefunct}
-              </div>
-            </div>`;
-        }
-        return `<li class="client-row${isExpanded ? ' expanded' : ''}">
-          <div class="row-line">
-            <a href="#" data-slug="${c.slug}" class="name ${cls}">${escape(c.name)}</a>
-            ${logoTag}
-          </div>
-          ${tmHTML}
+          : '';
+        const previewTag = c.has_testimonial && c.verbatim
+          ? `<span class="row-preview">"${escape(c.verbatim)}"</span>`
+          : '';
+        return `<li${isActive}>
+          <a href="#" data-slug="${c.slug}" class="${cls}">${escape(c.name)}</a>
+          ${previewTag}
+          ${logoTag}
         </li>`;
       }
 
       function renderList() {
         const list = filteredClients();
         namesHost.innerHTML = list.map(rowHTML).join('');
+        // If active slug is no longer in the filtered list, clear it
+        if (activeSlug && !list.find(c => c.slug === activeSlug)) {
+          hideTestimonial();
+        } else if (activeSlug) {
+          // Re-align after re-render
+          alignSlot();
+        }
+      }
+
+      function renderTestimonial(c) {
+        const websiteOrDefunct = c.status_label
+          ? `<span class="defunct">${escape(c.status_label)}</span>`
+          : c.domaine
+            ? `<a class="website" href="https://${escape(c.domaine.replace(/^https?:\/\//,''))}" target="_blank" rel="noopener">${escape(c.domaine.replace(/^https?:\/\//,''))} ↗</a>`
+            : '';
+        const footerLogo = c.has_logo
+          ? `<img class="footer-logo" src="assets/${c.slug}.svg" alt="${escape(c.name)}" />`
+          : `<span class="footer-name">${escape(c.name)}</span>`;
+        slot.innerHTML = `
+          <p class="testimonial-quote">"${escape(c.verbatim || '')}"</p>
+          <div class="testimonial-author">
+            <div class="name">${escape(c.contact_name || '')}</div>
+            <div class="role">${escape(c.contact_role || '')}</div>
+          </div>
+          ${c.description ? `<p class="case-description">${escape(c.description)}</p>` : ''}
+          <div class="testimonial-footer">
+            ${footerLogo}
+            ${websiteOrDefunct}
+          </div>
+        `;
+        slot.classList.add('visible');
+      }
+
+      function alignSlot() {
+        if (!activeSlug) return;
+        const li = namesHost.querySelector('li.active');
+        if (!li) return;
+        slot.style.marginTop = li.offsetTop + 'px';
+      }
+
+      function hideTestimonial() {
+        activeSlug = null;
+        slot.classList.remove('visible');
+        slot.style.marginTop = '';
+        slot.innerHTML = '';
       }
 
       filtersHost.addEventListener('change', (e) => {
@@ -358,7 +393,6 @@
           const allInput = filtersHost.querySelector('input[data-filter="all"]');
           allInput.checked = activeFilters.size === 0;
         }
-        expandedSlug = null;
         renderList();
       });
 
@@ -367,9 +401,19 @@
         if (!a) return;
         e.preventDefault();
         const slug = a.dataset.slug;
-        expandedSlug = (expandedSlug === slug) ? null : slug;
-        renderList();
+        if (activeSlug === slug) {
+          hideTestimonial();
+          renderList();
+          return;
+        }
+        activeSlug = slug;
+        const c = clients.find(x => x.slug === slug);
+        renderList();          // refresh `.active` marker
+        renderTestimonial(c);
+        alignSlot();
       });
+
+      window.addEventListener('resize', alignSlot);
 
       fetch('clients.json').then(r => r.json()).then(data => {
         clients = data;
