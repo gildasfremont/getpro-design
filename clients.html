@@ -74,8 +74,15 @@
     grid-column: 1 / -1;
     align-items: baseline;
     position: relative;
+    transition: opacity 0.18s ease;
   }
   .row.clickable { cursor: pointer; }
+
+  /* When a row is active (testimonial open), grey out all the other rows.
+     Any row being hovered (or the active one itself) returns to full opacity. */
+  .clients-list:has(.row.active) .row { opacity: 0.3; }
+  .clients-list:has(.row.active) .row.active,
+  .clients-list:has(.row.active) .row:hover { opacity: 1; }
 
   /* Col 1 : name (titre tronqué, pas de retour ligne) */
   .clients-list a.name-link {
