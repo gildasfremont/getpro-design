@@ -126,7 +126,32 @@
     width: 100%;
     aspect-ratio: 1 / 1;
     border: 1px solid var(--line);
-    background: var(--white);
+    background: var(--white) center / cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(18px, 2vw, 28px);
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .download-preview .pdf-tag {
+    align-self: flex-start;
+    font-size: clamp(10px, 0.85vw, 12px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.55;
+  }
+  .download-preview .pdf-title {
+    font-size: clamp(20px, 2vw, 30px);
+    line-height: 1.15;
+  }
+  .download-preview .pdf-meta {
+    font-size: clamp(11px, 0.95vw, 13px);
+    line-height: 1.4;
+    opacity: 0.6;
+    border-top: 1px solid var(--line);
+    padding-top: clamp(10px, 1.2vw, 16px);
   }
   .download-link {
     display: inline-flex;
@@ -188,8 +213,8 @@
         <div class="testimonial-detail" id="testimonial-detail"></div>
 
         <div class="download-block">
-          <div class="download-preview" aria-hidden="true"></div>
-          <a href="#" class="download-link">Télécharger le use case <span aria-hidden="true">⇣</span></a>
+          <div class="download-preview" id="download-preview" aria-hidden="true"></div>
+          <a href="#" class="download-link" id="download-link">Télécharger le use case <span aria-hidden="true">⇣</span></a>
         </div>
       </div>
     </section>
@@ -204,6 +229,9 @@
       let activeIdx = 0;
       const list = document.getElementById('cases-list');
       const detail = document.getElementById('testimonial-detail');
+      const preview = document.getElementById('download-preview');
+      const downloadLink = document.getElementById('download-link');
+      const escapeHtml = (s) => (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
       const imgClassFor = (slug) => {
         if (slug === 'lucca') return 'lucca-img';
@@ -232,6 +260,17 @@
           </div>
         `;
       }
+      function renderDownload() {
+        const c = cases[activeIdx];
+        if (!c) return;
+        preview.innerHTML = `
+          <span class="pdf-tag">Use case · PDF</span>
+          <span class="pdf-title">${escapeHtml(c.name)} · ${escapeHtml(c.contact_role || 'Recrutement')}</span>
+          <span class="pdf-meta">8 pages · contexte, méthode, résultats chiffrés. Mis à jour ${new Date().toLocaleDateString('fr-FR', {month: 'long', year: 'numeric'})}.</span>
+        `;
+        downloadLink.setAttribute('href', `assets/use-cases/${c.slug}.pdf`);
+        downloadLink.setAttribute('download', `getpro-use-case-${c.slug}.pdf`);
+      }
 
       list.addEventListener('click', (e) => {
         const a = e.target.closest('a[data-idx]');
@@ -240,6 +279,7 @@
         activeIdx = parseInt(a.dataset.idx, 10);
         renderList();
         renderDetail();
+        renderDownload();
         detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
 
@@ -250,6 +290,7 @@
         activeIdx = luccaIdx >= 0 ? luccaIdx : 0;
         renderList();
         renderDetail();
+        renderDownload();
       }).catch(err => console.error('Failed to load cases:', err));
     })();
   </script>

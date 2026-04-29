@@ -150,14 +150,14 @@
       </div>
 
       <div class="equipe-tabs-row">
-        <div class="tabs" role="tablist">
-          <button class="tab" role="tab" aria-current="true">Consultants</button>
-          <button class="tab" role="tab">Support</button>
+        <div class="tabs" role="tablist" id="team-tabs">
+          <button class="tab" role="tab" data-team="consultants" aria-current="true">Consultants</button>
+          <button class="tab" role="tab" data-team="support">Support</button>
         </div>
         <a href="#" class="btn-outline">Rejoindre Getpro</a>
       </div>
 
-      <div class="grid-team">
+      <div class="grid-team" data-team="consultants">
         <article class="member-card">
           <div class="member-text">
             <div>
@@ -290,11 +290,99 @@
           <div class="member-photo photo-ph-5" role="img" aria-label="Thomas"></div>
         </article>
       </div>
+
+      <div class="grid-team" data-team="support" hidden>
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Léa Marchetti</div>
+              <div class="member-role">Talent Acquisition Lead</div>
+            </div>
+            <p class="member-bio">Pilote l'équipe sourcing chez GetPro. Construit les viviers candidats sur les fonctions tech et produit, et garantit la qualité des shortlists transmises aux consultants. Ancienne sourceuse chez Doctolib et Algolia.</p>
+          </div>
+          <div class="member-photo photo-ph-1" role="img" aria-label="Léa Marchetti"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Sami Benali</div>
+              <div class="member-role">Sourceur senior</div>
+            </div>
+            <p class="member-bio">Sourceur senior chez GetPro. Spécialiste de l'identification des profils tech sur les marchés français, allemand et UK. Travaille en binôme avec les consultants sur les missions de chasse stratégique.</p>
+          </div>
+          <div class="member-photo photo-ph-2" role="img" aria-label="Sami Benali"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Pauline Verrier</div>
+              <div class="member-role">Office Manager</div>
+            </div>
+            <p class="member-bio">Office Manager chez GetPro. Gère le quotidien des bureaux parisiens, l'onboarding des nouvelles recrues internes, et la logistique des événements clients et candidats organisés au cabinet.</p>
+          </div>
+          <div class="member-photo photo-ph-3" role="img" aria-label="Pauline Verrier"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Alex Dubreuil</div>
+              <div class="member-role">Data &amp; Ops</div>
+            </div>
+            <p class="member-bio">Responsable Data &amp; Ops chez GetPro. Maintient l'outillage interne, le CRM candidat, le ATS, et les pipelines de reporting clients. Garantit l'hygiène data sur les 50 000 profils suivis activement.</p>
+          </div>
+          <div class="member-photo photo-ph-4" role="img" aria-label="Alex Dubreuil"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Margaux Lenoir</div>
+              <div class="member-role">Communication &amp; Marque</div>
+            </div>
+            <p class="member-bio">Pilote la communication externe et la marque GetPro. Édition des cas clients, relations presse, contenus pour la communauté de chasseurs. Anime les rendez-vous trimestriels avec les fondateurs partenaires.</p>
+          </div>
+          <div class="member-photo photo-ph-5" role="img" aria-label="Margaux Lenoir"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Karim Souissi</div>
+              <div class="member-role">Finance &amp; Admin</div>
+            </div>
+            <p class="member-bio">Responsable finance et administration chez GetPro. Pilote la gestion comptable, la facturation clients et le suivi budgétaire des équipes. Travaille en lien direct avec le COO sur les sujets de croissance.</p>
+          </div>
+          <div class="member-photo photo-ph-1" role="img" aria-label="Karim Souissi"></div>
+        </article>
+      </div>
     </section>
 
     <footer class="site-footer" data-footer></footer>
 
   </main>
   <script src="partials.js" defer></script>
+  <script>
+    (function() {
+      const tabsHost = document.getElementById('team-tabs');
+      const grids = document.querySelectorAll('.grid-team[data-team]');
+      tabsHost.addEventListener('click', (e) => {
+        const btn = e.target.closest('button.tab[data-team]');
+        if (!btn) return;
+        e.preventDefault();
+        const target = btn.dataset.team;
+        tabsHost.querySelectorAll('button.tab').forEach(b => {
+          if (b === btn) b.setAttribute('aria-current', 'true');
+          else b.removeAttribute('aria-current');
+        });
+        grids.forEach(g => {
+          if (g.dataset.team === target) g.removeAttribute('hidden');
+          else g.setAttribute('hidden', '');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -160,6 +160,14 @@
     -webkit-mask-image: url('assets/japhy.svg');
             mask-image: url('assets/japhy.svg');
   }
+  .case-logo-mark.filigran {
+    -webkit-mask-image: url('assets/filigran.svg');
+            mask-image: url('assets/filigran.svg');
+  }
+  .case-logo-mark.mistral {
+    -webkit-mask-image: url('assets/mistral-ai_wordmark.svg');
+            mask-image: url('assets/mistral-ai_wordmark.svg');
+  }
 
   /* Consultants section */
   .consultants-grid {
@@ -217,19 +225,19 @@
           </div>
         </div>
 
-        <div class="tabs-2" role="tablist">
-          <button class="tab-2" role="tab" aria-current="true">
+        <div class="tabs-2" role="tablist" id="solutions-tabs">
+          <button class="tab-2" role="tab" data-solution="chasse" aria-current="true">
             <span class="main">Chasse</span>
             <span class="sub">Cabinet</span>
           </button>
-          <button class="tab-2" role="tab">
+          <button class="tab-2" role="tab" data-solution="renfort">
             <span class="main">Renfort RH</span>
             <span class="sub">Conseil et outils pour le recrutement</span>
           </button>
         </div>
       </div>
 
-      <div class="panel">
+      <div class="panel" data-solution="chasse">
         <h2 class="panel-title">A chaque besoin de recrutement son équipe</h2>
 
         <div class="subtabs-row">
@@ -296,11 +304,96 @@
           <p style="font-size: var(--fs-body); line-height: var(--lh-body);">Une équipe d'experts qui couvre la chasse stratégique pour scale-ups et PME. Diplômés des meilleures écoles, dix ans d'expérience cumulée sur le marché tech français.</p>
         </section>
       </div>
+
+      <div class="panel" data-solution="renfort" hidden>
+        <h2 class="panel-title">Renforcer vos équipes RH sans grossir la structure</h2>
+
+        <div class="subtabs-row">
+          <div class="subtabs" role="tablist">
+            <button class="subtab" role="tab">RPO mensuel</button>
+            <button class="subtab" role="tab" aria-current="true">Mission ponctuelle</button>
+            <button class="subtab" role="tab">Conseil &amp; outils</button>
+          </div>
+          <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
+        </div>
+
+        <section class="panel-section">
+          <h3>Mission ponctuelle</h3>
+          <div class="two-col">
+            <div>
+              <p>Nous intervenons en renfort de vos équipes RH internes, pour absorber un pic de recrutement, lancer une nouvelle BU, ou structurer un process de talent acquisition. Un recruteur GetPro travaille à temps plein sur votre périmètre, pendant la durée de la mission.</p>
+              <p>Pas de simple sourcing, ni de simple coordination : un cycle complet, du brief au closing, opéré sur votre ATS, avec votre marque employeur, sous votre direction RH.</p>
+            </div>
+            <div>
+              <p>Démarrage sous deux semaines, ramp-up rapide grâce à des recruteurs habitués à plusieurs ATS (Lever, Greenhouse, Welcome Kit). Nous calons un rythme de feedback hebdomadaire avec le DRH ou le Hiring Manager désigné.</p>
+              <p>À l'issue de la mission, nous vous laissons un livrable structuré : viviers, scorecards, métriques, recommandations sur les fiches de poste et la stratégie de canaux.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <h3>Méthode</h3>
+          <div class="two-col">
+            <div>
+              <p>Nous démarrons par un audit court de la fonction recrutement actuelle : org, ATS, viviers, métriques, marque employeur. L'objectif est de comprendre où nous insérer pour avoir le maximum d'impact.</p>
+              <p>Nos recruteurs RPO suivent les standards de qualité GetPro : un seul candidat à la fois sur un poste, qualification longue, refus argumenté.</p>
+            </div>
+            <div>
+              <p>Sur les missions de plus de trois mois, nous proposons un onboarding double : un recruteur lead chez GetPro garantit la continuité, un recruteur opérateur bascule chez vous, mais reste suivi en interne.</p>
+              <p>Reporting mensuel détaillé, retour d'expérience à mi-parcours, transmission organisée si vous internalisez ensuite la fonction.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <h3>Cas clients</h3>
+          <div class="cases-rows">
+            <div class="case-row">
+              <p>Chez Filigran, nous avons opéré 10 recrutements en RPO sur six mois, en parallèle de 20 chasses cabinet. Equipe Tech et Sales structurée à partir de la Série A.</p>
+              <span class="case-logo-mark filigran" aria-label="Filigran"></span>
+            </div>
+            <div class="case-row">
+              <p>Chez Mistral AI, accompagnement sur la structuration de la fonction recrutement interne, en parallèle de 110+ chasses opérées par le cabinet en 2025.</p>
+              <span class="case-logo-mark mistral" aria-label="Mistral AI"></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <h3>Consultants</h3>
+          <div class="consultants-grid">
+            <div class="photo photo-mansour" role="img" aria-label="Mansour"></div>
+            <div class="photo photo-camelia" role="img" aria-label="Camélia"></div>
+            <div class="photo photo-claire" role="img" aria-label="Claire Hubert"></div>
+          </div>
+          <p style="font-size: var(--fs-body); line-height: var(--lh-body);">Des recruteurs RPO opérationnels, capables d'embarquer rapidement chez nos clients sur l'ATS et la marque employeur. Pilotés en interne par un consultant senior GetPro.</p>
+        </section>
+      </div>
     </section>
 
     <footer class="site-footer" data-footer></footer>
 
   </main>
   <script src="partials.js" defer></script>
+  <script>
+    (function() {
+      const tabsHost = document.getElementById('solutions-tabs');
+      const panels = document.querySelectorAll('.panel[data-solution]');
+      tabsHost.addEventListener('click', (e) => {
+        const btn = e.target.closest('button.tab-2[data-solution]');
+        if (!btn) return;
+        e.preventDefault();
+        const target = btn.dataset.solution;
+        tabsHost.querySelectorAll('button.tab-2').forEach(b => {
+          if (b === btn) b.setAttribute('aria-current', 'true');
+          else b.removeAttribute('aria-current');
+        });
+        panels.forEach(p => {
+          if (p.dataset.solution === target) p.removeAttribute('hidden');
+          else p.setAttribute('hidden', '');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
