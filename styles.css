@@ -67,6 +67,10 @@ button { font-family: inherit; cursor: pointer; }
   max-width: 1459px;
   margin: 0 auto;
   background: var(--bg);
+  /* Extra scroll buffer below the footer : trackpad inertia tends to stop a
+     few pixels short of max-scroll, so leaving a bit of air ensures the footer
+     is fully visible no matter when the inertia decays. */
+  padding-bottom: clamp(30px, 4vw, 60px);
 }
 
 .section { padding-inline: var(--pad-x); }
