@@ -227,32 +227,55 @@
   .nav-list .nav-item {
     font-size: var(--fs-menu);
     line-height: 1.25;
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font-family: inherit;
+    text-align: left;
+    transition: opacity 0.15s ease;
+  }
+  .nav-list button.nav-item { cursor: pointer; opacity: 0.7; }
+  .nav-list button.nav-item:hover { opacity: 1; }
+  .nav-list button.nav-item[aria-current="true"] {
+    opacity: 1;
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
 
   .logos-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: clamp(20px, 2.7vw, 40px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: clamp(20px, 2.7vw, 40px);
+    row-gap: clamp(16px, 2vw, 28px);
+    flex: 1;
+    min-width: 0;
   }
 
   .logo-cell {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: clamp(80px, 8.3vw, 121.6px);
-    height: clamp(60px, 7.8vw, 113.68px);
-    padding: 12px 10px;
+    justify-content: flex-start;
+    height: clamp(40px, 5vw, 60px);
+    padding: 0;
     text-decoration: none;
     color: inherit;
     transition: opacity 0.15s ease;
   }
-  a.logo-cell { cursor: pointer; opacity: 0.75; }
+  a.logo-cell { cursor: pointer; opacity: 0.85; }
   a.logo-cell:hover { opacity: 1; }
-  .logo-cell img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .logo-cell img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: left center;
+  }
+  .logo-cell[hidden] { display: none; }
   /* Text fallback when we don't have a logo */
   .logo-cell.logo-text {
-    text-align: center;
-    font-size: clamp(11px, 1vw, 14px);
+    text-align: left;
+    justify-content: flex-start;
+    font-size: clamp(13px, 1.2vw, 18px);
     line-height: 1.2;
     opacity: 0.65;
   }
@@ -361,93 +384,93 @@
       </div>
 
       <div class="logos-row">
-        <div class="nav-list">
-          <span class="nav-item">Alven</span>
-          <span class="nav-item">Bain Capital</span>
-          <span class="nav-item">Bpi France</span>
-          <span class="nav-item">Eurazeo</span>
-          <span class="nav-item">IDinvest</span>
-          <span class="nav-item">Kima Ventures</span>
-          <span class="nav-item">KKR</span>
-          <span class="nav-item">Partech</span>
+        <div class="nav-list" id="fund-filter" role="group" aria-label="Filtrer par fonds">
+          <button type="button" class="nav-item" data-fund="alven">Alven</button>
+          <button type="button" class="nav-item" data-fund="bain-capital">Bain Capital</button>
+          <button type="button" class="nav-item" data-fund="bpi-france">Bpi France</button>
+          <button type="button" class="nav-item" data-fund="eurazeo">Eurazeo</button>
+          <button type="button" class="nav-item" data-fund="idinvest">IDinvest</button>
+          <button type="button" class="nav-item" data-fund="kima-ventures">Kima Ventures</button>
+          <button type="button" class="nav-item" data-fund="kkr">KKR</button>
+          <button type="button" class="nav-item" data-fund="sequoia">Sequoia</button>
         </div>
 
         <div class="logos-grid">
-          <a class="logo-cell" href="clients.html#absys-cyborg"><img src="assets/absys-cyborg.svg" alt="Absys Cyborg" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#acolyt"><img src="assets/acolyt.svg" alt="Acolyt" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#ad-s-up-consulting"><img src="assets/ad-s-up-consulting.svg" alt="Ad's up Consulting" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#adagio"><img src="assets/adagio.svg" alt="Adagio" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#andjaro"><img src="logos-mono/andjaro.png" alt="Andjaro" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#absys-cyborg" data-funds="capellia"><img src="assets/absys-cyborg.svg" alt="Absys Cyborg" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#acolyt" data-funds="spring-invest"><img src="assets/acolyt.svg" alt="Acolyt" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#ad-s-up-consulting" data-funds="european-digital-group montefiore-investment"><img src="assets/ad-s-up-consulting.svg" alt="Ad's up Consulting" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#adagio" data-funds="axeleo-capital irdi-capital-investissement occitanie-invest"><img src="assets/adagio.svg" alt="Adagio" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#andjaro" data-funds="idinvest sofiouest swen-capital-partners we-positive-invest"><img src="logos-mono/andjaro.png" alt="Andjaro" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#axione"><img src="assets/axione.svg" alt="Axione" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#bene-bono"><img src="assets/bene-bono.svg" alt="Bene Bono" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#branded"><img src="assets/branded.svg" alt="Branded" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#buildrz"><img src="logos-mono/buildrz.png" alt="Buildrz" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#c2s"><img src="logos-mono/c2s.png" alt="C2S Bouygues" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#bene-bono" data-funds="avp project-a sride-vc"><img src="assets/bene-bono.svg" alt="Bene Bono" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#branded" data-funds="declaration-partners kima-ventures kreos-capital regah-capital target-global tiger-global"><img src="assets/branded.svg" alt="Branded" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#buildrz" data-funds="nci-waterstart novx swen-capital-partners"><img src="logos-mono/buildrz.png" alt="Buildrz" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#c2s" data-funds="bouygues"><img src="logos-mono/c2s.png" alt="C2S Bouygues" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#canal-plus"><img src="assets/canal-plus.svg" alt="Canal+" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#carrefour"><img src="assets/carrefour.svg" alt="Carrefour" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#contentsquare"><img src="assets/contentsquare.svg" alt="Contentsquare" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#corwave"><img src="assets/corwave.svg" alt="CorWave" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#dayuse"><img src="assets/dayuse.svg" alt="Dayuse.com" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#contentsquare" data-funds="bpi-france canaan eurazeo highland-europe kkr sixth-street"><img src="assets/contentsquare.svg" alt="Contentsquare" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#corwave" data-funds="eic-fund financi-re-arbevel novo-holdings seventure-partners sofinnova-partners ysios-capital"><img src="assets/corwave.svg" alt="CorWave" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#dayuse" data-funds="idinvest partech"><img src="assets/dayuse.svg" alt="Dayuse.com" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#decathlon"><img src="assets/decathlon.svg" alt="Decathlon" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#electra"><img src="assets/electra.svg" alt="Electra" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#eleven-labs"><img src="assets/eleven-labs.svg" alt="Eleven Labs" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#eleven-labs" data-funds="broadlight-capital sequoia smash-ventures sv-angel"><img src="assets/eleven-labs.svg" alt="Eleven Labs" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#enerdata"><img src="assets/enerdata.svg" alt="Enerdata" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#evermaps"><img src="logos-mono/evermaps.png" alt="Evermaps" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#fincome"><img src="assets/fincome.svg" alt="Fincome" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#foodles"><img src="assets/foodles.svg" alt="Foodles" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#front"><img src="assets/front.svg" alt="Front" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#greenweez"><img src="logos-mono/greenweez.png" alt="Greenweez.com" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#evermaps" data-funds="entrepreneur-venture"><img src="logos-mono/evermaps.png" alt="Evermaps" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#fincome" data-funds="accel"><img src="assets/fincome.svg" alt="Fincome" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#foodles" data-funds="adelie creadev dn-capital infravia-growth large-ventures"><img src="assets/foodles.svg" alt="Foodles" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#front" data-funds="battery-ventures salesforce-ventures sequoia threshold-ventures"><img src="assets/front.svg" alt="Front" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#greenweez" data-funds="carrefour"><img src="logos-mono/greenweez.png" alt="Greenweez.com" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#hardis-groupe"><img src="logos-mono/hardis-groupe.png" alt="Hardis Group" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#heyteam"><img src="assets/heyteam.svg" alt="HeyTeam" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#hightekers"><img src="assets/hightekers.svg" alt="Hightekers" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#iel-etudes-et-installations"><img src="logos-mono/iel-etudes-et-installations.png" alt="IEL — Initiatives et Energies Locales" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#in-store-media-france"><img src="logos-mono/in-store-media-france.png" alt="In-Store Media" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#heyteam" data-funds="360-capital-partners acurio"><img src="assets/heyteam.svg" alt="HeyTeam" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#hightekers" data-funds="na"><img src="assets/hightekers.svg" alt="Hightekers" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#iel-etudes-et-installations" data-funds="bpi-france esfin-participation"><img src="logos-mono/iel-etudes-et-installations.png" alt="IEL — Initiatives et Energies Locales" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#in-store-media-france" data-funds="art-capital"><img src="logos-mono/in-store-media-france.png" alt="In-Store Media" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#invivo-group"><img src="assets/invivo-group.svg" alt="InVivo (Groupe)" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#isograd"><img src="logos-mono/isograd.png" alt="Isograd" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#ivalua"><img src="assets/ivalua.svg" alt="Ivalua" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#kactus"><img src="assets/kactus.svg" alt="Kactus" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#kardinal"><img src="assets/kardinal.svg" alt="Kardinal" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#kheoos"><img src="logos-mono/kheoos.png" alt="Kheoos" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#konverso"><img src="assets/konverso.svg" alt="Konverso" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#ivalua" data-funds="ardian kkr"><img src="assets/ivalua.svg" alt="Ivalua" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#kactus" data-funds="f3a-bpifrance idinvest"><img src="assets/kactus.svg" alt="Kactus" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#kardinal" data-funds="bgv cap-horn-invest plug-and-play-ventures serena"><img src="assets/kardinal.svg" alt="Kardinal" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#kheoos" data-funds="industrya iron-hands-capital"><img src="logos-mono/kheoos.png" alt="Kheoos" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#konverso" data-funds="bain-capital financi-re-arbevel"><img src="assets/konverso.svg" alt="Konverso" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#kostango"><img src="logos-mono/kostango.png" alt="Kostango" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#leetchi"><img src="assets/leetchi.svg" alt="Leetchi" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#legalstart"><img src="assets/legalstart.svg" alt="Legalstart" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#linkurious"><img src="assets/linkurious.svg" alt="Linkurious" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#lucca"><img src="assets/lucca.svg" alt="Lucca" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#madbox"><img src="assets/madbox.svg" alt="Madbox" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#may"><img src="assets/may.svg" alt="May" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#lucca" data-funds="one-peak"><img src="assets/lucca.svg" alt="Lucca" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#madbox" data-funds="alven"><img src="assets/madbox.svg" alt="Madbox" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#may" data-funds="eurazeo innovallianz racine2 ring-capital"><img src="assets/may.svg" alt="May" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#mistral-ai"><img src="assets/mistral-ai.svg" alt="Mistral AI" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#mojix"><img src="assets/mojix.svg" alt="Mojix" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#mwm"><img src="logos-mono/mwm.png" alt="MWM" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#myre"><img src="assets/myre.svg" alt="MYRE" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#mytraffic"><img src="logos-mono/mytraffic.png" alt="Mytraffic" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#oscaro"><img src="assets/oscaro.svg" alt="Oscaro" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#parmentine"><img src="logos-mono/parmentine.png" alt="Parmentine" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#pricemoov"><img src="logos-mono/pricemoov.png" alt="Pricemoov" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#mojix" data-funds="scaleup-ventures"><img src="assets/mojix.svg" alt="Mojix" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#mwm" data-funds="agla-ventures blisce idinvest large-venture"><img src="logos-mono/mwm.png" alt="MWM" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#myre" data-funds="hwa keys-asset-management naxicap-partners new-alpha"><img src="assets/myre.svg" alt="MYRE" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#mytraffic" data-funds="alven axa-venture-partners kernel"><img src="logos-mono/mytraffic.png" alt="Mytraffic" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#oscaro" data-funds="bain-capital"><img src="assets/oscaro.svg" alt="Oscaro" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#parmentine" data-funds="groupe-champart-holding"><img src="logos-mono/parmentine.png" alt="Parmentine" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#pricemoov" data-funds="bpi-france isai"><img src="logos-mono/pricemoov.png" alt="Pricemoov" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#qualisocial"><img src="logos-mono/qualisocial.png" alt="Qualisocial" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#rosaly"><img src="assets/rosaly.svg" alt="Rosaly" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#saqara"><img src="assets/saqara.svg" alt="Saqara" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#satelia"><img src="assets/satelia.svg" alt="Satelia" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#rosaly" data-funds="audeo-ventures auxxo fin-capital fj-labs kraken-ventures the-treasury-vc"><img src="assets/rosaly.svg" alt="Rosaly" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#saqara" data-funds="a-o-proptech activum-sg concrete-vc"><img src="assets/saqara.svg" alt="Saqara" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#satelia" data-funds="impact-partners"><img src="assets/satelia.svg" alt="Satelia" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#sdec-france"><img src="logos-mono/sdec-france.png" alt="SDEC France" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#selceon"><img src="logos-mono/selceon.png" alt="Selceon" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#silae"><img src="assets/silae.svg" alt="Silae" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#sinch"><img src="assets/sinch.svg" alt="Sinch" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#sipearl"><img src="logos-mono/sipearl.png" alt="SiPearl" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#silae" data-funds="silver-lake-s-investment"><img src="assets/silae.svg" alt="Silae" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#sinch" data-funds="softbank temasek"><img src="assets/sinch.svg" alt="Sinch" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#sipearl" data-funds="arm banque-europ-enne-d-investissement eic-fund groupe-atos"><img src="logos-mono/sipearl.png" alt="SiPearl" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#spark-cleantech"><img src="logos-mono/spark-cleantech.png" alt="Spark Cleantech" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#spotlight-earth"><img src="assets/spotlight-earth.svg" alt="SpotLight Earth" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#stoik"><img src="assets/stoik.svg" alt="Stoïk" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#spotlight-earth" data-funds="industrya"><img src="assets/spotlight-earth.svg" alt="SpotLight Earth" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#stoik" data-funds="alven anthemis munich-re-ventures opera-tech-ventures"><img src="assets/stoik.svg" alt="Stoïk" loading="lazy" /></a>
           <a class="logo-cell" href="clients.html#sunelis"><img src="assets/sunelis.svg" alt="Sunelis" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#thom"><img src="assets/thom.svg" alt="Thom Group" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#tinubu"><img src="assets/tinubu.svg" alt="Tinubu" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#unifai"><img src="assets/unifai.svg" alt="Unifai" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#upciti"><img src="assets/upciti.svg" alt="Upciti" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#upflow"><img src="assets/upflow.svg" alt="Upflow" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#via-sana"><img src="assets/via-sana.svg" alt="Via Sana" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#wematch-live"><img src="assets/wematch-live.svg" alt="Wematch.live" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#weward"><img src="assets/weward.svg" alt="WeWard" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#whoz"><img src="assets/whoz.svg" alt="Whoz" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#yogosha"><img src="assets/yogosha.svg" alt="Yogosha" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#yubo"><img src="assets/yubo.svg" alt="Yubo" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#thom" data-funds="altamir apax-partner bridgepoint qualium-investissement"><img src="assets/thom.svg" alt="Thom Group" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#tinubu" data-funds="fonds-strat-gique-d-investissement-fsi gimv large-venture long-arc-capital"><img src="assets/tinubu.svg" alt="Tinubu" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#unifai" data-funds="aquis-par-akaneo"><img src="assets/unifai.svg" alt="Unifai" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#upciti" data-funds="chalfen-ventures demeter innovacom nci point-nine"><img src="assets/upciti.svg" alt="Upciti" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#upflow" data-funds="9yard-capital efounders kima-ventures"><img src="assets/upflow.svg" alt="Upflow" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#via-sana" data-funds="360-capital-partners"><img src="assets/via-sana.svg" alt="Via Sana" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#wematch-live" data-funds="augmentum-fintech-plc db1-ventures-gmbh illuminate-financial-management-llp jpmorgan-chase-co"><img src="assets/wematch-live.svg" alt="Wematch.live" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#weward" data-funds="breega-capital kima-ventures"><img src="assets/weward.svg" alt="WeWard" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#whoz" data-funds="psg-equity"><img src="assets/whoz.svg" alt="Whoz" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#yogosha" data-funds="axeleo-capital bnp-paribas-d-veloppement oneragtime tikehau-ace-capital"><img src="assets/yogosha.svg" alt="Yogosha" loading="lazy" /></a>
+          <a class="logo-cell" href="clients.html#yubo" data-funds="alven idinvest iris-capital sweeft-capital"><img src="assets/yubo.svg" alt="Yubo" loading="lazy" /></a>
           <span class="logo-cell logo-text">AXA</span>
           <span class="logo-cell logo-text">Air Liquide</span>
           <span class="logo-cell logo-text">Covea</span>
@@ -466,5 +489,36 @@
 
   </main>
   <script src="partials.js" defer></script>
+  <script>
+    // Fund filter on the logos grid
+    (function() {
+      const nav = document.getElementById('fund-filter');
+      const grid = document.querySelector('.logos-grid');
+      if (!nav || !grid) return;
+      let activeFund = null;
+      nav.addEventListener('click', (e) => {
+        const btn = e.target.closest('button.nav-item[data-fund]');
+        if (!btn) return;
+        const fund = btn.dataset.fund;
+        if (activeFund === fund) {
+          // Toggle off
+          activeFund = null;
+          btn.removeAttribute('aria-current');
+          grid.querySelectorAll('.logo-cell').forEach(c => c.removeAttribute('hidden'));
+          return;
+        }
+        activeFund = fund;
+        nav.querySelectorAll('button.nav-item').forEach(b => {
+          if (b === btn) b.setAttribute('aria-current', 'true');
+          else b.removeAttribute('aria-current');
+        });
+        grid.querySelectorAll('.logo-cell').forEach(c => {
+          const funds = (c.dataset.funds || '').split(' ').filter(Boolean);
+          if (funds.includes(fund)) c.removeAttribute('hidden');
+          else c.setAttribute('hidden', '');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
