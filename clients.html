@@ -104,14 +104,16 @@
     gap: clamp(12px, 1.4vw, 20px);
     min-width: 0;
   }
-  .name-cell a { color: inherit; flex: 0 0 auto; }
+  .name-cell a { color: inherit; flex: 0 0 auto; pointer-events: none; }
   .name-cell .has-tm {
     text-decoration: underline;
     text-underline-offset: 4px;
-    cursor: pointer;
   }
-  .name-cell .plain { cursor: default; pointer-events: none; }
   .row.active .name-cell .has-tm { text-decoration-thickness: 2px; }
+
+  /* Whole row is clickable when there is a testimonial */
+  .row.clickable .name-cell,
+  .row.clickable .row-tm { cursor: pointer; }
   .row-logo {
     flex: 0 0 auto;
     height: clamp(20px, 2vw, 28px);
@@ -310,6 +312,7 @@
 
       function rowHTML(c) {
         const cls = c.has_testimonial ? 'has-tm' : 'plain';
+        const clickableCls = c.has_testimonial ? ' clickable' : '';
         const activeCls = c.slug === activeSlug ? ' active' : '';
         const logoTag = c.has_logo
           ? `<img class="row-logo" src="assets/${c.slug}.svg" alt="" loading="lazy" />`
@@ -342,7 +345,7 @@
           </span>`;
         }
 
-        return `<li class="row${activeCls}" data-slug="${c.slug}">
+        return `<li class="row${clickableCls}${activeCls}" data-slug="${c.slug}">
           <span class="name-cell">
             <a href="#" class="${cls}" data-slug="${c.slug}">${escape(c.name)}</a>
             ${logoTag}
@@ -378,10 +381,12 @@
       });
 
       namesHost.addEventListener('click', (e) => {
-        const a = e.target.closest('a.has-tm[data-slug]');
-        if (!a) return;
+        // Let the website link in the open testimonial work as a real link
+        if (e.target.closest('.tm-full a.website')) return;
+        const li = e.target.closest('li.row.clickable');
+        if (!li) return;
         e.preventDefault();
-        const slug = a.dataset.slug;
+        const slug = li.dataset.slug;
         activeSlug = (activeSlug === slug) ? null : slug;
         renderList();
       });
