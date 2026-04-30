@@ -210,10 +210,14 @@
   }
   .consultant .photo {
     aspect-ratio: 1 / 2;
-    background-size: cover;
-    background-position: 50% 22%;
+    /* Même stratégie que les tiles de la home : background-size: auto 140%
+       (l'image fait 140% de la hauteur de la cellule pour avoir du jeu vertical
+       au crop) + background-position 50% Y%, où Y est calé par image pour que
+       les yeux atterrissent vers ~22% de la hauteur de la cellule. */
+    background-size: auto 140%;
     background-repeat: no-repeat;
     background-color: #d8e0d3;
+    background-position: 50% 22%;
   }
   .consultant-meta {
     width: 66.667%;
@@ -224,11 +228,13 @@
   }
   .consultant-role { opacity: 0.7; }
 
-  .photo-romain  { background-image: url('assets/consultant-romain.jpg'); }
-  .photo-emile   { background-image: url('assets/consultant-emile.jpg'); }
-  .photo-tony    { background-image: url('assets/consultant-tony.jpg'); }
-  .photo-claire  { background-image: url('assets/consultant-claire.jpg'); }
-  .photo-hugo    { background-image: url('assets/consultant-hugo.jpg'); }
+  /* Réutilise les photos de la home, avec leur background-position ajustée
+     par image pour que les yeux atterrissent à ~22% de la hauteur de la cellule. */
+  .photo-romain  { background-image: url('assets/Gemini_Generated_Image_rkgiq6rkgiq6rkgi.jpg'); background-position: 50%  4%; }
+  .photo-emile   { background-image: url('assets/Gemini_Generated_Image_kpi1lnkpi1lnkpi1.jpg'); background-position: 50% 22%; }
+  .photo-tony    { background-image: url('assets/Gemini_Generated_Image_ltlyt9ltlyt9ltly.jpg'); background-position: 50% 52%; }
+  .photo-claire  { background-image: url('assets/Gemini_Generated_Image_khiwg4khiwg4khiw.jpg'); background-position: 50% 52%; }
+  .photo-hugo    { background-image: url('assets/Gemini_Generated_Image_elgv4qelgv4qelgv.jpg'); background-position: 50% 59%; }
 
   @media (max-width: 1000px) {
     .consultants-row { grid-template-columns: repeat(3, 1fr); }
