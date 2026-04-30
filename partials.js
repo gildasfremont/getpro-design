@@ -36,6 +36,7 @@
     </div>
     <div class="foot-col">
       <a href="solutions.html">Solutions de recrutement</a>
+      <a href="solutions-profils.html"${aria('solutions-profils.html')}>Métiers recrutés</a>
       <a href="clients.html">Clients</a>
     </div>
     <div class="foot-col foot-rating">
