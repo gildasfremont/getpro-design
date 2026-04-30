@@ -188,36 +188,56 @@
             mask-image: url('assets/flaire.svg');
   }
 
-  /* Consultants section */
-  .consultants-grid {
+  /* Consultants row — intégré dans la première section du subtab,
+     entre la grille .two-col et le CTA. Chaque .consultant : une photo
+     carrée + une mini-colonne de texte (nom / rôle) qui fait 2/3 de la
+     largeur de la photo, alignée à gauche sous celle-ci. */
+  .consultants-row {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 0;
+    gap: clamp(20px, 2vw, 30px);
   }
-  .consultants-grid .photo {
+  .consultant {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1vw, 14px);
+    min-width: 0;
+  }
+  .consultant .photo {
     aspect-ratio: 1 / 1;
     background-size: cover;
     background-position: 50% 22%;
     background-repeat: no-repeat;
     background-color: #d8e0d3;
   }
+  .consultant-meta {
+    width: 66.667%;
+    display: flex;
+    flex-direction: column;
+    font-size: var(--fs-body);
+    line-height: 1.3;
+  }
+  .consultant-role { opacity: 0.7; }
+
   .photo-romain  { background-image: url('assets/consultant-romain.jpg'); }
   .photo-emile   { background-image: url('assets/consultant-emile.jpg'); }
   .photo-tony    { background-image: url('assets/consultant-tony.jpg'); }
   .photo-claire  { background-image: url('assets/consultant-claire.jpg'); }
   .photo-hugo    { background-image: url('assets/consultant-hugo.jpg'); }
+  .photo-mansour { background-image: url('assets/consultant-mansour.jpg'); }
+  .photo-camelia { background-image: url('assets/consultant-camelia.jpg'); }
 
   @media (max-width: 1000px) {
-    .consultants-grid { grid-template-columns: repeat(3, 1fr); }
-    .consultants-grid .photo:nth-child(n+4) { display: none; }
+    .consultants-row { grid-template-columns: repeat(3, 1fr); }
+    .consultants-row .consultant:nth-child(n+4) { display: none; }
   }
   @media (max-width: 800px) {
     .solutions-title-row { flex-direction: column; align-items: flex-start; }
     .two-col { grid-template-columns: 1fr; }
     .panel-title { max-width: none; }
     .subtabs-row { flex-direction: column; align-items: flex-start; }
-    .consultants-grid { grid-template-columns: repeat(2, 1fr); }
-    .consultants-grid .photo:nth-child(n+3) { display: none; }
+    .consultants-row { grid-template-columns: repeat(2, 1fr); }
+    .consultants-row .consultant:nth-child(n+3) { display: none; }
     .tab-2 .super { font-size: 12px; }
   }
 </style>
@@ -279,6 +299,29 @@
                 <p>Démarrage sous deux semaines, première feuille de route à 30 jours, point d'étape mensuel avec le CEO et le board.</p>
               </div>
             </div>
+            <div class="consultants-row">
+              <div class="consultant">
+                <div class="photo photo-romain" role="img" aria-label="Romain Pichou"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Romain Pichou</span>
+                  <span class="consultant-role">Co-fondateur, missions DRH</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-emile" role="img" aria-label="Émile Pennes"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Émile Pennes</span>
+                  <span class="consultant-role">Associé</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-claire" role="img" aria-label="Claire Hubert"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Claire Hubert</span>
+                  <span class="consultant-role">Associée, Talent</span>
+                </div>
+              </div>
+            </div>
             <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
           </section>
 
@@ -305,16 +348,6 @@
               </div>
             </div>
           </section>
-
-          <section class="panel-section">
-            <h3>Consultants</h3>
-            <div class="consultants-grid">
-              <div class="photo photo-romain" role="img" aria-label="Romain Pichou"></div>
-              <div class="photo photo-emile" role="img" aria-label="Émile Pennes"></div>
-              <div class="photo photo-claire" role="img" aria-label="Claire Hubert"></div>
-            </div>
-            <p style="font-size: var(--fs-body); line-height: var(--lh-body);">Mission portée par les associés GetPro et les consultants seniors expérimentés en direction RH. Profil exigeant : capacité à arbitrer, à recruter ses pairs, à incarner la fonction RH auprès du board.</p>
-          </section>
         </div>
 
         <div class="subtab-body" data-subtab="rpo" hidden>
@@ -328,6 +361,29 @@
               <div>
                 <p>Pour les scale-ups en croissance constante qui ouvrent un volume régulier de postes — Tech principalement, où nos recruteurs RPO sont calibrés pour parler la langue des CTO, Lead Eng et Staff Eng dès le brief.</p>
                 <p>Onboarding en deux semaines, premier reporting mensuel à J+30, point trimestriel avec le DRH pour ajuster le périmètre. Sortie possible avec préavis d'un mois.</p>
+              </div>
+            </div>
+            <div class="consultants-row">
+              <div class="consultant">
+                <div class="photo photo-mansour" role="img" aria-label="Mansour"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Mansour</span>
+                  <span class="consultant-role">Lead RPO Tech</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-camelia" role="img" aria-label="Camélia"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Camélia</span>
+                  <span class="consultant-role">Senior recruiter</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-claire" role="img" aria-label="Claire Hubert"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Claire Hubert</span>
+                  <span class="consultant-role">Associée, Talent</span>
+                </div>
               </div>
             </div>
             <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
@@ -359,16 +415,6 @@
               </div>
             </div>
           </section>
-
-          <section class="panel-section">
-            <h3>Consultants</h3>
-            <div class="consultants-grid">
-              <div class="photo photo-mansour" role="img" aria-label="Mansour"></div>
-              <div class="photo photo-camelia" role="img" aria-label="Camélia"></div>
-              <div class="photo photo-claire" role="img" aria-label="Claire Hubert"></div>
-            </div>
-            <p style="font-size: var(--fs-body); line-height: var(--lh-body);">Recruteurs RPO opérationnels, capables d'embarquer rapidement chez nos clients sur l'ATS et la marque employeur. Calibrés sur les profils Tech, où nous mettons le plus de poids depuis dix ans.</p>
-          </section>
         </div>
 
         <div class="subtab-body" data-subtab="outils" hidden>
@@ -382,6 +428,29 @@
               <div>
                 <p>Cette base technique forte change deux choses pour vous. Un, nous comprenons l'écosystème des outils RH parce que nous en construisons un nous-mêmes. Deux, nous sommes calibrés pour parler aux profils tech qu'on vous recrute.</p>
                 <p>En mission de conseil, nous auditons votre stack, refondons vos scorecards, choisissons ou intégrons un ATS adapté (Lever, Greenhouse, Welcome Kit, Recruitee). Format à la journée ou en mission courte sur quelques semaines.</p>
+              </div>
+            </div>
+            <div class="consultants-row">
+              <div class="consultant">
+                <div class="photo photo-emile" role="img" aria-label="Émile Pennes"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Émile Pennes</span>
+                  <span class="consultant-role">Associé, Tech &amp; Product</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Tony Beaugez</span>
+                  <span class="consultant-role">Associé, outils RH</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Hugo Merdrignac</span>
+                  <span class="consultant-role">Senior Tech</span>
+                </div>
               </div>
             </div>
             <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
@@ -413,16 +482,6 @@
                 <span class="case-logo-mark mistral" aria-label="Mistral AI"></span>
               </div>
             </div>
-          </section>
-
-          <section class="panel-section">
-            <h3>Consultants</h3>
-            <div class="consultants-grid">
-              <div class="photo photo-emile" role="img" aria-label="Émile Pennes"></div>
-              <div class="photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
-              <div class="photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
-            </div>
-            <p style="font-size: var(--fs-body); line-height: var(--lh-body);">Pilotage par les profils les plus tech-natifs de l'équipe, ceux qui interagissent quotidiennement avec notre outil interne et qui chassent les profils ML, IA et software. Capables d'auditer une stack RH avec le même niveau de détail qu'un produit.</p>
           </section>
         </div>
       </div>

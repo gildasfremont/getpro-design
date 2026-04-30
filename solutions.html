@@ -188,19 +188,37 @@
             mask-image: url('assets/flaire.svg');
   }
 
-  /* Consultants section */
-  .consultants-grid {
+  /* Consultants row — intégré dans la première section du subtab,
+     entre la grille .two-col et le CTA. Chaque .consultant : une photo
+     carrée + une mini-colonne de texte (nom / rôle) qui fait 2/3 de la
+     largeur de la photo, alignée à gauche sous celle-ci. */
+  .consultants-row {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 0;
+    gap: clamp(20px, 2vw, 30px);
   }
-  .consultants-grid .photo {
+  .consultant {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1vw, 14px);
+    min-width: 0;
+  }
+  .consultant .photo {
     aspect-ratio: 1 / 1;
     background-size: cover;
     background-position: 50% 22%;
     background-repeat: no-repeat;
     background-color: #d8e0d3;
   }
+  .consultant-meta {
+    width: 66.667%;
+    display: flex;
+    flex-direction: column;
+    font-size: var(--fs-body);
+    line-height: 1.3;
+  }
+  .consultant-role { opacity: 0.7; }
+
   .photo-romain  { background-image: url('assets/consultant-romain.jpg'); }
   .photo-emile   { background-image: url('assets/consultant-emile.jpg'); }
   .photo-tony    { background-image: url('assets/consultant-tony.jpg'); }
@@ -208,16 +226,16 @@
   .photo-hugo    { background-image: url('assets/consultant-hugo.jpg'); }
 
   @media (max-width: 1000px) {
-    .consultants-grid { grid-template-columns: repeat(3, 1fr); }
-    .consultants-grid .photo:nth-child(n+4) { display: none; }
+    .consultants-row { grid-template-columns: repeat(3, 1fr); }
+    .consultants-row .consultant:nth-child(n+4) { display: none; }
   }
   @media (max-width: 800px) {
     .solutions-title-row { flex-direction: column; align-items: flex-start; }
     .two-col { grid-template-columns: 1fr; }
     .panel-title { max-width: none; }
     .subtabs-row { flex-direction: column; align-items: flex-start; }
-    .consultants-grid { grid-template-columns: repeat(2, 1fr); }
-    .consultants-grid .photo:nth-child(n+3) { display: none; }
+    .consultants-row { grid-template-columns: repeat(2, 1fr); }
+    .consultants-row .consultant:nth-child(n+3) { display: none; }
     .tab-2 .super { font-size: 12px; }
   }
 </style>
@@ -280,6 +298,36 @@
                 <p>Démarrage sous cinq jours, calibrage hebdomadaire avec le DRH, reporting consolidé : pipeline par rôle, taux de transformation par étape, retours marché sur la rémunération.</p>
               </div>
             </div>
+            <div class="consultants-row">
+              <div class="consultant">
+                <div class="photo photo-romain" role="img" aria-label="Romain Pichou"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Romain Pichou</span>
+                  <span class="consultant-role">Co-fondateur</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-emile" role="img" aria-label="Émile Pennes"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Émile Pennes</span>
+                  <span class="consultant-role">Associé, Tech</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Tony Beaugez</span>
+                  <span class="consultant-role">Associé</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Hugo Merdrignac</span>
+                  <span class="consultant-role">Senior consultant</span>
+                </div>
+              </div>
+            </div>
             <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
           </section>
 
@@ -310,17 +358,6 @@
               </div>
             </div>
           </section>
-
-          <section class="panel-section">
-            <h3>Consultants</h3>
-            <div class="consultants-grid">
-              <div class="photo photo-romain" role="img" aria-label="Romain Pichou"></div>
-              <div class="photo photo-emile" role="img" aria-label="Émile Pennes"></div>
-              <div class="photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
-              <div class="photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
-            </div>
-            <p style="font-size: var(--fs-body); line-height: var(--lh-body);">Pilotage par les associés et les seniors. Particulièrement à l'aise sur les profils Tech et IA, où nous avons une dizaine d'années de viviers et de relations directes avec les candidats.</p>
-          </section>
         </div>
 
         <div class="subtab-body" data-subtab="ponctuel">
@@ -334,6 +371,43 @@
               <div>
                 <p>Trois candidats qualifiés, parfois quatre, pas cinquante. Notre travail c'est de filtrer pas de transmettre. Chaque profil présenté a échangé avec nous, a compris votre projet, a envie d'y être.</p>
                 <p>Mission lancée sous 48 heures après la signature, première shortlist sous 48 heures après le kick-off sur la majorité des missions. Reporting hebdomadaire sur les volumes et les qualifications.</p>
+              </div>
+            </div>
+            <div class="consultants-row">
+              <div class="consultant">
+                <div class="photo photo-romain" role="img" aria-label="Romain Pichou"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Romain Pichou</span>
+                  <span class="consultant-role">Co-fondateur</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-emile" role="img" aria-label="Émile Pennes"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Émile Pennes</span>
+                  <span class="consultant-role">Associé, Tech</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Tony Beaugez</span>
+                  <span class="consultant-role">Associé</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-claire" role="img" aria-label="Claire Hubert"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Claire Hubert</span>
+                  <span class="consultant-role">Associée</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Hugo Merdrignac</span>
+                  <span class="consultant-role">Senior consultant</span>
+                </div>
               </div>
             </div>
             <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
@@ -365,18 +439,6 @@
               </div>
             </div>
           </section>
-
-          <section class="panel-section">
-            <h3>Consultants</h3>
-            <div class="consultants-grid">
-              <div class="photo photo-romain" role="img" aria-label="Romain Pichou"></div>
-              <div class="photo photo-emile" role="img" aria-label="Émile Pennes"></div>
-              <div class="photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
-              <div class="photo photo-claire" role="img" aria-label="Claire Hubert"></div>
-              <div class="photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
-            </div>
-            <p style="font-size: var(--fs-body); line-height: var(--lh-body);">Une équipe d'experts qui couvre la chasse stratégique pour scale-ups et PME. Diplômés des meilleures écoles, dix ans d'expérience cumulée sur le marché tech français.</p>
-          </section>
         </div>
 
         <div class="subtab-body" data-subtab="freelance" hidden>
@@ -390,6 +452,22 @@
               <div>
                 <p>Notre fort sur la tech se retrouve aussi sur les freelances : nous suivons une centaine d'indépendants top-tier sur Software, IA et Data, dont la disponibilité change tous les trois mois.</p>
                 <p>Démarrage sous 48 heures, shortlist commentée sous une semaine, références techniques disponibles à la demande. Mission cadrée sur quelques semaines à plusieurs mois.</p>
+              </div>
+            </div>
+            <div class="consultants-row">
+              <div class="consultant">
+                <div class="photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Hugo Merdrignac</span>
+                  <span class="consultant-role">Senior Tech</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Tony Beaugez</span>
+                  <span class="consultant-role">Associé</span>
+                </div>
               </div>
             </div>
             <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
@@ -416,15 +494,6 @@
                 <span class="case-logo-mark electra" aria-label="Electra"></span>
               </div>
             </div>
-          </section>
-
-          <section class="panel-section">
-            <h3>Consultants</h3>
-            <div class="consultants-grid">
-              <div class="photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
-              <div class="photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
-            </div>
-            <p style="font-size: var(--fs-body); line-height: var(--lh-body);">Pilotage par les seniors tech qui suivent les viviers freelances depuis plusieurs années. Connaissance directe des disponibilités, des TJM marché et des sujets techniques en cours sur les scale-ups françaises.</p>
           </section>
         </div>
       </div>
