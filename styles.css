@@ -348,7 +348,11 @@ button { font-family: inherit; cursor: pointer; }
   gap: clamp(20px, 2vw, 30px);
   flex-wrap: wrap;
 }
-.subtabs {
+/* Scoped à .subtabs-row : la hairline et le rythme horizontal sont propres
+   à la nav des subtabs sur solutions/solutions-renfort. solutions-profils
+   réutilise la classe .subtabs pour une nav verticale, on ne veut pas la
+   border-bottom qui bave dans ce contexte. */
+.subtabs-row .subtabs {
   display: flex;
   gap: clamp(20px, 3vw, 50px);
   flex-wrap: wrap;
