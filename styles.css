@@ -421,6 +421,11 @@ button { font-family: inherit; cursor: pointer; }
   background-color: var(--ink);
   -webkit-mask: left center / contain no-repeat;
           mask: left center / contain no-repeat;
+  /* mask-mode: alpha — sinon les paths noirs des SVG (luminance 0) sont
+     rendus transparents et le logo est tronqué. Avec alpha tous les paths
+     opaques (blancs comme noirs) contribuent au masque. */
+  -webkit-mask-mode: alpha;
+          mask-mode: alpha;
 }
 .case-logo-mark.electra  { -webkit-mask-image: url('assets/electra.svg');           mask-image: url('assets/electra.svg'); }
 .case-logo-mark.japhy    { -webkit-mask-image: url('assets/japhy.svg');             mask-image: url('assets/japhy.svg'); }

@@ -107,6 +107,10 @@
             mask-repeat: no-repeat;
     -webkit-mask-position: left center;
             mask-position: left center;
+    /* alpha pour que les paths noirs des SVG (luminance 0) ne soient pas
+       rendus transparents par le masque. */
+    -webkit-mask-mode: alpha;
+            mask-mode: alpha;
   }
   /* Mistral flag (icon-only SVG) */
   .case-logo .symbol-mistral {
