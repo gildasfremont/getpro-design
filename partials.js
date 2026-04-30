@@ -28,8 +28,7 @@
 
   const footerHTML = `
     <div class="foot-col">
-      <a href="equipe.html"${aria('equipe.html')}>Consultants</a>
-      <a href="equipe.html">Support</a>
+      <a href="equipe.html"${aria('equipe.html')}>Équipe</a>
     </div>
     <div class="foot-col">
       <a href="mailto:bonjour@getpro.com">Nous contacter</a>
