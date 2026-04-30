@@ -47,6 +47,42 @@
     color: var(--ink);
     opacity: 0.4;
   }
+  /* Hide the native search clear button (Webkit) */
+  .clients-search input[type="search"]::-webkit-search-cancel-button,
+  .clients-search input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  /* Trailing icon : loupe by default, replaced by × once user types */
+  .search-icon {
+    flex: 0 0 auto;
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    cursor: default;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    opacity: 0.55;
+    transition: opacity 0.15s ease;
+  }
+  .search-icon svg {
+    width: clamp(16px, 1.4vw, 20px);
+    height: clamp(16px, 1.4vw, 20px);
+    display: block;
+  }
+  .search-icon .icon-clear { display: none; }
+  /* Once the input has any value, swap loupe → cross + button is clickable */
+  .clients-search:has(input:not(:placeholder-shown)) .search-icon {
+    cursor: pointer;
+    opacity: 1;
+  }
+  .clients-search:has(input:not(:placeholder-shown)) .search-icon:hover { opacity: 0.7; }
+  .clients-search:has(input:not(:placeholder-shown)) .icon-loupe { display: none; }
+  .clients-search:has(input:not(:placeholder-shown)) .icon-clear { display: block; }
 
   /* Panel : just a card holding the list */
   .clients-panel {
@@ -229,7 +265,17 @@
           </div>
         </div>
         <div class="clients-search">
-          <input type="search" id="clients-search" placeholder="Rechercher un client" autocomplete="off" />
+          <input type="search" id="clients-search" placeholder="Rechercher dans la liste…" autocomplete="off" />
+          <button type="button" class="search-icon" id="search-icon" aria-label="Effacer la recherche">
+            <svg class="icon-loupe" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+              <circle cx="9" cy="9" r="6"></circle>
+              <line x1="13.5" y1="13.5" x2="17.5" y2="17.5"></line>
+            </svg>
+            <svg class="icon-clear" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+              <line x1="5" y1="5" x2="15" y2="15"></line>
+              <line x1="5" y1="15" x2="15" y2="5"></line>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -337,6 +383,17 @@
         searchQuery = e.target.value.trim();
         activeSlug = null;
         renderList();
+      });
+
+      // Cross icon clears the input (only when input has content)
+      const searchIconBtn = document.getElementById('search-icon');
+      searchIconBtn.addEventListener('click', () => {
+        if (!searchInput.value) return;
+        searchInput.value = '';
+        searchQuery = '';
+        activeSlug = null;
+        renderList();
+        searchInput.focus();
       });
 
       namesHost.addEventListener('click', (e) => {
