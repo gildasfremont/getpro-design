@@ -228,13 +228,14 @@
   }
   .consultant-role { opacity: 0.7; }
 
-  /* Réutilise les photos de la home, avec leur background-position ajustée
-     par image pour que les yeux atterrissent à ~22% de la hauteur de la cellule. */
-  .photo-romain  { background-image: url('assets/Gemini_Generated_Image_rkgiq6rkgiq6rkgi.jpg'); background-position: 50%  4%; }
-  .photo-emile   { background-image: url('assets/Gemini_Generated_Image_kpi1lnkpi1lnkpi1.jpg'); background-position: 50% 22%; }
-  .photo-tony    { background-image: url('assets/Gemini_Generated_Image_ltlyt9ltlyt9ltly.jpg'); background-position: 50% 52%; }
-  .photo-claire  { background-image: url('assets/Gemini_Generated_Image_khiwg4khiwg4khiw.jpg'); background-position: 50% 52%; }
-  .photo-hugo    { background-image: url('assets/Gemini_Generated_Image_elgv4qelgv4qelgv.jpg'); background-position: 50% 59%; }
+  /* Portraits dédiés aux consultants (différents des tiles de la home).
+     background-position calé par image pour que les yeux atterrissent à
+     ~22% de la hauteur de la cellule portrait 1:2. */
+  .photo-romain  { background-image: url('assets/Gemini_Generated_Image_e05t1ne05t1ne05t.jpg'); background-position: 50% 22%; }
+  .photo-emile   { background-image: url('assets/Gemini_Generated_Image_hw68mnhw68mnhw68.jpg'); background-position: 50% 22%; }
+  .photo-tony    { background-image: url('assets/Gemini_Generated_Image_bw2vr4bw2vr4bw2v.jpg'); background-position: 50% 22%; }
+  .photo-claire  { background-image: url('assets/Gemini_Generated_Image_r975nar975nar975.jpg'); background-position: 50% 22%; }
+  .photo-hugo    { background-image: url('assets/Gemini_Generated_Image_mpneskmpneskmpne.jpg'); background-position: 50% 14%; }
 
   @media (max-width: 1000px) {
     .consultants-row { grid-template-columns: repeat(3, 1fr); }
