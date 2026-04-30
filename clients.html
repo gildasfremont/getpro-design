@@ -142,7 +142,10 @@
     gap: clamp(18px, 2vw, 30px);
   }
   .row.active .tm-full { display: flex; }
-  .row.active .tm-line { display: none; }
+  /* visibility: hidden conserve la hauteur 1 ligne du preview, ce qui donne
+     à .row-tm un baseline → la 1ʳᵉ ligne du témoignage déployé s'aligne avec
+     le nom du client. */
+  .row.active .tm-line { visibility: hidden; }
 
   .testimonial-quote { line-height: 1.3; }
   .testimonial-author .name { line-height: 1.3; }
@@ -175,6 +178,9 @@
     }
     .row { grid-column: 1 / -1; }
     .logo-cell { display: none; }
+    /* En mobile .tm-full passe en flow ; on cache la preview totalement
+       pour que le témoignage commence pile sous le nom sans gap fantôme */
+    .row.active .tm-line { display: none; }
     .tm-full {
       position: relative;
     }

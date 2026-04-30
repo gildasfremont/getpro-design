@@ -288,7 +288,9 @@
   }
   .cta-col .see-all {
     position: sticky;
-    top: clamp(20px, 3vw, 40px);
+    /* Sit just below the sticky header (~50-80px tall) instead of at top:0,
+       sinon le header (z-index 50) recouvre le CTA. */
+    top: clamp(80px, 9vw, 110px);
     display: inline-block;
     font-size: var(--fs-menu);
     line-height: 1.25;
