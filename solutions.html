@@ -19,28 +19,36 @@
     gap: clamp(14px, 1.4vw, 20px);
   }
 
+  /* H1 + onglets sur la même ligne. Le padding-bottom du H1 étend sa hauteur
+     visuelle pour créer du breathing room sous le titre tout en gardant les
+     onglets (alignés flex-end) collés au bord supérieur du panneau blanc. */
   .solutions-title-row {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     gap: clamp(20px, 3vw, 50px);
+    flex-wrap: wrap;
+  }
+  .solutions-title-row .page-title {
+    padding-bottom: clamp(32px, 5.4vw, 78px);
   }
 
   /* Ratings — moved to shared styles.css */
 
   /* Two-line top tabs : main label on top + subtitle below.
-     70px de padding autour de chaque onglet, 0 entre eux : ils se touchent
-     au milieu. L'underline de l'onglet actif (left:0, right:0) couvre toute
-     la largeur du bouton, padding compris. */
+     Même rythme que les onglets simples (.tabs / .tab) sur Equipe :
+     padding 14px 0, gap clamp entre les onglets, pas de padding horizontal.
+     L'underline de l'onglet actif (left:0, right:0) suit la largeur naturelle
+     du bouton (= largeur du sub plus large des deux lignes). */
   .tabs-2 {
     display: flex;
-    gap: 0;
+    gap: clamp(20px, 2.7vw, 40px);
   }
   .tab-2 {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 10px var(--pad-card-x);
+    padding: 14px 0;
     background: none;
     border: none;
     color: inherit;
@@ -78,18 +86,26 @@
     line-height: var(--lh-card-title);
   }
 
+  .panel-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: clamp(20px, 3vw, 50px);
+    flex-wrap: wrap;
+  }
+
   .subtabs-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: clamp(20px, 2vw, 30px);
+    flex-wrap: wrap;
   }
   .subtabs {
     display: flex;
     gap: clamp(20px, 3vw, 50px);
     flex-wrap: wrap;
     border-bottom: 1px solid var(--line);
-    flex: 1;
   }
   .subtab {
     padding: 14px 0;
@@ -241,10 +257,8 @@
     .consultants-row { grid-template-columns: repeat(3, 1fr); }
   }
   @media (max-width: 800px) {
-    .solutions-title-row { flex-direction: column; align-items: flex-start; }
     .two-col { grid-template-columns: 1fr; }
     .panel-title { max-width: none; }
-    .subtabs-row { flex-direction: column; align-items: flex-start; }
     .consultants-row { grid-template-columns: repeat(2, 1fr); }
     .tab-2 .super { font-size: 12px; }
   }
@@ -259,32 +273,29 @@
       <div class="solutions-head">
         <div class="solutions-title-row">
           <h1 class="page-title">Solutions</h1>
+          <div class="tabs-2" role="tablist">
+            <a class="tab-2" href="solutions.html" aria-current="true">
+              <span class="main">Chasse</span>
+              <span class="sub">Recrutement direct</span>
+            </a>
+            <a class="tab-2" href="solutions-renfort.html">
+              <span class="main">Renfort RH</span>
+              <span class="sub">Conseil et outils de recrutement</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" data-solution="chasse">
+        <div class="panel-title-row">
+          <h2 class="panel-title">A chaque besoin de recrutement son équipe</h2>
           <div class="ratings-row">
             <div class="rating">
               <img src="assets/trustpilot.svg" alt="Trustpilot" class="rating-logo" />
               <span class="rating-stars">5 ★★★★★</span>
             </div>
-            <div class="rating">
-              <img src="assets/trustfolio.svg" alt="Trustfolio" class="rating-logo" />
-              <span class="rating-stars">4,8 ★★★★★</span>
-            </div>
           </div>
         </div>
-
-        <div class="tabs-2" role="tablist">
-          <a class="tab-2" href="solutions.html" aria-current="true">
-            <span class="main">Chasse</span>
-            <span class="sub">Cabinet</span>
-          </a>
-          <a class="tab-2" href="solutions-renfort.html">
-            <span class="main">Renfort RH</span>
-            <span class="sub">Conseil et outils pour le recrutement</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="panel" data-solution="chasse">
-        <h2 class="panel-title">A chaque besoin de recrutement son équipe</h2>
 
         <div class="subtabs-row">
           <div class="subtabs" role="tablist" data-subtabs-for="chasse">
