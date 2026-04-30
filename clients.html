@@ -29,10 +29,14 @@
     flex-direction: column;
     gap: clamp(14px, 1.4vw, 20px);
   }
+  /* align-items: baseline aligne la baseline des stars du rating sur
+     celle du h1 "Clients" — sinon flex-end aligne les bas de boîtes,
+     mais avec un line-height de 1.05 et un descender, le rating tombe
+     visuellement décalé. */
   .clients-title-row {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: baseline;
     gap: clamp(20px, 3vw, 50px);
   }
 

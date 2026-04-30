@@ -570,8 +570,18 @@ button { font-family: inherit; cursor: pointer; }
      rating dans .panel-title-row (à côté du h2 "À chaque besoin…")
      est masqué — on n'en garde qu'un visible. Pour que h1 et rating
      partagent la 1ʳᵉ ligne du title-row, on force .tabs-2 à wrapper
-     en pleine largeur dessous via flex-basis: 100%. */
+     en pleine largeur dessous via flex-basis: 100%.
+     align-items: baseline aligne la baseline des stars sur celle du
+     titre (avec flex-end les bas de boîtes étaient alignés mais le
+     padding-bottom du h1 + le line-height décalaient visuellement).
+     Le padding-bottom du h1 est mis à 0 en mobile : utile en desktop
+     pour respirer entre Solutions et le panel, contre-productif quand
+     le rating doit s'aligner sur la baseline. */
   .rating-mobile-only { display: flex; }
   .panel-title-row .ratings-row { display: none; }
+  .solutions-title-row {
+    align-items: baseline;
+  }
+  .solutions-title-row .page-title { padding-bottom: 0; }
   .solutions-title-row .tabs-2 { flex-basis: 100%; }
 }
