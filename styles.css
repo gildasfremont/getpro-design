@@ -496,9 +496,22 @@ button { font-family: inherit; cursor: pointer; }
   .consultants-row { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 800px) {
-  .two-col { grid-template-columns: 1fr; }
+  /* Quand on perd la place pour 2 cols côte à côte, on stacke — mais col 1
+     ne grossit pas pour autant : la grille reste en 1 col à 50% du panel,
+     col 2 passe simplement en dessous. */
+  .two-col {
+    grid-template-columns: minmax(0, 50%);
+  }
   .two-col > * { padding-right: 0; }
+  .case-row {
+    grid-template-columns: 1fr 1fr;
+  }
   .case-row > * { padding-right: 0; }
   .panel-title { max-width: none; }
   .consultants-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  /* En dessous de 600px, le 50% devient trop étroit (~280px) :
+     on libère et le contenu prend toute la largeur. */
+  .two-col { grid-template-columns: 1fr; }
 }
