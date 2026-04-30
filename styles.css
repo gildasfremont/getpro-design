@@ -402,21 +402,21 @@ button { font-family: inherit; cursor: pointer; }
   letter-spacing: -0.02em;
 }
 
-/* Deux colonnes de même taille, mais l'ensemble cappé à 75% du panel —
-   le bord droit du bloc texte s'aligne sur le bord droit de la 3e photo
-   consultant (les 4 photos couvrent 100%, 3 photos = 75%).
-   En dessous de 1000px les consultants passent à 3 cols, le cap saute. */
+/* Deux cellules à 50/50, column-gap: 0 → la 2e cellule démarre pile au
+   milieu du panel. Chaque cellule a un padding-right qui réduit la
+   largeur du texte à ~80% de la cellule, l'espace droit fait office de
+   respiration et de gap entre colonnes. */
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(24px, 3vw, 50px);
+  column-gap: 0;
+  row-gap: clamp(24px, 3vw, 50px);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  max-width: 75%;
 }
 .two-col > * {
-  /* Cap à la mesure typo en cas de chute en 1 col (≤ 800px) : la colonne
-     ne s'étire pas, elle reste lisible. */
+  padding-right: clamp(40px, 8vw, 120px);
+  /* Cap typo en cas de chute en 1 col (≤ 800px). */
   max-width: var(--measure);
 }
 .two-col p { margin-bottom: clamp(14px, 1.6vw, 24px); }
@@ -488,11 +488,10 @@ button { font-family: inherit; cursor: pointer; }
 
 @media (max-width: 1000px) {
   .consultants-row { grid-template-columns: repeat(3, 1fr); }
-  /* Plus que 3 photos par ligne : le cap 75% n'a plus de sens, on libère. */
-  .two-col { max-width: none; }
 }
 @media (max-width: 800px) {
   .two-col { grid-template-columns: 1fr; }
+  .two-col > * { padding-right: 0; }
   .panel-title { max-width: none; }
   .consultants-row { grid-template-columns: repeat(2, 1fr); }
 }
