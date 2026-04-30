@@ -357,13 +357,22 @@ button { font-family: inherit; cursor: pointer; }
 /* Scoped à .subtabs-row : la hairline et le rythme horizontal sont propres
    à la nav des subtabs sur solutions/solutions-renfort. solutions-profils
    réutilise la classe .subtabs pour une nav verticale, on ne veut pas la
-   border-bottom qui bave dans ce contexte. */
+   border-bottom qui bave dans ce contexte.
+   Quand la place manque (mobile, ou labels longs), on bascule en scroll
+   horizontal plutôt qu'en wrap : flex-wrap: nowrap + overflow-x: auto.
+   Le min-width: 0 est nécessaire pour que .subtabs puisse rétrécir dans
+   son parent flex et laisser le scroll s'activer. */
 .subtabs-row .subtabs {
   display: flex;
   gap: clamp(20px, 3vw, 50px);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  min-width: 0;
   border-bottom: 1px solid var(--line);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
+.subtabs-row .subtabs::-webkit-scrollbar { display: none; }
 .subtab {
   padding: 14px 0;
   font-size: var(--fs-body);
@@ -375,7 +384,12 @@ button { font-family: inherit; cursor: pointer; }
   font-family: inherit;
   position: relative;
   white-space: nowrap;
+  flex-shrink: 0;
 }
+/* Labels longs/courts pour les subtabs (utilisé par "RPO mensuel" → "RPO"
+   sur solutions-renfort). Par défaut on affiche le label full ; le swap
+   vers short se fait dans la media query mobile plus bas. */
+.subtab-label-short { display: none; }
 .subtab[aria-current="true"]::after {
   content: "";
   position: absolute;
@@ -507,6 +521,16 @@ button { font-family: inherit; cursor: pointer; }
      responsive, on garde la respiration entre paragraphe et logo). */
   .panel-title { max-width: none; }
   .consultants-row { grid-template-columns: repeat(2, 1fr); }
+  /* Subtabs : on bascule sur les labels courts quand un short existe
+     (sinon le label original est conservé tel quel). Le scroll
+     horizontal de la rangée gère le reste si ça ne tient pas. */
+  .subtab-label-full { display: none; }
+  .subtab-label-short { display: inline; }
+  /* "Profils couverts" prend toute la largeur quand il wrap dessous des subtabs. */
+  .subtabs-row > .btn-outline {
+    width: 100%;
+    text-align: center;
+  }
 }
 @media (max-width: 600px) {
   /* En dessous de 600px, le 50% devient trop étroit (~280px) :
