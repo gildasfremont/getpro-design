@@ -436,7 +436,17 @@ button { font-family: inherit; cursor: pointer; }
 .case-logo-mark.japhy    { -webkit-mask-image: url('assets/japhy.svg');             mask-image: url('assets/japhy.svg'); }
 .case-logo-mark.filigran { -webkit-mask-image: url('assets/filigran.svg');          mask-image: url('assets/filigran.svg'); }
 .case-logo-mark.mistral  { -webkit-mask-image: url('assets/mistral-ai_wordmark.svg'); mask-image: url('assets/mistral-ai_wordmark.svg'); }
-.case-logo-mark.lucca    { -webkit-mask-image: url('assets/lucca.svg');             mask-image: url('assets/lucca.svg'); }
+.case-logo-mark.lucca    {
+  /* Logo Lucca affiché en couleurs (carré orange + silhouettes blanches +
+     wordmark navy). On désactive le mask et on passe en background-image. */
+  background-color: transparent;
+  background-image: url('assets/lucca.svg');
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  -webkit-mask-image: none;
+          mask-image: none;
+}
 .case-logo-mark.flaire   { -webkit-mask-image: url('assets/flaire.svg');            mask-image: url('assets/flaire.svg'); }
 
 /* Consultants row — photos en grille 4 colonnes (3 puis 2 en responsive),
