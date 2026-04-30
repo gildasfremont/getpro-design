@@ -228,16 +228,17 @@
   }
   .consultant-role { opacity: 0.7; }
 
-  /* Portraits dédiés aux consultants (différents des tiles de la home).
-     background-position calé par image pour que les yeux atterrissent à
-     ~22% de la hauteur de la cellule portrait 1:2. */
+  /* Portraits Gemini mappés sur les vrais membres de l'organigramme
+     (mêmes que sur la page Équipe). Les photos sont calées pour que les
+     yeux atterrissent ~22% de la hauteur de la cellule portrait 1:2. */
   .photo-romain  { background-image: url('assets/Gemini_Generated_Image_e05t1ne05t1ne05t.jpg'); background-position: 50% 22%; }
-  .photo-emile   { background-image: url('assets/Gemini_Generated_Image_hw68mnhw68mnhw68.jpg'); background-position: 50% 22%; }
-  .photo-tony    { background-image: url('assets/Gemini_Generated_Image_bw2vr4bw2vr4bw2v.jpg'); background-position: 50% 22%; }
+  .photo-emile   { background-image: url('assets/Gemini_Generated_Image_kpi1lnkpi1lnkpi1.jpg'); background-position: 50% 22%; }
+  .photo-tony    { background-image: url('assets/Gemini_Generated_Image_hw68mnhw68mnhw68.jpg'); background-position: 50% 22%; }
   .photo-claire  { background-image: url('assets/Gemini_Generated_Image_r975nar975nar975.jpg'); background-position: 50% 22%; }
-  .photo-hugo    { background-image: url('assets/Gemini_Generated_Image_mpneskmpneskmpne.jpg'); background-position: 50% 14%; }
-  .photo-mansour { background-image: url('assets/Gemini_Generated_Image_f99ulif99ulif99u.jpg'); background-position: 50% 22%; }
-  .photo-camelia { background-image: url('assets/Gemini_Generated_Image_vjr1pavjr1pavjr1.jpg'); background-position: 50% 14%; }
+  .photo-anne    { background-image: url('assets/Gemini_Generated_Image_khiwg4khiwg4khiw.jpg'); background-position: 50% 22%; }
+  .photo-thomas  { background-image: url('assets/Gemini_Generated_Image_bw2vr4bw2vr4bw2v.jpg'); background-position: 50% 22%; }
+  .photo-lauren  { background-image: url('assets/Gemini_Generated_Image_vjr1pavjr1pavjr1.jpg'); background-position: 50% 14%; }
+  .photo-terry   { background-image: url('assets/Gemini_Generated_Image_elgv4qelgv4qelgv.jpg'); background-position: 50% 22%; }
 
   @media (max-width: 1000px) {
     .consultants-row { grid-template-columns: repeat(3, 1fr); }
@@ -314,21 +315,21 @@
                 <div class="photo photo-romain" role="img" aria-label="Romain Pichou"></div>
                 <div class="consultant-meta">
                   <span class="consultant-name">Romain Pichou</span>
-                  <span class="consultant-role">Co-fondateur, missions DRH</span>
+                  <span class="consultant-role">Président</span>
                 </div>
               </div>
               <div class="consultant">
                 <div class="photo photo-emile" role="img" aria-label="Émile Pennes"></div>
                 <div class="consultant-meta">
                   <span class="consultant-name">Émile Pennes</span>
-                  <span class="consultant-role">Associé</span>
+                  <span class="consultant-role">Directeur Opérations</span>
                 </div>
               </div>
               <div class="consultant">
                 <div class="photo photo-claire" role="img" aria-label="Claire Hubert"></div>
                 <div class="consultant-meta">
                   <span class="consultant-name">Claire Hubert</span>
-                  <span class="consultant-role">Associée, Talent</span>
+                  <span class="consultant-role">Talent Recruiter Business</span>
                 </div>
               </div>
             </div>
@@ -375,24 +376,24 @@
             </div>
             <div class="consultants-row">
               <div class="consultant">
-                <div class="photo photo-mansour" role="img" aria-label="Mansour"></div>
+                <div class="photo photo-anne" role="img" aria-label="Anne Delarue"></div>
                 <div class="consultant-meta">
-                  <span class="consultant-name">Mansour</span>
-                  <span class="consultant-role">Lead RPO Tech</span>
+                  <span class="consultant-name">Anne Delarue</span>
+                  <span class="consultant-role">Directrice de projet RPO</span>
                 </div>
               </div>
               <div class="consultant">
-                <div class="photo photo-camelia" role="img" aria-label="Camélia"></div>
+                <div class="photo photo-thomas" role="img" aria-label="Thomas Laigo"></div>
                 <div class="consultant-meta">
-                  <span class="consultant-name">Camélia</span>
-                  <span class="consultant-role">Senior recruiter</span>
+                  <span class="consultant-name">Thomas Laigo</span>
+                  <span class="consultant-role">Consultant RPO</span>
                 </div>
               </div>
               <div class="consultant">
-                <div class="photo photo-claire" role="img" aria-label="Claire Hubert"></div>
+                <div class="photo photo-lauren" role="img" aria-label="Lauren Pointon"></div>
                 <div class="consultant-meta">
-                  <span class="consultant-name">Claire Hubert</span>
-                  <span class="consultant-role">Associée, Talent</span>
+                  <span class="consultant-name">Lauren Pointon</span>
+                  <span class="consultant-role">Consultante RPO</span>
                 </div>
               </div>
             </div>
@@ -445,21 +446,21 @@
                 <div class="photo photo-emile" role="img" aria-label="Émile Pennes"></div>
                 <div class="consultant-meta">
                   <span class="consultant-name">Émile Pennes</span>
-                  <span class="consultant-role">Associé, Tech &amp; Product</span>
+                  <span class="consultant-role">Directeur Opérations</span>
                 </div>
               </div>
               <div class="consultant">
                 <div class="photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
                 <div class="consultant-meta">
                   <span class="consultant-name">Tony Beaugez</span>
-                  <span class="consultant-role">Associé, outils RH</span>
+                  <span class="consultant-role">Manager BU Tech</span>
                 </div>
               </div>
               <div class="consultant">
-                <div class="photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
+                <div class="photo photo-terry" role="img" aria-label="Terry Raimondo"></div>
                 <div class="consultant-meta">
-                  <span class="consultant-name">Hugo Merdrignac</span>
-                  <span class="consultant-role">Senior Tech</span>
+                  <span class="consultant-name">Terry Raimondo</span>
+                  <span class="consultant-role">CTO</span>
                 </div>
               </div>
             </div>

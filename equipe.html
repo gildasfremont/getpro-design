@@ -106,22 +106,31 @@
     background-color: #d8e0d3;
   }
 
-  /* Portraits dédiés aux consultants nommés (mêmes que sur solutions.html
-     et solutions-renfort.html). background-position calé par image pour
-     que les yeux atterrissent à ~22% de la hauteur de la cellule. */
-  .photo-romain  { background-image: url('assets/Gemini_Generated_Image_e05t1ne05t1ne05t.jpg'); }
-  .photo-emile   { background-image: url('assets/Gemini_Generated_Image_hw68mnhw68mnhw68.jpg'); }
-  .photo-tony    { background-image: url('assets/Gemini_Generated_Image_bw2vr4bw2vr4bw2v.jpg'); }
-  .photo-claire  { background-image: url('assets/Gemini_Generated_Image_r975nar975nar975.jpg'); }
-  .photo-hugo    { background-image: url('assets/Gemini_Generated_Image_mpneskmpneskmpne.jpg'); background-position: 50% 18%; }
-  .photo-mansour { background-image: url('assets/Gemini_Generated_Image_f99ulif99ulif99u.jpg'); }
-  .photo-camelia { background-image: url('assets/Gemini_Generated_Image_vjr1pavjr1pavjr1.jpg'); background-position: 50% 18%; }
-  /* Placeholders : photos de la home (varies entre membres) */
-  .photo-ph-1 { background-image: url('assets/Gemini_Generated_Image_nplq8pnplq8pnplq.jpg'); background-position: 50% 35%; }
-  .photo-ph-2 { background-image: url('assets/Gemini_Generated_Image_khiwg4khiwg4khiw.jpg'); background-position: 50% 35%; }
-  .photo-ph-3 { background-image: url('assets/Gemini_Generated_Image_ltlyt9ltlyt9ltly.jpg'); background-position: 50% 35%; }
-  .photo-ph-4 { background-image: url('assets/Gemini_Generated_Image_xcajtfxcajtfxcaj.jpg'); background-position: 50% 30%; }
-  .photo-ph-5 { background-image: url('assets/Gemini_Generated_Image_ge52d7ge52d7ge52.jpg'); background-position: 50% 30%; }
+  /* Portraits Gemini mappés sur les membres de l'organigramme.
+     Quand on n'a pas de match exact, on retombe sur un portrait de même
+     genre que la personne. Quelques portraits sont réutilisés faute de
+     visuels distincts. background-position par défaut 50% 22%, ajusté
+     par image quand les yeux sont placés différemment dans le cadrage. */
+  .photo-romain    { background-image: url('assets/Gemini_Generated_Image_e05t1ne05t1ne05t.jpg'); }
+  .photo-emile     { background-image: url('assets/Gemini_Generated_Image_kpi1lnkpi1lnkpi1.jpg'); }
+  .photo-guillaume { background-image: url('assets/Gemini_Generated_Image_6ak9i86ak9i86ak9.jpg'); }
+  .photo-tony      { background-image: url('assets/Gemini_Generated_Image_hw68mnhw68mnhw68.jpg'); }
+  .photo-louis     { background-image: url('assets/Gemini_Generated_Image_cwq10dcwq10dcwq1.jpg'); }
+  .photo-anne      { background-image: url('assets/Gemini_Generated_Image_khiwg4khiwg4khiw.jpg'); }
+  .photo-thomas    { background-image: url('assets/Gemini_Generated_Image_bw2vr4bw2vr4bw2v.jpg'); }
+  .photo-die       { background-image: url('assets/Gemini_Generated_Image_xcajtfxcajtfxcaj.jpg'); }
+  .photo-juliette  { background-image: url('assets/Gemini_Generated_Image_ge52d7ge52d7ge52.jpg'); background-position: 50% 30%; }
+  .photo-lauren    { background-image: url('assets/Gemini_Generated_Image_vjr1pavjr1pavjr1.jpg'); background-position: 50% 18%; }
+  .photo-theo      { background-image: url('assets/Gemini_Generated_Image_ltlyt9ltlyt9ltly.jpg'); background-position: 50% 35%; }
+  .photo-nicolas   { background-image: url('assets/Gemini_Generated_Image_cwq10dcwq10dcwq1.jpg'); }
+  .photo-hugo      { background-image: url('assets/Gemini_Generated_Image_elgv4qelgv4qelgv.jpg'); }
+  .photo-zaia      { background-image: url('assets/Gemini_Generated_Image_mpneskmpneskmpne.jpg'); background-position: 50% 18%; }
+  .photo-laura     { background-image: url('assets/Gemini_Generated_Image_nplq8pnplq8pnplq.jpg'); background-position: 50% 35%; }
+  .photo-claire    { background-image: url('assets/Gemini_Generated_Image_r975nar975nar975.jpg'); }
+  .photo-jonathan  { background-image: url('assets/Gemini_Generated_Image_rkgiq6rkgiq6rkgi.jpg'); }
+  .photo-dylan     { background-image: url('assets/Gemini_Generated_Image_6ak9i86ak9i86ak9.jpg'); }
+  .photo-terry     { background-image: url('assets/Gemini_Generated_Image_elgv4qelgv4qelgv.jpg'); }
+  .photo-clotilde  { background-image: url('assets/Gemini_Generated_Image_f99ulif99ulif99u.jpg'); }
 
   @media (max-width: 800px) {
     .equipe-title-row { flex-direction: column; align-items: flex-start; }
@@ -167,9 +176,9 @@
           <div class="member-text">
             <div>
               <div class="member-name">Romain Pichou</div>
-              <div class="member-role">Cofondateur, CEO</div>
+              <div class="member-role">Président, CEO</div>
             </div>
-            <p class="member-bio">Cofondateur et CEO de GetPro depuis 2015. Avant, il participe au développement de Winamax et Betclic, puis rejoint Lucca où il devient le premier VP Sales, avant de passer chez ContentSquare comme Business Performance Manager. Diplômé de l'ESCP. Aborde le recrutement comme un levier de croissance, pas comme un acte RH isolé.</p>
+            <p class="member-bio">Cofondateur et Président de GetPro depuis 2015. Avant, il participe au développement de Winamax et Betclic, puis rejoint Lucca où il devient le premier VP Sales, avant de passer chez ContentSquare comme Business Performance Manager. Diplômé de l'ESCP. Aborde le recrutement comme un levier de croissance, pas comme un acte RH isolé.</p>
           </div>
           <div class="member-photo photo-romain" role="img" aria-label="Romain Pichou"></div>
         </article>
@@ -178,9 +187,9 @@
           <div class="member-text">
             <div>
               <div class="member-name">Émile Pennes</div>
-              <div class="member-role">Cofondateur, COO</div>
+              <div class="member-role">Directeur Opérations, CEO</div>
             </div>
-            <p class="member-bio">Cofondateur et COO de GetPro depuis 2016. Avant, audit chez Bosch, contrôle de gestion à São Paulo après une spécialisation finance à la FGV, direction administrative puis VP dans des PME brésiliennes. Diplômé d'Audencia. Aborde le recrutement par les chiffres, le coût par embauche, la rétention réelle.</p>
+            <p class="member-bio">Cofondateur et Directeur des Opérations depuis 2016. Avant, audit chez Bosch, contrôle de gestion à São Paulo après une spécialisation finance à la FGV, direction administrative puis VP dans des PME brésiliennes. Diplômé d'Audencia. Pilote la performance, les outils et la qualité de livraison sur l'ensemble des missions.</p>
           </div>
           <div class="member-photo photo-emile" role="img" aria-label="Émile Pennes"></div>
         </article>
@@ -188,10 +197,21 @@
         <article class="member-card">
           <div class="member-text">
             <div>
-              <div class="member-name">Tony Beaugez</div>
-              <div class="member-role">Associate</div>
+              <div class="member-name">Guillaume Renard</div>
+              <div class="member-role">Directeur Général Bordeaux</div>
             </div>
-            <p class="member-bio">Associate chez GetPro. Spécialiste du recrutement de profils tech et produit pour des scale-ups SaaS et marketplaces. Pilote des missions stratégiques de C-level à expert technique senior, en privilégiant la qualité de la qualification candidat sur la quantité.</p>
+            <p class="member-bio">Directeur Général du bureau de Bordeaux. Pilote l'activité Consulting RH &amp; Finance pour le sud-ouest et coordonne les missions inter-bureaux. Approche partenariale avec les fondateurs régionaux et les fonds locaux.</p>
+          </div>
+          <div class="member-photo photo-guillaume" role="img" aria-label="Guillaume Renard"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Tony Beaugez</div>
+              <div class="member-role">Manager Business Unit Tech</div>
+            </div>
+            <p class="member-bio">Manager de la Business Unit Tech. Pilote les missions de chasse stratégique sur Software, IA, Data et Product pour les scale-ups françaises. Encadre l'équipe Talent Recruiter Tech au quotidien.</p>
           </div>
           <div class="member-photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
         </article>
@@ -199,21 +219,98 @@
         <article class="member-card">
           <div class="member-text">
             <div>
-              <div class="member-name">Claire Hubert</div>
-              <div class="member-role">Consultante senior</div>
+              <div class="member-name">Louis Fitamant</div>
+              <div class="member-role">Head of Cabinet Business</div>
             </div>
-            <p class="member-bio">Consultante senior chez GetPro. Accompagne les scale-ups françaises dans la structuration de leurs équipes Sales, Marketing et Customer Success. Approche hybride entre chasse directe et qualification longue, avec un suivi candidat soigné jusqu'à l'onboarding.</p>
+            <p class="member-bio">Head of Cabinet Business. Pilote les missions Sales, Marketing et Customer Success pour les scale-ups B2B et SaaS. Encadre l'équipe Talent Recruiter Business et les partenariats fonds.</p>
           </div>
-          <div class="member-photo photo-claire" role="img" aria-label="Claire Hubert"></div>
+          <div class="member-photo photo-louis" role="img" aria-label="Louis Fitamant"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Anne Delarue</div>
+              <div class="member-role">Directrice de projet RPO</div>
+            </div>
+            <p class="member-bio">Directrice de projet RPO. Pilote les missions de renfort RH long-terme — RPO mensuel, conseil RH, structuration de la fonction recrutement chez les scale-ups en post-tour.</p>
+          </div>
+          <div class="member-photo photo-anne" role="img" aria-label="Anne Delarue"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Thomas Laigo</div>
+              <div class="member-role">Consultant RPO</div>
+            </div>
+            <p class="member-bio">Consultant RPO. Intervient en immersion chez les clients sur le recrutement opérationnel, principalement Tech et Business. Embarque sur l'ATS, la marque employeur et les rituels de l'équipe.</p>
+          </div>
+          <div class="member-photo photo-thomas" role="img" aria-label="Thomas Laigo"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Dié Astou Dioume</div>
+              <div class="member-role">Consultante RPO</div>
+            </div>
+            <p class="member-bio">Consultante RPO. Pilote le recrutement opérationnel chez les scale-ups en croissance, sur des familles de métiers larges. Approche méthodique, ATS, KPIs, ramp-up rapide.</p>
+          </div>
+          <div class="member-photo photo-die" role="img" aria-label="Dié Astou Dioume"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Juliette Fabre</div>
+              <div class="member-role">Consultante RPO</div>
+            </div>
+            <p class="member-bio">Consultante RPO. Embarque sur les ATS et la marque employeur des clients pour piloter le recrutement en flux continu sur la durée.</p>
+          </div>
+          <div class="member-photo photo-juliette" role="img" aria-label="Juliette Fabre"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Lauren Pointon</div>
+              <div class="member-role">Consultante RPO</div>
+            </div>
+            <p class="member-bio">Consultante RPO. Spécialiste des missions Tech et Product en RPO, en lien direct avec les CTO et VP Product des scale-ups en hyper-croissance.</p>
+          </div>
+          <div class="member-photo photo-lauren" role="img" aria-label="Lauren Pointon"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Théo Grandperrin</div>
+              <div class="member-role">Talent Recruiter Tech</div>
+            </div>
+            <p class="member-bio">Talent Recruiter sur la Business Unit Tech. Chasse les profils Software, IA et Data pour les scale-ups en hyper-croissance. Approche par la conversation, pas par la CVthèque.</p>
+          </div>
+          <div class="member-photo photo-theo" role="img" aria-label="Théo Grandperrin"></div>
+        </article>
+
+        <article class="member-card">
+          <div class="member-text">
+            <div>
+              <div class="member-name">Nicolas Magne</div>
+              <div class="member-role">Talent Recruiter Tech</div>
+            </div>
+            <p class="member-bio">Talent Recruiter Tech. Spécialiste des profils Backend, Infrastructure et Platform Engineering. Suit les viviers tech français depuis plusieurs années.</p>
+          </div>
+          <div class="member-photo photo-nicolas" role="img" aria-label="Nicolas Magne"></div>
         </article>
 
         <article class="member-card">
           <div class="member-text">
             <div>
               <div class="member-name">Hugo Merdrignac</div>
-              <div class="member-role">Consultant</div>
+              <div class="member-role">Talent Recruiter Tech</div>
             </div>
-            <p class="member-bio">Consultant chez GetPro, spécialisé dans les profils tech et data. Travaille principalement sur des missions ML &amp; IA, Software Eng et Product, en exclusivité avec des fondateurs et CTO. Privilégie la conversation directe à la CVthèque.</p>
+            <p class="member-bio">Talent Recruiter Tech. Travaille principalement sur les missions ML &amp; IA en exclusivité avec les fondateurs et CTO. Privilégie la conversation directe à la CVthèque.</p>
           </div>
           <div class="member-photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
         </article>
@@ -221,78 +318,34 @@
         <article class="member-card">
           <div class="member-text">
             <div>
-              <div class="member-name">Mansour</div>
-              <div class="member-role">Recruteur RPO</div>
+              <div class="member-name">Zaïa Bouchachia</div>
+              <div class="member-role">Recruiter Business</div>
             </div>
-            <p class="member-bio">Recruteur RPO chez GetPro. Intervient en renfort RH directement chez les clients pour piloter le recrutement opérationnel sur les volumes importants. Approche méthodique, ATS, KPIs, et ramp-up rapide des équipes.</p>
+            <p class="member-bio">Recruiter sur la Business Unit. Pilote les recrutements Sales et Customer Success pour les scale-ups en accélération commerciale.</p>
           </div>
-          <div class="member-photo photo-mansour" role="img" aria-label="Mansour"></div>
+          <div class="member-photo photo-zaia" role="img" aria-label="Zaïa Bouchachia"></div>
         </article>
 
         <article class="member-card">
           <div class="member-text">
             <div>
-              <div class="member-name">Camélia</div>
-              <div class="member-role">Consultante</div>
+              <div class="member-name">Laura Geneuil</div>
+              <div class="member-role">Talent Recruiter Business</div>
             </div>
-            <p class="member-bio">Consultante chez GetPro. Pilote des missions de recrutement sur les fonctions opérations, juridique et finance pour les scale-ups et PME en croissance. Travaille en lien direct avec les CFO et DAF pour qualifier les profils.</p>
+            <p class="member-bio">Talent Recruiter Business. Spécialiste des recrutements VP Sales, Head of et CRO pour les scale-ups SaaS, en lien direct avec les fondateurs.</p>
           </div>
-          <div class="member-photo photo-camelia" role="img" aria-label="Camélia"></div>
+          <div class="member-photo photo-laura" role="img" aria-label="Laura Geneuil"></div>
         </article>
 
         <article class="member-card">
           <div class="member-text">
             <div>
-              <div class="member-name">Jonathan Banigo</div>
-              <div class="member-role">Direction de projet</div>
+              <div class="member-name">Claire Hubert</div>
+              <div class="member-role">Talent Recruiter Business</div>
             </div>
-            <p class="member-bio">Direction de projet chez GetPro. Coordonne les missions complexes, notamment celles impliquant plusieurs équipes ou plusieurs vagues de recrutement. Garant de la qualité du livrable et du respect des engagements pris au kick-off.</p>
+            <p class="member-bio">Talent Recruiter Business. Pilote les missions Sales, Marketing et Customer Success en chasse directe. Suivi candidat soigné jusqu'à l'onboarding.</p>
           </div>
-          <div class="member-photo photo-ph-1" role="img" aria-label="Jonathan Banigo"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Honorine Crespel</div>
-              <div class="member-role">Consultante</div>
-            </div>
-            <p class="member-bio">Consultante GetPro spécialisée sur les profils Marketing et Brand. Travaille en exclusivité avec les fondateurs sur des positions stratégiques où la fit culturel est aussi important que les compétences.</p>
-          </div>
-          <div class="member-photo photo-ph-2" role="img" aria-label="Honorine Crespel"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Cedric Hervet</div>
-              <div class="member-role">Consultant</div>
-            </div>
-            <p class="member-bio">Consultant senior chez GetPro. Pilote des recrutements de C-level pour les scale-ups en hyper-croissance. Spécialiste des profils CRO, COO et VP Sales sur les marchés français et européens.</p>
-          </div>
-          <div class="member-photo photo-ph-3" role="img" aria-label="Cedric Hervet"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Guillaume</div>
-              <div class="member-role">Consultant</div>
-            </div>
-            <p class="member-bio">Consultant chez GetPro. Travaille principalement sur des missions Tech avec un focus sur les profils Backend, Infrastructure et Platform Engineering. Approche par la conversation, pas par la CVthèque.</p>
-          </div>
-          <div class="member-photo photo-ph-4" role="img" aria-label="Guillaume"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Thomas</div>
-              <div class="member-role">Consultant</div>
-            </div>
-            <p class="member-bio">Consultant chez GetPro, spécialisé dans le recrutement de profils Product (PM, Designer, Researcher) pour des scale-ups SaaS B2B. Privilégie une qualification candidat approfondie avant tout shortlist.</p>
-          </div>
-          <div class="member-photo photo-ph-5" role="img" aria-label="Thomas"></div>
+          <div class="member-photo photo-claire" role="img" aria-label="Claire Hubert"></div>
         </article>
       </div>
 
@@ -300,67 +353,45 @@
         <article class="member-card">
           <div class="member-text">
             <div>
-              <div class="member-name">Léa Marchetti</div>
-              <div class="member-role">Talent Acquisition Lead</div>
+              <div class="member-name">Terry Raimondo</div>
+              <div class="member-role">CTO</div>
             </div>
-            <p class="member-bio">Pilote l'équipe sourcing chez GetPro. Construit les viviers candidats sur les fonctions tech et produit, et garantit la qualité des shortlists transmises aux consultants. Ancienne sourceuse chez Doctolib et Algolia.</p>
+            <p class="member-bio">CTO chez GetPro. Construit et maintient l'ATS interne et les outils utilisés par les chasseurs au quotidien. Garantit l'intégration entre les data candidats, le CRM et les pipelines de reporting clients.</p>
           </div>
-          <div class="member-photo photo-ph-1" role="img" aria-label="Léa Marchetti"></div>
+          <div class="member-photo photo-terry" role="img" aria-label="Terry Raimondo"></div>
         </article>
 
         <article class="member-card">
           <div class="member-text">
             <div>
-              <div class="member-name">Sami Benali</div>
-              <div class="member-role">Sourceur senior</div>
+              <div class="member-name">Clotilde Chappé</div>
+              <div class="member-role">Scientifique</div>
             </div>
-            <p class="member-bio">Sourceur senior chez GetPro. Spécialiste de l'identification des profils tech sur les marchés français, allemand et UK. Travaille en binôme avec les consultants sur les missions de chasse stratégique.</p>
+            <p class="member-bio">Scientifique chez GetPro. Travaille sur les modèles d'analyse des viviers candidats et l'instrumentation des process de recrutement. Pilote les sujets data quality et statistiques marché.</p>
           </div>
-          <div class="member-photo photo-ph-2" role="img" aria-label="Sami Benali"></div>
+          <div class="member-photo photo-clotilde" role="img" aria-label="Clotilde Chappé"></div>
         </article>
 
         <article class="member-card">
           <div class="member-text">
             <div>
-              <div class="member-name">Pauline Verrier</div>
-              <div class="member-role">Office Manager</div>
+              <div class="member-name">Jonathan Banigo</div>
+              <div class="member-role">Process Manager, SI</div>
             </div>
-            <p class="member-bio">Office Manager chez GetPro. Gère le quotidien des bureaux parisiens, l'onboarding des nouvelles recrues internes, et la logistique des événements clients et candidats organisés au cabinet.</p>
+            <p class="member-bio">Process Manager et responsable du système d'information interne. Maintient l'outillage GetPro et garantit la qualité des process candidats sur l'ensemble des missions.</p>
           </div>
-          <div class="member-photo photo-ph-3" role="img" aria-label="Pauline Verrier"></div>
+          <div class="member-photo photo-jonathan" role="img" aria-label="Jonathan Banigo"></div>
         </article>
 
         <article class="member-card">
           <div class="member-text">
             <div>
-              <div class="member-name">Alex Dubreuil</div>
-              <div class="member-role">Data &amp; Ops</div>
+              <div class="member-name">Dylan Khoury</div>
+              <div class="member-role">Responsable administratif &amp; finance</div>
             </div>
-            <p class="member-bio">Responsable Data &amp; Ops chez GetPro. Maintient l'outillage interne, le CRM candidat, le ATS, et les pipelines de reporting clients. Garantit l'hygiène data sur les 50 000 profils suivis activement.</p>
+            <p class="member-bio">Responsable administratif et finance chez GetPro. Pilote la facturation clients, le suivi budgétaire et les obligations légales du cabinet. Travaille en lien direct avec le COO.</p>
           </div>
-          <div class="member-photo photo-ph-4" role="img" aria-label="Alex Dubreuil"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Margaux Lenoir</div>
-              <div class="member-role">Communication &amp; Marque</div>
-            </div>
-            <p class="member-bio">Pilote la communication externe et la marque GetPro. Édition des cas clients, relations presse, contenus pour la communauté de chasseurs. Anime les rendez-vous trimestriels avec les fondateurs partenaires.</p>
-          </div>
-          <div class="member-photo photo-ph-5" role="img" aria-label="Margaux Lenoir"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Karim Souissi</div>
-              <div class="member-role">Finance &amp; Admin</div>
-            </div>
-            <p class="member-bio">Responsable finance et administration chez GetPro. Pilote la gestion comptable, la facturation clients et le suivi budgétaire des équipes. Travaille en lien direct avec le COO sur les sujets de croissance.</p>
-          </div>
-          <div class="member-photo photo-ph-1" role="img" aria-label="Karim Souissi"></div>
+          <div class="member-photo photo-dylan" role="img" aria-label="Dylan Khoury"></div>
         </article>
       </div>
     </section>
