@@ -147,9 +147,9 @@
   .author-logo {
     grid-area: logo;
     justify-self: start;
-    /* Hauteur dédiée plus large pour que tous les logos aient à peu près
-       la même présence visuelle, même les wordmarks très étirés */
-    height: clamp(32px, 3.2vw, 44px);
+    /* Même contrainte que .row-logo dans clients.html : hauteur fixe modeste,
+       largeur auto, contain → tous les logos plafonnent à la même hauteur. */
+    height: clamp(20px, 2vw, 28px);
     width: auto;
     max-width: 100%;
     object-fit: contain;
