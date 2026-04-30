@@ -185,6 +185,23 @@
       position: relative;
     }
   }
+
+  /* Phone : le témoignage actif wrap autour du nom (1ʳᵉ ligne à droite,
+     puis suivantes sous le nom). Float sur le name-link, .tm-full bascule
+     en block (pas flex, pour que le texte s'écoule autour du float) */
+  @media (max-width: 600px) {
+    .row { display: block; }
+    .clients-list a.name-link {
+      float: left;
+      margin-right: clamp(8px, 2vw, 16px);
+    }
+    .row.active .tm-full {
+      display: block;
+    }
+    .row.active .tm-full > * + * {
+      margin-top: clamp(18px, 2vw, 30px);
+    }
+  }
 </style>
 </head>
 <body>
