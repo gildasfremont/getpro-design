@@ -83,8 +83,6 @@ button { font-family: inherit; cursor: pointer; }
   top: 0;
   z-index: 50;
   background: var(--bg);
-  /* Sépare visuellement la navbar collée du contenu qui défile dessous. */
-  box-shadow: 0 1px 0 var(--line);
 }
 /* Restore the spacing that .header's padding-bottom used to provide */
 .header + * { margin-top: var(--gap-section); }
