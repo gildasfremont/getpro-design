@@ -191,11 +191,16 @@
   /* Consultants row — intégré dans la première section du subtab,
      entre la grille .two-col et le CTA. Chaque .consultant : une photo
      carrée + une mini-colonne de texte (nom / rôle) qui fait 2/3 de la
-     largeur de la photo, alignée à gauche sous celle-ci. */
+     largeur de la photo, alignée à gauche sous celle-ci. Photos collées
+     horizontalement (column-gap 0). En responsive on réduit le nombre de
+     colonnes : les photos en surplus passent à la ligne suivante (jamais
+     masquées). row-gap garde de l'air entre la meta d'une ligne et la
+     photo de la ligne d'après. */
   .consultants-row {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: clamp(20px, 2vw, 30px);
+    column-gap: 0;
+    row-gap: clamp(24px, 2.5vw, 36px);
   }
   .consultant {
     display: flex;
@@ -227,7 +232,6 @@
 
   @media (max-width: 1000px) {
     .consultants-row { grid-template-columns: repeat(3, 1fr); }
-    .consultants-row .consultant:nth-child(n+4) { display: none; }
   }
   @media (max-width: 800px) {
     .solutions-title-row { flex-direction: column; align-items: flex-start; }
@@ -235,7 +239,6 @@
     .panel-title { max-width: none; }
     .subtabs-row { flex-direction: column; align-items: flex-start; }
     .consultants-row { grid-template-columns: repeat(2, 1fr); }
-    .consultants-row .consultant:nth-child(n+3) { display: none; }
     .tab-2 .super { font-size: 12px; }
   }
 </style>
