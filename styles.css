@@ -386,10 +386,14 @@ button { font-family: inherit; cursor: pointer; }
   white-space: nowrap;
   flex-shrink: 0;
 }
-/* Labels longs/courts pour les subtabs (utilisé par "RPO mensuel" → "RPO"
-   sur solutions-renfort). Par défaut on affiche le label full ; le swap
-   vers short se fait dans la media query mobile plus bas. */
+/* Labels longs/courts pour les subtabs (Recrutement ponctuel → Ponctuel,
+   En continu → Continu, RPO mensuel → RPO). Par défaut on affiche le label
+   full ; le swap vers short se fait dans la media query mobile plus bas. */
 .subtab-label-short { display: none; }
+/* "Profils couverts" : par défaut, il garde sa largeur naturelle à droite
+   des subtabs (space-between du parent). En mobile, il bascule au-dessus
+   et prend toute la largeur (cf. media query). */
+.subtabs-row > .btn-outline { flex-shrink: 0; }
 .subtab[aria-current="true"]::after {
   content: "";
   position: absolute;
@@ -521,19 +525,25 @@ button { font-family: inherit; cursor: pointer; }
      responsive, on garde la respiration entre paragraphe et logo). */
   .panel-title { max-width: none; }
   .consultants-row { grid-template-columns: repeat(2, 1fr); }
-  /* Subtabs : on bascule sur les labels courts quand un short existe
-     (sinon le label original est conservé tel quel). Le scroll
-     horizontal de la rangée gère le reste si ça ne tient pas. */
-  .subtab-label-full { display: none; }
-  .subtab-label-short { display: inline; }
-  /* "Profils couverts" prend toute la largeur quand il wrap dessous des subtabs. */
-  .subtabs-row > .btn-outline {
-    width: 100%;
-    text-align: center;
-  }
 }
 @media (max-width: 600px) {
   /* En dessous de 600px, le 50% devient trop étroit (~280px) :
      on libère et le contenu prend toute la largeur. */
   .two-col { grid-template-columns: 1fr; }
+  /* Subtabs en mobile : on bascule sur les labels courts quand un short
+     existe (Ponctuel / Continu / RPO ; Freelance, DRH de transition,
+     Outils & ATS gardent leur label original). */
+  .subtab-label-full { display: none; }
+  .subtab-label-short { display: inline; }
+  /* "Profils couverts" passe au-dessus des subtabs et prend toute la
+     largeur, label centré. order: -1 le sort du flow naturel pour le
+     placer en première position dans le flex-wrap. Au-dessus de 600px,
+     le bouton reste à droite des subtabs via le space-between du
+     parent — on ne force le passage à la ligne que quand on a vraiment
+     besoin de place. */
+  .subtabs-row > .btn-outline {
+    order: -1;
+    width: 100%;
+    text-align: center;
+  }
 }
