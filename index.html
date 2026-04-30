@@ -311,8 +311,28 @@
   /* ---------- Breakpoints (structural changes only) ---------- */
   @media (max-width: 800px) {
     .process-row { grid-template-columns: 1fr; }
-    .logos-row { flex-direction: column; gap: 30px; }
-    .nav-list { flex: none; }
+    /* Single-column stack : nav-list → "Tous nos clients" (sticky strip) → logos.
+       Le CTA reste sticky en haut du panneau, les logos défilent dessous. */
+    .logos-row {
+      grid-template-columns: 1fr;
+      gap: clamp(20px, 3vw, 30px);
+      padding-inline: 0;
+    }
+    .nav-list { order: 1; }
+    .cta-col {
+      order: 2;
+      position: sticky;
+      top: clamp(70px, 12vw, 90px);
+      z-index: 5;
+      background: var(--bg);
+      padding-block: clamp(10px, 2vw, 16px);
+    }
+    .cta-col .see-all {
+      position: static;
+      top: auto;
+      display: inline-block;
+    }
+    .logos-grid { order: 3; }
   }
 </style>
 </head>
