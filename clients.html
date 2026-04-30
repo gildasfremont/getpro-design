@@ -4,6 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>GetPro — Clients</title>
+<meta name="description" content="Plus de 200 entreprises accompagnées depuis 2015 : Mistral AI, Lucca, Electra, Filigran, Japhy, et beaucoup d'autres scale-ups en hypercroissance." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta property="og:title" content="GetPro — Clients" />
+<meta property="og:description" content="Plus de 200 entreprises accompagnées depuis 2015 : Mistral AI, Lucca, Electra, Filigran, Japhy, et beaucoup d'autres scale-ups en hypercroissance." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="styles.css" />
 <style>
   .clients {
@@ -438,7 +445,10 @@
             window.scrollTo({ top: Math.max(0, targetY), behavior: 'auto' });
           }
         }
-      }).catch(err => console.error('Failed to load clients:', err));
+      }).catch(err => {
+        console.error('Failed to load clients:', err);
+        namesHost.innerHTML = '<li class="empty-state">Impossible de charger la liste pour le moment. Réessayez plus tard.</li>';
+      });
     })();
   </script>
 </body>

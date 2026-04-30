@@ -21,7 +21,7 @@
           <span class="menu-label-short">Solutions</span>
         </a>
         <a href="clients.html" class="menu-item"${aria('clients.html')}>Clients</a>
-        <a href="#" class="btn-menu">Contact</a>
+        <a href="mailto:bonjour@getpro.com" class="btn-menu">Contact</a>
       </div>
     </nav>
   `;
@@ -34,13 +34,8 @@
     </div>
     <div class="foot-col">
       <h3>Contact</h3>
-      <a href="#">Nous contacter</a>
+      <a href="mailto:bonjour@getpro.com">Nous contacter</a>
       <a href="mentions.html"${aria('mentions.html')}>Mentions légales</a>
-    </div>
-    <div class="foot-col">
-      <h3>Ressources</h3>
-      <a href="#">Blog</a>
-      <a href="#">Cas</a>
     </div>
     <div class="foot-col">
       <h3>GetPro</h3>

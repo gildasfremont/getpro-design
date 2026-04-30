@@ -4,267 +4,25 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>GetPro — Solutions · Renfort RH</title>
+<meta name="description" content="Renfort RH : DRH de transition, RPO mensuel, déploiement d'outils et ATS. Conseil et structuration de la fonction RH pour scale-ups." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta property="og:title" content="GetPro — Solutions · Renfort RH" />
+<meta property="og:description" content="Renfort RH : DRH de transition, RPO mensuel, déploiement d'outils et ATS. Conseil et structuration de la fonction RH pour scale-ups." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="styles.css" />
 <style>
-  .solutions {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding-bottom: var(--gap-section);
-  }
-
-  .solutions-head {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(14px, 1.4vw, 20px);
-  }
-
-  /* H1 + onglets sur la même ligne. Le padding-bottom du H1 étend sa hauteur
-     visuelle pour créer du breathing room sous le titre tout en gardant les
-     onglets (alignés flex-end) collés au bord supérieur du panneau blanc. */
-  .solutions-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: clamp(20px, 3vw, 50px);
-    flex-wrap: wrap;
-  }
-  .solutions-title-row .page-title {
-    padding-bottom: clamp(32px, 5.4vw, 78px);
-  }
-
-  /* Ratings — moved to shared styles.css */
-
-  /* Two-line top tabs : main label on top + subtitle below.
-     Même rythme que les onglets simples (.tabs / .tab) sur Equipe :
-     padding 14px 0, gap clamp entre les onglets, pas de padding horizontal.
-     L'underline de l'onglet actif (left:0, right:0) suit la largeur naturelle
-     du bouton (= largeur du sub plus large des deux lignes). */
-  .tabs-2 {
-    display: flex;
-    gap: clamp(20px, 2.7vw, 40px);
-  }
-  .tab-2 {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 14px 0;
-    background: none;
-    border: none;
-    color: inherit;
-    font-family: inherit;
-    cursor: pointer;
-    text-align: left;
-    position: relative;
-  }
-  .tab-2 .main {
-    font-size: var(--fs-tab);
-    line-height: 1.2;
-  }
-  .tab-2 .sub {
-    font-size: clamp(13px, 1.2vw, 18px);
-    line-height: 1.3;
-  }
-  .tab-2[aria-current="true"]::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: -1px;
-    height: 2px;
-    background: var(--ink);
-  }
-
-  .panel {
-    background: var(--white);
-    padding: var(--pad-card-y) var(--pad-card-x);
-    display: flex;
-    flex-direction: column;
-    gap: clamp(36px, 4.5vw, 70px);
-  }
-
-  .panel-title {
-    font-size: var(--fs-card-title);
-    line-height: var(--lh-card-title);
-  }
-
-  .panel-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: clamp(20px, 3vw, 50px);
-    flex-wrap: wrap;
-  }
-
-  .subtabs-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: clamp(20px, 2vw, 30px);
-    flex-wrap: wrap;
-  }
-  .subtabs {
-    display: flex;
-    gap: clamp(20px, 3vw, 50px);
-    flex-wrap: wrap;
-    border-bottom: 1px solid var(--line);
-  }
-  .subtab {
-    padding: 14px 0;
-    font-size: var(--fs-body);
-    line-height: 1.25;
-    cursor: pointer;
-    background: none;
-    border: none;
-    color: inherit;
-    font-family: inherit;
-    position: relative;
-    white-space: nowrap;
-  }
-  .subtab[aria-current="true"] {}
-  .subtab[aria-current="true"]::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: -1px;
-    height: 2px;
-    background: var(--ink);
-  }
-
-  /* Each subtab body keeps the same vertical rhythm as the .panel itself */
-  .subtab-body {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(36px, 4.5vw, 70px);
-  }
-  .subtab-body[hidden] { display: none; }
-
-  .panel-section {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(24px, 3vw, 40px);
-  }
-  .panel-section h3 {
-    font-size: clamp(20px, 2.2vw, 32px);
-    line-height: 1.25;
-  }
-
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(24px, 3vw, 50px);
-    font-size: var(--fs-body);
-    line-height: var(--lh-body);
-  }
-  .two-col p { margin-bottom: clamp(12px, 1.4vw, 20px); }
-  .two-col p:last-child { margin-bottom: 0; }
-
-  /* Cas clients : même grille 50/50 que .two-col pour que le texte de gauche
-     ait la même largeur courte que le bloc Méthode au-dessus, alignements
-     parfaits entre les deux blocs. Logo aligné à gauche de la 2e colonne
-     pour matcher le bord gauche de la 2e colonne du bloc Méthode. */
-  .cases-rows { display: flex; flex-direction: column; gap: clamp(24px, 3vw, 40px); }
-  .case-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(24px, 3vw, 50px);
-    align-items: center;
-  }
-  .case-row p {
-    font-size: var(--fs-body);
-    line-height: var(--lh-body);
-  }
-  .case-logo-mark {
-    justify-self: start;
-    width: clamp(140px, 18vw, 240px);
-    height: clamp(28px, 3.5vw, 56px);
-    background-color: var(--ink);
-    -webkit-mask: left center / contain no-repeat;
-            mask: left center / contain no-repeat;
-  }
-  .case-logo-mark.electra {
-    -webkit-mask-image: url('assets/electra.svg');
-            mask-image: url('assets/electra.svg');
-  }
-  .case-logo-mark.japhy {
-    -webkit-mask-image: url('assets/japhy.svg');
-            mask-image: url('assets/japhy.svg');
-  }
-  .case-logo-mark.filigran {
-    -webkit-mask-image: url('assets/filigran.svg');
-            mask-image: url('assets/filigran.svg');
-  }
-  .case-logo-mark.mistral {
-    -webkit-mask-image: url('assets/mistral-ai_wordmark.svg');
-            mask-image: url('assets/mistral-ai_wordmark.svg');
-  }
-  .case-logo-mark.lucca {
-    -webkit-mask-image: url('assets/lucca.svg');
-            mask-image: url('assets/lucca.svg');
-  }
-  .case-logo-mark.flaire {
-    -webkit-mask-image: url('assets/flaire.svg');
-            mask-image: url('assets/flaire.svg');
-  }
-
-  /* Consultants row — intégré dans la première section du subtab,
-     entre la grille .two-col et le CTA. Chaque .consultant : une photo
-     carrée + une mini-colonne de texte (nom / rôle) qui fait 2/3 de la
-     largeur de la photo, alignée à gauche sous celle-ci. Photos collées
-     horizontalement (column-gap 0). En responsive on réduit le nombre de
-     colonnes : les photos en surplus passent à la ligne suivante (jamais
-     masquées). row-gap garde de l'air entre la meta d'une ligne et la
-     photo de la ligne d'après. */
-  .consultants-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 0;
-    row-gap: clamp(24px, 2.5vw, 36px);
-  }
-  .consultant {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(10px, 1vw, 14px);
-    min-width: 0;
-  }
-  .consultant .photo {
-    aspect-ratio: 1 / 2;
-    /* Même stratégie que les tiles de la home : background-size: auto 140%
-       (l'image fait 140% de la hauteur de la cellule pour avoir du jeu vertical
-       au crop) + background-position 50% Y%, où Y est calé par image pour que
-       les yeux atterrissent vers ~22% de la hauteur de la cellule. */
-    background-size: auto 140%;
-    background-repeat: no-repeat;
-    background-color: #d8e0d3;
-    background-position: 50% 22%;
-  }
-  .consultant-meta {
-    width: 66.667%;
-    display: flex;
-    flex-direction: column;
-    font-size: var(--fs-body);
-    line-height: 1.3;
-  }
-  .consultant-role { opacity: 0.7; }
-
-  /* Portraits Gemini mappés sur les vrais membres de l'organigramme
-     (mêmes que sur la page Équipe). Les photos sont calées pour que les
-     yeux atterrissent ~22% de la hauteur de la cellule portrait 1:2. */
-  .photo-romain  { background-image: url('assets/Gemini_Generated_Image_e05t1ne05t1ne05t.jpg'); background-position: 50% 22%; }
-  .photo-emile   { background-image: url('assets/Gemini_Generated_Image_kpi1lnkpi1lnkpi1.jpg'); background-position: 50% 22%; }
-  .photo-tony    { background-image: url('assets/Gemini_Generated_Image_hw68mnhw68mnhw68.jpg'); background-position: 50% 22%; }
-  .photo-claire  { background-image: url('assets/Gemini_Generated_Image_r975nar975nar975.jpg'); background-position: 50% 22%; }
-  .photo-anne    { background-image: url('assets/Gemini_Generated_Image_khiwg4khiwg4khiw.jpg'); background-position: 50% 22%; }
-  .photo-thomas  { background-image: url('assets/Gemini_Generated_Image_bw2vr4bw2vr4bw2v.jpg'); background-position: 50% 22%; }
-  .photo-lauren  { background-image: url('assets/Gemini_Generated_Image_vjr1pavjr1pavjr1.jpg'); background-position: 50% 14%; }
-  .photo-terry   { background-image: url('assets/Gemini_Generated_Image_elgv4qelgv4qelgv.jpg'); background-position: 50% 22%; }
-
-  @media (max-width: 1000px) {
-    .consultants-row { grid-template-columns: repeat(3, 1fr); }
-  }
-  @media (max-width: 800px) {
-    .two-col { grid-template-columns: 1fr; }
-    .panel-title { max-width: none; }
-    .consultants-row { grid-template-columns: repeat(2, 1fr); }
-    .tab-2 .super { font-size: 12px; }
-  }
+  /* Portraits Gemini mappés sur les consultants présents sur cette page.
+     Yeux calés à ~22% de la hauteur (sauf Lauren à 14%). */
+  .photo-romain { background-image: url('assets/Gemini_Generated_Image_e05t1ne05t1ne05t.jpg'); }
+  .photo-emile  { background-image: url('assets/Gemini_Generated_Image_kpi1lnkpi1lnkpi1.jpg'); }
+  .photo-tony   { background-image: url('assets/Gemini_Generated_Image_hw68mnhw68mnhw68.jpg'); }
+  .photo-claire { background-image: url('assets/Gemini_Generated_Image_r975nar975nar975.jpg'); }
+  .photo-anne   { background-image: url('assets/Gemini_Generated_Image_khiwg4khiwg4khiw.jpg'); }
+  .photo-thomas { background-image: url('assets/Gemini_Generated_Image_bw2vr4bw2vr4bw2v.jpg'); }
+  .photo-lauren { background-image: url('assets/Gemini_Generated_Image_vjr1pavjr1pavjr1.jpg'); background-position: 50% 14%; }
+  .photo-terry  { background-image: url('assets/Gemini_Generated_Image_elgv4qelgv4qelgv.jpg'); }
 </style>
 </head>
 <body>
@@ -276,16 +34,16 @@
       <div class="solutions-head">
         <div class="solutions-title-row">
           <h1 class="page-title">Solutions</h1>
-          <div class="tabs-2" role="tablist">
+          <nav class="tabs-2" aria-label="Solutions">
             <a class="tab-2" href="solutions.html">
               <span class="main">Chasse</span>
               <span class="sub">Recrutement direct</span>
             </a>
-            <a class="tab-2" href="solutions-renfort.html" aria-current="true">
+            <a class="tab-2" href="solutions-renfort.html" aria-current="page">
               <span class="main">Renfort RH</span>
               <span class="sub">Conseil et outils de recrutement</span>
             </a>
-          </div>
+          </nav>
         </div>
       </div>
 
@@ -344,7 +102,7 @@
                 </div>
               </div>
             </div>
-            <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
+            <a href="tel:+33939289329" class="btn-outline">Échanger avec un consultant : 09 39 28 93 29</a>
           </section>
 
           <section class="panel-section">
@@ -408,7 +166,7 @@
                 </div>
               </div>
             </div>
-            <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
+            <a href="tel:+33939289329" class="btn-outline">Échanger avec un consultant : 09 39 28 93 29</a>
           </section>
 
           <section class="panel-section">
@@ -475,7 +233,7 @@
                 </div>
               </div>
             </div>
-            <a href="tel:+33939289329" class="btn-outline">Echanger avec un consultant : 09 39 28 93 29</a>
+            <a href="tel:+33939289329" class="btn-outline">Échanger avec un consultant : 09 39 28 93 29</a>
           </section>
 
           <section class="panel-section">
