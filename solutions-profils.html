@@ -28,18 +28,16 @@
 
   /* Ratings — shared in styles.css */
 
-  .breadcrumb {
-    display: inline-flex;
-    align-items: baseline;
-    gap: clamp(12px, 1.4vw, 20px);
+  .back-link {
+    display: inline-block;
     font-size: var(--fs-tab);
     line-height: 1.25;
     margin-block: clamp(20px, 2.5vw, 40px);
+    color: inherit;
+    opacity: 0.6;
+    transition: opacity 0.15s ease;
   }
-  .breadcrumb a { color: inherit; opacity: 0.55; transition: opacity 0.15s ease; }
-  .breadcrumb a:hover { opacity: 1; }
-  .breadcrumb .sep { opacity: 0.35; }
-  .breadcrumb .current { opacity: 1; }
+  .back-link:hover { opacity: 1; }
 
   .panel {
     background: var(--white);
@@ -199,11 +197,7 @@
             </div>
           </div>
         </div>
-        <nav class="breadcrumb">
-          <a href="solutions.html">Chasse</a>
-          <span class="sep">/</span>
-          <span class="current">Profils</span>
-        </nav>
+        <a class="back-link" href="solutions.html">← Solutions</a>
       </div>
 
       <div class="panel">
