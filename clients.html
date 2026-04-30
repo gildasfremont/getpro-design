@@ -223,9 +223,11 @@
     font-style: italic;
   }
 
-  /* Page header : empile Clients + ratings quand peu de place */
+  /* Page header : "Clients" + Trustfolio en face, sur la même ligne à
+     toutes les largeurs. Le rating reste petit, ça tient même en
+     mobile à côté du h1. */
+  .clients-title-row { gap: clamp(12px, 2vw, 30px); }
   @media (max-width: 800px) {
-    .clients-title-row { flex-direction: column; align-items: flex-start; }
     .ratings-row { flex-wrap: wrap; }
   }
 
@@ -295,10 +297,6 @@
             <div class="rating">
               <img src="assets/trustfolio.svg" alt="Trustfolio" class="rating-logo" />
               <span class="rating-stars">4,8 ★★★★★</span>
-            </div>
-            <div class="rating">
-              <img src="assets/google.svg" alt="Google" class="rating-logo" />
-              <span class="rating-stars">4,3 ★★★★★</span>
             </div>
           </div>
         </div>

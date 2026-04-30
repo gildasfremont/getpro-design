@@ -42,6 +42,13 @@
       <a href="solutions.html">Solutions de recrutement</a>
       <a href="clients.html">Clients</a>
     </div>
+    <div class="foot-col foot-rating">
+      <h3>Avis</h3>
+      <div class="rating">
+        <img src="assets/google.svg" alt="Google" class="rating-logo" />
+        <span class="rating-stars">4,3 ★★★★★</span>
+      </div>
+    </div>
   `;
 
   const inject = () => {
