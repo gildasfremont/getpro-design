@@ -288,15 +288,13 @@
   <script src="partials.js" defer></script>
   <script>
     (function() {
-      // Subtabs (one set per panel) — switches the matching .subtab-body
-      document.querySelectorAll('[data-subtabs-for]').forEach(subHost => {
-        const panel = subHost.closest('.panel');
-        if (!panel) return;
-        subHost.addEventListener('click', (e) => {
-          const btn = e.target.closest('button.subtab[data-subtab]');
+      // Active un subtab donné (par data-subtab) dans son panel
+      function activate(target) {
+        document.querySelectorAll('[data-subtabs-for]').forEach(subHost => {
+          const panel = subHost.closest('.panel');
+          if (!panel) return;
+          const btn = subHost.querySelector(`button.subtab[data-subtab="${CSS.escape(target)}"]`);
           if (!btn) return;
-          e.preventDefault();
-          const target = btn.dataset.subtab;
           subHost.querySelectorAll('button.subtab').forEach(b => {
             if (b === btn) b.setAttribute('aria-current', 'true');
             else b.removeAttribute('aria-current');
@@ -306,7 +304,24 @@
             else s.setAttribute('hidden', '');
           });
         });
+      }
+
+      // Click handler : bascule l'onglet et met à jour le hash de l'URL
+      // (pour que le deep-link soit recopiable depuis la barre d'adresse).
+      document.querySelectorAll('[data-subtabs-for]').forEach(subHost => {
+        subHost.addEventListener('click', (e) => {
+          const btn = e.target.closest('button.subtab[data-subtab]');
+          if (!btn) return;
+          e.preventDefault();
+          activate(btn.dataset.subtab);
+          history.replaceState(null, '', '#' + btn.dataset.subtab);
+        });
       });
+
+      // Deep-link : si l'URL contient un hash matchant un subtab, on
+      // l'active au load (footer → "Recrutement ponctuel" etc.).
+      const hash = (location.hash || '').replace('#', '');
+      if (hash) activate(hash);
     })();
   </script>
 </body>

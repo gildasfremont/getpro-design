@@ -5,6 +5,11 @@
 
   const isCurrent = (href) => {
     if (path === href) return true;
+    // path#hash matching for deep-links (footer links vers offres précises)
+    if (href.includes('#')) {
+      const [p, h] = href.split('#');
+      if (path === p && location.hash === '#' + h) return true;
+    }
     // Solutions sub-pages share the "Solutions de recrutement" navbar item
     if (href === 'solutions.html' && (path === 'solutions-profils.html' || path === 'solutions-renfort.html')) return true;
     return false;
@@ -35,9 +40,14 @@
       <a href="mentions.html"${aria('mentions.html')}>Mentions légales</a>
     </div>
     <div class="foot-col">
-      <a href="solutions.html">Solutions de recrutement</a>
+      <a href="solutions.html#ponctuel"${aria('solutions.html#ponctuel')}>Recrutement ponctuel</a>
+      <a href="solutions.html#continu"${aria('solutions.html#continu')}>Recrutement en continu</a>
+      <a href="solutions.html#freelance"${aria('solutions.html#freelance')}>Freelance</a>
+      <a href="solutions-renfort.html#drh"${aria('solutions-renfort.html#drh')}>DRH de transition</a>
+      <a href="solutions-renfort.html#rpo"${aria('solutions-renfort.html#rpo')}>RPO mensuel</a>
+      <a href="solutions-renfort.html#outils"${aria('solutions-renfort.html#outils')}>Outils &amp; ATS</a>
       <a href="solutions-profils.html"${aria('solutions-profils.html')}>Métiers recrutés</a>
-      <a href="clients.html">Clients</a>
+      <a href="clients.html"${aria('clients.html')}>Clients</a>
     </div>
     <div class="foot-col foot-rating">
       <div class="rating">
