@@ -402,24 +402,17 @@ button { font-family: inherit; cursor: pointer; }
   letter-spacing: -0.02em;
 }
 
-/* Texte courant aligné sur la grille 4-col des consultants : col 1 fait
-   50% (cols 1–2), col 2 fait 25% (col 3), col 4 reste vide à droite —
-   le bord droit du texte coïncide avec le bord droit de la 3e photo
-   consultant. Internal padding-right sur col 1 fait office de gap. */
+/* Deux colonnes de même taille, mais l'ensemble cappé à 75% du panel —
+   le bord droit du bloc texte s'aligne sur le bord droit de la 3e photo
+   consultant (les 4 photos couvrent 100%, 3 photos = 75%).
+   En dessous de 1000px les consultants passent à 3 cols, le cap saute. */
 .two-col {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 0;
-  row-gap: clamp(24px, 3vw, 50px);
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 3vw, 50px);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-}
-.two-col > *:nth-child(1) {
-  grid-column: 1 / 3;
-  padding-right: clamp(24px, 3vw, 50px);
-}
-.two-col > *:nth-child(2) {
-  grid-column: 3 / 4;
+  max-width: 75%;
 }
 .two-col > * {
   /* Cap à la mesure typo en cas de chute en 1 col (≤ 800px) : la colonne
@@ -495,6 +488,8 @@ button { font-family: inherit; cursor: pointer; }
 
 @media (max-width: 1000px) {
   .consultants-row { grid-template-columns: repeat(3, 1fr); }
+  /* Plus que 3 photos par ligne : le cap 75% n'a plus de sens, on libère. */
+  .two-col { max-width: none; }
 }
 @media (max-width: 800px) {
   .two-col { grid-template-columns: 1fr; }
