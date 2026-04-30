@@ -11,6 +11,11 @@
     flex-direction: column;
     padding-bottom: var(--gap-section);
   }
+  .clients {
+    /* Same horizontal padding as .clients-panel — use it to align the
+       search input text with the name column of the list inside the panel. */
+    --clients-pad-x: clamp(20px, 3vw, 50px);
+  }
   .clients-head {
     margin-bottom: 0;
     display: flex;
@@ -24,17 +29,18 @@
     gap: clamp(20px, 3vw, 50px);
   }
 
-  /* Search bar inside the panel (above the list).
-     The input text aligns with the column 1 of the list (name column).
-     The icon sits absolutely to the LEFT of the input, in the panel's
-     left padding area. */
+  /* Search bar above the panel.
+     Grid 2 cols : col 1 = exactement la padding-x du panel, col 2 = input.
+     L'icone se cale au bout de col 1, juste avant l'input ; l'input
+     démarre au bord interne du panel → aligné avec la colonne "nom"
+     de la liste en dessous. */
   .clients-search {
-    position: relative;
+    display: grid;
+    grid-template-columns: var(--clients-pad-x) 1fr;
+    align-items: center;
     padding: 14px 0;
-    margin-bottom: clamp(8px, 1vw, 16px);
   }
   .clients-search input {
-    width: 100%;
     background: none;
     border: none;
     outline: none;
@@ -43,6 +49,7 @@
     font-size: var(--fs-body);
     line-height: 1.25;
     padding: 0;
+    min-width: 0;
   }
   .clients-search input::placeholder {
     color: var(--ink);
@@ -56,13 +63,10 @@
   }
 
   /* Leading icon : loupe by default, replaced by × once user types.
-     Positionnée en absolu à gauche du champ pour que le texte du champ
-     s'aligne avec la colonne "nom" de la liste en dessous. */
+     Position en col 1 du grid, alignée à droite avec un peu de gap
+     pour qu'elle finisse juste avant le bord interne du panel. */
   .search-icon {
-    position: absolute;
-    top: 50%;
-    right: 100%;
-    transform: translateY(-50%);
+    justify-self: end;
     margin-right: clamp(8px, 1vw, 14px);
     background: none;
     border: none;
@@ -94,7 +98,7 @@
   /* Panel : just a card holding the list */
   .clients-panel {
     background: var(--white);
-    padding: clamp(28px, 3.4vw, 50px) clamp(20px, 3vw, 50px);
+    padding: clamp(28px, 3.4vw, 50px) var(--clients-pad-x);
   }
 
   /* The content grid : parent grid defines the 3 column tracks, each <li.row>
@@ -271,9 +275,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="clients-panel">
         <div class="clients-search">
           <button type="button" class="search-icon" id="search-icon" aria-label="Effacer la recherche">
             <svg class="icon-loupe" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
@@ -287,6 +288,9 @@
           </button>
           <input type="search" id="clients-search" placeholder="Rechercher dans la liste…" autocomplete="off" />
         </div>
+      </div>
+
+      <div class="clients-panel">
         <ul class="clients-list" id="clients-names" role="list"></ul>
       </div>
     </section>
