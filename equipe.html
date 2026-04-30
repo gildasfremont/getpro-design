@@ -64,6 +64,9 @@
     grid-template-columns: repeat(2, 1fr);
     gap: clamp(20px, 2vw, 30px);
   }
+  /* L'attribut HTML [hidden] => display: none mais .grid-team le remet
+     à grid via la spécificité de classe → on force la cacheabilité ici. */
+  .grid-team[hidden] { display: none; }
 
   .member-card {
     background: var(--white);
@@ -103,20 +106,22 @@
     background-color: #d8e0d3;
   }
 
-  /* Real consultants */
-  .photo-romain  { background-image: url('assets/consultant-romain.jpg'); }
-  .photo-emile   { background-image: url('assets/consultant-emile.jpg'); }
-  .photo-tony    { background-image: url('assets/consultant-tony.jpg'); }
-  .photo-claire  { background-image: url('assets/consultant-claire.jpg'); }
-  .photo-hugo    { background-image: url('assets/consultant-hugo.jpg'); }
-  .photo-mansour { background-image: url('assets/consultant-mansour.jpg'); }
-  .photo-camelia { background-image: url('assets/consultant-camelia.jpg'); }
-  /* Placeholders */
-  .photo-ph-1 { background-image: url('assets/Gemini_Generated_Image_nplq8pnplq8pnplq.jpg'); background-position: 50% 52%; }
-  .photo-ph-2 { background-image: url('assets/Gemini_Generated_Image_khiwg4khiwg4khiw.jpg'); background-position: 50% 52%; }
-  .photo-ph-3 { background-image: url('assets/Gemini_Generated_Image_ltlyt9ltlyt9ltly.jpg'); background-position: 50% 52%; }
-  .photo-ph-4 { background-image: url('assets/Gemini_Generated_Image_xcajtfxcajtfxcaj.jpg'); background-position: 50% 37%; }
-  .photo-ph-5 { background-image: url('assets/Gemini_Generated_Image_ge52d7ge52d7ge52.jpg'); background-position: 50% 37%; }
+  /* Portraits dédiés aux consultants nommés (mêmes que sur solutions.html
+     et solutions-renfort.html). background-position calé par image pour
+     que les yeux atterrissent à ~22% de la hauteur de la cellule. */
+  .photo-romain  { background-image: url('assets/Gemini_Generated_Image_e05t1ne05t1ne05t.jpg'); }
+  .photo-emile   { background-image: url('assets/Gemini_Generated_Image_hw68mnhw68mnhw68.jpg'); }
+  .photo-tony    { background-image: url('assets/Gemini_Generated_Image_bw2vr4bw2vr4bw2v.jpg'); }
+  .photo-claire  { background-image: url('assets/Gemini_Generated_Image_r975nar975nar975.jpg'); }
+  .photo-hugo    { background-image: url('assets/Gemini_Generated_Image_mpneskmpneskmpne.jpg'); background-position: 50% 18%; }
+  .photo-mansour { background-image: url('assets/Gemini_Generated_Image_f99ulif99ulif99u.jpg'); }
+  .photo-camelia { background-image: url('assets/Gemini_Generated_Image_vjr1pavjr1pavjr1.jpg'); background-position: 50% 18%; }
+  /* Placeholders : photos de la home (varies entre membres) */
+  .photo-ph-1 { background-image: url('assets/Gemini_Generated_Image_nplq8pnplq8pnplq.jpg'); background-position: 50% 35%; }
+  .photo-ph-2 { background-image: url('assets/Gemini_Generated_Image_khiwg4khiwg4khiw.jpg'); background-position: 50% 35%; }
+  .photo-ph-3 { background-image: url('assets/Gemini_Generated_Image_ltlyt9ltlyt9ltly.jpg'); background-position: 50% 35%; }
+  .photo-ph-4 { background-image: url('assets/Gemini_Generated_Image_xcajtfxcajtfxcaj.jpg'); background-position: 50% 30%; }
+  .photo-ph-5 { background-image: url('assets/Gemini_Generated_Image_ge52d7ge52d7ge52.jpg'); background-position: 50% 30%; }
 
   @media (max-width: 800px) {
     .equipe-title-row { flex-direction: column; align-items: flex-start; }
