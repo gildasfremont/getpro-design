@@ -41,11 +41,10 @@
 
   .grid-images .tile {
     aspect-ratio: 272 / 309;
-    /* 140% height = 37% extra vertical overflow → enough room to land eyes at 22% of every tile */
-    background-size: auto 140%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-color: #d8e0d3;
-    background-position: 50% 50%;
+    background-position: 50% 30%;
   }
   /* Mid screen : 4 cols × 2 rows = 8 tiles visible (hide tiles 9 & 10) */
   @media (max-width: 1100px) {
@@ -58,17 +57,16 @@
     .grid-images .tile:nth-child(9) { display: block; }
     .grid-images .tile:nth-child(10) { display: none; }
   }
-  /* Eye-aligned focal points: each value moves the image so the subject's eyes land at ~22% from the top of the tile */
-  .tile-1  { background-image: url('assets/Gemini_Generated_Image_rkgiq6rkgiq6rkgi.jpg'); background-position: 50%  4%; }
-  .tile-2  { background-image: url('assets/Gemini_Generated_Image_kpi1lnkpi1lnkpi1.jpg'); background-position: 50% 22%; }
-  .tile-3  { background-image: url('assets/Gemini_Generated_Image_ltlyt9ltlyt9ltly.jpg'); background-position: 50% 52%; }
-  .tile-4  { background-image: url('assets/Gemini_Generated_Image_khiwg4khiwg4khiw.jpg'); background-position: 50% 52%; }
-  .tile-5  { background-image: url('assets/Gemini_Generated_Image_elgv4qelgv4qelgv.jpg'); background-position: 50% 59%; }
-  .tile-6  { background-image: url('assets/Gemini_Generated_Image_ge52d7ge52d7ge52.jpg'); background-position: 50% 37%; }
-  .tile-7  { background-image: url('assets/Gemini_Generated_Image_nplq8pnplq8pnplq.jpg'); background-position: 50% 52%; }
-  .tile-8  { background-image: url('assets/Gemini_Generated_Image_6ak9i86ak9i86ak9.jpg'); background-position: 50% 29%; }
-  .tile-9  { background-image: url('assets/Gemini_Generated_Image_cwq10dcwq10dcwq1.jpg'); background-position: 50% 41%; }
-  .tile-10 { background-image: url('assets/Gemini_Generated_Image_xcajtfxcajtfxcaj.jpg'); background-position: 50% 37%; }
+  .tile-1  { background-image: url('assets/team/jonathan-banigo.jpg'); }
+  .tile-2  { background-image: url('assets/team/emile-pennes.jpg'); }
+  .tile-3  { background-image: url('assets/team/theo-grandperrin.jpg'); }
+  .tile-4  { background-image: url('assets/team/anne-delarue.jpg'); }
+  .tile-5  { background-image: url('assets/team/hugo-merdrignac.jpg'); }
+  .tile-6  { background-image: url('assets/team/juliette-fabre.jpg'); }
+  .tile-7  { background-image: url('assets/team/laura-geneuil.jpg'); }
+  .tile-8  { background-image: url('assets/team/guillaume-renard.jpg'); }
+  .tile-9  { background-image: url('assets/team/louis-fitamant.jpg'); }
+  .tile-10 { background-image: url('assets/team/die-astou-dioume.jpg'); }
 
   /* ---------- Cases ---------- */
   .cases {
@@ -200,7 +198,7 @@
 
   .quote-image {
     flex: 1;
-    background: url('assets/Gemini_Generated_Image_kpi1lnkpi1lnkpi1.jpg') center/cover no-repeat;
+    background: url('assets/team/emile-pennes.jpg') center/cover no-repeat;
     min-height: clamp(220px, 30vw, 494px);
   }
 
