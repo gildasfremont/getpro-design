@@ -464,6 +464,11 @@
             const targetY = li.getBoundingClientRect().top + window.scrollY - 80;
             window.scrollTo({ top: Math.max(0, targetY), behavior: 'auto' });
           }
+        } else if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+          // Auto-focus the search input on devices with a real keyboard
+          // (desktop/laptop). Skipped sur mobile/tablet pour ne pas
+          // déclencher le clavier virtuel à l'arrivée sur la page.
+          searchInput.focus({ preventScroll: true });
         }
       }).catch(err => {
         console.error('Failed to load clients:', err);
