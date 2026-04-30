@@ -188,15 +188,12 @@ button { font-family: inherit; cursor: pointer; }
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
 
-/* Variante "deux boîtes" : utilisée dans les title-rows (Clients,
-   Solutions) pour que les étoiles tombent au même y-position quel
-   que soit le titre, indépendamment du logo de marque. align-self:
-   stretch fait remplir au rating toute la hauteur du title-row ;
-   justify-content: space-between pousse stars en haut et logo en
-   bas. Résultat : stars-top = h1.box-top, brand-bottom = h1.box-
-   bottom — c'est cohérent d'une page à l'autre. */
-.clients-title-row > .rating,
-.solutions-title-row > .rating {
+/* Variante "deux boîtes" pour le rating en face du h1 Clients : les
+   étoiles tombent au cap du titre, le logo aligne avec sa baseline.
+   align-self: stretch remplit la hauteur du title-row (= hauteur du
+   h1) ; justify-content: space-between pousse stars (visual top via
+   column-reverse) en haut et logo (visual bottom) en bas. */
+.clients-title-row > .rating {
   align-self: stretch;
   justify-content: space-between;
 }
@@ -210,12 +207,6 @@ button { font-family: inherit; cursor: pointer; }
   letter-spacing: 0.1em;
   line-height: 1.2;
 }
-
-/* Variante "mobile only" du rating : sur Solutions, on remonte Trustpilot
-   à côté du h1 "Solutions" en mobile (au lieu de le laisser dans
-   .panel-title-row, où il sert de pendant à un titre h2 long et fait
-   moche en petit écran). Toggle via media query plus bas. */
-.rating-mobile-only { display: none; }
 
 /* ---------- Buttons ---------- */
 .btn-outline {
@@ -583,19 +574,4 @@ button { font-family: inherit; cursor: pointer; }
     margin-inline: calc(var(--pad-x) * -1);
     padding-inline: var(--pad-x);
   }
-  /* Solutions : on remonte Trustpilot à côté du h1 "Solutions". Le
-     rating dans .panel-title-row (à côté du h2 "À chaque besoin…")
-     est masqué — on n'en garde qu'un visible. Pour que h1 et rating
-     partagent la 1ʳᵉ ligne du title-row, on force .tabs-2 à wrapper
-     en pleine largeur dessous via flex-basis: 100%.
-     Le padding-bottom du h1 est mis à 0 en mobile : utile en desktop
-     pour respirer entre Solutions et le panel, contre-productif
-     quand le rating vient s'aligner à côté. align-items reste sur
-     flex-end (héritage), ce qui aligne le bas du logo Trustpilot
-     (visuellement en bas du rating grâce au column-reverse) avec
-     la baseline du titre. */
-  .rating-mobile-only { display: flex; }
-  .panel-title-row .ratings-row { display: none; }
-  .solutions-title-row .page-title { padding-bottom: 0; }
-  .solutions-title-row .tabs-2 { flex-basis: 100%; }
 }
