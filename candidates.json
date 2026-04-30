@@ -66,7 +66,7 @@
   {
     "company_slug": "wavo",
     "company_name": "Wavo",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "ALEXANDRE GUILLEMET",
     "title": "Très bonne expérience",
     "text": "Très bonne expérience. Hyper pro et extrêmement réactifs, très bon contact. Je recommande vivement GetPro.",
@@ -194,7 +194,7 @@
   {
     "company_slug": "wavo",
     "company_name": "Wavo",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "David Banquet",
     "title": "Super accompagnement",
     "text": "GetPro ma accompagné pour me partager une très belle opportunité professionnelle. Nicolas a été réactif, a l'écoute dans cet accompagnement",
@@ -226,7 +226,7 @@
   {
     "company_slug": "autrice-ai",
     "company_name": "Autrice.ai",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Fourdrilis Raphael",
     "title": "Rien à redire",
     "text": "Rien à redire, que des échanges à la fois cordiaux et efficaces !",
@@ -288,9 +288,9 @@
     "bucket_sub": "project"
   },
   {
-    "company_slug": "filigran-2",
-    "company_name": "filigran-2",
-    "has_logo": false,
+    "company_slug": "filigran",
+    "company_name": "Filigran",
+    "has_logo": true,
     "consumer_name": "Eloise Faure",
     "title": "Moins de 2 semaines ce sont passés…",
     "text": "Moins de 2 semaines ce sont passés entre le premier contact et l'offre ! Une belle expérience candidat.  Hugo est disponible, réactif, clair et efficace. Les échanges sont fluides.",
@@ -386,7 +386,7 @@
   {
     "company_slug": "wavo",
     "company_name": "Wavo",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Pierre-Antoine Duchâteau",
     "title": "Contact pertinent, accompagnement sur tout le parcours…",
     "text": "J’ai été contacté par Nicolas Magne pour une offre qui était parfaitement ce que je recherchais. Il m’a ensuite suivi à chaque étape pour me demander comment ça se passait. Il est allé jusqu’à me briefer sur ce qui était attendu de moi avant chaque entretien et ce que je devais mettre en avant de mon expérience.",
@@ -402,7 +402,7 @@
   {
     "company_slug": "logipren",
     "company_name": "Logipren",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Caroline Contentin",
     "title": "Embauche consultant/formateur international",
     "text": "Processus de recrutement très agréable et efficace avec Jihane qui a su me proposer un poste alliant mes diverses compétences et correspondant à mes aspirations avec une approche personnalisée et un accompagnement très professionnel en relai avec Louis jusqu'à la finalisation de l'embauche. Très bonne expérience, je recommande GetPro!",
@@ -498,7 +498,7 @@
   {
     "company_slug": "e2-cad",
     "company_name": "E2-CAD",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Rami Mani",
     "title": "Une très bonne approche et analyse de…",
     "text": "Une très bonne approche et analyse de CV de la part de Barbara, souriante :) humainement très bien et très réactive.",
@@ -514,7 +514,7 @@
   {
     "company_slug": "e2-cad",
     "company_name": "E2-CAD",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Michael Friedrich",
     "title": "Une approche et un suivi de qualité avec Thomas",
     "text": "Une très bonne approche & une excellente analyse de mon profil ont fait de mes échanges avec Thomas une situation dynamique et proactive. Avec Barbara en support local, j'ai reçu toutes les informations et réponses à mes questions en un temps très court. Deux excellents recruteurs qui se démarque des recruteurs moyens qui enchaînent les profils sans analyse.",
@@ -546,7 +546,7 @@
   {
     "company_slug": "e2-cad",
     "company_name": "E2-CAD",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Hajar Nhaila",
     "title": "Un Processus de Recrutement Efficace et Professionnel",
     "text": "Je suis très satisfaite du processus de recrutement. Il a été extrêmement rapide et l'équipe a fait preuve d'une grande réactivité à chaque étape. Leur efficacité m'a impressionnée et j'ai vraiment apprécié leur professionnalisme. Je recommande vivement cette entreprise à tous ceux qui recherchent une expérience de recrutement fluide et agréable.",
@@ -562,7 +562,7 @@
   {
     "company_slug": "e2-cad",
     "company_name": "E2-CAD",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Kodes Mraihi",
     "title": "Mon expérience avec GetPro/Barbara Gualandi",
     "text": "J'ai été contactée par Barbara suite à ma candidature pour un poste qui m'intéressait. Le premier échange était fructueux et chaleureux. Barbara a partagé les informations essentielles pour que je puisse me projeter dans le poste et avancer dans la procédure de recrutement. Toujours à l'écoute et très réactive , elle m'a accompagné avant et après mon entretien technique. Elle était toujours disponible pour répondre à mes questions ( qui étaient nombreuses ) et donner des clarifications sur divers sujets. Je recommande GetPro pour la qualité de leur service et en particulier Barbara Gualandi po",
@@ -610,7 +610,7 @@
   {
     "company_slug": "e2-cad",
     "company_name": "E2-CAD",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Ayméric Diankouika",
     "title": "Je recommande",
     "text": "Bonjour, J'ai été en processus de recrutement avec Thomas Mlanao qui a été très à l'écoute, disponible et professionnel pendant toute cette phase. Il a su m'accompagner et répondre à mes questions. En plus, il continuera à me suivre pendant mes premiers mois après ma prise de fonction. Bravo à lui.",
@@ -642,7 +642,7 @@
   {
     "company_slug": "icomme-fluides",
     "company_name": "Icomme Fluides",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Eric KERVELLA",
     "title": "Suivi et sérieux.",
     "text": "Bon relationnel et un suivi épatant ! Très sérieux, je recommande.",
@@ -690,7 +690,7 @@
   {
     "company_slug": "spark-cleantech",
     "company_name": "Spark Cleantech",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Hamidreza Zandi",
     "title": "Un suivi irréprochable",
     "text": "J'ai été suivi par Jihane du cabinet GetPro pour un poste d'ingénieur dans une très bonne startup.  Je garde un très bon souvenir des échanges avec Jihane qui, à mon sens a fait preuve d'un professionnalisme remarquable : des discussions claires et précises, des conseils et un suivi irréprochables tout au des entretiens avec l'entreprise et pendant la procédure de recrutement, même des sms encourageants avant des entretiens importants avec l'entreprise. Par ailleurs le suivi par GetPro et Jihane continue encore ; même après mon embauche.",
@@ -818,7 +818,7 @@
   {
     "company_slug": "sdec-france",
     "company_name": "SDEC France",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "charlotte poiret",
     "title": "Premier échange téléphonique avec…",
     "text": "Premier échange téléphonique avec Claire pour une proposition de poste dans mon domaine, qui s’est très bien déroulé. S’en suit plusieurs entretiens avec la société. Et merci à Claire car grâce à elle, j’ai obtenu le poste. Nous sommes toujours en contact jusqu’à mon arrivée dans l’entreprise . Merci pour son suivi personnel et bienveillant.",
@@ -850,7 +850,7 @@
   {
     "company_slug": "julhiet-sterwen",
     "company_name": "Julhiet Sterwen",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Lina Achar",
     "title": "Le processus de recrutement chez Julhiet Sterwen",
     "text": "Le processus de recrutement chez Julhiet Sterwen est remarquablement rapide, fluide et opérationnel. J'ai reçu une proposition en seulement 15 jours. Initialement contactée par Guillaume.R, recruteur chez J.S pour un poste de consultant en dématérialisation et GED, j'ai grandement apprécié sa grande écoute, orientation et conseils tout au long du processus. Mon premier entretien avec un directeur, partageant la même expertise, a duré plus d'une heure et demie, permettant une discussion approfondie sur mes compétences, le poste à pourvoir, les missions et l'entreprise. Le directeur s'est montré",
@@ -898,7 +898,7 @@
   {
     "company_slug": "julhiet-sterwen",
     "company_name": "Julhiet Sterwen",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Olga Abdala",
     "title": "Recrutement pour JS",
     "text": "Expérience intéressante qui avait commencé avec Guillaume Reymondet qui m’avait contacté sur LinkedIn pour une opportunité avec Julhiet Sterwen. Très professionnel tout le long du processus.",
@@ -930,7 +930,7 @@
   {
     "company_slug": "sdec-france",
     "company_name": "SDEC France",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Hugo Galluchon",
     "title": "Claire m’a contacté sur Linkedin en me…",
     "text": "Claire m’a contacté sur Linkedin en me proposant une offre très intéressante qui correspondait beaucoup à mon profil. Son suivi a été irréprochable pendant tout le long du processus, toujours en essayant de m’aider au maximum par rapport à ce que l’entreprise pouvait proposer. Les échanges étaient toujours sous le ton de la bonne humeur et se sont clôturés sur une embauche avec une offre parfaitement négociée de la part de Claire. Je recommande sincèrement les services de GetPro pour vos prochaines embauches !  Encore merci.",
@@ -946,7 +946,7 @@
   {
     "company_slug": "logipren",
     "company_name": "Logipren",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Saloi El Hamri Zahor",
     "title": "Excellent Accompagnement par Claire Hubert",
     "text": "Claire Hubert m’a accompagné tout au long du processus de recrutement depuis le premier contact via Linkedin en me proposant une nouvelle aventure professionnelle jusqu’à la signature du contrat. Elle m’a conseillé et m’a offert un soutien continu qui m’a permis d’être prêt pour toutes les étapes. Merci Claire, merci GetPro. Saloi",
@@ -962,7 +962,7 @@
   {
     "company_slug": "saqara",
     "company_name": "Saqara",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Simon Rubuano",
     "title": "Une nouvelle aventure qui commence !",
     "text": "Je ne peux qu'exprimer ma gratitude envers Ruben pour son excellente correspondance dans le ciblage de l'offre proposée. Je tiens également à souligner la qualité du premier contact sur LinkedIn, qui a eu un impact significatif en me permettant de me projeter dans le poste. Il a ensuite fait preuve d'une grande disponibilité et a été de très bon conseil dans la préparation des échanges avec l'entreprise. Une nouvelle aventure commence pour moi grâce à lui, un grand merci ! Je lui attribue 5 étoiles pour son accompagnement exceptionnel. Je profite également de cette occasion pour le remercier s",
@@ -1026,7 +1026,7 @@
   {
     "company_slug": "in-store-media-france",
     "company_name": "In-Store Media",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Anthony Fazio",
     "title": "JE RECOMMANDE !",
     "text": "Humain et qui propose des offres en adéquation avec ton profil. Caroline m'a accompagné du début à la fin de la procédure de recrutement. Merci à elle. Je recommande.",
@@ -1042,7 +1042,7 @@
   {
     "company_slug": "carrefour",
     "company_name": "Carrefour",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Marine FRAZAO",
     "title": "Un accompagnement de grande qualité !",
     "text": "Un super accompagnement du début à la fin du process, et même après ! J'apprécie la qualité, la réactivité et la transparence des échanges. Merci pour tout :)",
@@ -1058,7 +1058,7 @@
   {
     "company_slug": "julhiet-sterwen",
     "company_name": "Julhiet Sterwen",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "ismail alj",
     "title": "Super accompagnement de GetPro. Merci Guillaume !",
     "text": "Guillaume m'a accompagné tout au long du process de recrutement. Il était toujours disponible et à l'écoute. Son suivi attentif m'a bien aidé pour mieux préparer mes entretiens.  J'ai été agréablement surpris de l'implication de Guillaume que je remercie infiniment ! Je ne peux que recommander l'accompagnement de Getpro !",
@@ -1122,7 +1122,7 @@
   {
     "company_slug": "isograd",
     "company_name": "Isograd",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Akrem AJROUDI",
     "title": "Recommandation sans réserve pour une société de recrutement de qualitée",
     "text": "J'ai eu une expérience incroyable avec GetPro. Les consultants sont très professionnels et compétents, ils m'ont aidé à trouver le poste idéal qui correspond à mes compétences et à mes attentes. Je suis très satisfait du service et je recommande fortement cette société à tous ceux qui cherchent un emploi.",
@@ -1234,7 +1234,7 @@
   {
     "company_slug": "smart-impulse",
     "company_name": "Smart Impulse",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Etienne  Francois",
     "title": "GetPro au top !",
     "text": "Anne-claire a fait un travail formidable du début à la fin. Prise de contact, pertinence, offre complète, c'est ce qui nous a permis non seulement d'avoir un échange mais aussi d'avoir un échange clair entre toutes les parties. GetPro est au top, c'est agréable de voir un tel niveau de professionnalisme sur un secteur comme le notre.",
@@ -1282,7 +1282,7 @@
   {
     "company_slug": "teamagine",
     "company_name": "Teamagine",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Adrien Poulichet",
     "title": "Très bon processus de recrutement",
     "text": "Le processus de recrutement avec Justine R s'est très bien passé. Un entretien a été rapidement prévu et les conseils donnés par Justine m'ont aidé dans ma réflexion. De plus, toute les démarches se sont enchainées facilement et j'ai eu une proposition d'embauche assez rapidement.",
@@ -1394,7 +1394,7 @@
   {
     "company_slug": "logipren",
     "company_name": "Logipren",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Frédérique Rihn Maurer",
     "title": "Candidate recrutée, Paris",
     "text": "L’équipe de Logipren est réactive et à l’écoute des candidats. Ce fut un réel plaisir d’être accompagnée par Getpro lors de ce recrutement.",
@@ -1410,7 +1410,7 @@
   {
     "company_slug": "smartrenting",
     "company_name": "Smartrenting",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Thomas Charlat",
     "title": "Le bon poste au bon moment, l'accompagnement en plus",
     "text": "En recherche de ma nouvelle aventure pro, j'ai été contacté par Thomas pour une offre. Le poste correspondait parfaitement à ce que je cherchais, ce qui doit être souligné ! Thomas a été très rapide et efficace à organiser la rencontre avec mon futur employeur. Ensuite, il a facilité toutes les correspondances et m'a accompagné dans les négociations. Il a été un vrai catalyseur d'un \"match\" qui a mis tout le monde d'accord en un temps record. Je commence très bientôt cette nouvelle aventure, merci à Thomas et GetPro pour leur contribution à cette étape importante dans la carrière d'un développ",
@@ -1426,7 +1426,7 @@
   {
     "company_slug": "carrefour",
     "company_name": "Carrefour",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "olivier brune",
     "title": "Un accompagnement parfait",
     "text": "Un accompagnement parfait. Get Pro est toujours à l'écoute et même très proactif. Ils ont toujours été disponibles quand j'avais une question.",
@@ -1442,7 +1442,7 @@
   {
     "company_slug": "openvalue",
     "company_name": "Openvalue",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Saïd Bouras",
     "title": "Superbe expérience avec GetPro !",
     "text": "Énorme expérience avec GetPro et Ruben qui m'as contacté pour une opportunité intéressante et enrichissante.  Ruben a assuré un suivi constant du début jusqu'à la fin du process, il a eu une très bonne réactivité tout au long de celui-ci que ce soit avec moi et également avec l'entreprise. Il a également compris aisément quel était mes ambitions ainsi que mes objectifs de carrières afin de me proposer l'entreprise avec laquelle je pourrais les réaliser. Je recommande a 100%.",
@@ -1458,7 +1458,7 @@
   {
     "company_slug": "openvalue",
     "company_name": "Openvalue",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Victor Meyer",
     "title": "Excellent",
     "text": "Très satisfait de mon expérience avec GetPro. Ruben a été disponible et à l'écoute. Je recommande !",
@@ -1586,7 +1586,7 @@
   {
     "company_slug": "smart-impulse",
     "company_name": "Smart Impulse",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Mathieu Garivet",
     "title": "Ciblage au top, procédure simple et efficace",
     "text": "Je ne peux que remercier Anne-Claire pour avoir visé juste dans le ciblage de l'offre qu'elle m'a proposée. Je note d'ailleurs la qualité du premier contact LinkedIn qui a fait une grosse différence (présentation du poste permettant de s'y projeter !). Processus plutôt bien rodé qui fonctionne très bien par la suite. Seul bémol : j'aurai préféré davantage de soutien lors de l'expression de ma volonté de proposer une contre-offre à l'offre initiale. Bilan 4,5/5 :). Merci encore bien entendu pour cet accompagnement.",
@@ -1618,7 +1618,7 @@
   {
     "company_slug": "in-store-media-france",
     "company_name": "In-Store Media",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "FATIMA IKEZBI",
     "title": "Professionnelle et conviviale à la fois",
     "text": "Professionnelle et conviviale à la fois Mon interlocutrice a été à l’écoute et très attentive. Elle m’a très bien accompagné dans le processus de recrutement. Je vous recommande ce cabinet qui a donné une belle évolution dans ma carrière professionnelle Je remercie Honorine!",
@@ -1794,7 +1794,7 @@
   {
     "company_slug": "algonomia",
     "company_name": "Algonomia",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "werghi wajih",
     "title": "Echange très sympathique avec Aminata.",
     "text": "Echange très sympathique avec Aminata. Je la remercie pour son professionnalisme.",
@@ -1890,7 +1890,7 @@
   {
     "company_slug": "doctrine",
     "company_name": "Doctrine",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Olivier Larcher",
     "title": "Processus de luxe",
     "text": "En peu de temps, j'ai rencontré des personnes clés dans le processus de recrutement. L'adéquation de tous les skills est appréciée ; retours honnêtes. Le rôle central de Nicholas (RPO) dans la bonne communication est à saluer !",
@@ -1906,7 +1906,7 @@
   {
     "company_slug": "logipren",
     "company_name": "Logipren",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Yanira Cerritos",
     "title": "Excellent processus avec Jihane",
     "text": "Contactée par Jihane, elle m'a proposée une opportunité qui correspondait parfaitement à mon profil! Le processus fût très agréable. Elle a su répondre à toutes mes questions et a même effectué des recherches pour bien répondre à mes besoins car il s'agissait d'un déménagement du Canada vers la France. Jihane m'a offert son soutien lors de toutes les étapes!",
@@ -1922,7 +1922,7 @@
   {
     "company_slug": "algonomia",
     "company_name": "Algonomia",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Yannick Xu",
     "title": "Recruteuse Aminata",
     "text": "Contacté par Aminata, en me proposant une offre avec une mission que je trouvais très intéressant. Aminata a suivi tout le processus de recrutement avec moi en comprenant mes besoins, tout en faisait des points quotidiennement qui m'ont permis d'être beaucoup plus à l'aise au cours du recrutement. Je suis très reconnaissant envers elle. Une super recruteuse !",
@@ -1970,7 +1970,7 @@
   {
     "company_slug": "openvalue",
     "company_name": "Openvalue",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Mouad Attaqi",
     "title": "Expérience GetPro",
     "text": "Mon interlocuteur auprès de GetPro était formidable, un excellent accompagnement tout au long du process de recrutement.",
@@ -2050,7 +2050,7 @@
   {
     "company_slug": "orkestra",
     "company_name": "Orkestra",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Ghassen Khalfallah",
     "title": "C'était très professionnel et...",
     "text": "C'était très professionnel et humainement très enrichissant. Le test de personnalité était très intéressant.  Je tiens à remercier Tony pour qon professionnalisme et sa disponibilité. Il était toujours là tout au long du process.",
@@ -2098,7 +2098,7 @@
   {
     "company_slug": "bdl-capital-management",
     "company_name": "BDL Capital Management",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Nicolas Menettrier",
     "title": "Recruteur au top",
     "text": "Très satisfait du service proposé, j’ai été suivi par Thibault pendant tout le long du process. Il a été très professionnel et ses conseils m’ont permis de décrocher mon job actuel. Je recommande!",
@@ -2114,7 +2114,7 @@
   {
     "company_slug": "greenweez",
     "company_name": "Greenweez.com",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Axel Binda",
     "title": "Excellente expérience !",
     "text": "Tout a commencé par un recruteur qui fait admirablement bien son travail pour trouver un candidat qui pourrait être réellement intéressé par le poste pour lequel il chasse. Ce qui change de la grande majorité des recruteurs qui pêche à la dynamite sans trop se soucier des souhaits de leurs victimes. Ensuite, très bon contact lors de l'entretien et excellent suivi tout au long du processus de recrutement avec l'entreprise finale.  Une de mes (trop) rares très bonnes expériences avec un recruteur.",
@@ -2242,7 +2242,7 @@
   {
     "company_slug": "myelefant",
     "company_name": "myElefant",
-    "has_logo": false,
+    "has_logo": true,
     "consumer_name": "Romain Van Elslande",
     "title": "Très bon suivi de Camille",
     "text": "Très bon suivi de Camille  Très bon relais avec l’entreprise recruteuse Tres grande disponibilité et super réactivité... que demander de plus ?",
