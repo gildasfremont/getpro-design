@@ -444,8 +444,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 .case-logo-mark {
   justify-self: start;
-  width: clamp(140px, 18vw, 240px);
-  height: clamp(28px, 3.5vw, 56px);
+  width: clamp(100px, 12vw, 170px);
+  height: clamp(20px, 2.4vw, 40px);
   background-color: var(--ink);
   -webkit-mask: left center / contain no-repeat;
           mask: left center / contain no-repeat;
@@ -503,10 +503,8 @@ button { font-family: inherit; cursor: pointer; }
     grid-template-columns: minmax(0, 50%);
   }
   .two-col > * { padding-right: 0; }
-  .case-row {
-    grid-template-columns: 1fr 1fr;
-  }
-  .case-row > * { padding-right: 0; }
+  /* .case-row reste à 2 cols + padding-right interne (logo plus petit en
+     responsive, on garde la respiration entre paragraphe et logo). */
   .panel-title { max-width: none; }
   .consultants-row { grid-template-columns: repeat(2, 1fr); }
 }
