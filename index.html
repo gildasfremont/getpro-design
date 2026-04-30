@@ -311,28 +311,33 @@
   /* ---------- Breakpoints (structural changes only) ---------- */
   @media (max-width: 800px) {
     .process-row { grid-template-columns: 1fr; }
-    /* Single-column stack : nav-list → "Tous nos clients" (sticky strip) → logos.
-       Le CTA reste sticky en haut du panneau, les logos défilent dessous. */
+    /* On garde 2 colonnes (fonds | logos). La 3e colonne du desktop ("Tous nos
+       clients") repasse en haut de la colonne logos, sticky : les logos défilent
+       dessous. La nav-list (fonds) span les 2 lignes pour rester alignée à
+       gauche, alignement haut conservé. */
     .logos-row {
-      grid-template-columns: 1fr;
-      gap: clamp(20px, 3vw, 30px);
+      grid-template-columns: clamp(120px, 28vw, 180px) minmax(0, 1fr);
+      grid-template-rows: auto 1fr;
+      column-gap: clamp(20px, 4vw, 40px);
+      row-gap: 0;
       padding-inline: 0;
     }
-    .nav-list { order: 1; }
+    .nav-list { grid-column: 1; grid-row: 1 / span 2; }
     .cta-col {
-      order: 2;
+      grid-column: 2;
+      grid-row: 1;
       position: sticky;
       top: clamp(70px, 12vw, 90px);
       z-index: 5;
       background: var(--bg);
-      padding-block: clamp(10px, 2vw, 16px);
+      padding-block: clamp(8px, 1.5vw, 14px);
     }
     .cta-col .see-all {
       position: static;
       top: auto;
       display: inline-block;
     }
-    .logos-grid { order: 3; }
+    .logos-grid { grid-column: 2; grid-row: 2; }
   }
 </style>
 </head>
