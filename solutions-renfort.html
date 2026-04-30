@@ -23,6 +23,36 @@
   .photo-juliette  { background-image: url('assets/team/juliette-fabre.png'); }
   .photo-jonathan  { background-image: url('assets/team/jonathan-banigo.jpg'); }
   .photo-terry     { background-image: url('assets/team/terry-raimondo.png'); }
+
+  /* Featured consultant : photo plus large + nom/rôle côté, présentation
+     "à part" pour singulariser Camille (DRH externalisé) après Méthode. */
+  .featured-consultant {
+    display: grid;
+    grid-template-columns: clamp(140px, 16vw, 200px) 1fr;
+    gap: clamp(20px, 3vw, 40px);
+    align-items: center;
+  }
+  .featured-consultant .photo {
+    aspect-ratio: 3 / 4;
+    background-size: cover;
+    background-position: 50% 22%;
+    background-repeat: no-repeat;
+    background-color: #d8e0d3;
+  }
+  .featured-consultant .featured-meta {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(4px, 0.4vw, 8px);
+  }
+  .featured-consultant .featured-name {
+    font-size: var(--fs-card-name);
+    line-height: var(--lh-card-name);
+  }
+  .featured-consultant .featured-role {
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    opacity: 0.7;
+  }
 </style>
 </head>
 <body>
@@ -101,13 +131,6 @@
                   <span class="consultant-role">Head of Cabinet Business</span>
                 </div>
               </div>
-              <div class="consultant">
-                <div class="photo photo-camille" role="img" aria-label="Camille Fantini"></div>
-                <div class="consultant-meta">
-                  <span class="consultant-name">Camille Fantini</span>
-                  <span class="consultant-role">DRH externalisé</span>
-                </div>
-              </div>
             </div>
             <a href="tel:+33939289329" class="btn-outline">Échanger avec un consultant : 09 39 28 93 29</a>
           </section>
@@ -122,6 +145,17 @@
               <div>
                 <p>Mois 3 à 12 : transition. Recrutement et onboarding du DRH permanent, transmission organisée, rétro-planning de sortie. À la fin, vous avez une fonction RH structurée et un dirigeant en place.</p>
                 <p>Pas de prolongation cachée, pas de dépendance à GetPro. La mission s'arrête le jour où le permanent prend ses fonctions.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel-section">
+            <h3>DRH externalisé</h3>
+            <div class="featured-consultant">
+              <div class="photo photo-camille" role="img" aria-label="Camille Fantini"></div>
+              <div class="featured-meta">
+                <span class="featured-name">Camille Fantini</span>
+                <span class="featured-role">DRH externalisé</span>
               </div>
             </div>
           </section>
