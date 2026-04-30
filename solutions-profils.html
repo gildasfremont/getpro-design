@@ -137,26 +137,29 @@
   .testimonial-author {
     display: grid;
     grid-template-columns: minmax(0, 1fr) clamp(120px, 14vw, 180px);
+    grid-template-areas: "meta logo";
     align-items: center;
     gap: clamp(16px, 2vw, 30px);
   }
   .author-logo {
-    grid-column: 2;
+    grid-area: logo;
     justify-self: start;
-    height: clamp(24px, 2.4vw, 32px);
+    /* Hauteur dédiée plus large pour que tous les logos aient à peu près
+       la même présence visuelle, même les wordmarks très étirés */
+    height: clamp(32px, 3.2vw, 44px);
     width: auto;
     max-width: 100%;
     object-fit: contain;
     object-position: left center;
   }
   .author-name-fallback {
-    grid-column: 2;
+    grid-area: logo;
     justify-self: start;
     font-size: var(--fs-body);
     line-height: 1.3;
     opacity: 0.6;
   }
-  .author-meta { grid-column: 1; display: flex; flex-direction: column; min-width: 0; }
+  .author-meta { grid-area: meta; display: flex; flex-direction: column; min-width: 0; }
   .author-meta .name { font-size: var(--fs-body); line-height: 1.3; }
   .author-meta .role { font-size: var(--fs-body); line-height: 1.3; opacity: 0.7; }
 
