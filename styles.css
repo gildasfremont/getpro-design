@@ -178,16 +178,27 @@ button { font-family: inherit; cursor: pointer; }
 }
 .rating {
   display: flex;
-  /* column-reverse : les étoiles visuellement au-dessus, le logo de marque
-     (Trustpilot/Trustfolio/Google) en bas. Combiné avec align-items:
-     flex-end sur les title-rows, le bas du logo (= bas des lettres
-     "Trustpilot") s'aligne proprement avec la baseline du titre h1.
-     L'ordre DOM reste img → span pour conserver la sémantique
-     "marque puis note" pour les lecteurs d'écran. */
+  /* column-reverse : les étoiles visuellement au-dessus, le logo
+     de marque (Trustpilot/Trustfolio/Google) en bas. L'ordre DOM
+     reste img → span pour la sémantique "marque puis note"
+     (lecteurs d'écran). */
   flex-direction: column-reverse;
   gap: 4px;
   align-items: flex-start;
   font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+/* Variante "deux boîtes" : utilisée dans les title-rows (Clients,
+   Solutions) pour que les étoiles tombent au même y-position quel
+   que soit le titre, indépendamment du logo de marque. align-self:
+   stretch fait remplir au rating toute la hauteur du title-row ;
+   justify-content: space-between pousse stars en haut et logo en
+   bas. Résultat : stars-top = h1.box-top, brand-bottom = h1.box-
+   bottom — c'est cohérent d'une page à l'autre. */
+.clients-title-row > .rating,
+.solutions-title-row > .rating {
+  align-self: stretch;
+  justify-content: space-between;
 }
 .rating-logo {
   height: clamp(16px, 1.5vw, 22px);
