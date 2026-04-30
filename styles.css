@@ -425,11 +425,17 @@ button { font-family: inherit; cursor: pointer; }
 /* Cas clients : même grille 50/50 que .two-col pour aligner texte de gauche
    et logo de droite. */
 .cases-rows { display: flex; flex-direction: column; gap: clamp(24px, 3vw, 40px); }
+/* Même rythme que .two-col : column-gap 0, la 2e cellule (logo) démarre
+   pile au milieu, le texte respire avec padding-right interne. */
 .case-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(24px, 3vw, 50px);
+  column-gap: 0;
+  row-gap: clamp(24px, 3vw, 50px);
   align-items: center;
+}
+.case-row > * {
+  padding-right: clamp(40px, 8vw, 120px);
 }
 .case-row p {
   font-size: var(--fs-body);
@@ -492,6 +498,7 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 800px) {
   .two-col { grid-template-columns: 1fr; }
   .two-col > * { padding-right: 0; }
+  .case-row > * { padding-right: 0; }
   .panel-title { max-width: none; }
   .consultants-row { grid-template-columns: repeat(2, 1fr); }
 }
