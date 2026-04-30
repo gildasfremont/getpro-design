@@ -142,19 +142,23 @@
     .member-photo { flex-basis: 140px; }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
     /* Mobile : on "déstructure" .equipe-tabs-row via display: contents
        pour que .tabs et .btn-outline deviennent enfants directs de
        .equipe (qui est déjà flex column). Ça permet d'envoyer le
        bouton "Rejoindre GetPro" en bas de la section via order: 1,
        sous les grilles consultants/support — plutôt que de l'avoir
-       coincé entre les onglets et la première carte. */
+       coincé entre les onglets et la première carte. Breakpoint
+       aligné sur le reste des règles mobile (subtabs, panels). */
     .equipe-tabs-row { display: contents; }
     .equipe-tabs-row > .btn-outline {
       order: 1;
       align-self: flex-start;
       margin-top: clamp(28px, 5vw, 50px);
     }
+  }
+
+  @media (max-width: 480px) {
     .member-card { flex-direction: column; }
     .member-photo { aspect-ratio: 4/3; flex-basis: auto; }
   }
