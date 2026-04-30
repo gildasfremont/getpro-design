@@ -335,6 +335,15 @@
       grid-template-columns: clamp(120px, 28vw, 180px) minmax(0, 1fr);
       column-gap: clamp(20px, 4vw, 40px);
     }
+    /* Aligne l'indent gauche des logos sur celui de .process-text au-dessus
+       (clamp(20, 4vw, 40)). En desktop le 4.8vw matchait .process-text mais
+       une fois le breakpoint passé, .process-text est repassé à 4vw clampé
+       20-40 et les logos gardaient 24-70 → ~4px de désalignement visible. */
+    .logos-title,
+    .logos-row {
+      padding-left: clamp(20px, 4vw, 40px);
+    }
+    .see-all-bottom { margin-left: clamp(20px, 4vw, 40px); }
   }
   @media (max-width: 600px) {
     /* En mobile, les logos repassent en 1 colonne — 2 cols devient trop
