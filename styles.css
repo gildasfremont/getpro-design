@@ -178,7 +178,13 @@ button { font-family: inherit; cursor: pointer; }
 }
 .rating {
   display: flex;
-  flex-direction: column;
+  /* column-reverse : les étoiles visuellement au-dessus, le logo de marque
+     (Trustpilot/Trustfolio/Google) en bas. Combiné avec align-items:
+     flex-end sur les title-rows, le bas du logo (= bas des lettres
+     "Trustpilot") s'aligne proprement avec la baseline du titre h1.
+     L'ordre DOM reste img → span pour conserver la sémantique
+     "marque puis note" pour les lecteurs d'écran. */
+  flex-direction: column-reverse;
   gap: 4px;
   align-items: flex-start;
   font-feature-settings: 'pnum' on, 'lnum' on;
@@ -571,17 +577,14 @@ button { font-family: inherit; cursor: pointer; }
      est masqué — on n'en garde qu'un visible. Pour que h1 et rating
      partagent la 1ʳᵉ ligne du title-row, on force .tabs-2 à wrapper
      en pleine largeur dessous via flex-basis: 100%.
-     align-items: baseline aligne la baseline des stars sur celle du
-     titre (avec flex-end les bas de boîtes étaient alignés mais le
-     padding-bottom du h1 + le line-height décalaient visuellement).
      Le padding-bottom du h1 est mis à 0 en mobile : utile en desktop
-     pour respirer entre Solutions et le panel, contre-productif quand
-     le rating doit s'aligner sur la baseline. */
+     pour respirer entre Solutions et le panel, contre-productif
+     quand le rating vient s'aligner à côté. align-items reste sur
+     flex-end (héritage), ce qui aligne le bas du logo Trustpilot
+     (visuellement en bas du rating grâce au column-reverse) avec
+     la baseline du titre. */
   .rating-mobile-only { display: flex; }
   .panel-title-row .ratings-row { display: none; }
-  .solutions-title-row {
-    align-items: baseline;
-  }
   .solutions-title-row .page-title { padding-bottom: 0; }
   .solutions-title-row .tabs-2 { flex-basis: 100%; }
 }
