@@ -281,7 +281,7 @@ button { font-family: inherit; cursor: pointer; }
   flex-wrap: wrap;
 }
 .solutions-title-row .page-title {
-  padding-bottom: clamp(32px, 5.4vw, 78px);
+  padding-bottom: clamp(16px, 3.4vw, 48px);
 }
 
 /* Two-line top tabs : main label on top + subtitle below.
