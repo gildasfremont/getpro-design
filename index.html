@@ -242,12 +242,10 @@
 
   .logos-row {
     display: grid;
-    grid-template-columns: clamp(140px, 14vw, 201px) minmax(0, 1fr) clamp(140px, 14vw, 201px);
+    grid-template-columns: clamp(140px, 14vw, 201px) minmax(0, 1fr);
     gap: clamp(30px, 5vw, 80px);
     padding-left: clamp(24px, 4.8vw, 70px);
     padding-right: clamp(0px, 3.5vw, 50px);
-    /* align-items default = stretch : permet à .cta-col de remplir la hauteur
-       de la rangée pour que position:sticky ait toute la zone à scroller. */
   }
 
   .nav-list {
@@ -261,10 +259,14 @@
     text-align: left;
   }
 
+  /* Logos en 2 colonnes : la box gauche (fonds) et la box droite (logos en
+     2 cols) ont des hauteurs comparables — la colonne logos se "coupe"
+     visuellement à peu près au niveau du dernier fond de la liste. */
   .logos-grid {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(14px, 1.6vw, 22px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(20px, 3vw, 50px);
+    row-gap: clamp(14px, 1.6vw, 22px);
     min-width: 0;
   }
 
@@ -298,24 +300,13 @@
     opacity: 0.65;
   }
 
-  /* Right column : "Tous nos clients" stays sticky as the user scrolls the logos */
-  .cta-col {
-    display: block;
+  /* "Tous nos clients" — bouton bas de section, à gauche, aligné sur le
+     même indent (4.8vw) que .logos-title et .logos-row. La section a
+     déjà display:flex column + gap, donc pas besoin de margin-top. */
+  .see-all-bottom {
+    align-self: flex-start;
+    margin-left: clamp(24px, 4.8vw, 70px);
   }
-  .cta-col .see-all {
-    position: sticky;
-    /* Sit just below the sticky header (~50-80px tall) instead of at top:0,
-       sinon le header (z-index 50) recouvre le CTA. */
-    top: clamp(80px, 9vw, 110px);
-    display: inline-block;
-    font-size: var(--fs-menu);
-    line-height: 1.25;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    color: inherit;
-    transition: opacity 0.15s ease;
-  }
-  .cta-col .see-all:hover { opacity: 0.7; }
 
   /* ---------- Breakpoints (structural changes only) ---------- */
   @media (max-width: 800px) {
@@ -339,38 +330,20 @@
     .process-text {
       padding: clamp(28px, 4vw, 40px) clamp(20px, 4vw, 40px);
     }
-    /* On garde 2 colonnes (fonds | logos). La 3e colonne du desktop ("Tous nos
-       clients") repasse en haut de la colonne logos, sticky : les logos défilent
-       dessous. La nav-list (fonds) span les 2 lignes pour rester alignée à
-       gauche, alignement haut conservé. */
+    /* 2 colonnes (fonds | logos), espacement réduit pour le viewport mid. */
     .logos-row {
       grid-template-columns: clamp(120px, 28vw, 180px) minmax(0, 1fr);
-      grid-template-rows: auto 1fr;
       column-gap: clamp(20px, 4vw, 40px);
-      row-gap: 0;
     }
-    .nav-list { grid-column: 1; grid-row: 1 / span 2; }
-    .cta-col {
-      grid-column: 2;
-      grid-row: 1;
-      position: sticky;
-      top: clamp(70px, 12vw, 90px);
-      z-index: 5;
-      background: var(--bg);
-      /* display:flex + align-items:flex-start pour aligner la baseline du see-all
-         sur le 1er fond (IDinvest), sans interférence de la line-box parente.
-         Le padding-bottom dimensionne row 1 pour que row 2 (1er logo) tombe au
-         niveau du 2e fond — alignement par rangée. */
-      display: flex;
-      align-items: flex-start;
-      padding: 0 0 clamp(8px, 1.4vw, 20px);
+  }
+  @media (max-width: 600px) {
+    /* En mobile, les logos repassent en 1 colonne — 2 cols devient trop
+       étroit pour les logos type wordmark. La liste fonds reste à gauche
+       et la grille logos prend le reste. */
+    .logos-grid {
+      grid-template-columns: 1fr;
+      row-gap: clamp(14px, 2.5vw, 18px);
     }
-    .cta-col .see-all {
-      position: static;
-      top: auto;
-      display: inline-block;
-    }
-    .logos-grid { grid-column: 2; grid-row: 2; }
   }
 </style>
 </head>
@@ -601,10 +574,9 @@
           <a class="logo-cell" href="clients.html#yubo" data-funds="alven idinvest iris-capital sweeft-capital"><img src="assets/yubo.svg" alt="Yubo" loading="lazy" /></a>
         </div>
 
-        <aside class="cta-col">
-          <a href="clients.html" class="see-all">Tous nos clients →</a>
-        </aside>
       </div>
+
+      <a href="clients.html" class="btn-outline see-all-bottom">Tous nos clients →</a>
     </section>
 
     <footer class="site-footer" data-footer></footer>
