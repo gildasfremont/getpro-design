@@ -169,36 +169,33 @@
     font-style: italic;
   }
 
+  /* Page header : empile Clients + ratings quand peu de place */
   @media (max-width: 800px) {
     .clients-title-row { flex-direction: column; align-items: flex-start; }
     .ratings-row { flex-wrap: wrap; }
-    .clients-list {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      row-gap: clamp(8px, 0.8vw, 12px);
-    }
-    .row { grid-column: 1 / -1; }
-    .logo-cell { display: none; }
-    /* En mobile .tm-full passe en flow ; on cache la preview totalement
-       pour que le témoignage commence pile sous le nom sans gap fantôme */
-    .row.active .tm-line { display: none; }
-    .tm-full {
-      position: relative;
-    }
   }
 
   /* Phone : le témoignage actif wrap autour du nom (1ʳᵉ ligne à droite,
      puis suivantes sous le nom). Float sur le name-link, .tm-full bascule
-     en block (pas flex, pour que le texte s'écoule autour du float) */
+     en block. La grille 3 cols (nom | logo | témoignage) tient jusqu'à
+     600px : les noms longs sont déjà tronqués avec text-overflow: ellipsis,
+     pas besoin de virer le logo plus tôt. */
   @media (max-width: 600px) {
-    .row { display: block; }
+    .clients-list {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      row-gap: clamp(8px, 0.8vw, 12px);
+    }
+    .row { grid-column: 1 / -1; display: block; }
+    .logo-cell { display: none; }
+    .row.active .tm-line { display: none; }
+    .tm-full { position: relative; }
+
     .clients-list a.name-link {
       float: left;
       margin-right: clamp(8px, 2vw, 16px);
     }
     .row.active .tm-full {
       display: block;
-      /* On vire le background blanc pour que le nom (float, dessous) reste
-         visible en transparence */
       background: transparent;
     }
     .row.active .tm-full > * + * {
