@@ -330,7 +330,13 @@
       top: clamp(70px, 12vw, 90px);
       z-index: 5;
       background: var(--bg);
-      padding-block: clamp(8px, 1.5vw, 14px);
+      /* display:flex + align-items:flex-start pour aligner la baseline du see-all
+         sur le 1er fond (IDinvest), sans interférence de la line-box parente.
+         Le padding-bottom dimensionne row 1 pour que row 2 (1er logo) tombe au
+         niveau du 2e fond — alignement par rangée. */
+      display: flex;
+      align-items: flex-start;
+      padding: 0 0 clamp(8px, 1.4vw, 20px);
     }
     .cta-col .see-all {
       position: static;
