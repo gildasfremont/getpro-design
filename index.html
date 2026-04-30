@@ -223,8 +223,12 @@
     padding: clamp(30px, 4.8vw, 70px) var(--pad-x);
   }
 
+  /* Indent gauche aligné sur .process-text (4.8vw) : la title et la row de
+     logos s'alignent avec les paragraphes du bloc consultant au-dessus. La
+     droite garde le 3.5vw d'origine pour ne pas décaler le cta-col desktop. */
   .logos-title {
-    padding-inline: clamp(0px, 3.5vw, 50px);
+    padding-left: clamp(24px, 4.8vw, 70px);
+    padding-right: clamp(0px, 3.5vw, 50px);
   }
   .logos-title h2 {
     font-size: var(--fs-section-title);
@@ -236,7 +240,8 @@
     display: grid;
     grid-template-columns: clamp(140px, 14vw, 201px) minmax(0, 1fr) clamp(140px, 14vw, 201px);
     gap: clamp(30px, 5vw, 80px);
-    padding-inline: clamp(0px, 3.5vw, 50px);
+    padding-left: clamp(24px, 4.8vw, 70px);
+    padding-right: clamp(0px, 3.5vw, 50px);
     /* align-items default = stretch : permet à .cta-col de remplir la hauteur
        de la rangée pour que position:sticky ait toute la zone à scroller. */
   }
