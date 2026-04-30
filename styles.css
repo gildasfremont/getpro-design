@@ -535,15 +535,18 @@ button { font-family: inherit; cursor: pointer; }
      Outils & ATS gardent leur label original). */
   .subtab-label-full { display: none; }
   .subtab-label-short { display: inline; }
-  /* "Profils couverts" passe au-dessus des subtabs et prend toute la
-     largeur, label centré. order: -1 le sort du flow naturel pour le
-     placer en première position dans le flex-wrap. Au-dessus de 600px,
-     le bouton reste à droite des subtabs via le space-between du
-     parent — on ne force le passage à la ligne que quand on a vraiment
-     besoin de place. */
+  /* En mobile, .subtabs-row passe en grid 1 colonne : ça permet de
+     placer "Profils couverts" au-dessus (order: -1) et de le centrer
+     à sa largeur de contenu via justify-self: center, sans l'étirer
+     sur toute la ligne (le bouton plein-large faisait moche).
+     Au-dessus de 600px, on reste en flex avec space-between : bouton
+     à droite des subtabs. */
+  .subtabs-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
   .subtabs-row > .btn-outline {
     order: -1;
-    width: 100%;
-    text-align: center;
+    justify-self: center;
   }
 }
