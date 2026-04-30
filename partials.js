@@ -28,22 +28,18 @@
 
   const footerHTML = `
     <div class="foot-col">
-      <h3>Équipe</h3>
       <a href="equipe.html"${aria('equipe.html')}>Consultants</a>
       <a href="equipe.html">Support</a>
     </div>
     <div class="foot-col">
-      <h3>Contact</h3>
       <a href="mailto:bonjour@getpro.com">Nous contacter</a>
       <a href="mentions.html"${aria('mentions.html')}>Mentions légales</a>
     </div>
     <div class="foot-col">
-      <h3>GetPro</h3>
       <a href="solutions.html">Solutions de recrutement</a>
       <a href="clients.html">Clients</a>
     </div>
     <div class="foot-col foot-rating">
-      <h3>Avis</h3>
       <div class="rating">
         <img src="assets/google.svg" alt="Google" class="rating-logo" />
         <span class="rating-stars">4,3 ★★★★★</span>
