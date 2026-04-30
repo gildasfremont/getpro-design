@@ -32,12 +32,10 @@
   `;
 
   const footerHTML = `
-    <div class="foot-col">
-      <a href="equipe.html"${aria('equipe.html')}>Équipe</a>
-    </div>
-    <div class="foot-col">
-      <a href="mailto:bonjour@getpro.com">Nous contacter</a>
-      <a href="mentions.html"${aria('mentions.html')}>Mentions légales</a>
+    <div class="foot-brand">
+      <a href="index.html" class="foot-logo" aria-label="GetPro"></a>
+      <p class="foot-tagline">Cabinet de chasse spécialisé tech, product, data, sales et dirigeants. Depuis 2015.</p>
+      <p class="foot-address">41 rue Faidherbe<br>75011 Paris</p>
     </div>
     <div class="foot-col">
       <a href="solutions.html#ponctuel"${aria('solutions.html#ponctuel')}>Recrutement ponctuel</a>
@@ -46,10 +44,16 @@
       <a href="solutions-renfort.html#drh"${aria('solutions-renfort.html#drh')}>DRH de transition</a>
       <a href="solutions-renfort.html#rpo"${aria('solutions-renfort.html#rpo')}>RPO mensuel</a>
       <a href="solutions-renfort.html#outils"${aria('solutions-renfort.html#outils')}>Outils &amp; ATS</a>
+    </div>
+    <div class="foot-col">
       <a href="solutions-profils.html"${aria('solutions-profils.html')}>Métiers recrutés</a>
       <a href="clients.html"${aria('clients.html')}>Clients</a>
+      <a href="equipe.html"${aria('equipe.html')}>Équipe</a>
+      <a href="mentions.html"${aria('mentions.html')}>Mentions légales</a>
     </div>
-    <div class="foot-col foot-rating">
+    <div class="foot-col foot-contact">
+      <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>
+      <a href="tel:+33939289329">09 39 28 93 29</a>
       <div class="rating">
         <img src="assets/google.svg" alt="Google" class="rating-logo" />
         <span class="rating-stars">4,3 ★★★★★</span>

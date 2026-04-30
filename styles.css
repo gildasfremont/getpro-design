@@ -238,34 +238,119 @@ button { font-family: inherit; cursor: pointer; }
   .btn-menu { padding: 6px 10px; }
 }
 
-/* ---------- Footer ---------- */
+/* ---------- Footer ----------
+   Layout éditorial : gros wordmark GetPro à gauche en bloc brand
+   (logo + tagline + adresse), 3 colonnes de liens à droite (Solutions
+   détaillées, pages générales, contact + rating). Brand prend 1.7fr
+   pour donner du poids visuel au logo, qui est ~2x la taille de la
+   nav, façon statement. Hairline top en plus du padding généreux. */
 .site-footer {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(24px, 3vw, 50px);
-  padding: clamp(40px, 5vw, 70px) var(--pad-x);
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(40px, 5vw, 70px) clamp(24px, 3vw, 50px);
+  padding: clamp(50px, 6vw, 90px) var(--pad-x) clamp(36px, 4vw, 56px);
   border-top: 1px solid var(--line);
+  align-items: start;
 }
 
+/* Bloc brand : logo, tagline, adresse */
+.foot-brand {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2vw, 32px);
+  max-width: 46ch;
+}
+.foot-logo {
+  display: block;
+  width: clamp(140px, 15vw, 220px);
+  height: clamp(28px, 3vw, 44px);
+  background-color: var(--ink);
+  -webkit-mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
+          mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
+}
+.foot-tagline {
+  font-size: clamp(14px, 1.2vw, 18px);
+  line-height: 1.4;
+  margin: 0;
+  letter-spacing: -0.01em;
+  max-width: 38ch;
+}
+.foot-address {
+  font-size: clamp(13px, 1.05vw, 16px);
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0.6;
+}
+
+/* Colonnes de liens — petites, alignées start. */
 .foot-col {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 0.7vw, 12px);
+  gap: clamp(8px, 0.8vw, 14px);
   font-size: var(--fs-menu);
-  line-height: 1.4;
+  line-height: 1.35;
 }
-
 .foot-col a {
   color: var(--ink);
   opacity: 0.85;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
 }
 .foot-col a:hover { opacity: 1; }
+.foot-col a[aria-current="page"] {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
 
-@media (max-width: 800px) {
-  .site-footer { grid-template-columns: repeat(2, 1fr); }
+/* Bloc contact : mêmes liens, plus le rating Google sous une petite
+   séparation visuelle (margin-top accentué). */
+.foot-contact .rating {
+  margin-top: clamp(12px, 1.5vw, 22px);
+}
+
+/* Responsive ----
+   ≤1000 : 3 cols. Le bloc contact passe sous le brand (col 1 row 2)
+   pour libérer de la place aux deux colonnes de liens.
+   ≤700  : 2 cols. Brand spans les deux colonnes en haut, contact
+   spans les deux colonnes en bas.
+   ≤460  : 1 col, tout stacké. */
+@media (max-width: 1000px) {
+  .site-footer {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .foot-contact {
+    grid-column: 1;
+    grid-row: 2;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: clamp(20px, 3vw, 36px);
+    margin-top: clamp(16px, 2vw, 28px);
+  }
+  .foot-contact .rating { margin-top: 0; }
+}
+@media (max-width: 700px) {
+  .site-footer {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 4vw, 40px) clamp(20px, 3vw, 32px);
+  }
+  .foot-brand,
+  .foot-contact {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
 }
 @media (max-width: 460px) {
-  .site-footer { grid-template-columns: 1fr; }
+  .site-footer {
+    grid-template-columns: 1fr;
+    padding-top: clamp(40px, 8vw, 60px);
+  }
+  .foot-contact {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
 }
 
 /* ---------- Solutions pages (Chasse + Renfort RH) ---------- */
