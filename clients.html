@@ -197,6 +197,9 @@
     }
     .row.active .tm-full {
       display: block;
+      /* On vire le background blanc pour que le nom (float, dessous) reste
+         visible en transparence */
+      background: transparent;
     }
     .row.active .tm-full > * + * {
       margin-top: clamp(18px, 2vw, 30px);
