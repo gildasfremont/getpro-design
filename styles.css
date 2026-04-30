@@ -194,6 +194,12 @@ button { font-family: inherit; cursor: pointer; }
   line-height: 1.2;
 }
 
+/* Variante "mobile only" du rating : sur Solutions, on remonte Trustpilot
+   à côté du h1 "Solutions" en mobile (au lieu de le laisser dans
+   .panel-title-row, où il sert de pendant à un titre h2 long et fait
+   moche en petit écran). Toggle via media query plus bas. */
+.rating-mobile-only { display: none; }
+
 /* ---------- Buttons ---------- */
 .btn-outline {
   align-self: flex-start;
@@ -560,4 +566,12 @@ button { font-family: inherit; cursor: pointer; }
     margin-inline: calc(var(--pad-x) * -1);
     padding-inline: var(--pad-x);
   }
+  /* Solutions : on remonte Trustpilot à côté du h1 "Solutions". Le
+     rating dans .panel-title-row (à côté du h2 "À chaque besoin…")
+     est masqué — on n'en garde qu'un visible. Pour que h1 et rating
+     partagent la 1ʳᵉ ligne du title-row, on force .tabs-2 à wrapper
+     en pleine largeur dessous via flex-basis: 100%. */
+  .rating-mobile-only { display: flex; }
+  .panel-title-row .ratings-row { display: none; }
+  .solutions-title-row .tabs-2 { flex-basis: 100%; }
 }
