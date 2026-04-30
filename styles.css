@@ -548,4 +548,16 @@ button { font-family: inherit; cursor: pointer; }
     order: -1;
     justify-self: start;
   }
+  /* Panel "full-bleed" en mobile : la box blanche prend toute la largeur
+     du viewport. On annule la gouttière de .section via une marge
+     négative égale à --pad-x, et on aligne le padding interne du panel
+     sur --pad-x pour que le contenu intérieur (titres, paragraphes,
+     subtabs…) reste vertically aligné avec le contenu extérieur du
+     même section (page-title, ratings…). Le padding vertical
+     pad-card-y reste inchangé via padding-inline (on n'écrase que
+     l'axe horizontal). */
+  .panel {
+    margin-inline: calc(var(--pad-x) * -1);
+    padding-inline: var(--pad-x);
+  }
 }

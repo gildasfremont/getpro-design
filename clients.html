@@ -255,6 +255,30 @@
     .row.active .tm-full > * + * {
       margin-top: clamp(18px, 2vw, 30px);
     }
+
+    /* Panel "full-bleed" : la box blanche prend toute la largeur du
+       viewport. On annule la gouttière de .section via une marge
+       négative égale à --pad-x, et on aligne le padding interne du
+       panel sur --pad-x → le contenu interne (noms, témoignages)
+       reste aligné avec le titre Clients et les ratings au-dessus. */
+    .clients-panel {
+      margin-inline: calc(var(--pad-x) * -1);
+      padding-inline: var(--pad-x);
+    }
+    /* Search bar : on inverse le pattern desktop (icone à gauche,
+       input à droite). En mobile, l'input prend la largeur, l'icone
+       part au bout de ligne, alignée avec le bord droit de la
+       section. La grille passe à 1fr auto et on utilise `order` pour
+       inverser visuellement (DOM order : icone puis input ; visual :
+       input puis icone). */
+    .clients-search {
+      grid-template-columns: 1fr auto;
+    }
+    .clients-search input { order: 1; }
+    .search-icon {
+      order: 2;
+      margin-right: 0;
+    }
   }
 </style>
 </head>
