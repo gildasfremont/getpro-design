@@ -16,12 +16,20 @@
     padding-bottom: var(--gap-section);
   }
 
+  /* Même pattern que .two-col des pages Solutions : column-gap 0, chaque
+     colonne respire avec un padding-right interne et est cappée à --measure
+     pour la lisibilité. La 2ᵉ colonne démarre pile au milieu. */
   .legal-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(40px, 5vw, 80px);
+    column-gap: 0;
+    row-gap: clamp(40px, 5vw, 80px);
     font-size: var(--fs-body);
     line-height: var(--lh-body);
+  }
+  .legal-grid > * {
+    padding-right: clamp(40px, 8vw, 120px);
+    max-width: var(--measure);
   }
 
   .legal-col {
@@ -49,7 +57,14 @@
   .legal a { text-decoration: underline; text-underline-offset: 3px; }
 
   @media (max-width: 800px) {
-    .legal-grid { grid-template-columns: 1fr; gap: 24px; }
+    /* Sous 800, la grille reste à 1 colonne de 50% (la 2ᵉ tombe en
+       dessous sans grossir la 1ʳᵉ — comme dans .two-col solutions). */
+    .legal-grid { grid-template-columns: minmax(0, 50%); }
+    .legal-grid > * { padding-right: 0; }
+  }
+  @media (max-width: 600px) {
+    /* Sous 600, libère et le contenu prend toute la largeur. */
+    .legal-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
