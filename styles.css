@@ -243,14 +243,23 @@ button { font-family: inherit; cursor: pointer; }
    (logo + tagline + adresse), 3 colonnes de liens à droite (Solutions
    détaillées, pages générales, contact + rating). Brand prend 1.7fr
    pour donner du poids visuel au logo, qui est ~2x la taille de la
-   nav, façon statement. Hairline top en plus du padding généreux. */
+   nav, façon statement. Hairline top en plus du padding généreux.
+
+   Même rythme de colonnes que .two-col (Solutions) et .legal-grid
+   (Mentions) : column-gap 0, chaque colonne respire avec un
+   padding-right interne. La 2ᵉ / 3ᵉ / 4ᵉ colonne tombent à des
+   positions prévisibles (1.7+1+1+1 = 4.7fr → cuts à ~36% / 57% / 79%). */
 .site-footer {
   display: grid;
   grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(40px, 5vw, 70px) clamp(24px, 3vw, 50px);
+  column-gap: 0;
+  row-gap: clamp(40px, 5vw, 70px);
   padding: clamp(50px, 6vw, 90px) var(--pad-x) clamp(36px, 4vw, 56px);
   border-top: 1px solid var(--line);
   align-items: start;
+}
+.site-footer > * {
+  padding-right: clamp(40px, 8vw, 120px);
 }
 
 /* Bloc brand : logo, tagline, adresse */
@@ -258,7 +267,6 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   flex-direction: column;
   gap: clamp(20px, 2vw, 32px);
-  max-width: 46ch;
 }
 .foot-logo {
   display: block;
@@ -309,12 +317,12 @@ button { font-family: inherit; cursor: pointer; }
   margin-top: clamp(12px, 1.5vw, 22px);
 }
 
-/* Responsive ----
-   ≤1000 : 3 cols. Le bloc contact passe sous le brand (col 1 row 2)
-   pour libérer de la place aux deux colonnes de liens.
-   ≤700  : 2 cols. Brand spans les deux colonnes en haut, contact
-   spans les deux colonnes en bas.
-   ≤460  : 1 col, tout stacké. */
+/* Responsive — on garde column-gap: 0 + padding-right interne à
+   chaque palier. Quand on stacke (≤460), le padding-right tombe
+   à 0 (le contenu prend toute la largeur).
+   ≤1000 : 3 cols. Contact passe sous le brand (row 2) en row flex.
+   ≤700  : 2 cols. Brand et contact spans la pleine largeur.
+   ≤460  : 1 col, tout stacké, pas de padding-right. */
 @media (max-width: 1000px) {
   .site-footer {
     grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
@@ -327,18 +335,20 @@ button { font-family: inherit; cursor: pointer; }
     align-items: center;
     gap: clamp(20px, 3vw, 36px);
     margin-top: clamp(16px, 2vw, 28px);
+    padding-right: 0;
   }
   .foot-contact .rating { margin-top: 0; }
 }
 @media (max-width: 700px) {
   .site-footer {
     grid-template-columns: 1fr 1fr;
-    gap: clamp(28px, 4vw, 40px) clamp(20px, 3vw, 32px);
+    row-gap: clamp(28px, 4vw, 40px);
   }
   .foot-brand,
   .foot-contact {
     grid-column: 1 / -1;
     grid-row: auto;
+    padding-right: 0;
   }
 }
 @media (max-width: 460px) {
@@ -346,6 +356,7 @@ button { font-family: inherit; cursor: pointer; }
     grid-template-columns: 1fr;
     padding-top: clamp(40px, 8vw, 60px);
   }
+  .site-footer > * { padding-right: 0; }
   .foot-contact {
     flex-direction: column;
     align-items: flex-start;
