@@ -42,7 +42,7 @@
   --lh-card-sub:      clamp(18px, 2.5vw, 36px);
   --fs-quote:         clamp(15px, 2.2vw, 32px);
   --lh-quote:         clamp(22px, 2.75vw, 40px);
-  --fs-tab:           clamp(20px, 2.6vw, 38px);
+  --fs-tab:           clamp(24px, 3.4vw, 50px);
   --fs-body:          clamp(15px, 1.65vw, 22px);
   --lh-body:          clamp(22px, 2.2vw, 30px);
 }
