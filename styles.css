@@ -574,6 +574,34 @@ button { font-family: inherit; cursor: pointer; }
 .case-logo-mark.flaire   { -webkit-mask-image: url('assets/flaire.svg');            mask-image: url('assets/flaire.svg'); }
 .case-logo-mark.pono     { -webkit-mask-image: url('assets/pono.svg');              mask-image: url('assets/pono.svg'); }
 
+/* Byline consultant attaché à un case-row : petit avatar rond + nom/rôle.
+   Sert quand on veut montrer qui pilote la mission présentée (ex : Camille
+   sur le case Pono dans Renfort RH > Cas clients). Plus discret qu'une
+   .featured-consultant complète, façon credit / crédit. */
+.case-consultant {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.5vw, 18px);
+  margin-top: clamp(16px, 2vw, 24px);
+}
+.case-consultant .photo {
+  width: clamp(40px, 4vw, 56px);
+  height: clamp(40px, 4vw, 56px);
+  border-radius: 50%;
+  background-size: auto 140%;
+  background-repeat: no-repeat;
+  background-position: 50% 22%;
+  background-color: #d8e0d3;
+  flex-shrink: 0;
+}
+.case-consultant-meta {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1.3;
+}
+.case-consultant-role { opacity: 0.6; }
+
 /* Consultants row — photos en grille 4 colonnes (3 puis 2 en responsive),
    yeux calés à ~22% de la hauteur de la cellule portrait 1:2. */
 .consultants-row {
