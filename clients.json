@@ -567,12 +567,15 @@
   },
   {
     "slug": "pono",
-    "name": "Pono",
+    "name": "Covalt",
     "has_logo": true,
     "has_testimonial": false,
     "domaine": "www.covalt.eu",
     "statut": "actif",
-    "status_label": null
+    "status_label": null,
+    "aliases": [
+      "Pono"
+    ]
   },
   {
     "slug": "cve-biogaz-services",
