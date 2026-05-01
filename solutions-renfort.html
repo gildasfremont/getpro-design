@@ -17,43 +17,12 @@
   .photo-emile     { background-image: url('assets/team/emile-pennes.jpg'); }
   .photo-guillaume { background-image: url('assets/team/guillaume-renard.png'); }
   .photo-louis     { background-image: url('assets/team/louis-fitamant.png'); }
-  .photo-camille   { background-image: url('assets/team/camille-fantini.jpg'); }
   .photo-anne      { background-image: url('assets/team/anne-delarue.png'); }
   .photo-die       { background-image: url('assets/team/die-astou-dioume.jpg'); }
   .photo-juliette  { background-image: url('assets/team/juliette-fabre.png'); }
   .photo-lauren    { background-image: url('assets/team/lauren-pointon.jpg'); }
   .photo-jonathan  { background-image: url('assets/team/jonathan-banigo.jpg'); }
   .photo-terry     { background-image: url('assets/team/terry-raimondo.png'); }
-
-  /* Featured consultant : photo plus large + nom/rôle côté, présentation
-     "à part" pour singulariser Camille (DRH externalisé) après Méthode. */
-  .featured-consultant {
-    display: grid;
-    grid-template-columns: clamp(140px, 16vw, 200px) 1fr;
-    gap: clamp(20px, 3vw, 40px);
-    align-items: center;
-  }
-  .featured-consultant .photo {
-    aspect-ratio: 3 / 4;
-    background-size: cover;
-    background-position: 50% 22%;
-    background-repeat: no-repeat;
-    background-color: #d8e0d3;
-  }
-  .featured-consultant .featured-meta {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(4px, 0.4vw, 8px);
-  }
-  .featured-consultant .featured-name {
-    font-size: var(--fs-card-name);
-    line-height: var(--lh-card-name);
-  }
-  .featured-consultant .featured-role {
-    font-size: var(--fs-body);
-    line-height: var(--lh-body);
-    opacity: 0.7;
-  }
 </style>
 </head>
 <body>
@@ -146,13 +115,9 @@
           </section>
 
           <section class="panel-section">
-            <h3>DRH externalisé</h3>
-            <div class="featured-consultant">
-              <div class="photo photo-camille" role="img" aria-label="Camille Fantini"></div>
-              <div class="featured-meta">
-                <span class="featured-name">Camille Fantini</span>
-                <span class="featured-role">DRH externalisé</span>
-              </div>
+            <div class="case-row">
+              <p>Mission DRH externalisée chez Pono depuis septembre 2023, à la suite d'une levée de fonds. Camille intervient à temps partagé sur 18 mois pour formaliser la culture, structurer l'onboarding, coacher les managers, mettre la fonction RH en conformité et redéfinir la stratégie de recrutement.</p>
+              <span class="case-logo-mark pono" aria-label="Pono"></span>
             </div>
           </section>
 

@@ -572,6 +572,7 @@ button { font-family: inherit; cursor: pointer; }
 .case-logo-mark.mistral  { -webkit-mask-image: url('assets/mistral-ai_wordmark.svg'); mask-image: url('assets/mistral-ai_wordmark.svg'); }
 .case-logo-mark.lucca    { -webkit-mask-image: url('assets/lucca.svg');             mask-image: url('assets/lucca.svg'); }
 .case-logo-mark.flaire   { -webkit-mask-image: url('assets/flaire.svg');            mask-image: url('assets/flaire.svg'); }
+.case-logo-mark.pono     { -webkit-mask-image: url('assets/pono.svg');              mask-image: url('assets/pono.svg'); }
 
 /* Consultants row — photos en grille 4 colonnes (3 puis 2 en responsive),
    yeux calés à ~22% de la hauteur de la cellule portrait 1:2. */
