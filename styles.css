@@ -662,22 +662,12 @@ button { font-family: inherit; cursor: pointer; }
   .two-col { grid-template-columns: 1fr; }
   /* Subtabs en mobile : on bascule sur les labels courts quand un short
      existe (Ponctuel / Continu / RPO ; Freelance, DRH de transition,
-     Outils & ATS gardent leur label original). */
+     Outils & ATS gardent leur label original). Cette réduction libère
+     de la place pour que "Profils couverts" reste à droite des
+     subtabs sans wrapper — on ne switche le layout que beaucoup plus
+     bas (cf. media query 460 plus loin). */
   .subtab-label-full { display: none; }
   .subtab-label-short { display: inline; }
-  /* En mobile, .subtabs-row passe en grid 1 colonne : ça permet de
-     placer "Profils couverts" au-dessus (order: -1) à sa largeur de
-     contenu (justify-self: start, aligné à gauche avec le reste du
-     contenu de la section). Au-dessus de 600px, on reste en flex
-     avec space-between : bouton à droite des subtabs. */
-  .subtabs-row {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-  .subtabs-row > .btn-outline {
-    order: -1;
-    justify-self: start;
-  }
   /* Panel "full-bleed" en mobile : la box blanche prend toute la largeur
      du viewport. On annule la gouttière de .section via une marge
      négative égale à --pad-x, et on aligne le padding interne du panel
@@ -689,5 +679,21 @@ button { font-family: inherit; cursor: pointer; }
   .panel {
     margin-inline: calc(var(--pad-x) * -1);
     padding-inline: var(--pad-x);
+  }
+}
+@media (max-width: 460px) {
+  /* Sous 460, même avec les labels courts (Ponctuel / Continu /
+     Freelance), il n'y a plus la place pour le bouton "Profils
+     couverts" à droite. On bascule .subtabs-row en grid 1 col,
+     bouton au-dessus à gauche (order: -1, justify-self: start).
+     Au-dessus de 460, le bouton reste à droite des subtabs via le
+     space-between du parent flex. */
+  .subtabs-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .subtabs-row > .btn-outline {
+    order: -1;
+    justify-self: start;
   }
 }
