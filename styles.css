@@ -254,7 +254,12 @@ button { font-family: inherit; cursor: pointer; }
   grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   column-gap: 0;
   row-gap: clamp(40px, 5vw, 70px);
-  padding: clamp(50px, 6vw, 90px) var(--pad-x) clamp(36px, 4vw, 56px);
+  /* Padding-inline = section pad-x + panel-pad-card-x → le contenu
+     du footer s'aligne sur celui des panels (Solutions, Clients) et
+     sur l'indent interne des sections home (process-text, logos).
+     En mobile (≤600), les panels passent full-bleed donc on retombe
+     sur var(--pad-x) seul (cf. media query plus bas). */
+  padding: clamp(50px, 6vw, 90px) calc(var(--pad-x) + var(--pad-card-x)) clamp(36px, 4vw, 56px);
   border-top: 1px solid var(--line);
   align-items: start;
 }
@@ -349,6 +354,15 @@ button { font-family: inherit; cursor: pointer; }
     grid-column: 1 / -1;
     grid-row: auto;
     padding-right: 0;
+  }
+}
+@media (max-width: 600px) {
+  /* En mobile les panels passent full-bleed (margin-inline négatif),
+     donc leur contenu interne s'aligne sur var(--pad-x) seul. Le
+     footer suit le même rythme : on retire le var(--pad-card-x) du
+     padding-inline pour rester aligné avec le contenu des sections. */
+  .site-footer {
+    padding-inline: var(--pad-x);
   }
 }
 @media (max-width: 460px) {
