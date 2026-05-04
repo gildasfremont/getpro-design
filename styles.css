@@ -272,13 +272,13 @@ button { font-family: inherit; cursor: pointer; }
   border-top: 1px solid var(--line);
 }
 
-/* "Featured nav" en haut du footer (façon MoMA) : 4 liens-vedette
+/* "Featured nav" en haut du footer (façon MoMA) : 3 liens-vedette
    gros et clairs vers les solutions phares (Recrutement salarié,
-   Freelance, RH de transition, Méthode GetPro). Hairline bottom
-   sépare visuellement de la grille standard en dessous. */
+   Freelance, RH de transition). Hairline bottom sépare visuellement
+   de la grille standard en dessous. */
 .foot-featured {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 0;
   row-gap: clamp(20px, 2vw, 32px);
   padding-bottom: clamp(40px, 5vw, 70px);
@@ -287,6 +287,8 @@ button { font-family: inherit; cursor: pointer; }
 .foot-featured a {
   display: inline-flex;
   align-items: baseline;
+  /* nowrap : "Recrutement salarié" doit tenir sur une ligne. */
+  white-space: nowrap;
   font-size: clamp(22px, 2.6vw, 38px);
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -372,14 +374,15 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* Responsive du footer.
-   ≤1000 : .foot-grid passe en 3 cols. .foot-featured en 2 cols.
-   ≤700  : .foot-grid en 2 cols (brand + contact spans full).
-           .foot-featured reste en 2 cols.
+   ≤1000 : .foot-grid passe en 3 cols. .foot-featured reste en 3 cols
+           (les 3 labels sont courts, ils tiennent en nowrap).
+   ≤700  : .foot-grid en 2 cols (brand + contact spans full),
+           .foot-featured en 1 col (stack vertical).
    ≤460  : tout en 1 col. */
 @media (max-width: 1000px) {
-  .foot-featured {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  /* .foot-featured reste à 3 cols ici (3 items courts), si ça
+     déborde le nowrap des liens fera apparaître un overflow visible
+     en bas de page — on adapte ensuite à 700. */
   .foot-grid {
     grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
   }
@@ -396,6 +399,10 @@ button { font-family: inherit; cursor: pointer; }
   .foot-contact .rating { margin-top: 0; }
 }
 @media (max-width: 700px) {
+  .foot-featured {
+    grid-template-columns: 1fr;
+    row-gap: clamp(14px, 2vw, 20px);
+  }
   .foot-grid {
     grid-template-columns: 1fr 1fr;
     row-gap: clamp(28px, 4vw, 40px);

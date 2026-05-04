@@ -36,7 +36,6 @@
       <a href="solutions.html#ponctuel"${aria('solutions.html#ponctuel')}>Recrutement salarié</a>
       <a href="solutions.html#freelance"${aria('solutions.html#freelance')}>Freelance</a>
       <a href="solutions-renfort.html#drh"${aria('solutions-renfort.html#drh')}>RH de transition</a>
-      <a href="methode.html"${aria('methode.html')}>Méthode GetPro</a>
     </nav>
     <div class="foot-grid">
       <div class="foot-brand">
@@ -47,8 +46,6 @@
       <div class="foot-col">
         <a href="solutions.html#ponctuel"${aria('solutions.html#ponctuel')}>Recrutement ponctuel</a>
         <a href="solutions.html#continu"${aria('solutions.html#continu')}>Recrutement en continu</a>
-        <a href="solutions.html#freelance"${aria('solutions.html#freelance')}>Freelance</a>
-        <a href="solutions-renfort.html#drh"${aria('solutions-renfort.html#drh')}>DRH de transition</a>
         <a href="solutions-renfort.html#rpo"${aria('solutions-renfort.html#rpo')}>RPO mensuel</a>
         <a href="solutions-renfort.html#outils"${aria('solutions-renfort.html#outils')}>Outils &amp; ATS</a>
       </div>
