@@ -254,12 +254,14 @@
        pareil pour rester cohérent à toutes les tailles. */
     .panel-body { grid-template-columns: 1fr; }
     /* La catégorie est maintenant représentée par un trigger sticky
-       (style "select") qui ouvre la liste au click. La col garde son
-       layout flex column normal (pas de display: contents). */
-    .categories-col {
-      position: static;
-      gap: clamp(16px, 2vw, 24px);
-    }
+       (style "select") qui ouvre la liste au click.
+       display: contents → trigger / bucket-tabs / rating deviennent
+       enfants directs du .panel-body grid. Le trigger sticky a alors
+       comme parent .panel-body (= toute la hauteur de la page,
+       contenu inclus) et continue de coller jusqu'en bas. Sinon,
+       avec .categories-col comme parent, le sticky s'arrêtait dès
+       que la col courte (trigger + rating) était scrollée. */
+    .categories-col { display: contents; }
     .categories-trigger {
       display: inline-flex;
       align-items: center;
