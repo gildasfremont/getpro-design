@@ -115,12 +115,15 @@
     text-underline-offset: 4px;
   }
   /* Sous-catégories indentées (Tech > Software/IA/Hardware,
-     Product > Designer/PM/Project). */
+     Product > Designer/PM/Project). Visibles uniquement dans la vue
+     "Postes" — masquées dans "Retour d'expérience" via .hide-subs sur
+     le parent #bucket-tabs (ajouté/retiré par le JS view-tabs). */
   .subtab-sub {
     padding-left: clamp(16px, 1.4vw, 24px);
     opacity: 0.85;
   }
   .subtab-sub[aria-current="true"] { opacity: 1; }
+  #bucket-tabs.hide-subs .subtab-sub { display: none; }
 
   /* Profiles : single column flat list */
   .profiles-area {
@@ -289,7 +292,9 @@
       const escape = (s) => (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
       // View tabs (Postes / Retour d'expérience) : swap des deux blocs
-      // .view-body[data-view="postes"] et [data-view="rdx"].
+      // .view-body[data-view="postes"] et [data-view="rdx"]. En RDX,
+      // on masque aussi les sous-catégories du menu (.subtab-sub) car
+      // les témoignages ne sont pas filtrés par sous-catégorie.
       const viewTabsHost = document.querySelector('.view-tabs');
       if (viewTabsHost) {
         viewTabsHost.addEventListener('click', (e) => {
@@ -304,37 +309,44 @@
             if (v.dataset.view === target) v.removeAttribute('hidden');
             else v.setAttribute('hidden', '');
           });
+          // Toggle .hide-subs sur le menu catégories. Si on cache les
+          // subs alors qu'un sub est actif, on transfère l'aria-current
+          // sur le parent pour ne pas perdre l'état visuel.
+          const bucketTabs = document.getElementById('bucket-tabs');
+          if (bucketTabs) {
+            if (target === 'rdx') {
+              bucketTabs.classList.add('hide-subs');
+              const activeSub = bucketTabs.querySelector('.subtab-sub[aria-current="true"]');
+              if (activeSub) {
+                activeSub.removeAttribute('aria-current');
+                const parent = bucketTabs.querySelector(
+                  `.subtab[data-bucket="${activeSub.dataset.bucket}"]:not([data-sub])`
+                );
+                if (parent) parent.setAttribute('aria-current', 'true');
+              }
+            } else {
+              bucketTabs.classList.remove('hide-subs');
+            }
+          }
         });
       }
 
       let metiers = {};
       let candidates = [];
       let activeBucket = 'tech';
-      let activeSub = null;
 
       function renderProfiles() {
         const data = metiers[activeBucket];
         if (!data) return;
 
-        // Si une sous-catégorie est sélectionnée, on n'affiche que ce
-        // sous-bloc.
-        if (activeSub && data.sub && data.sub[activeSub]) {
-          const s = data.sub[activeSub];
-          const list = s.postes.map(p => `<span class="profile">${escape(p.name)}</span>`).join('');
-          profilesArea.innerHTML = `<div class="profiles-block">
-            <div class="profiles-sub-label">${escape(s.label)}</div>
-            ${list}
-          </div>`;
-          return;
-        }
-
-        // Bucket avec sous-catégories mais pas de sub actif : on affiche
-        // tous les sous-blocs empilés.
+        // Bucket avec sous-catégories : on rend tous les sous-blocs et
+        // chaque bloc reçoit un id="postes-{sub-slug}" pour servir de
+        // cible de scroll au click sur la sous-catégorie dans le menu.
         if (data.sub) {
-          const subs = Object.values(data.sub).filter(s => s.postes.length > 0);
-          profilesArea.innerHTML = subs.map(s => {
+          const subs = Object.entries(data.sub).filter(([, s]) => s.postes.length > 0);
+          profilesArea.innerHTML = subs.map(([slug, s]) => {
             const list = s.postes.map(p => `<span class="profile">${escape(p.name)}</span>`).join('');
-            return `<div class="profiles-block">
+            return `<div class="profiles-block" id="postes-${escape(slug)}">
               <div class="profiles-sub-label">${escape(s.label)}</div>
               ${list}
             </div>`;
@@ -350,11 +362,7 @@
       }
 
       function filteredCandidates() {
-        return candidates.filter(c => {
-          if (c.bucket !== activeBucket) return false;
-          if (activeSub && c.bucket_sub !== activeSub) return false;
-          return true;
-        });
+        return candidates.filter(c => c.bucket === activeBucket);
       }
 
       function renderTestimonials() {
@@ -386,15 +394,37 @@
         const btn = e.target.closest('.subtab[data-bucket]');
         if (!btn) return;
         e.preventDefault();
-        activeBucket = btn.dataset.bucket;
-        // data-sub présent → sous-catégorie active ; absent → reset.
-        activeSub = btn.dataset.sub || null;
+
+        const targetBucket = btn.dataset.bucket;
+        const targetSub = btn.dataset.sub || null;
+
+        // aria-current visuel (un seul actif à la fois)
         tabsHost.querySelectorAll('.subtab').forEach(b => {
           if (b === btn) b.setAttribute('aria-current', 'true');
           else b.removeAttribute('aria-current');
         });
-        renderProfiles();
-        renderTestimonials();
+
+        // Re-render uniquement si on change de bucket parent. Les
+        // sous-catégories ne filtrent pas : elles servent juste à
+        // scroller dans la bonne zone.
+        if (targetBucket !== activeBucket) {
+          activeBucket = targetBucket;
+          renderProfiles();
+          renderTestimonials();
+        }
+
+        // Scroll vers la cible : .profiles-block#postes-{sub} pour un
+        // sub, sinon le haut de la zone profiles-area. Le rAF
+        // garantit que le DOM est à jour si on vient de re-render.
+        const headerOffset = 110;
+        requestAnimationFrame(() => {
+          const target = targetSub
+            ? document.getElementById(`postes-${targetSub}`)
+            : profilesArea;
+          if (!target) return;
+          const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        });
       });
 
       Promise.all([
