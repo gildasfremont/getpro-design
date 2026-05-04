@@ -254,14 +254,20 @@
        pour que .subtabs et .rating deviennent enfants directs de
        .panel-body. Du coup seul le menu (.subtabs = #bucket-tabs)
        reste sticky avec un fond blanc — Trustpilot tombe en flow
-       normal en-dessous. */
+       normal en-dessous.
+       top: 0 + padding-top de la hauteur du .header (clamp 56-82) :
+       le bg du sticky démarre à y=0 mais reste caché derrière le
+       header (z-index 50 vs notre 5). Les items du menu apparaissent
+       pile sous le header, sans gap possible quel que soit le
+       viewport — pas de "trou" où on verrait le contenu scroller. */
     .categories-col { display: contents; }
     #bucket-tabs {
       position: -webkit-sticky;
       position: sticky;
-      top: clamp(80px, 9vw, 110px);
+      top: 0;
       background: var(--white);
-      padding-block: clamp(12px, 1.6vw, 18px);
+      padding-top: clamp(56px, 6vw, 82px);
+      padding-bottom: clamp(12px, 1.6vw, 18px);
       z-index: 5;
     }
   }
