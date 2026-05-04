@@ -292,9 +292,9 @@
           </div>
 
           <div class="content-col">
-            <div class="view-tabs" role="tablist" aria-label="Vue Postes / Retour d'expérience">
-              <button class="view-tab" role="tab" data-view="postes" aria-current="true">Postes</button>
-              <button class="view-tab" role="tab" data-view="rdx">Retour d'expérience</button>
+            <div class="view-tabs" role="tablist" aria-label="Vue Placements / Témoignages">
+              <button class="view-tab" role="tab" data-view="postes" aria-current="true">Placements</button>
+              <button class="view-tab" role="tab" data-view="rdx">Témoignages</button>
             </div>
 
             <div class="view-body" data-view="postes">
@@ -457,6 +457,18 @@
         renderProfiles();
         renderChips();
         renderTestimonials();
+        // Scroll vers le haut du panel-body : si l'utilisateur était
+        // scrollé deep dans Tech et qu'il bascule sur Data, il faut
+        // remettre le contenu au début (sinon on tombe en plein milieu
+        // d'une nouvelle liste et on ne voit pas le menu / les chips).
+        // headerOffset ≈ même top que .categories-col sticky.
+        requestAnimationFrame(() => {
+          const panelBody = document.querySelector('.panel-body');
+          if (!panelBody) return;
+          const headerOffset = 110;
+          const top = panelBody.getBoundingClientRect().top + window.scrollY - headerOffset;
+          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        });
       });
 
       Promise.all([
