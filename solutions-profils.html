@@ -30,9 +30,14 @@
     gap: clamp(28px, 3.4vw, 50px);
   }
 
-  /* View-tabs : Postes / Retour d'expérience — bandeau au-dessus du
-     panel-body. Hairline bottom, même rythme que les .subtabs-row de
-     solutions.html. */
+  /* Col 2 du panel-body : view-tabs (Postes / Retour d'expérience) en
+     haut, et le contenu de la vue active en dessous. Le filtrage par
+     catégorie (col 1) s'applique aux deux vues. */
+  .content-col {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
   .view-tabs {
     display: flex;
     gap: clamp(20px, 3vw, 50px);
@@ -214,12 +219,7 @@
       <div class="panel">
         <h2 class="panel-title">+2000 talents récrutés sur toute la chaine de valeur d'innovation</h2>
 
-        <div class="view-tabs" role="tablist" aria-label="Vue Postes / Retour d'expérience">
-          <button class="view-tab" role="tab" data-view="postes" aria-current="true">Postes</button>
-          <button class="view-tab" role="tab" data-view="rdx">Retour d'expérience</button>
-        </div>
-
-        <div class="panel-body view-body" data-view="postes">
+        <div class="panel-body">
           <div class="categories-col">
             <div class="subtabs" role="tablist" id="bucket-tabs">
               <button class="subtab" role="tab" data-bucket="tech" aria-current="true">Tech</button>
@@ -237,11 +237,20 @@
             </div>
           </div>
 
-          <div class="profiles-area" id="profiles-area"></div>
-        </div>
+          <div class="content-col">
+            <div class="view-tabs" role="tablist" aria-label="Vue Postes / Retour d'expérience">
+              <button class="view-tab" role="tab" data-view="postes" aria-current="true">Postes</button>
+              <button class="view-tab" role="tab" data-view="rdx">Retour d'expérience</button>
+            </div>
 
-        <div class="view-body view-rdx" data-view="rdx" hidden>
-          <div class="testimonials" id="candidate-testimonials"></div>
+            <div class="view-body" data-view="postes">
+              <div class="profiles-area" id="profiles-area"></div>
+            </div>
+
+            <div class="view-body view-rdx" data-view="rdx" hidden>
+              <div class="testimonials" id="candidate-testimonials"></div>
+            </div>
+          </div>
         </div>
       </div>
 
