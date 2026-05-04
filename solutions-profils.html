@@ -19,35 +19,8 @@
     gap: 0;
     padding-bottom: var(--gap-section);
   }
-  /* Override le gap par défaut .header + * (~30-50px) : ici la page démarre
-     juste avec un petit back-link, pas un titre H1, donc on réduit. */
-  .header + .solutions { margin-top: clamp(8px, 1vw, 16px); }
-
-  .solutions-head {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(14px, 1.4vw, 20px);
-  }
-
-  .solutions-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: clamp(20px, 3vw, 50px);
-  }
-
-  /* Ratings — shared in styles.css */
-
-  .back-link {
-    display: inline-block;
-    font-size: var(--fs-tab);
-    line-height: 1.25;
-    margin-bottom: clamp(20px, 2.5vw, 36px);
-    color: inherit;
-    opacity: 0.6;
-    transition: opacity 0.15s ease;
-  }
-  .back-link:hover { opacity: 1; }
+  /* .solutions-head + .solutions-title-row : règles globales dans
+     styles.css (cf. solutions.html / solutions-renfort.html). */
 
   .panel {
     background: var(--white);
@@ -201,7 +174,14 @@
 
     <section class="solutions section">
       <div class="solutions-head">
-        <a class="back-link" href="solutions.html">← Solutions</a>
+        <div class="solutions-title-row">
+          <h1 class="page-title">Solutions</h1>
+          <nav class="tabs-2" aria-label="Solutions">
+            <a class="tab-2" href="solutions.html">Chasse</a>
+            <a class="tab-2" href="solutions-renfort.html">Renfort et outils RH</a>
+            <a class="tab-2" href="solutions-profils.html" aria-current="page">Profils couverts</a>
+          </nav>
+        </div>
       </div>
 
       <div class="panel">
