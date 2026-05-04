@@ -227,6 +227,21 @@ button { font-family: inherit; cursor: pointer; }
   max-width: 100%;
 }
 
+/* Lien texte + flèche : utilisé en complément d'un .btn-outline pour
+   un CTA secondaire (ex : "Voir l'équipe →" sous le bouton consultant
+   sur la home, "Suite : X →" en bas des pages Solutions). */
+.text-arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-menu);
+  line-height: 1.25;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: opacity 0.15s ease;
+}
+.text-arrow-link:hover { opacity: 0.7; }
+
 .menu-label-short { display: none; }
 @media (max-width: 800px) {
   .menu-label-full { display: none; }
@@ -362,6 +377,120 @@ button { font-family: inherit; cursor: pointer; }
     align-items: flex-start;
     gap: 14px;
   }
+}
+
+/* ---------- Process CTA (home consultant block) ----------
+   Boutonk principal "Échanger avec un consultant" + lien texte
+   "Voir l'équipe →" en accès secondaire. Stack en mobile. */
+.process-cta {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 40px);
+  flex-wrap: wrap;
+  margin-top: clamp(8px, 1vw, 16px);
+}
+
+/* ---------- Solutions overview (golden path home) ----------
+   Section entre Process et Logos avec les 3 entrées du chemin
+   solutions : Chasse, Renfort et outils RH, Métiers recrutés.
+   Layout éditorial : hairline en haut de chaque card, titre + 1
+   ligne descriptive, flèche en haut-droite. Hover tire l'opacité. */
+.solutions-overview {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 3.4vw, 50px);
+  padding-block: var(--gap-section);
+}
+.solutions-overview-head {
+  padding-left: clamp(24px, 4.8vw, 70px);
+  padding-right: clamp(0px, 3.5vw, 50px);
+}
+.solutions-overview-head h2 {
+  font-size: var(--fs-section-title);
+  line-height: var(--lh-section-title);
+  letter-spacing: -0.025em;
+  max-width: var(--measure);
+}
+.solutions-overview-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 clamp(0px, 3.5vw, 50px) 0 clamp(24px, 4.8vw, 70px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 0;
+  row-gap: clamp(28px, 3vw, 40px);
+}
+.solutions-overview-list > li {
+  border-top: 1px solid var(--line);
+}
+.solutions-overview-list a {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.4vw, 18px);
+  padding: clamp(20px, 2vw, 28px) clamp(28px, 3vw, 44px) 0 0;
+  position: relative;
+  transition: opacity 0.18s ease;
+}
+.solutions-overview-list a:hover { opacity: 0.7; }
+.solutions-overview-list h3 {
+  font-size: clamp(22px, 2.6vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.solutions-overview-list p {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  margin: 0;
+  opacity: 0.85;
+  max-width: 32ch;
+}
+.solutions-overview-list .arrow {
+  position: absolute;
+  top: clamp(20px, 2vw, 28px);
+  right: 0;
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1;
+}
+@media (max-width: 800px) {
+  .solutions-overview-list { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .solutions-overview-list { grid-template-columns: 1fr; }
+}
+
+/* ---------- Page-bottom "next" link ----------
+   Bandeau en bas des pages Solutions / Renfort / Profils / Clients
+   pour guider le golden path. Hairline top, padding généreux,
+   titre du prochain chapitre + flèche. */
+.page-next {
+  display: block;
+  border-top: 1px solid var(--line);
+  padding: clamp(28px, 3vw, 50px) var(--pad-x);
+  margin-top: var(--gap-section);
+  transition: opacity 0.18s ease;
+}
+.page-next:hover { opacity: 0.7; }
+.page-next-inner {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: clamp(20px, 3vw, 50px);
+  flex-wrap: wrap;
+}
+.page-next .label {
+  font-size: var(--fs-menu);
+  line-height: 1.25;
+  opacity: 0.6;
+}
+.page-next .title {
+  font-size: clamp(28px, 4vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+.page-next .arrow {
+  font-size: clamp(24px, 3vw, 40px);
+  line-height: 1;
+  margin-left: 8px;
 }
 
 /* ---------- Solutions pages (Chasse + Renfort RH) ---------- */
