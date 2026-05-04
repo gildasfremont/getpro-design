@@ -195,10 +195,14 @@
   .quote-card {
     background: var(--white);
     padding: clamp(28px, 6.8vw, 100px) clamp(24px, 4.8vw, 70px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 2.4vw, 36px);
   }
   .quote-card p {
     font-size: var(--fs-quote);
     line-height: var(--lh-quote);
+    margin: 0;
   }
 
   .quote-image {
@@ -432,6 +436,7 @@
         <div class="quote-wrap">
           <div class="quote-card">
             <p>Émile a passé 172 heures au téléphone, échangé avec 43 employeurs et déjeuné avec 18 candidats avant de trouver le futur DG de Lucca.</p>
+            <a href="equipe.html" class="text-arrow-link">Voir l’équipe →</a>
           </div>
           <div class="quote-image" role="img" aria-label="Émile, consultant GetPro"></div>
         </div>
@@ -454,21 +459,18 @@
         <h2>Nos solutions de recrutement</h2>
       </div>
       <ul class="solutions-overview-list">
-        <li><a href="solutions.html">
-          <h3>Chasse</h3>
+        <li>
+          <a href="solutions.html"><h3>Chasse</h3></a>
           <p>Recrutement direct au succès. Exclusivité GetPro le temps de la mission, trois candidats qualifiés plutôt que cinquante.</p>
-          <span class="arrow" aria-hidden="true">→</span>
-        </a></li>
-        <li><a href="solutions-renfort.html">
-          <h3>Renfort et outils RH</h3>
+        </li>
+        <li>
+          <a href="solutions-renfort.html"><h3>Renfort et outils RH</h3></a>
           <p>DRH de transition, RPO mensuel, déploiement d’outils et ATS. Renforcer vos équipes RH sans grossir la structure.</p>
-          <span class="arrow" aria-hidden="true">→</span>
-        </a></li>
-        <li><a href="solutions-profils.html">
-          <h3>Métiers recrutés</h3>
+        </li>
+        <li>
+          <a href="solutions-profils.html"><h3>Métiers recrutés</h3></a>
           <p>+2000 talents Tech, Product, Data, Sales, Marketing, Ops et C-level recrutés sur la chaîne de valeur d’innovation.</p>
-          <span class="arrow" aria-hidden="true">→</span>
-        </a></li>
+        </li>
       </ul>
     </section>
 
