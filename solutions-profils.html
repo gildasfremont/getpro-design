@@ -37,11 +37,7 @@
     margin-bottom: clamp(28px, 3.4vw, 50px);
   }
   .view-tab {
-    /* padding-top: 0 — pour que "Postes" s'aligne sur le baseline de
-       "Tech" en col 1 (qui n'a pas de padding-top). Padding-bottom
-       conservé pour la respiration avant la border-bottom + ::after
-       du tab actif. */
-    padding: 0 0 clamp(14px, 1.4vw, 20px);
+    padding: clamp(14px, 1.4vw, 20px) 0;
     font-size: clamp(18px, 2vw, 28px);
     line-height: 1.25;
     background: none;
@@ -61,12 +57,15 @@
   }
   .view-body[hidden] { display: none; }
 
-  /* Vue "Postes" : 2 cols — categories | profils. */
+  /* Vue "Postes" : 2 cols — categories | profils.
+     align-items: baseline → la baseline du 1er texte de chaque col
+     s'aligne (Tech ↔ Postes alignés sur le bas du texte, pas sur
+     le haut du box). */
   .panel-body {
     display: grid;
     grid-template-columns: minmax(120px, 0.5fr) minmax(0, 1fr);
     gap: clamp(28px, 4vw, 60px);
-    align-items: start;
+    align-items: baseline;
   }
   /* Vue "Retour d'expérience" : les témoignages prennent toute la
      largeur du panel, capés à --measure pour la lisibilité. */
@@ -110,6 +109,11 @@
     text-decoration: underline;
     text-underline-offset: 4px;
   }
+  /* Désactive le pseudo-bar global (.subtab[aria-current]::after,
+     une bande 2px de var(--ink) sous le tab) — sinon on a un double
+     soulignement gras avec le text-decoration ci-dessus. Ici on garde
+     uniquement l'underline texte, plus discret. */
+  #bucket-tabs .subtab[aria-current="true"]::after { display: none; }
   /* Filtres de sous-catégorie — texte plain en row, underline sur
      l'actif. Même langage typographique que le reste du site
      (.subtab, .foot-featured, etc) : pas de pill / pas de bg fill. */
