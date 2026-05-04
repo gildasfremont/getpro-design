@@ -559,7 +559,7 @@ button { font-family: inherit; cursor: pointer; }
   padding: var(--pad-card-y) var(--pad-card-x);
   display: flex;
   flex-direction: column;
-  gap: clamp(48px, 6vw, 100px);
+  gap: clamp(28px, 3.4vw, 50px);
 }
 
 .panel-title {

@@ -22,14 +22,6 @@
   /* .solutions-head + .solutions-title-row : règles globales dans
      styles.css (cf. solutions.html / solutions-renfort.html). */
 
-  .panel {
-    background: var(--white);
-    padding: var(--pad-card-y) var(--pad-card-x);
-    display: flex;
-    flex-direction: column;
-    gap: clamp(28px, 3.4vw, 50px);
-  }
-
   /* Col 2 du panel-body : view-tabs (Postes / Retour d'expérience) en
      haut, et le contenu de la vue active en dessous. Le filtrage par
      catégorie (col 1) s'applique aux deux vues. */
@@ -45,7 +37,11 @@
     margin-bottom: clamp(28px, 3.4vw, 50px);
   }
   .view-tab {
-    padding: clamp(14px, 1.4vw, 20px) 0;
+    /* padding-top: 0 — pour que "Postes" s'aligne sur le baseline de
+       "Tech" en col 1 (qui n'a pas de padding-top). Padding-bottom
+       conservé pour la respiration avant la border-bottom + ::after
+       du tab actif. */
+    padding: 0 0 clamp(14px, 1.4vw, 20px);
     font-size: clamp(18px, 2vw, 28px);
     line-height: 1.25;
     background: none;
@@ -348,9 +344,10 @@
       }
 
       // Chips de filtre des sous-catégories — visibles uniquement quand
-      // le bucket courant a des sub-catégories (Tech, Product). "Tous"
-      // + un chip par sous-catégorie. Pas de chips pour les buckets
-      // flat (Data, Sales, etc).
+      // le bucket courant a des sub-catégories (Tech, Product). Un chip
+      // par sous-catégorie (pas de "Tous" : par défaut tous les
+      // sous-blocs sont visibles, click sur le chip actif le déselectionne
+      // pour revenir à la vue d'ensemble).
       function renderChips() {
         if (!chipsHost) return;
         const data = metiers[activeBucket];
@@ -361,20 +358,18 @@
         }
         chipsHost.hidden = false;
         const subs = Object.entries(data.sub).filter(([, s]) => s.postes.length > 0);
-        const chips = [
-          `<button class="filter-chip" data-sub="" ${!activeSub ? 'aria-current="true"' : ''}>Tous</button>`,
-          ...subs.map(([slug, s]) =>
-            `<button class="filter-chip" data-sub="${escape(slug)}" ${activeSub === slug ? 'aria-current="true"' : ''}>${escape(s.label)}</button>`
-          )
-        ];
-        chipsHost.innerHTML = chips.join('');
+        chipsHost.innerHTML = subs.map(([slug, s]) =>
+          `<button class="filter-chip" data-sub="${escape(slug)}" ${activeSub === slug ? 'aria-current="true"' : ''}>${escape(s.label)}</button>`
+        ).join('');
       }
 
       if (chipsHost) {
         chipsHost.addEventListener('click', (e) => {
           const btn = e.target.closest('.filter-chip[data-sub]');
           if (!btn) return;
-          activeSub = btn.dataset.sub || null;
+          // Click sur le chip actif → deselect (revient à tous les
+          // sous-blocs) ; sinon active ce sub.
+          activeSub = (btn.dataset.sub === activeSub) ? null : btn.dataset.sub;
           renderProfiles();
           renderChips();
         });
