@@ -19,9 +19,10 @@
     padding-bottom: var(--gap-section);
   }
   .clients {
-    /* Same horizontal padding as .clients-panel — use it to align the
-       search input text with the name column of the list inside the panel. */
-    --clients-pad-x: clamp(20px, 3vw, 50px);
+    /* Aligné sur var(--pad-card-x) (Solutions panel) — la box blanche
+       respire pareil que sur les autres pages, au détriment de la
+       largeur de la preview de témoignage. */
+    --clients-pad-x: var(--pad-card-x);
   }
   .clients-head {
     margin-bottom: 0;
@@ -106,10 +107,11 @@
   .clients-search:has(input:not(:placeholder-shown)) .icon-loupe { display: none; }
   .clients-search:has(input:not(:placeholder-shown)) .icon-clear { display: block; }
 
-  /* Panel : just a card holding the list */
+  /* Panel : just a card holding the list — même padding que les
+     panels des autres pages (Solutions, etc.) pour respirer pareil. */
   .clients-panel {
     background: var(--white);
-    padding: clamp(28px, 3.4vw, 50px) var(--clients-pad-x);
+    padding: var(--pad-card-y) var(--clients-pad-x);
   }
 
   /* The content grid : parent grid defines the 3 column tracks, each <li.row>
