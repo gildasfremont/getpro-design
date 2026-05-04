@@ -157,13 +157,6 @@
     margin-bottom: clamp(20px, 2vw, 30px);
   }
   .profiles-block:last-child { margin-bottom: 0; }
-  .profiles-sub-label {
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: clamp(11px, 1vw, 14px);
-    opacity: 0.55;
-    margin-bottom: clamp(2px, 0.3vw, 6px);
-  }
   .profile {
     color: inherit;
     display: block;
@@ -334,16 +327,15 @@
         if (!data) return;
 
         // Bucket avec sous-catégories : si activeSub est set, n'affiche
-        // que ce sous-bloc ; sinon affiche tous les sous-blocs.
+        // que ce sous-bloc ; sinon affiche tous les sous-blocs. Plus
+        // de label en majuscules — les chips au-dessus suffisent à
+        // signaler la catégorisation.
         if (data.sub) {
           let subs = Object.entries(data.sub).filter(([, s]) => s.postes.length > 0);
           if (activeSub) subs = subs.filter(([slug]) => slug === activeSub);
-          profilesArea.innerHTML = subs.map(([slug, s]) => {
+          profilesArea.innerHTML = subs.map(([, s]) => {
             const list = s.postes.map(p => `<span class="profile">${escape(p.name)}</span>`).join('');
-            return `<div class="profiles-block">
-              <div class="profiles-sub-label">${escape(s.label)}</div>
-              ${list}
-            </div>`;
+            return `<div class="profiles-block">${list}</div>`;
           }).join('');
           return;
         }
