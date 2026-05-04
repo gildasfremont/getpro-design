@@ -114,16 +114,34 @@
     text-decoration: underline;
     text-underline-offset: 4px;
   }
-  /* Sous-catégories indentées (Tech > Software/IA/Hardware,
-     Product > Designer/PM/Project). Visibles uniquement dans la vue
-     "Postes" — masquées dans "Retour d'expérience" via .hide-subs sur
-     le parent #bucket-tabs (ajouté/retiré par le JS view-tabs). */
-  .subtab-sub {
-    padding-left: clamp(16px, 1.4vw, 24px);
-    opacity: 0.85;
+  /* Filter chips — apparaissent dans la vue Postes au-dessus de la
+     liste de postes, uniquement pour les buckets qui ont des sous-
+     catégories (Tech, Product). "Tous" + un chip par sous-catégorie. */
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(8px, 1vw, 14px);
+    margin-bottom: clamp(20px, 2.4vw, 32px);
   }
-  .subtab-sub[aria-current="true"] { opacity: 1; }
-  #bucket-tabs.hide-subs .subtab-sub { display: none; }
+  .filter-chips[hidden] { display: none; }
+  .filter-chip {
+    padding: clamp(6px, 0.7vw, 10px) clamp(12px, 1.2vw, 18px);
+    font-size: clamp(13px, 1.05vw, 16px);
+    line-height: 1.25;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .filter-chip:hover { border-color: var(--ink); }
+  .filter-chip[aria-current="true"] {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
 
   /* Profiles : single column flat list */
   .profiles-area {
@@ -241,13 +259,7 @@
           <div class="categories-col">
             <div class="subtabs" role="tablist" id="bucket-tabs">
               <button class="subtab" role="tab" data-bucket="tech" aria-current="true">Tech</button>
-              <button class="subtab subtab-sub" role="tab" data-bucket="tech" data-sub="software">Software</button>
-              <button class="subtab subtab-sub" role="tab" data-bucket="tech" data-sub="ia">IA</button>
-              <button class="subtab subtab-sub" role="tab" data-bucket="tech" data-sub="hardware">Hardware</button>
               <button class="subtab" role="tab" data-bucket="product">Product</button>
-              <button class="subtab subtab-sub" role="tab" data-bucket="product" data-sub="designer">Designer</button>
-              <button class="subtab subtab-sub" role="tab" data-bucket="product" data-sub="pm">PM</button>
-              <button class="subtab subtab-sub" role="tab" data-bucket="product" data-sub="project">Project</button>
               <button class="subtab" role="tab" data-bucket="data">Data</button>
               <button class="subtab" role="tab" data-bucket="sales">Sales &amp; Customer</button>
               <button class="subtab" role="tab" data-bucket="marketing">Marketing</button>
@@ -268,6 +280,7 @@
             </div>
 
             <div class="view-body" data-view="postes">
+              <div class="filter-chips" role="tablist" id="postes-chips" hidden></div>
               <div class="profiles-area" id="profiles-area"></div>
             </div>
 
@@ -292,9 +305,7 @@
       const escape = (s) => (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
       // View tabs (Postes / Retour d'expérience) : swap des deux blocs
-      // .view-body[data-view="postes"] et [data-view="rdx"]. En RDX,
-      // on masque aussi les sous-catégories du menu (.subtab-sub) car
-      // les témoignages ne sont pas filtrés par sous-catégorie.
+      // .view-body[data-view="postes"] et [data-view="rdx"].
       const viewTabsHost = document.querySelector('.view-tabs');
       if (viewTabsHost) {
         viewTabsHost.addEventListener('click', (e) => {
@@ -309,44 +320,27 @@
             if (v.dataset.view === target) v.removeAttribute('hidden');
             else v.setAttribute('hidden', '');
           });
-          // Toggle .hide-subs sur le menu catégories. Si on cache les
-          // subs alors qu'un sub est actif, on transfère l'aria-current
-          // sur le parent pour ne pas perdre l'état visuel.
-          const bucketTabs = document.getElementById('bucket-tabs');
-          if (bucketTabs) {
-            if (target === 'rdx') {
-              bucketTabs.classList.add('hide-subs');
-              const activeSub = bucketTabs.querySelector('.subtab-sub[aria-current="true"]');
-              if (activeSub) {
-                activeSub.removeAttribute('aria-current');
-                const parent = bucketTabs.querySelector(
-                  `.subtab[data-bucket="${activeSub.dataset.bucket}"]:not([data-sub])`
-                );
-                if (parent) parent.setAttribute('aria-current', 'true');
-              }
-            } else {
-              bucketTabs.classList.remove('hide-subs');
-            }
-          }
         });
       }
 
       let metiers = {};
       let candidates = [];
       let activeBucket = 'tech';
+      let activeSub = null; // null = "Tous" (tous les sous-blocs visibles)
+      const chipsHost = document.getElementById('postes-chips');
 
       function renderProfiles() {
         const data = metiers[activeBucket];
         if (!data) return;
 
-        // Bucket avec sous-catégories : on rend tous les sous-blocs et
-        // chaque bloc reçoit un id="postes-{sub-slug}" pour servir de
-        // cible de scroll au click sur la sous-catégorie dans le menu.
+        // Bucket avec sous-catégories : si activeSub est set, n'affiche
+        // que ce sous-bloc ; sinon affiche tous les sous-blocs.
         if (data.sub) {
-          const subs = Object.entries(data.sub).filter(([, s]) => s.postes.length > 0);
+          let subs = Object.entries(data.sub).filter(([, s]) => s.postes.length > 0);
+          if (activeSub) subs = subs.filter(([slug]) => slug === activeSub);
           profilesArea.innerHTML = subs.map(([slug, s]) => {
             const list = s.postes.map(p => `<span class="profile">${escape(p.name)}</span>`).join('');
-            return `<div class="profiles-block" id="postes-${escape(slug)}">
+            return `<div class="profiles-block">
               <div class="profiles-sub-label">${escape(s.label)}</div>
               ${list}
             </div>`;
@@ -359,6 +353,39 @@
         profilesArea.innerHTML = `<div class="profiles-block">${
           postes.map(p => `<span class="profile">${escape(p.name)}</span>`).join('')
         }</div>`;
+      }
+
+      // Chips de filtre des sous-catégories — visibles uniquement quand
+      // le bucket courant a des sub-catégories (Tech, Product). "Tous"
+      // + un chip par sous-catégorie. Pas de chips pour les buckets
+      // flat (Data, Sales, etc).
+      function renderChips() {
+        if (!chipsHost) return;
+        const data = metiers[activeBucket];
+        if (!data || !data.sub) {
+          chipsHost.hidden = true;
+          chipsHost.innerHTML = '';
+          return;
+        }
+        chipsHost.hidden = false;
+        const subs = Object.entries(data.sub).filter(([, s]) => s.postes.length > 0);
+        const chips = [
+          `<button class="filter-chip" data-sub="" ${!activeSub ? 'aria-current="true"' : ''}>Tous</button>`,
+          ...subs.map(([slug, s]) =>
+            `<button class="filter-chip" data-sub="${escape(slug)}" ${activeSub === slug ? 'aria-current="true"' : ''}>${escape(s.label)}</button>`
+          )
+        ];
+        chipsHost.innerHTML = chips.join('');
+      }
+
+      if (chipsHost) {
+        chipsHost.addEventListener('click', (e) => {
+          const btn = e.target.closest('.filter-chip[data-sub]');
+          if (!btn) return;
+          activeSub = btn.dataset.sub || null;
+          renderProfiles();
+          renderChips();
+        });
       }
 
       function filteredCandidates() {
@@ -394,37 +421,16 @@
         const btn = e.target.closest('.subtab[data-bucket]');
         if (!btn) return;
         e.preventDefault();
-
-        const targetBucket = btn.dataset.bucket;
-        const targetSub = btn.dataset.sub || null;
-
-        // aria-current visuel (un seul actif à la fois)
+        if (btn.dataset.bucket === activeBucket) return;
+        activeBucket = btn.dataset.bucket;
+        activeSub = null; // reset quand on change de bucket
         tabsHost.querySelectorAll('.subtab').forEach(b => {
           if (b === btn) b.setAttribute('aria-current', 'true');
           else b.removeAttribute('aria-current');
         });
-
-        // Re-render uniquement si on change de bucket parent. Les
-        // sous-catégories ne filtrent pas : elles servent juste à
-        // scroller dans la bonne zone.
-        if (targetBucket !== activeBucket) {
-          activeBucket = targetBucket;
-          renderProfiles();
-          renderTestimonials();
-        }
-
-        // Scroll vers la cible : .profiles-block#postes-{sub} pour un
-        // sub, sinon le haut de la zone profiles-area. Le rAF
-        // garantit que le DOM est à jour si on vient de re-render.
-        const headerOffset = 110;
-        requestAnimationFrame(() => {
-          const target = targetSub
-            ? document.getElementById(`postes-${targetSub}`)
-            : profilesArea;
-          if (!target) return;
-          const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-        });
+        renderProfiles();
+        renderChips();
+        renderTestimonials();
       });
 
       Promise.all([
@@ -434,6 +440,7 @@
         metiers = m;
         candidates = c;
         renderProfiles();
+        renderChips();
         renderTestimonials();
       }).catch(err => {
         console.error('Failed to load data:', err);
