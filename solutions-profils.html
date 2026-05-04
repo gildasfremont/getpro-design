@@ -250,6 +250,18 @@
        pareil pour rester cohérent à toutes les tailles. */
     .panel-body { grid-template-columns: 1fr; }
     .subtabs { flex-direction: row; flex-wrap: wrap; gap: 12px 24px; }
+    /* Categories-col reste sticky en mobile — mais comme la grille
+       passe en 1 col, la liste des postes/témoignages scrolle juste
+       en-dessous du menu et passerait à travers. On ajoute un fond
+       blanc + un peu de padding-block et une hairline bottom pour
+       que le menu sticky reste lisible quand le contenu défile
+       derrière. z-index pour passer au-dessus de la grille. */
+    .categories-col {
+      background: var(--white);
+      padding-block: clamp(12px, 1.6vw, 18px);
+      border-bottom: 1px solid var(--line);
+      z-index: 5;
+    }
   }
 </style>
 </head>
