@@ -426,17 +426,6 @@ button { font-family: inherit; cursor: pointer; }
   }
 }
 
-/* ---------- Process CTA (home consultant block) ----------
-   Boutonk principal "Échanger avec un consultant" + lien texte
-   "Voir l'équipe →" en accès secondaire. Stack en mobile. */
-.process-cta {
-  display: flex;
-  align-items: center;
-  gap: clamp(20px, 3vw, 40px);
-  flex-wrap: wrap;
-  margin-top: clamp(8px, 1vw, 16px);
-}
-
 /* ---------- Solutions overview (golden path home) ----------
    Section entre Process et Logos avec les 3 entrées du chemin
    solutions : Chasse, Renfort et outils RH, Métiers recrutés.
