@@ -435,9 +435,11 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .panel-title {
-  font-size: var(--fs-card-title);
-  line-height: var(--lh-card-title);
-  letter-spacing: -0.025em;
+  /* Réduit en importance : ce n'est qu'une intro à l'intérieur du panel,
+     le h1 "Solutions" porte déjà le poids du titre de page. */
+  font-size: clamp(20px, 2.2vw, 32px);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
 }
 
 .panel-title-row {
