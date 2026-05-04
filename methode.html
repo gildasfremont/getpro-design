@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GetPro — Méthode</title>
+<meta name="description" content="La méthode GetPro : comment on travaille, ce qui rend nos missions répétables, et pourquoi le temps passé candidat par candidat reste notre vrai différenciateur." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta property="og:title" content="GetPro — Méthode" />
+<meta property="og:description" content="La méthode GetPro : comment on travaille, ce qui rend nos missions répétables, et pourquoi le temps passé candidat par candidat reste notre vrai différenciateur." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_FR" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .methode {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 3.4vw, 50px);
+    padding-bottom: var(--gap-section);
+  }
+  .methode .panel-title {
+    /* Le titre h1 .page-title porte déjà le poids ; le panel-title
+       sert de baseline d'intro, taille modeste. */
+    margin-bottom: clamp(20px, 2.5vw, 36px);
+  }
+  .methode-placeholder {
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    opacity: 0.6;
+    max-width: var(--measure);
+  }
+</style>
+</head>
+<body>
+  <main class="home">
+
+    <header class="header section" data-nav></header>
+
+    <section class="methode section">
+      <h1 class="page-title">Méthode</h1>
+
+      <div class="panel">
+        <h2 class="panel-title">Ce qui rend nos missions répétables</h2>
+
+        <div class="two-col">
+          <div>
+            <p>Le recrutement n'est pas qu'un jeu de chaises musicales. Notre méthode tient en trois principes simples : un binôme dédié par mission, un seul candidat à la fois, des refus argumentés.</p>
+            <p>Pas de course au volume, pas de spam de candidatures. Trois candidats qualifiés, parfois quatre, pas cinquante.</p>
+          </div>
+          <div>
+            <p>Notre base de 60 000 profils tenue à jour depuis dix ans permet de produire une première shortlist 45 minutes après le kick-off. La vitesse sert à caler la mission, pas à raccourcir le travail.</p>
+            <p>Le vrai sujet, c'est la conviction et le temps passé un à un avec chaque candidat. Reporting hebdomadaire sur les volumes et les qualifications.</p>
+          </div>
+        </div>
+        <p class="methode-placeholder">Cette page est en cours de rédaction. Plus de détails à venir sur le déroulé d'une mission, les outils internes, et les engagements de qualité.</p>
+      </div>
+    </section>
+
+    <footer class="site-footer" data-footer></footer>
+
+  </main>
+  <script src="partials.js" defer></script>
+</body>
+</html>

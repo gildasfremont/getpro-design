@@ -265,15 +265,54 @@ button { font-family: inherit; cursor: pointer; }
    padding-right interne. La 2ᵉ / 3ᵉ / 4ᵉ colonne tombent à des
    positions prévisibles (1.7+1+1+1 = 4.7fr → cuts à ~36% / 57% / 79%). */
 .site-footer {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(50px, 6vw, 90px);
+  padding: clamp(50px, 6vw, 90px) var(--pad-x) clamp(36px, 4vw, 56px);
+  border-top: 1px solid var(--line);
+}
+
+/* "Featured nav" en haut du footer (façon MoMA) : 4 liens-vedette
+   gros et clairs vers les solutions phares (Recrutement salarié,
+   Freelance, RH de transition, Méthode GetPro). Hairline bottom
+   sépare visuellement de la grille standard en dessous. */
+.foot-featured {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 0;
+  row-gap: clamp(20px, 2vw, 32px);
+  padding-bottom: clamp(40px, 5vw, 70px);
+  border-bottom: 1px solid var(--line);
+}
+.foot-featured a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: clamp(6px, 0.6vw, 10px);
+  font-size: clamp(22px, 2.6vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  padding-right: clamp(16px, 2vw, 32px);
+  transition: opacity 0.18s ease;
+}
+.foot-featured a:hover { opacity: 0.6; }
+.foot-featured a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.foot-featured .arrow {
+  font-size: 0.85em;
+  opacity: 0.55;
+}
+
+/* Grille standard du footer (sous le featured nav) */
+.foot-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   column-gap: 0;
   row-gap: clamp(40px, 5vw, 70px);
-  padding: clamp(50px, 6vw, 90px) var(--pad-x) clamp(36px, 4vw, 56px);
-  border-top: 1px solid var(--line);
   align-items: start;
 }
-.site-footer > * {
+.foot-grid > * {
   padding-right: clamp(40px, 8vw, 120px);
 }
 
@@ -332,14 +371,16 @@ button { font-family: inherit; cursor: pointer; }
   margin-top: clamp(12px, 1.5vw, 22px);
 }
 
-/* Responsive — on garde column-gap: 0 + padding-right interne à
-   chaque palier. Quand on stacke (≤460), le padding-right tombe
-   à 0 (le contenu prend toute la largeur).
-   ≤1000 : 3 cols. Contact passe sous le brand (row 2) en row flex.
-   ≤700  : 2 cols. Brand et contact spans la pleine largeur.
-   ≤460  : 1 col, tout stacké, pas de padding-right. */
+/* Responsive du footer.
+   ≤1000 : .foot-grid passe en 3 cols. .foot-featured en 2 cols.
+   ≤700  : .foot-grid en 2 cols (brand + contact spans full).
+           .foot-featured reste en 2 cols.
+   ≤460  : tout en 1 col. */
 @media (max-width: 1000px) {
-  .site-footer {
+  .foot-featured {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .foot-grid {
     grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
   }
   .foot-contact {
@@ -355,7 +396,7 @@ button { font-family: inherit; cursor: pointer; }
   .foot-contact .rating { margin-top: 0; }
 }
 @media (max-width: 700px) {
-  .site-footer {
+  .foot-grid {
     grid-template-columns: 1fr 1fr;
     row-gap: clamp(28px, 4vw, 40px);
   }
@@ -368,10 +409,16 @@ button { font-family: inherit; cursor: pointer; }
 }
 @media (max-width: 460px) {
   .site-footer {
-    grid-template-columns: 1fr;
     padding-top: clamp(40px, 8vw, 60px);
   }
-  .site-footer > * { padding-right: 0; }
+  .foot-featured {
+    grid-template-columns: 1fr;
+    row-gap: clamp(14px, 2vw, 20px);
+  }
+  .foot-grid {
+    grid-template-columns: 1fr;
+  }
+  .foot-grid > * { padding-right: 0; }
   .foot-contact {
     flex-direction: column;
     align-items: flex-start;
@@ -458,55 +505,6 @@ button { font-family: inherit; cursor: pointer; }
 }
 @media (max-width: 600px) {
   .solutions-overview-list { grid-template-columns: 1fr; }
-}
-
-/* ---------- Page-bottom "next" link ----------
-   Bandeau en bas des pages Solutions / Renfort / Profils pour guider
-   le golden path. Hairline top, padding aligné sur le contenu des
-   panels (pad-x + pad-card-x), gros titre du prochain chapitre.
-   En mobile (≤600), retombe sur var(--pad-x) car les panels passent
-   full-bleed → contenu interne aligné sur var(--pad-x). */
-.page-next {
-  display: block;
-  border-top: 1px solid var(--line);
-  padding: clamp(36px, 4vw, 64px) calc(var(--pad-x) + var(--pad-card-x));
-  margin-top: var(--gap-section);
-  transition: opacity 0.18s ease;
-}
-.page-next:hover { opacity: 0.7; }
-.page-next-inner {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: clamp(20px, 3vw, 50px);
-  flex-wrap: wrap;
-}
-.page-next .label {
-  font-size: var(--fs-menu);
-  line-height: 1.25;
-  opacity: 0.55;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-.page-next .title {
-  font-size: clamp(32px, 5vw, 72px);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-}
-.page-next .arrow {
-  font-size: clamp(28px, 4vw, 56px);
-  line-height: 1;
-  margin-left: clamp(8px, 1vw, 14px);
-}
-@media (max-width: 600px) {
-  .page-next {
-    padding-inline: var(--pad-x);
-  }
-  .page-next-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: clamp(8px, 1.5vw, 14px);
-  }
 }
 
 /* ---------- Solutions pages (Chasse + Renfort RH) ---------- */
