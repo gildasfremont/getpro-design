@@ -243,33 +243,61 @@
     }
   }
 
+  /* Trigger "select" : caché en desktop, visible en mobile.
+     Affiche la catégorie active + chevron, click → ouvre la liste. */
+  .categories-trigger { display: none; }
+
   @media (max-width: 800px) {
     .panel-title { max-width: none; }
     /* .solutions-title-row : on laisse le flex-wrap global gérer le
        passage à la ligne — les autres pages Solutions/Renfort font
        pareil pour rester cohérent à toutes les tailles. */
     .panel-body { grid-template-columns: 1fr; }
-    .subtabs { flex-direction: row; flex-wrap: wrap; gap: 12px 24px; }
-    /* Mobile : on "déstructure" .categories-col via display: contents
-       pour que .subtabs et .rating deviennent enfants directs de
-       .panel-body. Du coup seul le menu (.subtabs = #bucket-tabs)
-       reste sticky avec un fond blanc — Trustpilot tombe en flow
-       normal en-dessous.
-       top: 0 + padding-top de la hauteur du .header (clamp 56-82) :
-       le bg du sticky démarre à y=0 mais reste caché derrière le
-       header (z-index 50 vs notre 5). Les items du menu apparaissent
-       pile sous le header, sans gap possible quel que soit le
-       viewport — pas de "trou" où on verrait le contenu scroller. */
-    .categories-col { display: contents; }
-    #bucket-tabs {
+    /* La catégorie est maintenant représentée par un trigger sticky
+       (style "select") qui ouvre la liste au click. La col garde son
+       layout flex column normal (pas de display: contents). */
+    .categories-col {
+      position: static;
+      gap: clamp(16px, 2vw, 24px);
+    }
+    .categories-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      align-self: stretch;
+      text-align: left;
+      padding: 0 0 clamp(12px, 1.6vw, 18px);
+      padding-top: clamp(56px, 6vw, 82px);
+      font-size: clamp(20px, 2.2vw, 30px);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      background: var(--white);
+      border: none;
+      cursor: pointer;
+      color: inherit;
+      font-family: inherit;
       position: -webkit-sticky;
       position: sticky;
       top: 0;
-      background: var(--white);
-      padding-top: clamp(56px, 6vw, 82px);
-      padding-bottom: clamp(12px, 1.6vw, 18px);
       z-index: 5;
     }
+    .categories-trigger .chevron {
+      transition: transform 0.18s ease;
+      flex-shrink: 0;
+    }
+    .categories-trigger[aria-expanded="true"] .chevron {
+      transform: rotate(180deg);
+    }
+    /* Liste cachée par défaut, visible quand on ouvre le trigger */
+    #bucket-tabs {
+      display: none;
+    }
+    #bucket-tabs.is-open {
+      display: flex;
+    }
+    /* Le sub par défaut (.subtab[aria-current=true]) ne doit pas
+       être affiché en double dans la liste : on garde la liste
+       complète, l'item actif est visuellement souligné. */
   }
 </style>
 </head>
@@ -295,6 +323,12 @@
 
         <div class="panel-body">
           <div class="categories-col">
+            <button class="categories-trigger" type="button" aria-expanded="false" aria-controls="bucket-tabs">
+              <span class="categories-trigger-label">Tech</span>
+              <svg class="chevron" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                <path d="M3.5 5.75L8 10.25l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
             <div class="subtabs" role="tablist" id="bucket-tabs">
               <button class="subtab" role="tab" data-bucket="tech" aria-current="true">Tech</button>
               <button class="subtab" role="tab" data-bucket="product">Product</button>
@@ -463,11 +497,41 @@
         }).join('');
       }
 
+      // Trigger "select" du menu catégories en mobile.
+      const trigger = document.querySelector('.categories-trigger');
+      const triggerLabel = trigger?.querySelector('.categories-trigger-label');
+      function closeTrigger() {
+        if (!trigger) return;
+        trigger.setAttribute('aria-expanded', 'false');
+        tabsHost.classList.remove('is-open');
+      }
+      function syncTriggerLabel() {
+        if (!triggerLabel) return;
+        const active = tabsHost.querySelector('.subtab[aria-current="true"]');
+        if (active) triggerLabel.textContent = active.textContent.trim();
+      }
+      if (trigger) {
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const open = trigger.getAttribute('aria-expanded') === 'true';
+          trigger.setAttribute('aria-expanded', String(!open));
+          tabsHost.classList.toggle('is-open', !open);
+        });
+        document.addEventListener('click', (e) => {
+          if (!trigger.contains(e.target) && !tabsHost.contains(e.target)) closeTrigger();
+        });
+        syncTriggerLabel();
+      }
+
       tabsHost.addEventListener('click', (e) => {
         const btn = e.target.closest('.subtab[data-bucket]');
         if (!btn) return;
         e.preventDefault();
-        if (btn.dataset.bucket === activeBucket) return;
+        // Click sur la cat déjà active : on ferme juste le trigger.
+        if (btn.dataset.bucket === activeBucket) {
+          closeTrigger();
+          return;
+        }
         activeBucket = btn.dataset.bucket;
         activeSub = null; // reset quand on change de bucket
         tabsHost.querySelectorAll('.subtab').forEach(b => {
@@ -477,11 +541,12 @@
         renderProfiles();
         renderChips();
         renderTestimonials();
+        syncTriggerLabel();
+        closeTrigger();
         // Scroll vers le haut du panel-body : si l'utilisateur était
         // scrollé deep dans Tech et qu'il bascule sur Data, il faut
         // remettre le contenu au début (sinon on tombe en plein milieu
         // d'une nouvelle liste et on ne voit pas le menu / les chips).
-        // headerOffset ≈ même top que .categories-col sticky.
         requestAnimationFrame(() => {
           const panelBody = document.querySelector('.panel-body');
           if (!panelBody) return;
