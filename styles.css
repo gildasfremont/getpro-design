@@ -402,7 +402,9 @@ button { font-family: inherit; cursor: pointer; }
   padding-block: var(--gap-section);
 }
 .solutions-overview-head {
-  padding-left: clamp(24px, 4.8vw, 70px);
+  /* Indent interne aligné sur le contenu des panels (var(--pad-card-x))
+     et sur l'indent .process-text/.logos-title du même rythme 4.8vw. */
+  padding-left: var(--pad-card-x);
   padding-right: clamp(0px, 3.5vw, 50px);
 }
 .solutions-overview-head h2 {
@@ -414,7 +416,7 @@ button { font-family: inherit; cursor: pointer; }
 .solutions-overview-list {
   list-style: none;
   margin: 0;
-  padding: 0 clamp(0px, 3.5vw, 50px) 0 clamp(24px, 4.8vw, 70px);
+  padding: 0 clamp(0px, 3.5vw, 50px) 0 var(--pad-card-x);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 0;
@@ -459,13 +461,15 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ---------- Page-bottom "next" link ----------
-   Bandeau en bas des pages Solutions / Renfort / Profils / Clients
-   pour guider le golden path. Hairline top, padding généreux,
-   titre du prochain chapitre + flèche. */
+   Bandeau en bas des pages Solutions / Renfort / Profils pour guider
+   le golden path. Hairline top, padding aligné sur le contenu des
+   panels (pad-x + pad-card-x), gros titre du prochain chapitre.
+   En mobile (≤600), retombe sur var(--pad-x) car les panels passent
+   full-bleed → contenu interne aligné sur var(--pad-x). */
 .page-next {
   display: block;
   border-top: 1px solid var(--line);
-  padding: clamp(28px, 3vw, 50px) var(--pad-x);
+  padding: clamp(36px, 4vw, 64px) calc(var(--pad-x) + var(--pad-card-x));
   margin-top: var(--gap-section);
   transition: opacity 0.18s ease;
 }
@@ -480,17 +484,29 @@ button { font-family: inherit; cursor: pointer; }
 .page-next .label {
   font-size: var(--fs-menu);
   line-height: 1.25;
-  opacity: 0.6;
+  opacity: 0.55;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 .page-next .title {
-  font-size: clamp(28px, 4vw, 56px);
-  line-height: 1.1;
+  font-size: clamp(32px, 5vw, 72px);
+  line-height: 1.05;
   letter-spacing: -0.025em;
 }
 .page-next .arrow {
-  font-size: clamp(24px, 3vw, 40px);
+  font-size: clamp(28px, 4vw, 56px);
   line-height: 1;
-  margin-left: 8px;
+  margin-left: clamp(8px, 1vw, 14px);
+}
+@media (max-width: 600px) {
+  .page-next {
+    padding-inline: var(--pad-x);
+  }
+  .page-next-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(8px, 1.5vw, 14px);
+  }
 }
 
 /* ---------- Solutions pages (Chasse + Renfort RH) ---------- */
