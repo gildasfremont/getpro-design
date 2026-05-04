@@ -253,37 +253,46 @@
        passage à la ligne — les autres pages Solutions/Renfort font
        pareil pour rester cohérent à toutes les tailles. */
     .panel-body { grid-template-columns: 1fr; }
-    /* La catégorie est maintenant représentée par un trigger sticky
-       (style "select") qui ouvre la liste au click.
-       display: contents → trigger / bucket-tabs / rating deviennent
-       enfants directs du .panel-body grid. Le trigger sticky a alors
-       comme parent .panel-body (= toute la hauteur de la page,
-       contenu inclus) et continue de coller jusqu'en bas. Sinon,
-       avec .categories-col comme parent, le sticky s'arrêtait dès
-       que la col courte (trigger + rating) était scrollée. */
-    .categories-col { display: contents; }
+    /* En mobile, .categories-col devient un sticky bar :
+       - row 1 : trigger "Tech ▾" à gauche + Trustpilot à droite
+       - row 2 : la liste bucket-tabs (cachée par défaut, ouverte
+         quand on clique le trigger)
+       Sticky sur la col entière → reste collée tout le long du
+       scroll dans le panel-body (parent grid qui inclut content-col).
+       top ≈ hauteur du header sticky pour pas de gap. */
+    .categories-col {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        "trigger rating"
+        "subtabs subtabs";
+      align-items: baseline;
+      column-gap: clamp(16px, 2vw, 24px);
+      row-gap: clamp(16px, 2vw, 24px);
+      position: -webkit-sticky;
+      position: sticky;
+      top: clamp(60px, 6vw, 90px);
+      background: var(--white);
+      padding: clamp(12px, 1.6vw, 18px) 0;
+      z-index: 5;
+    }
     .categories-trigger {
+      grid-area: trigger;
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      align-self: stretch;
       text-align: left;
-      padding: clamp(12px, 1.6vw, 18px) 0;
+      padding: 0;
       font-size: clamp(20px, 2.2vw, 30px);
       line-height: 1.2;
       letter-spacing: -0.01em;
-      background: var(--white);
+      background: none;
       border: none;
       cursor: pointer;
       color: inherit;
       font-family: inherit;
-      /* sticky offset ≈ hauteur réelle du .header (~58-95px selon
-         viewport). Pas de padding-top hack — ça ajoutait un grand
-         espace dans le flow normal avant scroll. */
-      position: -webkit-sticky;
-      position: sticky;
-      top: clamp(60px, 6vw, 90px);
-      z-index: 5;
+      align-self: center;
+      justify-self: start;
     }
     .categories-trigger .chevron {
       transition: transform 0.18s ease;
@@ -292,16 +301,21 @@
     .categories-trigger[aria-expanded="true"] .chevron {
       transform: rotate(180deg);
     }
+    .categories-col .rating {
+      grid-area: rating;
+      align-self: center;
+      justify-self: end;
+    }
     /* Liste cachée par défaut, visible quand on ouvre le trigger */
     #bucket-tabs {
+      grid-area: subtabs;
       display: none;
     }
     #bucket-tabs.is-open {
       display: flex;
+      flex-direction: column;
+      gap: clamp(10px, 1vw, 14px);
     }
-    /* Le sub par défaut (.subtab[aria-current=true]) ne doit pas
-       être affiché en double dans la liste : on garde la liste
-       complète, l'item actif est visuellement souligné. */
   }
 </style>
 </head>
