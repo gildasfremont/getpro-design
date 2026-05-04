@@ -33,10 +33,10 @@
 
   const footerHTML = `
     <nav class="foot-featured" aria-label="Solutions principales">
-      <a href="solutions.html#ponctuel"${aria('solutions.html#ponctuel')}>Recrutement salarié <span class="arrow" aria-hidden="true">→</span></a>
-      <a href="solutions.html#freelance"${aria('solutions.html#freelance')}>Freelance <span class="arrow" aria-hidden="true">→</span></a>
-      <a href="solutions-renfort.html#drh"${aria('solutions-renfort.html#drh')}>RH de transition <span class="arrow" aria-hidden="true">→</span></a>
-      <a href="methode.html"${aria('methode.html')}>Méthode GetPro <span class="arrow" aria-hidden="true">→</span></a>
+      <a href="solutions.html#ponctuel"${aria('solutions.html#ponctuel')}>Recrutement salarié</a>
+      <a href="solutions.html#freelance"${aria('solutions.html#freelance')}>Freelance</a>
+      <a href="solutions-renfort.html#drh"${aria('solutions-renfort.html#drh')}>RH de transition</a>
+      <a href="methode.html"${aria('methode.html')}>Méthode GetPro</a>
     </nav>
     <div class="foot-grid">
       <div class="foot-brand">
