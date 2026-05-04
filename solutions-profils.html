@@ -106,6 +106,13 @@
     text-decoration: underline;
     text-underline-offset: 4px;
   }
+  /* Sous-catégories indentées (Tech > Software/IA/Hardware,
+     Product > Designer/PM/Project). */
+  .subtab-sub {
+    padding-left: clamp(16px, 1.4vw, 24px);
+    opacity: 0.85;
+  }
+  .subtab-sub[aria-current="true"] { opacity: 1; }
 
   /* Profiles : single column flat list */
   .profiles-area {
@@ -223,7 +230,13 @@
           <div class="categories-col">
             <div class="subtabs" role="tablist" id="bucket-tabs">
               <button class="subtab" role="tab" data-bucket="tech" aria-current="true">Tech</button>
+              <button class="subtab subtab-sub" role="tab" data-bucket="tech" data-sub="software">Software</button>
+              <button class="subtab subtab-sub" role="tab" data-bucket="tech" data-sub="ia">IA</button>
+              <button class="subtab subtab-sub" role="tab" data-bucket="tech" data-sub="hardware">Hardware</button>
               <button class="subtab" role="tab" data-bucket="product">Product</button>
+              <button class="subtab subtab-sub" role="tab" data-bucket="product" data-sub="designer">Designer</button>
+              <button class="subtab subtab-sub" role="tab" data-bucket="product" data-sub="pm">PM</button>
+              <button class="subtab subtab-sub" role="tab" data-bucket="product" data-sub="project">Project</button>
               <button class="subtab" role="tab" data-bucket="data">Data</button>
               <button class="subtab" role="tab" data-bucket="sales">Sales &amp; Customer</button>
               <button class="subtab" role="tab" data-bucket="marketing">Marketing</button>
@@ -289,12 +302,26 @@
       let metiers = {};
       let candidates = [];
       let activeBucket = 'tech';
+      let activeSub = null;
 
       function renderProfiles() {
         const data = metiers[activeBucket];
         if (!data) return;
 
-        // Bucket with sub-categories : labels stacked vertically (single column)
+        // Si une sous-catégorie est sélectionnée, on n'affiche que ce
+        // sous-bloc.
+        if (activeSub && data.sub && data.sub[activeSub]) {
+          const s = data.sub[activeSub];
+          const list = s.postes.map(p => `<span class="profile">${escape(p.name)}</span>`).join('');
+          profilesArea.innerHTML = `<div class="profiles-block">
+            <div class="profiles-sub-label">${escape(s.label)}</div>
+            ${list}
+          </div>`;
+          return;
+        }
+
+        // Bucket avec sous-catégories mais pas de sub actif : on affiche
+        // tous les sous-blocs empilés.
         if (data.sub) {
           const subs = Object.values(data.sub).filter(s => s.postes.length > 0);
           profilesArea.innerHTML = subs.map(s => {
@@ -315,7 +342,11 @@
       }
 
       function filteredCandidates() {
-        return candidates.filter(c => c.bucket === activeBucket);
+        return candidates.filter(c => {
+          if (c.bucket !== activeBucket) return false;
+          if (activeSub && c.bucket_sub !== activeSub) return false;
+          return true;
+        });
       }
 
       function renderTestimonials() {
@@ -348,6 +379,8 @@
         if (!btn) return;
         e.preventDefault();
         activeBucket = btn.dataset.bucket;
+        // data-sub présent → sous-catégorie active ; absent → reset.
+        activeSub = btn.dataset.sub || null;
         tabsHost.querySelectorAll('.subtab').forEach(b => {
           if (b === btn) b.setAttribute('aria-current', 'true');
           else b.removeAttribute('aria-current');
