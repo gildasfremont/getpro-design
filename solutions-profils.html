@@ -37,6 +37,13 @@
     gap: clamp(28px, 4vw, 60px);
     align-items: start;
   }
+  /* Col 1 du panel-body : la liste des catégories (subtabs) avec le
+     rating Trustpilot dessous. */
+  .categories-col {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 3vw, 44px);
+  }
   .subtabs {
     display: flex;
     flex-direction: column;
@@ -182,26 +189,24 @@
       </div>
 
       <div class="panel">
-        <div class="panel-title-row">
-          <h2 class="panel-title">+2000 talents récrutés sur toute la chaine de valeur d'innovation</h2>
-          <div class="ratings-row">
+        <h2 class="panel-title">+2000 talents récrutés sur toute la chaine de valeur d'innovation</h2>
+
+        <div class="panel-body">
+          <div class="categories-col">
+            <div class="subtabs" role="tablist" id="bucket-tabs">
+              <button class="subtab" role="tab" data-bucket="tech" aria-current="true">Tech</button>
+              <button class="subtab" role="tab" data-bucket="product">Product</button>
+              <button class="subtab" role="tab" data-bucket="data">Data</button>
+              <button class="subtab" role="tab" data-bucket="sales">Sales &amp; Customer</button>
+              <button class="subtab" role="tab" data-bucket="marketing">Marketing</button>
+              <button class="subtab" role="tab" data-bucket="ops">Ops. &amp; Admin</button>
+              <button class="subtab" role="tab" data-bucket="hr">HR</button>
+              <button class="subtab" role="tab" data-bucket="c-level">C-level</button>
+            </div>
             <div class="rating">
               <img src="assets/trustpilot.svg" alt="Trustpilot" class="rating-logo" />
               <span class="rating-stars">5 ★★★★★</span>
             </div>
-          </div>
-        </div>
-
-        <div class="panel-body">
-          <div class="subtabs" role="tablist" id="bucket-tabs">
-            <button class="subtab" role="tab" data-bucket="tech" aria-current="true">Tech</button>
-            <button class="subtab" role="tab" data-bucket="product">Product</button>
-            <button class="subtab" role="tab" data-bucket="data">Data</button>
-            <button class="subtab" role="tab" data-bucket="sales">Sales &amp; Customer</button>
-            <button class="subtab" role="tab" data-bucket="marketing">Marketing</button>
-            <button class="subtab" role="tab" data-bucket="ops">Ops. &amp; Admin</button>
-            <button class="subtab" role="tab" data-bucket="hr">HR</button>
-            <button class="subtab" role="tab" data-bucket="c-level">C-level</button>
           </div>
 
           <div class="profiles-area" id="profiles-area"></div>
