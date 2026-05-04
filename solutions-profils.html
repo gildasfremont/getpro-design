@@ -156,7 +156,9 @@
   }
   @media (max-width: 800px) {
     .panel-title { max-width: none; }
-    .solutions-title-row { flex-direction: column; align-items: flex-start; }
+    /* .solutions-title-row : on laisse le flex-wrap global gérer le
+       passage à la ligne — les autres pages Solutions/Renfort font
+       pareil pour rester cohérent à toutes les tailles. */
     .panel-body { grid-template-columns: 1fr; }
     .subtabs { flex-direction: row; flex-wrap: wrap; gap: 12px 24px; }
   }
