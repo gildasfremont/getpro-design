@@ -78,11 +78,19 @@
     max-width: var(--measure);
   }
   /* Col 1 du panel-body : la liste des catégories (subtabs) avec le
-     rating Trustpilot dessous. */
+     rating Trustpilot dessous. Sticky pour rester visible pendant
+     que l'utilisateur scrolle la colonne de droite (postes ou
+     témoignages). top: ~100px pour laisser passer la nav sticky
+     au-dessus. align-self: start pour ne pas s'étirer sur toute la
+     hauteur du grid (sinon sticky n'a rien à faire). */
   .categories-col {
     display: flex;
     flex-direction: column;
     gap: clamp(28px, 3vw, 44px);
+    position: -webkit-sticky;
+    position: sticky;
+    top: clamp(80px, 9vw, 110px);
+    align-self: start;
   }
   .subtabs {
     display: flex;
