@@ -94,8 +94,10 @@
   }
   .subtab {
     padding: 0;
-    font-size: var(--fs-body);
-    line-height: 1.4;
+    /* Même taille que les noms dans la liste Clients pour rester
+       visuellement cohérent (catégories = entrée principale). */
+    font-size: clamp(18px, 2vw, 28px);
+    line-height: 1.25;
     cursor: pointer;
     background: none;
     border: none;
@@ -126,8 +128,8 @@
   .filter-chips[hidden] { display: none; }
   .filter-chip {
     padding: 0;
-    font-size: var(--fs-body);
-    line-height: 1.4;
+    font-size: clamp(18px, 2vw, 28px);
+    line-height: 1.25;
     background: none;
     border: none;
     color: inherit;
@@ -143,10 +145,11 @@
     text-decoration-thickness: 1.5px;
   }
 
-  /* Profiles : single column flat list */
+  /* Profiles : single column flat list, même taille que la liste
+     des noms sur la page Clients. */
   .profiles-area {
-    font-size: var(--fs-body);
-    line-height: 1.4;
+    font-size: clamp(18px, 2vw, 28px);
+    line-height: 1.25;
     display: flex;
     flex-direction: column;
   }
@@ -184,8 +187,8 @@
   }
 
   .testimonial-quote {
-    font-size: var(--fs-body);
-    line-height: var(--lh-body);
+    font-size: clamp(18px, 2vw, 28px);
+    line-height: 1.4;
     max-width: var(--measure);
   }
 
@@ -215,8 +218,8 @@
     opacity: 0.6;
   }
   .author-meta { grid-area: meta; display: flex; flex-direction: column; min-width: 0; }
-  .author-meta .name { font-size: var(--fs-body); line-height: 1.3; }
-  .author-meta .role { font-size: var(--fs-body); line-height: 1.3; opacity: 0.7; }
+  .author-meta .name { font-size: clamp(18px, 2vw, 28px); line-height: 1.25; }
+  .author-meta .role { font-size: clamp(18px, 2vw, 28px); line-height: 1.25; opacity: 0.7; }
 
   @media (max-width: 800px) {
     .panel-title { max-width: none; }
