@@ -428,8 +428,8 @@ button { font-family: inherit; cursor: pointer; }
 .solutions-overview {
   display: flex;
   flex-direction: column;
-  gap: clamp(28px, 3.4vw, 50px);
-  padding-block: var(--gap-section);
+  gap: clamp(40px, 5vw, 70px);
+  padding-block: clamp(60px, 7vw, 110px);
 }
 .solutions-overview-head {
   /* Indent interne aligné sur le contenu des panels (var(--pad-card-x))
@@ -450,32 +450,30 @@ button { font-family: inherit; cursor: pointer; }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 0;
-  row-gap: clamp(28px, 3vw, 40px);
+  row-gap: clamp(40px, 4vw, 60px);
 }
+/* Chaque item = container flex column. h3 contient un lien (cliquable),
+   le p peut contenir aussi un lien inline (ex : "freelance" sur Chasse).
+   Soulignement seulement sur les liens — paragraphe lisible. */
 .solutions-overview-list > li {
-  padding-right: clamp(20px, 2vw, 32px);
-}
-/* Tout le bloc (titre + paragraphe) est cliquable. Soulignement
-   uniquement sur le titre — pour rester lisible le paragraphe ne
-   se souligne pas. Hover : titre passe à thickness 2px + opacity. */
-.solutions-overview-list a {
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 1.4vw, 18px);
-  text-decoration: none;
-  transition: opacity 0.18s ease;
+  gap: clamp(14px, 1.6vw, 22px);
+  padding-right: clamp(28px, 3vw, 50px);
 }
-.solutions-overview-list a:hover { opacity: 0.7; }
 .solutions-overview-list h3 {
   font-size: clamp(22px, 2.6vw, 36px);
   line-height: 1.15;
   letter-spacing: -0.02em;
+}
+.solutions-overview-list h3 a {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: clamp(5px, 0.5vw, 8px);
-  transition: text-decoration-thickness 0.18s ease;
+  transition: opacity 0.18s ease, text-decoration-thickness 0.18s ease;
 }
-.solutions-overview-list a:hover h3 {
+.solutions-overview-list h3 a:hover {
+  opacity: 0.7;
   text-decoration-thickness: 2px;
 }
 .solutions-overview-list p {
@@ -484,6 +482,17 @@ button { font-family: inherit; cursor: pointer; }
   margin: 0;
   opacity: 0.85;
   max-width: 32ch;
+}
+/* Lien inline dans le paragraphe (ex : freelance dans Chasse) */
+.solutions-overview-list p a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  opacity: 1;
+  transition: text-decoration-thickness 0.18s ease;
+}
+.solutions-overview-list p a:hover {
+  text-decoration-thickness: 2px;
 }
 @media (max-width: 800px) {
   .solutions-overview-list { grid-template-columns: repeat(2, 1fr); }
