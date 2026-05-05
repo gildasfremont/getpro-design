@@ -41,10 +41,11 @@
     position: sticky;
     top: clamp(44px, 6.7vw, 96px);
     background: var(--white);
-    /* padding-block-end 0 : la border-bottom touche pile la baseline des
-       tabs. Le tab actif posera son underline 2px par-dessus pour couvrir
-       le hairline gris à l'aplomb du tab actif (pattern tabs classique). */
-    padding-block: clamp(14px, 1.6vw, 22px) 0;
+    /* padding-block-start généreux : crée une bande blanche au-dessus du
+       texte des tabs pour respirer quand le sticky vient se coller juste
+       sous la nav. End 0 : la border-bottom touche pile la baseline.
+       Le tab actif posera son underline 2px par-dessus le hairline. */
+    padding-block: clamp(24px, 2.8vw, 40px) 0;
     border-bottom: 1px solid var(--line);
     z-index: 4;
   }
