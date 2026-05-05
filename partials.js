@@ -26,7 +26,7 @@
           <span class="menu-label-short">Solutions</span>
         </a>
         <a href="clients.html" class="menu-item"${aria('clients.html')}>Clients</a>
-        <a href="equipe.html" class="menu-item"${aria('equipe.html')}>Équipe</a>
+        <a href="equipe.html" class="menu-item"${aria('equipe.html')}>Consultants</a>
         <a href="mailto:bonjour@getpro.com" class="btn-menu">Contact</a>
       </div>
     </nav>
