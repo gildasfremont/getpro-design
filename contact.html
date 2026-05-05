@@ -17,7 +17,7 @@
   .contact {
     display: flex;
     flex-direction: column;
-    gap: clamp(48px, 5vw, 80px);
+    gap: clamp(40px, 4.5vw, 70px);
     padding-bottom: var(--gap-section);
   }
 
@@ -39,62 +39,7 @@
     text-decoration-thickness: clamp(2.5px, 0.25vw, 5px);
   }
 
-  /* Bandeau value props : 2 colonnes hors panel */
-  .contact-props {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    column-gap: clamp(40px, 5vw, 80px);
-    row-gap: clamp(36px, 4vw, 56px);
-  }
-  .prop-block {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(20px, 2vw, 30px);
-  }
-  .prop-label {
-    font-size: var(--fs-menu);
-    line-height: 1.2;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-  .prop-block ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: clamp(10px, 1.2vw, 16px);
-    font-size: clamp(18px, 2vw, 28px);
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-  }
-  .prop-block li {
-    display: flex;
-    align-items: center;
-    gap: clamp(8px, 0.8vw, 12px);
-  }
-  .prop-block li img {
-    height: clamp(16px, 1.4vw, 22px);
-    width: auto;
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  /* Bandeau de logos clients sous le 2e prop block */
-  .prop-logos {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: clamp(20px, 2.5vw, 36px);
-    margin-top: clamp(8px, 1vw, 16px);
-  }
-  .prop-logos img {
-    height: clamp(20px, 2vw, 30px);
-    width: auto;
-    object-fit: contain;
-  }
-
-  /* Panel formulaire */
+  /* Panel formulaire : contient les value props ET le form */
   .form-panel {
     background: var(--white);
     padding: clamp(40px, 6.4vw, 100px) var(--pad-card-x);
@@ -104,47 +49,106 @@
   }
   .form-panel-inner {
     width: 100%;
-    max-width: 760px;
+    max-width: 820px;
     margin-inline: auto;
     display: flex;
     flex-direction: column;
-    gap: clamp(28px, 3vw, 44px);
+    gap: clamp(40px, 4.5vw, 70px);
   }
 
-  /* Form en blocs alignés sur la même grille que les inputs */
+  /* Bandeau value props : 2 colonnes serrées, sans label, hairline en bas */
+  .contact-props {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(40px, 5vw, 80px);
+    row-gap: clamp(28px, 3vw, 44px);
+    padding-bottom: clamp(36px, 4vw, 60px);
+    border-bottom: 1px solid rgba(6, 32, 4, 0.12);
+  }
+  .prop-block {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 1.8vw, 24px);
+  }
+  .prop-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.2vw, 16px);
+    font-size: clamp(16px, 1.8vw, 22px);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .prop-block li {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 0.8vw, 12px);
+  }
+  .prop-block li .inline-mark {
+    height: clamp(14px, 1.2vw, 18px);
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+    object-fit: contain;
+  }
+
+  /* Bandeau de logos clients (monochromes) */
+  .prop-logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: clamp(20px, 2.5vw, 36px);
+    margin-top: clamp(4px, 0.6vw, 10px);
+  }
+  .prop-logos img {
+    height: clamp(18px, 1.8vw, 26px);
+    width: auto;
+    object-fit: contain;
+    object-position: left center;
+    filter: grayscale(100%);
+    opacity: 0.9;
+  }
+
+  /* Form : grille unifiée avec hairlines entre les champs.
+     Technique : grid avec gap 1px + bg ink-line qui transparaît dans les
+     gaps. Chaque .form-field a son propre bg var(--bg), label inside top,
+     input below — pas de marge entre les champs. */
   .contact-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: clamp(16px, 1.6vw, 22px);
-    row-gap: clamp(20px, 2vw, 28px);
+    gap: 1px;
+    background: rgba(6, 32, 4, 0.15);
+    border: 1px solid rgba(6, 32, 4, 0.15);
   }
   .form-field {
+    background: var(--bg);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    padding: clamp(14px, 1.4vw, 20px) clamp(18px, 1.8vw, 24px);
+    transition: background 0.15s ease;
   }
   .form-field--full { grid-column: 1 / -1; }
 
-  /* Labels : couleur ink pleine, pas d'opacité, alignés avec le bord
-     gauche du bloc input (donc padding-inline matching). */
   .form-field label {
-    font-size: clamp(14px, 1.1vw, 16px);
-    line-height: 1.25;
+    font-size: clamp(13px, 1vw, 14px);
+    line-height: 1.2;
     color: var(--ink);
-    padding-inline: clamp(18px, 1.8vw, 24px);
+    opacity: 0.7;
+    margin-bottom: clamp(4px, 0.4vw, 6px);
   }
   .form-field input,
   .form-field textarea {
     width: 100%;
-    padding: clamp(14px, 1.4vw, 20px) clamp(18px, 1.8vw, 24px);
-    background: var(--bg);
-    border: 1px solid transparent;
+    padding: 0;
+    background: transparent;
+    border: none;
     font: inherit;
     font-size: clamp(16px, 1.6vw, 20px);
     line-height: 1.4;
     color: var(--ink);
-    border-radius: clamp(4px, 0.4vw, 6px);
-    transition: border-color 0.15s ease, background 0.15s ease;
+    border-radius: 0;
   }
   .form-field input::placeholder,
   .form-field textarea::placeholder {
@@ -154,22 +158,24 @@
   .form-field input:focus,
   .form-field textarea:focus {
     outline: none;
-    border-color: var(--ink);
+  }
+  .form-field:focus-within {
     background: var(--white);
   }
   .form-field textarea {
-    min-height: clamp(140px, 16vw, 220px);
+    min-height: clamp(120px, 14vw, 200px);
     resize: vertical;
   }
 
   .form-submit {
     grid-column: 1 / -1;
+    background: var(--bg);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: clamp(20px, 2.4vw, 36px);
-    padding-top: clamp(8px, 1vw, 16px);
+    padding: clamp(16px, 1.8vw, 24px) clamp(18px, 1.8vw, 24px);
   }
   .form-promise {
     font-size: var(--fs-menu);
@@ -212,32 +218,31 @@
         <h1>Écrivez à <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>, appelez au <a href="tel:+33939289329">09 39 28 93 29</a> ou <a href="https://calendly.com/getpro">prenez RDV</a>.</h1>
       </div>
 
-      <div class="contact-props">
-        <div class="prop-block">
-          <span class="prop-label">Vélocité</span>
-          <ul>
-            <li>Mission lancée sous 48 heures</li>
-            <li>Shortlist commentée en 60 minutes</li>
-            <li>Time-to-fill moyen de 50 jours</li>
-          </ul>
-        </div>
-        <div class="prop-block">
-          <span class="prop-label">Crédibilité</span>
-          <ul>
-            <li>800 recrutements cette année</li>
-            <li>Expérience candidat 5&nbsp;étoiles <img src="assets/trustfolio.svg" alt="Trustfolio" /></li>
-          </ul>
-          <div class="prop-logos">
-            <img src="assets/mistral-ai_wordmark.svg" alt="Mistral AI" />
-            <img src="assets/lucca.svg" alt="Lucca" />
-            <img src="assets/filigran.svg" alt="Filigran" />
-            <img src="assets/electra.svg" alt="Electra" />
-          </div>
-        </div>
-      </div>
-
       <div class="form-panel">
         <div class="form-panel-inner">
+
+          <div class="contact-props">
+            <div class="prop-block">
+              <ul>
+                <li>Mission lancée sous 48 heures</li>
+                <li>Shortlist commentée en 60 minutes</li>
+                <li>Time-to-fill moyen de 50 jours</li>
+              </ul>
+            </div>
+            <div class="prop-block">
+              <ul>
+                <li>800 recrutements cette année</li>
+                <li>Expérience candidat 5&nbsp;étoiles <img class="inline-mark" src="assets/trustfolio.svg" alt="Trustfolio" /></li>
+              </ul>
+              <div class="prop-logos">
+                <img src="assets/logos-mono/decathlon.svg" alt="Decathlon" />
+                <img src="assets/logos-mono/carrefour_wordmark.svg" alt="Carrefour" />
+                <img src="assets/logos-mono/porsche-france.svg" alt="Porsche France" />
+                <img src="assets/logos-mono/voggt.png" alt="Voggt" />
+              </div>
+            </div>
+          </div>
+
           <form class="contact-form" action="mailto:bonjour@getpro.com" method="POST" enctype="text/plain">
             <div class="form-field form-field--full">
               <label for="description">Que pouvons-nous faire pour vous aider&nbsp;?</label>
@@ -268,6 +273,7 @@
               <button type="submit" class="btn-primary">Prendre RDV →</button>
             </div>
           </form>
+
         </div>
       </div>
 
