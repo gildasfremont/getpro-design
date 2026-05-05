@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/solutions.html", "destination": "/solutions-cdi.html", "permanent": true },
+    { "source": "/solutions-renfort.html", "destination": "/solutions-rpo.html", "permanent": true }
+  ]
+}
