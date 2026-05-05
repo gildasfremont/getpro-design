@@ -33,7 +33,7 @@
 
   const footerHTML = `
     <nav class="foot-featured" aria-label="Solutions principales">
-      <a href="solutions.html#ponctuel"${aria('solutions.html#ponctuel')}>Recrutement salarié</a>
+      <a href="solutions.html#cdi"${aria('solutions.html#cdi')}>Recrutement salarié</a>
       <a href="solutions.html#freelance"${aria('solutions.html#freelance')}>Freelance</a>
       <a href="solutions-renfort.html#drh"${aria('solutions-renfort.html#drh')}>RH de transition</a>
     </nav>
@@ -44,9 +44,10 @@
         <p class="foot-address">41 rue Faidherbe<br>75011 Paris</p>
       </div>
       <div class="foot-col">
-        <a href="solutions.html#ponctuel"${aria('solutions.html#ponctuel')}>Recrutement ponctuel</a>
-        <a href="solutions.html#continu"${aria('solutions.html#continu')}>Recrutement en continu</a>
-        <a href="solutions-renfort.html#rpo"${aria('solutions-renfort.html#rpo')}>RPO mensuel</a>
+        <a href="solutions.html#cdi"${aria('solutions.html#cdi')}>Recrutement CDI</a>
+        <a href="solutions.html#freelance"${aria('solutions.html#freelance')}>Freelance</a>
+        <a href="solutions-renfort.html#drh"${aria('solutions-renfort.html#drh')}>DRH de transition</a>
+        <a href="solutions-renfort.html#rpo"${aria('solutions-renfort.html#rpo')}>RPO</a>
         <a href="solutions-renfort.html#outils"${aria('solutions-renfort.html#outils')}>Outils &amp; ATS</a>
       </div>
       <div class="foot-col">

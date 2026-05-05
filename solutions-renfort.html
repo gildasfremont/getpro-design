@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>GetPro Solutions · Renfort RH</title>
-<meta name="description" content="Renfort RH : DRH de transition, RPO mensuel, déploiement d'outils et ATS. Conseil et structuration de la fonction RH pour scale-ups." />
+<meta name="description" content="Renfort RH : DRH de transition, RPO, déploiement d'outils et ATS. Conseil et structuration de la fonction RH pour scale-ups." />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <meta property="og:title" content="GetPro Solutions · Renfort RH" />
-<meta property="og:description" content="Renfort RH : DRH de transition, RPO mensuel, déploiement d'outils et ATS. Conseil et structuration de la fonction RH pour scale-ups." />
+<meta property="og:description" content="Renfort RH : DRH de transition, RPO, déploiement d'outils et ATS. Conseil et structuration de la fonction RH pour scale-ups." />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -49,10 +49,7 @@
         <div class="subtabs-row">
           <div class="subtabs" role="tablist" data-subtabs-for="renfort">
             <button class="subtab" role="tab" data-subtab="drh" aria-current="true">DRH de transition</button>
-            <button class="subtab" role="tab" data-subtab="rpo">
-              <span class="subtab-label-full">RPO mensuel</span>
-              <span class="subtab-label-short">RPO</span>
-            </button>
+            <button class="subtab" role="tab" data-subtab="rpo">RPO</button>
             <button class="subtab" role="tab" data-subtab="outils">Outils &amp; ATS</button>
           </div>
         </div>
@@ -92,8 +89,7 @@
                   <span class="consultant-role">Head of Cabinet Business</span>
                 </div>
               </div>
-              <a href="clients.html" class="panel-foot-link">Tous nos clients →</a>
-      </div>
+            </div>
             <a href="tel:+33939289329" class="btn-outline">Échanger avec un consultant : 09 39 28 93 29</a>
           </section>
 
@@ -137,7 +133,7 @@
 
         <div class="subtab-body" data-subtab="rpo" hidden>
           <section class="panel-section">
-            <h3>RPO mensuel</h3>
+            <h3>RPO</h3>
             <div class="two-col">
               <div>
                 <p>Un recruteur GetPro intégré à votre équipe RH, à temps plein ou partiel, pour piloter le recrutement opérationnel sur la durée. Forfait mensuel sur le nombre de postes en cours.</p>
@@ -276,6 +272,7 @@
             </div>
           </section>
         </div>
+        <a href="clients.html" class="panel-foot-link">Tous nos clients →</a>
       </div>
 
 
@@ -314,7 +311,7 @@
         });
       });
 
-      // Deep-link : footer → "DRH de transition" / "RPO mensuel" / "Outils & ATS"
+      // Deep-link : footer → "DRH de transition" / "RPO" / "Outils & ATS"
       const hash = (location.hash || '').replace('#', '');
       if (hash) activate(hash);
     })();
