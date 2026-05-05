@@ -4,44 +4,42 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>GetPro · Contact</title>
-<meta name="description" content="Parlez-nous de votre projet de recrutement. Mission lancée en 48 heures, candidats présentés sous deux semaines, time-to-fill moyen de 50 jours." />
+<meta name="description" content="Parlez-nous de votre projet de recrutement. Mission lancée sous 48 heures, shortlist commentée en 60 minutes, time-to-fill moyen de 50 jours." />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <meta property="og:title" content="GetPro · Contact" />
-<meta property="og:description" content="Parlez-nous de votre projet de recrutement. Mission lancée en 48 heures, candidats présentés sous deux semaines." />
+<meta property="og:description" content="Parlez-nous de votre projet de recrutement. Mission lancée sous 48 heures, shortlist commentée en 60 minutes." />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="styles.css" />
 <style>
-  /* ---------- Contact ----------
-     Le hero EST l'incitation à contacter : email + téléphone en très
-     gros, soulignés. Pas de pseudo-footer répétant l'info. */
+  /* ---------- Contact ---------- */
   .contact {
     display: flex;
     flex-direction: column;
-    gap: clamp(56px, 6vw, 100px);
+    gap: clamp(48px, 5vw, 80px);
     padding-bottom: var(--gap-section);
   }
 
-  /* Hero : email + tel en mega-titre cliquable */
+  /* Hero : email + tel + RDV en titre, taille modérée */
   .contact-head h1 {
-    font-size: clamp(40px, 6.4vw, 92px);
-    line-height: 1.05;
-    letter-spacing: -0.025em;
+    font-size: clamp(28px, 3.6vw, 56px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     font-weight: 400;
   }
   .contact-head h1 a {
     text-decoration: underline;
-    text-decoration-thickness: clamp(2px, 0.2vw, 4px);
-    text-underline-offset: clamp(6px, 0.7vw, 12px);
+    text-decoration-thickness: clamp(1.5px, 0.15vw, 3px);
+    text-underline-offset: clamp(4px, 0.5vw, 8px);
     color: inherit;
     transition: text-decoration-thickness 0.18s ease;
   }
   .contact-head h1 a:hover {
-    text-decoration-thickness: clamp(3px, 0.3vw, 6px);
+    text-decoration-thickness: clamp(2.5px, 0.25vw, 5px);
   }
 
-  /* Bandeau value props : 2 colonnes éditoriales hors panel */
+  /* Bandeau value props : 2 colonnes hors panel */
   .contact-props {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -51,14 +49,13 @@
   .prop-block {
     display: flex;
     flex-direction: column;
-    gap: clamp(16px, 1.8vw, 24px);
+    gap: clamp(20px, 2vw, 30px);
   }
   .prop-label {
     font-size: var(--fs-menu);
     line-height: 1.2;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    opacity: 0.55;
   }
   .prop-block ul {
     list-style: none;
@@ -70,6 +67,31 @@
     font-size: clamp(18px, 2vw, 28px);
     line-height: 1.3;
     letter-spacing: -0.01em;
+  }
+  .prop-block li {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 0.8vw, 12px);
+  }
+  .prop-block li img {
+    height: clamp(16px, 1.4vw, 22px);
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  /* Bandeau de logos clients sous le 2e prop block */
+  .prop-logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: clamp(20px, 2.5vw, 36px);
+    margin-top: clamp(8px, 1vw, 16px);
+  }
+  .prop-logos img {
+    height: clamp(20px, 2vw, 30px);
+    width: auto;
+    object-fit: contain;
   }
 
   /* Panel formulaire */
@@ -86,34 +108,29 @@
     margin-inline: auto;
     display: flex;
     flex-direction: column;
-    gap: clamp(36px, 4vw, 64px);
-  }
-  .form-panel h2 {
-    font-size: clamp(24px, 2.8vw, 40px);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    gap: clamp(28px, 3vw, 44px);
   }
 
-  /* Form en blocs : chaque champ = bloc rempli en var(--bg) sur le panel
-     blanc, contraste subtil. Bordure transparente qui se révèle au focus. */
+  /* Form en blocs alignés sur la même grille que les inputs */
   .contact-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: clamp(16px, 1.6vw, 22px);
-    row-gap: clamp(16px, 1.6vw, 22px);
+    row-gap: clamp(20px, 2vw, 28px);
   }
   .form-field {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
   }
   .form-field--full { grid-column: 1 / -1; }
 
+  /* Labels : couleur ink pleine, pas d'opacité, alignés avec le bord
+     gauche du bloc input (donc padding-inline matching). */
   .form-field label {
-    font-size: clamp(13px, 1vw, 15px);
+    font-size: clamp(14px, 1.1vw, 16px);
     line-height: 1.25;
-    letter-spacing: 0.02em;
-    opacity: 0.6;
+    color: var(--ink);
     padding-inline: clamp(18px, 1.8vw, 24px);
   }
   .form-field input,
@@ -145,7 +162,6 @@
     resize: vertical;
   }
 
-  /* Submit row */
   .form-submit {
     grid-column: 1 / -1;
     display: flex;
@@ -158,7 +174,6 @@
   .form-promise {
     font-size: var(--fs-menu);
     line-height: 1.3;
-    opacity: 0.75;
   }
   .btn-primary {
     display: inline-flex;
@@ -194,7 +209,7 @@
     <section class="contact section">
 
       <div class="contact-head">
-        <h1>Écrivez à <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>, appelez au <a href="tel:+33939289329">09 39 28 93 29</a>.</h1>
+        <h1>Écrivez à <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>, appelez au <a href="tel:+33939289329">09 39 28 93 29</a> ou <a href="https://calendly.com/getpro">prenez RDV</a>.</h1>
       </div>
 
       <div class="contact-props">
@@ -202,28 +217,36 @@
           <span class="prop-label">Vélocité</span>
           <ul>
             <li>Mission lancée sous 48 heures</li>
-            <li>Première shortlist commentée sous deux semaines</li>
+            <li>Shortlist commentée en 60 minutes</li>
             <li>Time-to-fill moyen de 50 jours</li>
           </ul>
         </div>
         <div class="prop-block">
-          <span class="prop-label">Méthode</span>
+          <span class="prop-label">Crédibilité</span>
           <ul>
-            <li>Trois candidats qualifiés par mission, pas cinquante</li>
-            <li>Mission menée par un consultant senior, du brief au closing</li>
-            <li>Garantie de remplacement six mois (douze sur les rôles C-Level)</li>
+            <li>800 recrutements cette année</li>
+            <li>Expérience candidat 5&nbsp;étoiles <img src="assets/trustfolio.svg" alt="Trustfolio" /></li>
           </ul>
+          <div class="prop-logos">
+            <img src="assets/mistral-ai_wordmark.svg" alt="Mistral AI" />
+            <img src="assets/lucca.svg" alt="Lucca" />
+            <img src="assets/filigran.svg" alt="Filigran" />
+            <img src="assets/electra.svg" alt="Electra" />
+          </div>
         </div>
       </div>
 
       <div class="form-panel">
         <div class="form-panel-inner">
-          <h2>Décrivez votre besoin</h2>
-
           <form class="contact-form" action="mailto:bonjour@getpro.com" method="POST" enctype="text/plain">
             <div class="form-field form-field--full">
+              <label for="description">Que pouvons-nous faire pour vous aider&nbsp;?</label>
+              <textarea id="description" name="description" required autofocus placeholder="Le poste à pourvoir, le contexte, les contraintes de timing…"></textarea>
+            </div>
+
+            <div class="form-field form-field--full">
               <label for="name">Prénom et nom</label>
-              <input id="name" name="name" type="text" required autocomplete="name" autofocus />
+              <input id="name" name="name" type="text" required autocomplete="name" />
             </div>
 
             <div class="form-field">
@@ -240,14 +263,9 @@
               <input id="email" name="email" type="email" required autocomplete="email" />
             </div>
 
-            <div class="form-field form-field--full">
-              <label for="description">Que pouvons-nous faire pour vous aider&nbsp;?</label>
-              <textarea id="description" name="description" required placeholder="Le poste à pourvoir, le contexte, les contraintes de timing…"></textarea>
-            </div>
-
             <div class="form-submit">
               <span class="form-promise">Nous répondons en moins d'une heure</span>
-              <button type="submit" class="btn-primary">Envoyer le brief →</button>
+              <button type="submit" class="btn-primary">Prendre RDV →</button>
             </div>
           </form>
         </div>
