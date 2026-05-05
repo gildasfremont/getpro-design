@@ -341,7 +341,6 @@ button { font-family: inherit; cursor: pointer; }
   font-size: clamp(13px, 1.05vw, 16px);
   line-height: 1.5;
   margin: 0;
-  opacity: 0.6;
 }
 
 /* Colonnes de liens petites, alignées start. */
@@ -354,13 +353,11 @@ button { font-family: inherit; cursor: pointer; }
 }
 .foot-col a {
   color: var(--ink);
-  opacity: 0.85;
   text-decoration: none;
   transition: opacity 0.15s ease;
 }
-.foot-col a:hover { opacity: 1; }
+.foot-col a:hover { opacity: 0.7; }
 .foot-col a[aria-current="page"] {
-  opacity: 1;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -474,7 +471,6 @@ button { font-family: inherit; cursor: pointer; }
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   margin: 0;
-  opacity: 0.85;
   max-width: 32ch;
 }
 /* Lien inline dans le paragraphe (ex : freelance dans Chasse) */
@@ -482,7 +478,6 @@ button { font-family: inherit; cursor: pointer; }
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
-  opacity: 1;
   transition: text-decoration-thickness 0.18s ease;
 }
 .solutions-overview-list p a:hover {
@@ -751,8 +746,6 @@ button { font-family: inherit; cursor: pointer; }
   font-size: clamp(13px, 1.1vw, 16px);
   line-height: 1.3;
 }
-.case-consultant-role { opacity: 0.6; }
-
 /* Consultants row photos en grille 4 colonnes (3 puis 2 en responsive),
    yeux calés à ~22% de la hauteur de la cellule portrait 1:2. */
 .consultants-row {
@@ -781,7 +774,6 @@ button { font-family: inherit; cursor: pointer; }
   font-size: var(--fs-body);
   line-height: 1.3;
 }
-.consultant-role { opacity: 0.7; }
 
 @media (max-width: 1000px) {
   .consultants-row { grid-template-columns: repeat(3, 1fr); }
