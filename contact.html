@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GetPro · Contact</title>
+<meta name="description" content="Parlez-nous de votre projet de recrutement. Mission lancée en 48 heures, candidats présentés sous deux semaines, time-to-fill moyen de 50 jours." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta property="og:title" content="GetPro · Contact" />
+<meta property="og:description" content="Parlez-nous de votre projet de recrutement. Mission lancée en 48 heures, candidats présentés sous deux semaines." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* ---------- Contact page ---------- */
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(40px, 5vw, 80px);
+    padding-bottom: var(--gap-section);
+  }
+
+  .contact-head {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2vw, 28px);
+  }
+  .contact-head h1 {
+    font-size: var(--fs-page-title);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .contact-head .lead {
+    font-size: clamp(18px, 2vw, 28px);
+    line-height: 1.35;
+    max-width: 50ch;
+  }
+  .contact-head .lead a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Carte unique blanche, deux colonnes Vélocité / Efficacité */
+  .contact-panel {
+    background: var(--white);
+    padding: var(--pad-card-y) var(--pad-card-x);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(36px, 4vw, 60px);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(40px, 5vw, 80px);
+    row-gap: clamp(40px, 5vw, 60px);
+  }
+  .contact-block h2 {
+    font-size: clamp(22px, 2.6vw, 36px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: clamp(20px, 2vw, 30px);
+  }
+  .contact-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1vw, 14px);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+  .contact-block li::before {
+    content: "·  ";
+    margin-right: 4px;
+  }
+
+  .contact-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(16px, 2vw, 28px);
+    align-items: center;
+  }
+  .contact-cta .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: clamp(14px, 1.4vw, 20px) clamp(24px, 2.6vw, 36px);
+    background: var(--ink);
+    color: var(--white);
+    font-size: clamp(16px, 1.65vw, 22px);
+    line-height: 1.25;
+    text-decoration: none;
+    transition: background 0.18s ease;
+  }
+  .contact-cta .btn-primary:hover { background: #0a3209; }
+  .contact-cta .secondary {
+    font-size: var(--fs-menu);
+    line-height: 1.25;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Coordonnées sous le panneau */
+  .contact-coords {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(28px, 4vw, 60px);
+    font-size: var(--fs-body);
+    line-height: 1.4;
+  }
+  .contact-coords .label {
+    font-size: var(--fs-menu);
+    opacity: 0.6;
+    margin-bottom: 6px;
+  }
+  .contact-coords a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  @media (max-width: 800px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-coords { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+  <main class="home">
+
+    <header class="header section" data-nav></header>
+
+    <section class="contact section">
+      <div class="contact-head">
+        <h1>Parlez-nous de votre projet</h1>
+        <p class="lead">Appelez-nous au <a href="tel:+33939289329">09 39 28 93 29</a>, écrivez à <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>, ou prenez rendez-vous directement.</p>
+      </div>
+
+      <div class="contact-panel">
+        <div class="contact-grid">
+          <div class="contact-block">
+            <h2>Vélocité</h2>
+            <ul>
+              <li>Mission lancée sous 48 heures</li>
+              <li>Première shortlist commentée sous deux semaines</li>
+              <li>Time-to-fill moyen de 50 jours</li>
+            </ul>
+          </div>
+          <div class="contact-block">
+            <h2>Méthode</h2>
+            <ul>
+              <li>Trois candidats qualifiés par mission, pas cinquante</li>
+              <li>Mission menée par un consultant senior, du brief au closing</li>
+              <li>Garantie de remplacement six mois (douze sur les rôles C-Level)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="contact-cta">
+          <a href="https://calendly.com/getpro" class="btn-primary">Prendre rendez-vous →</a>
+          <a href="mailto:bonjour@getpro.com" class="secondary">Envoyer un brief par email</a>
+        </div>
+      </div>
+
+      <div class="contact-coords">
+        <div>
+          <div class="label">Téléphone</div>
+          <a href="tel:+33939289329">09 39 28 93 29</a>
+        </div>
+        <div>
+          <div class="label">Email</div>
+          <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>
+        </div>
+        <div>
+          <div class="label">Bureaux</div>
+          41 rue Faidherbe<br>75011 Paris
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer" data-footer></footer>
+
+  </main>
+  <script src="partials.js" defer></script>
+</body>
+</html>

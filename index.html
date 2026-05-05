@@ -58,23 +58,6 @@
        pointer (héritage du <a>) pour signaler la cliquabilité. */
     display: block;
   }
-  /* CTA "Tous les consultants →" posé sous le grid, en absolute pour
-     ne pas pousser la section .cases plus bas. Sit dans le padding-bottom
-     de .hero, aligné à droite. */
-  .grid-cta {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: clamp(10px, 1.2vw, 18px);
-    font-size: var(--fs-menu);
-    line-height: 1.25;
-    color: inherit;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 4px;
-    transition: text-decoration-thickness 0.18s ease;
-  }
-  .grid-cta:hover { text-decoration-thickness: 2px; }
   /* Mid screen : 4 cols × 2 rows = 8 tiles visible (hide tiles 9 & 10) */
   @media (max-width: 1100px) {
     .grid-images { grid-template-columns: repeat(4, 1fr); }
@@ -417,7 +400,6 @@
           <a class="tile tile-9" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-10" href="equipe.html" aria-label="Voir l'équipe"></a>
         </div>
-        <a class="grid-cta" href="equipe.html">Consultants →</a>
       </div>
     </section>
 
@@ -470,7 +452,6 @@
         <div class="quote-wrap">
           <div class="quote-card">
             <p>Émile connaissait déjà cinq personnes capables de prendre le poste, quand le CEO de DeepMove l'a contacté pour un rôle de CTO. Il les a contactées le jour suivant. Trois ont accepté de discuter sérieusement. La signature est arrivée seize jours plus tard.</p>
-            <a href="equipe.html" class="text-arrow-link">Voir l’équipe →</a>
           </div>
           <div class="quote-image" role="img" aria-label="Émile, consultant GetPro"></div>
         </div>
@@ -479,6 +460,7 @@
           <p>Notre rapidité d'exécution, ce sont dix ans passés à recruter dans les meilleures équipes technologiques françaises, sur toute la chaîne, du premier ingénieur aux fonctions de direction.</p>
           <p>Nous suivons leurs trajectoires, nous les voyons évoluer et rejoindre de nouveaux projets et missions.</p>
           <p>Quand vous nous appelez pour un poste critique, nos consultants savent à qui en parler, parce qu'ils connaissent, et depuis longtemps, les gens qu'ils recommandent.</p>
+          <a href="equipe.html" class="text-arrow-link">Voir l’équipe →</a>
         </div>
       </div>
     </section>
