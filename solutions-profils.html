@@ -25,57 +25,17 @@
   /* Col 2 du panel-body : view-tabs (Postes / Retour d'expérience) en
      haut, et le contenu de la vue active en dessous. Le filtrage par
      catégorie (col 1) s'applique aux deux vues. */
-  /* content-col : tabs sticky en haut, puis le stage-clip qui sert de
-     fenêtre. Le content-col lui-même reste sans overflow pour que le
-     sticky fonctionne au niveau du scroll page. */
   .content-col {
     display: flex;
     flex-direction: column;
-    gap: clamp(20px, 2.4vw, 36px);
     min-width: 0;
-  }
-  /* La fenêtre : clip horizontal. On voit uniquement ce qui est inside.
-     Hauteur naturelle (= hauteur du view-body actif). */
-  .stage-clip {
-    overflow-x: hidden;
-    overflow-y: visible;
-    position: relative;
-  }
-  /* Le rail : flex row avec les deux view-bodies côte-à-côte. Translate
-     pour faire glisser l'un ou l'autre dans la fenêtre. */
-  .view-stage {
-    display: flex;
-    flex-direction: row;
-    gap: clamp(40px, 5vw, 80px);
-    transition: transform 0.5s cubic-bezier(0.32, 0.72, 0.18, 1);
-    will-change: transform;
-  }
-  .view-stage > .view-body {
-    flex: 0 0 100%;
-    min-width: 0;
-  }
-  /* Translation : state postes = 0, state rdx = -100% - gap (témoignages
-     glisse en focus, postes glisse hors écran à gauche, complètement
-     masqué par le clip). */
-  .content-col[data-active-view="postes"] .view-stage {
-    transform: translateX(0);
-  }
-  .content-col[data-active-view="rdx"] .view-stage {
-    transform: translateX(calc(-100% - clamp(40px, 5vw, 80px)));
   }
   .view-tabs {
-    display: flex;
-    align-self: stretch;
+    display: inline-flex;
+    align-self: flex-start;
     gap: clamp(20px, 3vw, 50px);
-    /* Sticky : reste accroché en haut pendant le scroll. Bg blanc qui
-       couvre le contenu qui passe dessous. Pas de hairline. */
-    position: -webkit-sticky;
-    position: sticky;
-    top: clamp(80px, 9vw, 110px);
-    background: var(--white);
-    padding-block: clamp(10px, 1.2vw, 16px) clamp(14px, 1.6vw, 22px);
-    margin-block: 0;
-    z-index: 4;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: clamp(28px, 3.4vw, 50px);
   }
   .view-tab {
     /* Pas de padding-top : Placements aligne sa baseline sur "Tech" dans
@@ -94,15 +54,11 @@
   .view-tab[aria-current="true"]::after {
     content: "";
     position: absolute;
-    left: 0; right: 0; bottom: 0;
+    left: 0; right: 0; bottom: -1px;
     height: 2px;
     background: var(--ink);
   }
-  .view-body[hidden] { display: block; } /* hidden no longer hides : both views shown side-by-side */
-
-  /* Permet à la col Témoignages de déborder à droite du panel blanc. */
-  .panel { overflow: visible; }
-  .panel-body { overflow: visible; }
+  .view-body[hidden] { display: none; }
 
   /* Vue "Postes" : 2 cols categories | profils.
      align-items: baseline → la baseline du 1er texte de chaque col
@@ -114,9 +70,11 @@
     gap: clamp(28px, 4vw, 60px);
     align-items: baseline;
   }
-  /* Témoignages : prennent leur col, le contenu interne gère sa propre
-     mesure. Pas de cap parent. */
-  .view-rdx .testimonials { max-width: none; }
+  /* Vue "Retour d'expérience" : les témoignages prennent toute la
+     largeur du panel, capés à --measure pour la lisibilité. */
+  .view-rdx .testimonials {
+    max-width: var(--measure);
+  }
   /* Col 1 du panel-body : la liste des catégories (subtabs) avec le
      rating Trustpilot dessous. Sticky pour rester visible pendant
      que l'utilisateur scrolle la colonne de droite (postes ou
@@ -404,22 +362,19 @@
             </div>
           </div>
 
-          <div class="content-col" data-active-view="postes">
+          <div class="content-col">
             <div class="view-tabs" role="tablist" aria-label="Vue Placements / Témoignages">
               <button class="view-tab" role="tab" data-view="postes" aria-current="true">Placements</button>
               <button class="view-tab" role="tab" data-view="rdx">Témoignages</button>
             </div>
 
-            <div class="stage-clip">
-              <div class="view-stage">
-                <div class="view-body" data-view="postes">
-                  <div class="filter-chips" role="tablist" id="postes-chips" hidden></div>
-                  <div class="profiles-area" id="profiles-area"></div>
-                </div>
-                <div class="view-body view-rdx" data-view="rdx">
-                  <div class="testimonials" id="candidate-testimonials"></div>
-                </div>
-              </div>
+            <div class="view-body" data-view="postes">
+              <div class="filter-chips" role="tablist" id="postes-chips" hidden></div>
+              <div class="profiles-area" id="profiles-area"></div>
+            </div>
+
+            <div class="view-body view-rdx" data-view="rdx" hidden>
+              <div class="testimonials" id="candidate-testimonials"></div>
             </div>
           </div>
         </div>
@@ -451,14 +406,12 @@
             if (b === btn) b.setAttribute('aria-current', 'true');
             else b.removeAttribute('aria-current');
           });
-          // Both view-bodies stay visible side-by-side; the parent's
-          // data-active-view drives the opacity swap (CSS).
-          const contentCol = document.querySelector('.content-col');
-          if (contentCol) contentCol.setAttribute('data-active-view', target);
+          document.querySelectorAll('.view-body[data-view]').forEach(v => {
+            if (v.dataset.view === target) v.removeAttribute('hidden');
+            else v.setAttribute('hidden', '');
+          });
         });
       }
-
-
 
       let metiers = {};
       let candidates = [];
