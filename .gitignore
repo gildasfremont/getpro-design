@@ -1,7 +1,3 @@
-.DS_Store
+# Playwright debug artifacts
+*.png
 .playwright-mcp/
-*.log
-.vercel/
-assets/_orig/
-node_modules/
-.vercel
