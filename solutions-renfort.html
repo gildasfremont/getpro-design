@@ -24,6 +24,43 @@
   .photo-lauren    { background-image: url('assets/team/lauren-pointon.jpg'); }
   .photo-jonathan  { background-image: url('assets/team/jonathan-banigo.jpg'); }
   .photo-terry     { background-image: url('assets/team/terry-raimondo.png'); }
+  /* Bandeau illustratif "DRH de transition" : Camille en 1er (réelle),
+     placeholders ensuite (à remplacer par de vraies photos DRH). */
+  .photo-drh-1     { background-image: url('assets/team/drh-1.jpg'); }
+  .photo-drh-2     { background-image: url('assets/team/drh-2.jpg'); }
+  .photo-drh-3     { background-image: url('assets/team/drh-3.png'); }
+  .photo-drh-4     { background-image: url('assets/team/drh-4.png'); }
+  .photo-drh-5     { background-image: url('assets/team/drh-5.jpg'); }
+  .photo-drh-6     { background-image: url('assets/team/drh-6.png'); }
+  .photo-drh-7     { background-image: url('assets/team/drh-7.png'); }
+
+  /* Bandeau illustratif sous le sous-menu : 7 portraits carrés en ligne,
+     juste l'image, pas de meta. Utilisé dans DRH de transition pour montrer
+     le profil-type des dirigeants RH qu'on place. */
+  .illustrative-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+  }
+  .illustrative-photo {
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #d8e0d3;
+    background-position: 50% 22%;
+  }
+  @media (max-width: 1100px) {
+    .illustrative-row { grid-template-columns: repeat(6, 1fr); }
+    .illustrative-photo:nth-child(7) { display: none; }
+  }
+  @media (max-width: 800px) {
+    .illustrative-row { grid-template-columns: repeat(5, 1fr); }
+    .illustrative-photo:nth-child(n+6) { display: none; }
+  }
+  @media (max-width: 600px) {
+    .illustrative-row { grid-template-columns: repeat(4, 1fr); }
+    .illustrative-photo:nth-child(n+5) { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -56,28 +93,14 @@
 
         <div class="subtab-body" data-subtab="drh" hidden>
           <section class="panel-section">
-            <div class="consultants-row">
-              <div class="consultant">
-                <div class="photo photo-emile" role="img" aria-label="Émile Pennes"></div>
-                <div class="consultant-meta">
-                  <span class="consultant-name">Émile Pennes</span>
-                  <span class="consultant-role">Directeur Opérations</span>
-                </div>
-              </div>
-              <div class="consultant">
-                <div class="photo photo-guillaume" role="img" aria-label="Guillaume Renard"></div>
-                <div class="consultant-meta">
-                  <span class="consultant-name">Guillaume Renard</span>
-                  <span class="consultant-role">Directeur Général Bordeaux</span>
-                </div>
-              </div>
-              <div class="consultant">
-                <div class="photo photo-louis" role="img" aria-label="Louis Fitamant"></div>
-                <div class="consultant-meta">
-                  <span class="consultant-name">Louis Fitamant</span>
-                  <span class="consultant-role">Head of Cabinet Business</span>
-                </div>
-              </div>
+            <div class="illustrative-row">
+              <div class="illustrative-photo photo-drh-1" role="img" aria-label="DRH de transition"></div>
+              <div class="illustrative-photo photo-drh-2" role="img" aria-label="DRH de transition"></div>
+              <div class="illustrative-photo photo-drh-3" role="img" aria-label="DRH de transition"></div>
+              <div class="illustrative-photo photo-drh-4" role="img" aria-label="DRH de transition"></div>
+              <div class="illustrative-photo photo-drh-5" role="img" aria-label="DRH de transition"></div>
+              <div class="illustrative-photo photo-drh-6" role="img" aria-label="DRH de transition"></div>
+              <div class="illustrative-photo photo-drh-7" role="img" aria-label="DRH de transition"></div>
             </div>
             <h3>Un dirigeant RH senior en mission de 3 à 12 mois</h3>
             <div class="two-col">
@@ -103,6 +126,33 @@
               <div>
                 <p>Mois 3 à 12 : transition. Recrutement et onboarding du DRH permanent, transmission organisée, rétro-planning de sortie. À la fin, vous avez une fonction RH structurée et un dirigeant en place.</p>
                 <p>Pas de prolongation cachée, pas de dépendance à GetPro. La mission s'arrête le jour où le permanent prend ses fonctions.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel-section">
+            <h3>Vos interlocuteurs GetPro</h3>
+            <div class="consultants-row">
+              <div class="consultant">
+                <div class="photo photo-emile" role="img" aria-label="Émile Pennes"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Émile Pennes</span>
+                  <span class="consultant-role">Directeur Opérations</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-guillaume" role="img" aria-label="Guillaume Renard"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Guillaume Renard</span>
+                  <span class="consultant-role">Directeur Général Bordeaux</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-louis" role="img" aria-label="Louis Fitamant"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Louis Fitamant</span>
+                  <span class="consultant-role">Head of Cabinet Business</span>
+                </div>
               </div>
             </div>
           </section>
