@@ -25,60 +25,50 @@
   /* Col 2 du panel-body : view-tabs (Postes / Retour d'expérience) en
      haut, et le contenu de la vue active en dessous. Le filtrage par
      catégorie (col 1) s'applique aux deux vues. */
-  /* content-col : tabs (sticky) + stage. Le stage est un flex row où
-     l'active prend la majorité (flex-grow 100), l'inactive a une
-     min-width fixe qui peut faire déborder le stage du content-col à
-     droite (preview qui dépasse le panel). Transition sur flex-grow
-     anime la transition de proportions entre les deux états. */
+  /* content-col : tabs sticky en haut, puis le stage-clip qui sert de
+     fenêtre. Le content-col lui-même reste sans overflow pour que le
+     sticky fonctionne au niveau du scroll page. */
   .content-col {
     display: flex;
     flex-direction: column;
     gap: clamp(20px, 2.4vw, 36px);
     min-width: 0;
-    overflow: visible;
   }
+  /* La fenêtre : clip horizontal. On voit uniquement ce qui est inside.
+     Hauteur naturelle (= hauteur du view-body actif). */
+  .stage-clip {
+    overflow-x: hidden;
+    overflow-y: visible;
+    position: relative;
+  }
+  /* Le rail : flex row avec les deux view-bodies côte-à-côte. Translate
+     pour faire glisser l'un ou l'autre dans la fenêtre. */
   .view-stage {
     display: flex;
     flex-direction: row;
-    gap: clamp(28px, 3.4vw, 50px);
-    align-items: flex-start;
-    overflow: visible;
+    gap: clamp(40px, 5vw, 80px);
+    transition: transform 0.5s cubic-bezier(0.32, 0.72, 0.18, 1);
+    will-change: transform;
   }
   .view-stage > .view-body {
-    flex: 1 1 0;
+    flex: 0 0 100%;
     min-width: 0;
-    transition: flex-grow 0.45s cubic-bezier(0.32, 0.72, 0.18, 1),
-                opacity 0.35s ease;
   }
-  /* État Placements : postes domine (flex-grow 100), rdx en preview
-     avec min-width qui le force à dépasser le panel à droite. */
-  .content-col[data-active-view="postes"] .view-body[data-view="postes"] {
-    flex-grow: 100;
-    opacity: 1;
+  /* Translation : state postes = 0, state rdx = -100% - gap (témoignages
+     glisse en focus, postes glisse hors écran à gauche, complètement
+     masqué par le clip). */
+  .content-col[data-active-view="postes"] .view-stage {
+    transform: translateX(0);
   }
-  .content-col[data-active-view="postes"] .view-body[data-view="rdx"] {
-    flex-grow: 1;
-    min-width: clamp(280px, 32vw, 440px);
-    opacity: 0.35;
-    cursor: pointer;
-  }
-  /* État Témoignages : rdx domine, postes en preview qui dépasse */
-  .content-col[data-active-view="rdx"] .view-body[data-view="postes"] {
-    flex-grow: 1;
-    min-width: clamp(180px, 22vw, 320px);
-    opacity: 0.35;
-    cursor: pointer;
-  }
-  .content-col[data-active-view="rdx"] .view-body[data-view="rdx"] {
-    flex-grow: 100;
-    opacity: 1;
+  .content-col[data-active-view="rdx"] .view-stage {
+    transform: translateX(calc(-100% - clamp(40px, 5vw, 80px)));
   }
   .view-tabs {
     display: flex;
     align-self: stretch;
     gap: clamp(20px, 3vw, 50px);
     /* Sticky : reste accroché en haut pendant le scroll. Bg blanc qui
-       remonte derrière la nav du site (--bg) grâce au z-index 4. */
+       couvre le contenu qui passe dessous. Pas de hairline. */
     position: -webkit-sticky;
     position: sticky;
     top: clamp(80px, 9vw, 110px);
@@ -86,15 +76,6 @@
     padding-block: clamp(10px, 1.2vw, 16px) clamp(14px, 1.6vw, 22px);
     margin-block: 0;
     z-index: 4;
-  }
-  /* Hairline subtil sous les tabs sticky pour séparer du contenu qui
-     scroll dessous, mais sans dureté. */
-  .view-tabs::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0 0;
-    height: 1px;
-    background: rgba(6, 32, 4, 0.08);
   }
   .view-tab {
     /* Pas de padding-top : Placements aligne sa baseline sur "Tech" dans
@@ -429,13 +410,15 @@
               <button class="view-tab" role="tab" data-view="rdx">Témoignages</button>
             </div>
 
-            <div class="view-stage">
-              <div class="view-body" data-view="postes">
-                <div class="filter-chips" role="tablist" id="postes-chips" hidden></div>
-                <div class="profiles-area" id="profiles-area"></div>
-              </div>
-              <div class="view-body view-rdx" data-view="rdx">
-                <div class="testimonials" id="candidate-testimonials"></div>
+            <div class="stage-clip">
+              <div class="view-stage">
+                <div class="view-body" data-view="postes">
+                  <div class="filter-chips" role="tablist" id="postes-chips" hidden></div>
+                  <div class="profiles-area" id="profiles-area"></div>
+                </div>
+                <div class="view-body view-rdx" data-view="rdx">
+                  <div class="testimonials" id="candidate-testimonials"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -475,27 +458,7 @@
         });
       }
 
-      // Click sur la view-body inactive (grisée) → l'activer aussi
-      const setActiveView = (target) => {
-        const contentCol = document.querySelector('.content-col');
-        if (!contentCol) return;
-        contentCol.setAttribute('data-active-view', target);
-        if (viewTabsHost) {
-          viewTabsHost.querySelectorAll('.view-tab').forEach(b => {
-            if (b.dataset.view === target) b.setAttribute('aria-current', 'true');
-            else b.removeAttribute('aria-current');
-          });
-        }
-      };
-      document.querySelectorAll('.view-body[data-view]').forEach(body => {
-        body.addEventListener('click', (e) => {
-          const contentCol = document.querySelector('.content-col');
-          if (!contentCol) return;
-          const target = body.dataset.view;
-          if (contentCol.getAttribute('data-active-view') === target) return;
-          setActiveView(target);
-        });
-      });
+
 
       let metiers = {};
       let candidates = [];
