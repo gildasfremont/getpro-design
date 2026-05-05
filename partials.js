@@ -3,15 +3,22 @@
 (() => {
   const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
 
+  // Toutes les pages "solutions-*" partagent le même item de navbar.
+  const SOLUTIONS_PAGES = [
+    'solutions-cdi.html', 'solutions-freelance.html', 'solutions-clevel.html',
+    'solutions-rpo.html', 'solutions-drh.html', 'solutions-outils.html',
+    'solutions-profils.html',
+  ];
+
   const isCurrent = (href) => {
     if (path === href) return true;
-    // path#hash matching for deep-links (footer links vers offres précises)
     if (href.includes('#')) {
       const [p, h] = href.split('#');
       if (path === p && location.hash === '#' + h) return true;
     }
-    // Solutions sub-pages share the "Solutions de recrutement" navbar item
-    if (href === 'solutions.html' && (path === 'solutions-profils.html' || path === 'solutions-renfort.html')) return true;
+    // Le lien navbar "Solutions de recrutement" reste actif sur toutes les
+    // pages détaillées (solutions-cdi, solutions-rpo, solutions-profils, etc.)
+    if (href === 'solutions-cdi.html' && SOLUTIONS_PAGES.includes(path)) return true;
     return false;
   };
 
@@ -24,7 +31,7 @@
         <span class="menu-toggle-bars" aria-hidden="true"></span>
       </button>
       <div class="menu-right" id="menu-right">
-        <a href="solutions.html" class="menu-item"${aria('solutions.html')}>
+        <a href="solutions-cdi.html" class="menu-item"${aria('solutions-cdi.html')}>
           <span class="menu-label-full">Solutions de recrutement</span>
           <span class="menu-label-short">Solutions</span>
         </a>
@@ -37,9 +44,9 @@
 
   const footerHTML = `
     <nav class="foot-featured" aria-label="Solutions principales">
-      <a href="solutions.html#cdi"${aria('solutions.html#cdi')}>Recrutement salarié</a>
-      <a href="solutions.html#freelance"${aria('solutions.html#freelance')}>Freelance</a>
-      <a href="solutions-renfort.html#drh"${aria('solutions-renfort.html#drh')}>RH de transition</a>
+      <a href="solutions-cdi.html"${aria('solutions-cdi.html')}>Recrutement salarié</a>
+      <a href="solutions-freelance.html"${aria('solutions-freelance.html')}>Freelance</a>
+      <a href="solutions-drh.html"${aria('solutions-drh.html')}>RH de transition</a>
     </nav>
     <div class="foot-grid">
       <div class="foot-brand">
@@ -48,11 +55,12 @@
         <p class="foot-address">41 rue Faidherbe<br>75011 Paris</p>
       </div>
       <div class="foot-col">
-        <a href="solutions.html#cdi"${aria('solutions.html#cdi')}>Recrutement CDI</a>
-        <a href="solutions.html#freelance"${aria('solutions.html#freelance')}>Freelance</a>
-        <a href="solutions-renfort.html#drh"${aria('solutions-renfort.html#drh')}>DRH de transition</a>
-        <a href="solutions-renfort.html#rpo"${aria('solutions-renfort.html#rpo')}>RPO</a>
-        <a href="solutions-renfort.html#outils"${aria('solutions-renfort.html#outils')}>Outils &amp; ATS</a>
+        <a href="solutions-cdi.html"${aria('solutions-cdi.html')}>Recrutement CDI</a>
+        <a href="solutions-freelance.html"${aria('solutions-freelance.html')}>Freelance</a>
+        <a href="solutions-clevel.html"${aria('solutions-clevel.html')}>C-Level</a>
+        <a href="solutions-rpo.html"${aria('solutions-rpo.html')}>RPO</a>
+        <a href="solutions-drh.html"${aria('solutions-drh.html')}>DRH de transition</a>
+        <a href="solutions-outils.html"${aria('solutions-outils.html')}>Outils &amp; ATS</a>
       </div>
       <div class="foot-col">
         <a href="solutions-profils.html"${aria('solutions-profils.html')}>Métiers recrutés</a>

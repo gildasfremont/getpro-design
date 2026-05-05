@@ -712,7 +712,8 @@ button { font-family: inherit; cursor: pointer; }
 .subtab:hover {
   background: #ececea;
 }
-.subtab[aria-current="true"] {
+.subtab[aria-current="true"],
+.subtab[aria-current="page"] {
   background: var(--white);
   border-color: var(--ink);
 }

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GetPro Solutions · Renfort RH · RPO</title>
+<meta name="description" content="RPO : un recruteur GetPro intégré à votre équipe RH, à temps plein ou partiel. Forfait mensuel sur le nombre de postes en cours." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta property="og:title" content="GetPro Solutions · Renfort RH · RPO" />
+<meta property="og:description" content="RPO : un recruteur GetPro intégré à votre équipe RH, à temps plein ou partiel. Forfait mensuel sur le nombre de postes en cours." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .photo-romain    { background-image: url('assets/team/romain-pichou.jpg'); }
+  .photo-emile     { background-image: url('assets/team/emile-pennes.jpg'); }
+  .photo-guillaume { background-image: url('assets/team/guillaume-renard.png'); }
+  .photo-louis     { background-image: url('assets/team/louis-fitamant.png'); }
+  .photo-camille   { background-image: url('assets/team/camille-fantini.jpg'); }
+  .photo-anne      { background-image: url('assets/team/anne-delarue.png'); }
+  .photo-die       { background-image: url('assets/team/die-astou-dioume.jpg'); }
+  .photo-juliette  { background-image: url('assets/team/juliette-fabre.png'); }
+  .photo-lauren    { background-image: url('assets/team/lauren-pointon.jpg'); }
+  .photo-jonathan  { background-image: url('assets/team/jonathan-banigo.jpg'); }
+  .photo-terry     { background-image: url('assets/team/terry-raimondo.png'); }
+  /* Bandeau illustratif "DRH de transition" : Camille en 1er (réelle),
+     placeholders ensuite (à remplacer par de vraies photos DRH). */
+  .photo-drh-1     { background-image: url('assets/team/drh-1.jpg'); }
+  .photo-drh-2     { background-image: url('assets/team/drh-2.jpg'); }
+  .photo-drh-3     { background-image: url('assets/team/drh-3.png'); }
+  .photo-drh-4     { background-image: url('assets/team/drh-4.png'); }
+  .photo-drh-5     { background-image: url('assets/team/drh-5.jpg'); }
+  .photo-drh-6     { background-image: url('assets/team/drh-6.png'); }
+  .photo-drh-7     { background-image: url('assets/team/drh-7.png'); }
+
+  /* Bandeau illustratif sous le sous-menu : 7 portraits carrés en ligne,
+     juste l'image, pas de meta. Utilisé dans DRH de transition pour montrer
+     le profil-type des dirigeants RH qu'on place. */
+  .illustrative-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+  }
+  .illustrative-photo {
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #d8e0d3;
+    background-position: 50% 22%;
+  }
+  @media (max-width: 1100px) {
+    .illustrative-row { grid-template-columns: repeat(6, 1fr); }
+    .illustrative-photo:nth-child(7) { display: none; }
+  }
+  @media (max-width: 800px) {
+    .illustrative-row { grid-template-columns: repeat(5, 1fr); }
+    .illustrative-photo:nth-child(n+6) { display: none; }
+  }
+  @media (max-width: 600px) {
+    .illustrative-row { grid-template-columns: repeat(4, 1fr); }
+    .illustrative-photo:nth-child(n+5) { display: none; }
+  }
+  /* RPO : Thomas avec photo cropped dédiée */
+  .photo-thomas    { background-image: url('assets/team/thomas-laigo-rpo.jpg'); }
+</style>
+</head>
+<body>
+  <main class="home">
+
+    <header class="header section" data-nav></header>
+
+    <section class="solutions section">
+      <div class="solutions-head">
+        <div class="solutions-title-row">
+          <h1 class="page-title">Solutions</h1>
+          <nav class="tabs-2" aria-label="Solutions">
+            <a class="tab-2" href="solutions-cdi.html">Chasse</a>
+            <a class="tab-2" href="solutions-rpo.html" aria-current="page">Renfort RH</a>
+            <a class="tab-2" href="solutions-profils.html">Métiers</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="panel" data-solution="renfort">
+        <h2 class="panel-title">Renforcer vos équipes RH sans grossir la structure</h2>
+
+        <div class="subtabs-row">
+          <nav class="subtabs" aria-label="Offres Renfort RH">
+            <a class="subtab" href="solutions-rpo.html" aria-current="page">RPO</a>
+            <a class="subtab" href="solutions-drh.html">DRH de transition</a>
+            <a class="subtab" href="solutions-outils.html">Outils & ATS</a>
+          </nav>
+        </div>
+
+        <div class="subtab-body" data-subtab="rpo">
+          <section class="panel-section">
+            <h3>Un recruteur GetPro intégré à votre équipe RH</h3>
+            <div class="consultants-row">
+              <div class="consultant">
+                <div class="photo photo-anne" role="img" aria-label="Anne Delarue"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Anne Delarue</span>
+                  <span class="consultant-role">Directrice de projet RPO</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-die" role="img" aria-label="Dié Astou Dioume"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Dié Astou Dioume</span>
+                  <span class="consultant-role">Consultante RPO</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-juliette" role="img" aria-label="Juliette Fabre"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Juliette Fabre</span>
+                  <span class="consultant-role">Consultante RPO</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-lauren" role="img" aria-label="Lauren Pointon"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Lauren Pointon</span>
+                  <span class="consultant-role">Consultante RPO</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-thomas" role="img" aria-label="Thomas Laigo"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Thomas Laigo</span>
+                  <span class="consultant-role">Consultant RPO</span>
+                </div>
+              </div>
+            </div>
+            <div class="two-col">
+              <div>
+                <p>Un recruteur GetPro intégré à votre équipe RH, à temps plein ou partiel, pour piloter le recrutement opérationnel sur la durée. Forfait mensuel sur le nombre de postes en cours.</p>
+                <p>Le recruteur travaille sous votre direction, sur votre ATS, avec votre marque employeur. Il reste suivi en interne par un consultant lead GetPro qui garantit le standard de qualité et la formation continue.</p>
+              </div>
+              <div>
+                <p>Pour les scale-ups en croissance constante qui ouvrent un volume régulier de postes Tech principalement, où nos recruteurs RPO sont calibrés pour parler la langue des CTO, Lead Eng et Staff Eng dès le brief.</p>
+                <p>Onboarding en deux semaines, premier reporting mensuel à J+30, point trimestriel avec le DRH pour ajuster le périmètre. Sortie possible avec préavis d'un mois.</p>
+              </div>
+            </div>
+            <a href="tel:+33939289329" class="btn-outline">Échanger avec un consultant : 09 39 28 93 29</a>
+          </section>
+
+          <section class="panel-section">
+            <h3>Un candidat à la fois</h3>
+            <div class="two-col">
+              <div>
+                <p>Nos recruteurs RPO suivent les standards de qualité GetPro : un seul candidat à la fois sur un poste, qualification longue, refus argumenté. Pas de course au volume, pas de spam de candidatures.</p>
+                <p>Sur les missions de plus de trois mois, onboarding double : un lead GetPro garantit la continuité, un opérateur bascule chez vous mais reste suivi en interne.</p>
+              </div>
+              <div>
+                <p>Reporting mensuel détaillé : pipeline par rôle, time-to-fill, taux d'acceptation, retours marché. Retour d'expérience à mi-parcours, transmission organisée si vous internalisez ensuite la fonction.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel-section">
+            <h3>Cas clients</h3>
+            <div class="cases-rows">
+              <div class="case-row">
+                <p>Chez Filigran, 10 recrutements en RPO sur six mois, en parallèle de 20 chasses cabinet. Equipe Tech et Sales structurée à partir de la Série A.</p>
+                <span class="case-logo-mark filigran" aria-label="Filigran"></span>
+              </div>
+              <div class="case-row">
+                <p>Chez Mistral AI, accompagnement sur la structuration de la fonction recrutement interne, en parallèle de 110+ chasses opérées par le cabinet en 2025.</p>
+                <span class="case-logo-mark mistral" aria-label="Mistral AI"></span>
+              </div>
+            </div>
+          </section>
+        </div>
+        <a href="clients.html" class="panel-foot-link">Tous nos clients →</a>
+      </div>
+
+
+    </section>
+
+    <footer class="site-footer" data-footer></footer>
+
+  </main>
+  <script src="partials.js" defer></script>
+</body>
+</html>

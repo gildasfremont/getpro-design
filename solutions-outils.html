@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GetPro Solutions · Renfort RH · Outils & ATS</title>
+<meta name="description" content="Conseil et déploiement RH : audit stack, refonte des scorecards, intégration ATS (Lever, Greenhouse, Welcome Kit, Recruitee)." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta property="og:title" content="GetPro Solutions · Renfort RH · Outils & ATS" />
+<meta property="og:description" content="Conseil et déploiement RH : audit stack, refonte des scorecards, intégration ATS (Lever, Greenhouse, Welcome Kit, Recruitee)." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .photo-romain    { background-image: url('assets/team/romain-pichou.jpg'); }
+  .photo-emile     { background-image: url('assets/team/emile-pennes.jpg'); }
+  .photo-guillaume { background-image: url('assets/team/guillaume-renard.png'); }
+  .photo-louis     { background-image: url('assets/team/louis-fitamant.png'); }
+  .photo-camille   { background-image: url('assets/team/camille-fantini.jpg'); }
+  .photo-anne      { background-image: url('assets/team/anne-delarue.png'); }
+  .photo-die       { background-image: url('assets/team/die-astou-dioume.jpg'); }
+  .photo-juliette  { background-image: url('assets/team/juliette-fabre.png'); }
+  .photo-lauren    { background-image: url('assets/team/lauren-pointon.jpg'); }
+  .photo-jonathan  { background-image: url('assets/team/jonathan-banigo.jpg'); }
+  .photo-terry     { background-image: url('assets/team/terry-raimondo.png'); }
+  /* Bandeau illustratif "DRH de transition" : Camille en 1er (réelle),
+     placeholders ensuite (à remplacer par de vraies photos DRH). */
+  .photo-drh-1     { background-image: url('assets/team/drh-1.jpg'); }
+  .photo-drh-2     { background-image: url('assets/team/drh-2.jpg'); }
+  .photo-drh-3     { background-image: url('assets/team/drh-3.png'); }
+  .photo-drh-4     { background-image: url('assets/team/drh-4.png'); }
+  .photo-drh-5     { background-image: url('assets/team/drh-5.jpg'); }
+  .photo-drh-6     { background-image: url('assets/team/drh-6.png'); }
+  .photo-drh-7     { background-image: url('assets/team/drh-7.png'); }
+
+  /* Bandeau illustratif sous le sous-menu : 7 portraits carrés en ligne,
+     juste l'image, pas de meta. Utilisé dans DRH de transition pour montrer
+     le profil-type des dirigeants RH qu'on place. */
+  .illustrative-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+  }
+  .illustrative-photo {
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #d8e0d3;
+    background-position: 50% 22%;
+  }
+  @media (max-width: 1100px) {
+    .illustrative-row { grid-template-columns: repeat(6, 1fr); }
+    .illustrative-photo:nth-child(7) { display: none; }
+  }
+  @media (max-width: 800px) {
+    .illustrative-row { grid-template-columns: repeat(5, 1fr); }
+    .illustrative-photo:nth-child(n+6) { display: none; }
+  }
+  @media (max-width: 600px) {
+    .illustrative-row { grid-template-columns: repeat(4, 1fr); }
+    .illustrative-photo:nth-child(n+5) { display: none; }
+  }
+</style>
+</head>
+<body>
+  <main class="home">
+
+    <header class="header section" data-nav></header>
+
+    <section class="solutions section">
+      <div class="solutions-head">
+        <div class="solutions-title-row">
+          <h1 class="page-title">Solutions</h1>
+          <nav class="tabs-2" aria-label="Solutions">
+            <a class="tab-2" href="solutions-cdi.html">Chasse</a>
+            <a class="tab-2" href="solutions-rpo.html" aria-current="page">Renfort RH</a>
+            <a class="tab-2" href="solutions-profils.html">Métiers</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="panel" data-solution="renfort">
+        <h2 class="panel-title">Renforcer vos équipes RH sans grossir la structure</h2>
+
+        <div class="subtabs-row">
+          <nav class="subtabs" aria-label="Offres Renfort RH">
+            <a class="subtab" href="solutions-rpo.html">RPO</a>
+            <a class="subtab" href="solutions-drh.html">DRH de transition</a>
+            <a class="subtab" href="solutions-outils.html" aria-current="page">Outils & ATS</a>
+          </nav>
+        </div>
+
+        <div class="subtab-body" data-subtab="outils">
+          <section class="panel-section">
+            <h3>Audit stack RH, refonte scorecards, intégration ATS</h3>
+            <div class="two-col">
+              <div>
+                <p>Nous avons construit notre propre ATS en interne, parce que les outils du marché ne tenaient pas à la charge de nos chasseurs : trop de saisie redondante, des viviers cloisonnés par mission, aucune trace structurée des conversations candidats sur plusieurs années.</p>
+                <p>L'outil n'est pas commercialisé. Il sert nos équipes au quotidien. Mais quelques clients l'ont intégré dans leur stack Flaire notamment, sur leur scale-up tech, à un moment où aucun ATS du marché ne correspondait à leur process.</p>
+              </div>
+              <div>
+                <p>Cette base technique forte change deux choses pour vous. Un, nous comprenons l'écosystème des outils RH parce que nous en construisons un nous-mêmes. Deux, nous sommes calibrés pour parler aux profils tech qu'on vous recrute.</p>
+                <p>En mission de conseil, nous auditons votre stack, refondons vos scorecards, choisissons ou intégrons un ATS adapté (Lever, Greenhouse, Welcome Kit, Recruitee). Format à la journée ou en mission courte sur quelques semaines.</p>
+              </div>
+            </div>
+            <a href="tel:+33939289329" class="btn-outline">Échanger avec un consultant : 09 39 28 93 29</a>
+          </section>
+
+          <section class="panel-section">
+            <h3>Audit court, recommandations priorisées</h3>
+            <div class="two-col">
+              <div>
+                <p>Audit court : org, processus, ATS, scorecards, parcours candidat, marque employeur. Restitution écrite avec recommandations priorisées.</p>
+                <p>Mise en œuvre : refonte des fiches de poste, intégration ATS, design des scorecards, formation des hiring managers et des recruteurs internes.</p>
+              </div>
+              <div>
+                <p>Sur les sujets tech, nous mobilisons les seniors qui chassent les profils ML, IA et software toute l'année. Pas de consultant qui répète des mots-clés sans comprendre la stack.</p>
+                <p>Livrables transmissibles à vos équipes, prêts à être appliqués sans dépendance à GetPro. Restitution sous trois à six semaines selon le périmètre.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel-section">
+            <h3>L'équipe en charge</h3>
+            <div class="consultants-row consultants-row--vertical">
+              <div class="consultant">
+                <div class="photo photo-romain" role="img" aria-label="Romain Pichou"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Romain Pichou</span>
+                  <span class="consultant-role">Président</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-jonathan" role="img" aria-label="Jonathan Banigo"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Jonathan Banigo</span>
+                  <span class="consultant-role">Process Manager SI</span>
+                </div>
+              </div>
+              <div class="consultant">
+                <div class="photo photo-terry" role="img" aria-label="Terry Raimondo"></div>
+                <div class="consultant-meta">
+                  <span class="consultant-name">Terry Raimondo</span>
+                  <span class="consultant-role">CTO</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <a href="clients.html" class="panel-foot-link">Tous nos clients →</a>
+      </div>
+
+
+    </section>
+
+    <footer class="site-footer" data-footer></footer>
+
+  </main>
+  <script src="partials.js" defer></script>
+</body>
+</html>
