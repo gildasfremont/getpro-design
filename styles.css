@@ -618,6 +618,11 @@ button { font-family: inherit; cursor: pointer; }
 .panel > .subtab-body {
   margin-top: calc(-1 * clamp(28px, 3.4vw, 50px));
 }
+/* Outils & ATS : pas de photos en tête de section, c'est un h3 directement.
+   On rétablit le gap normal entre le menu et le contenu pour respirer. */
+.panel > .subtab-body[data-subtab="outils"] {
+  margin-top: 0;
+}
 /* Scoped à .subtabs-row : la hairline et le rythme horizontal sont propres
    à la nav des subtabs sur solutions/solutions-renfort. solutions-profils
    réutilise la classe .subtabs pour une nav verticale, on ne veut pas la
