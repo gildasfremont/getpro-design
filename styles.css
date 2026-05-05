@@ -797,10 +797,13 @@ button { font-family: inherit; cursor: pointer; }
   background-position: 50% 22%;
 }
 .consultant-meta {
-  width: 66.667%;
+  /* Largeur élargie + font plus petite : avec 5 cols, les noms type
+     "Zaïa Bouchachia" ou "Hugo Merdrignac" doivent tenir sans wrap
+     ou avec un wrap propre. */
+  width: 90%;
   display: flex;
   flex-direction: column;
-  font-size: var(--fs-body);
+  font-size: clamp(13px, 1.1vw, 16px);
   line-height: 1.3;
 }
 
