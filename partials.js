@@ -20,7 +20,10 @@
   const navHTML = `
     <nav class="menu">
       <a href="index.html" class="brand" aria-label="GetPro"></a>
-      <div class="menu-right">
+      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-right">
+        <span class="menu-toggle-bars" aria-hidden="true"></span>
+      </button>
+      <div class="menu-right" id="menu-right">
         <a href="solutions.html" class="menu-item"${aria('solutions.html')}>
           <span class="menu-label-full">Solutions de recrutement</span>
           <span class="menu-label-short">Solutions</span>
@@ -71,7 +74,26 @@
 
   const inject = () => {
     const nav = document.querySelector('[data-nav]');
-    if (nav) nav.innerHTML = navHTML;
+    if (nav) {
+      nav.innerHTML = navHTML;
+      // Hamburger toggle (visible sous 480px). aria-expanded change l'état,
+      // le CSS utilise [aria-expanded="true"] pour révéler .menu-right.
+      const toggle = nav.querySelector('.menu-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const open = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', String(!open));
+          toggle.setAttribute('aria-label', open ? 'Ouvrir le menu' : 'Fermer le menu');
+        });
+        // Ferme le menu au clic sur un lien (utile pour les ancres internes).
+        nav.querySelectorAll('.menu-right a').forEach(a => {
+          a.addEventListener('click', () => {
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-label', 'Ouvrir le menu');
+          });
+        });
+      }
+    }
     const foot = document.querySelector('[data-footer]');
     if (foot) foot.innerHTML = footerHTML;
   };
