@@ -295,10 +295,9 @@ button { font-family: inherit; cursor: pointer; }
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: clamp(6px, 0.6vw, 10px);
-  transition: opacity 0.18s ease, text-decoration-thickness 0.18s ease;
+  transition: text-decoration-thickness 0.18s ease;
 }
 .foot-featured a:hover {
-  opacity: 0.7;
   text-decoration-thickness: 2px;
 }
 .foot-featured a[aria-current="page"] {
@@ -355,9 +354,9 @@ button { font-family: inherit; cursor: pointer; }
 .foot-col a {
   color: var(--ink);
   text-decoration: none;
-  transition: opacity 0.15s ease;
+  text-underline-offset: 4px;
 }
-.foot-col a:hover { opacity: 0.7; }
+.foot-col a:hover { text-decoration: underline; }
 .foot-col a[aria-current="page"] {
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -462,10 +461,9 @@ button { font-family: inherit; cursor: pointer; }
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: clamp(5px, 0.5vw, 8px);
-  transition: opacity 0.18s ease, text-decoration-thickness 0.18s ease;
+  transition: text-decoration-thickness 0.18s ease;
 }
 .solutions-overview-list h3 a:hover {
-  opacity: 0.7;
   text-decoration-thickness: 2px;
 }
 .solutions-overview-list p {
