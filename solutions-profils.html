@@ -432,9 +432,16 @@
             if (v.dataset.view === target) v.removeAttribute('hidden');
             else v.setAttribute('hidden', '');
           });
-          // Scroll en haut de page : changer de tab repart d'une lecture
-          // fraîche, plutôt que de rester perdu au milieu de l'autre vue.
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          // Scroll vers le haut du panel-body (pas le top de la page) :
+          // même comportement que le click sur une catégorie. Le navbar
+          // + tabs sticky restent visibles.
+          requestAnimationFrame(() => {
+            const panelBody = document.querySelector('.panel-body');
+            if (!panelBody) return;
+            const headerOffset = 110;
+            const top = panelBody.getBoundingClientRect().top + window.scrollY - headerOffset;
+            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+          });
         });
       }
 
