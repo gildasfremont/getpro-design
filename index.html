@@ -209,6 +209,9 @@
     flex: 1;
     background: url('assets/team/emile-pennes.jpg') center/cover no-repeat;
     min-height: clamp(220px, 30vw, 494px);
+    /* Flush left : on annule la padding-inline de .section pour que
+       le bord gauche de la photo touche le bord gauche du .home. */
+    margin-left: calc(var(--pad-x) * -1);
   }
 
   .process-text {
