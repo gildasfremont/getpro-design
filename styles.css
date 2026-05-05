@@ -237,10 +237,11 @@ button { font-family: inherit; cursor: pointer; }
   font-size: var(--fs-menu);
   line-height: 1.25;
   text-decoration: underline;
+  text-decoration-thickness: 1px;
   text-underline-offset: 4px;
-  transition: opacity 0.15s ease;
+  transition: text-decoration-thickness 0.18s ease;
 }
-.text-arrow-link:hover { opacity: 0.7; }
+.text-arrow-link:hover { text-decoration-thickness: 2px; }
 
 .menu-label-short { display: none; }
 @media (max-width: 800px) {
