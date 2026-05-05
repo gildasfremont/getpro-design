@@ -195,7 +195,8 @@ button { font-family: inherit; cursor: pointer; }
   background: none;
   color: inherit;
 }
-.tab[aria-current="true"]::after {
+.tab[aria-current="true"]::after,
+.tab[aria-current="page"]::after {
   content: "";
   position: absolute;
   left: 0; right: 0; bottom: -1px;
