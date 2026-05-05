@@ -26,9 +26,27 @@
      haut, et le contenu de la vue active en dessous. Le filtrage par
      catégorie (col 1) s'applique aux deux vues. */
   .content-col {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "tabs tabs"
+      "postes rdx";
+    column-gap: clamp(28px, 3.4vw, 50px);
+    row-gap: clamp(28px, 3.4vw, 50px);
     min-width: 0;
+  }
+  .view-tabs { grid-area: tabs; }
+  .view-body[data-view="postes"] { grid-area: postes; min-width: 0; }
+  .view-body[data-view="rdx"] { grid-area: rdx; min-width: 0; max-width: none; }
+
+  /* Active = full opacity, inactive = grisé. La transition donne un
+     effet de "glissement" doux quand on toggle la tab. */
+  .view-body {
+    transition: opacity 0.25s ease, transform 0.3s ease;
+  }
+  .content-col[data-active-view="postes"] .view-body[data-view="rdx"],
+  .content-col[data-active-view="rdx"] .view-body[data-view="postes"] {
+    opacity: 0.35;
   }
   .view-tabs {
     display: inline-flex;
@@ -58,7 +76,7 @@
     height: 2px;
     background: var(--ink);
   }
-  .view-body[hidden] { display: none; }
+  .view-body[hidden] { display: block; } /* hidden no longer hides : both views shown side-by-side */
 
   /* Vue "Postes" : 2 cols categories | profils.
      align-items: baseline → la baseline du 1er texte de chaque col
@@ -362,7 +380,7 @@
             </div>
           </div>
 
-          <div class="content-col">
+          <div class="content-col" data-active-view="postes">
             <div class="view-tabs" role="tablist" aria-label="Vue Placements / Témoignages">
               <button class="view-tab" role="tab" data-view="postes" aria-current="true">Placements</button>
               <button class="view-tab" role="tab" data-view="rdx">Témoignages</button>
@@ -373,7 +391,7 @@
               <div class="profiles-area" id="profiles-area"></div>
             </div>
 
-            <div class="view-body view-rdx" data-view="rdx" hidden>
+            <div class="view-body view-rdx" data-view="rdx">
               <div class="testimonials" id="candidate-testimonials"></div>
             </div>
           </div>
@@ -406,10 +424,10 @@
             if (b === btn) b.setAttribute('aria-current', 'true');
             else b.removeAttribute('aria-current');
           });
-          document.querySelectorAll('.view-body[data-view]').forEach(v => {
-            if (v.dataset.view === target) v.removeAttribute('hidden');
-            else v.setAttribute('hidden', '');
-          });
+          // Both view-bodies stay visible side-by-side; the parent's
+          // data-active-view drives the opacity swap (CSS).
+          const contentCol = document.querySelector('.content-col');
+          if (contentCol) contentCol.setAttribute('data-active-view', target);
         });
       }
 
