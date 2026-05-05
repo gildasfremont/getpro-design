@@ -31,6 +31,11 @@
     font-size: var(--fs-hero);
     line-height: var(--lh-hero);
   }
+  /* Sous 600px le <br> ne tombe plus sur un break naturel : on le neutralise
+     pour laisser le texte wrapper proprement. */
+  @media (max-width: 600px) {
+    .hero-title br { display: none; }
+  }
 
   /* ---------- Image grid ---------- */
   .grid-images {
