@@ -25,61 +25,76 @@
   /* Col 2 du panel-body : view-tabs (Postes / Retour d'expérience) en
      haut, et le contenu de la vue active en dessous. Le filtrage par
      catégorie (col 1) s'applique aux deux vues. */
-  /* Le content-col est un grid : tabs en row 1, focus + preview en row 2.
-     L'active vit dans la zone "focus" (large, à gauche), l'inactive vit
-     dans la zone "preview" (étroite, à droite, grisée et tronquée).
-     Quand on toggle la tab, les deux échangent leurs grid-areas =
-     visuellement les colonnes s'échangent latéralement (sans literal
-     slide CSS, mais l'effet de swap est immédiat et clair). */
+  /* content-col : tabs (sticky) + stage. Le stage est un flex row où
+     l'active prend la majorité (flex-grow 100), l'inactive a une
+     min-width fixe qui peut faire déborder le stage du content-col à
+     droite (preview qui dépasse le panel). Transition sur flex-grow
+     anime la transition de proportions entre les deux états. */
   .content-col {
-    display: grid;
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-    grid-template-areas:
-      "tabs tabs"
-      "focus preview";
-    column-gap: clamp(28px, 3.4vw, 50px);
-    row-gap: clamp(28px, 3.4vw, 50px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 2.4vw, 36px);
     min-width: 0;
     overflow: visible;
   }
-  .view-tabs { grid-area: tabs; }
-
-  /* Default : postes en focus, rdx en preview */
-  .content-col[data-active-view="postes"] .view-body[data-view="postes"] { grid-area: focus; }
-  .content-col[data-active-view="postes"] .view-body[data-view="rdx"]    { grid-area: preview; }
-  /* Swap : témoignages active passe en focus, postes en preview */
-  .content-col[data-active-view="rdx"] .view-body[data-view="rdx"]    { grid-area: focus; }
-  .content-col[data-active-view="rdx"] .view-body[data-view="postes"] { grid-area: preview; }
-
-  .view-body {
-    min-width: 0;
-    transition: opacity 0.3s ease;
+  .view-stage {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(28px, 3.4vw, 50px);
+    align-items: flex-start;
+    overflow: visible;
   }
-  /* Inactif (en preview) : grisé + cursor pointer */
-  .content-col[data-active-view="postes"] .view-body[data-view="rdx"],
-  .content-col[data-active-view="rdx"]    .view-body[data-view="postes"] {
+  .view-stage > .view-body {
+    flex: 1 1 0;
+    min-width: 0;
+    transition: flex-grow 0.45s cubic-bezier(0.32, 0.72, 0.18, 1),
+                opacity 0.35s ease;
+  }
+  /* État Placements : postes domine (flex-grow 100), rdx en preview
+     avec min-width qui le force à dépasser le panel à droite. */
+  .content-col[data-active-view="postes"] .view-body[data-view="postes"] {
+    flex-grow: 100;
+    opacity: 1;
+  }
+  .content-col[data-active-view="postes"] .view-body[data-view="rdx"] {
+    flex-grow: 1;
+    min-width: clamp(280px, 32vw, 440px);
     opacity: 0.35;
     cursor: pointer;
   }
-  /* La preview déborde du panel : on lui donne une largeur min plus
-     large que la col preview (1fr) pour qu'elle dépasse à droite. */
-  .content-col[data-active-view="postes"] .view-body[data-view="rdx"] .testimonials,
-  .content-col[data-active-view="rdx"]    .view-body[data-view="postes"] {
-    min-width: clamp(360px, 40vw, 560px);
+  /* État Témoignages : rdx domine, postes en preview qui dépasse */
+  .content-col[data-active-view="rdx"] .view-body[data-view="postes"] {
+    flex-grow: 1;
+    min-width: clamp(180px, 22vw, 320px);
+    opacity: 0.35;
+    cursor: pointer;
+  }
+  .content-col[data-active-view="rdx"] .view-body[data-view="rdx"] {
+    flex-grow: 100;
+    opacity: 1;
   }
   .view-tabs {
-    display: inline-flex;
-    align-self: flex-start;
+    display: flex;
+    align-self: stretch;
     gap: clamp(20px, 3vw, 50px);
-    border-bottom: 1px solid var(--line);
-    margin-bottom: clamp(28px, 3.4vw, 50px);
-    /* Sticky : reste visible pendant qu'on scrolle. Bg panel pour masquer
-       le contenu qui passe en dessous. */
+    /* Sticky : reste accroché en haut pendant le scroll. Bg blanc qui
+       remonte derrière la nav du site (--bg) grâce au z-index 4. */
     position: -webkit-sticky;
     position: sticky;
     top: clamp(80px, 9vw, 110px);
     background: var(--white);
+    padding-block: clamp(10px, 1.2vw, 16px) clamp(14px, 1.6vw, 22px);
+    margin-block: 0;
     z-index: 4;
+  }
+  /* Hairline subtil sous les tabs sticky pour séparer du contenu qui
+     scroll dessous, mais sans dureté. */
+  .view-tabs::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 1px;
+    background: rgba(6, 32, 4, 0.08);
   }
   .view-tab {
     /* Pas de padding-top : Placements aligne sa baseline sur "Tech" dans
@@ -98,7 +113,7 @@
   .view-tab[aria-current="true"]::after {
     content: "";
     position: absolute;
-    left: 0; right: 0; bottom: -1px;
+    left: 0; right: 0; bottom: 0;
     height: 2px;
     background: var(--ink);
   }
@@ -118,11 +133,9 @@
     gap: clamp(28px, 4vw, 60px);
     align-items: baseline;
   }
-  /* Vue "Retour d'expérience" : les témoignages prennent toute la
-     largeur du panel, capés à --measure pour la lisibilité. */
-  .view-rdx .testimonials {
-    max-width: var(--measure);
-  }
+  /* Témoignages : prennent leur col, le contenu interne gère sa propre
+     mesure. Pas de cap parent. */
+  .view-rdx .testimonials { max-width: none; }
   /* Col 1 du panel-body : la liste des catégories (subtabs) avec le
      rating Trustpilot dessous. Sticky pour rester visible pendant
      que l'utilisateur scrolle la colonne de droite (postes ou
@@ -416,13 +429,14 @@
               <button class="view-tab" role="tab" data-view="rdx">Témoignages</button>
             </div>
 
-            <div class="view-body" data-view="postes">
-              <div class="filter-chips" role="tablist" id="postes-chips" hidden></div>
-              <div class="profiles-area" id="profiles-area"></div>
-            </div>
-
-            <div class="view-body view-rdx" data-view="rdx">
-              <div class="testimonials" id="candidate-testimonials"></div>
+            <div class="view-stage">
+              <div class="view-body" data-view="postes">
+                <div class="filter-chips" role="tablist" id="postes-chips" hidden></div>
+                <div class="profiles-area" id="profiles-area"></div>
+              </div>
+              <div class="view-body view-rdx" data-view="rdx">
+                <div class="testimonials" id="candidate-testimonials"></div>
+              </div>
             </div>
           </div>
         </div>
