@@ -275,7 +275,7 @@ button { font-family: inherit; cursor: pointer; }
 /* "Featured nav" en haut du footer (façon MoMA) : 3 liens-vedette
    gros et clairs vers les solutions phares (Recrutement salarié,
    Freelance, RH de transition). Flex justify-start avec gap fixe
-   entre items — pas de grille (déséquilibrée à cause des labels
+   entre items pas de grille (déséquilibrée à cause des labels
    de longueurs différentes). */
 .foot-featured {
   display: flex;
@@ -344,7 +344,7 @@ button { font-family: inherit; cursor: pointer; }
   opacity: 0.6;
 }
 
-/* Colonnes de liens — petites, alignées start. */
+/* Colonnes de liens petites, alignées start. */
 .foot-col {
   display: flex;
   flex-direction: column;
@@ -535,7 +535,7 @@ button { font-family: inherit; cursor: pointer; }
   display: inline-flex;
   align-items: center;
   padding: clamp(14px, 1.4vw, 20px) 0;
-  /* Même taille que .tab d'Équipe (--fs-tab) — onglets top-level
+  /* Même taille que .tab d'Équipe (--fs-tab) onglets top-level
      cohérents d'une page à l'autre. */
   font-size: var(--fs-tab);
   line-height: 1.15;
@@ -704,7 +704,7 @@ button { font-family: inherit; cursor: pointer; }
   background-color: var(--ink);
   -webkit-mask: left center / contain no-repeat;
           mask: left center / contain no-repeat;
-  /* mask-mode: alpha — sinon les paths noirs des SVG (luminance 0) sont
+  /* mask-mode: alpha sinon les paths noirs des SVG (luminance 0) sont
      rendus transparents et le logo est tronqué. Avec alpha tous les paths
      opaques (blancs comme noirs) contribuent au masque. */
   -webkit-mask-mode: alpha;
@@ -746,7 +746,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .case-consultant-role { opacity: 0.6; }
 
-/* Consultants row — photos en grille 4 colonnes (3 puis 2 en responsive),
+/* Consultants row photos en grille 4 colonnes (3 puis 2 en responsive),
    yeux calés à ~22% de la hauteur de la cellule portrait 1:2. */
 .consultants-row {
   display: grid;
@@ -781,7 +781,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 @media (max-width: 800px) {
   /* Quand on perd la place pour 2 cols côte à côte, on stacke en 1 col.
-     La col fait 75% du panel (pas 50%) — sinon la mesure de ligne
+     La col fait 75% du panel (pas 50%) sinon la mesure de ligne
      devient trop étroite et "échangé avec nous, a compris votre
      projet, a" ne tient plus, alors qu'on a la place. */
   .two-col {
@@ -796,7 +796,7 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 460px) {
   /* Sous 460, le 50% devient vraiment trop étroit (~180-200px) :
      on libère et le contenu prend toute la largeur. Au-dessus
-     (460-800), la grille reste à 1 col de 50% — même mesure de
+     (460-800), la grille reste à 1 col de 50% même mesure de
      ligne qu'en desktop pour la lisibilité. */
   .two-col { grid-template-columns: 1fr; }
 }
@@ -805,7 +805,7 @@ button { font-family: inherit; cursor: pointer; }
      existe (Ponctuel / Continu / RPO ; Freelance, DRH de transition,
      Outils & ATS gardent leur label original). Cette réduction libère
      de la place pour que "Profils couverts" reste à droite des
-     subtabs sans wrapper — on ne switche le layout que beaucoup plus
+     subtabs sans wrapper on ne switche le layout que beaucoup plus
      bas (cf. media query 460 plus loin). */
   .subtab-label-full { display: none; }
   .subtab-label-short { display: inline; }

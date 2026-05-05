@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GetPro — Clients</title>
+<title>GetPro Clients</title>
 <meta name="description" content="Plus de 200 entreprises accompagnées depuis 2015 : Mistral AI, Lucca, Electra, Filigran, Japhy, et beaucoup d'autres scale-ups en hypercroissance." />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-<meta property="og:title" content="GetPro — Clients" />
+<meta property="og:title" content="GetPro Clients" />
 <meta property="og:description" content="Plus de 200 entreprises accompagnées depuis 2015 : Mistral AI, Lucca, Electra, Filigran, Japhy, et beaucoup d'autres scale-ups en hypercroissance." />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
@@ -19,7 +19,7 @@
     padding-bottom: var(--gap-section);
   }
   .clients {
-    /* Aligné sur var(--pad-card-x) (Solutions panel) — la box blanche
+    /* Aligné sur var(--pad-card-x) (Solutions panel) la box blanche
        respire pareil que sur les autres pages, au détriment de la
        largeur de la preview de témoignage. */
     --clients-pad-x: var(--pad-card-x);
@@ -107,7 +107,7 @@
   .clients-search:has(input:not(:placeholder-shown)) .icon-loupe { display: none; }
   .clients-search:has(input:not(:placeholder-shown)) .icon-clear { display: block; }
 
-  /* Panel : just a card holding the list — même padding que les
+  /* Panel : just a card holding the list même padding que les
      panels des autres pages (Solutions, etc.) pour respirer pareil. */
   .clients-panel {
     background: var(--white);
@@ -337,25 +337,25 @@
       const escape = (s) => (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
       const norm = (s) => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
-      // Cool order : the array order IS the display order — pas d'alpha entre eux.
+      // Cool order : the array order IS the display order pas d'alpha entre eux.
       // Le reste des clients (non listés ici) tombe en queue, en ordre alpha.
       const COOL_ORDER = [
-        // — IA hot
+        // IA hot
         'mistral-ai', 'eleven-labs', 'dust', 'filigran', 'kili-technology',
         'mindee', 'harfanglab', 'sipearl', 'unifai', 'autrice-ai',
         'webyn-ai', 'ai-cargo-foundation',
-        // — Réseaux sociaux & marques avec présence média / consumer
+        // Réseaux sociaux & marques avec présence média / consumer
         'yubo', 'voggt', 'voodoo', 'kisskissbankbank', 'joko',
         'cheerz', 'lunii', 'mwm', 'madbox', 'kabeen', 'ron-dorff',
         'lemlist', 'onefinestay', 'splio',
-        // — Scale-ups B+ connues / grosses levées
+        // Scale-ups B+ connues / grosses levées
         'electra', 'contentsquare', 'doctrine', 'evaneos', 'jobteaser',
         'pigment', 'lucca', 'partoo', 'getaround', 'matera', 'agicap',
-        // — Grandes marques françaises
+        // Grandes marques françaises
         'blablacar', 'carrefour', 'carrefour-2', 'decathlon', 'jcdecaux',
         'canal-plus', 'rakuten', 'rakuten-dx', 'total', 'porsche-france',
         'edf-enr', 'oscaro', 'prestashop',
-        // — Tech identifiable B2B
+        // Tech identifiable B2B
         'flaire', 'manomano', 'libeo', 'leetchi', 'kard', 'foodles',
         'spiko', 'cybelangel', 'twicpics', 'jus-mundi', 'mytraffic',
       ];

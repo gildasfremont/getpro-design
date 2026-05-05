@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GetPro — Métiers</title>
+<title>GetPro Métiers</title>
 <meta name="description" content="+2000 talents recrutés sur Tech, Product, Data, Sales, Marketing, Ops et C-level. La cartographie des profils que GetPro chasse au quotidien." />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-<meta property="og:title" content="GetPro — Métiers" />
+<meta property="og:title" content="GetPro Métiers" />
 <meta property="og:description" content="+2000 talents recrutés sur Tech, Product, Data, Sales, Marketing, Ops et C-level. La cartographie des profils que GetPro chasse au quotidien." />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
@@ -57,7 +57,7 @@
   }
   .view-body[hidden] { display: none; }
 
-  /* Vue "Postes" : 2 cols — categories | profils.
+  /* Vue "Postes" : 2 cols categories | profils.
      align-items: baseline → la baseline du 1er texte de chaque col
      s'aligne (Tech ↔ Postes alignés sur le bas du texte, pas sur
      le haut du box). */
@@ -112,11 +112,11 @@
     text-underline-offset: 4px;
   }
   /* Désactive le pseudo-bar global (.subtab[aria-current]::after,
-     une bande 2px de var(--ink) sous le tab) — sinon on a un double
+     une bande 2px de var(--ink) sous le tab) sinon on a un double
      soulignement gras avec le text-decoration ci-dessus. Ici on garde
      uniquement l'underline texte, plus discret. */
   #bucket-tabs .subtab[aria-current="true"]::after { display: none; }
-  /* Filtres de sous-catégorie — texte plain en row, underline sur
+  /* Filtres de sous-catégorie texte plain en row, underline sur
      l'actif. Même langage typographique que le reste du site
      (.subtab, .foot-featured, etc) : pas de pill / pas de bg fill. */
   .filter-chips {
@@ -176,7 +176,7 @@
   /* Témoignages groupés par boîte. Chaque .company-block est un grid
      2 cols : logo (sticky) à gauche, liste des témoignages à droite.
      Quand l'utilisateur scrolle dans les témoignages d'une boîte, le
-     logo reste visible — il libère la place quand on arrive au
+     logo reste visible il libère la place quand on arrive au
      groupe suivant. Reprend le pattern visuel de la liste Clients
      (logo + texte côté). */
   .testimonials {
@@ -250,7 +250,7 @@
   @media (max-width: 800px) {
     .panel-title { max-width: none; }
     /* .solutions-title-row : on laisse le flex-wrap global gérer le
-       passage à la ligne — les autres pages Solutions/Renfort font
+       passage à la ligne les autres pages Solutions/Renfort font
        pareil pour rester cohérent à toutes les tailles. */
     .panel-body { grid-template-columns: 1fr; }
     /* En mobile, .categories-col devient un sticky bar :
@@ -425,7 +425,7 @@
 
         // Bucket avec sous-catégories : si activeSub est set, n'affiche
         // que ce sous-bloc ; sinon affiche tous les sous-blocs. Plus
-        // de label en majuscules — les chips au-dessus suffisent à
+        // de label en majuscules les chips au-dessus suffisent à
         // signaler la catégorisation.
         if (data.sub) {
           let subs = Object.entries(data.sub).filter(([, s]) => s.postes.length > 0);
@@ -444,7 +444,7 @@
         }</div>`;
       }
 
-      // Chips de filtre des sous-catégories — visibles uniquement quand
+      // Chips de filtre des sous-catégories visibles uniquement quand
       // le bucket courant a des sub-catégories (Tech, Product). Un chip
       // par sous-catégorie (pas de "Tous" : par défaut tous les
       // sous-blocs sont visibles, click sur le chip actif le déselectionne
@@ -486,7 +486,7 @@
           container.innerHTML = `<div class="empty-state">Aucun témoignage candidat dans cette catégorie pour le moment.</div>`;
           return;
         }
-        // Group by company_slug — preserve insertion order = ordre du
+        // Group by company_slug preserve insertion order = ordre du
         // 1er candidat par boîte rencontré dans la liste filtrée.
         const groups = new Map();
         for (const c of list) {
