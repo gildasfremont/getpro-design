@@ -32,9 +32,7 @@
   }
   .view-tabs {
     /* Sticky en haut du content-col pendant le scroll. align-self: stretch
-       pour que le fond blanc couvre toute la largeur du content-col (sinon
-       on verrait du contenu passer à droite des tabs). margin négatif pour
-       coller au top du sticky sans gap. */
+       pour que le fond blanc couvre toute la largeur du content-col. */
     display: flex;
     align-self: stretch;
     gap: clamp(20px, 3vw, 50px);
@@ -43,29 +41,32 @@
     position: sticky;
     top: clamp(44px, 6.7vw, 96px);
     background: var(--white);
-    padding-block: clamp(14px, 1.6vw, 22px);
+    /* padding-block-end 0 : la border-bottom touche pile la baseline des
+       tabs. Le tab actif posera son underline 2px par-dessus pour couvrir
+       le hairline gris à l'aplomb du tab actif (pattern tabs classique). */
+    padding-block: clamp(14px, 1.6vw, 22px) 0;
+    border-bottom: 1px solid var(--line);
     z-index: 4;
   }
   .view-tab {
     /* Pas de padding-top : Placements aligne sa baseline sur "Tech" dans
-       la col 1. Petit padding-bottom pour le trait actif. */
+       la col 1. Padding-bottom pour respirer entre le texte et le trait. */
     padding: 0 0 clamp(10px, 1.2vw, 16px);
     font-size: clamp(18px, 2vw, 28px);
     line-height: 1.25;
     background: none;
-    border: none;
     color: inherit;
     font-family: inherit;
     cursor: pointer;
-    position: relative;
     white-space: nowrap;
+    /* La border-bottom du tab couvre 1px du hairline parent + ajoute 1px
+       sous (total 2px d'épaisseur visible) à l'aplomb du tab actif. */
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
   }
-  .view-tab[aria-current="true"]::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: -1px;
-    height: 2px;
-    background: var(--ink);
+  .view-tab[aria-current="true"] {
+    border-bottom-color: var(--ink);
   }
   .view-body[hidden] { display: none; }
 
@@ -419,6 +420,9 @@
             if (v.dataset.view === target) v.removeAttribute('hidden');
             else v.setAttribute('hidden', '');
           });
+          // Scroll en haut de page : changer de tab repart d'une lecture
+          // fraîche, plutôt que de rester perdu au milieu de l'autre vue.
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       }
 
