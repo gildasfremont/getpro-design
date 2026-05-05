@@ -34,19 +34,32 @@
     column-gap: clamp(28px, 3.4vw, 50px);
     row-gap: clamp(28px, 3.4vw, 50px);
     min-width: 0;
+    /* Indispensable pour que la col rdx puisse déborder à droite. */
+    overflow: visible;
   }
   .view-tabs { grid-area: tabs; }
   .view-body[data-view="postes"] { grid-area: postes; min-width: 0; }
-  .view-body[data-view="rdx"] { grid-area: rdx; min-width: 0; max-width: none; }
+  .view-body[data-view="rdx"]   { grid-area: rdx; min-width: 0; max-width: none; }
 
-  /* Active = full opacity, inactive = grisé. La transition donne un
-     effet de "glissement" doux quand on toggle la tab. */
-  .view-body {
-    transition: opacity 0.25s ease, transform 0.3s ease;
+  /* Quand la vue Témoignages est en preview (tab Placements active),
+     la col rdx s'élargit au-delà du panel blanc : on voit le début
+     des citations dans la zone du panel, le reste déborde sur le bg. */
+  .content-col[data-active-view="postes"] .view-body[data-view="rdx"] .testimonials {
+    width: clamp(400px, 55vw, 720px);
+    max-width: none;
   }
+  /* Quand Témoignages est active, on revient à la mesure de lecture. */
+  .content-col[data-active-view="rdx"] .view-body[data-view="rdx"] .testimonials {
+    width: auto;
+    max-width: var(--measure);
+  }
+
+  /* Inactif : grisé + cursor pointer pour signifier la cliquabilité. */
+  .view-body { transition: opacity 0.3s ease, width 0.4s ease; }
   .content-col[data-active-view="postes"] .view-body[data-view="rdx"],
   .content-col[data-active-view="rdx"] .view-body[data-view="postes"] {
     opacity: 0.35;
+    cursor: pointer;
   }
   .view-tabs {
     display: inline-flex;
@@ -77,6 +90,10 @@
     background: var(--ink);
   }
   .view-body[hidden] { display: block; } /* hidden no longer hides : both views shown side-by-side */
+
+  /* Permet à la col Témoignages de déborder à droite du panel blanc. */
+  .panel { overflow: visible; }
+  .panel-body { overflow: visible; }
 
   /* Vue "Postes" : 2 cols categories | profils.
      align-items: baseline → la baseline du 1er texte de chaque col
@@ -430,6 +447,28 @@
           if (contentCol) contentCol.setAttribute('data-active-view', target);
         });
       }
+
+      // Click sur la view-body inactive (grisée) → l'activer aussi
+      const setActiveView = (target) => {
+        const contentCol = document.querySelector('.content-col');
+        if (!contentCol) return;
+        contentCol.setAttribute('data-active-view', target);
+        if (viewTabsHost) {
+          viewTabsHost.querySelectorAll('.view-tab').forEach(b => {
+            if (b.dataset.view === target) b.setAttribute('aria-current', 'true');
+            else b.removeAttribute('aria-current');
+          });
+        }
+      };
+      document.querySelectorAll('.view-body[data-view]').forEach(body => {
+        body.addEventListener('click', (e) => {
+          const contentCol = document.querySelector('.content-col');
+          if (!contentCol) return;
+          const target = body.dataset.view;
+          if (contentCol.getAttribute('data-active-view') === target) return;
+          setActiveView(target);
+        });
+      });
 
       let metiers = {};
       let candidates = [];
