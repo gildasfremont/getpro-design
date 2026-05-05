@@ -208,7 +208,14 @@ button { font-family: inherit; cursor: pointer; }
    pour distinguer "métiers/résultats" des deux groupes Chasse / Renfort RH.
    Et la nav .tabs prend toute la largeur pour que margin-left: auto pousse. */
 .solutions-head .tabs { width: 100%; }
-.tab--push-right { margin-left: auto; }
+.tab--push-right { margin-left: auto; align-self: center; }
+/* Quand le btn-outline "+2000 recrutements" est sur la page Métiers,
+   on le remplit pour signifier l'état actif (équivalent du underline
+   sur les .tab classiques). */
+.btn-outline.tab--push-right[aria-current="page"] {
+  background: var(--ink);
+  color: var(--white);
+}
 
 /* ---------- Ratings (Trustpilot / Trustfolio / Google / Glassdoor) ---------- */
 .ratings-row {
