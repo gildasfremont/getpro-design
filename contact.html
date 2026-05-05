@@ -14,8 +14,8 @@
 <link rel="stylesheet" href="styles.css" />
 <style>
   /* ---------- Contact ----------
-     Layout en bandeaux verticaux séparés, généreusement espacés.
-     Le formulaire vit dans son propre panel blanc, isolé du reste. */
+     Le hero EST l'incitation à contacter : email + téléphone en très
+     gros, soulignés. Pas de pseudo-footer répétant l'info. */
   .contact {
     display: flex;
     flex-direction: column;
@@ -23,29 +23,25 @@
     padding-bottom: var(--gap-section);
   }
 
-  /* Bandeau hero : titre full width, lead capé pour la lisibilité. */
-  .contact-head {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(20px, 2.4vw, 36px);
-  }
+  /* Hero : email + tel en mega-titre cliquable */
   .contact-head h1 {
-    font-size: var(--fs-page-title);
+    font-size: clamp(40px, 6.4vw, 92px);
     line-height: 1.05;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
+    font-weight: 400;
   }
-  .contact-head .lead {
-    font-size: clamp(18px, 2vw, 28px);
-    line-height: 1.35;
-    max-width: 50ch;
-  }
-  .contact-head .lead a {
+  .contact-head h1 a {
     text-decoration: underline;
-    text-underline-offset: 4px;
+    text-decoration-thickness: clamp(2px, 0.2vw, 4px);
+    text-underline-offset: clamp(6px, 0.7vw, 12px);
+    color: inherit;
+    transition: text-decoration-thickness 0.18s ease;
+  }
+  .contact-head h1 a:hover {
+    text-decoration-thickness: clamp(3px, 0.3vw, 6px);
   }
 
-  /* Bandeau value props : 2 colonnes éditoriales hors panel.
-     Petit label suscript + liste serrée. Visuellement aérien. */
+  /* Bandeau value props : 2 colonnes éditoriales hors panel */
   .contact-props {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -76,8 +72,7 @@
     letter-spacing: -0.01em;
   }
 
-  /* Panel formulaire : plein cadre blanc, contenu cap à 720px et centré
-     pour garder un rythme de lecture confortable. */
+  /* Panel formulaire */
   .form-panel {
     background: var(--white);
     padding: clamp(40px, 6.4vw, 100px) var(--pad-card-x);
@@ -87,7 +82,7 @@
   }
   .form-panel-inner {
     width: 100%;
-    max-width: 720px;
+    max-width: 760px;
     margin-inline: auto;
     display: flex;
     flex-direction: column;
@@ -99,41 +94,40 @@
     letter-spacing: -0.02em;
   }
 
-  /* Form : tous les champs en underline minimaliste, même style.
-     2 colonnes pour Prénom/Nom, Téléphone/Email ; 1 colonne pour
-     Entreprise et le brief (textarea). */
+  /* Form en blocs : chaque champ = bloc rempli en var(--bg) sur le panel
+     blanc, contraste subtil. Bordure transparente qui se révèle au focus. */
   .contact-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: clamp(24px, 3vw, 48px);
-    row-gap: clamp(28px, 3vw, 44px);
+    column-gap: clamp(16px, 1.6vw, 22px);
+    row-gap: clamp(16px, 1.6vw, 22px);
   }
   .form-field {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
-  .form-field--full {
-    grid-column: 1 / -1;
-  }
+  .form-field--full { grid-column: 1 / -1; }
+
   .form-field label {
     font-size: clamp(13px, 1vw, 15px);
     line-height: 1.25;
     letter-spacing: 0.02em;
     opacity: 0.6;
+    padding-inline: clamp(18px, 1.8vw, 24px);
   }
   .form-field input,
   .form-field textarea {
     width: 100%;
-    padding: 6px 0 10px;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--ink);
+    padding: clamp(14px, 1.4vw, 20px) clamp(18px, 1.8vw, 24px);
+    background: var(--bg);
+    border: 1px solid transparent;
     font: inherit;
     font-size: clamp(16px, 1.6vw, 20px);
     line-height: 1.4;
     color: var(--ink);
-    border-radius: 0;
+    border-radius: clamp(4px, 0.4vw, 6px);
+    transition: border-color 0.15s ease, background 0.15s ease;
   }
   .form-field input::placeholder,
   .form-field textarea::placeholder {
@@ -143,16 +137,15 @@
   .form-field input:focus,
   .form-field textarea:focus {
     outline: none;
-    border-bottom-width: 2px;
-    padding-bottom: 9px;
+    border-color: var(--ink);
+    background: var(--white);
   }
   .form-field textarea {
-    min-height: clamp(120px, 14vw, 180px);
+    min-height: clamp(140px, 16vw, 220px);
     resize: vertical;
   }
 
-  /* Submit row : promesse à gauche, bouton à droite. Hairline au-dessus
-     pour séparer du dernier champ. */
+  /* Submit row */
   .form-submit {
     grid-column: 1 / -1;
     display: flex;
@@ -160,8 +153,7 @@
     align-items: center;
     justify-content: space-between;
     gap: clamp(20px, 2.4vw, 36px);
-    padding-top: clamp(20px, 2.4vw, 36px);
-    border-top: 1px solid rgba(6, 32, 4, 0.12);
+    padding-top: clamp(8px, 1vw, 16px);
   }
   .form-promise {
     font-size: var(--fs-menu);
@@ -181,39 +173,16 @@
     border: none;
     cursor: pointer;
     font-family: inherit;
+    border-radius: clamp(4px, 0.4vw, 6px);
     transition: background 0.18s ease;
   }
   .btn-primary:hover { background: #0a3209; }
 
-  /* Bandeau coordonnées : 3 colonnes, hairline au-dessus, sobre. */
-  .contact-coords {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(28px, 4vw, 60px);
-    padding-top: clamp(40px, 4.5vw, 70px);
-    border-top: 1px solid rgba(6, 32, 4, 0.12);
-    font-size: clamp(16px, 1.6vw, 20px);
-    line-height: 1.4;
-  }
-  .contact-coords .label {
-    font-size: var(--fs-menu);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    opacity: 0.55;
-    margin-bottom: clamp(8px, 0.8vw, 12px);
-  }
-  .contact-coords a {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-
-  /* Mobile : tout en single col, garder de la respiration verticale. */
   @media (max-width: 800px) {
     .contact-props { grid-template-columns: 1fr; }
     .contact-form  { grid-template-columns: 1fr; }
     .form-submit   { flex-direction: column; align-items: stretch; }
     .form-submit .btn-primary { justify-content: center; }
-    .contact-coords { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -225,8 +194,7 @@
     <section class="contact section">
 
       <div class="contact-head">
-        <h1>Parlez-nous de votre projet</h1>
-        <p class="lead">Appelez le <a href="tel:+33939289329">09 39 28 93 29</a>, écrivez à <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>, ou remplissez le brief ci-dessous.</p>
+        <h1>Écrivez à <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>, appelez au <a href="tel:+33939289329">09 39 28 93 29</a>.</h1>
       </div>
 
       <div class="contact-props">
@@ -253,25 +221,21 @@
           <h2>Décrivez votre besoin</h2>
 
           <form class="contact-form" action="mailto:bonjour@getpro.com" method="POST" enctype="text/plain">
-            <div class="form-field">
-              <label for="first_name">Prénom</label>
-              <input id="first_name" name="first_name" type="text" required autocomplete="given-name" />
-            </div>
-            <div class="form-field">
-              <label for="last_name">Nom</label>
-              <input id="last_name" name="last_name" type="text" required autocomplete="family-name" />
+            <div class="form-field form-field--full">
+              <label for="name">Prénom et nom</label>
+              <input id="name" name="name" type="text" required autocomplete="name" autofocus />
             </div>
 
-            <div class="form-field form-field--full">
+            <div class="form-field">
               <label for="company">Entreprise</label>
               <input id="company" name="company" type="text" required autocomplete="organization" />
             </div>
-
             <div class="form-field">
               <label for="phone">Téléphone</label>
               <input id="phone" name="phone" type="tel" required autocomplete="tel" />
             </div>
-            <div class="form-field">
+
+            <div class="form-field form-field--full">
               <label for="email">E-mail</label>
               <input id="email" name="email" type="email" required autocomplete="email" />
             </div>
@@ -286,21 +250,6 @@
               <button type="submit" class="btn-primary">Envoyer le brief →</button>
             </div>
           </form>
-        </div>
-      </div>
-
-      <div class="contact-coords">
-        <div>
-          <div class="label">Téléphone</div>
-          <a href="tel:+33939289329">09 39 28 93 29</a>
-        </div>
-        <div>
-          <div class="label">Email</div>
-          <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>
-        </div>
-        <div>
-          <div class="label">Bureaux</div>
-          41 rue Faidherbe<br>75011 Paris
         </div>
       </div>
 
