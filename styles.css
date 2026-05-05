@@ -583,6 +583,20 @@ button { font-family: inherit; cursor: pointer; }
   flex-wrap: wrap;
 }
 
+/* Lien "Tous nos clients →" en bas-droite du .panel sur les pages
+   Solutions / Renfort / Métiers. Soulignement classique éditorial,
+   align-self: flex-end pour le pousser à droite du panel content. */
+.panel-foot-link {
+  align-self: flex-end;
+  font-size: var(--fs-menu);
+  line-height: 1.25;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-thickness 0.18s ease;
+}
+.panel-foot-link:hover { text-decoration-thickness: 2px; }
+
 .subtabs-row {
   display: flex;
   align-items: center;
