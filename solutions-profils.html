@@ -38,7 +38,9 @@
     margin-bottom: clamp(28px, 3.4vw, 50px);
   }
   .view-tab {
-    padding: clamp(14px, 1.4vw, 20px) 0;
+    /* Pas de padding-top : Placements aligne sa baseline sur "Tech" dans
+       la col 1. Petit padding-bottom pour le trait actif. */
+    padding: 0 0 clamp(10px, 1.2vw, 16px);
     font-size: clamp(18px, 2vw, 28px);
     line-height: 1.25;
     background: none;
