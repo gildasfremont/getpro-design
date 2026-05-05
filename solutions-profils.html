@@ -143,23 +143,31 @@
     margin-bottom: clamp(24px, 2.8vw, 40px);
   }
   .filter-chips[hidden] { display: none; }
+  /* Cartouches : même langage que les subtabs CDI/Freelance/C-Level
+     sur les pages Chasse/Renfort. Inactif = bg léger, actif = white +
+     border ink. */
   .filter-chip {
-    padding: 0;
-    font-size: clamp(18px, 2vw, 28px);
+    padding: clamp(10px, 1vw, 14px) clamp(16px, 1.6vw, 22px);
+    font-size: clamp(14px, 1.4vw, 18px);
     line-height: 1.25;
-    background: none;
-    border: none;
+    background: var(--bg);
+    border: 1px solid transparent;
+    border-radius: clamp(6px, 0.5vw, 8px);
     color: inherit;
     font-family: inherit;
     cursor: pointer;
-    text-decoration: none;
-    text-underline-offset: 5px;
+    white-space: nowrap;
+    transition: background 0.15s ease, border-color 0.15s ease;
   }
-  .filter-chip:hover { text-decoration: underline; }
+  .filter-chip:hover {
+    background: #ececea;
+  }
   .filter-chip[aria-current="true"] {
-    text-decoration: underline;
-    text-underline-offset: 5px;
-    text-decoration-thickness: 1.5px;
+    background: var(--white);
+    border-color: var(--ink);
+  }
+  .filter-chips {
+    gap: clamp(6px, 0.7vw, 12px);
   }
 
   /* Profiles : single column flat list, même taille que la liste
