@@ -38,11 +38,11 @@
   }
 
   /* ---------- Image grid ---------- */
+  .hero-inner { position: relative; }
   .grid-images {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0;
-    position: relative;
   }
 
   .grid-images .tile {
@@ -55,17 +55,16 @@
        pointer (héritage du <a>) pour signaler la cliquabilité. */
     display: block;
   }
-  /* CTA "Tous les consultants →" posé en bas-droite du grid. Carve un
-     coin de la dernière photo avec la couleur du fond de page : le lien
-     dévoile le bg en dessous, comme un encart découpé. */
+  /* CTA "Tous les consultants →" posé sous le grid, en absolute pour
+     ne pas pousser la section .cases plus bas. Sit dans le padding-bottom
+     de .hero, aligné à droite. */
   .grid-cta {
     position: absolute;
-    bottom: 0;
+    top: 100%;
     right: 0;
-    padding: clamp(14px, 1.6vw, 22px) clamp(0px, 2vw, 28px) clamp(14px, 1.6vw, 22px) clamp(18px, 2vw, 28px);
-    background: var(--bg);
+    margin-top: clamp(10px, 1.2vw, 18px);
     font-size: var(--fs-menu);
-    line-height: 1.2;
+    line-height: 1.25;
     color: inherit;
     text-decoration: none;
   }
@@ -411,8 +410,8 @@
           <a class="tile tile-8" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-9" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-10" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="grid-cta" href="equipe.html">Tous les consultants →</a>
         </div>
+        <a class="grid-cta" href="equipe.html">Tous les consultants →</a>
       </div>
     </section>
 
