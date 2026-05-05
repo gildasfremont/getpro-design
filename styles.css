@@ -554,7 +554,10 @@ button { font-family: inherit; cursor: pointer; }
 .tab-2[aria-current="true"]::after {
   content: "";
   position: absolute;
-  left: 0; right: 0; bottom: -1px;
+  /* Posé pile sur le bord supérieur du .panel : bottom 0 + 2px de hauteur
+     veut dire que le trait remonte de 2px au-dessus du panel sans mordre
+     dedans. */
+  left: 0; right: 0; bottom: 0;
   height: 2px;
   background: var(--ink);
 }
