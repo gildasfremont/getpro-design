@@ -449,18 +449,24 @@ button { font-family: inherit; cursor: pointer; }
   padding: 0 clamp(0px, 3.5vw, 50px) 0 var(--pad-card-x);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  /* 2 rows (titre, paragraphe) partagées via subgrid sur les <li>.
+     row 1 = max hauteur des titres → tous les titres s'alignent en
+     bas. row 2 = paragraphes qui commencent tous à la même y.
+     row-gap sert ici autant pour l'espace titre/paragraphe que
+     pour l'espace inter-card-rows quand le grid wrap, donc valeur
+     de compromise. */
+  grid-template-rows: auto auto;
   column-gap: 0;
-  row-gap: clamp(40px, 4vw, 60px);
+  row-gap: clamp(20px, 2.4vw, 32px);
 }
-/* Chaque item = container flex column. h3 contient un lien (cliquable),
-   le p peut contenir aussi un lien inline (ex : "freelance" sur Chasse).
-   Soulignement seulement sur les liens — paragraphe lisible. */
 .solutions-overview-list > li {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(14px, 1.6vw, 22px);
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 2;
   padding-right: clamp(28px, 3vw, 50px);
 }
+.solutions-overview-list > li h3 { align-self: end; }
+.solutions-overview-list > li p { align-self: start; }
 .solutions-overview-list h3 {
   font-size: clamp(22px, 2.6vw, 36px);
   line-height: 1.15;
