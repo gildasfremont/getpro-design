@@ -204,6 +204,12 @@ button { font-family: inherit; cursor: pointer; }
   background: var(--ink);
 }
 
+/* Solutions : la dernière tab ("+2000 recrutements") est poussée à droite
+   pour distinguer "métiers/résultats" des deux groupes Chasse / Renfort RH.
+   Et la nav .tabs prend toute la largeur pour que margin-left: auto pousse. */
+.solutions-head .tabs { width: 100%; }
+.tab--push-right { margin-left: auto; }
+
 /* ---------- Ratings (Trustpilot / Trustfolio / Google / Glassdoor) ---------- */
 .ratings-row {
   display: flex;
