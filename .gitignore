@@ -1,3 +1,3 @@
-# Playwright debug artifacts
-*.png
+# Playwright debug artifacts (only at repo root, not in assets/)
+/*.png
 .playwright-mcp/
