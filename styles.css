@@ -544,8 +544,8 @@ button { font-family: inherit; cursor: pointer; }
   text-decoration-thickness: 2px;
 }
 .solutions-overview-list p {
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.35;
   margin: 0;
   max-width: 32ch;
 }
