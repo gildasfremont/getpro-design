@@ -613,6 +613,11 @@ button { font-family: inherit; cursor: pointer; }
   gap: clamp(20px, 2vw, 30px);
   flex-wrap: wrap;
 }
+/* Le menu sous-jacent vient se poser pile sur les photos du subtab-body
+   actif : on annule le gap flex du .panel via une marge négative. */
+.panel > .subtab-body {
+  margin-top: calc(-1 * clamp(28px, 3.4vw, 50px));
+}
 /* Scoped à .subtabs-row : la hairline et le rythme horizontal sont propres
    à la nav des subtabs sur solutions/solutions-renfort. solutions-profils
    réutilise la classe .subtabs pour une nav verticale, on ne veut pas la
@@ -627,7 +632,6 @@ button { font-family: inherit; cursor: pointer; }
   flex-wrap: nowrap;
   overflow-x: auto;
   min-width: 0;
-  border-bottom: 1px solid var(--line);
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
