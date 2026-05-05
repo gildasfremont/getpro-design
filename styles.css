@@ -525,7 +525,7 @@ button { font-family: inherit; cursor: pointer; }
   display: grid;
   grid-template-rows: subgrid;
   grid-row: span 2;
-  padding-right: clamp(28px, 3vw, 50px);
+  padding-right: clamp(40px, 5vw, 90px);
 }
 .solutions-overview-list > li h3 { align-self: end; }
 .solutions-overview-list > li p { align-self: start; }
