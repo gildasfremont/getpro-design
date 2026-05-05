@@ -488,6 +488,13 @@ button { font-family: inherit; cursor: pointer; }
 .solutions-overview-list p a:hover {
   text-decoration-thickness: 2px;
 }
+
+/* CTA "Échanger avec un consultant" sous les 3 cards. Indent
+   aligné sur les cards (var(--pad-card-x)) + margin-top généreuse. */
+.solutions-overview-cta {
+  margin-left: var(--pad-card-x);
+  margin-top: clamp(36px, 4vw, 60px);
+}
 @media (max-width: 800px) {
   .solutions-overview-list { grid-template-columns: repeat(2, 1fr); }
 }
