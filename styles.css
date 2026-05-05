@@ -798,6 +798,31 @@ button { font-family: inherit; cursor: pointer; }
   line-height: 1.3;
 }
 
+/* Variante verticale (Outils & ATS) : chaque consultant occupe une ligne,
+   photo carrée à gauche, meta à droite. Override la grid 4-col par un
+   flex column. */
+.consultants-row--vertical {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2vw, 30px);
+}
+.consultants-row--vertical .consultant {
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(20px, 2vw, 30px);
+}
+.consultants-row--vertical .consultant .photo {
+  width: clamp(90px, 9vw, 130px);
+  aspect-ratio: 1 / 1;
+  background-size: cover;
+  background-position: 50% 18%;
+  flex-shrink: 0;
+}
+.consultants-row--vertical .consultant-meta {
+  width: auto;
+  flex: 1;
+}
+
 @media (max-width: 1000px) {
   .consultants-row { grid-template-columns: repeat(3, 1fr); }
 }
