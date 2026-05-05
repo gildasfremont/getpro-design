@@ -199,7 +199,10 @@ button { font-family: inherit; cursor: pointer; }
 .tab[aria-current="page"]::after {
   content: "";
   position: absolute;
-  left: 0; right: 0; bottom: -1px;
+  /* bottom: 0 → le trait actif se pose pile sur la baseline du tab,
+     donc sur le bord supérieur du panel/grid blanc qui suit. Pas de
+     mordre dans la div blanche. */
+  left: 0; right: 0; bottom: 0;
   height: 2px;
   background: var(--ink);
 }
