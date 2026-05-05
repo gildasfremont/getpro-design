@@ -580,9 +580,16 @@ button { font-family: inherit; cursor: pointer; }
 .panel-title-row {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: clamp(20px, 3vw, 50px);
   flex-wrap: wrap;
+}
+/* Le titre prend l'espace dispo et wrap si besoin ; les subtabs gardent
+   leur largeur naturelle à droite. Quand le titre passe sur 2 lignes,
+   align-items: flex-end aligne les subtabs sur la ligne du bas. */
+.panel-title-row .panel-title {
+  flex: 1;
+  min-width: 0;
 }
 
 /* Lien "Tous nos clients →" en bas-droite du .panel sur les pages
