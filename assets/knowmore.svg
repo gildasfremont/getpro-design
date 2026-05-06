@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg class="overflow-visible w-32" viewBox="0 0 200 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="overflow-visible w-32" viewBox="0.00 0.00 156.20 30.00" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                 <g id="Artboard" transform="translate(-295.000000, -146.000000)">
                                     <g id="Group-5" transform="translate(295.000000, 145.000000)">
                                         <g id="Group-4-Copy-5" fill-rule="nonzero">
                                             <g id="Group" transform="translate(11.000000, 0.000000)" fill="#000">
-                                                <rect id="Rectangle-Copy-5" x="20.9867885" y="2" width="7.49984727" height="28.1521739" rx="3.74992363"></rect>
+                                                <rect id="Rectangle-Copy-5" x="20.9867885" y="2" rx="3.74992363"></rect>
                                                 <path
                                                     d="M19.5681033,0.0858488227 L19.5681033,0.0858488227 C21.7449714,0.156128873 23.4932604,1.9045447 23.5633825,4.08141794 L23.985691,17.1915788 C24.050248,19.1956891 22.4779294,20.8726753 20.473819,20.9372323 C20.3958242,20.9397447 20.3177687,20.9397419 20.2397741,20.9372238 L20.2397741,20.9372238 C18.062906,20.8669438 16.314617,19.118528 16.2444949,16.9416547 L15.8221864,3.83149391 C15.7576294,1.82738357 17.329948,0.150397343 19.3340584,0.0858403318 C19.4120532,0.08332794 19.4901087,0.0833307718 19.5681033,0.0858488227 Z"
                                                     id="Rectangle-Copy-7" transform="translate(19.903939, 10.511536) scale(-1, -1) rotate(44.000000) translate(-19.903939, -10.511536) "></path>
