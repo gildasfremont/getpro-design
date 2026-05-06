@@ -21,32 +21,7 @@
     padding-bottom: var(--gap-section);
   }
 
-  /* Hero : email + tel + RDV en titre, taille modérée */
-  .contact-head h1 {
-    font-size: clamp(28px, 3.6vw, 56px);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    font-weight: 400;
-  }
-  .contact-head h1 a {
-    text-decoration: underline;
-    text-decoration-thickness: clamp(1.5px, 0.15vw, 3px);
-    text-underline-offset: clamp(4px, 0.5vw, 8px);
-    color: inherit;
-    transition: text-decoration-thickness 0.18s ease;
-  }
-  .contact-head h1 a:hover {
-    text-decoration-thickness: clamp(2.5px, 0.25vw, 5px);
-  }
-
-  /* Panel formulaire : contient les value props ET le form */
-  .form-panel {
-    background: var(--white);
-    padding: clamp(40px, 6.4vw, 100px) var(--pad-card-x);
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
+  /* Conteneur central : value props + form, posé directement sur la page */
   .form-panel-inner {
     width: 100%;
     max-width: 820px;
@@ -212,12 +187,7 @@
 
     <section class="contact section">
 
-      <div class="contact-head">
-        <h1><a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>,<br><a href="tel:+33939289329">09 39 28 93 29</a><br>ou prenez RDV :</h1>
-      </div>
-
-      <div class="form-panel">
-        <div class="form-panel-inner">
+      <div class="form-panel-inner">
 
           <div class="contact-props">
             <div class="prop-block">
@@ -271,7 +241,6 @@
             </div>
           </form>
 
-        </div>
       </div>
 
     </section>
