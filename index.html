@@ -210,24 +210,26 @@
     display: flex;
     flex-direction: column;
   }
+  /* Toutes les slides empilées dans la même cellule de grid → la wrap
+     prend la hauteur de la slide la plus longue, aucune slide ne fait
+     hoqueter le layout au switch. */
   .quote-slides {
     position: relative;
     flex: 1;
-    display: flex;
-    flex-direction: column;
+    display: grid;
   }
   .quote-slide {
-    display: none;
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
     flex-direction: column;
-    flex: 1;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.35s ease;
   }
   .quote-slide[data-active="true"] {
-    display: flex;
-    animation: quoteFade 0.45s ease both;
-  }
-  @keyframes quoteFade {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    visibility: visible;
+    opacity: 1;
   }
 
   .quote-card {
@@ -242,22 +244,15 @@
     line-height: var(--lh-quote);
     margin: 0;
   }
-  .quote-attr {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    font-size: var(--fs-meta);
-    line-height: 1.3;
-  }
-  .quote-attr .name { font-weight: 500; }
-  .quote-attr .role { color: var(--ink-soft, #6c7a6e); }
 
+  /* Photo : aspect-ratio fixe → la hauteur de l'image est constante
+     sur toutes les slides, indépendante de la longueur du texte. */
   .quote-image {
-    flex: 1;
+    width: 100%;
+    aspect-ratio: 594 / 380;
     background-size: cover;
     background-position: top left;
     background-repeat: no-repeat;
-    min-height: clamp(220px, 30vw, 494px);
   }
   .quote-image--emile     { background-image: url('assets/team/emile-pennes.jpg'); }
   .quote-image--tony      { background-image: url('assets/team/tony-beaugez.png'); background-position: top center; }
@@ -520,44 +515,28 @@
 
             <div class="quote-slide" data-active="true">
               <div class="quote-card">
-                <p>Émile identifiait cinq profils capables de prendre le poste avant que DeepMove le contacte pour un rôle de CTO. Contactées le jour suivant, trois ont échangé sérieusement. La signature est arrivée seize jours plus tard.</p>
-                <div class="quote-attr">
-                  <span class="name">Émile Pennes</span>
-                  <span class="role">Directeur Opérations · DeepMove</span>
-                </div>
+                <p>Émile suivait depuis deux ans cinq profils CTO capables de scaler une stack ML. Quand DeepMove a brief, trois étaient encore disponibles. Premier entretien le jour suivant, signature seize jours plus tard.</p>
               </div>
               <div class="quote-image quote-image--emile" role="img" aria-label="Émile Pennes"></div>
             </div>
 
             <div class="quote-slide">
               <div class="quote-card">
-                <p>Tony suivait depuis un an cinq Heads of AI Engineering au profil rare. Quand Mistral a ouvert le poste, trois ont accepté l’échange dans la semaine. La signature est arrivée onze jours plus tard.</p>
-                <div class="quote-attr">
-                  <span class="name">Tony Beaugez</span>
-                  <span class="role">Manager Business Unit Tech · Mistral AI</span>
-                </div>
+                <p>Tony connaissait le Head of ML que Mindee a fini par recruter depuis trois ans. La même conversation s’était rejouée sur quatre missions différentes — au cinquième brief, le timing est tombé juste.</p>
               </div>
               <div class="quote-image quote-image--tony" role="img" aria-label="Tony Beaugez"></div>
             </div>
 
             <div class="quote-slide">
               <div class="quote-card">
-                <p>Laura connaissait deux VP Sales capables de structurer une équipe enterprise EMEA. Pigment cherchait précisément ce profil — les deux ont rencontré le CEO la semaine suivante. La signature est arrivée vingt-deux jours plus tard.</p>
-                <div class="quote-attr">
-                  <span class="name">Laura Geneuil</span>
-                  <span class="role">Talent Recruiter Business · Pigment</span>
-                </div>
+                <p>Spendesk a laissé Laura sourcer pendant six mois sans cadrage formel. Quand la décision de recruter est tombée, la shortlist était prête depuis longtemps. Trois entretiens ont suffi.</p>
               </div>
               <div class="quote-image quote-image--laura" role="img" aria-label="Laura Geneuil"></div>
             </div>
 
             <div class="quote-slide">
               <div class="quote-card">
-                <p>Guillaume avait croisé trois Directeurs Industriels en mission Bordeaux. Quand Electra a cherché son Head of Manufacturing, il les a rappelés en deux jours. La signature est arrivée dix-neuf jours plus tard.</p>
-                <div class="quote-attr">
-                  <span class="name">Guillaume Renard</span>
-                  <span class="role">Directeur Général Bordeaux · Electra</span>
-                </div>
+                <p>Heetch cherchait un CFO senior pour préparer une levée. Guillaume a proposé à la place un VP Finance en montée — moins d’expérience formelle, meilleur fit avec l’équipe. La proposition a tenu, le candidat aussi.</p>
               </div>
               <div class="quote-image quote-image--guillaume" role="img" aria-label="Guillaume Renard"></div>
             </div>
@@ -749,8 +728,8 @@
   </main>
   <script src="partials.js" defer></script>
   <script>
-    // Carrousel de témoignages : 4 slides, auto-rotate 8s, pause au hover,
-    // bullets cliquables. Reset du timer à chaque interaction.
+    // Carrousel de témoignages : 4 slides, navigation manuelle uniquement
+    // via les bullets (pas d'auto-rotate).
     (function () {
       const wrap = document.querySelector('[data-carousel]');
       if (!wrap) return;
@@ -758,12 +737,8 @@
       const bullets = [...wrap.querySelectorAll('.quote-bullet')];
       if (slides.length < 2) return;
 
-      let active = 0;
-      let timer = null;
-      const PERIOD = 8000;
-
       function show(i) {
-        active = (i + slides.length) % slides.length;
+        const active = (i + slides.length) % slides.length;
         slides.forEach((s, k) => {
           if (k === active) s.setAttribute('data-active', 'true');
           else s.removeAttribute('data-active');
@@ -774,21 +749,9 @@
         });
       }
 
-      function start() {
-        stop();
-        timer = setInterval(() => show(active + 1), PERIOD);
-      }
-      function stop() {
-        if (timer) { clearInterval(timer); timer = null; }
-      }
-
       bullets.forEach((b, i) => {
-        b.addEventListener('click', () => { show(i); start(); });
+        b.addEventListener('click', () => show(i));
       });
-      wrap.addEventListener('mouseenter', stop);
-      wrap.addEventListener('mouseleave', start);
-
-      start();
     })();
   </script>
 </body>
