@@ -1,3 +1,6 @@
 # Playwright debug artifacts (only at repo root, not in assets/)
 /*.png
 .playwright-mcp/
+
+# Vercel CLI link (created when running vercel CLI from the worktree)
+.vercel/

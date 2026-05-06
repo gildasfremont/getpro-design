@@ -135,8 +135,9 @@
     -webkit-mask-size: contain;
             mask-size: contain;
   }
-  /* Lucca icon (assets/lucca-icon.svg : juste le bonhomme dans son carré
-     arrondi, viewBox 320×320, déjà colorié en --ink + --bg) */
+  /* Lucca icon : carré arrondi --ink + caractère --bg (mêmes hex que les
+     CSS vars). Pas de mask-image — le SVG est déjà aux bonnes couleurs
+     natives, le caractère se "fond" dans le bg de page. */
   .case-logo .symbol-lucca {
     width: clamp(28px, 3.9vw, 56px);
     height: clamp(28px, 3.9vw, 56px);
