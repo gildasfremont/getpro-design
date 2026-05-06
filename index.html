@@ -249,6 +249,59 @@
     line-height: var(--lh-quote);
   }
 
+  /* Bandeau secondaire de 3 mini-témoignages sous le row principal.
+     Chaque carte : photo carrée en haut (cover, top), citation dessous,
+     attribution (consultant + rôle) en pied. */
+  .process-quotes-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(2px, 0.3vw, 6px);
+  }
+  .testimonial-card {
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+  }
+  .testimonial-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+  }
+  .testimonial-photo.photo-tony      { background-image: url('assets/team/tony-beaugez.png'); }
+  .testimonial-photo.photo-laura     { background-image: url('assets/team/laura-geneuil.png'); }
+  .testimonial-photo.photo-guillaume { background-image: url('assets/team/guillaume-renard.png'); }
+
+  .testimonial-body {
+    padding: clamp(20px, 2.8vw, 40px) clamp(20px, 2.8vw, 40px) clamp(24px, 3.6vw, 48px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 1.8vw, 28px);
+    flex: 1;
+    justify-content: space-between;
+  }
+  .testimonial-body p {
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    margin: 0;
+  }
+  .testimonial-attr {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: var(--fs-meta);
+    line-height: 1.3;
+  }
+  .testimonial-attr .name { font-weight: 500; }
+  .testimonial-attr .role { color: var(--ink-soft, #6c7a6e); }
+
+  @media (max-width: 720px) {
+    .process-quotes-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
   /* ---------- Logos / fonds ---------- */
   .logos-section {
     display: flex;
@@ -470,6 +523,41 @@
           <p>Quand vous nous appelez pour un poste critique, nos consultants savent à qui en parler, parce qu'ils connaissent, et depuis longtemps, les gens qu'ils recommandent.</p>
           <a href="equipe.html" class="text-arrow-link">Voir l’équipe →</a>
         </div>
+      </div>
+
+      <div class="process-quotes-row">
+        <article class="testimonial-card">
+          <div class="testimonial-photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
+          <div class="testimonial-body">
+            <p>Tony suivait depuis un an cinq Heads of AI Engineering au profil rare. Quand Mistral a ouvert le poste, trois ont accepté l’échange dans la semaine. La signature est arrivée onze jours plus tard.</p>
+            <div class="testimonial-attr">
+              <span class="name">Tony Beaugez</span>
+              <span class="role">Manager Business Unit Tech · Mistral AI</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="testimonial-photo photo-laura" role="img" aria-label="Laura Geneuil"></div>
+          <div class="testimonial-body">
+            <p>Laura connaissait deux VP Sales capables de structurer une équipe enterprise EMEA. Pigment cherchait précisément ce profil — les deux ont rencontré le CEO la semaine suivante. La signature est arrivée vingt-deux jours plus tard.</p>
+            <div class="testimonial-attr">
+              <span class="name">Laura Geneuil</span>
+              <span class="role">Talent Recruiter Business · Pigment</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="testimonial-photo photo-guillaume" role="img" aria-label="Guillaume Renard"></div>
+          <div class="testimonial-body">
+            <p>Guillaume avait croisé trois Directeurs Industriels en mission Bordeaux. Quand Electra a cherché son Head of Manufacturing, il les a rappelés en deux jours. La signature est arrivée dix-neuf jours plus tard.</p>
+            <div class="testimonial-attr">
+              <span class="name">Guillaume Renard</span>
+              <span class="role">Directeur Général Bordeaux · Electra</span>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
