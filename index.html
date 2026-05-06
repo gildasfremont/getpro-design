@@ -259,20 +259,45 @@
   .quote-image--laura     { background-image: url('assets/team/laura-geneuil.png'); background-position: top center; }
   .quote-image--guillaume { background-image: url('assets/team/guillaume-renard.png'); background-position: top center; }
 
-  /* Bullets : pill avec backdrop discret pour rester lisibles sur
-     n'importe quel fond de photo (Émile suit dark, Guillaume mur clair). */
-  .quote-bullets {
+  /* Nav du carrousel : pill --ink semi-transparent contenant prev arrow,
+     4 bullets, next arrow. Posé en bas-gauche de la photo, lisible sur
+     n'importe quel fond. */
+  .quote-nav {
     position: absolute;
     bottom: clamp(16px, 1.6vw, 24px);
     left: clamp(24px, 4.8vw, 70px);
     display: flex;
-    gap: 10px;
-    padding: 8px 12px;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
     border-radius: 999px;
     background: rgba(6, 32, 4, 0.55);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     z-index: 2;
+  }
+  .quote-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .quote-arrow:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+  }
+  .quote-bullets {
+    display: flex;
+    gap: 10px;
+    padding: 0 6px;
   }
   .quote-bullet {
     width: 9px;
@@ -282,7 +307,7 @@
     background: rgba(255, 255, 255, 0.5);
     padding: 0;
     cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
+    transition: background 0.2s ease;
   }
   .quote-bullet:hover { background: rgba(255, 255, 255, 0.8); }
   .quote-bullet[aria-current="true"] {
@@ -549,11 +574,19 @@
 
           </div>
 
-          <div class="quote-bullets" role="tablist" aria-label="Témoignages">
-            <button class="quote-bullet" type="button" role="tab" aria-current="true" data-slide="0" aria-label="Émile Pennes / DeepMove"></button>
-            <button class="quote-bullet" type="button" role="tab" data-slide="1" aria-label="Tony Beaugez / Mistral AI"></button>
-            <button class="quote-bullet" type="button" role="tab" data-slide="2" aria-label="Laura Geneuil / Pigment"></button>
-            <button class="quote-bullet" type="button" role="tab" data-slide="3" aria-label="Guillaume Renard / Electra"></button>
+          <div class="quote-nav" aria-label="Témoignages">
+            <button class="quote-arrow" type="button" data-dir="prev" aria-label="Témoignage précédent">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <div class="quote-bullets" role="tablist">
+              <button class="quote-bullet" type="button" role="tab" aria-current="true" data-slide="0" aria-label="Émile Pennes / DeepMove"></button>
+              <button class="quote-bullet" type="button" role="tab" data-slide="1" aria-label="Tony Beaugez / Mistral AI"></button>
+              <button class="quote-bullet" type="button" role="tab" data-slide="2" aria-label="Laura Geneuil / Pigment"></button>
+              <button class="quote-bullet" type="button" role="tab" data-slide="3" aria-label="Guillaume Renard / Electra"></button>
+            </div>
+            <button class="quote-arrow" type="button" data-dir="next" aria-label="Témoignage suivant">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
           </div>
 
         </div>
@@ -734,17 +767,19 @@
   </main>
   <script src="partials.js" defer></script>
   <script>
-    // Carrousel de témoignages : 4 slides, navigation manuelle uniquement
-    // via les bullets (pas d'auto-rotate).
+    // Carrousel de témoignages : 4 slides, navigation manuelle via
+    // bullets (jump direct) + flèches prev/next (cyclique).
     (function () {
       const wrap = document.querySelector('[data-carousel]');
       if (!wrap) return;
       const slides = [...wrap.querySelectorAll('.quote-slide')];
       const bullets = [...wrap.querySelectorAll('.quote-bullet')];
+      const arrows = [...wrap.querySelectorAll('.quote-arrow')];
       if (slides.length < 2) return;
 
+      let active = 0;
       function show(i) {
-        const active = (i + slides.length) % slides.length;
+        active = (i + slides.length) % slides.length;
         slides.forEach((s, k) => {
           if (k === active) s.setAttribute('data-active', 'true');
           else s.removeAttribute('data-active');
@@ -757,6 +792,12 @@
 
       bullets.forEach((b, i) => {
         b.addEventListener('click', () => show(i));
+      });
+      arrows.forEach((a) => {
+        a.addEventListener('click', () => {
+          const dir = a.dataset.dir === 'prev' ? -1 : 1;
+          show(active + dir);
+        });
       });
     })();
   </script>
