@@ -202,10 +202,32 @@
     align-items: stretch;
   }
 
+  /* Carrousel de témoignages : 4 slides empilées, une seule visible
+     (data-active=true), bullets de navigation overlay sur la photo. */
   .quote-wrap {
+    position: relative;
+    background: var(--bg);
     display: flex;
     flex-direction: column;
-    background: var(--bg);
+  }
+  .quote-slides {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .quote-slide {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+  }
+  .quote-slide[data-active="true"] {
+    display: flex;
+    animation: quoteFade 0.45s ease both;
+  }
+  @keyframes quoteFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
 
   .quote-card {
@@ -220,15 +242,50 @@
     line-height: var(--lh-quote);
     margin: 0;
   }
+  .quote-attr {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: var(--fs-meta);
+    line-height: 1.3;
+  }
+  .quote-attr .name { font-weight: 500; }
+  .quote-attr .role { color: var(--ink-soft, #6c7a6e); }
 
   .quote-image {
     flex: 1;
-    /* Anchor top-left + cover : le coin haut-gauche de l'image colle
-       au coin haut-gauche du div. Avec cover, le bas/droite peuvent
-       être croppés mais les yeux d'Émile (en haut de la photo) sont
-       toujours visibles. */
-    background: url('assets/team/emile-pennes.jpg') top left / cover no-repeat;
+    background-size: cover;
+    background-position: top left;
+    background-repeat: no-repeat;
     min-height: clamp(220px, 30vw, 494px);
+  }
+  .quote-image--emile     { background-image: url('assets/team/emile-pennes.jpg'); }
+  .quote-image--tony      { background-image: url('assets/team/tony-beaugez.png'); background-position: top center; }
+  .quote-image--laura     { background-image: url('assets/team/laura-geneuil.png'); background-position: top center; }
+  .quote-image--guillaume { background-image: url('assets/team/guillaume-renard.png'); background-position: top center; }
+
+  /* Bullets : 4 ronds posés sur la photo, en bas-gauche. */
+  .quote-bullets {
+    position: absolute;
+    bottom: clamp(16px, 1.6vw, 24px);
+    left: clamp(24px, 4.8vw, 70px);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+  }
+  .quote-bullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid var(--white);
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .quote-bullet:hover { transform: scale(1.15); }
+  .quote-bullet[aria-current="true"] {
+    background: var(--white);
   }
 
   .process-text {
@@ -249,58 +306,6 @@
     line-height: var(--lh-quote);
   }
 
-  /* Bandeau secondaire de 3 mini-témoignages sous le row principal.
-     Chaque carte : photo carrée en haut (cover, top), citation dessous,
-     attribution (consultant + rôle) en pied. */
-  .process-quotes-row {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(2px, 0.3vw, 6px);
-  }
-  .testimonial-card {
-    background: var(--white);
-    display: flex;
-    flex-direction: column;
-  }
-  .testimonial-photo {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    background-size: cover;
-    background-position: top center;
-    background-repeat: no-repeat;
-  }
-  .testimonial-photo.photo-tony      { background-image: url('assets/team/tony-beaugez.png'); }
-  .testimonial-photo.photo-laura     { background-image: url('assets/team/laura-geneuil.png'); }
-  .testimonial-photo.photo-guillaume { background-image: url('assets/team/guillaume-renard.png'); }
-
-  .testimonial-body {
-    padding: clamp(20px, 2.8vw, 40px) clamp(20px, 2.8vw, 40px) clamp(24px, 3.6vw, 48px);
-    display: flex;
-    flex-direction: column;
-    gap: clamp(16px, 1.8vw, 28px);
-    flex: 1;
-    justify-content: space-between;
-  }
-  .testimonial-body p {
-    font-size: var(--fs-body);
-    line-height: var(--lh-body);
-    margin: 0;
-  }
-  .testimonial-attr {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    font-size: var(--fs-meta);
-    line-height: 1.3;
-  }
-  .testimonial-attr .name { font-weight: 500; }
-  .testimonial-attr .role { color: var(--ink-soft, #6c7a6e); }
-
-  @media (max-width: 720px) {
-    .process-quotes-row {
-      grid-template-columns: 1fr;
-    }
-  }
 
   /* ---------- Logos / fonds ---------- */
   .logos-section {
@@ -510,11 +515,62 @@
       </div>
 
       <div class="process-row">
-        <div class="quote-wrap">
-          <div class="quote-card">
-            <p>Émile identifiait cinq profils capables de prendre le poste avant que DeepMove le contacte pour un rôle de CTO. Contactées le jour suivant, trois ont échangé sérieusement. La signature est arrivée seize jours plus tard.</p>
+        <div class="quote-wrap" data-carousel>
+          <div class="quote-slides">
+
+            <div class="quote-slide" data-active="true">
+              <div class="quote-card">
+                <p>Émile identifiait cinq profils capables de prendre le poste avant que DeepMove le contacte pour un rôle de CTO. Contactées le jour suivant, trois ont échangé sérieusement. La signature est arrivée seize jours plus tard.</p>
+                <div class="quote-attr">
+                  <span class="name">Émile Pennes</span>
+                  <span class="role">Directeur Opérations · DeepMove</span>
+                </div>
+              </div>
+              <div class="quote-image quote-image--emile" role="img" aria-label="Émile Pennes"></div>
+            </div>
+
+            <div class="quote-slide">
+              <div class="quote-card">
+                <p>Tony suivait depuis un an cinq Heads of AI Engineering au profil rare. Quand Mistral a ouvert le poste, trois ont accepté l’échange dans la semaine. La signature est arrivée onze jours plus tard.</p>
+                <div class="quote-attr">
+                  <span class="name">Tony Beaugez</span>
+                  <span class="role">Manager Business Unit Tech · Mistral AI</span>
+                </div>
+              </div>
+              <div class="quote-image quote-image--tony" role="img" aria-label="Tony Beaugez"></div>
+            </div>
+
+            <div class="quote-slide">
+              <div class="quote-card">
+                <p>Laura connaissait deux VP Sales capables de structurer une équipe enterprise EMEA. Pigment cherchait précisément ce profil — les deux ont rencontré le CEO la semaine suivante. La signature est arrivée vingt-deux jours plus tard.</p>
+                <div class="quote-attr">
+                  <span class="name">Laura Geneuil</span>
+                  <span class="role">Talent Recruiter Business · Pigment</span>
+                </div>
+              </div>
+              <div class="quote-image quote-image--laura" role="img" aria-label="Laura Geneuil"></div>
+            </div>
+
+            <div class="quote-slide">
+              <div class="quote-card">
+                <p>Guillaume avait croisé trois Directeurs Industriels en mission Bordeaux. Quand Electra a cherché son Head of Manufacturing, il les a rappelés en deux jours. La signature est arrivée dix-neuf jours plus tard.</p>
+                <div class="quote-attr">
+                  <span class="name">Guillaume Renard</span>
+                  <span class="role">Directeur Général Bordeaux · Electra</span>
+                </div>
+              </div>
+              <div class="quote-image quote-image--guillaume" role="img" aria-label="Guillaume Renard"></div>
+            </div>
+
           </div>
-          <div class="quote-image" role="img" aria-label="Émile, consultant GetPro"></div>
+
+          <div class="quote-bullets" role="tablist" aria-label="Témoignages">
+            <button class="quote-bullet" type="button" role="tab" aria-current="true" data-slide="0" aria-label="Émile Pennes / DeepMove"></button>
+            <button class="quote-bullet" type="button" role="tab" data-slide="1" aria-label="Tony Beaugez / Mistral AI"></button>
+            <button class="quote-bullet" type="button" role="tab" data-slide="2" aria-label="Laura Geneuil / Pigment"></button>
+            <button class="quote-bullet" type="button" role="tab" data-slide="3" aria-label="Guillaume Renard / Electra"></button>
+          </div>
+
         </div>
 
         <div class="process-text">
@@ -523,41 +579,6 @@
           <p>Quand vous nous appelez pour un poste critique, nos consultants savent à qui en parler, parce qu'ils connaissent, et depuis longtemps, les gens qu'ils recommandent.</p>
           <a href="equipe.html" class="text-arrow-link">Voir l’équipe →</a>
         </div>
-      </div>
-
-      <div class="process-quotes-row">
-        <article class="testimonial-card">
-          <div class="testimonial-photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
-          <div class="testimonial-body">
-            <p>Tony suivait depuis un an cinq Heads of AI Engineering au profil rare. Quand Mistral a ouvert le poste, trois ont accepté l’échange dans la semaine. La signature est arrivée onze jours plus tard.</p>
-            <div class="testimonial-attr">
-              <span class="name">Tony Beaugez</span>
-              <span class="role">Manager Business Unit Tech · Mistral AI</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="testimonial-card">
-          <div class="testimonial-photo photo-laura" role="img" aria-label="Laura Geneuil"></div>
-          <div class="testimonial-body">
-            <p>Laura connaissait deux VP Sales capables de structurer une équipe enterprise EMEA. Pigment cherchait précisément ce profil — les deux ont rencontré le CEO la semaine suivante. La signature est arrivée vingt-deux jours plus tard.</p>
-            <div class="testimonial-attr">
-              <span class="name">Laura Geneuil</span>
-              <span class="role">Talent Recruiter Business · Pigment</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="testimonial-card">
-          <div class="testimonial-photo photo-guillaume" role="img" aria-label="Guillaume Renard"></div>
-          <div class="testimonial-body">
-            <p>Guillaume avait croisé trois Directeurs Industriels en mission Bordeaux. Quand Electra a cherché son Head of Manufacturing, il les a rappelés en deux jours. La signature est arrivée dix-neuf jours plus tard.</p>
-            <div class="testimonial-attr">
-              <span class="name">Guillaume Renard</span>
-              <span class="role">Directeur Général Bordeaux · Electra</span>
-            </div>
-          </div>
-        </article>
       </div>
     </section>
 
@@ -727,5 +748,48 @@
 
   </main>
   <script src="partials.js" defer></script>
+  <script>
+    // Carrousel de témoignages : 4 slides, auto-rotate 8s, pause au hover,
+    // bullets cliquables. Reset du timer à chaque interaction.
+    (function () {
+      const wrap = document.querySelector('[data-carousel]');
+      if (!wrap) return;
+      const slides = [...wrap.querySelectorAll('.quote-slide')];
+      const bullets = [...wrap.querySelectorAll('.quote-bullet')];
+      if (slides.length < 2) return;
+
+      let active = 0;
+      let timer = null;
+      const PERIOD = 8000;
+
+      function show(i) {
+        active = (i + slides.length) % slides.length;
+        slides.forEach((s, k) => {
+          if (k === active) s.setAttribute('data-active', 'true');
+          else s.removeAttribute('data-active');
+        });
+        bullets.forEach((b, k) => {
+          if (k === active) b.setAttribute('aria-current', 'true');
+          else b.removeAttribute('aria-current');
+        });
+      }
+
+      function start() {
+        stop();
+        timer = setInterval(() => show(active + 1), PERIOD);
+      }
+      function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      bullets.forEach((b, i) => {
+        b.addEventListener('click', () => { show(i); start(); });
+      });
+      wrap.addEventListener('mouseenter', stop);
+      wrap.addEventListener('mouseleave', start);
+
+      start();
+    })();
+  </script>
 </body>
 </html>
