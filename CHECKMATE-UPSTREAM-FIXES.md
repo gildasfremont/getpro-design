@@ -109,6 +109,61 @@ chez chaque consommateur.
 
 ---
 
+## 6. SVG-wrapper-de-PNG OG-image avec contenu noyé
+
+5 SVG sont en réalité des PNG d'origine OG-image (Open Graph format
+1200×630, 2048×374, etc.) embeddés dans un wrapper SVG. Le logo réel
+occupe une petite portion (un coin), le reste est transparent. Quand
+le navigateur affiche, il scale toute la canvas → le logo paraît
+proportionnellement minuscule.
+
+| Slug          | Canvas SVG  | Contenu réel | Taille trimée |
+|---------------|-------------|--------------|---------------|
+| mindmesh      | 1200×630    | 532×275      | 400×207       |
+| sublime       | 2048×374    | 267×307 (icon-only) | 267×307 |
+| vertone       | 1024×216    | 872×157      | 400×72        |
+| vitec         | 775×154     | 156×147 (icon-only) | 156×147 |
+| wildsense     | 518×385     | 369×195      | 369×195       |
+
+**Action Checkmate** : crop des PNG sources au bbox du contenu avant
+embed dans les SVG. Idéalement, basculer ces wordmarks vers de vrais
+SVG vectoriels au lieu de PNG embeddés.
+
+**Note** : `sublime` et `vitec` n'ont **pas de wordmark** sur Checkmate,
+juste l'icône (vérifié : `/logos/{slug}_wordmark.svg` retourne 404).
+Si possible, ajouter les wordmarks pour ces deux marques.
+
+---
+
+## 7. Vector SVG avec width/height attrs trop petits
+
+Le SVG `corwave.svg` a `viewBox="0 0 325 127"` mais `width="89"
+height="49"`. Le browser utilise les attrs explicites comme intrinsic
+size → l'image affiche en 51×28 px alors que sa résolution naturelle
+peut faire 142×55.
+
+**Fix local** : retrait des attributs `width`/`height` explicites →
+le SVG utilise nativement le viewBox pour l'aspect ratio (300×117).
+
+**Action Checkmate** : ne pas servir d'attributs width/height plus
+petits que le viewBox. Idéalement, supprimer les width/height attrs
+sur les SVG vectoriels (laisser le consommateur définir la taille).
+
+---
+
+## 8. Vector SVG avec padding interne
+
+`zealy.svg` : viewBox `0 0 119 40` mais le contenu réel est à
+`6.81,8.16 104.5×23.12`. ~12 % de padding inutile autour du logo.
+
+**Fix local** : `getBBox()` via Playwright pour mesurer le contenu,
+puis réécriture du viewBox au bbox réel.
+
+**Action Checkmate** : pour les SVG vectoriels, recalculer le viewBox
+au bbox du contenu réel via une étape SVGO/svgcrop dans le pipeline.
+
+---
+
 ## Méthode appliquée localement (référence)
 
 ```python
