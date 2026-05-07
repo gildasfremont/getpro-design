@@ -196,230 +196,75 @@
     letter-spacing: -0.02em;
   }
 
-  .process-row {
-    display: grid;
-    grid-template-columns: minmax(0, 594fr) minmax(0, 765fr);
-    align-items: stretch;
-  }
-
-  /* Carrousel de témoignages : 4 slides empilées, une seule visible
-     (data-active=true), bullets de navigation overlay sur la photo. */
-  .quote-wrap {
-    position: relative;
-    background: var(--bg);
+  /* Manifeste centré sous le titre : narratif court, plus discret que
+     le titre principal. Petite mesure pour rester lisible. */
+  .process-manifesto {
+    max-width: clamp(420px, 60vw, 760px);
+    margin-inline: auto;
+    text-align: center;
     display: flex;
     flex-direction: column;
+    gap: clamp(16px, 1.6vw, 24px);
+    padding-inline: clamp(20px, 4vw, 70px);
   }
-  /* Toutes les slides empilées dans la même cellule de grid → la wrap
-     prend la hauteur de la slide la plus longue, aucune slide ne fait
-     hoqueter le layout au switch. */
-  .quote-slides {
-    position: relative;
-    flex: 1;
-    display: grid;
-  }
-  .quote-slide {
-    grid-column: 1;
-    grid-row: 1;
-    display: flex;
-    flex-direction: column;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.35s ease;
-  }
-  .quote-slide[data-active="true"] {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .quote-card {
-    background: var(--white);
-    padding: clamp(28px, 6.8vw, 100px) clamp(24px, 4.8vw, 70px);
-    display: flex;
-    flex-direction: column;
-    gap: clamp(20px, 2.4vw, 36px);
-    /* flex:1 → la card remplit l'espace restant entre le haut du wrap
-       et le top de la photo, peu importe la longueur du texte. Les
-       slides courtes n'ont plus de vide entre card et photo : le bg
-       blanc continue jusqu'à la photo. */
-    flex: 1;
-  }
-  .quote-card p {
-    font-size: var(--fs-quote);
-    line-height: var(--lh-quote);
+  .process-manifesto p {
+    font-size: var(--fs-body);
+    line-height: 1.55;
     margin: 0;
   }
-
-  /* Photo : aspect-ratio fixe → hauteur constante sur toutes les slides,
-     indépendante de la longueur du texte. */
-  .quote-image {
-    width: 100%;
-    aspect-ratio: 594 / 380;
-    background-size: cover;
-    background-position: top left;
-    background-repeat: no-repeat;
-    flex: none;
-  }
-  .quote-image--emile     { background-image: url('assets/team/emile-pennes.jpg'); }
-  .quote-image--tony      { background-image: url('assets/team/tony-beaugez.png'); background-position: top center; }
-  .quote-image--laura     { background-image: url('assets/team/laura-geneuil.png'); background-position: top center; }
-  .quote-image--guillaume { background-image: url('assets/team/guillaume-renard.png'); background-position: top center; }
-
-  /* Nav du carrousel : pill --ink semi-transparent contenant prev arrow,
-     4 bullets, next arrow. Posé en bas-gauche de la photo, lisible sur
-     n'importe quel fond. */
-  .quote-nav {
-    position: absolute;
-    bottom: clamp(16px, 1.6vw, 24px);
-    left: clamp(24px, 4.8vw, 70px);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 4px 8px;
-    border-radius: 999px;
-    background: rgba(6, 32, 4, 0.55);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    z-index: 2;
-  }
-  .quote-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    border: none;
-    background: transparent;
-    color: rgba(255, 255, 255, 0.85);
-    padding: 0;
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-  .quote-arrow:hover {
-    background: rgba(255, 255, 255, 0.15);
-    color: var(--white);
-  }
-  .quote-bullets {
-    display: flex;
-    gap: 10px;
-    padding: 0 6px;
-  }
-  .quote-bullet {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.5);
-    padding: 0;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-  .quote-bullet:hover { background: rgba(255, 255, 255, 0.8); }
-  .quote-bullet[aria-current="true"] {
-    background: var(--white);
+  .process-manifesto .text-arrow-link {
+    align-self: center;
+    font-size: var(--fs-body);
+    line-height: 1.55;
+    margin-top: clamp(8px, 1vw, 16px);
   }
 
-  .process-text {
+  /* ---------- Logos clients IA ---------- */
+  .ai-logos {
     display: flex;
     flex-direction: column;
-    gap: clamp(16px, 2.7vw, 40px);
-    padding: clamp(28px, 6.8vw, 100px) clamp(24px, 6.8vw, 100px) clamp(28px, 6.8vw, 100px) clamp(24px, 4.8vw, 70px);
+    gap: clamp(40px, 5vw, 70px);
+    padding: clamp(40px, 5vw, 70px) var(--pad-x);
   }
-  .process-text p {
-    font-size: var(--fs-quote);
-    line-height: var(--lh-quote);
-    max-width: var(--measure);
-  }
-  /* "Voir l'équipe →" : matché à la taille des paragraphes au-dessus
-     pour que le CTA secondaire ait le même poids visuel que le récit. */
-  .process-text .text-arrow-link {
-    font-size: var(--fs-quote);
-    line-height: var(--lh-quote);
-  }
-
-
-  /* ---------- Logos / fonds ---------- */
-  .logos-section {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(30px, 4.8vw, 70px);
-    padding: clamp(30px, 4.8vw, 70px) var(--pad-x);
-  }
-
-  /* Indent gauche aligné sur .process-text (4.8vw) : la title et la row de
-     logos s'alignent avec les paragraphes du bloc consultant au-dessus. La
-     droite garde le 3.5vw d'origine pour ne pas décaler le cta-col desktop. */
-  .logos-title {
+  .ai-logos-title {
     padding-left: clamp(24px, 4.8vw, 70px);
     padding-right: clamp(0px, 3.5vw, 50px);
   }
-  .logos-title h2 {
+  .ai-logos-title h2 {
     font-size: var(--fs-section-title);
     line-height: var(--lh-section-title);
-    max-width: clamp(280px, 68vw, 950px);
+    max-width: clamp(320px, 75vw, 1050px);
   }
 
-  .logos-row {
-    display: grid;
-    grid-template-columns: clamp(140px, 14vw, 201px) minmax(0, 1fr);
-    gap: clamp(30px, 5vw, 80px);
-    padding-left: clamp(24px, 4.8vw, 70px);
-    padding-right: clamp(0px, 3.5vw, 50px);
-  }
-
-  .nav-list {
+  .ai-logos-rows {
     display: flex;
     flex-direction: column;
-    gap: clamp(8px, 1.4vw, 20px);
+    gap: clamp(28px, 3.4vw, 52px);
+    padding-inline: clamp(24px, 4.8vw, 70px);
   }
-  .nav-list .nav-item {
-    font-size: var(--fs-menu);
-    line-height: 1.25;
-    text-align: left;
-  }
-
-  /* Logos en 2 colonnes : la box gauche (fonds) et la box droite (logos en
-     2 cols) ont des hauteurs comparables la colonne logos se "coupe"
-     visuellement à peu près au niveau du dernier fond de la liste. */
-  .logos-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: clamp(20px, 3vw, 50px);
-    row-gap: clamp(14px, 1.6vw, 22px);
-    min-width: 0;
-  }
-
-  .logo-cell {
+  .ai-logos-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: flex-start;
-    height: clamp(24px, 2.6vw, 34px);
-    padding: 0;
-    text-decoration: none;
+    gap: clamp(28px, 4vw, 64px);
+  }
+  /* Chaque row a sa hauteur de logo : icônes/marques fortes en grand,
+     wordmarks en moyen, longues mentions en petit. Au sein d'une row,
+     tous les logos partagent la même hauteur → ligne propre. */
+  .ai-logos-row[data-h="lg"] img { height: clamp(36px, 3.8vw, 52px); }
+  .ai-logos-row[data-h="md"] img { height: clamp(24px, 2.6vw, 36px); }
+  .ai-logos-row[data-h="sm"] img { height: clamp(18px, 2vw, 28px); }
+  .ai-logo {
+    display: inline-flex;
+    align-items: center;
     color: inherit;
+    text-decoration: none;
   }
-  a.logo-cell { cursor: pointer; }
-  .logo-cell img {
-    /* Force width/height to fill the cell so SVGs with small intrinsic
-       dimensions (e.g. contentsquare 54×16) get scaled up via object-fit. */
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: left center;
-  }
-  .logo-cell[hidden] { display: none; }
-  /* Text fallback when we don't have a logo */
-  .logo-cell.logo-text {
-    text-align: left;
-    justify-content: flex-start;
-    font-size: clamp(13px, 1.2vw, 18px);
-    line-height: 1.2;
+  .ai-logo img {
+    width: auto;
+    display: block;
   }
 
-  /* "Tous nos clients" bouton bas de section, à gauche, aligné sur le
-     même indent (4.8vw) que .logos-title et .logos-row. La section a
-     déjà display:flex column + gap, donc pas besoin de margin-top. */
   .see-all-bottom {
     align-self: flex-start;
     margin-left: clamp(24px, 4.8vw, 70px);
@@ -427,68 +272,14 @@
 
   /* ---------- Breakpoints (structural changes only) ---------- */
   @media (max-width: 800px) {
-    /* Process row : passe en single column (carrousel pleine largeur,
-       puis manifeste en dessous). Slide flippe en row : photo gauche,
-       card droite. */
-    .process-row { grid-template-columns: 1fr; }
-    .quote-slide {
-      flex-direction: row;
-      align-items: stretch;
-    }
-    .quote-image {
-      flex: 0 0 38%;
-      width: auto;
-      aspect-ratio: auto;
-      align-self: stretch;
-    }
-    .quote-card {
-      padding: clamp(20px, 4vw, 40px) clamp(20px, 4vw, 40px);
-    }
-    /* Bullets : sortent du recouvrement (photo ne fait que 38%) et se
-       posent sous l'ensemble photo+card pour rester accessibles. */
-    .quote-nav {
-      position: static;
-      align-self: flex-start;
-      margin: clamp(12px, 2.4vw, 20px) clamp(20px, 4vw, 40px) clamp(20px, 4vw, 40px);
-    }
-    .process-text {
-      padding: clamp(28px, 4vw, 40px) clamp(20px, 4vw, 40px);
-    }
-    /* 2 colonnes (fonds | logos), espacement réduit pour le viewport mid. */
-    .logos-row {
-      grid-template-columns: clamp(120px, 28vw, 180px) minmax(0, 1fr);
-      column-gap: clamp(20px, 4vw, 40px);
-    }
-    /* Aligne l'indent gauche des logos sur celui de .process-text au-dessus
-       (clamp(20, 4vw, 40)). En desktop le 4.8vw matchait .process-text mais
-       une fois le breakpoint passé, .process-text est repassé à 4vw clampé
-       20-40 et les logos gardaient 24-70 → ~4px de désalignement visible. */
-    .logos-title,
-    .logos-row {
+    /* Indents gauche alignés sur 4vw (au lieu de 4.8vw desktop) :
+       le titre + manifeste + ai-logos partagent la même mesure. */
+    .ai-logos-title,
+    .ai-logos-rows {
       padding-left: clamp(20px, 4vw, 40px);
+      padding-right: clamp(20px, 4vw, 40px);
     }
     .see-all-bottom { margin-left: clamp(20px, 4vw, 40px); }
-  }
-  @media (max-width: 600px) {
-    /* En mobile, les logos repassent en 1 colonne 2 cols devient trop
-       étroit pour les logos type wordmark. La liste fonds reste à gauche
-       et la grille logos prend le reste. */
-    .logos-grid {
-      grid-template-columns: 1fr;
-      row-gap: clamp(14px, 2.5vw, 18px);
-    }
-
-    /* Carrousel : sous 600px le card+photo en row écrase la mesure
-       de lecture (~165px de card) → on repasse en column : card en
-       haut pleine largeur, photo en dessous en aspect-ratio fixe. */
-    .quote-slide {
-      flex-direction: column;
-    }
-    .quote-image {
-      flex: none;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-    }
   }
 </style>
 </head>
@@ -566,63 +357,11 @@
         <h2>Nous savons intervenir dans l'urgence car nous nous préparons depuis 2015</h2>
       </div>
 
-      <div class="process-row">
-        <div class="quote-wrap" data-carousel>
-          <div class="quote-slides">
-
-            <div class="quote-slide" data-active="true">
-              <div class="quote-card">
-                <p>Émile suivait depuis deux ans cinq directeurs techniques capables de monter une équipe IA. Quand DeepMove l’a contacté, trois étaient encore disponibles. Premier entretien le lendemain, signature seize jours plus tard.</p>
-              </div>
-              <div class="quote-image quote-image--emile" role="img" aria-label="Émile Pennes"></div>
-            </div>
-
-            <div class="quote-slide">
-              <div class="quote-card">
-                <p>Tony connaissait depuis trois ans le directeur d’ingénierie que Mindee a fini par recruter. La même conversation s’était rejouée sur quatre missions avant que le moment soit le bon.</p>
-              </div>
-              <div class="quote-image quote-image--tony" role="img" aria-label="Tony Beaugez"></div>
-            </div>
-
-            <div class="quote-slide">
-              <div class="quote-card">
-                <p>Spendesk a laissé Laura chercher pendant six mois sans cadrage formel. Quand la décision de recruter est tombée, la liste de candidats était prête depuis longtemps. Trois entretiens ont suffi.</p>
-              </div>
-              <div class="quote-image quote-image--laura" role="img" aria-label="Laura Geneuil"></div>
-            </div>
-
-            <div class="quote-slide">
-              <div class="quote-card">
-                <p>Heetch cherchait un directeur financier confirmé pour préparer une levée de fonds. Guillaume a proposé à la place une responsable finance en pleine montée. Moins d’expérience formelle, meilleur alignement avec l’équipe. La proposition a tenu, la candidate aussi.</p>
-              </div>
-              <div class="quote-image quote-image--guillaume" role="img" aria-label="Guillaume Renard"></div>
-            </div>
-
-          </div>
-
-          <div class="quote-nav" aria-label="Témoignages">
-            <button class="quote-arrow" type="button" data-dir="prev" aria-label="Témoignage précédent">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
-            </button>
-            <div class="quote-bullets" role="tablist">
-              <button class="quote-bullet" type="button" role="tab" aria-current="true" data-slide="0" aria-label="Émile Pennes / DeepMove"></button>
-              <button class="quote-bullet" type="button" role="tab" data-slide="1" aria-label="Tony Beaugez / Mistral AI"></button>
-              <button class="quote-bullet" type="button" role="tab" data-slide="2" aria-label="Laura Geneuil / Pigment"></button>
-              <button class="quote-bullet" type="button" role="tab" data-slide="3" aria-label="Guillaume Renard / Electra"></button>
-            </div>
-            <button class="quote-arrow" type="button" data-dir="next" aria-label="Témoignage suivant">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </button>
-          </div>
-
-        </div>
-
-        <div class="process-text">
-          <p>Notre rapidité d'exécution, ce sont dix ans passés à recruter les talents des meilleures équipes technologiques françaises, sur toute la chaîne, du premier ingénieur aux fonctions de direction.</p>
-          <p>Nous avons permis 2 000 recrutements et avons été en contact avec 60 000 talents depuis 2015. Nous suivons leurs trajectoires, nous les voyons évoluer et rejoindre de nouveaux projets et missions.</p>
-          <p>Quand vous nous appelez pour un poste critique, nos consultants savent à qui en parler, parce qu'ils connaissent, et depuis longtemps, les gens qu'ils recommandent.</p>
-          <a href="equipe.html" class="text-arrow-link">Voir l’équipe →</a>
-        </div>
+      <div class="process-manifesto">
+        <p>Notre rapidité d'exécution, ce sont dix ans passés à recruter les talents des meilleures équipes technologiques françaises, sur toute la chaîne, du premier ingénieur aux fonctions de direction.</p>
+        <p>Nous avons permis 2 000 recrutements et avons été en contact avec 60 000 talents depuis 2015. Nous suivons leurs trajectoires, nous les voyons évoluer et rejoindre de nouveaux projets et missions.</p>
+        <p>Quand vous nous appelez pour un poste critique, nos consultants savent à qui en parler, parce qu'ils connaissent, et depuis longtemps, les gens qu'ils recommandent.</p>
+        <a href="equipe.html" class="text-arrow-link">Voir l’équipe →</a>
       </div>
     </section>
 
@@ -645,187 +384,46 @@
       <a href="tel:+33939289329" class="btn-outline solutions-overview-cta">Échanger avec un consultant : 09 39 28 93 29</a>
     </section>
 
-    <!-- Logos / fonds -->
-    <section class="logos-section">
-      <div class="logos-title">
-        <h2>Nous réalisons les plans de recrutement portées par les fonds qui comptent sur le marché tech et IA</h2>
+    <!-- Logos clients IA -->
+    <section class="ai-logos section">
+      <div class="ai-logos-title">
+        <h2>Nous réalisons les plans de recrutement des entreprises françaises à la pointe de l’intelligence artificielle</h2>
       </div>
-
-      <div class="logos-row">
-        <div class="nav-list" aria-label="Quelques fonds qui investissent dans nos clients">
-          <span class="nav-item">IDinvest</span>
-          <span class="nav-item">Alven</span>
-          <span class="nav-item">Bpi France</span>
-          <span class="nav-item">Kima Ventures</span>
-          <span class="nav-item">Large Venture</span>
-          <span class="nav-item">Sequoia</span>
-          <span class="nav-item">KKR</span>
-          <span class="nav-item">Bain Capital</span>
-          <span class="nav-item">Eurazeo</span>
-          <span class="nav-item">360 Capital Partners</span>
-          <span class="nav-item">EIC Fund</span>
-          <span class="nav-item">Axeleo Capital</span>
-          <span class="nav-item">Financière Arbevel</span>
-          <span class="nav-item">Industrya</span>
-          <span class="nav-item">SWEN Capital Partners</span>
-          <span class="nav-item">Accel</span>
-          <span class="nav-item">Softbank</span>
-          <span class="nav-item">Tiger Global</span>
-          <span class="nav-item">Sixth Street</span>
-          <span class="nav-item">Battery Ventures</span>
-          <span class="nav-item">Ardian</span>
-          <span class="nav-item">Bridgepoint</span>
-          <span class="nav-item">Partech</span>
-          <span class="nav-item">Salesforce Ventures</span>
-          <span class="nav-item">Sofinnova Partners</span>
-          <span class="nav-item">Apax Partner</span>
-          <span class="nav-item">Canaan</span>
-          <span class="nav-item">Highland Europe</span>
-          <span class="nav-item">Breega Capital</span>
-          <span class="nav-item">Iris Capital</span>
-          <span class="nav-item">JPMorgan Chase</span>
-          <span class="nav-item">One Peak</span>
-          <span class="nav-item">PSG Equity</span>
-          <span class="nav-item">SV Angel</span>
-          <span class="nav-item">ISAI</span>
-          <span class="nav-item">Project A</span>
-          <span class="nav-item">Serena</span>
-          <span class="nav-item">Threshold Ventures</span>
-          <span class="nav-item">Tikehau Ace Capital</span>
-          <span class="nav-item">Anthemis</span>
-          <span class="nav-item">AVP</span>
-          <span class="nav-item">BNP Paribas Développement</span>
-          <span class="nav-item">DN Capital</span>
-          <span class="nav-item">eFounders</span>
-          <span class="nav-item">FSI</span>
-          <span class="nav-item">Montefiore Investment</span>
-          <span class="nav-item">Munich RE Ventures</span>
-          <span class="nav-item">BEI</span>
-          <span class="nav-item">Demeter</span>
-          <span class="nav-item">Naxicap Partners</span>
+      <div class="ai-logos-rows">
+        <div class="ai-logos-row" data-h="lg">
+          <a class="ai-logo" href="clients.html#mistral-ai" aria-label="Mistral AI"><img src="assets/mistral-ai.svg" alt="Mistral AI" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#eleven-labs" aria-label="Eleven Labs"><img src="assets/eleven-labs.svg" alt="Eleven Labs" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#filigran" aria-label="Filigran"><img src="assets/filigran.svg" alt="Filigran" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#sipearl" aria-label="SiPearl"><img src="assets/sipearl.svg" alt="SiPearl" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#spotlight-earth" aria-label="Spotlight Earth"><img src="assets/spotlight-earth.svg" alt="Spotlight Earth" loading="lazy"/></a>
         </div>
-
-        <div class="logos-grid">
-          <a class="logo-cell" href="clients.html#absys-cyborg" data-funds="capellia"><img src="assets/absys-cyborg.svg" alt="Absys Cyborg" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#acolyt" data-funds="spring-invest"><img src="assets/acolyt.svg" alt="Acolyt" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#ad-s-up-consulting" data-funds="european-digital-group montefiore-investment"><img src="assets/ad-s-up-consulting.svg" alt="Ad's up Consulting" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#adagio" data-funds="axeleo-capital irdi-capital-investissement occitanie-invest"><img src="assets/adagio.svg" alt="Adagio" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#andjaro" data-funds="idinvest sofiouest swen-capital-partners we-positive-invest"><img src="assets/logos-mono/andjaro.png" alt="Andjaro" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#axione"><img src="assets/axione.svg" alt="Axione" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#bene-bono" data-funds="avp project-a sride-vc"><img src="assets/bene-bono.svg" alt="Bene Bono" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#branded" data-funds="declaration-partners kima-ventures kreos-capital regah-capital target-global tiger-global"><img src="assets/branded.svg" alt="Branded" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#buildrz" data-funds="nci-waterstart novx swen-capital-partners"><img src="assets/logos-mono/buildrz.png" alt="Buildrz" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#c2s" data-funds="bouygues"><img src="assets/logos-mono/c2s.png" alt="C2S Bouygues" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#canal-plus"><img src="assets/canal-plus.svg" alt="Canal+" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#carrefour"><img src="assets/carrefour.svg" alt="Carrefour" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#contentsquare" data-funds="bpi-france canaan eurazeo highland-europe kkr sixth-street"><img src="assets/contentsquare.svg" alt="Contentsquare" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#corwave" data-funds="eic-fund financi-re-arbevel novo-holdings seventure-partners sofinnova-partners ysios-capital"><img src="assets/corwave.svg" alt="CorWave" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#dayuse" data-funds="idinvest partech"><img src="assets/dayuse.svg" alt="Dayuse.com" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#decathlon"><img src="assets/decathlon.svg" alt="Decathlon" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#electra"><img src="assets/electra.svg" alt="Electra" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#eleven-labs" data-funds="broadlight-capital sequoia smash-ventures sv-angel"><img src="assets/eleven-labs.svg" alt="Eleven Labs" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#enerdata"><img src="assets/enerdata.svg" alt="Enerdata" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#evermaps" data-funds="entrepreneur-venture"><img src="assets/logos-mono/evermaps.png" alt="Evermaps" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#fincome" data-funds="accel"><img src="assets/fincome.svg" alt="Fincome" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#foodles" data-funds="adelie creadev dn-capital infravia-growth large-ventures"><img src="assets/foodles.svg" alt="Foodles" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#front" data-funds="battery-ventures salesforce-ventures sequoia threshold-ventures"><img src="assets/front.svg" alt="Front" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#greenweez" data-funds="carrefour"><img src="assets/logos-mono/greenweez_wordmark.png" alt="Greenweez.com" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#hardis-groupe"><img src="assets/logos-mono/hardis-groupe.png" alt="Hardis Group" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#heyteam" data-funds="360-capital-partners acurio"><img src="assets/heyteam.svg" alt="HeyTeam" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#hightekers" data-funds="na"><img src="assets/hightekers.svg" alt="Hightekers" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#iel-etudes-et-installations" data-funds="bpi-france esfin-participation"><img src="assets/logos-mono/iel-etudes-et-installations.png" alt="IEL Initiatives et Energies Locales" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#in-store-media-france" data-funds="art-capital"><img src="assets/logos-mono/in-store-media-france_wordmark.png" alt="In-Store Media" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#invivo-group"><img src="assets/invivo-group.svg" alt="InVivo (Groupe)" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#isograd"><img src="assets/logos-mono/isograd_wordmark.png" alt="Isograd" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#ivalua" data-funds="ardian kkr"><img src="assets/ivalua.svg" alt="Ivalua" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#kactus" data-funds="f3a-bpifrance idinvest"><img src="assets/kactus.svg" alt="Kactus" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#kardinal" data-funds="bgv cap-horn-invest plug-and-play-ventures serena"><img src="assets/kardinal.svg" alt="Kardinal" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#kheoos" data-funds="industrya iron-hands-capital"><img src="assets/logos-mono/kheoos.png" alt="Kheoos" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#konverso" data-funds="bain-capital financi-re-arbevel"><img src="assets/konverso.svg" alt="Konverso" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#kostango"><img src="assets/logos-mono/kostango.png" alt="Kostango" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#leetchi"><img src="assets/leetchi.svg" alt="Leetchi" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#legalstart"><img src="assets/legalstart.svg" alt="Legalstart" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#linkurious"><img src="assets/linkurious.svg" alt="Linkurious" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#lucca" data-funds="one-peak"><img src="assets/logos-mono/lucca.svg" alt="Lucca" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#madbox" data-funds="alven"><img src="assets/madbox.svg" alt="Madbox" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#may" data-funds="eurazeo innovallianz racine2 ring-capital"><img src="assets/may.svg" alt="May" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#mistral-ai"><img src="assets/mistral-ai.svg" alt="Mistral AI" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#mojix" data-funds="scaleup-ventures"><img src="assets/mojix.svg" alt="Mojix" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#mwm" data-funds="agla-ventures blisce idinvest large-venture"><img src="assets/logos-mono/mwm.png" alt="MWM" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#myre" data-funds="hwa keys-asset-management naxicap-partners new-alpha"><img src="assets/myre.svg" alt="MYRE" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#mytraffic" data-funds="alven axa-venture-partners kernel"><img src="assets/logos-mono/mytraffic_wordmark.png" alt="Mytraffic" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#oscaro" data-funds="bain-capital"><img src="assets/oscaro.svg" alt="Oscaro" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#parmentine" data-funds="groupe-champart-holding"><img src="assets/logos-mono/parmentine.png" alt="Parmentine" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#pricemoov" data-funds="bpi-france isai"><img src="assets/logos-mono/pricemoov.png" alt="Pricemoov" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#qualisocial"><img src="assets/logos-mono/qualisocial.png" alt="Qualisocial" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#rosaly" data-funds="audeo-ventures auxxo fin-capital fj-labs kraken-ventures the-treasury-vc"><img src="assets/rosaly.svg" alt="Rosaly" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#saqara" data-funds="a-o-proptech activum-sg concrete-vc"><img src="assets/saqara.svg" alt="Saqara" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#satelia" data-funds="impact-partners"><img src="assets/satelia.svg" alt="Satelia" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#sdec-france"><img src="assets/logos-mono/sdec-france.png" alt="SDEC France" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#selceon"><img src="assets/logos-mono/selceon_wordmark.png" alt="Selceon" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#silae" data-funds="silver-lake-s-investment"><img src="assets/silae.svg" alt="Silae" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#sinch" data-funds="softbank temasek"><img src="assets/sinch.svg" alt="Sinch" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#sipearl" data-funds="arm banque-europ-enne-d-investissement eic-fund groupe-atos"><img src="assets/logos-mono/sipearl.png" alt="SiPearl" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#spark-cleantech"><img src="assets/logos-mono/spark-cleantech.png" alt="Spark Cleantech" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#spotlight-earth" data-funds="industrya"><img src="assets/spotlight-earth.svg" alt="SpotLight Earth" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#stoik" data-funds="alven anthemis munich-re-ventures opera-tech-ventures"><img src="assets/stoik.svg" alt="Stoïk" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#sunelis"><img src="assets/sunelis.svg" alt="Sunelis" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#thom" data-funds="altamir apax-partner bridgepoint qualium-investissement"><img src="assets/thom.svg" alt="Thom Group" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#tinubu" data-funds="fonds-strat-gique-d-investissement-fsi gimv large-venture long-arc-capital"><img src="assets/tinubu.svg" alt="Tinubu" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#unifai" data-funds="aquis-par-akaneo"><img src="assets/unifai.svg" alt="Unifai" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#upciti" data-funds="chalfen-ventures demeter innovacom nci point-nine"><img src="assets/upciti.svg" alt="Upciti" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#upflow" data-funds="9yard-capital efounders kima-ventures"><img src="assets/upflow.svg" alt="Upflow" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#via-sana" data-funds="360-capital-partners"><img src="assets/via-sana.svg" alt="Via Sana" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#wematch-live" data-funds="augmentum-fintech-plc db1-ventures-gmbh illuminate-financial-management-llp jpmorgan-chase-co"><img src="assets/wematch-live.svg" alt="Wematch.live" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#weward" data-funds="breega-capital kima-ventures"><img src="assets/weward.svg" alt="WeWard" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#whoz" data-funds="psg-equity"><img src="assets/whoz.svg" alt="Whoz" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#yogosha" data-funds="axeleo-capital bnp-paribas-d-veloppement oneragtime tikehau-ace-capital"><img src="assets/yogosha.svg" alt="Yogosha" loading="lazy" /></a>
-          <a class="logo-cell" href="clients.html#yubo" data-funds="alven idinvest iris-capital sweeft-capital"><img src="assets/yubo.svg" alt="Yubo" loading="lazy" /></a>
+        <div class="ai-logos-row" data-h="md">
+          <a class="ai-logo" href="clients.html#mindee" aria-label="Mindee"><img src="assets/mindee.svg" alt="Mindee" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#dust" aria-label="Dust"><img src="assets/dust.svg" alt="Dust" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#harfanglab" aria-label="Harfanglab"><img src="assets/harfanglab.svg" alt="Harfanglab" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#kili-technology" aria-label="Kili Technology"><img src="assets/kili-technology.svg" alt="Kili Technology" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#konverso" aria-label="Konverso"><img src="assets/konverso.svg" alt="Konverso" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#linkurious" aria-label="Linkurious"><img src="assets/linkurious.svg" alt="Linkurious" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#whoz" aria-label="Whoz"><img src="assets/whoz.svg" alt="Whoz" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#cybelangel" aria-label="CybelAngel"><img src="assets/cybelangel.svg" alt="CybelAngel" loading="lazy"/></a>
         </div>
-
+        <div class="ai-logos-row" data-h="sm">
+          <a class="ai-logo" href="clients.html#mytraffic" aria-label="Mytraffic"><img src="assets/mytraffic.svg" alt="Mytraffic" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#wematch-live" aria-label="Wematch.live"><img src="assets/wematch-live.svg" alt="Wematch.live" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#trustpair" aria-label="Trustpair"><img src="assets/trustpair.svg" alt="Trustpair" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#reelevant" aria-label="Reelevant"><img src="assets/reelevant.svg" alt="Reelevant" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#ai-cargo-foundation" aria-label="AI Cargo Foundation"><img src="assets/ai-cargo-foundation.svg" alt="AI Cargo Foundation" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#prevision-io" aria-label="Prevision.io"><img src="assets/prevision-io.svg" alt="Prevision.io" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#pricemoov" aria-label="Pricemoov"><img src="assets/pricemoov.svg" alt="Pricemoov" loading="lazy"/></a>
+          <a class="ai-logo" href="clients.html#stoik" aria-label="Stoïk"><img src="assets/stoik.svg" alt="Stoïk" loading="lazy"/></a>
+        </div>
       </div>
-
-      <a href="clients.html" class="btn-outline see-all-bottom">Tous nos clients →</a>
+      <a href="clients.html" class="btn-outline see-all-bottom">Tous nos clients →</a>
     </section>
 
     <footer class="site-footer" data-footer></footer>
 
   </main>
   <script src="partials.js" defer></script>
-  <script>
-    // Carrousel de témoignages : 4 slides, navigation manuelle via
-    // bullets (jump direct) + flèches prev/next (cyclique).
-    (function () {
-      const wrap = document.querySelector('[data-carousel]');
-      if (!wrap) return;
-      const slides = [...wrap.querySelectorAll('.quote-slide')];
-      const bullets = [...wrap.querySelectorAll('.quote-bullet')];
-      const arrows = [...wrap.querySelectorAll('.quote-arrow')];
-      if (slides.length < 2) return;
-
-      let active = 0;
-      function show(i) {
-        active = (i + slides.length) % slides.length;
-        slides.forEach((s, k) => {
-          if (k === active) s.setAttribute('data-active', 'true');
-          else s.removeAttribute('data-active');
-        });
-        bullets.forEach((b, k) => {
-          if (k === active) b.setAttribute('aria-current', 'true');
-          else b.removeAttribute('aria-current');
-        });
-      }
-
-      bullets.forEach((b, i) => {
-        b.addEventListener('click', () => show(i));
-      });
-      arrows.forEach((a) => {
-        a.addEventListener('click', () => {
-          const dir = a.dataset.dir === 'prev' ? -1 : 1;
-          show(active + dir);
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
