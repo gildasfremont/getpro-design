@@ -436,11 +436,10 @@
           // même comportement que le click sur une catégorie. Le navbar
           // + tabs sticky restent visibles.
           requestAnimationFrame(() => {
-            const panelBody = document.querySelector('.panel-body');
-            if (!panelBody) return;
-            const headerOffset = 110;
-            const top = panelBody.getBoundingClientRect().top + window.scrollY - headerOffset;
-            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+            // Scroll tout en haut de la page (pas juste en-dessous du
+            // panel) pour que "Solutions" h1 + tabs Chasse/Renfort
+            // restent visibles, contexte complet.
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           });
         });
       }
@@ -593,16 +592,11 @@
         renderTestimonials();
         syncTriggerLabel();
         closeTrigger();
-        // Scroll vers le haut du panel-body : si l'utilisateur était
-        // scrollé deep dans Tech et qu'il bascule sur Data, il faut
-        // remettre le contenu au début (sinon on tombe en plein milieu
-        // d'une nouvelle liste et on ne voit pas le menu / les chips).
+        // Scroll tout en haut de la page (pas juste en-dessous du panel)
+        // pour que "Solutions" h1 + tabs Chasse/Renfort restent visibles,
+        // contexte complet quand l'utilisateur change de bucket.
         requestAnimationFrame(() => {
-          const panelBody = document.querySelector('.panel-body');
-          if (!panelBody) return;
-          const headerOffset = 110;
-          const top = panelBody.getBoundingClientRect().top + window.scrollY - headerOffset;
-          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       });
 
