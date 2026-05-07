@@ -432,14 +432,15 @@
             if (v.dataset.view === target) v.removeAttribute('hidden');
             else v.setAttribute('hidden', '');
           });
-          // Scroll vers le haut du panel-body (pas le top de la page) :
-          // même comportement que le click sur une catégorie. Le navbar
-          // + tabs sticky restent visibles.
+          // Remonte au top du panel-body avec un offset pour la nav
+          // sticky et les view-tabs : navbar + tabs restent visibles,
+          // le contenu de la nouvelle vue démarre proprement.
           requestAnimationFrame(() => {
-            // Scroll tout en haut de la page (pas juste en-dessous du
-            // panel) pour que "Solutions" h1 + tabs Chasse/Renfort
-            // restent visibles, contexte complet.
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const panelBody = document.querySelector('.panel-body');
+            if (!panelBody) return;
+            const headerOffset = 110;
+            const top = panelBody.getBoundingClientRect().top + window.scrollY - headerOffset;
+            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
           });
         });
       }
@@ -592,11 +593,15 @@
         renderTestimonials();
         syncTriggerLabel();
         closeTrigger();
-        // Scroll tout en haut de la page (pas juste en-dessous du panel)
-        // pour que "Solutions" h1 + tabs Chasse/Renfort restent visibles,
-        // contexte complet quand l'utilisateur change de bucket.
+        // Remonte au top du panel-body avec un offset pour la nav sticky :
+        // navbar + tabs restent visibles, la nouvelle catégorie démarre
+        // proprement sans renvoyer l'utilisateur tout en haut de la page.
         requestAnimationFrame(() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          const panelBody = document.querySelector('.panel-body');
+          if (!panelBody) return;
+          const headerOffset = 110;
+          const top = panelBody.getBoundingClientRect().top + window.scrollY - headerOffset;
+          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
         });
       });
 
