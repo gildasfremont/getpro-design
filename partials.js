@@ -36,7 +36,7 @@
           <span class="menu-label-short">Solutions</span>
         </a>
         <a href="clients.html" class="menu-item"${aria('clients.html')}>Clients</a>
-        <a href="equipe.html" class="menu-item"${aria('equipe.html')}>Équipe</a>
+        <a href="equipe.html" class="menu-item"${aria('equipe.html')}>Consultants</a>
         <a href="contact.html" class="btn-menu"${aria('contact.html')}>Contact</a>
       </div>
     </nav>
@@ -66,7 +66,7 @@
         <a href="solutions-profils.html"${aria('solutions-profils.html')}>Métiers recrutés</a>
         <a href="methode.html"${aria('methode.html')}>Méthode GetPro</a>
         <a href="clients.html"${aria('clients.html')}>Clients</a>
-        <a href="equipe.html"${aria('equipe.html')}>Équipe</a>
+        <a href="equipe.html"${aria('equipe.html')}>Consultants</a>
         <a href="mentions.html"${aria('mentions.html')}>Mentions légales</a>
       </div>
       <div class="foot-col foot-contact">

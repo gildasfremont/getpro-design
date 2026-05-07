@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GetPro Équipe</title>
+<title>GetPro Consultants</title>
 <meta name="description" content="L'équipe GetPro : consultants spécialisés sur la chasse Tech, Product et Go-to-Market. Mémoire longue, relations sur dix ans." />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-<meta property="og:title" content="GetPro Équipe" />
+<meta property="og:title" content="GetPro Consultants" />
 <meta property="og:description" content="L'équipe GetPro : consultants spécialisés sur la chasse Tech, Product et Go-to-Market." />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
@@ -21,12 +21,12 @@
   }
 
   /* 2 colonnes : titre + manifeste à gauche (sticky), grille photos
-     à droite. Photos commencent au top de la page, alignées avec le
-     titre h1. */
+     à droite. La grille photos garde sa largeur totale (proportion
+     5/7 originale), avec gap généreux entre les deux blocs. */
   .equipe-row {
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    gap: clamp(28px, 4vw, 70px);
+    gap: clamp(60px, 8vw, 140px);
     align-items: start;
     position: relative;
   }
@@ -50,47 +50,51 @@
     max-width: var(--measure);
   }
 
-  /* Grille photos : 3-col, 0 gap → les cartes se touchent. Chaque
-     carte = photo carrée + caption strip (name + années). */
+  /* Grille photos : 3-col, gap horizontal 0 (cartes se touchent
+     latéralement) + row-gap pour respirer entre les lignes. */
   .team-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0;
+    column-gap: 0;
+    row-gap: clamp(20px, 2.4vw, 36px);
   }
   .team-card {
-    background: var(--white);
     display: flex;
     flex-direction: column;
     color: inherit;
     text-decoration: none;
     transition: opacity 0.18s ease;
   }
-  /* Hover sur les cards consultants (= les <a>) : opacité légère
-     + curseur pointer hérité du <a>, pour signaler la cliquabilité
-     vers LinkedIn sans alourdir visuellement. */
   a.team-card:hover { opacity: 0.85; }
   .team-photo {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    /* Portrait 3/4 → rectangle vertical, conserve la hauteur originale
+       des photos sources (typiquement 841×1123 ≈ 3/4) malgré la
+       réduction de la largeur de col. */
+    aspect-ratio: 3 / 4;
     background-size: cover;
     background-position: 50% 22%;
     background-repeat: no-repeat;
     background-color: #d8e0d3;
   }
+  /* Caption alignée sur le bord gauche de la photo (padding-left 0).
+     Pas de bg blanc : le caption est posé directement sur le bg de
+     page. Couleurs uniformes en --ink (plus de gris). */
   .team-caption {
-    padding: clamp(12px, 1.4vw, 20px) clamp(14px, 1.6vw, 22px);
+    padding: clamp(8px, 0.9vw, 14px) 0 0;
     display: flex;
     flex-direction: column;
     gap: 2px;
   }
   .team-name {
-    font-size: clamp(14px, 1.3vw, 18px);
-    line-height: 1.25;
-  }
-  .team-exp {
-    font-size: clamp(12px, 1vw, 14px);
+    font-size: clamp(13px, 1.05vw, 15px);
     line-height: 1.3;
-    color: var(--ink-soft, #6c7a6e);
+  }
+  .team-role,
+  .team-exp {
+    font-size: clamp(13px, 1.05vw, 15px);
+    line-height: 1.3;
+    color: inherit;
   }
 
   /* Photos */
@@ -131,10 +135,12 @@
     gap: 0;
   }
   .equipe-support-text {
-    font-size: clamp(13px, 1.1vw, 15px);
-    line-height: 1.5;
+    /* Même taille que les paragraphes du manifeste pour cohérence
+       typographique sur la page. Plus de gris, ink full. */
+    font-size: var(--fs-body);
+    line-height: 1.55;
     margin: 0;
-    color: var(--ink-soft, #6c7a6e);
+    color: inherit;
   }
 
   /* Breakpoint principal : photos plein largeur, texte en single col. */
@@ -199,7 +205,7 @@
     <section class="equipe section">
       <div class="equipe-row">
         <aside class="equipe-text">
-          <h1 class="page-title">Équipe</h1>
+          <h1 class="page-title">Consultants</h1>
           <div class="equipe-manifesto">
           <p>Nos consultants sont chez GetPro depuis longtemps, certains depuis dix ans. Un chasseur qui débute reconstruit son réseau à chaque mission. Un consultant senior connaît déjà les gens qu'il va vous présenter, il les a vus évoluer poste après poste, il sait qui pèse vraiment et qui pèse seulement sur son CV. C'est cette mémoire longue qu'on vous vend.</p>
           <p>Nous recrutons et formons en interne. Ceux qui restent sont ceux qui savent tenir une relation sur dix ans, pas seulement closer un mandat. C'est pour ça qu'on présente trois candidats sérieux, pas cinquante CV.</p>
@@ -208,133 +214,149 @@
         </aside>
 
         <div class="team-grid">
-          <a class="team-card" href="https://www.linkedin.com/in/romain-pichou/" target="_blank" rel="noopener" aria-label="Romain Pichou sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-romain" role="img" aria-label="Romain Pichou"></div>
             <div class="team-caption">
               <span class="team-name">Romain Pichou</span>
-              <span class="team-exp">18 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Président, CEO</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/romain-pichou/" target="_blank" rel="noopener" aria-label="Romain Pichou sur LinkedIn">18 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/emile-pennes/" target="_blank" rel="noopener" aria-label="Émile Pennes sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-emile" role="img" aria-label="Émile Pennes"></div>
             <div class="team-caption">
               <span class="team-name">Émile Pennes</span>
-              <span class="team-exp">14 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Directeur Opérations, COO</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/emile-pennes/" target="_blank" rel="noopener" aria-label="Émile Pennes sur LinkedIn">14 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/guillaume-renard/" target="_blank" rel="noopener" aria-label="Guillaume Renard sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-guillaume" role="img" aria-label="Guillaume Renard"></div>
             <div class="team-caption">
               <span class="team-name">Guillaume Renard</span>
-              <span class="team-exp">15 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Directeur Général Bordeaux</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/guillaume-renard/" target="_blank" rel="noopener" aria-label="Guillaume Renard sur LinkedIn">15 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/louis-fitamant/" target="_blank" rel="noopener" aria-label="Louis Fitamant sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-louis" role="img" aria-label="Louis Fitamant"></div>
             <div class="team-caption">
               <span class="team-name">Louis Fitamant</span>
-              <span class="team-exp">12 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Head of Cabinet Business</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/louis-fitamant/" target="_blank" rel="noopener" aria-label="Louis Fitamant sur LinkedIn">12 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/anne-delarue/" target="_blank" rel="noopener" aria-label="Anne Delarue sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-anne" role="img" aria-label="Anne Delarue"></div>
             <div class="team-caption">
               <span class="team-name">Anne Delarue</span>
-              <span class="team-exp">13 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Directrice de projet RPO</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/anne-delarue/" target="_blank" rel="noopener" aria-label="Anne Delarue sur LinkedIn">13 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/tony-beaugez/" target="_blank" rel="noopener" aria-label="Tony Beaugez sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
             <div class="team-caption">
               <span class="team-name">Tony Beaugez</span>
-              <span class="team-exp">10 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Manager Business Unit Tech</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/tony-beaugez/" target="_blank" rel="noopener" aria-label="Tony Beaugez sur LinkedIn">10 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/thomas-laigo/" target="_blank" rel="noopener" aria-label="Thomas Laigo sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-thomas" role="img" aria-label="Thomas Laigo"></div>
             <div class="team-caption">
               <span class="team-name">Thomas Laigo</span>
-              <span class="team-exp">6 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Consultant RPO</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/thomas-laigo/" target="_blank" rel="noopener" aria-label="Thomas Laigo sur LinkedIn">6 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/juliette-fabre/" target="_blank" rel="noopener" aria-label="Juliette Fabre sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-juliette" role="img" aria-label="Juliette Fabre"></div>
             <div class="team-caption">
               <span class="team-name">Juliette Fabre</span>
-              <span class="team-exp">6 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Consultante RPO</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/juliette-fabre/" target="_blank" rel="noopener" aria-label="Juliette Fabre sur LinkedIn">6 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/die-astou-dioume/" target="_blank" rel="noopener" aria-label="Dié Astou Dioume sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-die" role="img" aria-label="Dié Astou Dioume"></div>
             <div class="team-caption">
               <span class="team-name">Dié Astou Dioume</span>
-              <span class="team-exp">5 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Consultante RPO</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/die-astou-dioume/" target="_blank" rel="noopener" aria-label="Dié Astou Dioume sur LinkedIn">5 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/lauren-pointon/" target="_blank" rel="noopener" aria-label="Lauren Pointon sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-lauren" role="img" aria-label="Lauren Pointon"></div>
             <div class="team-caption">
               <span class="team-name">Lauren Pointon</span>
-              <span class="team-exp">4 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Consultante RPO</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/lauren-pointon/" target="_blank" rel="noopener" aria-label="Lauren Pointon sur LinkedIn">4 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/laura-geneuil/" target="_blank" rel="noopener" aria-label="Laura Geneuil sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-laura" role="img" aria-label="Laura Geneuil"></div>
             <div class="team-caption">
               <span class="team-name">Laura Geneuil</span>
-              <span class="team-exp">4 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Talent Recruiter Business</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/laura-geneuil/" target="_blank" rel="noopener" aria-label="Laura Geneuil sur LinkedIn">4 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/claire-hubert/" target="_blank" rel="noopener" aria-label="Claire Hubert sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-claire" role="img" aria-label="Claire Hubert"></div>
             <div class="team-caption">
               <span class="team-name">Claire Hubert</span>
-              <span class="team-exp">4 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Talent Recruiter Business</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/claire-hubert/" target="_blank" rel="noopener" aria-label="Claire Hubert sur LinkedIn">4 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/nicolas-magne/" target="_blank" rel="noopener" aria-label="Nicolas Magne sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-nicolas" role="img" aria-label="Nicolas Magne"></div>
             <div class="team-caption">
               <span class="team-name">Nicolas Magne</span>
-              <span class="team-exp">4 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Talent Recruiter Tech</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/nicolas-magne/" target="_blank" rel="noopener" aria-label="Nicolas Magne sur LinkedIn">4 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/theo-grandperrin/" target="_blank" rel="noopener" aria-label="Théo Grandperrin sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-theo" role="img" aria-label="Théo Grandperrin"></div>
             <div class="team-caption">
               <span class="team-name">Théo Grandperrin</span>
-              <span class="team-exp">3 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Talent Recruiter Tech</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/theo-grandperrin/" target="_blank" rel="noopener" aria-label="Théo Grandperrin sur LinkedIn">3 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/hugo-merdrignac/" target="_blank" rel="noopener" aria-label="Hugo Merdrignac sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
             <div class="team-caption">
               <span class="team-name">Hugo Merdrignac</span>
-              <span class="team-exp">3 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Talent Recruiter Tech</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/hugo-merdrignac/" target="_blank" rel="noopener" aria-label="Hugo Merdrignac sur LinkedIn">3 ans d'expérience</a>
+              </div>
+          </article>
 
-          <a class="team-card" href="https://www.linkedin.com/in/zaia-bouchachia/" target="_blank" rel="noopener" aria-label="Zaïa Bouchachia sur LinkedIn">
+          <article class="team-card">
             <div class="team-photo photo-zaia" role="img" aria-label="Zaïa Bouchachia"></div>
             <div class="team-caption">
               <span class="team-name">Zaïa Bouchachia</span>
-              <span class="team-exp">3 ans d'expérience</span>
-            </div>
-          </a>
+              <span class="team-role">Recruiter Business</span>
+              <a class="team-exp" href="https://www.linkedin.com/in/zaia-bouchachia/" target="_blank" rel="noopener" aria-label="Zaïa Bouchachia sur LinkedIn">3 ans d'expérience</a>
+              </div>
+          </article>
 
         </div>
       </div>
