@@ -196,35 +196,40 @@
     letter-spacing: -0.02em;
   }
 
-  /* Manifeste centré sous le titre : narratif court, plus discret que
-     le titre principal. Petite mesure pour rester lisible. */
+  /* Manifeste posé dans une carte blanche centrée, même langage que
+     les .case-card / .quote-card : white bg, padding généreux, mesure
+     contenue. Crée un point d'ancrage visuel sous le titre. */
   .process-manifesto {
-    max-width: clamp(420px, 60vw, 760px);
+    background: var(--white);
+    padding: clamp(40px, 5.6vw, 80px) clamp(28px, 4.8vw, 70px);
     margin-inline: auto;
-    text-align: center;
+    max-width: clamp(560px, 72vw, 940px);
     display: flex;
     flex-direction: column;
-    gap: clamp(16px, 1.6vw, 24px);
-    padding-inline: clamp(20px, 4vw, 70px);
+    gap: clamp(20px, 2vw, 32px);
   }
   .process-manifesto p {
     font-size: var(--fs-body);
     line-height: 1.55;
     margin: 0;
+    max-width: var(--measure);
   }
   .process-manifesto .text-arrow-link {
-    align-self: center;
     font-size: var(--fs-body);
     line-height: 1.55;
-    margin-top: clamp(8px, 1vw, 16px);
+    margin-top: clamp(4px, 0.6vw, 10px);
   }
 
   /* ---------- Logos clients IA ---------- */
+  /* Même squelette que les autres sections du site (cf .logos-section
+     d'origine) : title à gauche, contenu indenté sur 4.8vw. Logos en
+     grid à hauteur uniforme — pattern clean, pro, pas de mise en page
+     "décorative" qui détonne avec le reste. */
   .ai-logos {
     display: flex;
     flex-direction: column;
-    gap: clamp(40px, 5vw, 70px);
-    padding: clamp(40px, 5vw, 70px) var(--pad-x);
+    gap: clamp(30px, 4.8vw, 70px);
+    padding: clamp(40px, 5vw, 80px) var(--pad-x);
   }
   .ai-logos-title {
     padding-left: clamp(24px, 4.8vw, 70px);
@@ -235,32 +240,24 @@
     line-height: var(--lh-section-title);
     max-width: clamp(320px, 75vw, 1050px);
   }
-
-  .ai-logos-rows {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(28px, 3.4vw, 52px);
-    padding-inline: clamp(24px, 4.8vw, 70px);
-  }
-  .ai-logos-row {
+  .ai-logos-grid {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: clamp(28px, 4vw, 64px);
+    column-gap: clamp(40px, 5vw, 88px);
+    row-gap: clamp(28px, 3.4vw, 52px);
+    padding-inline: clamp(24px, 4.8vw, 70px);
   }
-  /* Chaque row a sa hauteur de logo : icônes/marques fortes en grand,
-     wordmarks en moyen, longues mentions en petit. Au sein d'une row,
-     tous les logos partagent la même hauteur → ligne propre. */
-  .ai-logos-row[data-h="lg"] img { height: clamp(36px, 3.8vw, 52px); }
-  .ai-logos-row[data-h="md"] img { height: clamp(24px, 2.6vw, 36px); }
-  .ai-logos-row[data-h="sm"] img { height: clamp(18px, 2vw, 28px); }
   .ai-logo {
     display: inline-flex;
     align-items: center;
     color: inherit;
     text-decoration: none;
+    transition: opacity 0.18s ease;
   }
+  .ai-logo:hover { opacity: 0.7; }
   .ai-logo img {
+    height: clamp(26px, 2.8vw, 40px);
     width: auto;
     display: block;
   }
@@ -389,34 +386,27 @@
       <div class="ai-logos-title">
         <h2>Nous réalisons les plans de recrutement des entreprises françaises à la pointe de l’intelligence artificielle</h2>
       </div>
-      <div class="ai-logos-rows">
-        <div class="ai-logos-row" data-h="lg">
-          <a class="ai-logo" href="clients.html#mistral-ai" aria-label="Mistral AI"><img src="assets/mistral-ai.svg" alt="Mistral AI" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#eleven-labs" aria-label="Eleven Labs"><img src="assets/eleven-labs.svg" alt="Eleven Labs" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#filigran" aria-label="Filigran"><img src="assets/filigran.svg" alt="Filigran" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#sipearl" aria-label="SiPearl"><img src="assets/sipearl.svg" alt="SiPearl" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#spotlight-earth" aria-label="Spotlight Earth"><img src="assets/spotlight-earth.svg" alt="Spotlight Earth" loading="lazy"/></a>
-        </div>
-        <div class="ai-logos-row" data-h="md">
-          <a class="ai-logo" href="clients.html#mindee" aria-label="Mindee"><img src="assets/mindee.svg" alt="Mindee" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#dust" aria-label="Dust"><img src="assets/dust.svg" alt="Dust" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#harfanglab" aria-label="Harfanglab"><img src="assets/harfanglab.svg" alt="Harfanglab" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#kili-technology" aria-label="Kili Technology"><img src="assets/kili-technology.svg" alt="Kili Technology" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#konverso" aria-label="Konverso"><img src="assets/konverso.svg" alt="Konverso" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#linkurious" aria-label="Linkurious"><img src="assets/linkurious.svg" alt="Linkurious" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#whoz" aria-label="Whoz"><img src="assets/whoz.svg" alt="Whoz" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#cybelangel" aria-label="CybelAngel"><img src="assets/cybelangel.svg" alt="CybelAngel" loading="lazy"/></a>
-        </div>
-        <div class="ai-logos-row" data-h="sm">
-          <a class="ai-logo" href="clients.html#mytraffic" aria-label="Mytraffic"><img src="assets/mytraffic.svg" alt="Mytraffic" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#wematch-live" aria-label="Wematch.live"><img src="assets/wematch-live.svg" alt="Wematch.live" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#trustpair" aria-label="Trustpair"><img src="assets/trustpair.svg" alt="Trustpair" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#reelevant" aria-label="Reelevant"><img src="assets/reelevant.svg" alt="Reelevant" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#ai-cargo-foundation" aria-label="AI Cargo Foundation"><img src="assets/ai-cargo-foundation.svg" alt="AI Cargo Foundation" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#prevision-io" aria-label="Prevision.io"><img src="assets/prevision-io.svg" alt="Prevision.io" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#pricemoov" aria-label="Pricemoov"><img src="assets/pricemoov.svg" alt="Pricemoov" loading="lazy"/></a>
-          <a class="ai-logo" href="clients.html#stoik" aria-label="Stoïk"><img src="assets/stoik.svg" alt="Stoïk" loading="lazy"/></a>
-        </div>
+      <div class="ai-logos-grid">
+        <a class="ai-logo" href="clients.html#mistral-ai" aria-label="Mistral AI"><img src="assets/mistral-ai.svg" alt="Mistral AI" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#eleven-labs" aria-label="Eleven Labs"><img src="assets/eleven-labs.svg" alt="Eleven Labs" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#mindee" aria-label="Mindee"><img src="assets/mindee.svg" alt="Mindee" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#dust" aria-label="Dust"><img src="assets/dust.svg" alt="Dust" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#filigran" aria-label="Filigran"><img src="assets/filigran.svg" alt="Filigran" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#harfanglab" aria-label="Harfanglab"><img src="assets/harfanglab.svg" alt="Harfanglab" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#kili-technology" aria-label="Kili Technology"><img src="assets/kili-technology.svg" alt="Kili Technology" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#sipearl" aria-label="SiPearl"><img src="assets/sipearl.svg" alt="SiPearl" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#linkurious" aria-label="Linkurious"><img src="assets/linkurious.svg" alt="Linkurious" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#konverso" aria-label="Konverso"><img src="assets/konverso.svg" alt="Konverso" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#whoz" aria-label="Whoz"><img src="assets/whoz.svg" alt="Whoz" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#cybelangel" aria-label="CybelAngel"><img src="assets/cybelangel.svg" alt="CybelAngel" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#mytraffic" aria-label="Mytraffic"><img src="assets/mytraffic.svg" alt="Mytraffic" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#wematch-live" aria-label="Wematch.live"><img src="assets/wematch-live.svg" alt="Wematch.live" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#trustpair" aria-label="Trustpair"><img src="assets/trustpair.svg" alt="Trustpair" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#reelevant" aria-label="Reelevant"><img src="assets/reelevant.svg" alt="Reelevant" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#ai-cargo-foundation" aria-label="AI Cargo Foundation"><img src="assets/ai-cargo-foundation.svg" alt="AI Cargo Foundation" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#prevision-io" aria-label="Prevision.io"><img src="assets/prevision-io.svg" alt="Prevision.io" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#pricemoov" aria-label="Pricemoov"><img src="assets/pricemoov.svg" alt="Pricemoov" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#stoik" aria-label="Stoïk"><img src="assets/stoik.svg" alt="Stoïk" loading="lazy"/></a>
       </div>
       <a href="clients.html" class="btn-outline see-all-bottom">Tous nos clients →</a>
     </section>
