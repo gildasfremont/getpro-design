@@ -238,6 +238,11 @@
     display: flex;
     flex-direction: column;
     gap: clamp(20px, 2.4vw, 36px);
+    /* flex:1 → la card remplit l'espace restant entre le haut du wrap
+       et le top de la photo, peu importe la longueur du texte. Les
+       slides courtes n'ont plus de vide entre card et photo : le bg
+       blanc continue jusqu'à la photo. */
+    flex: 1;
   }
   .quote-card p {
     font-size: var(--fs-quote);
@@ -245,14 +250,15 @@
     margin: 0;
   }
 
-  /* Photo : aspect-ratio fixe → la hauteur de l'image est constante
-     sur toutes les slides, indépendante de la longueur du texte. */
+  /* Photo : aspect-ratio fixe → hauteur constante sur toutes les slides,
+     indépendante de la longueur du texte. */
   .quote-image {
     width: 100%;
     aspect-ratio: 594 / 380;
     background-size: cover;
     background-position: top left;
     background-repeat: no-repeat;
+    flex: none;
   }
   .quote-image--emile     { background-image: url('assets/team/emile-pennes.jpg'); }
   .quote-image--tony      { background-image: url('assets/team/tony-beaugez.png'); background-position: top center; }
@@ -421,22 +427,29 @@
 
   /* ---------- Breakpoints (structural changes only) ---------- */
   @media (max-width: 800px) {
-    /* Au lieu de stacker quote-card / quote-image (l'image écrasée à 30vw
-       coupait la tête d'Émile), on passe en card horizontale : image à
-       gauche, quote à droite, ratio portrait 3/4 préservé sur l'image. */
+    /* Process row : passe en single column (carrousel pleine largeur,
+       puis manifeste en dessous). Slide flippe en row : photo gauche,
+       card droite. */
     .process-row { grid-template-columns: 1fr; }
-    .quote-wrap {
+    .quote-slide {
       flex-direction: row;
       align-items: stretch;
     }
     .quote-image {
       flex: 0 0 38%;
-      min-height: 0;
+      width: auto;
+      aspect-ratio: auto;
       align-self: stretch;
     }
     .quote-card {
-      flex: 1;
       padding: clamp(20px, 4vw, 40px) clamp(20px, 4vw, 40px);
+    }
+    /* Bullets : sortent du recouvrement (photo ne fait que 38%) et se
+       posent sous l'ensemble photo+card pour rester accessibles. */
+    .quote-nav {
+      position: static;
+      align-self: flex-start;
+      margin: clamp(12px, 2.4vw, 20px) clamp(20px, 4vw, 40px) clamp(20px, 4vw, 40px);
     }
     .process-text {
       padding: clamp(28px, 4vw, 40px) clamp(20px, 4vw, 40px);
@@ -463,6 +476,18 @@
     .logos-grid {
       grid-template-columns: 1fr;
       row-gap: clamp(14px, 2.5vw, 18px);
+    }
+
+    /* Carrousel : sous 600px le card+photo en row écrase la mesure
+       de lecture (~165px de card) → on repasse en column : card en
+       haut pleine largeur, photo en dessous en aspect-ratio fixe. */
+    .quote-slide {
+      flex-direction: column;
+    }
+    .quote-image {
+      flex: none;
+      width: 100%;
+      aspect-ratio: 4 / 3;
     }
   }
 </style>
