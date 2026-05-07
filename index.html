@@ -23,16 +23,27 @@
        mais sans creuser un trou avant le bloc Mistral. */
     padding-bottom: clamp(30px, 3.4vw, 50px);
   }
+  /* Respiration spécifique header → hero : on remplace le --gap-section
+     (40-80px) par un gap plus généreux, façon affiche swiss qui "pose"
+     son titre dans le silence avant de parler. */
+  .header + .hero { margin-top: clamp(60px, 9vw, 140px); }
 
   .hero-inner {
     display: flex;
     flex-direction: column;
-    gap: clamp(20px, 2.1vw, 30px);
+    /* Gap titre ↔ matrice de portraits doublé : le h1 et la grille se
+       répondent au lieu de se coller, le titre a le temps de "poser"
+       avant que l'œil descende. */
+    gap: clamp(40px, 5vw, 80px);
   }
 
   .hero-title {
-    font-size: var(--fs-hero);
-    line-height: var(--lh-hero);
+    /* Override local de --fs-hero : la home assume un titre d'affiche, plus
+       grand que les page-titles internes (max 92px). Échelle 28→88 plutôt
+       que 24→60. Letter-spacing -0.02em comme les autres titres éditoriaux. */
+    font-size: clamp(28px, 5.6vw, 84px);
+    line-height: clamp(34px, 6.4vw, 92px);
+    letter-spacing: -0.02em;
   }
   /* Sous 600px le <br> ne tombe plus sur un break naturel : on le neutralise
      pour laisser le texte wrapper proprement. */
