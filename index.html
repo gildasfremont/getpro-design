@@ -179,45 +179,43 @@
   .case-image-lucca   { background-image: url('assets/Gsatge-0224-6.jpg'); }
   .case-image-filigran { background-image: url('assets/filigran-cover.jpg'); }
 
-  /* ---------- Process / consultant ---------- */
+  /* ---------- Process / manifeste ---------- */
   .process {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(24px, 3vw, 40px);
     padding-block: var(--gap-section);
   }
-
+  /* 2 colonnes : titre à gauche (taille section-title), texte à
+     droite (taille body). Le titre tease ("…recruter…") et le texte
+     complète à droite ("…les talents…"). Rythme éditorial. */
+  .process-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(40px, 6vw, 100px);
+    align-items: start;
+  }
   .process-title {
-    padding-inline: clamp(0px, 4.8vw, 70px) clamp(0px, 3.5vw, 50px);
+    font-size: clamp(28px, 3.6vw, 48px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0;
   }
-  .process-title h2 {
-    font-size: clamp(28px, 4vw, 56px);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  /* Manifeste posé dans une carte blanche centrée, même langage que
-     les .case-card / .quote-card : white bg, padding généreux, mesure
-     contenue. Crée un point d'ancrage visuel sous le titre. */
-  .process-manifesto {
-    background: var(--white);
-    padding: clamp(40px, 5.6vw, 80px) clamp(28px, 4.8vw, 70px);
-    margin-inline: auto;
-    max-width: clamp(560px, 72vw, 940px);
+  .process-body {
     display: flex;
     flex-direction: column;
-    gap: clamp(20px, 2vw, 32px);
+    gap: clamp(16px, 1.6vw, 24px);
   }
-  .process-manifesto p {
+  .process-body p {
     font-size: var(--fs-body);
     line-height: 1.55;
     margin: 0;
     max-width: var(--measure);
   }
-  .process-manifesto .text-arrow-link {
+  .process-body .text-arrow-link {
     font-size: var(--fs-body);
     line-height: 1.55;
     margin-top: clamp(4px, 0.6vw, 10px);
+  }
+  @media (max-width: 800px) {
+    .process-row { grid-template-columns: 1fr; }
   }
 
   /* ---------- Logos clients IA ---------- */
@@ -348,13 +346,16 @@
       </a>
     </section>
 
-    <!-- Process / quote -->
+    <!-- Process / manifeste : titre tease + texte qui complete -->
     <section class="process section">
-      <div class="process-manifesto">
-        <p>Notre rapidité d'exécution, ce sont dix ans passés à recruter les talents des meilleures équipes technologiques françaises, sur toute la chaîne, du premier ingénieur aux fonctions de direction.</p>
-        <p>Nous avons permis 2 000 recrutements et avons été en contact avec 60 000 talents depuis 2015. Nous suivons leurs trajectoires, nous les voyons évoluer et rejoindre de nouveaux projets et missions.</p>
-        <p>Quand vous nous appelez pour un poste critique, nos consultants savent à qui en parler, parce qu'ils connaissent, et depuis longtemps, les gens qu'ils recommandent.</p>
-        <a href="equipe.html" class="text-arrow-link">Voir l’équipe →</a>
+      <div class="process-row">
+        <h2 class="process-title">Notre rapidité d'exécution, ce sont dix ans passés à recruter…</h2>
+        <div class="process-body">
+          <p>…les talents des meilleures équipes technologiques françaises, sur toute la chaîne, du premier ingénieur aux fonctions de direction.</p>
+          <p>Nous avons permis 2 000 recrutements et avons été en contact avec 60 000 talents depuis 2015. Nous suivons leurs trajectoires, nous les voyons évoluer et rejoindre de nouveaux projets et missions.</p>
+          <p>Quand vous nous appelez pour un poste critique, nos consultants savent à qui en parler, parce qu'ils connaissent, et depuis longtemps, les gens qu'ils recommandent.</p>
+          <a href="equipe.html" class="text-arrow-link">Voir l’équipe →</a>
+        </div>
       </div>
     </section>
 
