@@ -96,6 +96,18 @@
     line-height: 1.3;
     color: inherit;
   }
+  /* "X ans d'expérience" est un lien LinkedIn : pas d'underline par
+     défaut (clean), underline au hover pour signaler la cliquabilité. */
+  a.team-exp {
+    text-decoration: none;
+    cursor: pointer;
+    width: max-content;
+  }
+  a.team-exp:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
 
   /* Photos */
   .photo-romain    { background-image: url('assets/team/romain-pichou.jpg'); }
