@@ -13,7 +13,11 @@
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="styles.css" />
 <style>
-  /* ---------- Hero ---------- */
+  /* ---------- Hero ----------
+     Colonne maîtresse de la home : tous les blocs (h1, grille, titres
+     de section, logos-row, solutions-overview, etc.) démarrent à
+     var(--pad-card-x) du bord intérieur de section. Cohérence verticale
+     stricte indépendamment du clamp du viewport. */
   .hero {
     display: flex;
     flex-direction: column;
@@ -35,20 +39,21 @@
        répondent au lieu de se coller, le titre a le temps de "poser"
        avant que l'œil descende. */
     gap: clamp(40px, 5vw, 80px);
+    /* Aligne le contenu du hero sur la colonne maîtresse de la page. */
+    padding-inline: var(--pad-card-x);
   }
 
   .hero-title {
     /* Override local de --fs-hero : la home assume un titre d'affiche, plus
-       grand que les page-titles internes (max 92px). Échelle 28→88 plutôt
-       que 24→60. Letter-spacing -0.02em comme les autres titres éditoriaux. */
+       grand que les page-titles internes (max 92px). Échelle 28→84 plutôt
+       que 24→60. Letter-spacing -0.02em comme les autres titres éditoriaux.
+       text-wrap: balance répartit les lignes pour minimiser le rag droit
+       sans break manuel — fonctionne à toutes les tailles, contrairement
+       au <br> qui ne tombe au bon endroit qu'à un viewport précis. */
     font-size: clamp(28px, 5.6vw, 84px);
     line-height: clamp(34px, 6.4vw, 92px);
     letter-spacing: -0.02em;
-  }
-  /* Sous 600px le <br> ne tombe plus sur un break naturel : on le neutralise
-     pour laisser le texte wrapper proprement. */
-  @media (max-width: 600px) {
-    .hero-title br { display: none; }
+    text-wrap: balance;
   }
 
   /* ---------- Image grid ---------- */
@@ -199,7 +204,8 @@
   }
 
   .process-title {
-    padding-inline: clamp(0px, 4.8vw, 70px) clamp(0px, 3.5vw, 50px);
+    /* Aligne sur la colonne maîtresse (h1 hero, case-cards, logos-title…). */
+    padding-inline: var(--pad-card-x);
   }
   .process-title h2 {
     font-size: clamp(28px, 4vw, 56px);
@@ -358,12 +364,11 @@
     padding: clamp(30px, 4.8vw, 70px) var(--pad-x);
   }
 
-  /* Indent gauche aligné sur .process-text (4.8vw) : la title et la row de
-     logos s'alignent avec les paragraphes du bloc consultant au-dessus. La
-     droite garde le 3.5vw d'origine pour ne pas décaler le cta-col desktop. */
+  /* Aligné sur la colonne maîtresse de la home (var(--pad-card-x)),
+     symétrique gauche/droite : le bloc fonds + logos s'inscrit dans
+     la même verticale que tous les autres blocs de la page. */
   .logos-title {
-    padding-left: clamp(24px, 4.8vw, 70px);
-    padding-right: clamp(0px, 3.5vw, 50px);
+    padding-inline: var(--pad-card-x);
   }
   .logos-title h2 {
     font-size: var(--fs-section-title);
@@ -375,8 +380,7 @@
     display: grid;
     grid-template-columns: clamp(140px, 14vw, 201px) minmax(0, 1fr);
     gap: clamp(30px, 5vw, 80px);
-    padding-left: clamp(24px, 4.8vw, 70px);
-    padding-right: clamp(0px, 3.5vw, 50px);
+    padding-inline: var(--pad-card-x);
   }
 
   .nav-list {
@@ -428,12 +432,12 @@
     line-height: 1.2;
   }
 
-  /* "Tous nos clients" bouton bas de section, à gauche, aligné sur le
-     même indent (4.8vw) que .logos-title et .logos-row. La section a
-     déjà display:flex column + gap, donc pas besoin de margin-top. */
+  /* "Tous nos clients" bouton bas de section, aligné sur la colonne
+     maîtresse (var(--pad-card-x)). La section a déjà display:flex
+     column + gap, donc pas besoin de margin-top. */
   .see-all-bottom {
     align-self: flex-start;
-    margin-left: clamp(24px, 4.8vw, 70px);
+    margin-left: var(--pad-card-x);
   }
 
   /* ---------- Breakpoints (structural changes only) ---------- */
@@ -465,20 +469,13 @@
     .process-text {
       padding: clamp(28px, 4vw, 40px) clamp(20px, 4vw, 40px);
     }
-    /* 2 colonnes (fonds | logos), espacement réduit pour le viewport mid. */
+    /* 2 colonnes (fonds | logos), espacement réduit pour le viewport mid.
+       padding-inline reste sur var(--pad-card-x) (colonne maîtresse) — pas
+       d'override. */
     .logos-row {
       grid-template-columns: clamp(120px, 28vw, 180px) minmax(0, 1fr);
       column-gap: clamp(20px, 4vw, 40px);
     }
-    /* Aligne l'indent gauche des logos sur celui de .process-text au-dessus
-       (clamp(20, 4vw, 40)). En desktop le 4.8vw matchait .process-text mais
-       une fois le breakpoint passé, .process-text est repassé à 4vw clampé
-       20-40 et les logos gardaient 24-70 → ~4px de désalignement visible. */
-    .logos-title,
-    .logos-row {
-      padding-left: clamp(20px, 4vw, 40px);
-    }
-    .see-all-bottom { margin-left: clamp(20px, 4vw, 40px); }
   }
   @media (max-width: 600px) {
     /* En mobile, les logos repassent en 1 colonne 2 cols devient trop
@@ -512,8 +509,7 @@
     <section class="hero section">
       <div class="hero-inner">
         <h1 class="hero-title">
-          Nous mettons en relation les profils les plus pointus<br>
-          et les meilleures entreprises technologiques
+          Nous mettons en relation les profils les plus pointus et les meilleures entreprises technologiques
         </h1>
 
         <div class="grid-images" aria-label="Galerie consultants">
