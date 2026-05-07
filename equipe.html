@@ -60,7 +60,12 @@
     flex-direction: column;
     color: inherit;
     text-decoration: none;
+    transition: opacity 0.18s ease;
   }
+  /* Hover sur les cards consultants (= les <a>) : opacité légère
+     + curseur pointer hérité du <a>, pour signaler la cliquabilité
+     vers LinkedIn sans alourdir visuellement. */
+  a.team-card:hover { opacity: 0.85; }
   .team-photo {
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -107,6 +112,32 @@
   .photo-jonathan  { background-image: url('assets/team/jonathan-banigo.jpg'); }
   .photo-dylan     { background-image: url('assets/team/dylan-khoury.png'); }
 
+  /* Encart support : 1 ligne d'intro + 3 mini-cartes (Terry, Jo,
+     Clotilde) — isolé du grid principal, plus compact pour signaler
+     la fonction support et non chasse. */
+  .equipe-support {
+    margin-top: clamp(40px, 5vw, 70px);
+    padding-top: clamp(28px, 3.4vw, 50px);
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 2.4vw, 36px);
+  }
+  .equipe-support-text {
+    font-size: var(--fs-body);
+    line-height: 1.55;
+    margin: 0;
+    max-width: var(--measure);
+    color: var(--ink-soft, #6c7a6e);
+  }
+  .equipe-support-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    /* Mesure plus contenue : 3 cards d'env 200-280px, alignées à gauche. */
+    max-width: clamp(420px, 60vw, 820px);
+  }
+
   @media (max-width: 900px) {
     .equipe-row {
       grid-template-columns: 1fr;
@@ -115,6 +146,9 @@
       position: static;
       max-width: var(--measure);
     }
+  }
+  @media (max-width: 600px) {
+    .equipe-support-grid { max-width: none; }
   }
   @media (max-width: 480px) {
     .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -137,139 +171,146 @@
         </aside>
 
         <div class="team-grid">
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/romain-pichou/" target="_blank" rel="noopener" aria-label="Romain Pichou sur LinkedIn">
             <div class="team-photo photo-romain" role="img" aria-label="Romain Pichou"></div>
             <div class="team-caption">
               <span class="team-name">Romain Pichou</span>
               <span class="team-exp">18 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/emile-pennes/" target="_blank" rel="noopener" aria-label="Émile Pennes sur LinkedIn">
             <div class="team-photo photo-emile" role="img" aria-label="Émile Pennes"></div>
             <div class="team-caption">
               <span class="team-name">Émile Pennes</span>
               <span class="team-exp">14 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/guillaume-renard/" target="_blank" rel="noopener" aria-label="Guillaume Renard sur LinkedIn">
             <div class="team-photo photo-guillaume" role="img" aria-label="Guillaume Renard"></div>
             <div class="team-caption">
               <span class="team-name">Guillaume Renard</span>
               <span class="team-exp">15 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/louis-fitamant/" target="_blank" rel="noopener" aria-label="Louis Fitamant sur LinkedIn">
             <div class="team-photo photo-louis" role="img" aria-label="Louis Fitamant"></div>
             <div class="team-caption">
               <span class="team-name">Louis Fitamant</span>
               <span class="team-exp">12 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/anne-delarue/" target="_blank" rel="noopener" aria-label="Anne Delarue sur LinkedIn">
             <div class="team-photo photo-anne" role="img" aria-label="Anne Delarue"></div>
             <div class="team-caption">
               <span class="team-name">Anne Delarue</span>
               <span class="team-exp">13 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/tony-beaugez/" target="_blank" rel="noopener" aria-label="Tony Beaugez sur LinkedIn">
             <div class="team-photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
             <div class="team-caption">
               <span class="team-name">Tony Beaugez</span>
               <span class="team-exp">10 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/thomas-laigo/" target="_blank" rel="noopener" aria-label="Thomas Laigo sur LinkedIn">
             <div class="team-photo photo-thomas" role="img" aria-label="Thomas Laigo"></div>
             <div class="team-caption">
               <span class="team-name">Thomas Laigo</span>
               <span class="team-exp">6 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/juliette-fabre/" target="_blank" rel="noopener" aria-label="Juliette Fabre sur LinkedIn">
             <div class="team-photo photo-juliette" role="img" aria-label="Juliette Fabre"></div>
             <div class="team-caption">
               <span class="team-name">Juliette Fabre</span>
               <span class="team-exp">6 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/die-astou-dioume/" target="_blank" rel="noopener" aria-label="Dié Astou Dioume sur LinkedIn">
             <div class="team-photo photo-die" role="img" aria-label="Dié Astou Dioume"></div>
             <div class="team-caption">
               <span class="team-name">Dié Astou Dioume</span>
               <span class="team-exp">5 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/lauren-pointon/" target="_blank" rel="noopener" aria-label="Lauren Pointon sur LinkedIn">
             <div class="team-photo photo-lauren" role="img" aria-label="Lauren Pointon"></div>
             <div class="team-caption">
               <span class="team-name">Lauren Pointon</span>
               <span class="team-exp">4 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/laura-geneuil/" target="_blank" rel="noopener" aria-label="Laura Geneuil sur LinkedIn">
             <div class="team-photo photo-laura" role="img" aria-label="Laura Geneuil"></div>
             <div class="team-caption">
               <span class="team-name">Laura Geneuil</span>
               <span class="team-exp">4 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/claire-hubert/" target="_blank" rel="noopener" aria-label="Claire Hubert sur LinkedIn">
             <div class="team-photo photo-claire" role="img" aria-label="Claire Hubert"></div>
             <div class="team-caption">
               <span class="team-name">Claire Hubert</span>
               <span class="team-exp">4 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/nicolas-magne/" target="_blank" rel="noopener" aria-label="Nicolas Magne sur LinkedIn">
             <div class="team-photo photo-nicolas" role="img" aria-label="Nicolas Magne"></div>
             <div class="team-caption">
               <span class="team-name">Nicolas Magne</span>
               <span class="team-exp">4 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/theo-grandperrin/" target="_blank" rel="noopener" aria-label="Théo Grandperrin sur LinkedIn">
             <div class="team-photo photo-theo" role="img" aria-label="Théo Grandperrin"></div>
             <div class="team-caption">
               <span class="team-name">Théo Grandperrin</span>
               <span class="team-exp">3 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/hugo-merdrignac/" target="_blank" rel="noopener" aria-label="Hugo Merdrignac sur LinkedIn">
             <div class="team-photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
             <div class="team-caption">
               <span class="team-name">Hugo Merdrignac</span>
               <span class="team-exp">3 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
-          <article class="team-card">
+          <a class="team-card" href="https://www.linkedin.com/in/zaia-bouchachia/" target="_blank" rel="noopener" aria-label="Zaïa Bouchachia sur LinkedIn">
             <div class="team-photo photo-zaia" role="img" aria-label="Zaïa Bouchachia"></div>
             <div class="team-caption">
               <span class="team-name">Zaïa Bouchachia</span>
               <span class="team-exp">3 ans d'expérience</span>
             </div>
-          </article>
+          </a>
 
+        </div>
+      </div>
+
+      <!-- Encart support technique : isolé du grid principal -->
+      <div class="equipe-support">
+        <p class="equipe-support-text">Derrière les chasseurs, trois personnes tiennent l'outillage&nbsp;: l'ATS interne, les modèles d'assessment des candidats, et la qualité des données candidats sur l'ensemble des missions. Support scientifique et technique du cabinet.</p>
+        <div class="equipe-support-grid">
           <article class="team-card">
             <div class="team-photo photo-terry" role="img" aria-label="Terry Raimondo"></div>
             <div class="team-caption">
               <span class="team-name">Terry Raimondo</span>
-              <span class="team-exp">12 ans d'expérience</span>
+              <span class="team-exp">CTO</span>
             </div>
           </article>
 
@@ -277,7 +318,7 @@
             <div class="team-photo photo-jonathan" role="img" aria-label="Jonathan Banigo"></div>
             <div class="team-caption">
               <span class="team-name">Jonathan Banigo</span>
-              <span class="team-exp">6 ans d'expérience</span>
+              <span class="team-exp">Process Manager &amp; SI</span>
             </div>
           </article>
 
@@ -285,15 +326,7 @@
             <div class="team-photo photo-clotilde" role="img" aria-label="Clotilde Chappé"></div>
             <div class="team-caption">
               <span class="team-name">Clotilde Chappé</span>
-              <span class="team-exp">5 ans d'expérience</span>
-            </div>
-          </article>
-
-          <article class="team-card">
-            <div class="team-photo photo-dylan" role="img" aria-label="Dylan Khoury"></div>
-            <div class="team-caption">
-              <span class="team-name">Dylan Khoury</span>
-              <span class="team-exp">4 ans d'expérience</span>
+              <span class="team-exp">Data Scientist</span>
             </div>
           </article>
         </div>
