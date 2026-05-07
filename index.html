@@ -191,12 +191,13 @@
     gap: clamp(28px, 3vw, 48px) clamp(40px, 5vw, 80px);
     align-items: start;
   }
-  /* Titre "Depuis 2015" pleine largeur en haut de la card. */
+  /* Titre "Depuis 2015" pleine largeur en haut de la card. Même
+     taille que les noms de boîtes des case-cards au-dessus
+     (--fs-card-name) pour cohérence typographique. */
   .manifesto-title {
     grid-column: 1 / -1;
-    font-size: clamp(36px, 4.4vw, 64px);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
+    font-size: var(--fs-card-name);
+    line-height: var(--lh-card-name);
     margin: 0;
   }
   .manifesto-col {
