@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>GetPro Équipe</title>
-<meta name="description" content="L'équipe GetPro : consultants et chargés de recherche spécialisés sur la chasse Tech, Product et Go-to-Market." />
+<meta name="description" content="L'équipe GetPro : consultants spécialisés sur la chasse Tech, Product et Go-to-Market. Mémoire longue, relations sur dix ans." />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <meta property="og:title" content="GetPro Équipe" />
-<meta property="og:description" content="L'équipe GetPro : consultants et chargés de recherche spécialisés sur la chasse Tech, Product et Go-to-Market." />
+<meta property="og:description" content="L'équipe GetPro : consultants spécialisés sur la chasse Tech, Product et Go-to-Market." />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -17,97 +17,75 @@
     display: flex;
     flex-direction: column;
     padding-bottom: var(--gap-section);
-  }
-  .equipe-head { margin-bottom: clamp(28px, 3.4vw, 50px); }
-  /* no gap between tabs-row and the team grid they touch */
-
-  .equipe-head {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(14px, 1.4vw, 20px);
+    gap: clamp(28px, 3.4vw, 50px);
   }
 
-  .equipe-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: clamp(16px, 2vw, 30px);
-  }
-  .glassdoor {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-  }
-  .glassdoor-logo {
-    height: clamp(16px, 1.5vw, 22px);
-    width: auto;
-    display: block;
-  }
-  .glassdoor-stars {
-    font-size: clamp(11px, 1vw, 14px);
-    letter-spacing: 0.1em;
-    line-height: 1.2;
-  }
-
-  .equipe-tabs-row {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  .equipe-tabs-row .tabs {
-    border-bottom: none;
-  }
-
-  .grid-team {
+  /* 2 colonnes : manifeste à gauche (sticky), grille photos à droite.
+     Indent gauche aligné sur le titre (.page-title hérite du padding
+     section). */
+  .equipe-row {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(20px, 2vw, 30px);
-  }
-  /* L'attribut HTML [hidden] => display: none mais .grid-team le remet
-     à grid via la spécificité de classe → on force la cacheabilité ici. */
-  .grid-team[hidden] { display: none; }
-
-  .member-card {
-    background: var(--white);
-    display: flex;
-    align-items: stretch;
-    overflow: hidden;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(28px, 4vw, 70px);
+    align-items: start;
   }
 
-  .member-text {
-    flex: 1;
-    padding: clamp(20px, 2.7vw, 40px);
+  /* Manifeste : sticky pour rester visible pendant le scroll de la
+     grille photos. Mesure contenue, registre éditorial calme. */
+  .equipe-manifesto {
+    position: -webkit-sticky;
+    position: sticky;
+    top: clamp(110px, 12vw, 140px);
     display: flex;
     flex-direction: column;
-    gap: clamp(10px, 1vw, 16px);
+    gap: clamp(16px, 1.6vw, 24px);
   }
-
-  .member-name {
-    font-size: clamp(16px, 1.65vw, 24px);
-    line-height: 1.25;
-  }
-  .member-role {
-    font-size: clamp(13px, 1.2vw, 18px);
-    line-height: 1.3;
-    margin-bottom: clamp(6px, 0.7vw, 10px);
-  }
-  .member-bio {
-    font-size: clamp(13px, 1.2vw, 18px);
-    line-height: 1.45;
+  .equipe-manifesto p {
+    font-size: var(--fs-body);
+    line-height: 1.55;
+    margin: 0;
     max-width: var(--measure);
   }
 
-  .member-photo {
-    flex: 0 0 clamp(140px, 18vw, 260px);
+  /* Grille photos : 3-col, 0 gap → les cartes se touchent. Chaque
+     carte = photo carrée + caption strip (name + années). */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+  }
+  .team-card {
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+    text-decoration: none;
+  }
+  .team-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
     background-size: cover;
     background-position: 50% 22%;
     background-repeat: no-repeat;
     background-color: #d8e0d3;
   }
+  .team-caption {
+    padding: clamp(12px, 1.4vw, 20px) clamp(14px, 1.6vw, 22px);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .team-name {
+    font-size: clamp(14px, 1.3vw, 18px);
+    line-height: 1.25;
+  }
+  .team-exp {
+    font-size: clamp(12px, 1vw, 14px);
+    line-height: 1.3;
+    color: var(--ink-soft, #6c7a6e);
+  }
 
+  /* Photos */
   .photo-romain    { background-image: url('assets/team/romain-pichou.jpg'); }
   .photo-emile     { background-image: url('assets/team/emile-pennes-equipe.jpg'); }
   .photo-guillaume { background-image: url('assets/team/guillaume-renard.png'); }
@@ -124,37 +102,22 @@
   .photo-zaia      { background-image: url('assets/team/zaia-bouchachia.png'); }
   .photo-laura     { background-image: url('assets/team/laura-geneuil.png'); }
   .photo-claire    { background-image: url('assets/team/claire-hubert.jpg'); }
-  .photo-jonathan  { background-image: url('assets/team/jonathan-banigo.jpg'); }
-  .photo-dylan     { background-image: url('assets/team/dylan-khoury.png'); }
   .photo-terry     { background-image: url('assets/team/terry-raimondo.png'); }
   .photo-clotilde  { background-image: url('assets/team/clotilde-chappe.png'); }
+  .photo-jonathan  { background-image: url('assets/team/jonathan-banigo.jpg'); }
+  .photo-dylan     { background-image: url('assets/team/dylan-khoury.png'); }
 
-  @media (max-width: 800px) {
-    .equipe-title-row { flex-direction: column; align-items: flex-start; }
-    .glassdoor { align-items: flex-start; }
-    .grid-team { grid-template-columns: 1fr; }
-    .member-photo { flex-basis: 140px; }
-  }
-
-  @media (max-width: 600px) {
-    /* Mobile : on "déstructure" .equipe-tabs-row via display: contents
-       pour que .tabs et .btn-outline deviennent enfants directs de
-       .equipe (qui est déjà flex column). Ça permet d'envoyer le
-       bouton "Rejoindre GetPro" en bas de la section via order: 1,
-       sous les grilles consultants/support plutôt que de l'avoir
-       coincé entre les onglets et la première carte. Breakpoint
-       aligné sur le reste des règles mobile (subtabs, panels). */
-    .equipe-tabs-row { display: contents; }
-    .equipe-tabs-row > .btn-outline {
-      order: 1;
-      align-self: flex-start;
-      margin-top: clamp(28px, 5vw, 50px);
+  @media (max-width: 900px) {
+    .equipe-row {
+      grid-template-columns: 1fr;
+    }
+    .equipe-manifesto {
+      position: static;
+      max-width: var(--measure);
     }
   }
-
   @media (max-width: 480px) {
-    .member-card { flex-direction: column; }
-    .member-photo { aspect-ratio: 4/3; flex-basis: auto; }
+    .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 </style>
 </head>
@@ -164,246 +127,176 @@
     <header class="header section" data-nav></header>
 
     <section class="equipe section">
-      <div class="equipe-head">
-        <div class="equipe-title-row">
-          <h1 class="page-title">Équipe</h1>
-          <div class="glassdoor" aria-label="Note Glassdoor 4.3 sur 5">
-            <img src="assets/glassdoor.svg" alt="Glassdoor" class="glassdoor-logo" />
-            <span class="glassdoor-stars">4.3 ★★★★★</span>
-          </div>
+      <h1 class="page-title">Équipe</h1>
+
+      <div class="equipe-row">
+        <aside class="equipe-manifesto">
+          <p>Nos consultants sont chez GetPro depuis longtemps, certains depuis dix ans. Ce n'est pas un détail, c'est ce qui change tout dans la chasse. Un chasseur de tête qui débute reconstruit son réseau à chaque mission, lit les profils LinkedIn et appelle à froid. Un consultant senior, lui, connaît déjà les gens qu'il va vous présenter, il les a vus évoluer poste après poste, il sait qui pèse vraiment dans son équipe et qui pèse seulement sur son CV. C'est cette mémoire longue qu'on vous vend, pas une capacité d'extraction de base de données.</p>
+          <p>Nous recrutons et formons en interne avec une exigence assumée, ceux qui restent sont ceux qui savent tenir une relation sur dix ans avec un dirigeant et avec un candidat, pas seulement closer un mandat. La conséquence est que nous présentons trois candidats sérieux, pas cinquante CV, et nous restons engagés assez longtemps pour que ce soit vrai.</p>
+          <p>Le revers de cette manière de travailler, c'est qu'on ne sait pas tout faire et qu'on ne va pas avec tout le monde. La relation entre un client et un chasseur est avant tout une relation entre deux personnes, et nous préférons le dire plutôt que le découvrir au troisième entretien raté. Si le contexte ne s'y prête pas, on vous le dit tôt. Si on s'engage, on tient.</p>
+        </aside>
+
+        <div class="team-grid">
+          <article class="team-card">
+            <div class="team-photo photo-romain" role="img" aria-label="Romain Pichou"></div>
+            <div class="team-caption">
+              <span class="team-name">Romain Pichou</span>
+              <span class="team-exp">18 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-emile" role="img" aria-label="Émile Pennes"></div>
+            <div class="team-caption">
+              <span class="team-name">Émile Pennes</span>
+              <span class="team-exp">14 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-guillaume" role="img" aria-label="Guillaume Renard"></div>
+            <div class="team-caption">
+              <span class="team-name">Guillaume Renard</span>
+              <span class="team-exp">15 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-louis" role="img" aria-label="Louis Fitamant"></div>
+            <div class="team-caption">
+              <span class="team-name">Louis Fitamant</span>
+              <span class="team-exp">12 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-anne" role="img" aria-label="Anne Delarue"></div>
+            <div class="team-caption">
+              <span class="team-name">Anne Delarue</span>
+              <span class="team-exp">13 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
+            <div class="team-caption">
+              <span class="team-name">Tony Beaugez</span>
+              <span class="team-exp">10 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-thomas" role="img" aria-label="Thomas Laigo"></div>
+            <div class="team-caption">
+              <span class="team-name">Thomas Laigo</span>
+              <span class="team-exp">6 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-juliette" role="img" aria-label="Juliette Fabre"></div>
+            <div class="team-caption">
+              <span class="team-name">Juliette Fabre</span>
+              <span class="team-exp">6 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-die" role="img" aria-label="Dié Astou Dioume"></div>
+            <div class="team-caption">
+              <span class="team-name">Dié Astou Dioume</span>
+              <span class="team-exp">5 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-lauren" role="img" aria-label="Lauren Pointon"></div>
+            <div class="team-caption">
+              <span class="team-name">Lauren Pointon</span>
+              <span class="team-exp">4 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-laura" role="img" aria-label="Laura Geneuil"></div>
+            <div class="team-caption">
+              <span class="team-name">Laura Geneuil</span>
+              <span class="team-exp">4 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-claire" role="img" aria-label="Claire Hubert"></div>
+            <div class="team-caption">
+              <span class="team-name">Claire Hubert</span>
+              <span class="team-exp">4 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-nicolas" role="img" aria-label="Nicolas Magne"></div>
+            <div class="team-caption">
+              <span class="team-name">Nicolas Magne</span>
+              <span class="team-exp">4 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-theo" role="img" aria-label="Théo Grandperrin"></div>
+            <div class="team-caption">
+              <span class="team-name">Théo Grandperrin</span>
+              <span class="team-exp">3 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
+            <div class="team-caption">
+              <span class="team-name">Hugo Merdrignac</span>
+              <span class="team-exp">3 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-zaia" role="img" aria-label="Zaïa Bouchachia"></div>
+            <div class="team-caption">
+              <span class="team-name">Zaïa Bouchachia</span>
+              <span class="team-exp">3 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-terry" role="img" aria-label="Terry Raimondo"></div>
+            <div class="team-caption">
+              <span class="team-name">Terry Raimondo</span>
+              <span class="team-exp">12 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-jonathan" role="img" aria-label="Jonathan Banigo"></div>
+            <div class="team-caption">
+              <span class="team-name">Jonathan Banigo</span>
+              <span class="team-exp">6 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-clotilde" role="img" aria-label="Clotilde Chappé"></div>
+            <div class="team-caption">
+              <span class="team-name">Clotilde Chappé</span>
+              <span class="team-exp">5 ans d'expérience</span>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo photo-dylan" role="img" aria-label="Dylan Khoury"></div>
+            <div class="team-caption">
+              <span class="team-name">Dylan Khoury</span>
+              <span class="team-exp">4 ans d'expérience</span>
+            </div>
+          </article>
         </div>
-      </div>
-
-      <div class="equipe-tabs-row">
-        <div class="tabs" role="tablist" id="team-tabs">
-          <button class="tab" role="tab" data-team="consultants" aria-current="true">Consultants</button>
-          <button class="tab" role="tab" data-team="support">Support</button>
-        </div>
-        <a href="mailto:bonjour@getpro.com?subject=Candidature%20GetPro" class="btn-outline">Rejoindre GetPro</a>
-      </div>
-
-      <div class="grid-team" data-team="consultants">
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Romain Pichou</div>
-              <div class="member-role">Président, CEO</div>
-            </div>
-            <p class="member-bio">Cofondateur et Président de GetPro depuis 2015. Avant, il participe au développement de Winamax et Betclic, puis rejoint Lucca où il devient le premier VP Sales, avant de passer chez ContentSquare comme Business Performance Manager. Diplômé de l'ESCP. Aborde le recrutement comme un levier de croissance, pas comme un acte RH isolé.</p>
-          </div>
-          <div class="member-photo photo-romain" role="img" aria-label="Romain Pichou"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Émile Pennes</div>
-              <div class="member-role">Directeur Opérations, CEO</div>
-            </div>
-            <p class="member-bio">Cofondateur et Directeur des Opérations depuis 2016. Avant, audit chez Bosch, contrôle de gestion à São Paulo après une spécialisation finance à la FGV, direction administrative puis VP dans des PME brésiliennes. Diplômé d'Audencia. Pilote la performance, les outils et la qualité de livraison sur l'ensemble des missions.</p>
-          </div>
-          <div class="member-photo photo-emile" role="img" aria-label="Émile Pennes"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Guillaume Renard</div>
-              <div class="member-role">Directeur Général Bordeaux</div>
-            </div>
-            <p class="member-bio">Directeur Général du bureau de Bordeaux. Pilote l'activité Consulting RH &amp; Finance pour le sud-ouest et coordonne les missions inter-bureaux. Approche partenariale avec les fondateurs régionaux et les fonds locaux.</p>
-          </div>
-          <div class="member-photo photo-guillaume" role="img" aria-label="Guillaume Renard"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Tony Beaugez</div>
-              <div class="member-role">Manager Business Unit Tech</div>
-            </div>
-            <p class="member-bio">Manager de la Business Unit Tech. Pilote les missions de chasse stratégique sur Software, IA, Data et Product pour les scale-ups françaises. Encadre l'équipe Talent Recruiter Tech au quotidien.</p>
-          </div>
-          <div class="member-photo photo-tony" role="img" aria-label="Tony Beaugez"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Louis Fitamant</div>
-              <div class="member-role">Head of Cabinet Business</div>
-            </div>
-            <p class="member-bio">Head of Cabinet Business. Pilote les missions Sales, Marketing et Customer Success pour les scale-ups B2B et SaaS. Encadre l'équipe Talent Recruiter Business et les partenariats fonds.</p>
-          </div>
-          <div class="member-photo photo-louis" role="img" aria-label="Louis Fitamant"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Anne Delarue</div>
-              <div class="member-role">Directrice de projet RPO</div>
-            </div>
-            <p class="member-bio">Directrice de projet RPO. Pilote les missions de renfort RH long-terme RPO, conseil RH, structuration de la fonction recrutement chez les scale-ups en post-tour.</p>
-          </div>
-          <div class="member-photo photo-anne" role="img" aria-label="Anne Delarue"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Thomas Laigo</div>
-              <div class="member-role">Consultant RPO</div>
-            </div>
-            <p class="member-bio">Consultant RPO. Intervient en immersion chez les clients sur le recrutement opérationnel, principalement Tech et Business. Embarque sur l'ATS, la marque employeur et les rituels de l'équipe.</p>
-          </div>
-          <div class="member-photo photo-thomas" role="img" aria-label="Thomas Laigo"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Dié Astou Dioume</div>
-              <div class="member-role">Consultante RPO</div>
-            </div>
-            <p class="member-bio">Consultante RPO. Pilote le recrutement opérationnel chez les scale-ups en croissance, sur des familles de métiers larges. Approche méthodique, ATS, KPIs, ramp-up rapide.</p>
-          </div>
-          <div class="member-photo photo-die" role="img" aria-label="Dié Astou Dioume"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Juliette Fabre</div>
-              <div class="member-role">Consultante RPO</div>
-            </div>
-            <p class="member-bio">Consultante RPO. Embarque sur les ATS et la marque employeur des clients pour piloter le recrutement en flux continu sur la durée.</p>
-          </div>
-          <div class="member-photo photo-juliette" role="img" aria-label="Juliette Fabre"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Lauren Pointon</div>
-              <div class="member-role">Consultante RPO</div>
-            </div>
-            <p class="member-bio">Consultante RPO. Spécialiste des missions Tech et Product en RPO, en lien direct avec les CTO et VP Product des scale-ups en hyper-croissance.</p>
-          </div>
-          <div class="member-photo photo-lauren" role="img" aria-label="Lauren Pointon"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Théo Grandperrin</div>
-              <div class="member-role">Talent Recruiter Tech</div>
-            </div>
-            <p class="member-bio">Talent Recruiter sur la Business Unit Tech. Chasse les profils Software, IA et Data pour les scale-ups en hyper-croissance. Approche par la conversation, pas par la CVthèque.</p>
-          </div>
-          <div class="member-photo photo-theo" role="img" aria-label="Théo Grandperrin"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Nicolas Magne</div>
-              <div class="member-role">Talent Recruiter Tech</div>
-            </div>
-            <p class="member-bio">Talent Recruiter Tech. Spécialiste des profils Backend, Infrastructure et Platform Engineering. Suit les viviers tech français depuis plusieurs années.</p>
-          </div>
-          <div class="member-photo photo-nicolas" role="img" aria-label="Nicolas Magne"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Hugo Merdrignac</div>
-              <div class="member-role">Talent Recruiter Tech</div>
-            </div>
-            <p class="member-bio">Talent Recruiter Tech. Travaille principalement sur les missions ML &amp; IA en exclusivité avec les fondateurs et CTO. Privilégie la conversation directe à la CVthèque.</p>
-          </div>
-          <div class="member-photo photo-hugo" role="img" aria-label="Hugo Merdrignac"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Zaïa Bouchachia</div>
-              <div class="member-role">Recruiter Business</div>
-            </div>
-            <p class="member-bio">Recruiter sur la Business Unit. Pilote les recrutements Sales et Customer Success pour les scale-ups en accélération commerciale.</p>
-          </div>
-          <div class="member-photo photo-zaia" role="img" aria-label="Zaïa Bouchachia"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Laura Geneuil</div>
-              <div class="member-role">Talent Recruiter Business</div>
-            </div>
-            <p class="member-bio">Talent Recruiter Business. Spécialiste des recrutements VP Sales, Head of et CRO pour les scale-ups SaaS, en lien direct avec les fondateurs.</p>
-          </div>
-          <div class="member-photo photo-laura" role="img" aria-label="Laura Geneuil"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Claire Hubert</div>
-              <div class="member-role">Talent Recruiter Business</div>
-            </div>
-            <p class="member-bio">Talent Recruiter Business. Pilote les missions Sales, Marketing et Customer Success en chasse directe. Suivi candidat soigné jusqu'à l'onboarding.</p>
-          </div>
-          <div class="member-photo photo-claire" role="img" aria-label="Claire Hubert"></div>
-        </article>
-      </div>
-
-      <div class="grid-team" data-team="support" hidden>
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Terry Raimondo</div>
-              <div class="member-role">CTO</div>
-            </div>
-            <p class="member-bio">CTO chez GetPro. Construit et maintient l'ATS interne et les outils utilisés par les chasseurs au quotidien. Garantit l'intégration entre les data candidats, le CRM et les pipelines de reporting clients.</p>
-          </div>
-          <div class="member-photo photo-terry" role="img" aria-label="Terry Raimondo"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Clotilde Chappé</div>
-              <div class="member-role">Scientifique</div>
-            </div>
-            <p class="member-bio">Scientifique chez GetPro. Travaille sur les modèles d'analyse des viviers candidats et l'instrumentation des process de recrutement. Pilote les sujets data quality et statistiques marché.</p>
-          </div>
-          <div class="member-photo photo-clotilde" role="img" aria-label="Clotilde Chappé"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Jonathan Banigo</div>
-              <div class="member-role">Process Manager, SI</div>
-            </div>
-            <p class="member-bio">Process Manager et responsable du système d'information interne. Maintient l'outillage GetPro et garantit la qualité des process candidats sur l'ensemble des missions.</p>
-          </div>
-          <div class="member-photo photo-jonathan" role="img" aria-label="Jonathan Banigo"></div>
-        </article>
-
-        <article class="member-card">
-          <div class="member-text">
-            <div>
-              <div class="member-name">Dylan Khoury</div>
-              <div class="member-role">Responsable administratif &amp; finance</div>
-            </div>
-            <p class="member-bio">Responsable administratif et finance chez GetPro. Pilote la facturation clients, le suivi budgétaire et les obligations légales du cabinet. Travaille en lien direct avec le COO.</p>
-          </div>
-          <div class="member-photo photo-dylan" role="img" aria-label="Dylan Khoury"></div>
-        </article>
       </div>
     </section>
 
@@ -411,25 +304,5 @@
 
   </main>
   <script src="partials.js" defer></script>
-  <script>
-    (function() {
-      const tabsHost = document.getElementById('team-tabs');
-      const grids = document.querySelectorAll('.grid-team[data-team]');
-      tabsHost.addEventListener('click', (e) => {
-        const btn = e.target.closest('button.tab[data-team]');
-        if (!btn) return;
-        e.preventDefault();
-        const target = btn.dataset.team;
-        tabsHost.querySelectorAll('button.tab').forEach(b => {
-          if (b === btn) b.setAttribute('aria-current', 'true');
-          else b.removeAttribute('aria-current');
-        });
-        grids.forEach(g => {
-          if (g.dataset.team === target) g.removeAttribute('hidden');
-          else g.setAttribute('hidden', '');
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
