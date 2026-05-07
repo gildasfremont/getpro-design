@@ -179,45 +179,62 @@
   .case-image-lucca   { background-image: url('assets/Gsatge-0224-6.jpg'); }
   .case-image-filigran { background-image: url('assets/filigran-cover.jpg'); }
 
-  /* ---------- Process / manifeste ---------- */
-  .process {
+  /* ---------- Manifesto editorial ---------- */
+  .manifesto {
     padding-block: var(--gap-section);
-    /* Marge gauche en plus du padding section pour aligner avec
-       les indents éditoriaux des autres sections (~70px max). */
-    padding-inline-start: clamp(24px, 4.8vw, 70px);
   }
-  .process-row {
+  .manifesto-card {
+    background: var(--white);
+    padding: clamp(48px, 6.8vw, 100px) clamp(28px, 4.8vw, 80px);
     display: flex;
     flex-direction: column;
     gap: clamp(28px, 3vw, 48px);
   }
-  /* Titre pleine largeur en haut, taille section. */
-  .process-title {
-    font-size: clamp(28px, 3.6vw, 48px);
-    line-height: 1.15;
+  .manifesto-eyebrow {
+    font-size: var(--fs-meta);
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0;
+    opacity: 0.55;
+  }
+  .manifesto-title {
+    font-size: clamp(28px, 3.4vw, 48px);
+    line-height: 1.18;
     letter-spacing: -0.01em;
     margin: 0;
-    max-width: clamp(560px, 70vw, 1000px);
+    max-width: clamp(560px, 78vw, 1100px);
   }
-  /* Corps de texte en 2 colonnes sous le titre. Distribution
-     paragraphes : col 1 = P1 + P2, col 2 = P3 + lien. */
-  .process-body {
+  /* Stats : 3 chiffres alignés en row, séparés par hairline.
+     Mobile : passent en column. */
+  .manifesto-stats {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(28px, 4vw, 70px) clamp(40px, 6vw, 100px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(20px, 2.4vw, 40px);
+    margin-top: clamp(8px, 1vw, 16px);
   }
-  .process-body p {
-    font-size: var(--fs-body);
-    line-height: 1.55;
-    margin: 0;
-    max-width: var(--measure);
+  .manifesto-stat {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(4px, 0.5vw, 8px);
+    padding-top: clamp(16px, 1.6vw, 24px);
+    border-top: 1px solid var(--line);
   }
-  .process-body .text-arrow-link {
-    font-size: var(--fs-body);
-    line-height: 1.55;
+  .manifesto-stat .stat-value {
+    font-size: clamp(28px, 3.2vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
   }
-  @media (max-width: 800px) {
-    .process-body { grid-template-columns: 1fr; }
+  .manifesto-stat .stat-label {
+    font-size: var(--fs-meta);
+    line-height: 1.4;
+    opacity: 0.75;
+  }
+  .manifesto-cta {
+    align-self: flex-start;
+  }
+  @media (max-width: 700px) {
+    .manifesto-stats { grid-template-columns: 1fr; }
   }
 
   /* ---------- Logos clients IA ---------- */
@@ -348,20 +365,31 @@
       </a>
     </section>
 
-    <!-- Process / manifeste : titre tease + texte qui complete -->
-    <section class="process section">
-      <div class="process-row">
-        <h2 class="process-title">Notre rapidité d'exécution, ce sont dix ans passés à recruter…</h2>
-        <div class="process-body">
-          <p>…les talents des meilleures équipes technologiques françaises, sur toute la chaîne, du premier ingénieur aux fonctions de direction.</p>
-          <p>Nous avons permis 2 000 recrutements et avons été en contact avec 60 000 talents depuis 2015. Nous suivons leurs trajectoires, nous les voyons évoluer et rejoindre de nouveaux projets et missions.</p>
-          <p>Quand vous nous appelez pour un poste critique, nos consultants savent à qui en parler, parce qu'ils connaissent, et depuis longtemps, les gens qu'ils recommandent.</p>
-          <a href="equipe.html" class="text-arrow-link">Voir l’équipe →</a>
+    <!-- Manifesto editorial : un bloc fort sur fond white, language
+         des case-cards d'au-dessus (padding genereux, typo posee). -->
+    <section class="manifesto section">
+      <div class="manifesto-card">
+        <p class="manifesto-eyebrow">Depuis 2015</p>
+        <h2 class="manifesto-title">Nous suivons les talents poste après poste, sur dix ans. Quand vous appelez pour un poste critique, nos consultants savent à qui en parler.</h2>
+        <div class="manifesto-stats">
+          <div class="manifesto-stat">
+            <span class="stat-value">2 000</span>
+            <span class="stat-label">recrutements aboutis</span>
+          </div>
+          <div class="manifesto-stat">
+            <span class="stat-value">60 000</span>
+            <span class="stat-label">candidats en contact actif</span>
+          </div>
+          <div class="manifesto-stat">
+            <span class="stat-value">10 ans</span>
+            <span class="stat-label">de relations sur le marché</span>
+          </div>
         </div>
+        <a href="equipe.html" class="text-arrow-link manifesto-cta">Voir l’équipe →</a>
       </div>
     </section>
 
-    <!-- Solutions de recrutement : golden path -->
+    <!-- Solutions : 3 entrées golden-path, layout éditorial existant -->
     <section class="solutions-overview section">
       <ul class="solutions-overview-list">
         <li>
@@ -377,7 +405,7 @@
           <p>IA, Software, Hardware, Data, Cybersécurité, Énergie, comme ingénieur, product, sales, manager ou dirigeant.</p>
         </li>
       </ul>
-      <a href="tel:+33939289329" class="btn-outline solutions-overview-cta">Échanger avec un consultant : 09 39 28 93 29</a>
+      <a href="tel:+33939289329" class="btn-outline solutions-overview-cta">Échanger avec un consultant : 09 39 28 93 29</a>
     </section>
 
     <!-- Logos clients IA -->
