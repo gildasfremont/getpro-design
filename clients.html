@@ -113,6 +113,43 @@
     padding: var(--pad-card-y) var(--clients-pad-x);
   }
 
+  /* "Et aussi" : titre intermédiaire entre la liste avec témoignages
+     et la liste simple en 2 colonnes. */
+  .clients-rest-title {
+    margin-top: clamp(40px, 5vw, 70px);
+    margin-bottom: clamp(20px, 2vw, 32px);
+    font-size: clamp(20px, 2vw, 28px);
+    line-height: 1.25;
+    font-weight: 400;
+    opacity: 0.6;
+  }
+  .clients-rest-title[hidden] { display: none; }
+
+  /* Liste simple sans témoignages : 2 colonnes, juste les noms.
+     Même rythme typographique que la liste principale pour cohérence. */
+  .clients-list-plain {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(20px, 3vw, 50px);
+    row-gap: clamp(8px, 0.8vw, 12px);
+    font-size: clamp(18px, 2vw, 28px);
+    line-height: 1.25;
+  }
+  .clients-list-plain[hidden] { display: none; }
+  .clients-list-plain li {
+    color: inherit;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @media (max-width: 600px) {
+    .clients-list-plain { grid-template-columns: 1fr; }
+  }
+
   /* The content grid : parent grid defines the 3 column tracks, each <li.row>
      is a real subgrid item that inherits those tracks. No display:contents. */
   .clients-list {
@@ -321,7 +358,12 @@
       </div>
 
       <div class="clients-panel">
+        <!-- 1. Clients avec témoignage : liste riche logo + quote -->
         <ul class="clients-list" id="clients-names" role="list"></ul>
+
+        <!-- 2. Reste des clients : liste 2-col simple, juste les noms -->
+        <h2 class="clients-rest-title" id="clients-rest-title" hidden>Et aussi</h2>
+        <ul class="clients-list-plain" id="clients-rest" role="list" hidden></ul>
       </div>
     </section>
 
@@ -423,9 +465,30 @@
         </li>`;
       }
 
+      const restHost = document.getElementById('clients-rest');
+      const restTitle = document.getElementById('clients-rest-title');
+
       function renderList() {
         const list = filteredClients();
-        namesHost.innerHTML = list.map(rowHTML).join('');
+        // Split : clients avec témoignage en haut (liste riche),
+        // les autres en bas (liste simple 2-col).
+        const withTm = list.filter(c => c.has_testimonial);
+        const withoutTm = list.filter(c => !c.has_testimonial);
+
+        namesHost.innerHTML = withTm.map(rowHTML).join('');
+        restHost.innerHTML = withoutTm.map(c =>
+          `<li data-slug="${c.slug}">${escape(c.name)}</li>`
+        ).join('');
+
+        // Masque la 2e section et son titre s'il n'y a personne
+        // (ex : recherche qui ne match que des clients avec témoignage).
+        if (withoutTm.length === 0) {
+          restHost.setAttribute('hidden', '');
+          restTitle.setAttribute('hidden', '');
+        } else {
+          restHost.removeAttribute('hidden');
+          restTitle.removeAttribute('hidden');
+        }
       }
 
       searchInput.addEventListener('input', (e) => {
