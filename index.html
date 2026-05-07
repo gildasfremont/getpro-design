@@ -188,8 +188,16 @@
     padding: clamp(48px, 6.8vw, 100px) clamp(28px, 4.8vw, 80px);
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(40px, 5vw, 80px);
+    gap: clamp(28px, 3vw, 48px) clamp(40px, 5vw, 80px);
     align-items: start;
+  }
+  /* Titre "Depuis 2015" pleine largeur en haut de la card. */
+  .manifesto-title {
+    grid-column: 1 / -1;
+    font-size: clamp(36px, 4.4vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
   }
   .manifesto-col {
     display: flex;
@@ -345,6 +353,7 @@
     <!-- Manifesto editorial : 2 colonnes de texte dans une white card -->
     <section class="manifesto section">
       <div class="manifesto-card">
+        <h2 class="manifesto-title">Depuis 2015</h2>
         <div class="manifesto-col">
           <p>Dix ans à recruter des talents pour les meilleures équipes technologiques françaises. Du premier ingénieur de la startup qui éclôt aux fonctions de direction de la scale-up qui grossit.</p>
           <p>Nous avons fait 2 000 recrutements et rencontré 60 000 talents depuis 2015. Nous suivons leurs trajectoires, nous les voyons évoluer et rejoindre de nouveaux projets et missions.</p>
