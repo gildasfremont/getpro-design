@@ -438,7 +438,10 @@
           requestAnimationFrame(() => {
             const panelBody = document.querySelector('.panel-body');
             if (!panelBody) return;
-            const headerOffset = 110;
+            // Offset = juste sous la nav sticky. Le titre "Solutions"
+            // + les tabs Chasse/Renfort/Profils sont scrollés out, on
+            // arrive directement sur le contenu du panel.
+            const headerOffset = 60;
             const top = panelBody.getBoundingClientRect().top + window.scrollY - headerOffset;
             window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
           });
