@@ -44,14 +44,13 @@
   }
 
   .hero-title {
-    /* Override local de --fs-hero : la home assume un titre d'affiche, plus
-       grand que les page-titles internes (max 92px). Échelle 28→84 plutôt
-       que 24→60. Letter-spacing -0.02em comme les autres titres éditoriaux.
+    /* --fs-hero (28→88) défini globalement, mais effectivement scopé home
+       puisque .hero-title n'existe que sur cette page.
        text-wrap: balance répartit les lignes pour minimiser le rag droit
        sans break manuel — fonctionne à toutes les tailles, contrairement
        au <br> qui ne tombe au bon endroit qu'à un viewport précis. */
-    font-size: clamp(28px, 5.6vw, 84px);
-    line-height: clamp(34px, 6.4vw, 92px);
+    font-size: var(--fs-hero);
+    line-height: var(--lh-hero);
     letter-spacing: -0.02em;
     text-wrap: balance;
   }
