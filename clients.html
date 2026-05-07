@@ -125,29 +125,46 @@
   }
   .clients-rest-title[hidden] { display: none; }
 
-  /* Liste simple sans témoignages : 2 colonnes, juste les noms.
-     Même rythme typographique que la liste principale pour cohérence. */
+  /* Liste simple sans témoignages : grille 4-col de logos d'abord,
+     puis les noms (clients sans logo) à la fin. */
   .clients-list-plain {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     column-gap: clamp(20px, 3vw, 50px);
-    row-gap: clamp(8px, 0.8vw, 12px);
-    font-size: clamp(18px, 2vw, 28px);
+    row-gap: clamp(16px, 2vw, 28px);
+    font-size: clamp(14px, 1.2vw, 18px);
     line-height: 1.25;
+    align-items: center;
   }
   .clients-list-plain[hidden] { display: none; }
   .clients-list-plain li {
     color: inherit;
     min-width: 0;
+    height: clamp(24px, 2.6vw, 34px);
+    display: flex;
+    align-items: center;
+  }
+  .clients-list-plain li.plain-logo img {
+    display: block;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: left center;
+  }
+  .clients-list-plain li.plain-name {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  @media (max-width: 600px) {
-    .clients-list-plain { grid-template-columns: 1fr; }
+  @media (max-width: 800px) {
+    .clients-list-plain { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (max-width: 500px) {
+    .clients-list-plain { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 
   /* The content grid : parent grid defines the 3 column tracks, each <li.row>
@@ -471,18 +488,24 @@
       function renderList() {
         const list = filteredClients();
         // Split : clients avec témoignage en haut (liste riche),
-        // les autres en bas (liste simple 2-col).
+        // les autres en bas (logos d'abord, noms sans logo à la fin).
         const withTm = list.filter(c => c.has_testimonial);
-        const withoutTm = list.filter(c => !c.has_testimonial);
+        const restWithLogo = list.filter(c => !c.has_testimonial && c.has_logo);
+        const restNoLogo   = list.filter(c => !c.has_testimonial && !c.has_logo);
 
         namesHost.innerHTML = withTm.map(rowHTML).join('');
-        restHost.innerHTML = withoutTm.map(c =>
-          `<li data-slug="${c.slug}">${escape(c.name)}</li>`
-        ).join('');
+
+        const logoCells = restWithLogo.map(c =>
+          `<li class="plain-logo" data-slug="${c.slug}"><img src="assets/${c.slug}.svg" alt="${escape(c.name)}" loading="lazy" /></li>`
+        );
+        const nameCells = restNoLogo.map(c =>
+          `<li class="plain-name" data-slug="${c.slug}">${escape(c.name)}</li>`
+        );
+        restHost.innerHTML = [...logoCells, ...nameCells].join('');
 
         // Masque la 2e section et son titre s'il n'y a personne
         // (ex : recherche qui ne match que des clients avec témoignage).
-        if (withoutTm.length === 0) {
+        if (restWithLogo.length + restNoLogo.length === 0) {
           restHost.setAttribute('hidden', '');
           restTitle.setAttribute('hidden', '');
         } else {
