@@ -182,26 +182,29 @@
   /* ---------- Process / manifeste ---------- */
   .process {
     padding-block: var(--gap-section);
+    /* Marge gauche en plus du padding section pour aligner avec
+       les indents éditoriaux des autres sections (~70px max). */
+    padding-inline-start: clamp(24px, 4.8vw, 70px);
   }
-  /* 2 colonnes : titre à gauche (taille section-title), texte à
-     droite (taille body). Le titre tease ("…recruter…") et le texte
-     complète à droite ("…les talents…"). Rythme éditorial. */
   .process-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(40px, 6vw, 100px);
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 3vw, 48px);
   }
+  /* Titre pleine largeur en haut, taille section. */
   .process-title {
     font-size: clamp(28px, 3.6vw, 48px);
     line-height: 1.15;
     letter-spacing: -0.01em;
     margin: 0;
+    max-width: clamp(560px, 70vw, 1000px);
   }
+  /* Corps de texte en 2 colonnes sous le titre. Distribution
+     paragraphes : col 1 = P1 + P2, col 2 = P3 + lien. */
   .process-body {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(16px, 1.6vw, 24px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 70px) clamp(40px, 6vw, 100px);
   }
   .process-body p {
     font-size: var(--fs-body);
@@ -212,10 +215,9 @@
   .process-body .text-arrow-link {
     font-size: var(--fs-body);
     line-height: 1.55;
-    margin-top: clamp(4px, 0.6vw, 10px);
   }
   @media (max-width: 800px) {
-    .process-row { grid-template-columns: 1fr; }
+    .process-body { grid-template-columns: 1fr; }
   }
 
   /* ---------- Logos clients IA ---------- */
