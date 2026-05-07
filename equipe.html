@@ -17,25 +17,28 @@
     display: flex;
     flex-direction: column;
     padding-bottom: var(--gap-section);
-    gap: clamp(28px, 3.4vw, 50px);
+    gap: 0;
   }
 
-  /* 2 colonnes : manifeste à gauche (sticky), grille photos à droite.
-     Indent gauche aligné sur le titre (.page-title hérite du padding
-     section). */
+  /* 2 colonnes : titre + manifeste à gauche (sticky), grille photos
+     à droite. Photos commencent au top de la page, alignées avec le
+     titre h1. */
   .equipe-row {
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     gap: clamp(28px, 4vw, 70px);
     align-items: start;
+    position: relative;
   }
-
-  /* Manifeste : sticky pour rester visible pendant le scroll de la
-     grille photos. Mesure contenue, registre éditorial calme. */
-  .equipe-manifesto {
+  .equipe-text {
     position: -webkit-sticky;
     position: sticky;
     top: clamp(110px, 12vw, 140px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 3.4vw, 50px);
+  }
+  .equipe-manifesto {
     display: flex;
     flex-direction: column;
     gap: clamp(16px, 1.6vw, 24px);
@@ -112,43 +115,76 @@
   .photo-jonathan  { background-image: url('assets/team/jonathan-banigo.jpg'); }
   .photo-dylan     { background-image: url('assets/team/dylan-khoury.png'); }
 
-  /* Encart support : 1 ligne d'intro + 3 mini-cartes (Terry, Jo,
-     Clotilde) — isolé du grid principal, plus compact pour signaler
-     la fonction support et non chasse. */
+  /* Encart support : photos à GAUCHE (3 cards), texte à DROITE en
+     colonne très réduite. Pas de hairline. Margin-top juste pour
+     respirer après la grille consultants. */
   .equipe-support {
     margin-top: clamp(40px, 5vw, 70px);
-    padding-top: clamp(28px, 3.4vw, 50px);
-    border-top: 1px solid var(--line);
-    display: flex;
-    flex-direction: column;
-    gap: clamp(20px, 2.4vw, 36px);
-  }
-  .equipe-support-text {
-    font-size: var(--fs-body);
-    line-height: 1.55;
-    margin: 0;
-    max-width: var(--measure);
-    color: var(--ink-soft, #6c7a6e);
+    display: grid;
+    grid-template-columns: minmax(0, 8fr) minmax(0, 3fr);
+    gap: clamp(28px, 3vw, 50px);
+    align-items: start;
   }
   .equipe-support-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0;
-    /* Mesure plus contenue : 3 cards d'env 200-280px, alignées à gauche. */
-    max-width: clamp(420px, 60vw, 820px);
+  }
+  .equipe-support-text {
+    font-size: clamp(13px, 1.1vw, 15px);
+    line-height: 1.5;
+    margin: 0;
+    color: var(--ink-soft, #6c7a6e);
   }
 
+  /* Breakpoint principal : photos plein largeur, texte en single col. */
   @media (max-width: 900px) {
     .equipe-row {
       grid-template-columns: 1fr;
     }
-    .equipe-manifesto {
+    .equipe-text {
       position: static;
       max-width: var(--measure);
     }
   }
+
+  /* Sous 700px : le texte se réduit jusqu'à 1/3 de la page et passe
+     DERRIÈRE les photos via z-index. Photos prennent toute la largeur,
+     texte sticky derrière. Effet : on voit le texte au-dessus de la
+     grille (titre visible) puis les photos passent dessus en scrollant. */
+  @media (max-width: 700px) {
+    .equipe-row {
+      display: block;
+      position: relative;
+    }
+    .equipe-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 33%;
+      z-index: 1;
+      gap: clamp(16px, 3vw, 24px);
+    }
+    .equipe-text .page-title {
+      font-size: clamp(28px, 8vw, 56px);
+      line-height: 1;
+    }
+    .equipe-manifesto p {
+      font-size: clamp(11px, 2.2vw, 14px);
+      line-height: 1.4;
+    }
+    .team-grid {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+  }
+
   @media (max-width: 600px) {
-    .equipe-support-grid { max-width: none; }
+    .equipe-support {
+      grid-template-columns: 1fr;
+      gap: clamp(16px, 2vw, 24px);
+    }
   }
   @media (max-width: 480px) {
     .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -161,13 +197,14 @@
     <header class="header section" data-nav></header>
 
     <section class="equipe section">
-      <h1 class="page-title">Équipe</h1>
-
       <div class="equipe-row">
-        <aside class="equipe-manifesto">
+        <aside class="equipe-text">
+          <h1 class="page-title">Équipe</h1>
+          <div class="equipe-manifesto">
           <p>Nos consultants sont chez GetPro depuis longtemps, certains depuis dix ans. Un chasseur qui débute reconstruit son réseau à chaque mission. Un consultant senior connaît déjà les gens qu'il va vous présenter, il les a vus évoluer poste après poste, il sait qui pèse vraiment et qui pèse seulement sur son CV. C'est cette mémoire longue qu'on vous vend.</p>
           <p>Nous recrutons et formons en interne. Ceux qui restent sont ceux qui savent tenir une relation sur dix ans, pas seulement closer un mandat. C'est pour ça qu'on présente trois candidats sérieux, pas cinquante CV.</p>
           <p>Revers de la médaille&nbsp;: on ne va pas avec tout le monde. La relation client–chasseur est d'abord une relation entre deux personnes, mieux vaut le dire tôt que le découvrir au troisième entretien raté. Si on s'engage, on tient.</p>
+                  </div>
         </aside>
 
         <div class="team-grid">
@@ -304,7 +341,6 @@
 
       <!-- Encart support technique : isolé du grid principal -->
       <div class="equipe-support">
-        <p class="equipe-support-text">Derrière les chasseurs, trois personnes tiennent l'outillage&nbsp;: l'ATS interne, les modèles d'assessment des candidats, et la qualité des données candidats sur l'ensemble des missions. Support scientifique et technique du cabinet.</p>
         <div class="equipe-support-grid">
           <article class="team-card">
             <div class="team-photo photo-terry" role="img" aria-label="Terry Raimondo"></div>
@@ -330,6 +366,7 @@
             </div>
           </article>
         </div>
+        <p class="equipe-support-text">Derrière les chasseurs, trois personnes tiennent l'outillage&nbsp;: l'ATS interne, les modèles d'assessment des candidats, et la qualité des données candidats sur l'ensemble des missions. Support scientifique et technique du cabinet.</p>
       </div>
     </section>
 
