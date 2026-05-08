@@ -211,6 +211,30 @@
   }
   @media (max-width: 480px) {
     .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    /* Avec une grille à 2 colonnes, le manifeste posé en absolute
+       derrière les photos ressort entre les lignes et chevauche les
+       captions (cf. col gauche du 1ᵉʳ portrait). On annule l'astuce :
+       manifeste en flux normal, au-dessus de la grille. */
+    .equipe-row {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(28px, 6vw, 40px);
+    }
+    .equipe-text {
+      position: static;
+      width: 100%;
+      max-width: var(--measure);
+      gap: clamp(18px, 4vw, 28px);
+    }
+    .equipe-text .page-title {
+      font-size: clamp(36px, 9vw, 56px);
+      line-height: 1.05;
+    }
+    .equipe-manifesto p {
+      font-size: clamp(14px, 3.6vw, 16px);
+      line-height: 1.5;
+    }
   }
 </style>
 </head>
