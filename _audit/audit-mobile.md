@@ -14,7 +14,8 @@ horizontal — 1 colonne par page, dans l'ordre auditée).
 | equipe.html | bug → fixé | overlap manifeste / captions sous 480px |
 | clients.html | OK | — |
 | contact.html | OK | — |
-| solutions-profils.html | OK | — |
+| solutions-profils.html | bugs → fixés | navbar pas sticky + view-tabs cachées sticky |
+| _global_ | bug → fixé | navbar `.header` perdait `position: sticky` sous 480px (régression de l'override prévu pour ancrer le burger) |
 
 ---
 
@@ -66,11 +67,36 @@ linéairement, puis la grille de portraits.
 - **CTA** : passe en pleine largeur en mobile (bonne ergonomie touch).
 - Pas de h1 visible — choix design (page de conversion, value props font office d'accroche).
 
-## solutions-profils.html — OK
+## solutions-profils.html — 2 bugs fixés
 
-- **Hero** : "Solutions" h1 + 3 sub-nav (Chasse / Renfort RH / Profils recrutés) + Tech dropdown + Trustpilot 5★ + tabs Placements/Témoignages + filter pills Software/IA/Hardware. Dense mais tient en mobile, hiérarchie claire.
-- **Liste métiers** (QA Engineer, Développeur, etc.) : 1 col en mobile, lisibilité OK.
-- **Footer** standard.
+### Bug A (global) — navbar `.header` perdait `position: sticky` sous 480px
+
+`styles.css:312` overridait `.header { position: relative; }` sous 480px
+au prétexte d'« ancrer le dropdown ». Mais `position: sticky` est non-static
+et établit déjà un containing block pour les enfants `position: absolute` —
+l'override était inutile et cassait la stickyness sur mobile pour TOUTES
+les pages.
+
+Fix : suppression de l'override. Le burger (`.menu-right` en `position:
+absolute; top: 100%`) reste correctement ancré sous le `.header` sticky.
+
+### Bug B — view-tabs cachées par le sticky `categories-col` en mobile
+
+À ≤ 800px, `panel-body` passe en 1 colonne : `categories-col` (sticky bar
+"Tech ▾ + Trustpilot") et `content-col` (qui contient `.view-tabs`
+Placements/Témoignages, sticky aussi) se retrouvent empilés. Les 2 sticky
+stop-tops étaient calibrés sur la nav, ils entraient en collision —
+`categories-col` (z-index:5) écrasait `.view-tabs` (z-index:4) au scroll.
+
+Fix : sous 800px, `.view-tabs` passe en `position: static` et reste en
+flux normal au-dessus de la grille de profils. Seul `categories-col` reste
+sticky en mobile (Tech + Trustpilot toujours accessibles au scroll).
+
+### Hero (post-fix)
+
+"Solutions" h1 + 3 sub-nav + Tech dropdown + Trustpilot + tabs
+Placements/Témoignages + filter pills Software/IA/Hardware. Dense mais
+tient en mobile, hiérarchie claire. Liste métiers en 1 col, lisible.
 
 ---
 
