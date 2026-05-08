@@ -13,7 +13,11 @@
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="styles.css" />
 <style>
-  /* ---------- Hero ---------- */
+  /* ---------- Hero ----------
+     Colonne maîtresse de la home : tous les blocs (h1, grille, titres
+     de section, logos-row, solutions-overview, etc.) démarrent à
+     var(--pad-card-x) du bord intérieur de section. Cohérence verticale
+     stricte indépendamment du clamp du viewport. */
   .hero {
     display: flex;
     flex-direction: column;
@@ -23,21 +27,32 @@
        mais sans creuser un trou avant le bloc Mistral. */
     padding-bottom: clamp(30px, 3.4vw, 50px);
   }
+  /* Respiration spécifique header → hero : on remplace le --gap-section
+     (40-80px) par un gap plus généreux, façon affiche swiss qui "pose"
+     son titre dans le silence avant de parler. */
+  .header + .hero { margin-top: clamp(60px, 9vw, 140px); }
 
   .hero-inner {
     display: flex;
     flex-direction: column;
-    gap: clamp(20px, 2.1vw, 30px);
+    /* Gap titre ↔ matrice de portraits doublé : le h1 et la grille se
+       répondent au lieu de se coller, le titre a le temps de "poser"
+       avant que l'œil descende. */
+    gap: clamp(40px, 5vw, 80px);
+    /* Aligne le contenu du hero sur la colonne maîtresse de la page. */
+    padding-inline: var(--pad-card-x);
   }
 
   .hero-title {
+    /* --fs-hero (28→88) défini globalement, mais effectivement scopé home
+       puisque .hero-title n'existe que sur cette page.
+       text-wrap: balance répartit les lignes pour minimiser le rag droit
+       sans break manuel — fonctionne à toutes les tailles, contrairement
+       au <br> qui ne tombe au bon endroit qu'à un viewport précis. */
     font-size: var(--fs-hero);
     line-height: var(--lh-hero);
-  }
-  /* Sous 600px le <br> ne tombe plus sur un break naturel : on le neutralise
-     pour laisser le texte wrapper proprement. */
-  @media (max-width: 600px) {
-    .hero-title br { display: none; }
+    letter-spacing: -0.02em;
+    text-wrap: balance;
   }
 
   /* ---------- Image grid ---------- */
@@ -235,22 +250,25 @@
     gap: clamp(30px, 4.8vw, 70px);
     padding: clamp(40px, 5vw, 80px) var(--pad-x);
   }
+  /* Aligné sur la colonne maîtresse de la home (var(--pad-card-x)),
+     symétrique gauche/droite : le titre IA s'inscrit dans la même
+     verticale que tous les autres blocs de la page. */
   .ai-logos-title {
-    padding-left: clamp(24px, 4.8vw, 70px);
-    padding-right: clamp(0px, 3.5vw, 50px);
+    padding-inline: var(--pad-card-x);
   }
   .ai-logos-title h2 {
     font-size: var(--fs-section-title);
     line-height: var(--lh-section-title);
     max-width: clamp(320px, 75vw, 1050px);
   }
+  /* Idem grille de logos : padding-inline aligné sur la colonne maîtresse. */
   .ai-logos-grid {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     column-gap: clamp(40px, 5vw, 88px);
     row-gap: clamp(28px, 3.4vw, 52px);
-    padding-inline: clamp(24px, 4.8vw, 70px);
+    padding-inline: var(--pad-card-x);
   }
   .ai-logo {
     display: inline-flex;
@@ -266,21 +284,19 @@
     display: block;
   }
 
+  /* "Tous nos clients" bouton bas de section, aligné sur la colonne
+     maîtresse (var(--pad-card-x)). La section a déjà display:flex
+     column + gap, donc pas besoin de margin-top. */
   .see-all-bottom {
     align-self: flex-start;
-    margin-left: clamp(24px, 4.8vw, 70px);
+    margin-left: var(--pad-card-x);
   }
 
   /* ---------- Breakpoints (structural changes only) ---------- */
   @media (max-width: 800px) {
-    /* Indents gauche alignés sur 4vw (au lieu de 4.8vw desktop) :
-       le titre + manifeste + ai-logos partagent la même mesure. */
-    .ai-logos-title,
-    .ai-logos-rows {
-      padding-left: clamp(20px, 4vw, 40px);
-      padding-right: clamp(20px, 4vw, 40px);
-    }
-    .see-all-bottom { margin-left: clamp(20px, 4vw, 40px); }
+    /* Pas d'override d'indents : la colonne maîtresse var(--pad-card-x)
+       (clamp 28-70) reste la référence à tous les viewports — c'est
+       précisément ce qui crée la cohérence verticale. */
   }
 </style>
 </head>
@@ -293,9 +309,7 @@
     <section class="hero section">
       <div class="hero-inner">
         <h1 class="hero-title">
-          Nous mettons en relation les profils<br>
-          les plus pointus et les meilleures<br>
-          entreprises technologiques
+          Nous mettons en relation les profils les plus pointus et les meilleures entreprises technologiques
         </h1>
 
         <div class="grid-images" aria-label="Galerie consultants">

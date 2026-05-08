@@ -516,7 +516,11 @@ button { font-family: inherit; cursor: pointer; }
 .solutions-overview-list {
   list-style: none;
   margin: 0;
-  padding: 0 clamp(0px, 3.5vw, 50px) 0 var(--pad-card-x);
+  /* Aligné sur la colonne maîtresse de la home (var(--pad-card-x))
+     symétrique gauche/droite — même verticale que le h1 hero, les
+     case-cards, process-title, logos-title, see-all-bottom. */
+  padding-inline: var(--pad-card-x);
+  padding-block: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   /* 2 rows (titre, paragraphe) partagées via subgrid sur les <li>.
