@@ -4,3 +4,7 @@
 
 # Vercel CLI link (created when running vercel CLI from the worktree)
 .vercel/
+
+# Audit working dir (server log, temp screenshots, pid, vendored deps)
+_audit/_tmp/
+_audit/node_modules/
