@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>GetPro Consultants</title>
 <meta name="description" content="L'équipe GetPro : consultants spécialisés sur la chasse Tech, Product et Go-to-Market. Mémoire longue, relations sur dix ans." />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -102,11 +102,15 @@
     color: inherit;
   }
   /* "X ans d'expérience" est un lien LinkedIn : pas d'underline par
-     défaut (clean), underline au hover pour signaler la cliquabilité. */
+     défaut (clean), underline au hover pour signaler la cliquabilité.
+     Padding-block + margin-block négatif : tap target ~36px sans
+     casser l'espacement visuel des autres lignes du caption. */
   a.team-exp {
     text-decoration: none;
     cursor: pointer;
     width: max-content;
+    padding-block: 6px;
+    margin-block: -6px;
   }
   a.team-exp:hover {
     text-decoration: underline;
@@ -171,35 +175,31 @@
     }
   }
 
-  /* Sous 700px : le texte se réduit jusqu'à 1/3 de la page et passe
-     DERRIÈRE les photos via z-index. Photos prennent toute la largeur,
-     texte sticky derrière. Effet : on voit le texte au-dessus de la
-     grille (titre visible) puis les photos passent dessus en scrollant. */
+  /* Sous 700px : on garde un stack normal (titre + manifeste au-dessus
+     de la grille). L'overlay z-index/superposition était un effet
+     éditorial qui masquait le manifeste derrière les photos avant que
+     l'utilisateur ait pu le lire mauvais signal d'intention sur
+     mobile, où l'attention est plus rare. Le manifeste devient un vrai
+     introducteur au-dessus de la grille. */
   @media (max-width: 700px) {
     .equipe-row {
-      display: block;
-      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(28px, 4vw, 50px);
     }
     .equipe-text {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 33%;
-      z-index: 1;
+      position: static;
+      width: 100%;
+      max-width: var(--measure);
       gap: clamp(16px, 3vw, 24px);
     }
     .equipe-text .page-title {
-      font-size: clamp(28px, 8vw, 56px);
-      line-height: 1;
+      font-size: clamp(36px, 8vw, 56px);
+      line-height: 1.05;
     }
     .equipe-manifesto p {
-      font-size: clamp(11px, 2.2vw, 14px);
-      line-height: 1.4;
-    }
-    .team-grid {
-      position: relative;
-      z-index: 2;
-      width: 100%;
+      font-size: clamp(13px, 2.2vw, 15px);
+      line-height: 1.5;
     }
   }
 

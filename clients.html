@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>GetPro Clients</title>
 <meta name="description" content="Plus de 200 entreprises accompagnées depuis 2015 : Mistral AI, Lucca, Electra, Filigran, Japhy, et beaucoup d'autres scale-ups en hypercroissance." />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -58,7 +58,9 @@
     outline: none;
     color: inherit;
     font-family: inherit;
-    font-size: var(--fs-body);
+    /* min 16px : sous 16px Safari iOS zoome au focus et ne dézoome pas
+       on garde le clamp d'origine pour les tailles supérieures. */
+    font-size: max(16px, var(--fs-body));
     line-height: 1.25;
     padding: 0;
     min-width: 0;

@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>GetPro Métiers</title>
 <meta name="description" content="+2000 talents recrutés sur Tech, Product, Data, Sales, Marketing, Ops et C-level. La cartographie des profils que GetPro chasse au quotidien." />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -277,6 +277,13 @@
        passage à la ligne les autres pages Solutions/Renfort font
        pareil pour rester cohérent à toutes les tailles. */
     .panel-body { grid-template-columns: 1fr; }
+    /* En mobile la .categories-col joue déjà le rôle de barre sticky :
+       cumuler une 2ᵉ barre sticky pour les view-tabs (Placements / Témoignages)
+       mangerait ~40 % de l'écran en haut. On désactive le sticky des
+       view-tabs en mobile, elles défilent avec le contenu. */
+    .view-tabs {
+      position: static;
+    }
     /* En mobile, .categories-col devient un sticky bar :
        - row 1 : trigger "Tech ▾" à gauche + Trustpilot à droite
        - row 2 : la liste bucket-tabs (cachée par défaut, ouverte

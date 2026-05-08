@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>GetPro Cabinet de chasse Tech</title>
 <meta name="description" content="GetPro chasse depuis 2015 les profils tech, produit et go-to-market les plus pointus pour les meilleures entreprises technologiques françaises." />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -34,9 +34,11 @@
     font-size: var(--fs-hero);
     line-height: var(--lh-hero);
   }
-  /* Sous 600px le <br> ne tombe plus sur un break naturel : on le neutralise
-     pour laisser le texte wrapper proprement. */
-  @media (max-width: 600px) {
+  /* Sous 800px les <br> ne tombent plus sur des breaks naturels et
+     découpent le titre en lignes courtes : on les neutralise pour laisser
+     le texte wrapper organiquement (le <br> tail reste utile en desktop
+     pour caler le rythme typographique du hero). */
+  @media (max-width: 800px) {
     .hero-title br { display: none; }
   }
 
@@ -178,6 +180,12 @@
   .case-image-mistral { background-image: url('assets/initial-arthur-mensch-mistral-ai-portrait.jpg'); }
   .case-image-lucca   { background-image: url('assets/Gsatge-0224-6.jpg'); }
   .case-image-filigran { background-image: url('assets/filigran-cover.jpg'); }
+  /* Sous 600px le ratio 2.49:1 transforme l'image en bandeau étroit
+     (~140px de haut sur 360px) qui masque le sujet. On élargit à 4:3
+     pour redonner de la matière visuelle au portrait. */
+  @media (max-width: 600px) {
+    .case-image { aspect-ratio: 4 / 3; }
+  }
 
   /* ---------- Manifesto editorial : white card 2 colonnes ---------- */
   .manifesto {
@@ -383,7 +391,7 @@
           <p>IA, Software, Hardware, Data, Cybersécurité, Énergie, comme ingénieur, product, sales, manager ou dirigeant.</p>
         </li>
       </ul>
-      <a href="tel:+33939289329" class="btn-outline solutions-overview-cta">Échanger avec un consultant : 09 39 28 93 29</a>
+      <a href="tel:+33939289329" class="btn-outline solutions-overview-cta"><span class="menu-label-full">Échanger avec un consultant : 09 39 28 93 29</span><span class="menu-label-short">09 39 28 93 29</span></a>
     </section>
 
     <!-- Logos clients IA -->
