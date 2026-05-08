@@ -277,6 +277,17 @@
        passage à la ligne les autres pages Solutions/Renfort font
        pareil pour rester cohérent à toutes les tailles. */
     .panel-body { grid-template-columns: 1fr; }
+
+    /* En mobile, panel-body n'a plus qu'1 col : view-tabs et
+       categories-col se retrouvent empilés. Les 2 sticky bars
+       entrent en collision (categories-col z-index:5 cache view-tabs
+       z-index:4). Solution : view-tabs en flux normal au-dessus de
+       la grille de contenu, seul categories-col reste sticky. */
+    .view-tabs {
+      position: static;
+      padding-block: 0 clamp(8px, 1vw, 14px);
+      margin-bottom: clamp(20px, 2.4vw, 32px);
+    }
     /* En mobile, .categories-col devient un sticky bar :
        - row 1 : trigger "Tech ▾" à gauche + Trustpilot à droite
        - row 2 : la liste bucket-tabs (cachée par défaut, ouverte
