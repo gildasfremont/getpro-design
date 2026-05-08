@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>GetPro · Contact</title>
 <meta name="description" content="Parlez-nous de votre projet de recrutement. Mission lancée sous 48 heures, shortlist commentée en 60 minutes, time-to-fill moyen de 50 jours." />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -136,7 +136,9 @@
     background: var(--white);
   }
   .form-field textarea {
-    min-height: clamp(120px, 14vw, 200px);
+    /* min-height en max(px, vh) : protège le mobile en paysage où 14vw
+       donnait ~50px le contenu reste lisible quelle que soit l'orientation. */
+    min-height: max(140px, clamp(140px, 14vw, 200px));
     resize: vertical;
   }
 
@@ -205,10 +207,10 @@
             </div>
           </div>
 
-          <form class="contact-form" action="mailto:bonjour@getpro.com" method="POST" enctype="text/plain">
+          <form class="contact-form" id="contact-form" action="mailto:bonjour@getpro.com" method="POST" enctype="text/plain" novalidate>
             <div class="form-field form-field--full">
               <label for="description">Que pouvons-nous faire pour vous aider&nbsp;?</label>
-              <textarea id="description" name="description" required autofocus placeholder="Le poste à pourvoir, le contexte, les contraintes de timing…"></textarea>
+              <textarea id="description" name="description" required placeholder="Le poste à pourvoir, le contexte, les contraintes de timing…"></textarea>
             </div>
 
             <div class="form-field form-field--full">
@@ -249,5 +251,55 @@
 
   </main>
   <script src="partials.js" defer></script>
+  <script>
+    (function() {
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+
+      // Autofocus desktop uniquement : sur mobile, ouvrir le clavier virtuel
+      // dès l'arrivée pousse les value props hors écran.
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        const desc = document.getElementById('description');
+        if (desc) desc.focus({ preventScroll: true });
+      }
+
+      // Le `mailto:` natif avec enctype=text/plain dump tous les champs en
+      // clear-text concaténés, et l'app mail mobile gère ça mal. On construit
+      // un mailto propre avec subject + body lisible côté destinataire.
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        const get = (k) => (data.get(k) || '').toString().trim();
+        const name = get('name');
+        const company = get('company');
+        const phone = get('phone');
+        const email = get('email');
+        const description = get('description');
+
+        const required = { description, name, company, phone, email };
+        for (const [k, v] of Object.entries(required)) {
+          if (!v) {
+            const field = form.querySelector(`[name="${k}"]`);
+            if (field) field.focus();
+            return;
+          }
+        }
+
+        const subject = `Contact GetPro — ${company || name}`;
+        const body = [
+          description,
+          '',
+          '—',
+          `${name}`,
+          `${company}`,
+          `${phone}`,
+          `${email}`,
+        ].join('\n');
+
+        const url = `mailto:bonjour@getpro.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = url;
+      });
+    })();
+  </script>
 </body>
 </html>

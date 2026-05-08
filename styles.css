@@ -79,6 +79,17 @@ button { font-family: inherit; cursor: pointer; }
 
 .section { padding-inline: var(--pad-x); }
 
+/* Safe-area-inset : sur iPhone à notch/home indicator (avec
+   viewport-fit=cover sur la meta), on évite que le contenu colle
+   aux bords arrondis ou passe sous la barre home. Appliqué
+   gauche/droite globalement, et bottom sur le footer. */
+@supports (padding: max(0px)) {
+  .section {
+    padding-left: max(var(--pad-x), env(safe-area-inset-left));
+    padding-right: max(var(--pad-x), env(safe-area-inset-right));
+  }
+}
+
 /* ---------- Header ---------- */
 .header {
   padding-block: 0;
@@ -189,7 +200,12 @@ button { font-family: inherit; cursor: pointer; }
 /* ---------- Tabs (top-level) ---------- */
 .tabs {
   display: flex;
+  flex-wrap: wrap;
+  /* row-gap après gap → override de la valeur de row issue du shorthand.
+     On garde le gap horizontal large (rythme éditorial) et un row-gap
+     plus serré quand le bouton "Profils recrutés" wrap sur sa propre ligne. */
   gap: clamp(20px, 2.7vw, 40px);
+  row-gap: clamp(8px, 1vw, 14px);
 }
 .tab {
   display: inline-flex;
@@ -307,9 +323,11 @@ button { font-family: inherit; cursor: pointer; }
   .menu-label-full { display: none; }
   .menu-label-short { display: inline; }
 }
-/* Hamburger : sous 480px l'écart entre le brand et la nav devient comparable
-   à l'inter-item — on bascule en menu burger. */
-@media (max-width: 480px) {
+/* Hamburger : sous 700px on bascule en menu burger. Au-dessus, le menu
+   desktop reste tenable (3 items + bouton Contact + brand). Sous 700, le
+   compactage devient inconfortable (gap minimal, items qui se touchent
+   sur petits Android et iPhone Plus en paysage). */
+@media (max-width: 700px) {
   .header { position: relative; } /* ancrage du dropdown */
   .menu-toggle { display: inline-flex; }
   .menu-right {
@@ -327,11 +345,13 @@ button { font-family: inherit; cursor: pointer; }
   }
   .menu-toggle[aria-expanded="true"] ~ .menu-right { display: flex; }
   /* Items : taille un cran plus grosse que la navbar pour le toucher
-     mobile, alignés à gauche. */
+     mobile, alignés à gauche. min-height 44px = standard tactile iOS/MD. */
   .menu-right .menu-item,
   .menu-right .btn-menu {
     font-size: clamp(18px, 4.5vw, 22px);
     line-height: 1.3;
+    min-height: 44px;
+    padding-block: 6px;
   }
   .menu-right .btn-menu {
     align-self: flex-start;
@@ -355,6 +375,9 @@ button { font-family: inherit; cursor: pointer; }
   flex-direction: column;
   gap: clamp(50px, 6vw, 90px);
   padding: clamp(50px, 6vw, 90px) var(--pad-x) clamp(36px, 4vw, 56px);
+  /* Bottom respecte la safe-area iPhone (home indicator) en plus du
+     padding éditorial. */
+  padding-bottom: max(clamp(36px, 4vw, 56px), env(safe-area-inset-bottom, 0px));
   border-top: 1px solid var(--line);
 }
 
@@ -440,6 +463,11 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--ink);
   text-decoration: none;
   text-underline-offset: 4px;
+  /* Tap target : padding-block donne ~36-40px de hauteur au lien,
+     plus confortable au pouce. Le margin-block négatif compense pour
+     préserver l'espacement visuel entre items (gap inchangé). */
+  padding-block: clamp(6px, 0.6vw, 10px);
+  margin-block: calc(-1 * clamp(6px, 0.6vw, 10px));
 }
 .foot-col a:hover { text-decoration: underline; }
 .foot-col a[aria-current="page"] {
@@ -716,6 +744,15 @@ button { font-family: inherit; cursor: pointer; }
   -webkit-overflow-scrolling: touch;
 }
 .subtabs-row .subtabs::-webkit-scrollbar { display: none; }
+/* Fade-out à droite uniquement en mobile : signale visuellement qu'il
+   reste du contenu à scroller quand les subtabs débordent. En desktop
+   où tout tient, le mask masquerait inutilement le dernier subtab. */
+@media (max-width: 600px) {
+  .subtabs-row .subtabs {
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 24px), transparent);
+            mask-image: linear-gradient(90deg, #000 calc(100% - 24px), transparent);
+  }
+}
 /* Cartouches rectangulaires avec léger border-radius. Inactif = fond gris
    léger (var(--bg) sur le panel blanc), actif = fond blanc + fine bordure
    sombre. Plus de hairline ni d'underline. */
