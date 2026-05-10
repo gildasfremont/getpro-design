@@ -179,49 +179,81 @@
   .case-image-lucca   { background-image: url('assets/Gsatge-0224-6.jpg'); }
   .case-image-filigran { background-image: url('assets/filigran-cover.jpg'); }
 
-  /* ---------- Manifesto editorial : white card 2 colonnes ---------- */
+  /* ---------- Manifesto editorial : white card 50% + témoignage hors-card ---------- */
+  /* La section coupe la largeur en deux : la card blanche tient sur
+     50% à gauche, le témoignage respire à droite directement sur le
+     fond vert (en dehors de la card). */
   .manifesto {
     padding-block: var(--gap-section);
+  }
+  .manifesto-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(32px, 4vw, 80px);
+    /* Center : l'aside (témoignage + CTA) se cale au milieu vertical de
+       la card blanche à gauche, peu importe la longueur respective. */
+    align-items: center;
   }
   .manifesto-card {
     background: var(--white);
     padding: clamp(48px, 6.8vw, 100px) clamp(28px, 4.8vw, 80px);
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(28px, 3vw, 48px) clamp(40px, 5vw, 80px);
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 2vw, 32px);
   }
-  /* Titre "Depuis 2015" pleine largeur en haut de la card. Même
-     taille que les noms de boîtes des case-cards au-dessus
-     (--fs-card-name) pour cohérence typographique. */
+  /* Titre "Depuis 2015" — même taille que les noms de boîtes des
+     case-cards au-dessus (--fs-card-name) pour cohérence typo. */
   .manifesto-title {
-    grid-column: 1 / -1;
     font-size: var(--fs-card-name);
     line-height: var(--lh-card-name);
     margin: 0;
   }
-  .manifesto-col {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(20px, 2vw, 32px);
-    /* Padding-right généreux pour respirer côté droit de chaque
-       colonne — ligne de lecture plus courte, mesure plus posée. */
-    padding-right: clamp(20px, 5vw, 90px);
-  }
   /* Même typo que .solutions-overview-list p — référence éditoriale
      pour les paragraphes de section sur la home. */
-  .manifesto-col p,
+  .manifesto-card p,
+  .manifesto-quote p,
   .manifesto-cta {
     font-size: clamp(18px, 2vw, 26px);
     line-height: 1.35;
     margin: 0;
   }
+  /* Bloc témoignage hors-card, posé à droite sur le fond vert.
+     Pas de padding-top : on s'appuie sur align-items: center du parent
+     pour centrer l'aside sur la card blanche à gauche. */
+  .manifesto-aside {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 2vw, 32px);
+    padding-right: clamp(20px, 5vw, 90px);
+  }
+  .manifesto-quote {
+    margin: 0;
+    padding: 0;
+  }
+  /* Auteur du témoignage : nom/rôle au-dessus, logo JeudiMerci en
+     dessous, le tout aligné à gauche. Composition sobre, type crédit
+     éditorial empilé. */
+  .manifesto-quote-author {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(8px, 0.9vw, 12px);
+    font-size: clamp(15px, 1.3vw, 18px);
+    line-height: 1.4;
+    margin-top: clamp(20px, 2.2vw, 36px);
+  }
+  .manifesto-quote-logo {
+    height: clamp(18px, 1.6vw, 22px);
+    width: auto;
+    display: block;
+    flex: none;
+  }
   .manifesto-cta {
     align-self: flex-start;
-    margin-top: clamp(4px, 0.6vw, 10px);
   }
   @media (max-width: 800px) {
-    .manifesto-card { grid-template-columns: 1fr; }
+    .manifesto-row { grid-template-columns: 1fr; }
+    .manifesto-aside { padding-top: 0; }
   }
 
   /* ---------- Logos clients IA ---------- */
@@ -248,9 +280,13 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    column-gap: clamp(40px, 5vw, 88px);
-    row-gap: clamp(28px, 3.4vw, 52px);
-    padding-inline: clamp(24px, 4.8vw, 70px);
+    /* Écarts plus serrés entre logos pour densifier la rangée maintenant
+       qu'on en affiche ~28. Padding-right généreux côté droit pour ne
+       pas que la dernière ligne s'étale jusqu'au bord du viewport. */
+    column-gap: clamp(24px, 2.8vw, 48px);
+    row-gap: clamp(20px, 2.4vw, 36px);
+    padding-left: clamp(24px, 4.8vw, 70px);
+    padding-right: clamp(40px, 8vw, 140px);
   }
   .ai-logo {
     display: inline-flex;
@@ -352,18 +388,25 @@
       </a>
     </section>
 
-    <!-- Manifesto editorial : 2 colonnes de texte dans une white card -->
+    <!-- Manifesto editorial : white card 50% à gauche, témoignage hors-card à droite -->
     <section class="manifesto section">
-      <div class="manifesto-card">
-        <h2 class="manifesto-title">Depuis 2015</h2>
-        <div class="manifesto-col">
+      <div class="manifesto-row">
+        <div class="manifesto-card">
+          <h2 class="manifesto-title">Depuis 2015</h2>
           <p>Dix ans à recruter des talents pour les meilleures équipes technologiques françaises. Du premier ingénieur de la startup qui éclôt aux fonctions de direction de la scale-up qui grossit.</p>
           <p>Nous avons fait 2 000 recrutements et rencontré 60 000 talents depuis 2015. Nous suivons leurs trajectoires, nous les voyons évoluer et rejoindre de nouveaux projets et missions.</p>
-        </div>
-        <div class="manifesto-col">
           <p>Quand vous nous appelez pour un poste critique, nos consultants savent à qui en parler, parce qu'ils connaissent, et depuis longtemps, les gens qu'ils recommandent.</p>
-          <a href="equipe.html" class="text-arrow-link manifesto-cta">Voir l’équipe →</a>
         </div>
+        <aside class="manifesto-aside">
+          <blockquote class="manifesto-quote">
+            <p>« GetPro nous a accompagné dans le recrutement de notre CTO. GetPro nous a présenté des candidats ultra-qualifiés, et nous a accompagnés dans l’évaluation de leurs connaissances, mais aussi de leurs soft-skills. L’équipe GetPro a été très à l’écoute, transparente et force de proposition pour que nous réussissions à sourcer plus de candidats. Et en plus, nos candidats étaient très satisfaits de leurs échanges avec l’équipe GetPro. Bref, très belle expérience :) »</p>
+            <footer class="manifesto-quote-author">
+              <span>Leonie de Verdelhan, CEO</span>
+              <img src="assets/jeudimerci.svg" alt="JeudiMerci" class="manifesto-quote-logo" />
+            </footer>
+          </blockquote>
+          <a href="clients.html" class="text-arrow-link manifesto-cta">Retours d’expérience →</a>
+        </aside>
       </div>
     </section>
 
@@ -386,31 +429,40 @@
       <a href="tel:+33939289329" class="btn-outline solutions-overview-cta">Échanger avec un consultant : 09 39 28 93 29</a>
     </section>
 
-    <!-- Logos clients IA -->
+    <!-- Logos clients : entreprises françaises ambitieuses (AI + scale-ups) -->
     <section class="ai-logos section">
       <div class="ai-logos-title">
-        <h2>Nous réalisons les plans de recrutement des entreprises françaises à la pointe de l’intelligence artificielle</h2>
+        <h2>Nous réalisons les plans de recrutement des entreprises françaises les plus ambitieuses.</h2>
       </div>
       <div class="ai-logos-grid">
         <a class="ai-logo" href="clients.html#mistral-ai" aria-label="Mistral AI"><img src="assets/mistral-ai.svg" alt="Mistral AI" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#contentsquare" aria-label="Contentsquare"><img src="assets/contentsquare.svg" alt="Contentsquare" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#blablacar" aria-label="BlaBlaCar"><img src="assets/blablacar.svg" alt="BlaBlaCar" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#manomano" aria-label="ManoMano"><img src="assets/manomano.svg" alt="ManoMano" loading="lazy"/></a>
         <a class="ai-logo" href="clients.html#eleven-labs" aria-label="Eleven Labs"><img src="assets/eleven-labs.svg" alt="Eleven Labs" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#agicap" aria-label="Agicap"><img src="assets/agicap.svg" alt="Agicap" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#electra" aria-label="Electra"><img src="assets/electra.svg" alt="Electra" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#doctrine" aria-label="Doctrine"><img src="assets/doctrine.svg" alt="Doctrine" loading="lazy"/></a>
         <a class="ai-logo" href="clients.html#mindee" aria-label="Mindee"><img src="assets/mindee.svg" alt="Mindee" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#dust" aria-label="Dust"><img src="assets/dust.svg" alt="Dust" loading="lazy"/></a>
         <a class="ai-logo" href="clients.html#filigran" aria-label="Filigran"><img src="assets/filigran.svg" alt="Filigran" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#foodles" aria-label="Foodles"><img src="assets/foodles.svg" alt="Foodles" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#pigment" aria-label="Pigment"><img src="assets/pigment.svg" alt="Pigment" loading="lazy"/></a>
         <a class="ai-logo" href="clients.html#harfanglab" aria-label="Harfanglab"><img src="assets/harfanglab.svg" alt="Harfanglab" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#matera" aria-label="Matera"><img src="assets/matera.svg" alt="Matera" loading="lazy"/></a>
         <a class="ai-logo" href="clients.html#kili-technology" aria-label="Kili Technology"><img src="assets/kili-technology.svg" alt="Kili Technology" loading="lazy"/></a>
         <a class="ai-logo" href="clients.html#sipearl" aria-label="SiPearl"><img src="assets/sipearl.svg" alt="SiPearl" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#joko" aria-label="Joko"><img src="assets/joko.svg" alt="Joko" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#cybelangel" aria-label="CybelAngel"><img src="assets/cybelangel.svg" alt="CybelAngel" loading="lazy"/></a>
         <a class="ai-logo" href="clients.html#linkurious" aria-label="Linkurious"><img src="assets/linkurious.svg" alt="Linkurious" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#mytraffic" aria-label="Mytraffic"><img src="assets/mytraffic.svg" alt="Mytraffic" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#trustpair" aria-label="Trustpair"><img src="assets/trustpair.svg" alt="Trustpair" loading="lazy"/></a>
         <a class="ai-logo" href="clients.html#konverso" aria-label="Konverso"><img src="assets/konverso.svg" alt="Konverso" loading="lazy"/></a>
         <a class="ai-logo" href="clients.html#whoz" aria-label="Whoz"><img src="assets/whoz.svg" alt="Whoz" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#cybelangel" aria-label="CybelAngel"><img src="assets/cybelangel.svg" alt="CybelAngel" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#mytraffic" aria-label="Mytraffic"><img src="assets/mytraffic.svg" alt="Mytraffic" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#wematch-live" aria-label="Wematch.live"><img src="assets/wematch-live.svg" alt="Wematch.live" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#trustpair" aria-label="Trustpair"><img src="assets/trustpair.svg" alt="Trustpair" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#reelevant" aria-label="Reelevant"><img src="assets/reelevant.svg" alt="Reelevant" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#ai-cargo-foundation" aria-label="AI Cargo Foundation"><img src="assets/ai-cargo-foundation.svg" alt="AI Cargo Foundation" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#pricemoov" aria-label="Pricemoov"><img src="assets/pricemoov.svg" alt="Pricemoov" loading="lazy"/></a>
         <a class="ai-logo" href="clients.html#stoik" aria-label="Stoïk"><img src="assets/stoik.svg" alt="Stoïk" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#wematch-live" aria-label="Wematch.live"><img src="assets/wematch-live.svg" alt="Wematch.live" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#reelevant" aria-label="Reelevant"><img src="assets/reelevant.svg" alt="Reelevant" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#pricemoov" aria-label="Pricemoov"><img src="assets/pricemoov.svg" alt="Pricemoov" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#ai-cargo-foundation" aria-label="AI Cargo Foundation"><img src="assets/ai-cargo-foundation.svg" alt="AI Cargo Foundation" loading="lazy"/></a>
       </div>
       <a href="clients.html" class="btn-outline see-all-bottom">Tous nos clients →</a>
     </section>

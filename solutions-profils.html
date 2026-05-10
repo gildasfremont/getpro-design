@@ -171,20 +171,46 @@
   }
 
   /* Profiles : single column flat list, même taille que la liste
-     des noms sur la page Clients. */
+     des noms sur la page Clients. Toutes les catégories sont rendues
+     en même temps les subtabs (col 1) et les chips (par section)
+     servent uniquement à scroller jusqu'à la bonne ancre. */
   .profiles-area {
     font-size: clamp(18px, 2vw, 28px);
     line-height: 1.25;
     display: flex;
     flex-direction: column;
+    gap: clamp(48px, 5vw, 80px);
+  }
+  .bucket-section {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 2.4vw, 32px);
+    /* scroll-margin-top : compense la nav sticky + les view-tabs (~110px)
+       quand on scrolle vers une ancre via subtab/chip click. */
+    scroll-margin-top: 110px;
+  }
+  .bucket-section-title {
+    font-size: clamp(22px, 2.4vw, 32px);
+    line-height: 1.2;
+    margin: 0;
   }
   .profiles-block {
     display: flex;
     flex-direction: column;
     gap: clamp(2px, 0.3vw, 6px);
-    margin-bottom: clamp(20px, 2vw, 30px);
+    /* Même offset que les sections elles-mêmes pour les chips qui
+       pointent vers un sous-bloc précis. */
+    scroll-margin-top: 110px;
   }
-  .profiles-block:last-child { margin-bottom: 0; }
+  .profiles-sub-title {
+    font-size: clamp(16px, 1.4vw, 18px);
+    line-height: 1.25;
+    opacity: 0.6;
+    margin: 0 0 clamp(8px, 1vw, 12px);
+    /* Léger letter-spacing, look "label" comme les sub-titles éditoriaux. */
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
   .profile {
     color: inherit;
     display: block;
@@ -391,7 +417,6 @@
             </div>
 
             <div class="view-body" data-view="postes">
-              <div class="filter-chips" role="tablist" id="postes-chips" hidden></div>
               <div class="profiles-area" id="profiles-area"></div>
             </div>
 
@@ -419,19 +444,33 @@
       // View tabs (Postes / Retour d'expérience) : swap des deux blocs
       // .view-body[data-view="postes"] et [data-view="rdx"].
       const viewTabsHost = document.querySelector('.view-tabs');
+
+      // Helper réutilisé par le click handler ET le deep-link au load.
+      function activateView(target) {
+        if (!viewTabsHost) return;
+        viewTabsHost.querySelectorAll('.view-tab').forEach(b => {
+          if (b.dataset.view === target) b.setAttribute('aria-current', 'true');
+          else b.removeAttribute('aria-current');
+        });
+        document.querySelectorAll('.view-body[data-view]').forEach(v => {
+          if (v.dataset.view === target) v.removeAttribute('hidden');
+          else v.setAttribute('hidden', '');
+        });
+      }
+
+      // Deep-link via hash : #temoignages | #rdx ouvrent l'onglet
+      // Témoignages directement (utilisé par le manifeste home).
+      const initHash = (location.hash || '').replace(/^#/, '');
+      if (/^(temoignages?|rdx)$/i.test(initHash)) {
+        activateView('rdx');
+      }
+
       if (viewTabsHost) {
         viewTabsHost.addEventListener('click', (e) => {
           const btn = e.target.closest('.view-tab[data-view]');
           if (!btn) return;
           const target = btn.dataset.view;
-          viewTabsHost.querySelectorAll('.view-tab').forEach(b => {
-            if (b === btn) b.setAttribute('aria-current', 'true');
-            else b.removeAttribute('aria-current');
-          });
-          document.querySelectorAll('.view-body[data-view]').forEach(v => {
-            if (v.dataset.view === target) v.removeAttribute('hidden');
-            else v.setAttribute('hidden', '');
-          });
+          activateView(target);
           // Remonte au top du panel-body avec un offset pour la nav
           // sticky et les view-tabs : navbar + tabs restent visibles,
           // le contenu de la nouvelle vue démarre proprement.
@@ -450,104 +489,100 @@
 
       let metiers = {};
       let candidates = [];
-      let activeBucket = 'tech';
-      let activeSub = null; // null = "Tous" (tous les sous-blocs visibles)
-      const chipsHost = document.getElementById('postes-chips');
 
+      // Ordre des buckets + leur libellé : on les lit depuis les subtabs
+      // de la col 1 pour rester DRY (source unique de vérité côté DOM).
+      function bucketOrder() {
+        return Array.from(tabsHost.querySelectorAll('.subtab[data-bucket]'))
+          .map(b => ({ key: b.dataset.bucket, label: b.textContent.trim() }));
+      }
+
+      // Postes : on rend toutes les catégories d'un coup, chacune dans
+      // sa propre <section data-bucket="..."> (ancre pour le scroll-to
+      // depuis les subtabs). Les sous-catégories deviennent des chips
+      // au-dessus des sous-blocs labellisés cliquer un chip scrolle
+      // au sous-bloc correspondant (data-bucket + data-sub).
       function renderProfiles() {
-        const data = metiers[activeBucket];
-        if (!data) return;
-
-        // Bucket avec sous-catégories : si activeSub est set, n'affiche
-        // que ce sous-bloc ; sinon affiche tous les sous-blocs. Plus
-        // de label en majuscules les chips au-dessus suffisent à
-        // signaler la catégorisation.
-        if (data.sub) {
-          let subs = Object.entries(data.sub).filter(([, s]) => s.postes.length > 0);
-          if (activeSub) subs = subs.filter(([slug]) => slug === activeSub);
-          profilesArea.innerHTML = subs.map(([, s]) => {
-            const list = s.postes.map(p => `<span class="profile">${escape(p.name)}</span>`).join('');
-            return `<div class="profiles-block">${list}</div>`;
-          }).join('');
-          return;
-        }
-
-        // Flat bucket : single column, plain list
-        const postes = data.postes;
-        profilesArea.innerHTML = `<div class="profiles-block">${
-          postes.map(p => `<span class="profile">${escape(p.name)}</span>`).join('')
-        }</div>`;
-      }
-
-      // Chips de filtre des sous-catégories visibles uniquement quand
-      // le bucket courant a des sub-catégories (Tech, Product). Un chip
-      // par sous-catégorie (pas de "Tous" : par défaut tous les
-      // sous-blocs sont visibles, click sur le chip actif le déselectionne
-      // pour revenir à la vue d'ensemble).
-      function renderChips() {
-        if (!chipsHost) return;
-        const data = metiers[activeBucket];
-        if (!data || !data.sub) {
-          chipsHost.hidden = true;
-          chipsHost.innerHTML = '';
-          return;
-        }
-        chipsHost.hidden = false;
-        const subs = Object.entries(data.sub).filter(([, s]) => s.postes.length > 0);
-        chipsHost.innerHTML = subs.map(([slug, s]) =>
-          `<button class="filter-chip" data-sub="${escape(slug)}" ${activeSub === slug ? 'aria-current="true"' : ''}>${escape(s.label)}</button>`
-        ).join('');
-      }
-
-      if (chipsHost) {
-        chipsHost.addEventListener('click', (e) => {
-          const btn = e.target.closest('.filter-chip[data-sub]');
-          if (!btn) return;
-          // Click sur le chip actif → deselect (revient à tous les
-          // sous-blocs) ; sinon active ce sub.
-          activeSub = (btn.dataset.sub === activeSub) ? null : btn.dataset.sub;
-          renderProfiles();
-          renderChips();
-        });
-      }
-
-      function filteredCandidates() {
-        return candidates.filter(c => c.bucket === activeBucket);
-      }
-
-      function renderTestimonials() {
-        const list = filteredCandidates();
-        if (list.length === 0) {
-          container.innerHTML = `<div class="empty-state">Aucun témoignage candidat dans cette catégorie pour le moment.</div>`;
-          return;
-        }
-        // Group by company_slug preserve insertion order = ordre du
-        // 1er candidat par boîte rencontré dans la liste filtrée.
-        const groups = new Map();
-        for (const c of list) {
-          const k = c.company_slug;
-          if (!groups.has(k)) groups.set(k, { meta: c, items: [] });
-          groups.get(k).items.push(c);
-        }
-        container.innerHTML = Array.from(groups.values()).map(({ meta, items }) => {
-          const logoOrName = meta.has_logo
-            ? `<img src="assets/${meta.company_slug}.svg" alt="${escape(meta.company_name)}" />`
-            : `<span class="company-name-fallback">${escape(meta.company_name)}</span>`;
-          const cards = items.map(c => {
-            const role = c.poste_canonique || c.intitule_original || 'Recruté';
-            return `<article class="testimonial-card">
-              <p class="testimonial-quote">“${escape(c.text)}”</p>
-              <div class="testimonial-author">
-                <div class="name">${escape(c.consumer_name)}</div>
-                <div class="role">${escape(role)}</div>
-              </div>
-            </article>`;
-          }).join('');
-          return `<div class="company-block">
-            <div class="company-logo-cell">${logoOrName}</div>
-            <div class="company-testimonials">${cards}</div>
-          </div>`;
+        profilesArea.innerHTML = bucketOrder().map(({ key, label }) => {
+          const data = metiers[key];
+          if (!data) return '';
+          let inner = '';
+          if (data.sub) {
+            const subs = Object.entries(data.sub).filter(([, s]) => s.postes.length > 0);
+            const chipsHtml = subs.length ? `<div class="filter-chips">${
+              subs.map(([slug, s]) =>
+                `<button class="filter-chip" type="button" data-bucket="${escape(key)}" data-sub="${escape(slug)}">${escape(s.label)}</button>`
+              ).join('')
+            }</div>` : '';
+            const blocksHtml = subs.map(([slug, s]) => {
+              const list = s.postes.map(p => `<span class="profile">${escape(p.name)}</span>`).join('');
+              return `<div class="profiles-block" data-bucket="${escape(key)}" data-sub="${escape(slug)}">
+                <h4 class="profiles-sub-title">${escape(s.label)}</h4>
+                ${list}
+              </div>`;
+            }).join('');
+            inner = chipsHtml + blocksHtml;
+          } else {
+            const list = data.postes.map(p => `<span class="profile">${escape(p.name)}</span>`).join('');
+            inner = `<div class="profiles-block" data-bucket="${escape(key)}">${list}</div>`;
+          }
+          return `<section class="bucket-section" data-bucket="${escape(key)}">
+            <h3 class="bucket-section-title">${escape(label)}</h3>
+            ${inner}
+          </section>`;
         }).join('');
+      }
+
+      // Délégation sur les chips rendus dans profilesArea :
+      // click → scroll au sous-bloc ciblé.
+      profilesArea.addEventListener('click', (e) => {
+        const chip = e.target.closest('.filter-chip[data-bucket][data-sub]');
+        if (!chip) return;
+        const target = profilesArea.querySelector(
+          `.profiles-block[data-bucket="${chip.dataset.bucket}"][data-sub="${chip.dataset.sub}"]`
+        );
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      // Témoignages : même logique, on rend une section par bucket
+      // (avec son titre) regroupant tous les témoignages candidats du
+      // bucket, eux-mêmes groupés par boîte. Les buckets sans témoignage
+      // sont omis pour éviter les sections vides bruyantes.
+      function renderTestimonials() {
+        const html = bucketOrder().map(({ key, label }) => {
+          const list = candidates.filter(c => c.bucket === key);
+          if (list.length === 0) return '';
+          const groups = new Map();
+          for (const c of list) {
+            const k = c.company_slug;
+            if (!groups.has(k)) groups.set(k, { meta: c, items: [] });
+            groups.get(k).items.push(c);
+          }
+          const blocks = Array.from(groups.values()).map(({ meta, items }) => {
+            const logoOrName = meta.has_logo
+              ? `<img src="assets/${meta.company_slug}.svg" alt="${escape(meta.company_name)}" />`
+              : `<span class="company-name-fallback">${escape(meta.company_name)}</span>`;
+            const cards = items.map(c => {
+              const role = c.poste_canonique || c.intitule_original || 'Recruté';
+              return `<article class="testimonial-card">
+                <p class="testimonial-quote">“${escape(c.text)}”</p>
+                <div class="testimonial-author">
+                  <div class="name">${escape(c.consumer_name)}</div>
+                  <div class="role">${escape(role)}</div>
+                </div>
+              </article>`;
+            }).join('');
+            return `<div class="company-block">
+              <div class="company-logo-cell">${logoOrName}</div>
+              <div class="company-testimonials">${cards}</div>
+            </div>`;
+          }).join('');
+          return `<section class="bucket-section" data-bucket="${escape(key)}">
+            <h3 class="bucket-section-title">${escape(label)}</h3>
+            ${blocks}
+          </section>`;
+        }).join('');
+        container.innerHTML = html || `<div class="empty-state">Aucun témoignage candidat pour le moment.</div>`;
       }
 
       // Trigger "select" du menu catégories en mobile.

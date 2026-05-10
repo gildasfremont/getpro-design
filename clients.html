@@ -167,16 +167,19 @@
     .clients-list-plain { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 
-  /* The content grid : parent grid defines the 3 column tracks, each <li.row>
-     is a real subgrid item that inherits those tracks. No display:contents. */
+  /* The content grid : parent grid définit 2 colonnes (info | témoignage),
+     chaque <li.row> est un subgrid item qui hérite de ces tracks. La col 1
+     "info" empile nom + logo sous le nom (cf .row-info plus bas). */
   .clients-list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) clamp(80px, 9vw, 130px) minmax(0, 3fr);
-    column-gap: clamp(20px, 3vw, 50px);
-    row-gap: clamp(8px, 0.8vw, 12px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    /* Gouttière colonne plus large pour aérer la frontière noms/témoignages. */
+    column-gap: clamp(40px, 6vw, 110px);
+    /* Espacement entre boîtes nettement augmenté. */
+    row-gap: clamp(28px, 3vw, 48px);
     /* Une seule taille de typo pour toute la zone : nom, preview, témoignage */
     font-size: clamp(18px, 2vw, 28px);
     line-height: 1.25;
@@ -185,7 +188,7 @@
     display: grid;
     grid-template-columns: subgrid;
     grid-column: 1 / -1;
-    align-items: baseline;
+    align-items: start;
     position: relative;
     transition: opacity 0.18s ease;
   }
@@ -197,7 +200,13 @@
   .clients-list:has(.row.active) .row.active,
   .clients-list:has(.row.active) .row:hover { opacity: 1; }
 
-  /* Col 1 : name (titre tronqué, pas de retour ligne) */
+  /* Col 1 : logo au-dessus, nom en dessous (en plus petit, rôle de label). */
+  .row-info {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.2vw, 18px);
+    min-width: 0;
+  }
   .clients-list a.name-link {
     display: block;
     color: inherit;
@@ -206,61 +215,76 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    /* Plus petit que le témoignage à droite : il sert de légende sous
+       le logo, le logo est l'identifiant principal de la marque. */
+    font-size: clamp(15px, 1.4vw, 20px);
+    line-height: 1.3;
   }
-  .clients-list a.has-tm {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-  .row.active a.has-tm { text-decoration-thickness: 2px; }
+  /* Plus de soulignement sur les noms cliquables — le ton sobre suffit,
+     le hover/curseur signalent l'interactivité. */
 
-  /* Col 2 : logo */
+  /* Logo sous le nom (taille discrète, pas le bloc principal). */
   .logo-cell {
     display: block;
-    align-self: center;
-    min-height: clamp(20px, 2vw, 28px);
+    min-width: 0;
   }
   .row-logo {
     display: block;
     height: clamp(20px, 2vw, 28px);
     width: auto;
-    max-width: clamp(80px, 9vw, 130px);
+    max-width: clamp(100px, 11vw, 150px);
     object-fit: contain;
     object-position: left center;
   }
 
-  /* Col 3 : preview + (absolute) full testimonial */
+  /* Col 2 : preview 2 lignes + (absolute) témoignage déployé */
   .row-tm {
     display: block;
     position: relative;
     min-width: 0;
   }
   .tm-line {
-    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+            line-clamp: 2;
+    -webkit-box-orient: vertical;
     opacity: 0.4;
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    /* line-height un poil resserré pour que 2 lignes s'alignent visuellement
+       avec le bloc nom+logo de gauche. */
+    line-height: 1.3;
   }
 
   .tm-full {
     display: none;
     position: absolute;
+    /* Top à 0 + padding-top à 0 : la 1ʳᵉ ligne du témoignage déployé
+       commence pile à la baseline du preview (.tm-line, gardé visible
+       en visibility:hidden pour réserver la hauteur). Latéralement et
+       en bas, la bulle blanche déborde sa colonne pour respirer. */
     top: 0;
-    left: 0;
-    right: 0;
+    left: clamp(-40px, -3vw, -24px);
+    right: clamp(-40px, -3vw, -24px);
     z-index: 2;
     background: var(--white);
-    padding-bottom: clamp(20px, 2.5vw, 40px);
+    padding: 0 clamp(32px, 4vw, 64px) clamp(48px, 6vw, 88px);
     flex-direction: column;
-    gap: clamp(18px, 2vw, 30px);
+    gap: clamp(24px, 2.6vw, 40px);
   }
   .row.active .tm-full { display: flex; }
-  /* visibility: hidden conserve la hauteur 1 ligne du preview, ce qui donne
-     à .row-tm un baseline → la 1ʳᵉ ligne du témoignage déployé s'aligne avec
-     le nom du client. */
+  /* visibility: hidden conserve la hauteur (2 lignes maintenant) du preview,
+     ce qui donne à .row-tm un baseline stable → la 1ʳᵉ ligne du témoignage
+     déployé s'aligne avec le nom du client. */
   .row.active .tm-line { visibility: hidden; }
 
-  .testimonial-quote { line-height: 1.3; }
+  /* margin: 0 OBLIGATOIRE sur la quote : le margin-block default des
+     <p> (~1em) décalerait la 1ʳᵉ ligne du témoignage déployé vers le
+     bas, alors qu'on veut un alignement strict avec la baseline du
+     preview .tm-line gardé en place via visibility: hidden. */
+  .testimonial-quote {
+    margin: 0;
+    line-height: 1.3;
+  }
   .testimonial-author .name { line-height: 1.3; }
   .testimonial-author .role { line-height: 1.3; }
 
@@ -292,15 +316,15 @@
 
   /* Phone : le témoignage actif wrap autour du nom (1ʳᵉ ligne à droite,
      puis suivantes sous le nom). Float sur le name-link, .tm-full bascule
-     en block. La grille 3 cols (nom | logo | témoignage) tient jusqu'à
-     600px : les noms longs sont déjà tronqués avec text-overflow: ellipsis,
-     pas besoin de virer le logo plus tôt. */
+     en block. La grille 2 cols (info | témoignage) tient jusqu'à 600px :
+     en dessous on passe en pleine largeur avec le wrap autour du nom. */
   @media (max-width: 600px) {
     .clients-list {
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      row-gap: clamp(8px, 0.8vw, 12px);
+      row-gap: clamp(20px, 2.4vw, 32px);
     }
     .row { grid-column: 1 / -1; display: block; }
+    .row-info { display: contents; }
     .logo-cell { display: none; }
     .row.active .tm-line { display: none; }
     .tm-full { position: relative; }
@@ -451,9 +475,12 @@
         const cls = c.has_testimonial ? 'has-tm' : 'plain';
         const clickableCls = c.has_testimonial ? ' clickable' : '';
         const activeCls = c.slug === activeSlug ? ' active' : '';
+        // Pas de span vide quand pas de logo : avec le layout en flex
+        // column (logo au-dessus du nom), un span vide créerait un gap
+        // fantôme au-dessus du nom — on n'émet rien.
         const logoCell = c.has_logo
           ? `<span class="logo-cell"><img class="row-logo" src="assets/${c.slug}.svg" alt="" loading="lazy" /></span>`
-          : '<span class="logo-cell"></span>';
+          : '';
 
         let tmCell = '<span class="row-tm"></span>';
         if (c.has_testimonial) {
@@ -475,9 +502,14 @@
           </span>`;
         }
 
+        // Col 1 = .row-info empile le logo (au-dessus, identifiant
+        // principal) et le nom (en dessous, plus petit, rôle de légende).
+        // Col 2 = .row-tm preview + (active) testimonial déployé.
         return `<li class="row${clickableCls}${activeCls}" data-slug="${c.slug}">
-          <a href="#" class="name-link ${cls}" data-slug="${c.slug}">${escape(c.name)}</a>
-          ${logoCell}
+          <div class="row-info">
+            ${logoCell}
+            <a href="#" class="name-link ${cls}" data-slug="${c.slug}">${escape(c.name)}</a>
+          </div>
           ${tmCell}
         </li>`;
       }
