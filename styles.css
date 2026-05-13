@@ -413,9 +413,10 @@ button { font-family: inherit; cursor: pointer; }
   .btn-menu { padding: 8px 12px; }
 }
 /* Hamburger : sous 480px l'écart entre le brand et la nav devient comparable
-   à l'inter-item — on bascule en menu burger. */
+   à l'inter-item, on bascule en menu burger. Sticky du header conservé,
+   menu-right en absolute s'ancre sur le header (position sticky établit
+   un containing block). */
 @media (max-width: 480px) {
-  .header { position: relative; } /* ancrage du dropdown */
   .menu-toggle { display: inline-flex; }
   .menu-right {
     display: none;
