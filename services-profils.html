@@ -341,21 +341,27 @@
     }
     .categories-trigger {
       grid-area: trigger;
-      display: inline-flex;
+      /* Match le visuel des dropdowns tabs/subtabs (cf .tabs-dropdown
+         summary dans styles.css) : box blanche bordée, padding égal,
+         chevron à droite. Cohérence avec les 2 dropdowns juste au-dessus. */
+      display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 10px;
       text-align: left;
-      padding: 0;
-      font-size: clamp(20px, 2.2vw, 30px);
-      line-height: 1.2;
-      letter-spacing: -0.01em;
-      background: none;
-      border: none;
+      width: 100%;
+      padding: clamp(10px, 2vw, 14px) clamp(12px, 2vw, 16px);
+      font-size: 16px;
+      line-height: 1.25;
+      letter-spacing: 0;
+      background: var(--white);
+      border: 1px solid var(--ink);
+      border-radius: 6px;
       cursor: pointer;
-      color: inherit;
+      color: var(--ink);
       font-family: inherit;
       align-self: center;
-      justify-self: start;
+      justify-self: stretch;
     }
     .categories-trigger .chevron {
       transition: transform 0.18s ease;
@@ -369,7 +375,7 @@
       align-self: center;
       justify-self: end;
     }
-    /* Liste cachée par défaut, visible quand on ouvre le trigger */
+    /* Liste cachée par défaut, visible en dropdown sous le trigger. */
     #bucket-tabs {
       grid-area: subtabs;
       display: none;
@@ -377,7 +383,26 @@
     #bucket-tabs.is-open {
       display: flex;
       flex-direction: column;
-      gap: clamp(10px, 1vw, 14px);
+      gap: 0;
+      background: var(--white);
+      border: 1px solid var(--ink);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .categories-col .subtab {
+      padding: clamp(10px, 2vw, 14px) clamp(12px, 2vw, 16px);
+      font-size: 16px;
+      line-height: 1.25;
+      width: auto;
+      text-align: left;
+    }
+    .categories-col .subtab[aria-current="true"] {
+      background: var(--bg);
+      text-decoration: none;
+    }
+    .categories-col .subtab:hover {
+      background: var(--bg);
     }
   }
 </style>
