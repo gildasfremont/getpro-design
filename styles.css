@@ -1003,89 +1003,87 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ---------- Panel section avec équipe (practices chasse) ----------
-   Layout 2-col en haut de chaque practice : photos compactes à gauche
-   qui se touchent (no gap), liste de noms en-dessous, intro texte +
-   CTA à droite. La hauteur des photos signale "il y a plus de contenu
-   en dessous" sans avoir besoin d'occuper toute la largeur. */
+   Layout 2-col : photos+meta empilés à gauche (chaque ligne = photo +
+   nom/rôle/expérience à côté, photos qui se touchent verticalement),
+   contenu à droite capé à 60ch (le reste est padding pour éviter que
+   le texte s'étale sur toute la largeur). */
 .panel-section--with-team {
   display: grid;
-  grid-template-columns: minmax(220px, 0.32fr) 1fr;
-  column-gap: clamp(28px, 4vw, 60px);
+  grid-template-columns: minmax(260px, 0.32fr) 1fr;
+  column-gap: clamp(32px, 4.5vw, 60px);
   align-items: start;
 }
 .panel-section--with-team .team-side {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(12px, 1.6vw, 20px);
+  display: block;
 }
-.panel-section--with-team .content-side {
+.panel-section--with-team .content-side,
+.panel-section .content-side {
   display: flex;
   flex-direction: column;
   gap: clamp(14px, 1.6vw, 22px);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  max-width: var(--measure);
+  /* ~60 caractères par ligne. La col occupe pas toute la largeur. */
+  max-width: 60ch;
 }
+.panel-section .content-side h3,
 .panel-section--with-team .content-side h3 {
   margin-bottom: clamp(4px, 0.5vw, 8px);
 }
+.panel-section .content-side p,
 .panel-section--with-team .content-side p {
   margin: 0;
 }
-/* Grille photos qui se touchent. data-count=1 → 1 col, sinon 2 cols.
-   Ratio 1:2 préservé (rectangle vertical), gap zéro partout. */
+
+/* Une consultant-row = 1 photo (gauche, rectangle vertical, touche celle
+   du dessus) + bloc meta (nom + rôle + expérience) à droite. */
 .consultants-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* photos qui se touchent par le haut */
+}
+.consultant-row {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0;
+  grid-template-columns: minmax(70px, 90px) 1fr;
+  column-gap: clamp(12px, 1.4vw, 18px);
+  align-items: start;
 }
-.consultants-stack[data-count="1"] {
-  grid-template-columns: 1fr;
-}
-.consultants-stack .photo {
+.consultant-row .photo {
   aspect-ratio: 1 / 2;
   background-size: auto 140%;
   background-repeat: no-repeat;
   background-color: #d8e0d3;
   background-position: 50% 22%;
 }
-/* Liste de noms sous le bloc photo : compacte, façon credit. */
-.team-names-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.consultant-row .consultant-meta {
+  padding-top: clamp(6px, 0.8vw, 10px);
   display: flex;
   flex-direction: column;
-  gap: clamp(3px, 0.4vw, 6px);
+  gap: 2px;
   font-size: clamp(12px, 1vw, 14px);
   line-height: 1.35;
+  width: auto;
 }
-.team-names-list .team-name { font-weight: 500; }
-.team-names-list .team-role { opacity: 0.6; }
+.consultant-row .consultant-name { font-weight: 500; }
+.consultant-row .consultant-role { opacity: 0.72; }
+.consultant-row .consultant-exp { opacity: 0.5; font-size: 0.92em; }
+
 @media (max-width: 800px) {
   .panel-section--with-team {
-    grid-template-columns: minmax(160px, 0.4fr) 1fr;
+    grid-template-columns: minmax(220px, 0.4fr) 1fr;
     column-gap: clamp(20px, 3vw, 36px);
   }
 }
 @media (max-width: 600px) {
-  /* Mobile : photos passent au-dessus du texte, en row plus large
-     pour ne pas occuper toute la hauteur. */
+  /* Mobile : team-side passe au-dessus du content-side, même structure
+     photo+meta en row, juste pleine largeur. */
   .panel-section--with-team {
     grid-template-columns: 1fr;
     row-gap: clamp(20px, 3vw, 32px);
   }
-  .consultants-stack { grid-template-columns: repeat(4, 1fr); }
-  .consultants-stack[data-count="1"] {
-    grid-template-columns: minmax(140px, 0.5fr);
-    justify-content: start;
+  .consultant-row {
+    grid-template-columns: minmax(60px, 80px) 1fr;
   }
-  .team-names-list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: clamp(8px, 1.4vw, 14px);
-  }
-  .team-names-list li { display: inline-flex; gap: 4px; }
 }
 
 /* Logo wall (services-renfort) : grille de logos clients, taille
