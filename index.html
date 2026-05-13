@@ -261,13 +261,22 @@
      toute la largeur du viewport (margin négative qui annule la gouttière
      de .section, padding-inline qui aligne le contenu interne sur --pad-x).
      Même traitement sur home : case-cards Mistral/Lucca/Filigran et
-     manifesto-card "Depuis 2015" passent en full-bleed mobile. */
+     manifesto-card "Depuis 2015" passent en full-bleed mobile.
+     Et tous les blocs APRÈS (solutions list, témoignage, ai-logos, CTAs)
+     repassent à un padding-left 0 pour rester alignés sur var(--pad-x)
+     de la section, comme le contenu interne des blocs blancs. */
   @media (max-width: 600px) {
     .case-card,
     .manifesto-card {
       margin-inline: calc(var(--pad-x) * -1);
       padding-inline: var(--pad-x);
     }
+    .manifesto-aside,
+    .ai-logos-title,
+    .ai-logos-grid {
+      padding-left: 0;
+    }
+    .see-all-bottom { margin-left: 0; }
   }
 
   /* ---------- Logos clients IA ---------- */
