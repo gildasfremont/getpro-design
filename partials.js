@@ -4,7 +4,7 @@
   const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
 
   // Pages "services-*" qui font partie du regroupement Services dans la navbar.
-  // Axe 1 (Chasse de dirigeants) = 3 practices : tech, produit, sales.
+  // Axe 1 (Recrutements ponctuels) = 3 practices : tech, produit, sales.
   // Axe 2 = renfort. Axe 3 = transition.
   const SERVICES_PAGES = [
     'services-tech.html', 'services-produit.html', 'services-sales.html',
@@ -14,7 +14,7 @@
   ];
 
   // Mapping page → sous-item Services à mettre en aria-current.
-  // Les 3 practices remontent à "Chasse de dirigeants" (services-tech).
+  // Les 3 practices remontent à "Recrutements ponctuels" (services-tech).
   const SERVICES_GROUP = {
     'services-tech.html': 'services-tech.html',
     'services-produit.html': 'services-tech.html',
@@ -52,10 +52,10 @@
             <span class="menu-caret" aria-hidden="true"></span>
           </a>
           <ul class="submenu" role="menu" aria-label="Services">
-            <li role="none"><a role="menuitem" href="services-tech.html"${aria('services-tech.html')}>Chasse de dirigeants</a></li>
+            <li role="none"><a role="menuitem" href="services-tech.html"${aria('services-tech.html')}>Recrutements ponctuels</a></li>
             <li role="none"><a role="menuitem" href="services-profils.html"${aria('services-profils.html')}>+2000 recrutements</a></li>
-            <li role="none"><a role="menuitem" href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement</a></li>
-            <li role="none"><a role="menuitem" href="services-transition.html"${aria('services-transition.html')}>Temps partagé &amp; transition</a></li>
+            <li role="none"><a role="menuitem" href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement (RPO)</a></li>
+            <li role="none"><a role="menuitem" href="services-transition.html"${aria('services-transition.html')}>Temps partagés &amp; Transition</a></li>
           </ul>
         </div>
         <a href="clients.html" class="menu-item"${aria('clients.html')}>Clients</a>
@@ -67,9 +67,9 @@
 
   const footerHTML = `
     <nav class="foot-featured" aria-label="Services principaux">
-      <a href="services-tech.html"${aria('services-tech.html')}>Chasse de dirigeants</a>
-      <a href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement</a>
-      <a href="services-transition.html"${aria('services-transition.html')}>Temps partagé &amp; transition</a>
+      <a href="services-tech.html"${aria('services-tech.html')}>Recrutements ponctuels</a>
+      <a href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement (RPO)</a>
+      <a href="services-transition.html"${aria('services-transition.html')}>Temps partagés &amp; Transition</a>
     </nav>
     <div class="foot-grid">
       <div class="foot-brand">
@@ -81,8 +81,8 @@
         <a href="services-tech.html"${aria('services-tech.html')}>Chasse Tech</a>
         <a href="services-produit.html"${aria('services-produit.html')}>Chasse Product &amp; Projects</a>
         <a href="services-sales.html"${aria('services-sales.html')}>Chasse Customer &amp; Admin</a>
-        <a href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement</a>
-        <a href="services-transition.html"${aria('services-transition.html')}>Temps partagé &amp; transition</a>
+        <a href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement (RPO)</a>
+        <a href="services-transition.html"${aria('services-transition.html')}>Temps partagés &amp; Transition</a>
       </div>
       <div class="foot-col">
         <a href="services-profils.html"${aria('services-profils.html')}>+2000 recrutements</a>
