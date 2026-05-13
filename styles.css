@@ -873,6 +873,22 @@ button { font-family: inherit; cursor: pointer; }
 .subtab:hover {
   background: #ececea;
 }
+/* Subtab accent (+2000 recrutements) : poussé tout à droite + fond gris
+   translucide (même teinte que .btn-menu Contact) pour signaler que c'est
+   une entrée à part, pas une practice. */
+.subtab--accent {
+  margin-left: auto;
+  background: var(--btn);
+}
+.subtab--accent:hover {
+  background: rgba(6, 32, 4, 0.3);
+}
+.subtab--accent[aria-current="page"] {
+  background: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+}
+
 .subtab[aria-current="true"],
 .subtab[aria-current="page"] {
   background: var(--white);
@@ -1068,8 +1084,8 @@ button { font-family: inherit; cursor: pointer; }
    le texte s'étale sur toute la largeur). */
 .panel-section--with-team {
   display: grid;
-  grid-template-columns: minmax(200px, 0.24fr) 1fr;
-  column-gap: clamp(48px, 6vw, 96px);
+  grid-template-columns: minmax(180px, 0.22fr) 1fr;
+  column-gap: clamp(72px, 9vw, 160px);
   align-items: start;
 }
 .panel-section--with-team .team-side {
