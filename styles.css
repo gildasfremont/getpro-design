@@ -1533,3 +1533,13 @@ button { font-family: inherit; cursor: pointer; }
     justify-self: start;
   }
 }
+
+/* Mobile compact spacing : réduire les gaps/paddings excessifs */
+@media (max-width: 600px) {
+  :root {
+    --gap-section: clamp(24px, 5vw, 40px);
+    --gap-card: clamp(16px, 3.8vw, 32px);
+    --pad-card-y: clamp(24px, 6.8vw, 50px);
+    --pad-card-x: clamp(16px, 4.8vw, 40px);
+  }
+}
