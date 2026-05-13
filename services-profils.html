@@ -394,6 +394,15 @@
 
       <div class="panel">
 
+        <div class="subtabs-row">
+          <nav class="subtabs" aria-label="Practices">
+            <a class="subtab" href="services-tech.html#solutions">Tech, IA &amp; Data</a>
+            <a class="subtab" href="services-produit.html#solutions">Product &amp; Projects</a>
+            <a class="subtab" href="services-sales.html#solutions">Customer &amp; Admin</a>
+            <a class="subtab" href="services-profils.html" aria-current="page">+2000 recrutements</a>
+          </nav>
+        </div>
+
         <div class="panel-body">
           <div class="categories-col">
             <button class="categories-trigger" type="button" aria-expanded="false" aria-controls="bucket-tabs">
@@ -640,11 +649,12 @@
         renderTestimonials();
         syncTriggerLabel();
         closeTrigger();
-        // Scroll vers la section bucket cliquée. La section a déjà
-        // un scroll-margin-top de 110px en CSS pour compenser le header
-        // sticky et les view-tabs sticky qui restent visibles au-dessus.
+        // Scroll vers la section bucket cliquée, dans la vue active
+        // (placements OU témoignages). scroll-margin-top: 110px sur la
+        // bucket-section compense le header sticky et les view-tabs.
         requestAnimationFrame(() => {
-          const target = profilesArea.querySelector(`.bucket-section[data-bucket="${activeBucket}"]`);
+          const activeView = document.querySelector('.view-body:not([hidden])');
+          const target = activeView ? activeView.querySelector(`.bucket-section[data-bucket="${activeBucket}"]`) : null;
           if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }

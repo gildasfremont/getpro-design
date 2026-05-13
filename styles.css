@@ -292,16 +292,37 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--white);
 }
 
-/* Tabs en mobile : la font baisse via --fs-tab qui scale au vw, donc
-   les 3 labels (Recrutements ponctuels / Renfort en recrutement (RPO) /
-   Temps partagés & Transition) doivent tenir sur 1 ligne sur la
-   plupart des viewports. Wrap autorisé en filet de sécurité sous 500px. */
-@media (max-width: 500px) {
-  .tabs {
-    flex-wrap: wrap;
-    gap: 8px 16px;
-  }
-  .tab { padding: 8px 0; }
+/* Selects natifs construits par partials.js à partir des .tabs et
+   .subtabs. Hidden par défaut, affichés en mobile pour remplacer les
+   tabs (qui ne tiennent pas sur petit viewport). */
+.tabs-select,
+.subtabs-select {
+  display: none;
+  width: 100%;
+  padding: clamp(10px, 2vw, 14px) clamp(12px, 2vw, 16px);
+  font-size: 16px;
+  line-height: 1.25;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--ink);
+  border-radius: 6px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='14' height='14'><path d='M3.5 5.75L8 10.25l4.5-4.5' fill='none' stroke='%23062004' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  /* Mobile : on cache les tabs et on montre le select à la place. */
+  .solutions-head .tabs { display: none; }
+  .solutions-head .tabs-select { display: block; }
+  .subtabs-row .subtabs { display: none; }
+  .subtabs-row { padding: 0; }
+  .subtabs-row .subtabs-select { display: block; }
 }
 
 /* ---------- Ratings (Trustpilot / Trustfolio / Google / Glassdoor) ---------- */
