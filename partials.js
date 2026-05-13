@@ -116,41 +116,6 @@
     const foot = document.querySelector('[data-footer]');
     if (foot) foot.innerHTML = footerHTML;
 
-    // Sur mobile, on remplace les .tabs et .subtabs par un dropdown
-    // custom (<details>/<summary>) — UI plus propre que le <select>
-    // natif (system picker variable selon les devices). Hidden par
-    // défaut, affichés via media query <600px.
-    function buildDropdown(navEl, sourceClass, dropdownClass, ariaLabel) {
-      if (!navEl) return;
-      const details = document.createElement('details');
-      details.className = dropdownClass;
-      details.setAttribute('aria-label', ariaLabel);
-
-      const summary = document.createElement('summary');
-      const currentLink = navEl.querySelector('a.' + sourceClass + '[aria-current="page"]');
-      const currentText = currentLink ? currentLink.textContent.trim() : navEl.querySelector('a.' + sourceClass)?.textContent.trim() || '';
-      summary.innerHTML = '<span class="dropdown-label"></span><svg class="dropdown-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 5.75L8 10.25l4.5-4.5"/></svg>';
-      summary.querySelector('.dropdown-label').textContent = currentText;
-      details.appendChild(summary);
-
-      const list = document.createElement('ul');
-      list.className = 'dropdown-list';
-      navEl.querySelectorAll('a.' + sourceClass).forEach(a => {
-        const li = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = a.href;
-        link.textContent = a.textContent.trim();
-        link.className = 'dropdown-option';
-        if (a.getAttribute('aria-current') === 'page') link.setAttribute('aria-current', 'page');
-        li.appendChild(link);
-        list.appendChild(li);
-      });
-      details.appendChild(list);
-
-      navEl.parentNode.insertBefore(details, navEl.nextSibling);
-    }
-    buildDropdown(document.querySelector('nav.tabs'), 'tab', 'tabs-dropdown', 'Navigation services');
-    buildDropdown(document.querySelector('nav.subtabs'), 'subtab', 'subtabs-dropdown', 'Navigation practices');
   };
 
   if (document.readyState === 'loading') {

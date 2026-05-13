@@ -292,85 +292,20 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--white);
 }
 
-/* Dropdown custom construit par partials.js à partir des .tabs et
-   .subtabs. <details>/<summary> natif HTML — ouverture/fermeture sans JS,
-   accessible clavier, animation native. Hidden par défaut, affichés en
-   mobile pour remplacer les tabs (qui ne tiennent pas sur petit viewport). */
-.tabs-dropdown,
-.subtabs-dropdown {
-  display: none;
-  position: relative;
-  width: 100%;
-}
-.tabs-dropdown summary,
-.subtabs-dropdown summary {
-  list-style: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: clamp(10px, 2vw, 14px) clamp(12px, 2vw, 16px);
-  font-size: 16px;
-  line-height: 1.25;
-  background: var(--white);
-  border: 1px solid var(--ink);
-  border-radius: 6px;
-  color: var(--ink);
-}
-.tabs-dropdown summary::-webkit-details-marker,
-.subtabs-dropdown summary::-webkit-details-marker { display: none; }
-.tabs-dropdown .dropdown-chevron,
-.subtabs-dropdown .dropdown-chevron {
-  flex-shrink: 0;
-  transition: transform 0.18s ease;
-}
-.tabs-dropdown[open] .dropdown-chevron,
-.subtabs-dropdown[open] .dropdown-chevron {
-  transform: rotate(180deg);
-}
-.tabs-dropdown .dropdown-list,
-.subtabs-dropdown .dropdown-list {
-  list-style: none;
-  margin: 4px 0 0;
-  padding: 0;
-  background: var(--white);
-  border: 1px solid var(--ink);
-  border-radius: 6px;
-  overflow: hidden;
-  position: absolute;
-  inset-inline: 0;
-  top: 100%;
-  z-index: 20;
-}
-.tabs-dropdown .dropdown-option,
-.subtabs-dropdown .dropdown-option {
-  display: block;
-  padding: clamp(10px, 2vw, 14px) clamp(12px, 2vw, 16px);
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--ink);
-  text-decoration: none;
-}
-.tabs-dropdown .dropdown-option[aria-current="page"],
-.subtabs-dropdown .dropdown-option[aria-current="page"] {
-  background: var(--bg);
-}
-.tabs-dropdown .dropdown-option:hover,
-.subtabs-dropdown .dropdown-option:hover {
-  background: var(--bg);
-}
-
-@media (max-width: 800px) {
-  /* Mobile/tablet : on cache les tabs/subtabs (cartouches) et on montre
-     les dropdowns à la place. Même breakpoint que le dropdown catégories
-     sur services-profils → 3 dropdowns alignés visuellement, plus de
-     cartouches + dropdown sur la même vue (incohérent). */
-  .solutions-head .tabs { display: none; }
-  .solutions-head .tabs-dropdown { display: block; }
-  .subtabs-row .subtabs { display: none; }
-  .subtabs-row { padding: 0; }
-  .subtabs-row .subtabs-dropdown { display: block; }
+/* Les .tabs (text + underline) et .subtabs (cartouches) restent visibles
+   en toutes tailles. Les subtabs ont overflow-x: auto natif pour scroller
+   latéralement quand la place manque (cf .subtabs-row .subtabs). Pas de
+   conversion en dropdown — c'est plus lisible et plus simple. */
+@media (max-width: 600px) {
+  /* Mobile : tabs en scroll horizontal aussi pour les viewports étroits. */
+  .solutions-head .tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .solutions-head .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex-shrink: 0; white-space: nowrap; }
 }
 
 /* ---------- Ratings (Trustpilot / Trustfolio / Google / Glassdoor) ---------- */
