@@ -1091,8 +1091,12 @@ button { font-family: inherit; cursor: pointer; }
   max-width: 100%;
 }
 .cases-rows--inline .case-row .case-logo-mark {
+  display: block;
+  align-self: flex-start;
+  justify-self: start;
   width: clamp(90px, 10vw, 120px);
   height: clamp(20px, 2vw, 28px);
+  margin-left: 0;
   order: -1; /* logo above verbatim */
 }
 .cases-rows--inline .case-row p {
