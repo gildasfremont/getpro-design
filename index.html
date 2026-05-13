@@ -33,9 +33,16 @@
   .hero-title {
     font-size: var(--fs-hero);
     line-height: var(--lh-hero);
-    /* max-width en ch reste constante en nombre de caractères par ligne,
-       quel que soit le viewport. ~3 lignes pour cette phrase de 109 caractères. */
+    /* max-width en ch borne la largeur sur grand viewport (~3 lignes
+       sur desktop). Sur mobile le container est plus étroit que 36ch
+       donc la limite ne joue pas. */
     max-width: 36ch;
+  }
+  /* Mobile : on libère la mesure pour utiliser la largeur dispo, et
+     on baisse le floor de la font pour rester sous 5 lignes même sur
+     les petits viewports (320-360px). */
+  @media (max-width: 600px) {
+    .hero-title { max-width: none; }
   }
 
   /* ---------- Image grid ---------- */
