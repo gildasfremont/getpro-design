@@ -1002,6 +1002,69 @@ button { font-family: inherit; cursor: pointer; }
   opacity: 0.72;
 }
 
+/* Section "Profils recrutés sur cette offre" en bas de chaque services-*.
+   Reprend la grille .two-col (catégorie à gauche, postes à droite)
+   mais sans les bordures de cases. Chaque .profils-row est une ligne
+   famille de métiers + postes inline. */
+.profils-intro {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  max-width: var(--measure);
+  margin-bottom: clamp(20px, 2.5vw, 36px);
+}
+.profils-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.5vw, 36px);
+  margin-bottom: clamp(24px, 3vw, 40px);
+}
+.profils-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.32fr) 1fr;
+  column-gap: clamp(24px, 3vw, 48px);
+  row-gap: clamp(10px, 1.4vw, 16px);
+  align-items: baseline;
+  padding-top: clamp(14px, 1.6vw, 22px);
+  border-top: 1px solid var(--line);
+}
+.profils-cat {
+  font-size: var(--fs-body);
+  line-height: 1.3;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.profils-cat small {
+  font-size: clamp(12px, 1vw, 14px);
+  opacity: 0.6;
+}
+.profils-cat-name {
+  font-weight: 500;
+}
+.profils-postes {
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: 1.5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+.profils-poste {
+  /* Chaque poste : nom + count en petit. Pas de virgule visible — le gap
+     suffit pour séparer visuellement. */
+  white-space: nowrap;
+}
+.profils-poste small {
+  font-size: 0.78em;
+  opacity: 0.5;
+  margin-left: 2px;
+}
+@media (max-width: 700px) {
+  .profils-row {
+    grid-template-columns: 1fr;
+    row-gap: clamp(8px, 1.6vw, 12px);
+  }
+}
+
 
 /* Byline consultant attaché à un case-row : petit avatar rond + nom/rôle.
    Sert quand on veut montrer qui pilote la mission présentée (ex : Camille
