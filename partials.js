@@ -46,18 +46,10 @@
         <span class="menu-toggle-bars" aria-hidden="true"></span>
       </button>
       <div class="menu-right" id="menu-right">
-        <div class="menu-item-group" data-services-group>
-          <a href="services-tech.html" class="menu-item menu-item--has-submenu"${aria('#services')} aria-haspopup="true" aria-expanded="false">
-            Services
-            <span class="menu-caret" aria-hidden="true"></span>
-          </a>
-          <ul class="submenu" role="menu" aria-label="Services">
-            <li role="none"><a role="menuitem" href="services-tech.html"${aria('services-tech.html')}>Recrutements ponctuels</a></li>
-            <li role="none"><a role="menuitem" href="services-profils.html"${aria('services-profils.html')}>+2000 recrutements</a></li>
-            <li role="none"><a role="menuitem" href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement (RPO)</a></li>
-            <li role="none"><a role="menuitem" href="services-transition.html"${aria('services-transition.html')}>Temps partagés &amp; Transition</a></li>
-          </ul>
-        </div>
+        <a href="services-tech.html" class="menu-item"${aria('services-tech.html')}>Recrutements ponctuels</a>
+        <a href="services-profils.html" class="menu-item"${aria('services-profils.html')}>+2000 recrutements</a>
+        <a href="services-renfort.html" class="menu-item"${aria('services-renfort.html')}>Renfort en recrutement (RPO)</a>
+        <a href="services-transition.html" class="menu-item"${aria('services-transition.html')}>Temps partagés &amp; Transition</a>
         <a href="clients.html" class="menu-item"${aria('clients.html')}>Clients</a>
         <a href="equipe.html" class="menu-item"${aria('equipe.html')}>Consultants</a>
         <a href="contact.html" class="btn-menu"${aria('contact.html')}>Contact</a>
@@ -121,24 +113,6 @@
             toggle.setAttribute('aria-expanded', 'false');
             toggle.setAttribute('aria-label', 'Ouvrir le menu');
           });
-        });
-      }
-      // Dropdown Services : ouvre/ferme au clic sur le parent (desktop +
-      // mobile). Le hover est géré en CSS. aria-expanded change l'état.
-      const servicesParent = nav.querySelector('[data-services-group] .menu-item--has-submenu');
-      if (servicesParent) {
-        servicesParent.addEventListener('click', (e) => {
-          // Sur desktop, on garde le comportement de lien (clic = aller sur
-          // services-tech.html). Sur petit écran sans hover, on intercepte le
-          // 1er clic pour révéler le sous-menu. window.matchMedia détecte
-          // l'absence de hover (touch).
-          const isTouch = window.matchMedia('(hover: none)').matches;
-          if (!isTouch) return;
-          const open = servicesParent.getAttribute('aria-expanded') === 'true';
-          if (!open) {
-            e.preventDefault();
-            servicesParent.setAttribute('aria-expanded', 'true');
-          }
         });
       }
     }

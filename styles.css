@@ -28,7 +28,7 @@
   --measure:    70ch;
 
   --fs-brand:         clamp(20px, 3.1vw, 45px);
-  --fs-menu:          clamp(14px, 1.65vw, 22px);
+  --fs-menu:          clamp(13px, 1.05vw, 16px);
   --fs-page-title:    clamp(36px, 6.4vw, 92px);
   --fs-hero:          clamp(22px, 4.8vw, 68px);
   --lh-hero:          clamp(28px, 5.2vw, 74px);
@@ -119,7 +119,7 @@ button { font-family: inherit; cursor: pointer; }
 .menu-right {
   display: flex;
   align-items: center;
-  gap: clamp(16px, 3.4vw, 50px);
+  gap: clamp(12px, 1.6vw, 24px);
 }
 
 .menu-item {
@@ -984,7 +984,7 @@ button { font-family: inherit; cursor: pointer; }
 .case-logo-mark.japhy    { -webkit-mask-image: url('assets/japhy.svg');             mask-image: url('assets/japhy.svg'); }
 .case-logo-mark.filigran { -webkit-mask-image: url('assets/filigran.svg');          mask-image: url('assets/filigran.svg'); }
 .case-logo-mark.mistral  { -webkit-mask-image: url('assets/mistral-ai_wordmark.svg'); mask-image: url('assets/mistral-ai_wordmark.svg'); }
-.case-logo-mark.lucca    { -webkit-mask-image: url('assets/lucca.svg');             mask-image: url('assets/lucca.svg'); }
+.case-logo-mark.lucca    { -webkit-mask-image: url('assets/Lucca-Logo-White.svg');  mask-image: url('assets/Lucca-Logo-White.svg'); }
 .case-logo-mark.flaire   { -webkit-mask-image: url('assets/flaire.svg');            mask-image: url('assets/flaire.svg'); }
 .case-logo-mark.pono     { -webkit-mask-image: url('assets/pono.svg');              mask-image: url('assets/pono.svg'); }
 .case-logo-mark.fasterize  { -webkit-mask-image: url('assets/fasterize.svg');     mask-image: url('assets/fasterize.svg'); }
@@ -1045,8 +1045,8 @@ button { font-family: inherit; cursor: pointer; }
    le texte s'étale sur toute la largeur). */
 .panel-section--with-team {
   display: grid;
-  grid-template-columns: minmax(260px, 0.32fr) 1fr;
-  column-gap: clamp(32px, 4.5vw, 60px);
+  grid-template-columns: minmax(200px, 0.24fr) 1fr;
+  column-gap: clamp(48px, 6vw, 96px);
   align-items: start;
 }
 .panel-section--with-team .team-side {
@@ -1131,8 +1131,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 .consultant-row {
   display: grid;
-  grid-template-columns: minmax(70px, 90px) 1fr;
-  column-gap: clamp(12px, 1.4vw, 18px);
+  grid-template-columns: minmax(60px, 76px) 1fr;
+  column-gap: clamp(10px, 1.2vw, 16px);
   align-items: start;
 }
 .consultant-row .photo {
@@ -1260,6 +1260,17 @@ button { font-family: inherit; cursor: pointer; }
 .logo-tile-mark.agicap   { -webkit-mask-image: url('assets/agicap.svg');              mask-image: url('assets/agicap.svg'); }
 .logo-tile-mark.harfanglab { -webkit-mask-image: url('assets/harfanglab.svg');        mask-image: url('assets/harfanglab.svg'); }
 .logo-tile-mark.kili     { -webkit-mask-image: url('assets/kili-technology.svg');     mask-image: url('assets/kili-technology.svg'); }
+.logo-tile-mark.blablacar  { -webkit-mask-image: url('assets/blablacar.svg');         mask-image: url('assets/blablacar.svg'); }
+.logo-tile-mark.doctrine   { -webkit-mask-image: url('assets/doctrine.svg');          mask-image: url('assets/doctrine.svg'); }
+.logo-tile-mark.manomano   { -webkit-mask-image: url('assets/manomano.svg');          mask-image: url('assets/manomano.svg'); }
+.logo-tile-mark.pigment    { -webkit-mask-image: url('assets/pigment.svg');           mask-image: url('assets/pigment.svg'); }
+.logo-tile-mark.joko       { -webkit-mask-image: url('assets/joko.svg');              mask-image: url('assets/joko.svg'); }
+.logo-tile-mark.eleven-labs{ -webkit-mask-image: url('assets/eleven-labs.svg');       mask-image: url('assets/eleven-labs.svg'); }
+.logo-tile-mark.mindee     { -webkit-mask-image: url('assets/mindee.svg');            mask-image: url('assets/mindee.svg'); }
+.logo-tile-mark.cybelangel { -webkit-mask-image: url('assets/cybelangel.svg');        mask-image: url('assets/cybelangel.svg'); }
+.logo-tile-mark.matera     { -webkit-mask-image: url('assets/matera.svg');            mask-image: url('assets/matera.svg'); }
+.logo-tile-mark.trustpair  { -webkit-mask-image: url('assets/trustpair.svg');         mask-image: url('assets/trustpair.svg'); }
+.logo-tile-mark.mytraffic  { -webkit-mask-image: url('assets/mytraffic.svg');         mask-image: url('assets/mytraffic.svg'); }
 
 /* Section "Profils recrutés sur cette offre" en bas de chaque services-*.
    Reprend la grille .two-col (catégorie à gauche, postes à droite)
