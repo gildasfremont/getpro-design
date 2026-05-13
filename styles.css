@@ -1037,6 +1037,16 @@ button { font-family: inherit; cursor: pointer; }
   flex: 1;
 }
 
+/* Variante pair (Temps partagé & transition) : 2 consultants en grand,
+   photos larges côte-à-côte façon CTA, pas la grille 5 cols par défaut. */
+.consultants-row--pair {
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(20px, 2vw, 32px);
+}
+.consultants-row--pair .consultant-meta {
+  font-size: clamp(15px, 1.3vw, 18px);
+}
+
 @media (max-width: 1100px) {
   .consultants-row { grid-template-columns: repeat(4, 1fr); }
 }
