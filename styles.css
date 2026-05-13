@@ -1051,7 +1051,54 @@ button { font-family: inherit; cursor: pointer; }
 }
 .panel-section--with-team .team-side {
   display: block;
+  /* Sticky : la colonne photos suit le scroll de content-side jusqu'à
+     ce qu'elle atteigne le bas de la grid (panel-section), où elle
+     "release" et scroll naturellement. top compense le header sticky. */
+  position: -webkit-sticky;
+  position: sticky;
+  top: clamp(60px, 6vw, 90px);
+  align-self: start;
 }
+@media (max-width: 600px) {
+  /* Mobile : la team-side passe au-dessus, on désactive le sticky pour
+     éviter un comportement bizarre quand on stacke en 1 col. */
+  .panel-section--with-team .team-side { position: static; }
+}
+
+/* H3 inline dans le content-side (sections fusionnées : intro / Pas de
+   sourcing / Cas clients). Marge top pour aérer le H3 par rapport au
+   paragraphe précédent, sans rompre le rythme typo. */
+.content-side .content-side-h3 {
+  margin-top: clamp(24px, 3vw, 44px);
+  margin-bottom: clamp(2px, 0.4vw, 6px);
+}
+
+/* Cas clients inline dans content-side : la grille 2-col (verbatim |
+   logo) ne tient pas dans une 60ch col. On force single-col, on shrink
+   le logo, on l'aligne à gauche au-dessus du verbatim. */
+.cases-rows--inline {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.5vw, 32px);
+}
+.cases-rows--inline .case-row {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vw, 14px);
+}
+.cases-rows--inline .case-row > * {
+  padding-right: 0;
+  max-width: 100%;
+}
+.cases-rows--inline .case-row .case-logo-mark {
+  width: clamp(90px, 10vw, 120px);
+  height: clamp(20px, 2vw, 28px);
+  order: -1; /* logo above verbatim */
+}
+.cases-rows--inline .case-row p {
+  max-width: 100%;
+}
+
 .panel-section--with-team .content-side,
 .panel-section .content-side {
   display: flex;
