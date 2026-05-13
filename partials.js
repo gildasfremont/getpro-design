@@ -85,7 +85,7 @@
         <a href="services-transition.html"${aria('services-transition.html')}>Temps partagé &amp; transition</a>
       </div>
       <div class="foot-col">
-        <a href="services-profils.html"${aria('services-profils.html')}>Métiers recrutés</a>
+        <a href="services-profils.html"${aria('services-profils.html')}>+2000 recrutements</a>
         <a href="methode.html"${aria('methode.html')}>Méthode GetPro</a>
         <a href="clients.html"${aria('clients.html')}>Clients</a>
         <a href="equipe.html"${aria('equipe.html')}>Consultants</a>

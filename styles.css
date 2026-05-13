@@ -1122,6 +1122,48 @@ button { font-family: inherit; cursor: pointer; }
   }
 }
 
+
+/* AI-logos en mono-color : variante mask du wall home ----------
+   Même dimensions que .ai-logo img (height 26-40px), masquée en ink. */
+.ai-logo-mark {
+  display: inline-block;
+  width: clamp(100px, 11vw, 160px);
+  height: clamp(26px, 2.8vw, 40px);
+  background-color: var(--ink);
+  -webkit-mask: left center / contain no-repeat;
+          mask: left center / contain no-repeat;
+  -webkit-mask-mode: alpha;
+          mask-mode: alpha;
+}
+.ai-logo-mark.agicap                { -webkit-mask-image: url('assets/agicap.svg'); mask-image: url('assets/agicap.svg'); }
+.ai-logo-mark.ai-cargo-foundation   { -webkit-mask-image: url('assets/ai-cargo-foundation.svg'); mask-image: url('assets/ai-cargo-foundation.svg'); }
+.ai-logo-mark.blablacar             { -webkit-mask-image: url('assets/blablacar.svg'); mask-image: url('assets/blablacar.svg'); }
+.ai-logo-mark.contentsquare         { -webkit-mask-image: url('assets/contentsquare.svg'); mask-image: url('assets/contentsquare.svg'); }
+.ai-logo-mark.cybelangel            { -webkit-mask-image: url('assets/cybelangel.svg'); mask-image: url('assets/cybelangel.svg'); }
+.ai-logo-mark.doctrine              { -webkit-mask-image: url('assets/doctrine.svg'); mask-image: url('assets/doctrine.svg'); }
+.ai-logo-mark.electra               { -webkit-mask-image: url('assets/electra.svg'); mask-image: url('assets/electra.svg'); }
+.ai-logo-mark.eleven-labs           { -webkit-mask-image: url('assets/eleven-labs.svg'); mask-image: url('assets/eleven-labs.svg'); }
+.ai-logo-mark.filigran              { -webkit-mask-image: url('assets/filigran.svg'); mask-image: url('assets/filigran.svg'); }
+.ai-logo-mark.foodles               { -webkit-mask-image: url('assets/foodles.svg'); mask-image: url('assets/foodles.svg'); }
+.ai-logo-mark.harfanglab            { -webkit-mask-image: url('assets/harfanglab.svg'); mask-image: url('assets/harfanglab.svg'); }
+.ai-logo-mark.joko                  { -webkit-mask-image: url('assets/joko.svg'); mask-image: url('assets/joko.svg'); }
+.ai-logo-mark.kili                  { -webkit-mask-image: url('assets/kili-technology.svg'); mask-image: url('assets/kili-technology.svg'); }
+.ai-logo-mark.konverso              { -webkit-mask-image: url('assets/konverso.svg'); mask-image: url('assets/konverso.svg'); }
+.ai-logo-mark.linkurious            { -webkit-mask-image: url('assets/linkurious.svg'); mask-image: url('assets/linkurious.svg'); }
+.ai-logo-mark.manomano              { -webkit-mask-image: url('assets/manomano.svg'); mask-image: url('assets/manomano.svg'); }
+.ai-logo-mark.matera                { -webkit-mask-image: url('assets/matera.svg'); mask-image: url('assets/matera.svg'); }
+.ai-logo-mark.mindee                { -webkit-mask-image: url('assets/mindee.svg'); mask-image: url('assets/mindee.svg'); }
+.ai-logo-mark.mistral               { -webkit-mask-image: url('assets/mistral-ai_wordmark.svg'); mask-image: url('assets/mistral-ai_wordmark.svg'); }
+.ai-logo-mark.mytraffic             { -webkit-mask-image: url('assets/mytraffic.svg'); mask-image: url('assets/mytraffic.svg'); }
+.ai-logo-mark.pigment               { -webkit-mask-image: url('assets/pigment.svg'); mask-image: url('assets/pigment.svg'); }
+.ai-logo-mark.pricemoov             { -webkit-mask-image: url('assets/pricemoov.svg'); mask-image: url('assets/pricemoov.svg'); }
+.ai-logo-mark.reelevant             { -webkit-mask-image: url('assets/reelevant.svg'); mask-image: url('assets/reelevant.svg'); }
+.ai-logo-mark.sipearl               { -webkit-mask-image: url('assets/sipearl.svg'); mask-image: url('assets/sipearl.svg'); }
+.ai-logo-mark.stoik                 { -webkit-mask-image: url('assets/stoik.svg'); mask-image: url('assets/stoik.svg'); }
+.ai-logo-mark.trustpair             { -webkit-mask-image: url('assets/trustpair.svg'); mask-image: url('assets/trustpair.svg'); }
+.ai-logo-mark.wematch-live          { -webkit-mask-image: url('assets/wematch-live.svg'); mask-image: url('assets/wematch-live.svg'); }
+.ai-logo-mark.whoz                  { -webkit-mask-image: url('assets/whoz.svg'); mask-image: url('assets/whoz.svg'); }
+
 /* Logo wall (services-renfort) : grille de logos clients, taille
    uniforme façon hall des partenaires. Inspirée du .ai-logos-grid
    de la home mais plus compacte (intégrée dans un panel-section). */
