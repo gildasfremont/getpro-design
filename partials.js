@@ -46,10 +46,7 @@
         <span class="menu-toggle-bars" aria-hidden="true"></span>
       </button>
       <div class="menu-right" id="menu-right">
-        <a href="services-tech.html" class="menu-item"${aria('services-tech.html')}>Recrutements ponctuels</a>
-        <a href="services-profils.html" class="menu-item"${aria('services-profils.html')}>+2000 recrutements</a>
-        <a href="services-renfort.html" class="menu-item"${aria('services-renfort.html')}>Renfort en recrutement (RPO)</a>
-        <a href="services-transition.html" class="menu-item"${aria('services-transition.html')}>Temps partagés &amp; Transition</a>
+        <a href="services-tech.html" class="menu-item"${aria('#services')}>Services</a>
         <a href="clients.html" class="menu-item"${aria('clients.html')}>Clients</a>
         <a href="equipe.html" class="menu-item"${aria('equipe.html')}>Consultants</a>
         <a href="contact.html" class="btn-menu"${aria('contact.html')}>Contact</a>
