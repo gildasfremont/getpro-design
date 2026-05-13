@@ -179,10 +179,11 @@
   .case-image-lucca   { background-image: url('assets/Gsatge-0224-6.jpg'); }
   .case-image-filigran { background-image: url('assets/filigran-cover.jpg'); }
 
-  /* ---------- Manifesto editorial : card blanche + témoignage en stack vertical ---------- */
-  /* Card "Depuis 2015" en haut (50% gauche), témoignage juste en dessous
-     avec son texte aligné sur le contenu intérieur de la card pour une
-     continuité visuelle verticale entre les deux paragraphes. */
+  /* ---------- Manifesto editorial : card blanche full-width + témoignage ---------- */
+  /* "Depuis 2015" est un bloc blanc full-width qui fonctionne comme les
+     case-cards (Mistral / Lucca / Filigran) au-dessus. Le témoignage
+     passe en dessous, son texte aligné sur le contenu intérieur de la
+     card pour une continuité visuelle. */
   .manifesto {
     padding-block: var(--gap-section);
   }
@@ -197,10 +198,6 @@
     display: flex;
     flex-direction: column;
     gap: clamp(20px, 2vw, 32px);
-    /* La card occupe ~50% à gauche, comme avant — l'aside passe juste
-       en dessous au lieu de à côté. */
-    width: clamp(320px, 50%, 720px);
-    align-self: flex-start;
   }
   /* Titre "Depuis 2015" — même taille que les noms de boîtes des
      case-cards au-dessus (--fs-card-name) pour cohérence typo. */
@@ -217,6 +214,7 @@
     font-size: clamp(18px, 2vw, 26px);
     line-height: 1.35;
     margin: 0;
+    max-width: var(--measure);
   }
   /* Bloc témoignage en dessous de la card, posé sur le fond vert.
      padding-left = --pad-card-x pour aligner le texte du témoignage
@@ -226,8 +224,6 @@
     flex-direction: column;
     gap: clamp(20px, 2vw, 32px);
     padding-left: var(--pad-card-x);
-    padding-right: var(--pad-card-x);
-    max-width: var(--measure);
   }
   .manifesto-quote {
     margin: 0;
@@ -255,8 +251,7 @@
     align-self: flex-start;
   }
   @media (max-width: 800px) {
-    .manifesto-card { width: 100%; }
-    .manifesto-aside { padding-left: var(--pad-card-x); padding-right: 0; }
+    .manifesto-aside { padding-left: var(--pad-card-x); }
   }
 
   /* ---------- Logos clients IA ---------- */
