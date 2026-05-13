@@ -32,7 +32,9 @@
   }
   .view-tabs {
     /* Sticky en haut du content-col pendant le scroll. align-self: stretch
-       pour que le fond blanc couvre toute la largeur du content-col. */
+       pour que le fond blanc couvre toute la largeur du content-col.
+       Box-shadow vertical + isolation pour empêcher le contenu de bleed
+       au-dessus ou en dessous lors du scroll. */
     display: flex;
     align-self: stretch;
     gap: clamp(20px, 3vw, 50px);
@@ -43,11 +45,13 @@
     background: var(--white);
     /* padding-block-start généreux : crée une bande blanche au-dessus du
        texte des tabs pour respirer quand le sticky vient se coller juste
-       sous la nav. End 0 : la border-bottom touche pile la baseline.
-       Le tab actif posera son underline 2px par-dessus le hairline. */
+       sous la nav. End 0 : la border-bottom touche pile la baseline. */
     padding-block: clamp(24px, 2.8vw, 40px) 0;
     border-bottom: 1px solid var(--line);
-    z-index: 4;
+    /* Box-shadow vers le haut pour masquer le contenu qui pourrait
+       passer à travers la zone sous le header. */
+    box-shadow: 0 -20px 0 0 var(--white);
+    z-index: 10;
   }
   .view-tab {
     /* Pas de padding-top : Placements aligne sa baseline sur "Tech" dans
@@ -103,6 +107,10 @@
     /* Padding-top pour aérer Tech du haut du panel et matcher le padding
        des view-tabs (Placements/Témoignages alignés sur Tech). */
     padding-top: clamp(24px, 2.8vw, 40px);
+    /* Fond blanc + z-index pour masquer le contenu qui scroll derrière
+       la colonne sticky. */
+    background: var(--white);
+    z-index: 5;
   }
   .subtabs {
     display: flex;
@@ -632,15 +640,14 @@
         renderTestimonials();
         syncTriggerLabel();
         closeTrigger();
-        // Remonte au top du panel-body avec un offset pour la nav sticky :
-        // navbar + tabs restent visibles, la nouvelle catégorie démarre
-        // proprement sans renvoyer l'utilisateur tout en haut de la page.
+        // Scroll vers la section bucket cliquée. La section a déjà
+        // un scroll-margin-top de 110px en CSS pour compenser le header
+        // sticky et les view-tabs sticky qui restent visibles au-dessus.
         requestAnimationFrame(() => {
-          const panelBody = document.querySelector('.panel-body');
-          if (!panelBody) return;
-          const headerOffset = 110;
-          const top = panelBody.getBoundingClientRect().top + window.scrollY - headerOffset;
-          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+          const target = profilesArea.querySelector(`.bucket-section[data-bucket="${activeBucket}"]`);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
         });
       });
 
