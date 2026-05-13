@@ -292,37 +292,82 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--white);
 }
 
-/* Selects natifs construits par partials.js à partir des .tabs et
-   .subtabs. Hidden par défaut, affichés en mobile pour remplacer les
-   tabs (qui ne tiennent pas sur petit viewport). */
-.tabs-select,
-.subtabs-select {
+/* Dropdown custom construit par partials.js à partir des .tabs et
+   .subtabs. <details>/<summary> natif HTML — ouverture/fermeture sans JS,
+   accessible clavier, animation native. Hidden par défaut, affichés en
+   mobile pour remplacer les tabs (qui ne tiennent pas sur petit viewport). */
+.tabs-dropdown,
+.subtabs-dropdown {
   display: none;
+  position: relative;
   width: 100%;
+}
+.tabs-dropdown summary,
+.subtabs-dropdown summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   padding: clamp(10px, 2vw, 14px) clamp(12px, 2vw, 16px);
   font-size: 16px;
   line-height: 1.25;
-  font-family: inherit;
-  color: var(--ink);
   background: var(--white);
   border: 1px solid var(--ink);
   border-radius: 6px;
-  appearance: none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='14' height='14'><path d='M3.5 5.75L8 10.25l4.5-4.5' fill='none' stroke='%23062004' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 36px;
-  cursor: pointer;
+  color: var(--ink);
+}
+.tabs-dropdown summary::-webkit-details-marker,
+.subtabs-dropdown summary::-webkit-details-marker { display: none; }
+.tabs-dropdown .dropdown-chevron,
+.subtabs-dropdown .dropdown-chevron {
+  flex-shrink: 0;
+  transition: transform 0.18s ease;
+}
+.tabs-dropdown[open] .dropdown-chevron,
+.subtabs-dropdown[open] .dropdown-chevron {
+  transform: rotate(180deg);
+}
+.tabs-dropdown .dropdown-list,
+.subtabs-dropdown .dropdown-list {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  background: var(--white);
+  border: 1px solid var(--ink);
+  border-radius: 6px;
+  overflow: hidden;
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  z-index: 20;
+}
+.tabs-dropdown .dropdown-option,
+.subtabs-dropdown .dropdown-option {
+  display: block;
+  padding: clamp(10px, 2vw, 14px) clamp(12px, 2vw, 16px);
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--ink);
+  text-decoration: none;
+}
+.tabs-dropdown .dropdown-option[aria-current="page"],
+.subtabs-dropdown .dropdown-option[aria-current="page"] {
+  background: var(--bg);
+}
+.tabs-dropdown .dropdown-option:hover,
+.subtabs-dropdown .dropdown-option:hover {
+  background: var(--bg);
 }
 
 @media (max-width: 600px) {
-  /* Mobile : on cache les tabs et on montre le select à la place. */
+  /* Mobile : on cache les tabs et on montre le dropdown à la place. */
   .solutions-head .tabs { display: none; }
-  .solutions-head .tabs-select { display: block; }
+  .solutions-head .tabs-dropdown { display: block; }
   .subtabs-row .subtabs { display: none; }
   .subtabs-row { padding: 0; }
-  .subtabs-row .subtabs-select { display: block; }
+  .subtabs-row .subtabs-dropdown { display: block; }
 }
 
 /* ---------- Ratings (Trustpilot / Trustfolio / Google / Glassdoor) ---------- */
@@ -714,7 +759,14 @@ button { font-family: inherit; cursor: pointer; }
   .solutions-overview-list { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
-  .solutions-overview-list { grid-template-columns: 1fr; }
+  .solutions-overview-list {
+    grid-template-columns: 1fr;
+    /* Mobile : padding-left 0 pour aligner avec le contenu interne des
+       blocs blancs full-bleed (cf .case-card, .manifesto-card sur
+       index.html). Tout le contenu se cale sur --pad-x de la section. */
+    padding-left: 0;
+  }
+  .solutions-overview-cta { margin-left: 0; }
 }
 
 /* ---------- Solutions pages (Chasse + Renfort RH) ---------- */
