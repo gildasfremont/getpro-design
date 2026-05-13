@@ -112,29 +112,34 @@
     background: var(--white);
     z-index: 5;
   }
-  .subtabs {
+  /* Bucket-tabs dans la categories-col (Tech, Product, Data... 8 items)
+     Scopés à .categories-col pour ne PAS écraser le styling cartouche
+     des .subtabs/.subtab globaux utilisés par les practices au-dessus
+     (Tech, IA & Data / Product & Projects / Customer & Admin / +2000). */
+  .categories-col .subtabs {
     display: flex;
     flex-direction: column;
     gap: clamp(10px, 1vw, 14px);
   }
-  .subtab {
+  .categories-col .subtab {
     padding: 0;
-    /* Même taille que les noms dans la liste Clients pour rester
-       visuellement cohérent (catégories = entrée principale). */
     font-size: clamp(18px, 2vw, 28px);
     line-height: 1.25;
     cursor: pointer;
     background: none;
     border: none;
+    border-radius: 0;
     color: inherit;
     font-family: inherit;
     text-align: left;
     display: inline-block;
     width: max-content;
   }
-  .subtab[aria-current="true"] {
+  .categories-col .subtab[aria-current="true"] {
     text-decoration: underline;
     text-underline-offset: 4px;
+    background: none;
+    border-color: transparent;
   }
   /* Désactive le pseudo-bar global (.subtab[aria-current]::after,
      une bande 2px de var(--ink) sous le tab) sinon on a un double
