@@ -689,7 +689,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .solutions-overview-list p {
   font-size: clamp(18px, 2vw, 26px);
-  line-height: 1.35;
+  line-height: 1.45;
   margin: 0;
   max-width: 32ch;
 }
