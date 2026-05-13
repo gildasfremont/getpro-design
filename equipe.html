@@ -65,7 +65,7 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 0;
     row-gap: clamp(28px, 3.4vw, 56px);
-    padding-left: clamp(32px, 6vw, 120px);
+    padding-left: var(--pad-x);
   }
   .team-card {
     display: flex;
@@ -199,7 +199,7 @@
     .team-grid {
       position: static;
       width: 100%;
-      padding-left: 0;
+      padding-left: var(--pad-x);
     }
   }
 
@@ -218,7 +218,7 @@
   @media (max-width: 480px) {
     .team-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      padding-left: clamp(16px, 4vw, 24px);
+      padding-left: var(--pad-x);
       row-gap: clamp(20px, 3vw, 32px);
     }
     .team-photo { aspect-ratio: 2 / 3; }
