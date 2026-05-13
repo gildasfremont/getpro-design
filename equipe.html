@@ -55,17 +55,16 @@
     max-width: var(--measure);
   }
 
-  /* Grille photos : 2-col, photos plus grandes / plus présentes. Gap
+  /* Grille photos : 3-col, photos plus grandes / plus présentes. Gap
      horizontal 0 (cartes se touchent latéralement) + row-gap pour
-     respirer entre les lignes. Padding-left généreux pour décoller la
-     grille de la colonne manifeste à gauche — l'air entre les deux
-     colonnes structure la page. */
+     respirer entre les lignes. Pas de padding-left : le gap entre les
+     colonnes (manifeste / photos) suffit à séparer visuellement, sans
+     créer un décalage à droite des photos dans leur propre colonne. */
   .team-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 0;
     row-gap: clamp(28px, 3.4vw, 56px);
-    padding-left: clamp(32px, 6vw, 120px);
   }
   .team-card {
     display: flex;
@@ -92,7 +91,7 @@
     padding: clamp(8px, 0.9vw, 14px) 0 0;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: clamp(2px, 0.3vw, 4px);
   }
   .team-name {
     font-size: var(--fs-body);
