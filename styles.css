@@ -292,6 +292,28 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--white);
 }
 
+/* Tabs en mobile : les 4 labels longs (Recrutement ponctuel / Renfort en
+   recrutement / Temps partagé & transition / Profils recrutés) débordent
+   à viewport étroit. À <800px on autorise le wrap, on baisse la font
+   et le gap. À <500px on serre encore et on laisse le push-right
+   reprendre le flow naturel (sinon il saute sur sa propre ligne). */
+@media (max-width: 800px) {
+  .tabs {
+    flex-wrap: wrap;
+    gap: clamp(14px, 2.4vw, 24px) clamp(16px, 3vw, 28px);
+  }
+  .tab { font-size: clamp(16px, 3vw, 22px); padding: clamp(10px, 2vw, 14px) 0; }
+  .tab--push-right { margin-left: auto; }
+}
+@media (max-width: 500px) {
+  .tabs { gap: 10px 18px; }
+  .tab { font-size: 15px; padding: 8px 0; }
+  /* Push-right désactivé sur smartphone : le btn "Profils recrutés"
+     prend sa place naturelle dans le wrap, plutôt que de sauter à
+     droite tout seul. */
+  .tab--push-right { margin-left: 0; }
+}
+
 /* ---------- Ratings (Trustpilot / Trustfolio / Google / Glassdoor) ---------- */
 .ratings-row {
   display: flex;
@@ -370,6 +392,14 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 800px) {
   .menu-label-full { display: none; }
   .menu-label-short { display: inline; }
+  /* Nav tightening dans la fenêtre 480-800px : gaps réduits, brand plus
+     petit pour laisser respirer les 4 items (Services, Clients,
+     Consultants, Contact) qui se côtoient sans hamburger. */
+  .menu { gap: clamp(12px, 2vw, 24px); }
+  .menu-right { gap: clamp(12px, 2.4vw, 22px); }
+  .menu-item, .btn-menu { font-size: 14px; line-height: 1.25; }
+  .brand { width: clamp(82px, 9.6vw, 110px); height: clamp(18px, 1.95vw, 24px); }
+  .btn-menu { padding: 8px 12px; }
 }
 /* Hamburger : sous 480px l'écart entre le brand et la nav devient comparable
    à l'inter-item — on bascule en menu burger. */
@@ -877,6 +907,14 @@ button { font-family: inherit; cursor: pointer; }
 .two-col p { margin-bottom: clamp(14px, 1.6vw, 24px); }
 .two-col p:last-child { margin-bottom: 0; }
 
+/* Mobile : la grille 50/50 amputerait le texte à <700px. On passe en
+   single-col, padding-right neutralisé pour récupérer la pleine largeur.
+   Pas de baisse de --fs-body : la lisibilité du corps reste intransigeante. */
+@media (max-width: 700px) {
+  .two-col { grid-template-columns: 1fr; row-gap: clamp(18px, 4vw, 28px); }
+  .two-col > * { padding-right: 0; max-width: 100%; }
+}
+
 /* Cas clients : même grille 50/50 que .two-col pour aligner texte de gauche
    et logo de droite. */
 .cases-rows { display: flex; flex-direction: column; gap: clamp(24px, 3vw, 40px); }
@@ -897,6 +935,17 @@ button { font-family: inherit; cursor: pointer; }
   line-height: var(--lh-body);
   max-width: var(--measure);
 }
+/* Mobile : stack le case-row en single-col, logo en bas plus petit pour
+   ne pas écraser visuellement le verbatim au-dessus. */
+@media (max-width: 700px) {
+  .case-row {
+    grid-template-columns: 1fr;
+    row-gap: clamp(14px, 3vw, 22px);
+  }
+  .case-row > * { padding-right: 0; }
+  .case-row .case-logo-mark { width: clamp(80px, 22vw, 130px); }
+}
+
 .case-logo-mark {
   justify-self: start;
   width: clamp(100px, 12vw, 170px);
