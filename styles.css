@@ -1002,6 +1002,92 @@ button { font-family: inherit; cursor: pointer; }
   opacity: 0.72;
 }
 
+/* ---------- Panel section avec équipe (practices chasse) ----------
+   Layout 2-col en haut de chaque practice : photos compactes à gauche
+   qui se touchent (no gap), liste de noms en-dessous, intro texte +
+   CTA à droite. La hauteur des photos signale "il y a plus de contenu
+   en dessous" sans avoir besoin d'occuper toute la largeur. */
+.panel-section--with-team {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.32fr) 1fr;
+  column-gap: clamp(28px, 4vw, 60px);
+  align-items: start;
+}
+.panel-section--with-team .team-side {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.6vw, 20px);
+}
+.panel-section--with-team .content-side {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.6vw, 22px);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  max-width: var(--measure);
+}
+.panel-section--with-team .content-side h3 {
+  margin-bottom: clamp(4px, 0.5vw, 8px);
+}
+.panel-section--with-team .content-side p {
+  margin: 0;
+}
+/* Grille photos qui se touchent. data-count=1 → 1 col, sinon 2 cols.
+   Ratio 1:2 préservé (rectangle vertical), gap zéro partout. */
+.consultants-stack {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+.consultants-stack[data-count="1"] {
+  grid-template-columns: 1fr;
+}
+.consultants-stack .photo {
+  aspect-ratio: 1 / 2;
+  background-size: auto 140%;
+  background-repeat: no-repeat;
+  background-color: #d8e0d3;
+  background-position: 50% 22%;
+}
+/* Liste de noms sous le bloc photo : compacte, façon credit. */
+.team-names-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3px, 0.4vw, 6px);
+  font-size: clamp(12px, 1vw, 14px);
+  line-height: 1.35;
+}
+.team-names-list .team-name { font-weight: 500; }
+.team-names-list .team-role { opacity: 0.6; }
+@media (max-width: 800px) {
+  .panel-section--with-team {
+    grid-template-columns: minmax(160px, 0.4fr) 1fr;
+    column-gap: clamp(20px, 3vw, 36px);
+  }
+}
+@media (max-width: 600px) {
+  /* Mobile : photos passent au-dessus du texte, en row plus large
+     pour ne pas occuper toute la hauteur. */
+  .panel-section--with-team {
+    grid-template-columns: 1fr;
+    row-gap: clamp(20px, 3vw, 32px);
+  }
+  .consultants-stack { grid-template-columns: repeat(4, 1fr); }
+  .consultants-stack[data-count="1"] {
+    grid-template-columns: minmax(140px, 0.5fr);
+    justify-content: start;
+  }
+  .team-names-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: clamp(8px, 1.4vw, 14px);
+  }
+  .team-names-list li { display: inline-flex; gap: 4px; }
+}
+
 /* Logo wall (services-renfort) : grille de logos clients, taille
    uniforme façon hall des partenaires. Inspirée du .ai-logos-grid
    de la home mais plus compacte (intégrée dans un panel-section). */
