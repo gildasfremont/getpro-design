@@ -179,24 +179,22 @@
   .case-image-lucca   { background-image: url('assets/Gsatge-0224-6.jpg'); }
   .case-image-filigran { background-image: url('assets/filigran-cover.jpg'); }
 
-  /* ---------- Manifesto editorial : white card 50% + témoignage hors-card ---------- */
-  /* La section coupe la largeur en deux : la card blanche tient sur
-     50% à gauche, le témoignage respire à droite directement sur le
-     fond vert (en dehors de la card). */
+  /* ---------- Manifesto editorial : card blanche full-width + témoignage ---------- */
+  /* "Depuis 2015" est un bloc blanc full-width qui fonctionne comme les
+     case-cards (Mistral / Lucca / Filigran) au-dessus. Le témoignage
+     passe en dessous, son texte aligné sur le contenu intérieur de la
+     card pour une continuité visuelle. */
   .manifesto {
     padding-block: var(--gap-section);
   }
   .manifesto-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(32px, 4vw, 80px);
-    /* Center : l'aside (témoignage + CTA) se cale au milieu vertical de
-       la card blanche à gauche, peu importe la longueur respective. */
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(36px, 4.5vw, 70px);
   }
   .manifesto-card {
     background: var(--white);
-    padding: clamp(48px, 6.8vw, 100px) clamp(28px, 4.8vw, 80px);
+    padding: var(--pad-card-y) var(--pad-card-x);
     display: flex;
     flex-direction: column;
     gap: clamp(20px, 2vw, 32px);
@@ -216,15 +214,16 @@
     font-size: clamp(18px, 2vw, 26px);
     line-height: 1.35;
     margin: 0;
+    max-width: var(--measure);
   }
-  /* Bloc témoignage hors-card, posé à droite sur le fond vert.
-     Pas de padding-top : on s'appuie sur align-items: center du parent
-     pour centrer l'aside sur la card blanche à gauche. */
+  /* Bloc témoignage en dessous de la card, posé sur le fond vert.
+     padding-left = --pad-card-x pour aligner le texte du témoignage
+     avec le texte à l'intérieur de la card (continuité visuelle). */
   .manifesto-aside {
     display: flex;
     flex-direction: column;
     gap: clamp(20px, 2vw, 32px);
-    padding-right: clamp(20px, 5vw, 90px);
+    padding-left: var(--pad-card-x);
   }
   .manifesto-quote {
     margin: 0;
@@ -252,8 +251,7 @@
     align-self: flex-start;
   }
   @media (max-width: 800px) {
-    .manifesto-row { grid-template-columns: 1fr; }
-    .manifesto-aside { padding-top: 0; }
+    .manifesto-aside { padding-left: var(--pad-card-x); }
   }
 
   /* ---------- Logos clients IA ---------- */
@@ -268,8 +266,8 @@
     padding: clamp(40px, 5vw, 80px) var(--pad-x);
   }
   .ai-logos-title {
-    padding-left: var(--pad-x);
-    padding-right: var(--pad-x);
+    padding-left: var(--pad-card-x);
+    padding-right: clamp(0px, 3.5vw, 50px);
   }
   .ai-logos-title h2 {
     font-size: var(--fs-section-title);
@@ -280,11 +278,13 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    /* Écarts plus serrés entre logos pour densifier la rangée. */
+    /* Écarts plus serrés entre logos pour densifier la rangée maintenant
+       qu'on en affiche ~28. Padding-right généreux côté droit pour ne
+       pas que la dernière ligne s'étale jusqu'au bord du viewport. */
     column-gap: clamp(24px, 2.8vw, 48px);
     row-gap: clamp(20px, 2.4vw, 36px);
-    padding-left: var(--pad-x);
-    padding-right: var(--pad-x);
+    padding-left: var(--pad-card-x);
+    padding-right: clamp(40px, 8vw, 140px);
   }
   .ai-logo {
     display: inline-flex;
@@ -302,18 +302,7 @@
 
   .see-all-bottom {
     align-self: flex-start;
-    margin-left: var(--pad-x);
-  }
-
-  /* ---------- Breakpoints (structural changes only) ---------- */
-  @media (max-width: 800px) {
-    /* Aligner sur var(--pad-x) pour cohérence */
-    .ai-logos-title,
-    .ai-logos-rows {
-      padding-left: var(--pad-x);
-      padding-right: var(--pad-x);
-    }
-    .see-all-bottom { margin-left: var(--pad-x); }
+    margin-left: var(--pad-card-x);
   }
 </style>
 </head>
