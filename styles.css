@@ -1002,6 +1002,29 @@ button { font-family: inherit; cursor: pointer; }
   opacity: 0.72;
 }
 
+/* Logo wall (services-renfort) : grille de logos clients, taille
+   uniforme façon hall des partenaires. Inspirée du .ai-logos-grid
+   de la home mais plus compacte (intégrée dans un panel-section). */
+.logos-wall {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: clamp(28px, 3.4vw, 56px);
+  row-gap: clamp(20px, 2.4vw, 36px);
+  margin-top: clamp(20px, 2.4vw, 36px);
+}
+.logo-tile {
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.18s ease;
+}
+.logo-tile:hover { opacity: 0.7; }
+.logo-tile img {
+  height: clamp(22px, 2.4vw, 34px);
+  width: auto;
+  display: block;
+}
+
 /* Section "Profils recrutés sur cette offre" en bas de chaque services-*.
    Reprend la grille .two-col (catégorie à gauche, postes à droite)
    mais sans les bordures de cases. Chaque .profils-row est une ligne
