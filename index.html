@@ -33,11 +33,9 @@
   .hero-title {
     font-size: var(--fs-hero);
     line-height: var(--lh-hero);
-  }
-  /* Sous 600px le <br> ne tombe plus sur un break naturel : on le neutralise
-     pour laisser le texte wrapper proprement. */
-  @media (max-width: 600px) {
-    .hero-title br { display: none; }
+    /* max-width donne une mesure de lecture confortable. Le titre wrap
+       naturellement sur 2-3 lignes selon le viewport. */
+    max-width: 26ch;
   }
 
   /* ---------- Image grid ---------- */
@@ -329,9 +327,7 @@
     <section class="hero section">
       <div class="hero-inner">
         <h1 class="hero-title">
-          Nous mettons en relation les talents les plus pointus<br>
-          et les meilleures entreprises technologiques<br>
-          depuis 2015
+          Nous mettons en relation les talents les plus pointus et les meilleures entreprises technologiques depuis 2015
         </h1>
 
         <div class="grid-images" aria-label="Galerie consultants">
