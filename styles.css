@@ -28,10 +28,10 @@
   --measure:    70ch;
 
   --fs-brand:         clamp(20px, 3.1vw, 45px);
-  --fs-menu:          clamp(14px, 1.65vw, 22px);
+  --fs-menu:          clamp(14px, 1.25vw, 18px);
   --fs-page-title:    clamp(36px, 6.4vw, 92px);
-  --fs-hero:          clamp(28px, 6vw, 88px);
-  --lh-hero:          clamp(34px, 6.6vw, 96px);
+  --fs-hero:          clamp(22px, 4.8vw, 68px);
+  --lh-hero:          clamp(28px, 5.2vw, 74px);
   --fs-section-title: clamp(18px, 2.7vw, 39px);
   --lh-section-title: clamp(20px, 2.95vw, 43px);
   --fs-card-name:     clamp(22px, 3.55vw, 52px);
@@ -42,7 +42,7 @@
   --lh-card-sub:      clamp(18px, 2.5vw, 36px);
   --fs-quote:         clamp(15px, 2.2vw, 32px);
   --lh-quote:         clamp(22px, 2.75vw, 40px);
-  --fs-tab:           clamp(20px, 2.6vw, 36px);
+  --fs-tab:           clamp(15px, 1.85vw, 24px);
   --fs-body:          clamp(15px, 1.65vw, 22px);
   --lh-body:          clamp(22px, 2.2vw, 30px);
 }
@@ -119,7 +119,7 @@ button { font-family: inherit; cursor: pointer; }
 .menu-right {
   display: flex;
   align-items: center;
-  gap: clamp(16px, 3.4vw, 50px);
+  gap: clamp(14px, 2.2vw, 32px);
 }
 
 .menu-item {
@@ -292,6 +292,18 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--white);
 }
 
+/* Tabs en mobile : la font baisse via --fs-tab qui scale au vw, donc
+   les 3 labels (Recrutements ponctuels / Renfort en recrutement (RPO) /
+   Temps partagés & Transition) doivent tenir sur 1 ligne sur la
+   plupart des viewports. Wrap autorisé en filet de sécurité sous 500px. */
+@media (max-width: 500px) {
+  .tabs {
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+  .tab { padding: 8px 0; }
+}
+
 /* ---------- Ratings (Trustpilot / Trustfolio / Google / Glassdoor) ---------- */
 .ratings-row {
   display: flex;
@@ -370,6 +382,14 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 800px) {
   .menu-label-full { display: none; }
   .menu-label-short { display: inline; }
+  /* Nav tightening dans la fenêtre 480-800px : gaps réduits, brand plus
+     petit pour laisser respirer les 4 items (Services, Clients,
+     Consultants, Contact) qui se côtoient sans hamburger. */
+  .menu { gap: clamp(12px, 2vw, 24px); }
+  .menu-right { gap: clamp(12px, 2.4vw, 22px); }
+  .menu-item, .btn-menu { font-size: 14px; line-height: 1.25; }
+  .brand { width: clamp(82px, 9.6vw, 110px); height: clamp(18px, 1.95vw, 24px); }
+  .btn-menu { padding: 8px 12px; }
 }
 /* Hamburger : sous 480px l'écart entre le brand et la nav devient comparable
    à l'inter-item — on bascule en menu burger. */
@@ -877,6 +897,14 @@ button { font-family: inherit; cursor: pointer; }
 .two-col p { margin-bottom: clamp(14px, 1.6vw, 24px); }
 .two-col p:last-child { margin-bottom: 0; }
 
+/* Mobile : la grille 50/50 amputerait le texte à <700px. On passe en
+   single-col, padding-right neutralisé pour récupérer la pleine largeur.
+   Pas de baisse de --fs-body : la lisibilité du corps reste intransigeante. */
+@media (max-width: 700px) {
+  .two-col { grid-template-columns: 1fr; row-gap: clamp(18px, 4vw, 28px); }
+  .two-col > * { padding-right: 0; max-width: 100%; }
+}
+
 /* Cas clients : même grille 50/50 que .two-col pour aligner texte de gauche
    et logo de droite. */
 .cases-rows { display: flex; flex-direction: column; gap: clamp(24px, 3vw, 40px); }
@@ -897,6 +925,17 @@ button { font-family: inherit; cursor: pointer; }
   line-height: var(--lh-body);
   max-width: var(--measure);
 }
+/* Mobile : stack le case-row en single-col, logo en bas plus petit pour
+   ne pas écraser visuellement le verbatim au-dessus. */
+@media (max-width: 700px) {
+  .case-row {
+    grid-template-columns: 1fr;
+    row-gap: clamp(14px, 3vw, 22px);
+  }
+  .case-row > * { padding-right: 0; }
+  .case-row .case-logo-mark { width: clamp(80px, 22vw, 130px); }
+}
+
 .case-logo-mark {
   justify-self: start;
   width: clamp(100px, 12vw, 170px);
@@ -910,13 +949,382 @@ button { font-family: inherit; cursor: pointer; }
   -webkit-mask-mode: alpha;
           mask-mode: alpha;
 }
+
+/* Logo en couleurs natives (img). Sert dans les case-row où le mask
+   produirait un blob ink (logos multi-couleurs façon Mistral). On garde
+   .case-logo-mark pour les wordmark-only style monochrome compatible. */
+.case-logo-img {
+  justify-self: start;
+  align-self: center;
+  width: auto;
+  max-width: clamp(110px, 14vw, 180px);
+  max-height: clamp(28px, 3vw, 48px);
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+}
+@media (max-width: 700px) {
+  .case-logo-img {
+    max-width: clamp(90px, 24vw, 140px);
+    max-height: clamp(26px, 6vw, 36px);
+  }
+}
 .case-logo-mark.electra  { -webkit-mask-image: url('assets/electra.svg');           mask-image: url('assets/electra.svg'); }
 .case-logo-mark.japhy    { -webkit-mask-image: url('assets/japhy.svg');             mask-image: url('assets/japhy.svg'); }
 .case-logo-mark.filigran { -webkit-mask-image: url('assets/filigran.svg');          mask-image: url('assets/filigran.svg'); }
 .case-logo-mark.mistral  { -webkit-mask-image: url('assets/mistral-ai_wordmark.svg'); mask-image: url('assets/mistral-ai_wordmark.svg'); }
-.case-logo-mark.lucca    { -webkit-mask-image: url('assets/lucca.svg');             mask-image: url('assets/lucca.svg'); }
+.case-logo-mark.lucca    { -webkit-mask-image: url('assets/Lucca-Logo-White.svg');  mask-image: url('assets/Lucca-Logo-White.svg'); }
 .case-logo-mark.flaire   { -webkit-mask-image: url('assets/flaire.svg');            mask-image: url('assets/flaire.svg'); }
 .case-logo-mark.pono     { -webkit-mask-image: url('assets/pono.svg');              mask-image: url('assets/pono.svg'); }
+.case-logo-mark.fasterize  { -webkit-mask-image: url('assets/fasterize.svg');     mask-image: url('assets/fasterize.svg'); }
+.case-logo-mark.wildsense  { -webkit-mask-image: url('assets/wildsense.svg');     mask-image: url('assets/wildsense.svg'); }
+.case-logo-mark.jeudimerci { -webkit-mask-image: url('assets/jeudimerci.svg');    mask-image: url('assets/jeudimerci.svg'); }
+.case-logo-mark.deepmove   { -webkit-mask-image: url('assets/deepmove.svg');      mask-image: url('assets/deepmove.svg'); }
+.case-logo-mark.kardinal   { -webkit-mask-image: url('assets/kardinal.svg');      mask-image: url('assets/kardinal.svg'); }
+.case-logo-mark.stoik      { -webkit-mask-image: url('assets/stoik.svg');         mask-image: url('assets/stoik.svg'); }
+.case-logo-mark.matera     { -webkit-mask-image: url('assets/matera.svg');        mask-image: url('assets/matera.svg'); }
+.case-logo-mark.kili       { -webkit-mask-image: url('assets/kili-technology.svg'); mask-image: url('assets/kili-technology.svg'); }
+.case-logo-mark.smartrenting { -webkit-mask-image: url('assets/smartrenting.svg'); mask-image: url('assets/smartrenting.svg'); }
+.case-logo-mark.smart-impulse { -webkit-mask-image: url('assets/smart-impulse.svg'); mask-image: url('assets/smart-impulse.svg'); }
+.case-logo-mark.lucile-woodward { -webkit-mask-image: url('assets/lucile-woodward.svg'); mask-image: url('assets/lucile-woodward.svg'); }
+.case-logo-mark.in-store-media-france { -webkit-mask-image: url('assets/in-store-media-france.svg'); mask-image: url('assets/in-store-media-france.svg'); }
+.case-logo-mark.bdl-capital-management { -webkit-mask-image: url('assets/bdl-capital-management.svg'); mask-image: url('assets/bdl-capital-management.svg'); }
+.case-logo-mark.avanteam    { -webkit-mask-image: url('assets/avanteam.svg'); mask-image: url('assets/avanteam.svg'); }
+.case-logo-mark.bluekango   { -webkit-mask-image: url('assets/bluekango.svg'); mask-image: url('assets/bluekango.svg'); }
+.case-logo-mark.carrefour   { -webkit-mask-image: url('assets/carrefour.svg'); mask-image: url('assets/carrefour.svg'); }
+.case-logo-mark.corwave     { -webkit-mask-image: url('assets/corwave.svg'); mask-image: url('assets/corwave.svg'); }
+.case-logo-mark.foodles     { -webkit-mask-image: url('assets/foodles.svg'); mask-image: url('assets/foodles.svg'); }
+.case-logo-mark.keon        { -webkit-mask-image: url('assets/keon.svg'); mask-image: url('assets/keon.svg'); }
+.case-logo-mark.medialog    { -webkit-mask-image: url('assets/medialog.svg'); mask-image: url('assets/medialog.svg'); }
+.case-logo-mark.mojix       { -webkit-mask-image: url('assets/mojix.svg'); mask-image: url('assets/mojix.svg'); }
+.case-logo-mark.quipment    { -webkit-mask-image: url('assets/quipment.svg'); mask-image: url('assets/quipment.svg'); }
+.case-logo-mark.rosaly      { -webkit-mask-image: url('assets/rosaly.svg'); mask-image: url('assets/rosaly.svg'); }
+.case-logo-mark.spiko       { -webkit-mask-image: url('assets/spiko.svg'); mask-image: url('assets/spiko.svg'); }
+.case-logo-mark.yubo        { -webkit-mask-image: url('assets/yubo.svg'); mask-image: url('assets/yubo.svg'); }
+
+.case-logo-mark.agicap                  { -webkit-mask-image: url('assets/agicap.svg'); mask-image: url('assets/agicap.svg'); }
+.case-logo-mark.bowo                    { -webkit-mask-image: url('assets/bowo.svg'); mask-image: url('assets/bowo.svg'); }
+.case-logo-mark.contentsquare           { -webkit-mask-image: url('assets/contentsquare.svg'); mask-image: url('assets/contentsquare.svg'); }
+.case-logo-mark.decathlon               { -webkit-mask-image: url('assets/decathlon.svg'); mask-image: url('assets/decathlon.svg'); }
+.case-logo-mark.enioka-haute-couture    { -webkit-mask-image: url('assets/enioka-haute-couture.svg'); mask-image: url('assets/enioka-haute-couture.svg'); }
+.case-logo-mark.eurecia                 { -webkit-mask-image: url('assets/eurecia.svg'); mask-image: url('assets/eurecia.svg'); }
+.case-logo-mark.harfanglab              { -webkit-mask-image: url('assets/harfanglab.svg'); mask-image: url('assets/harfanglab.svg'); }
+.case-logo-mark.id-capture              { -webkit-mask-image: url('assets/id-capture.svg'); mask-image: url('assets/id-capture.svg'); }
+.case-logo-mark.les-cuistots-migrateurs { -webkit-mask-image: url('assets/les-cuistots-migrateurs.svg'); mask-image: url('assets/les-cuistots-migrateurs.svg'); }
+.case-logo-mark.linkurious              { -webkit-mask-image: url('assets/linkurious.svg'); mask-image: url('assets/linkurious.svg'); }
+.case-logo-mark.logipren                { -webkit-mask-image: url('assets/logipren.svg'); mask-image: url('assets/logipren.svg'); }
+.case-logo-mark.spotlight-earth         { -webkit-mask-image: url('assets/spotlight-earth.svg'); mask-image: url('assets/spotlight-earth.svg'); }
+.case-logo-mark.webyn-ai                { -webkit-mask-image: url('assets/webyn-ai.svg'); mask-image: url('assets/webyn-ai.svg'); }
+.case-logo-mark.wematch-live            { -webkit-mask-image: url('assets/wematch-live.svg'); mask-image: url('assets/wematch-live.svg'); }
+
+/* Attribution sous un verbatim de témoignage client : ligne courte façon
+   credit, taille un cran plus petite que le corps, opacité réduite pour
+   ne pas concurrencer le verbatim au-dessus. */
+.case-attribution {
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1.3;
+  margin-top: clamp(10px, 1.2vw, 14px);
+  opacity: 0.72;
+}
+
+/* ---------- Panel section avec équipe (practices chasse) ----------
+   Layout 2-col : photos+meta empilés à gauche (chaque ligne = photo +
+   nom/rôle/expérience à côté, photos qui se touchent verticalement),
+   contenu à droite capé à 60ch (le reste est padding pour éviter que
+   le texte s'étale sur toute la largeur). */
+.panel-section--with-team {
+  display: grid;
+  grid-template-columns: minmax(200px, 0.24fr) 1fr;
+  column-gap: clamp(48px, 6vw, 96px);
+  align-items: start;
+}
+.panel-section--with-team .team-side {
+  display: block;
+  /* Sticky : la colonne photos suit le scroll de content-side jusqu'à
+     ce qu'elle atteigne le bas de la grid (panel-section), où elle
+     "release" et scroll naturellement. top compense le header sticky. */
+  position: -webkit-sticky;
+  position: sticky;
+  top: clamp(60px, 6vw, 90px);
+  align-self: start;
+}
+@media (max-width: 600px) {
+  /* Mobile : la team-side passe au-dessus, on désactive le sticky pour
+     éviter un comportement bizarre quand on stacke en 1 col. */
+  .panel-section--with-team .team-side { position: static; }
+}
+
+/* H3 inline dans le content-side (sections fusionnées : intro / Pas de
+   sourcing / Cas clients). Marge top pour aérer le H3 par rapport au
+   paragraphe précédent, sans rompre le rythme typo. */
+.content-side .content-side-h3 {
+  margin-top: clamp(24px, 3vw, 44px);
+  margin-bottom: clamp(2px, 0.4vw, 6px);
+}
+
+/* Cas clients inline dans content-side : la grille 2-col (verbatim |
+   logo) ne tient pas dans une 60ch col. On force single-col, on shrink
+   le logo, on l'aligne à gauche au-dessus du verbatim. */
+.cases-rows--inline {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.5vw, 32px);
+}
+.cases-rows--inline .case-row {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vw, 14px);
+}
+.cases-rows--inline .case-row > * {
+  padding-right: 0;
+  max-width: 100%;
+}
+.cases-rows--inline .case-row .case-logo-mark {
+  display: block;
+  align-self: flex-start;
+  justify-self: start;
+  width: clamp(90px, 10vw, 120px);
+  height: clamp(20px, 2vw, 28px);
+  margin-left: 0;
+  order: -1; /* logo above verbatim */
+}
+.cases-rows--inline .case-row p {
+  max-width: 100%;
+}
+
+.panel-section--with-team .content-side,
+.panel-section .content-side {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.6vw, 22px);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  /* ~60 caractères par ligne. La col occupe pas toute la largeur. */
+  max-width: 60ch;
+}
+.panel-section .content-side h3,
+.panel-section--with-team .content-side h3 {
+  margin-bottom: clamp(4px, 0.5vw, 8px);
+}
+.panel-section .content-side p,
+.panel-section--with-team .content-side p {
+  margin: 0;
+}
+
+/* Une consultant-row = 1 photo (gauche, rectangle vertical, touche celle
+   du dessus) + bloc meta (nom + rôle + expérience) à droite. */
+.consultants-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* photos qui se touchent par le haut */
+}
+.consultant-row {
+  display: grid;
+  grid-template-columns: minmax(60px, 76px) 1fr;
+  column-gap: clamp(10px, 1.2vw, 16px);
+  align-items: start;
+}
+.consultant-row .photo {
+  aspect-ratio: 1 / 2;
+  background-size: auto 140%;
+  background-repeat: no-repeat;
+  background-color: #d8e0d3;
+  background-position: 50% 22%;
+}
+.consultant-row .consultant-meta {
+  padding-top: clamp(6px, 0.8vw, 10px);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: clamp(12px, 1vw, 14px);
+  line-height: 1.35;
+  width: auto;
+}
+.consultant-row .consultant-name { font-weight: 500; }
+.consultant-row .consultant-role { opacity: 0.72; }
+.consultant-row .consultant-exp { opacity: 0.5; font-size: 0.92em; }
+
+@media (max-width: 800px) {
+  .panel-section--with-team {
+    grid-template-columns: minmax(220px, 0.4fr) 1fr;
+    column-gap: clamp(20px, 3vw, 36px);
+  }
+}
+@media (max-width: 600px) {
+  /* Mobile : team-side passe au-dessus du content-side, même structure
+     photo+meta en row, juste pleine largeur. */
+  .panel-section--with-team {
+    grid-template-columns: 1fr;
+    row-gap: clamp(20px, 3vw, 32px);
+  }
+  .consultant-row {
+    grid-template-columns: minmax(60px, 80px) 1fr;
+  }
+}
+
+
+/* AI-logos en mono-color : variante mask du wall home ----------
+   Même dimensions que .ai-logo img (height 26-40px), masquée en ink. */
+.ai-logo-mark {
+  display: inline-block;
+  width: clamp(100px, 11vw, 160px);
+  height: clamp(26px, 2.8vw, 40px);
+  background-color: var(--ink);
+  -webkit-mask: left center / contain no-repeat;
+          mask: left center / contain no-repeat;
+  -webkit-mask-mode: alpha;
+          mask-mode: alpha;
+}
+.ai-logo-mark.agicap                { -webkit-mask-image: url('assets/agicap.svg'); mask-image: url('assets/agicap.svg'); }
+.ai-logo-mark.ai-cargo-foundation   { -webkit-mask-image: url('assets/ai-cargo-foundation.svg'); mask-image: url('assets/ai-cargo-foundation.svg'); }
+.ai-logo-mark.blablacar             { -webkit-mask-image: url('assets/blablacar.svg'); mask-image: url('assets/blablacar.svg'); }
+.ai-logo-mark.contentsquare         { -webkit-mask-image: url('assets/contentsquare.svg'); mask-image: url('assets/contentsquare.svg'); }
+.ai-logo-mark.cybelangel            { -webkit-mask-image: url('assets/cybelangel.svg'); mask-image: url('assets/cybelangel.svg'); }
+.ai-logo-mark.doctrine              { -webkit-mask-image: url('assets/doctrine.svg'); mask-image: url('assets/doctrine.svg'); }
+.ai-logo-mark.electra               { -webkit-mask-image: url('assets/electra.svg'); mask-image: url('assets/electra.svg'); }
+.ai-logo-mark.eleven-labs           { -webkit-mask-image: url('assets/eleven-labs.svg'); mask-image: url('assets/eleven-labs.svg'); }
+.ai-logo-mark.filigran              { -webkit-mask-image: url('assets/filigran.svg'); mask-image: url('assets/filigran.svg'); }
+.ai-logo-mark.foodles               { -webkit-mask-image: url('assets/foodles.svg'); mask-image: url('assets/foodles.svg'); }
+.ai-logo-mark.harfanglab            { -webkit-mask-image: url('assets/harfanglab.svg'); mask-image: url('assets/harfanglab.svg'); }
+.ai-logo-mark.joko                  { -webkit-mask-image: url('assets/joko.svg'); mask-image: url('assets/joko.svg'); }
+.ai-logo-mark.kili                  { -webkit-mask-image: url('assets/kili-technology.svg'); mask-image: url('assets/kili-technology.svg'); }
+.ai-logo-mark.konverso              { -webkit-mask-image: url('assets/konverso.svg'); mask-image: url('assets/konverso.svg'); }
+.ai-logo-mark.linkurious            { -webkit-mask-image: url('assets/linkurious.svg'); mask-image: url('assets/linkurious.svg'); }
+.ai-logo-mark.manomano              { -webkit-mask-image: url('assets/manomano.svg'); mask-image: url('assets/manomano.svg'); }
+.ai-logo-mark.matera                { -webkit-mask-image: url('assets/matera.svg'); mask-image: url('assets/matera.svg'); }
+.ai-logo-mark.mindee                { -webkit-mask-image: url('assets/mindee.svg'); mask-image: url('assets/mindee.svg'); }
+.ai-logo-mark.mistral               { -webkit-mask-image: url('assets/mistral-ai_wordmark.svg'); mask-image: url('assets/mistral-ai_wordmark.svg'); }
+.ai-logo-mark.mytraffic             { -webkit-mask-image: url('assets/mytraffic.svg'); mask-image: url('assets/mytraffic.svg'); }
+.ai-logo-mark.pigment               { -webkit-mask-image: url('assets/pigment.svg'); mask-image: url('assets/pigment.svg'); }
+.ai-logo-mark.pricemoov             { -webkit-mask-image: url('assets/pricemoov.svg'); mask-image: url('assets/pricemoov.svg'); }
+.ai-logo-mark.reelevant             { -webkit-mask-image: url('assets/reelevant.svg'); mask-image: url('assets/reelevant.svg'); }
+.ai-logo-mark.sipearl               { -webkit-mask-image: url('assets/sipearl.svg'); mask-image: url('assets/sipearl.svg'); }
+.ai-logo-mark.stoik                 { -webkit-mask-image: url('assets/stoik.svg'); mask-image: url('assets/stoik.svg'); }
+.ai-logo-mark.trustpair             { -webkit-mask-image: url('assets/trustpair.svg'); mask-image: url('assets/trustpair.svg'); }
+.ai-logo-mark.wematch-live          { -webkit-mask-image: url('assets/wematch-live.svg'); mask-image: url('assets/wematch-live.svg'); }
+.ai-logo-mark.whoz                  { -webkit-mask-image: url('assets/whoz.svg'); mask-image: url('assets/whoz.svg'); }
+
+/* Logo wall (services-renfort) : grille de logos clients, taille
+   uniforme façon hall des partenaires. Inspirée du .ai-logos-grid
+   de la home mais plus compacte (intégrée dans un panel-section). */
+.logos-wall {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: clamp(28px, 3.4vw, 56px);
+  row-gap: clamp(20px, 2.4vw, 36px);
+  margin-top: clamp(20px, 2.4vw, 36px);
+}
+.logo-tile {
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.18s ease;
+}
+.logo-tile:hover { opacity: 0.7; }
+.logo-tile img {
+  height: clamp(22px, 2.4vw, 34px);
+  width: auto;
+  display: block;
+}
+/* Variante monochrome (mask) du logo-tile : utilisée dans le logo wall
+   de services-renfort où on veut tous les logos en ink, peu importe la
+   palette native du SVG. Hérite des mêmes dimensions que .logo-tile img. */
+.logo-tile-mark {
+  display: inline-block;
+  width: clamp(80px, 9vw, 130px);
+  height: clamp(22px, 2.4vw, 34px);
+  background-color: var(--ink);
+  -webkit-mask: left center / contain no-repeat;
+          mask: left center / contain no-repeat;
+  -webkit-mask-mode: alpha;
+          mask-mode: alpha;
+}
+.logo-tile-mark.mistral  { -webkit-mask-image: url('assets/mistral-ai_wordmark.svg'); mask-image: url('assets/mistral-ai_wordmark.svg'); }
+.logo-tile-mark.decathlon{ -webkit-mask-image: url('assets/decathlon.svg');           mask-image: url('assets/decathlon.svg'); }
+.logo-tile-mark.filigran { -webkit-mask-image: url('assets/filigran.svg');            mask-image: url('assets/filigran.svg'); }
+.logo-tile-mark.foodles  { -webkit-mask-image: url('assets/foodles.svg');             mask-image: url('assets/foodles.svg'); }
+.logo-tile-mark.electra  { -webkit-mask-image: url('assets/electra.svg');             mask-image: url('assets/electra.svg'); }
+.logo-tile-mark.stoik    { -webkit-mask-image: url('assets/stoik.svg');               mask-image: url('assets/stoik.svg'); }
+.logo-tile-mark.contentsquare { -webkit-mask-image: url('assets/contentsquare.svg');  mask-image: url('assets/contentsquare.svg'); }
+.logo-tile-mark.agicap   { -webkit-mask-image: url('assets/agicap.svg');              mask-image: url('assets/agicap.svg'); }
+.logo-tile-mark.harfanglab { -webkit-mask-image: url('assets/harfanglab.svg');        mask-image: url('assets/harfanglab.svg'); }
+.logo-tile-mark.kili     { -webkit-mask-image: url('assets/kili-technology.svg');     mask-image: url('assets/kili-technology.svg'); }
+.logo-tile-mark.blablacar  { -webkit-mask-image: url('assets/blablacar.svg');         mask-image: url('assets/blablacar.svg'); }
+.logo-tile-mark.doctrine   { -webkit-mask-image: url('assets/doctrine.svg');          mask-image: url('assets/doctrine.svg'); }
+.logo-tile-mark.manomano   { -webkit-mask-image: url('assets/manomano.svg');          mask-image: url('assets/manomano.svg'); }
+.logo-tile-mark.pigment    { -webkit-mask-image: url('assets/pigment.svg');           mask-image: url('assets/pigment.svg'); }
+.logo-tile-mark.joko       { -webkit-mask-image: url('assets/joko.svg');              mask-image: url('assets/joko.svg'); }
+.logo-tile-mark.eleven-labs{ -webkit-mask-image: url('assets/eleven-labs.svg');       mask-image: url('assets/eleven-labs.svg'); }
+.logo-tile-mark.mindee     { -webkit-mask-image: url('assets/mindee.svg');            mask-image: url('assets/mindee.svg'); }
+.logo-tile-mark.cybelangel { -webkit-mask-image: url('assets/cybelangel.svg');        mask-image: url('assets/cybelangel.svg'); }
+.logo-tile-mark.matera     { -webkit-mask-image: url('assets/matera.svg');            mask-image: url('assets/matera.svg'); }
+.logo-tile-mark.trustpair  { -webkit-mask-image: url('assets/trustpair.svg');         mask-image: url('assets/trustpair.svg'); }
+.logo-tile-mark.mytraffic  { -webkit-mask-image: url('assets/mytraffic.svg');         mask-image: url('assets/mytraffic.svg'); }
+
+/* Section "Profils recrutés sur cette offre" en bas de chaque services-*.
+   Reprend la grille .two-col (catégorie à gauche, postes à droite)
+   mais sans les bordures de cases. Chaque .profils-row est une ligne
+   famille de métiers + postes inline. */
+.profils-intro {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  max-width: var(--measure);
+  margin-bottom: clamp(20px, 2.5vw, 36px);
+}
+.profils-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.5vw, 36px);
+  margin-bottom: clamp(24px, 3vw, 40px);
+}
+.profils-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.32fr) 1fr;
+  column-gap: clamp(24px, 3vw, 48px);
+  row-gap: clamp(10px, 1.4vw, 16px);
+  align-items: baseline;
+  padding-top: clamp(14px, 1.6vw, 22px);
+  border-top: 1px solid var(--line);
+}
+.profils-cat {
+  font-size: var(--fs-body);
+  line-height: 1.3;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.profils-cat small {
+  font-size: clamp(12px, 1vw, 14px);
+  opacity: 0.6;
+}
+.profils-cat-name {
+  font-weight: 500;
+}
+.profils-postes {
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: 1.5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+.profils-poste {
+  /* Chaque poste : nom + count en petit. Pas de virgule visible — le gap
+     suffit pour séparer visuellement. */
+  white-space: nowrap;
+}
+.profils-poste small {
+  font-size: 0.78em;
+  opacity: 0.5;
+  margin-left: 2px;
+}
+@media (max-width: 700px) {
+  .profils-row {
+    grid-template-columns: 1fr;
+    row-gap: clamp(8px, 1.6vw, 12px);
+  }
+}
+
 
 /* Byline consultant attaché à un case-row : petit avatar rond + nom/rôle.
    Sert quand on veut montrer qui pilote la mission présentée (ex : Camille
@@ -999,6 +1407,16 @@ button { font-family: inherit; cursor: pointer; }
 .consultants-row--vertical .consultant-meta {
   width: auto;
   flex: 1;
+}
+
+/* Variante pair (Temps partagé & transition) : 2 consultants en grand,
+   photos larges côte-à-côte façon CTA, pas la grille 5 cols par défaut. */
+.consultants-row--pair {
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(20px, 2vw, 32px);
+}
+.consultants-row--pair .consultant-meta {
+  font-size: clamp(15px, 1.3vw, 18px);
 }
 
 @media (max-width: 1100px) {

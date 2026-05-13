@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>GetPro Cabinet de chasse Tech</title>
-<meta name="description" content="GetPro chasse depuis 2015 les profils tech, produit et go-to-market les plus pointus pour les meilleures entreprises technologiques françaises." />
+<meta name="description" content="Cabinet de chasse spécialisé sur le secteur de l'innovation depuis 2015. Nous mettons en relation les talents les plus pointus et les meilleures entreprises technologiques. Recrutements ponctuels, renfort en recrutement, temps partagés et transition." />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 <meta property="og:title" content="GetPro Cabinet de chasse Tech" />
-<meta property="og:description" content="GetPro chasse depuis 2015 les profils tech, produit et go-to-market les plus pointus pour les meilleures entreprises technologiques françaises." />
+<meta property="og:description" content="Cabinet de chasse spécialisé sur le secteur de l'innovation depuis 2015. Nous mettons en relation les talents les plus pointus et les meilleures entreprises technologiques." />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -33,11 +33,11 @@
   .hero-title {
     font-size: var(--fs-hero);
     line-height: var(--lh-hero);
-  }
-  /* Sous 600px le <br> ne tombe plus sur un break naturel : on le neutralise
-     pour laisser le texte wrapper proprement. */
-  @media (max-width: 600px) {
-    .hero-title br { display: none; }
+    /* Pas de max-width : la phrase utilise toute la largeur du
+       container. La taille de font est calibrée (clamp 22/4.8vw/68)
+       pour que ~109 caractères tiennent en 3 lignes sur desktop et
+       restent sous 5 lignes sur mobile. */
+    text-wrap: balance;
   }
 
   /* ---------- Image grid ---------- */
@@ -329,9 +329,7 @@
     <section class="hero section">
       <div class="hero-inner">
         <h1 class="hero-title">
-          Nous mettons en relation les profils<br>
-          les plus pointus et les meilleures<br>
-          entreprises technologiques
+          Nous mettons en relation les talents les plus pointus et les meilleures entreprises technologiques depuis 2015
         </h1>
 
         <div class="grid-images" aria-label="Galerie consultants">
@@ -396,6 +394,7 @@
           <p>Dix ans à recruter des talents pour les meilleures équipes technologiques françaises. Du premier ingénieur de la startup qui éclôt aux fonctions de direction de la scale-up qui grossit.</p>
           <p>Nous avons fait 2 000 recrutements et rencontré 60 000 talents depuis 2015. Nous suivons leurs trajectoires, nous les voyons évoluer et rejoindre de nouveaux projets et missions.</p>
           <p>Quand vous nous appelez pour un poste critique, nos consultants savent à qui en parler, parce qu'ils connaissent, et depuis longtemps, les gens qu'ils recommandent.</p>
+          <p>Le marché du recrutement tech bouge par cycles. Nous avons toujours ajusté notre cabinet à chaque mouvement. Aujourd'hui, ce sont les dirigeants qui ont intégré l'IA à leur pratique que nos clients nous demandent en priorité — et c'est sur eux que se concentre notre travail de chasse directe.</p>
         </div>
         <aside class="manifesto-aside">
           <blockquote class="manifesto-quote">
@@ -414,19 +413,19 @@
     <section class="solutions-overview section">
       <ul class="solutions-overview-list">
         <li>
-          <h3><a href="services-cdi.html">Recrutement ponctuel</a></h3>
+          <h3><a href="services-tech.html">Recrutements ponctuels</a></h3>
           <p>Chasse au succès, CDI ou freelance. Exclusivité GetPro le temps de la mission, trois candidats qualifiés plutôt que cinquante.</p>
         </li>
         <li>
-          <h3><a href="services-renfort.html">Renfort en recrutement</a></h3>
+          <h3><a href="services-renfort.html">Renfort en recrutement (RPO)</a></h3>
           <p>Un recruteur GetPro intégré à votre équipe RH, à temps plein ou partiel. Forfait mensuel sur le nombre de postes en cours.</p>
         </li>
         <li>
-          <h3><a href="services-transition.html">Temps partagé &amp; transition</a></h3>
+          <h3><a href="services-transition.html">Temps partagés &amp; Transition</a></h3>
           <p>CTO, DRH ou DAF en temps partagé ou en mission de transition. Prise de rôle immédiate, transmission organisée.</p>
         </li>
       </ul>
-      <a href="tel:+33939289329" class="btn-outline solutions-overview-cta">Échanger avec un consultant : 09 39 28 93 29</a>
+      <a href="tel:+33939289329" class="btn-outline solutions-overview-cta">Échanger avec un consultant</a>
     </section>
 
     <!-- Logos clients : entreprises françaises ambitieuses (AI + scale-ups) -->
@@ -435,34 +434,34 @@
         <h2>Nous réalisons les plans de recrutement des entreprises françaises les plus ambitieuses.</h2>
       </div>
       <div class="ai-logos-grid">
-        <a class="ai-logo" href="clients.html#mistral-ai" aria-label="Mistral AI"><img src="assets/mistral-ai.svg" alt="Mistral AI" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#contentsquare" aria-label="Contentsquare"><img src="assets/contentsquare.svg" alt="Contentsquare" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#blablacar" aria-label="BlaBlaCar"><img src="assets/blablacar.svg" alt="BlaBlaCar" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#manomano" aria-label="ManoMano"><img src="assets/manomano.svg" alt="ManoMano" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#eleven-labs" aria-label="Eleven Labs"><img src="assets/eleven-labs.svg" alt="Eleven Labs" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#agicap" aria-label="Agicap"><img src="assets/agicap.svg" alt="Agicap" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#electra" aria-label="Electra"><img src="assets/electra.svg" alt="Electra" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#doctrine" aria-label="Doctrine"><img src="assets/doctrine.svg" alt="Doctrine" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#mindee" aria-label="Mindee"><img src="assets/mindee.svg" alt="Mindee" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#filigran" aria-label="Filigran"><img src="assets/filigran.svg" alt="Filigran" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#foodles" aria-label="Foodles"><img src="assets/foodles.svg" alt="Foodles" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#pigment" aria-label="Pigment"><img src="assets/pigment.svg" alt="Pigment" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#harfanglab" aria-label="Harfanglab"><img src="assets/harfanglab.svg" alt="Harfanglab" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#matera" aria-label="Matera"><img src="assets/matera.svg" alt="Matera" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#kili-technology" aria-label="Kili Technology"><img src="assets/kili-technology.svg" alt="Kili Technology" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#sipearl" aria-label="SiPearl"><img src="assets/sipearl.svg" alt="SiPearl" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#joko" aria-label="Joko"><img src="assets/joko.svg" alt="Joko" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#cybelangel" aria-label="CybelAngel"><img src="assets/cybelangel.svg" alt="CybelAngel" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#linkurious" aria-label="Linkurious"><img src="assets/linkurious.svg" alt="Linkurious" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#mytraffic" aria-label="Mytraffic"><img src="assets/mytraffic.svg" alt="Mytraffic" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#trustpair" aria-label="Trustpair"><img src="assets/trustpair.svg" alt="Trustpair" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#konverso" aria-label="Konverso"><img src="assets/konverso.svg" alt="Konverso" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#whoz" aria-label="Whoz"><img src="assets/whoz.svg" alt="Whoz" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#stoik" aria-label="Stoïk"><img src="assets/stoik.svg" alt="Stoïk" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#wematch-live" aria-label="Wematch.live"><img src="assets/wematch-live.svg" alt="Wematch.live" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#reelevant" aria-label="Reelevant"><img src="assets/reelevant.svg" alt="Reelevant" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#pricemoov" aria-label="Pricemoov"><img src="assets/pricemoov.svg" alt="Pricemoov" loading="lazy"/></a>
-        <a class="ai-logo" href="clients.html#ai-cargo-foundation" aria-label="AI Cargo Foundation"><img src="assets/ai-cargo-foundation.svg" alt="AI Cargo Foundation" loading="lazy"/></a>
+        <a class="ai-logo" href="clients.html#mistral-ai" aria-label="Mistral AI"><span class="ai-logo-mark mistral" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#contentsquare" aria-label="Contentsquare"><span class="ai-logo-mark contentsquare" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#blablacar" aria-label="BlaBlaCar"><span class="ai-logo-mark blablacar" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#manomano" aria-label="ManoMano"><span class="ai-logo-mark manomano" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#eleven-labs" aria-label="Eleven Labs"><span class="ai-logo-mark eleven-labs" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#agicap" aria-label="Agicap"><span class="ai-logo-mark agicap" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#electra" aria-label="Electra"><span class="ai-logo-mark electra" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#doctrine" aria-label="Doctrine"><span class="ai-logo-mark doctrine" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#mindee" aria-label="Mindee"><span class="ai-logo-mark mindee" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#filigran" aria-label="Filigran"><span class="ai-logo-mark filigran" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#foodles" aria-label="Foodles"><span class="ai-logo-mark foodles" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#pigment" aria-label="Pigment"><span class="ai-logo-mark pigment" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#harfanglab" aria-label="Harfanglab"><span class="ai-logo-mark harfanglab" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#matera" aria-label="Matera"><span class="ai-logo-mark matera" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#kili-technology" aria-label="Kili Technology"><span class="ai-logo-mark kili" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#sipearl" aria-label="SiPearl"><span class="ai-logo-mark sipearl" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#joko" aria-label="Joko"><span class="ai-logo-mark joko" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#cybelangel" aria-label="CybelAngel"><span class="ai-logo-mark cybelangel" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#linkurious" aria-label="Linkurious"><span class="ai-logo-mark linkurious" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#mytraffic" aria-label="Mytraffic"><span class="ai-logo-mark mytraffic" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#trustpair" aria-label="Trustpair"><span class="ai-logo-mark trustpair" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#konverso" aria-label="Konverso"><span class="ai-logo-mark konverso" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#whoz" aria-label="Whoz"><span class="ai-logo-mark whoz" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#stoik" aria-label="Stoïk"><span class="ai-logo-mark stoik" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#wematch-live" aria-label="Wematch.live"><span class="ai-logo-mark wematch-live" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#reelevant" aria-label="Reelevant"><span class="ai-logo-mark reelevant" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#pricemoov" aria-label="Pricemoov"><span class="ai-logo-mark pricemoov" aria-hidden="true"></span></a>
+        <a class="ai-logo" href="clients.html#ai-cargo-foundation" aria-label="AI Cargo Foundation"><span class="ai-logo-mark ai-cargo-foundation" aria-hidden="true"></span></a>
       </div>
       <a href="clients.html" class="btn-outline see-all-bottom">Tous nos clients →</a>
     </section>

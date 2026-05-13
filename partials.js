@@ -4,20 +4,22 @@
   const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
 
   // Pages "services-*" qui font partie du regroupement Services dans la navbar.
-  // Inclut les pages-hub (cdi, renfort, transition) ET les pages orphelines
-  // accessibles directement (freelance, clevel, outils, profils) — toutes
-  // marquent l'item parent "Services" comme actif.
+  // Axe 1 (Recrutements ponctuels) = 3 practices : tech, produit, sales.
+  // Axe 2 = renfort. Axe 3 = transition.
   const SERVICES_PAGES = [
-    'services-cdi.html', 'services-freelance.html', 'services-clevel.html',
+    'services-tech.html', 'services-produit.html', 'services-sales.html',
     'services-renfort.html', 'services-transition.html',
-    'services-outils.html', 'services-profils.html',
+    // Pages orphelines conservées (accessibles via URL directe ou footer)
+    'services-clevel.html', 'services-outils.html', 'services-profils.html',
   ];
 
   // Mapping page → sous-item Services à mettre en aria-current.
+  // Les 3 practices remontent à "Recrutements ponctuels" (services-tech).
   const SERVICES_GROUP = {
-    'services-cdi.html': 'services-cdi.html',
-    'services-freelance.html': 'services-cdi.html',
-    'services-clevel.html': 'services-cdi.html',
+    'services-tech.html': 'services-tech.html',
+    'services-produit.html': 'services-tech.html',
+    'services-sales.html': 'services-tech.html',
+    'services-clevel.html': 'services-tech.html',
     'services-renfort.html': 'services-renfort.html',
     'services-transition.html': 'services-transition.html',
   };
@@ -44,19 +46,9 @@
         <span class="menu-toggle-bars" aria-hidden="true"></span>
       </button>
       <div class="menu-right" id="menu-right">
-        <div class="menu-item-group" data-services-group>
-          <a href="services-cdi.html" class="menu-item menu-item--has-submenu"${aria('#services')} aria-haspopup="true" aria-expanded="false">
-            Services
-            <span class="menu-caret" aria-hidden="true"></span>
-          </a>
-          <ul class="submenu" role="menu" aria-label="Services">
-            <li role="none"><a role="menuitem" href="services-cdi.html"${aria('services-cdi.html')}>Recrutement ponctuel</a></li>
-            <li role="none"><a role="menuitem" href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement</a></li>
-            <li role="none"><a role="menuitem" href="services-transition.html"${aria('services-transition.html')}>Temps partagé &amp; transition</a></li>
-          </ul>
-        </div>
+        <a href="services-tech.html" class="menu-item"${aria('#services')}>Services</a>
         <a href="clients.html" class="menu-item"${aria('clients.html')}>Clients</a>
-        <a href="equipe.html" class="menu-item"${aria('equipe.html')}>Consultants</a>
+        <a href="equipe.html" class="menu-item"${aria('equipe.html')}>Équipe</a>
         <a href="contact.html" class="btn-menu"${aria('contact.html')}>Contact</a>
       </div>
     </nav>
@@ -64,9 +56,9 @@
 
   const footerHTML = `
     <nav class="foot-featured" aria-label="Services principaux">
-      <a href="services-cdi.html"${aria('services-cdi.html')}>Recrutement ponctuel</a>
-      <a href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement</a>
-      <a href="services-transition.html"${aria('services-transition.html')}>Temps partagé &amp; transition</a>
+      <a href="services-tech.html"${aria('services-tech.html')}>Recrutements ponctuels</a>
+      <a href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement (RPO)</a>
+      <a href="services-transition.html"${aria('services-transition.html')}>Temps partagés &amp; Transition</a>
     </nav>
     <div class="foot-grid">
       <div class="foot-brand">
@@ -75,14 +67,14 @@
         <p class="foot-address">41 rue Faidherbe<br>75011 Paris</p>
       </div>
       <div class="foot-col">
-        <a href="services-cdi.html"${aria('services-cdi.html')}>Recrutement CDI</a>
-        <a href="services-freelance.html"${aria('services-freelance.html')}>Freelance</a>
-        <a href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement</a>
-        <a href="services-transition.html"${aria('services-transition.html')}>Temps partagé &amp; transition</a>
-        <a href="services-outils.html"${aria('services-outils.html')}>Outils &amp; ATS</a>
+        <a href="services-tech.html"${aria('services-tech.html')}>Chasse Tech</a>
+        <a href="services-produit.html"${aria('services-produit.html')}>Chasse Product &amp; Projects</a>
+        <a href="services-sales.html"${aria('services-sales.html')}>Chasse Customer &amp; Admin</a>
+        <a href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement (RPO)</a>
+        <a href="services-transition.html"${aria('services-transition.html')}>Temps partagés &amp; Transition</a>
       </div>
       <div class="foot-col">
-        <a href="services-profils.html"${aria('services-profils.html')}>Métiers recrutés</a>
+        <a href="services-profils.html"${aria('services-profils.html')}>+2000 recrutements</a>
         <a href="methode.html"${aria('methode.html')}>Méthode GetPro</a>
         <a href="clients.html"${aria('clients.html')}>Clients</a>
         <a href="equipe.html"${aria('equipe.html')}>Consultants</a>
@@ -118,24 +110,6 @@
             toggle.setAttribute('aria-expanded', 'false');
             toggle.setAttribute('aria-label', 'Ouvrir le menu');
           });
-        });
-      }
-      // Dropdown Services : ouvre/ferme au clic sur le parent (desktop +
-      // mobile). Le hover est géré en CSS. aria-expanded change l'état.
-      const servicesParent = nav.querySelector('[data-services-group] .menu-item--has-submenu');
-      if (servicesParent) {
-        servicesParent.addEventListener('click', (e) => {
-          // Sur desktop, on garde le comportement de lien (clic = aller sur
-          // services-cdi.html). Sur petit écran sans hover, on intercepte le
-          // 1er clic pour révéler le sous-menu. window.matchMedia détecte
-          // l'absence de hover (touch).
-          const isTouch = window.matchMedia('(hover: none)').matches;
-          if (!isTouch) return;
-          const open = servicesParent.getAttribute('aria-expanded') === 'true';
-          if (!open) {
-            e.preventDefault();
-            servicesParent.setAttribute('aria-expanded', 'true');
-          }
         });
       }
     }
