@@ -33,9 +33,9 @@
   .hero-title {
     font-size: var(--fs-hero);
     line-height: var(--lh-hero);
-    /* max-width donne une mesure de lecture confortable. Le titre wrap
-       naturellement sur 2-3 lignes selon le viewport. */
-    max-width: 26ch;
+    /* max-width en ch reste constante en nombre de caractères par ligne,
+       quel que soit le viewport. ~3 lignes pour cette phrase de 109 caractères. */
+    max-width: 36ch;
   }
 
   /* ---------- Image grid ---------- */
