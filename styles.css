@@ -1013,6 +1013,21 @@ button { font-family: inherit; cursor: pointer; }
 .case-logo-mark.spiko       { -webkit-mask-image: url('assets/spiko.svg'); mask-image: url('assets/spiko.svg'); }
 .case-logo-mark.yubo        { -webkit-mask-image: url('assets/yubo.svg'); mask-image: url('assets/yubo.svg'); }
 
+.case-logo-mark.agicap                  { -webkit-mask-image: url('assets/agicap.svg'); mask-image: url('assets/agicap.svg'); }
+.case-logo-mark.bowo                    { -webkit-mask-image: url('assets/bowo.svg'); mask-image: url('assets/bowo.svg'); }
+.case-logo-mark.contentsquare           { -webkit-mask-image: url('assets/contentsquare.svg'); mask-image: url('assets/contentsquare.svg'); }
+.case-logo-mark.decathlon               { -webkit-mask-image: url('assets/decathlon.svg'); mask-image: url('assets/decathlon.svg'); }
+.case-logo-mark.enioka-haute-couture    { -webkit-mask-image: url('assets/enioka-haute-couture.svg'); mask-image: url('assets/enioka-haute-couture.svg'); }
+.case-logo-mark.eurecia                 { -webkit-mask-image: url('assets/eurecia.svg'); mask-image: url('assets/eurecia.svg'); }
+.case-logo-mark.harfanglab              { -webkit-mask-image: url('assets/harfanglab.svg'); mask-image: url('assets/harfanglab.svg'); }
+.case-logo-mark.id-capture              { -webkit-mask-image: url('assets/id-capture.svg'); mask-image: url('assets/id-capture.svg'); }
+.case-logo-mark.les-cuistots-migrateurs { -webkit-mask-image: url('assets/les-cuistots-migrateurs.svg'); mask-image: url('assets/les-cuistots-migrateurs.svg'); }
+.case-logo-mark.linkurious              { -webkit-mask-image: url('assets/linkurious.svg'); mask-image: url('assets/linkurious.svg'); }
+.case-logo-mark.logipren                { -webkit-mask-image: url('assets/logipren.svg'); mask-image: url('assets/logipren.svg'); }
+.case-logo-mark.spotlight-earth         { -webkit-mask-image: url('assets/spotlight-earth.svg'); mask-image: url('assets/spotlight-earth.svg'); }
+.case-logo-mark.webyn-ai                { -webkit-mask-image: url('assets/webyn-ai.svg'); mask-image: url('assets/webyn-ai.svg'); }
+.case-logo-mark.wematch-live            { -webkit-mask-image: url('assets/wematch-live.svg'); mask-image: url('assets/wematch-live.svg'); }
+
 /* Attribution sous un verbatim de témoignage client : ligne courte façon
    credit, taille un cran plus petite que le corps, opacité réduite pour
    ne pas concurrencer le verbatim au-dessus. */
@@ -1129,6 +1144,29 @@ button { font-family: inherit; cursor: pointer; }
   width: auto;
   display: block;
 }
+/* Variante monochrome (mask) du logo-tile : utilisée dans le logo wall
+   de services-renfort où on veut tous les logos en ink, peu importe la
+   palette native du SVG. Hérite des mêmes dimensions que .logo-tile img. */
+.logo-tile-mark {
+  display: inline-block;
+  width: clamp(80px, 9vw, 130px);
+  height: clamp(22px, 2.4vw, 34px);
+  background-color: var(--ink);
+  -webkit-mask: left center / contain no-repeat;
+          mask: left center / contain no-repeat;
+  -webkit-mask-mode: alpha;
+          mask-mode: alpha;
+}
+.logo-tile-mark.mistral  { -webkit-mask-image: url('assets/mistral-ai_wordmark.svg'); mask-image: url('assets/mistral-ai_wordmark.svg'); }
+.logo-tile-mark.decathlon{ -webkit-mask-image: url('assets/decathlon.svg');           mask-image: url('assets/decathlon.svg'); }
+.logo-tile-mark.filigran { -webkit-mask-image: url('assets/filigran.svg');            mask-image: url('assets/filigran.svg'); }
+.logo-tile-mark.foodles  { -webkit-mask-image: url('assets/foodles.svg');             mask-image: url('assets/foodles.svg'); }
+.logo-tile-mark.electra  { -webkit-mask-image: url('assets/electra.svg');             mask-image: url('assets/electra.svg'); }
+.logo-tile-mark.stoik    { -webkit-mask-image: url('assets/stoik.svg');               mask-image: url('assets/stoik.svg'); }
+.logo-tile-mark.contentsquare { -webkit-mask-image: url('assets/contentsquare.svg');  mask-image: url('assets/contentsquare.svg'); }
+.logo-tile-mark.agicap   { -webkit-mask-image: url('assets/agicap.svg');              mask-image: url('assets/agicap.svg'); }
+.logo-tile-mark.harfanglab { -webkit-mask-image: url('assets/harfanglab.svg');        mask-image: url('assets/harfanglab.svg'); }
+.logo-tile-mark.kili     { -webkit-mask-image: url('assets/kili-technology.svg');     mask-image: url('assets/kili-technology.svg'); }
 
 /* Section "Profils recrutés sur cette offre" en bas de chaque services-*.
    Reprend la grille .two-col (catégorie à gauche, postes à droite)

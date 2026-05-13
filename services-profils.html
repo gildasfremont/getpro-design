@@ -381,7 +381,6 @@
             <a class="tab" href="services-tech.html">Chasse de dirigeants</a>
             <a class="tab" href="services-renfort.html">Renfort en recrutement</a>
             <a class="tab" href="services-transition.html">Temps partagé &amp; transition</a>
-            <a class="btn-outline tab--push-right" href="services-profils.html" aria-current="page">Profils recrutés</a>
         </nav>
       </div>
 
@@ -490,6 +489,8 @@
 
       let metiers = {};
       let candidates = [];
+      let activeBucket = null;
+      let activeSub = null;
 
       // Ordre des buckets + leur libellé : on les lit depuis les subtabs
       // de la col 1 pour rester DRY (source unique de vérité côté DOM).
@@ -628,7 +629,6 @@
           else b.removeAttribute('aria-current');
         });
         renderProfiles();
-        renderChips();
         renderTestimonials();
         syncTriggerLabel();
         closeTrigger();
@@ -651,7 +651,6 @@
         metiers = m;
         candidates = c;
         renderProfiles();
-        renderChips();
         renderTestimonials();
       }).catch(err => {
         console.error('Failed to load data:', err);
