@@ -361,8 +361,11 @@ button { font-family: inherit; cursor: pointer; }
   background: var(--bg);
 }
 
-@media (max-width: 600px) {
-  /* Mobile : on cache les tabs et on montre le dropdown à la place. */
+@media (max-width: 800px) {
+  /* Mobile/tablet : on cache les tabs/subtabs (cartouches) et on montre
+     les dropdowns à la place. Même breakpoint que le dropdown catégories
+     sur services-profils → 3 dropdowns alignés visuellement, plus de
+     cartouches + dropdown sur la même vue (incohérent). */
   .solutions-head .tabs { display: none; }
   .solutions-head .tabs-dropdown { display: block; }
   .subtabs-row .subtabs { display: none; }
