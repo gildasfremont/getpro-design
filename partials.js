@@ -49,6 +49,7 @@
         <a href="services-tech.html" class="menu-item"${aria('#services')}>Services</a>
         <a href="clients.html" class="menu-item"${aria('clients.html')}>Clients</a>
         <a href="equipe.html" class="menu-item"${aria('equipe.html')}>Équipe</a>
+        <a href="contact.html" class="btn-menu"${aria('contact.html')}>Contact</a>
       </div>
     </nav>
   `;
