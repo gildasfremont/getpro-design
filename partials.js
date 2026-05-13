@@ -78,8 +78,8 @@
       </div>
       <div class="foot-col">
         <a href="services-tech.html"${aria('services-tech.html')}>Chasse Tech</a>
-        <a href="services-produit.html"${aria('services-produit.html')}>Chasse Produit</a>
-        <a href="services-sales.html"${aria('services-sales.html')}>Chasse Sales &amp; Support</a>
+        <a href="services-produit.html"${aria('services-produit.html')}>Chasse Product &amp; Projects</a>
+        <a href="services-sales.html"${aria('services-sales.html')}>Chasse Customer &amp; Admin</a>
         <a href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement</a>
         <a href="services-transition.html"${aria('services-transition.html')}>Temps partagé &amp; transition</a>
       </div>
