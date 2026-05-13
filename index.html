@@ -268,8 +268,8 @@
     padding: clamp(40px, 5vw, 80px) var(--pad-x);
   }
   .ai-logos-title {
-    padding-left: clamp(24px, 4.8vw, 70px);
-    padding-right: clamp(0px, 3.5vw, 50px);
+    padding-left: var(--pad-x);
+    padding-right: var(--pad-x);
   }
   .ai-logos-title h2 {
     font-size: var(--fs-section-title);
@@ -280,13 +280,11 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    /* Écarts plus serrés entre logos pour densifier la rangée maintenant
-       qu'on en affiche ~28. Padding-right généreux côté droit pour ne
-       pas que la dernière ligne s'étale jusqu'au bord du viewport. */
+    /* Écarts plus serrés entre logos pour densifier la rangée. */
     column-gap: clamp(24px, 2.8vw, 48px);
     row-gap: clamp(20px, 2.4vw, 36px);
-    padding-left: clamp(24px, 4.8vw, 70px);
-    padding-right: clamp(40px, 8vw, 140px);
+    padding-left: var(--pad-x);
+    padding-right: var(--pad-x);
   }
   .ai-logo {
     display: inline-flex;
@@ -304,19 +302,18 @@
 
   .see-all-bottom {
     align-self: flex-start;
-    margin-left: clamp(24px, 4.8vw, 70px);
+    margin-left: var(--pad-x);
   }
 
   /* ---------- Breakpoints (structural changes only) ---------- */
   @media (max-width: 800px) {
-    /* Indents gauche alignés sur 4vw (au lieu de 4.8vw desktop) :
-       le titre + manifeste + ai-logos partagent la même mesure. */
+    /* Aligner sur var(--pad-x) pour cohérence */
     .ai-logos-title,
     .ai-logos-rows {
-      padding-left: clamp(20px, 4vw, 40px);
-      padding-right: clamp(20px, 4vw, 40px);
+      padding-left: var(--pad-x);
+      padding-right: var(--pad-x);
     }
-    .see-all-bottom { margin-left: clamp(20px, 4vw, 40px); }
+    .see-all-bottom { margin-left: var(--pad-x); }
   }
 </style>
 </head>
