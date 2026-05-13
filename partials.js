@@ -115,6 +115,28 @@
     }
     const foot = document.querySelector('[data-footer]');
     if (foot) foot.innerHTML = footerHTML;
+
+    // Sur mobile, on remplace les .tabs et .subtabs par des <select>
+    // natifs. Hidden par défaut, affichés via media query <600px.
+    function buildSelect(navEl, sourceClass, selectClass, ariaLabel) {
+      if (!navEl) return;
+      const select = document.createElement('select');
+      select.className = selectClass;
+      select.setAttribute('aria-label', ariaLabel);
+      navEl.querySelectorAll('a.' + sourceClass).forEach(a => {
+        const opt = document.createElement('option');
+        opt.value = a.href;
+        opt.textContent = a.textContent.trim();
+        if (a.getAttribute('aria-current') === 'page') opt.selected = true;
+        select.appendChild(opt);
+      });
+      select.addEventListener('change', () => {
+        if (select.value) window.location.href = select.value;
+      });
+      navEl.parentNode.insertBefore(select, navEl.nextSibling);
+    }
+    buildSelect(document.querySelector('nav.tabs'), 'tab', 'tabs-select', 'Navigation services');
+    buildSelect(document.querySelector('nav.subtabs'), 'subtab', 'subtabs-select', 'Navigation practices');
   };
 
   if (document.readyState === 'loading') {

@@ -314,31 +314,32 @@
     .ratings-row { flex-wrap: wrap; }
   }
 
-  /* Phone : le témoignage actif wrap autour du nom (1ʳᵉ ligne à droite,
-     puis suivantes sous le nom). Float sur le name-link, .tm-full bascule
-     en block. La grille 2 cols (info | témoignage) tient jusqu'à 600px :
-     en dessous on passe en pleine largeur avec le wrap autour du nom. */
+  /* Phone : layout stack vertical propre. Le témoignage actif s'affiche
+     en bloc SOUS le nom (pas de wrap, pas de float). Logo masqué. */
   @media (max-width: 600px) {
     .clients-list {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      row-gap: clamp(20px, 2.4vw, 32px);
+      grid-template-columns: 1fr;
+      row-gap: clamp(16px, 2vw, 24px);
     }
-    .row { grid-column: 1 / -1; display: block; }
-    .row-info { display: contents; }
+    .row {
+      grid-column: 1;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(8px, 1.4vw, 14px);
+    }
+    .row-info { display: block; }
     .logo-cell { display: none; }
     .row.active .tm-line { display: none; }
-    .tm-full { position: relative; }
-
-    .clients-list a.name-link {
-      float: left;
-      margin-right: clamp(8px, 2vw, 16px);
+    .tm-full {
+      display: none;
+      position: relative;
+      margin-top: clamp(8px, 1.4vw, 14px);
     }
     .row.active .tm-full {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(14px, 2vw, 22px);
       background: transparent;
-    }
-    .row.active .tm-full > * + * {
-      margin-top: clamp(18px, 2vw, 30px);
     }
 
     /* Panel "full-bleed" : la box blanche prend toute la largeur du

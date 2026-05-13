@@ -215,8 +215,16 @@
   @media (max-width: 900px) {
     .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
+  /* Mobile : on garde 2 cols pour que les photos restent à taille
+     raisonnable. Un seul col avec aspect 1/2 ferait des photos
+     gigantesques. */
   @media (max-width: 480px) {
-    .team-grid { grid-template-columns: 1fr; }
+    .team-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding-left: clamp(16px, 4vw, 24px);
+      row-gap: clamp(20px, 3vw, 32px);
+    }
+    .team-photo { aspect-ratio: 2 / 3; }
   }
 </style>
 </head>
