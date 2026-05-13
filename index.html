@@ -256,6 +256,20 @@
     .manifesto-aside { padding-left: var(--pad-card-x); }
   }
 
+  /* ---------- Mobile : blocs blancs full-bleed ---------- */
+  /* Sur les pages clients/services, à <600px, les blocs blancs prennent
+     toute la largeur du viewport (margin négative qui annule la gouttière
+     de .section, padding-inline qui aligne le contenu interne sur --pad-x).
+     Même traitement sur home : case-cards Mistral/Lucca/Filigran et
+     manifesto-card "Depuis 2015" passent en full-bleed mobile. */
+  @media (max-width: 600px) {
+    .case-card,
+    .manifesto-card {
+      margin-inline: calc(var(--pad-x) * -1);
+      padding-inline: var(--pad-x);
+    }
+  }
+
   /* ---------- Logos clients IA ---------- */
   /* Même squelette que les autres sections du site (cf .logos-section
      d'origine) : title à gauche, contenu indenté sur 4.8vw. Logos en
