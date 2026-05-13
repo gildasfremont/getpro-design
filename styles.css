@@ -925,6 +925,23 @@ button { font-family: inherit; cursor: pointer; }
 .case-logo-mark.stoik      { -webkit-mask-image: url('assets/stoik.svg');         mask-image: url('assets/stoik.svg'); }
 .case-logo-mark.matera     { -webkit-mask-image: url('assets/matera.svg');        mask-image: url('assets/matera.svg'); }
 .case-logo-mark.kili       { -webkit-mask-image: url('assets/kili-technology.svg'); mask-image: url('assets/kili-technology.svg'); }
+.case-logo-mark.smartrenting { -webkit-mask-image: url('assets/smartrenting.svg'); mask-image: url('assets/smartrenting.svg'); }
+.case-logo-mark.smart-impulse { -webkit-mask-image: url('assets/smart-impulse.svg'); mask-image: url('assets/smart-impulse.svg'); }
+.case-logo-mark.lucile-woodward { -webkit-mask-image: url('assets/lucile-woodward.svg'); mask-image: url('assets/lucile-woodward.svg'); }
+.case-logo-mark.in-store-media-france { -webkit-mask-image: url('assets/in-store-media-france.svg'); mask-image: url('assets/in-store-media-france.svg'); }
+.case-logo-mark.bdl-capital-management { -webkit-mask-image: url('assets/bdl-capital-management.svg'); mask-image: url('assets/bdl-capital-management.svg'); }
+.case-logo-mark.avanteam    { -webkit-mask-image: url('assets/avanteam.svg'); mask-image: url('assets/avanteam.svg'); }
+.case-logo-mark.bluekango   { -webkit-mask-image: url('assets/bluekango.svg'); mask-image: url('assets/bluekango.svg'); }
+.case-logo-mark.carrefour   { -webkit-mask-image: url('assets/carrefour.svg'); mask-image: url('assets/carrefour.svg'); }
+.case-logo-mark.corwave     { -webkit-mask-image: url('assets/corwave.svg'); mask-image: url('assets/corwave.svg'); }
+.case-logo-mark.foodles     { -webkit-mask-image: url('assets/foodles.svg'); mask-image: url('assets/foodles.svg'); }
+.case-logo-mark.keon        { -webkit-mask-image: url('assets/keon.svg'); mask-image: url('assets/keon.svg'); }
+.case-logo-mark.medialog    { -webkit-mask-image: url('assets/medialog.svg'); mask-image: url('assets/medialog.svg'); }
+.case-logo-mark.mojix       { -webkit-mask-image: url('assets/mojix.svg'); mask-image: url('assets/mojix.svg'); }
+.case-logo-mark.quipment    { -webkit-mask-image: url('assets/quipment.svg'); mask-image: url('assets/quipment.svg'); }
+.case-logo-mark.rosaly      { -webkit-mask-image: url('assets/rosaly.svg'); mask-image: url('assets/rosaly.svg'); }
+.case-logo-mark.spiko       { -webkit-mask-image: url('assets/spiko.svg'); mask-image: url('assets/spiko.svg'); }
+.case-logo-mark.yubo        { -webkit-mask-image: url('assets/yubo.svg'); mask-image: url('assets/yubo.svg'); }
 
 /* Attribution sous un verbatim de témoignage client : ligne courte façon
    credit, taille un cran plus petite que le corps, opacité réduite pour
@@ -935,6 +952,7 @@ button { font-family: inherit; cursor: pointer; }
   margin-top: clamp(10px, 1.2vw, 14px);
   opacity: 0.72;
 }
+
 
 /* Byline consultant attaché à un case-row : petit avatar rond + nom/rôle.
    Sert quand on veut montrer qui pilote la mission présentée (ex : Camille
