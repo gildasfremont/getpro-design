@@ -959,6 +959,27 @@ button { font-family: inherit; cursor: pointer; }
   -webkit-mask-mode: alpha;
           mask-mode: alpha;
 }
+
+/* Logo en couleurs natives (img). Sert dans les case-row où le mask
+   produirait un blob ink (logos multi-couleurs façon Mistral). On garde
+   .case-logo-mark pour les wordmark-only style monochrome compatible. */
+.case-logo-img {
+  justify-self: start;
+  align-self: center;
+  width: auto;
+  max-width: clamp(110px, 14vw, 180px);
+  max-height: clamp(28px, 3vw, 48px);
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+}
+@media (max-width: 700px) {
+  .case-logo-img {
+    max-width: clamp(90px, 24vw, 140px);
+    max-height: clamp(26px, 6vw, 36px);
+  }
+}
 .case-logo-mark.electra  { -webkit-mask-image: url('assets/electra.svg');           mask-image: url('assets/electra.svg'); }
 .case-logo-mark.japhy    { -webkit-mask-image: url('assets/japhy.svg');             mask-image: url('assets/japhy.svg'); }
 .case-logo-mark.filigran { -webkit-mask-image: url('assets/filigran.svg');          mask-image: url('assets/filigran.svg'); }

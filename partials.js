@@ -53,6 +53,7 @@
           </a>
           <ul class="submenu" role="menu" aria-label="Services">
             <li role="none"><a role="menuitem" href="services-tech.html"${aria('services-tech.html')}>Chasse de dirigeants</a></li>
+            <li role="none"><a role="menuitem" href="services-profils.html"${aria('services-profils.html')}>Profils recrutés</a></li>
             <li role="none"><a role="menuitem" href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement</a></li>
             <li role="none"><a role="menuitem" href="services-transition.html"${aria('services-transition.html')}>Temps partagé &amp; transition</a></li>
           </ul>
