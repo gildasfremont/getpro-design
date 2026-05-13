@@ -917,6 +917,24 @@ button { font-family: inherit; cursor: pointer; }
 .case-logo-mark.lucca    { -webkit-mask-image: url('assets/lucca.svg');             mask-image: url('assets/lucca.svg'); }
 .case-logo-mark.flaire   { -webkit-mask-image: url('assets/flaire.svg');            mask-image: url('assets/flaire.svg'); }
 .case-logo-mark.pono     { -webkit-mask-image: url('assets/pono.svg');              mask-image: url('assets/pono.svg'); }
+.case-logo-mark.fasterize  { -webkit-mask-image: url('assets/fasterize.svg');     mask-image: url('assets/fasterize.svg'); }
+.case-logo-mark.wildsense  { -webkit-mask-image: url('assets/wildsense.svg');     mask-image: url('assets/wildsense.svg'); }
+.case-logo-mark.jeudimerci { -webkit-mask-image: url('assets/jeudimerci.svg');    mask-image: url('assets/jeudimerci.svg'); }
+.case-logo-mark.deepmove   { -webkit-mask-image: url('assets/deepmove.svg');      mask-image: url('assets/deepmove.svg'); }
+.case-logo-mark.kardinal   { -webkit-mask-image: url('assets/kardinal.svg');      mask-image: url('assets/kardinal.svg'); }
+.case-logo-mark.stoik      { -webkit-mask-image: url('assets/stoik.svg');         mask-image: url('assets/stoik.svg'); }
+.case-logo-mark.matera     { -webkit-mask-image: url('assets/matera.svg');        mask-image: url('assets/matera.svg'); }
+.case-logo-mark.kili       { -webkit-mask-image: url('assets/kili-technology.svg'); mask-image: url('assets/kili-technology.svg'); }
+
+/* Attribution sous un verbatim de témoignage client : ligne courte façon
+   credit, taille un cran plus petite que le corps, opacité réduite pour
+   ne pas concurrencer le verbatim au-dessus. */
+.case-attribution {
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1.3;
+  margin-top: clamp(10px, 1.2vw, 14px);
+  opacity: 0.72;
+}
 
 /* Byline consultant attaché à un case-row : petit avatar rond + nom/rôle.
    Sert quand on veut montrer qui pilote la mission présentée (ex : Camille
