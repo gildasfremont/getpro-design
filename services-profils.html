@@ -387,11 +387,12 @@
     }
 
     .view-body { grid-row: 3; }
-    /* scroll-margin-top compensé pour : site header (~44-50) + view-tabs
-       (~60-90) + petite marge. */
+    /* scroll-margin-top sur mobile : compensé pour site header (~44-50)
+       + view-tabs sticky (~60-90) → bucket-section atterrit SOUS la
+       sticky bar, pas derrière. */
     .bucket-section,
     .profiles-block {
-      scroll-margin-top: clamp(115px, 16vw, 160px);
+      scroll-margin-top: clamp(130px, 18vw, 180px);
     }
   }
 </style>
@@ -512,26 +513,26 @@
           if (!btn) return;
           const target = btn.dataset.view;
           activateView(target);
-          // Remonte au top du panel-body avec un offset pour la nav
-          // sticky et les view-tabs : navbar + tabs restent visibles,
-          // le contenu de la nouvelle vue démarre proprement.
-          requestAnimationFrame(() => {
-            const panelBody = document.querySelector('.panel-body');
-            if (!panelBody) return;
-            // Offset = juste sous la nav sticky. Le titre "Solutions"
-            // + les tabs Chasse/Renfort/Profils sont scrollés out, on
-            // arrive directement sur le contenu du panel.
-            const headerOffset = 60;
-            const top = panelBody.getBoundingClientRect().top + window.scrollY - headerOffset;
-            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-          });
+          // Scroll vers la bucket-section active dans la nouvelle vue.
+          requestAnimationFrame(scrollToActiveBucket);
         });
       }
 
       let metiers = {};
       let candidates = [];
-      let activeBucket = null;
+      let activeBucket = tabsHost.querySelector('.subtab[aria-current="true"]')?.dataset.bucket || 'tech';
       let activeSub = null;
+
+      // Scroll vers le haut de la combinaison [vue active × bucket actif].
+      // Appelé après click view-tab ET click bucket-tab. Instant, pas
+      // d'animation. scroll-margin-top sur .bucket-section gère le décalage
+      // pour ne pas atterrir derrière les sticky bars.
+      function scrollToActiveBucket() {
+        const activeView = document.querySelector('.view-body:not([hidden])');
+        if (!activeView) return;
+        const target = activeView.querySelector(`.bucket-section[data-bucket="${activeBucket}"]`);
+        if (target) target.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
 
       // Ordre des buckets + leur libellé : on les lit depuis les subtabs
       // de la col 1 pour rester DRY (source unique de vérité côté DOM).
@@ -654,13 +655,13 @@
         const btn = e.target.closest('.subtab[data-bucket]');
         if (!btn) return;
         e.preventDefault();
-        // Click sur la cat déjà active : on ferme juste le trigger.
+        // Click sur la cat déjà active : on ferme juste le dropdown.
         if (btn.dataset.bucket === activeBucket) {
           closeTrigger();
           return;
         }
         activeBucket = btn.dataset.bucket;
-        activeSub = null; // reset quand on change de bucket
+        activeSub = null;
         tabsHost.querySelectorAll('.subtab').forEach(b => {
           if (b === btn) b.setAttribute('aria-current', 'true');
           else b.removeAttribute('aria-current');
@@ -669,16 +670,7 @@
         renderTestimonials();
         syncTriggerLabel();
         closeTrigger();
-        // Scroll vers la section bucket cliquée, dans la vue active
-        // (placements OU témoignages). scroll-margin-top: 110px sur la
-        // bucket-section compense le header sticky et les view-tabs.
-        requestAnimationFrame(() => {
-          const activeView = document.querySelector('.view-body:not([hidden])');
-          const target = activeView ? activeView.querySelector(`.bucket-section[data-bucket="${activeBucket}"]`) : null;
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
+        requestAnimationFrame(scrollToActiveBucket);
       });
 
       Promise.all([
