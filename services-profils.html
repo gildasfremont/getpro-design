@@ -315,7 +315,21 @@
     /* .solutions-title-row : on laisse le flex-wrap global gérer le
        passage à la ligne les autres pages Solutions/Renfort font
        pareil pour rester cohérent à toutes les tailles. */
-    .panel-body { grid-template-columns: 1fr; }
+    /* Mobile : view-tabs (Placements/Témoignages) sortent de content-col
+       via display: contents pour devenir grid-items directs de panel-body,
+       ce qui permet de les positionner AU-DESSUS des catégories.
+       Ordre vertical : view-tabs > categories trigger > view-body. */
+    .panel-body {
+      grid-template-columns: 1fr;
+    }
+    .content-col { display: contents; }
+    .view-tabs { grid-row: 1; }
+    .categories-col { grid-row: 2; }
+    .view-body { grid-row: 3; }
+    /* view-tabs sticky en haut, categories-col sticky juste dessous. */
+    .view-tabs {
+      top: clamp(44px, 6.7vw, 96px);
+    }
     /* En mobile, .categories-col devient un sticky bar :
        - row 1 : trigger "Tech ▾" à gauche + Trustpilot à droite
        - row 2 : la liste bucket-tabs (cachée par défaut, ouverte
@@ -334,11 +348,15 @@
       row-gap: clamp(16px, 2vw, 24px);
       position: -webkit-sticky;
       position: sticky;
-      top: clamp(60px, 6vw, 90px);
+      /* Sticky JUSTE EN DESSOUS des view-tabs (positionnées en haut via
+         grid-row: 1 + sticky). view-tabs height ~60-90px sur mobile,
+         son top ~44-96px → bottom ~104-186px. On stick categories à
+         ~120px pour passer dessous sans gap visible. */
+      top: clamp(115px, 16vw, 195px);
       background: var(--white);
       padding: clamp(12px, 1.6vw, 18px) 0;
       /* z-index > view-tabs (10) pour que le dropdown ouvert passe au-
-         dessus des view-tabs (Placements/Témoignages) du content-col. */
+         dessus du contenu en dessous (view-body, bucket-sections...). */
       z-index: 15;
     }
     .categories-trigger {
