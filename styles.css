@@ -253,8 +253,7 @@ button { font-family: inherit; cursor: pointer; }
 /* ---------- Tabs (top-level) ---------- */
 .tabs {
   display: flex;
-  flex-wrap: wrap;
-  gap: clamp(8px, 1vw, 16px) clamp(20px, 2.7vw, 40px);
+  gap: clamp(20px, 2.7vw, 40px);
 }
 .tab {
   display: inline-flex;
@@ -293,10 +292,16 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--white);
 }
 
-/* Les .tabs (text + underline) wrappent sur 2 lignes quand la place
-   manque (flex-wrap: wrap dans la règle globale .tabs). Pas de scroll
-   horizontal — plus lisible que des tabs masquées derrière le bord
-   d'écran. Les .subtabs (cartouches) elles, scrollent latéralement. */
+/* Sur mobile/tablette, les .tabs services partagent la largeur via
+   flex: 1 1 0 → chaque tab prend 1/n de la largeur dispo, le texte
+   wrap sur 2 lignes (ou plus) à l'intérieur quand il dépasse. */
+@media (max-width: 800px) {
+  .solutions-head .tab {
+    flex: 1 1 0;
+    min-width: 0;
+    align-items: flex-start;
+  }
+}
 
 /* ---------- Ratings (Trustpilot / Trustfolio / Google / Glassdoor) ---------- */
 .ratings-row {
