@@ -306,123 +306,92 @@
     }
   }
 
-  /* Trigger "select" : caché en desktop, visible en mobile.
-     Affiche la catégorie active + chevron, click → ouvre la liste. */
+  /* Trigger desktop : caché partout (le bucket-tabs s'affiche directement
+     comme sidebar sur desktop, et un filter button distinct apparaît dans
+     view-tabs sur mobile). */
   .categories-trigger { display: none; }
+  .view-tabs-filter { display: none; }
 
   @media (max-width: 800px) {
     .panel-title { max-width: none; }
-    /* .solutions-title-row : on laisse le flex-wrap global gérer le
-       passage à la ligne les autres pages Solutions/Renfort font
-       pareil pour rester cohérent à toutes les tailles. */
-    /* Mobile : view-tabs (Placements/Témoignages) sortent de content-col
-       via display: contents pour devenir grid-items directs de panel-body,
-       ce qui permet de les positionner AU-DESSUS des catégories.
-       Ordre vertical : view-tabs > categories trigger > view-body. */
+    /* Mobile : view-tabs en haut sticky avec filter button à droite,
+       bucket-tabs apparaît en dropdown sous view-tabs quand cliqué.
+       .categories-col entière est mise à display: contents pour flatten
+       ses enfants → bucket-tabs devient grid-item direct de panel-body,
+       trigger + rating sont cachés. */
     .panel-body {
       grid-template-columns: 1fr;
     }
     .content-col { display: contents; }
-    .view-tabs { grid-row: 1; }
-    .categories-col { grid-row: 2; }
-    .view-body { grid-row: 3; }
-    /* view-tabs sticky en haut, categories-col sticky juste dessous. */
+    .categories-col { display: contents; }
+    .categories-col > .categories-trigger,
+    .categories-col > .rating { display: none; }
+
     .view-tabs {
+      grid-row: 1;
       top: clamp(44px, 6.7vw, 96px);
-    }
-    /* En mobile, .categories-col devient un sticky bar :
-       - row 1 : trigger "Tech ▾" à gauche + Trustpilot à droite
-       - row 2 : la liste bucket-tabs (cachée par défaut, ouverte
-         quand on clique le trigger)
-       Sticky sur la col entière → reste collée tout le long du
-       scroll dans le panel-body (parent grid qui inclut content-col).
-       top ≈ hauteur du header sticky pour pas de gap. */
-    .categories-col {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      grid-template-areas:
-        "trigger rating"
-        "subtabs subtabs";
-      align-items: baseline;
-      column-gap: clamp(16px, 2vw, 24px);
-      row-gap: clamp(16px, 2vw, 24px);
-      position: -webkit-sticky;
-      position: sticky;
-      /* Sticky JUSTE EN DESSOUS des view-tabs (positionnées en haut via
-         grid-row: 1 + sticky). view-tabs height ~60-90px sur mobile,
-         son top ~44-96px → bottom ~104-186px. On stick categories à
-         ~120px pour passer dessous sans gap visible. */
-      top: clamp(115px, 16vw, 195px);
-      background: var(--white);
-      padding: clamp(12px, 1.6vw, 18px) 0;
-      /* z-index > view-tabs (10) pour que le dropdown ouvert passe au-
-         dessus du contenu en dessous (view-body, bucket-sections...). */
       z-index: 15;
     }
-    .categories-trigger {
-      grid-area: trigger;
-      /* Match le visuel des dropdowns tabs/subtabs (cf .tabs-dropdown
-         summary dans styles.css) : box blanche bordée, padding égal,
-         chevron à droite. Cohérence avec les 2 dropdowns juste au-dessus. */
-      display: flex;
+    /* Filter button : poussé à droite, baseline alignée sur view-tabs.
+       Pas de bordure : reste discret pour ne pas concurrencer les
+       view-tabs Placements/Témoignages (les vraies actions). */
+    .view-tabs-filter {
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      text-align: left;
-      width: 100%;
-      padding: clamp(10px, 2vw, 14px) clamp(12px, 2vw, 16px);
+      gap: 8px;
+      margin-left: auto;
+      padding: 0 0 clamp(10px, 1.2vw, 16px);
+      background: none;
+      border: none;
+      color: inherit;
+      font-family: inherit;
       font-size: 16px;
       line-height: 1.25;
-      letter-spacing: 0;
-      background: var(--white);
-      border: 1px solid var(--ink);
-      border-radius: 6px;
       cursor: pointer;
-      color: var(--ink);
-      font-family: inherit;
-      align-self: center;
-      justify-self: stretch;
     }
-    .categories-trigger .chevron {
-      transition: transform 0.18s ease;
+    .view-tabs-filter-icon {
       flex-shrink: 0;
+      opacity: 0.8;
     }
-    .categories-trigger[aria-expanded="true"] .chevron {
-      transform: rotate(180deg);
-    }
-    .categories-col .rating {
-      grid-area: rating;
-      align-self: center;
-      justify-self: end;
-    }
-    /* Liste cachée par défaut, visible en dropdown sous le trigger. */
+
+    /* bucket-tabs : dropdown sous view-tabs. grid-row 2 = juste après
+       view-tabs, view-body en grid-row 3. Caché par défaut, visible
+       quand .is-open. */
     #bucket-tabs {
-      grid-area: subtabs;
+      grid-row: 2;
       display: none;
     }
     #bucket-tabs.is-open {
       display: flex;
       flex-direction: column;
-      gap: 0;
       background: var(--white);
       border: 1px solid var(--ink);
       border-radius: 6px;
       overflow: hidden;
-      margin-top: 4px;
+      margin-top: clamp(4px, 0.6vw, 8px);
     }
-    .categories-col .subtab {
+    #bucket-tabs .subtab {
       padding: clamp(10px, 2vw, 14px) clamp(12px, 2vw, 16px);
       font-size: 16px;
       line-height: 1.25;
       width: auto;
       text-align: left;
+      border-radius: 0;
     }
-    .categories-col .subtab[aria-current="true"] {
+    #bucket-tabs .subtab[aria-current="true"] {
       background: var(--bg);
       text-decoration: none;
     }
-    .categories-col .subtab:hover {
+    #bucket-tabs .subtab:hover {
       background: var(--bg);
+    }
+
+    .view-body { grid-row: 3; }
+    /* scroll-margin-top compensé pour : site header (~44-50) + view-tabs
+       (~60-90) + petite marge. */
+    .bucket-section,
+    .profiles-block {
+      scroll-margin-top: clamp(115px, 16vw, 160px);
     }
   }
 </style>
@@ -481,6 +450,12 @@
             <div class="view-tabs" role="tablist" aria-label="Vue Placements / Témoignages">
               <button class="view-tab" role="tab" data-view="postes" aria-current="true">Placements</button>
               <button class="view-tab" role="tab" data-view="rdx">Témoignages</button>
+              <button class="view-tabs-filter" type="button" aria-expanded="false" aria-controls="bucket-tabs" aria-label="Filtrer par catégorie">
+                <span class="view-tabs-filter-label">Tech</span>
+                <svg class="view-tabs-filter-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                  <path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+                </svg>
+              </button>
             </div>
 
             <div class="view-body" data-view="postes">
@@ -654,28 +629,29 @@
         container.innerHTML = html || `<div class="empty-state">Aucun témoignage candidat pour le moment.</div>`;
       }
 
-      // Trigger "select" du menu catégories en mobile.
-      const trigger = document.querySelector('.categories-trigger');
-      const triggerLabel = trigger?.querySelector('.categories-trigger-label');
+      // Filter button dans view-tabs (mobile) : ouvre/ferme le dropdown
+      // bucket-tabs. Le label affiche la catégorie active.
+      const filterBtn = document.querySelector('.view-tabs-filter');
+      const filterLabel = filterBtn?.querySelector('.view-tabs-filter-label');
       function closeTrigger() {
-        if (!trigger) return;
-        trigger.setAttribute('aria-expanded', 'false');
+        if (filterBtn) filterBtn.setAttribute('aria-expanded', 'false');
         tabsHost.classList.remove('is-open');
       }
       function syncTriggerLabel() {
-        if (!triggerLabel) return;
         const active = tabsHost.querySelector('.subtab[aria-current="true"]');
-        if (active) triggerLabel.textContent = active.textContent.trim();
+        if (!active) return;
+        const txt = active.textContent.trim();
+        if (filterLabel) filterLabel.textContent = txt;
       }
-      if (trigger) {
-        trigger.addEventListener('click', (e) => {
+      if (filterBtn) {
+        filterBtn.addEventListener('click', (e) => {
           e.stopPropagation();
-          const open = trigger.getAttribute('aria-expanded') === 'true';
-          trigger.setAttribute('aria-expanded', String(!open));
+          const open = filterBtn.getAttribute('aria-expanded') === 'true';
+          filterBtn.setAttribute('aria-expanded', String(!open));
           tabsHost.classList.toggle('is-open', !open);
         });
         document.addEventListener('click', (e) => {
-          if (!trigger.contains(e.target) && !tabsHost.contains(e.target)) closeTrigger();
+          if (!filterBtn.contains(e.target) && !tabsHost.contains(e.target)) closeTrigger();
         });
         syncTriggerLabel();
       }
