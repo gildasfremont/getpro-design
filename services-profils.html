@@ -315,32 +315,38 @@
   @media (max-width: 800px) {
     .panel-title { max-width: none; }
     /* Mobile : view-tabs en haut sticky avec filter button à droite,
-       bucket-tabs apparaît en dropdown sous view-tabs quand cliqué.
-       .categories-col entière est mise à display: contents pour flatten
-       ses enfants → bucket-tabs devient grid-item direct de panel-body,
-       trigger + rating sont cachés. */
+       bucket-tabs en dropdown dans categories-col (grid-row 2).
+       categories-col conserve une box normale (pas display: contents,
+       qui peut buguer sur certains navigateurs avec position grid). */
     .panel-body {
       grid-template-columns: 1fr;
     }
     .content-col { display: contents; }
-    .categories-col { display: contents; }
-    .categories-col > .categories-trigger,
-    .categories-col > .rating { display: none; }
+    .view-tabs { grid-row: 1; }
+    .categories-col {
+      grid-row: 2;
+      display: block;
+      position: static;
+      padding: 0;
+      background: transparent;
+      z-index: auto;
+      gap: 0;
+    }
+    .categories-col .categories-trigger,
+    .categories-col .rating { display: none; }
+    .view-body { grid-row: 3; }
 
     .view-tabs {
-      grid-row: 1;
       top: clamp(44px, 6.7vw, 96px);
       z-index: 15;
     }
-    /* Filter button : poussé à droite, baseline alignée sur view-tabs.
-       Pas de bordure : reste discret pour ne pas concurrencer les
-       view-tabs Placements/Témoignages (les vraies actions). */
+    /* Filter button : poussé à droite, baseline alignée sur view-tabs. */
     .view-tabs-filter {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       margin-left: auto;
-      padding: 0 0 clamp(10px, 1.2vw, 16px);
+      padding: 0 8px clamp(10px, 1.2vw, 16px);
       background: none;
       border: none;
       color: inherit;
@@ -352,15 +358,12 @@
     .view-tabs-filter-icon {
       flex-shrink: 0;
       opacity: 0.8;
+      /* clicks pass through to the parent button */
+      pointer-events: none;
     }
 
-    /* bucket-tabs : dropdown sous view-tabs. grid-row 2 = juste après
-       view-tabs, view-body en grid-row 3. Caché par défaut, visible
-       quand .is-open. */
-    #bucket-tabs {
-      grid-row: 2;
-      display: none;
-    }
+    /* bucket-tabs dropdown : caché par défaut, visible quand .is-open. */
+    #bucket-tabs { display: none; }
     #bucket-tabs.is-open {
       display: flex;
       flex-direction: column;
@@ -370,14 +373,20 @@
       overflow: hidden;
       margin-top: clamp(4px, 0.6vw, 8px);
     }
+    /* Override la règle desktop .categories-col .subtab qui mettait
+       display: inline-block + width: max-content. Sur mobile chaque
+       subtab fait toute la largeur du dropdown. */
+    .categories-col .subtab,
     #bucket-tabs .subtab {
+      display: block;
+      width: auto;
       padding: clamp(10px, 2vw, 14px) clamp(12px, 2vw, 16px);
       font-size: 16px;
       line-height: 1.25;
-      width: auto;
       text-align: left;
       border-radius: 0;
     }
+    .categories-col .subtab[aria-current="true"],
     #bucket-tabs .subtab[aria-current="true"] {
       background: var(--bg);
       text-decoration: none;
@@ -386,10 +395,7 @@
       background: var(--bg);
     }
 
-    .view-body { grid-row: 3; }
-    /* scroll-margin-top sur mobile : compensé pour site header (~44-50)
-       + view-tabs sticky (~60-90) → bucket-section atterrit SOUS la
-       sticky bar, pas derrière. */
+    /* scroll-margin-top mobile : SOUS la sticky bar (header + view-tabs). */
     .bucket-section,
     .profiles-block {
       scroll-margin-top: clamp(130px, 18vw, 180px);
