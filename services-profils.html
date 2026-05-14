@@ -314,31 +314,20 @@
 
   @media (max-width: 800px) {
     .panel-title { max-width: none; }
-    /* Mobile : view-tabs en haut sticky avec filter button à droite,
-       bucket-tabs en dropdown dans categories-col (grid-row 2).
-       categories-col conserve une box normale (pas display: contents,
-       qui peut buguer sur certains navigateurs avec position grid). */
-    .panel-body {
-      grid-template-columns: 1fr;
-    }
-    .content-col { display: contents; }
-    .view-tabs { grid-row: 1; }
-    .categories-col {
-      grid-row: 2;
-      display: block;
-      position: static;
-      padding: 0;
-      background: transparent;
-      z-index: auto;
-      gap: 0;
-    }
-    .categories-col .categories-trigger,
-    .categories-col .rating { display: none; }
-    .view-body { grid-row: 3; }
+    /* Mobile : view-tabs sticky en haut + filter icon à droite. Le
+       bucket-tabs (catégories) est déplacé DANS view-tabs via JS pour
+       qu'il fasse partie de la sticky bar. categories-col (sidebar
+       desktop) est cachée. */
+    .panel-body { grid-template-columns: 1fr; }
+    .categories-col { display: none; }
 
     .view-tabs {
       top: clamp(44px, 6.7vw, 96px);
       z-index: 15;
+      /* Containing block pour le dropdown absolute en dessous. sticky
+         crée déjà ce contexte mais on le rend explicite. */
+      position: -webkit-sticky;
+      position: sticky;
     }
     /* Filter button : poussé à droite, baseline alignée sur view-tabs. */
     .view-tabs-filter {
@@ -358,27 +347,27 @@
     .view-tabs-filter-icon {
       flex-shrink: 0;
       opacity: 0.8;
-      /* clicks pass through to the parent button */
       pointer-events: none;
     }
 
-    /* bucket-tabs dropdown : inline dans le flow, juste sous les view-tabs
-       (categories-col est en grid-row 2, view-body en grid-row 3).
-       Caché par défaut, visible quand .is-open. */
+    /* bucket-tabs DANS view-tabs (déplacé par JS) : dropdown absolute
+       sous view-tabs sticky. Hidden par défaut, .is-open le révèle. */
     #bucket-tabs { display: none; }
     #bucket-tabs.is-open {
       display: flex;
       flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin-top: clamp(4px, 0.6vw, 8px);
       background: var(--white);
       border: 1px solid var(--ink);
       border-radius: 6px;
       overflow: hidden;
-      margin-top: clamp(4px, 0.6vw, 8px);
+      z-index: 1;
     }
-    /* Override la règle desktop .categories-col .subtab qui mettait
-       display: inline-block + width: max-content. Sur mobile chaque
-       subtab fait toute la largeur du dropdown. */
-    .categories-col .subtab,
+    /* Override la règle desktop .categories-col .subtab. */
     #bucket-tabs .subtab {
       display: block;
       width: auto;
@@ -388,14 +377,11 @@
       text-align: left;
       border-radius: 0;
     }
-    .categories-col .subtab[aria-current="true"],
     #bucket-tabs .subtab[aria-current="true"] {
       background: var(--bg);
       text-decoration: none;
     }
-    #bucket-tabs .subtab:hover {
-      background: var(--bg);
-    }
+    #bucket-tabs .subtab:hover { background: var(--bg); }
 
     /* scroll-margin-top mobile : SOUS la sticky bar (header + view-tabs). */
     .bucket-section,
@@ -514,6 +500,27 @@
       if (/^(temoignages?|rdx)$/i.test(initHash)) {
         activateView('rdx');
       }
+
+      // Move bucket-tabs DANS view-tabs sur mobile (pour qu'il fasse partie
+      // de la sticky bar et s'ouvre toujours sous les tabs même scrollé)
+      // et le restore dans categories-col sur desktop (sidebar pattern).
+      const categoriesCol = document.querySelector('.categories-col');
+      const mql = window.matchMedia('(max-width: 800px)');
+      function placeBucketTabs() {
+        if (!tabsHost) return;
+        if (mql.matches) {
+          if (viewTabsHost && tabsHost.parentElement !== viewTabsHost) {
+            viewTabsHost.appendChild(tabsHost);
+          }
+        } else {
+          if (categoriesCol && tabsHost.parentElement !== categoriesCol) {
+            const rating = categoriesCol.querySelector('.rating');
+            categoriesCol.insertBefore(tabsHost, rating || null);
+          }
+        }
+      }
+      placeBucketTabs();
+      mql.addEventListener?.('change', placeBucketTabs);
 
       if (viewTabsHost) {
         viewTabsHost.addEventListener('click', (e) => {
