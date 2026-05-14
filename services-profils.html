@@ -451,8 +451,7 @@
               <button class="view-tab" role="tab" data-view="postes" aria-current="true">Placements</button>
               <button class="view-tab" role="tab" data-view="rdx">Témoignages</button>
               <button class="view-tabs-filter" type="button" aria-expanded="false" aria-controls="bucket-tabs" aria-label="Filtrer par catégorie">
-                <span class="view-tabs-filter-label">Tech</span>
-                <svg class="view-tabs-filter-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                <svg class="view-tabs-filter-icon" viewBox="0 0 16 16" width="18" height="18" aria-hidden="true">
                   <path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/>
                 </svg>
               </button>
@@ -630,19 +629,15 @@
       }
 
       // Filter button dans view-tabs (mobile) : ouvre/ferme le dropdown
-      // bucket-tabs. Le label affiche la catégorie active.
+      // bucket-tabs. Icône seule, pas de label.
       const filterBtn = document.querySelector('.view-tabs-filter');
-      const filterLabel = filterBtn?.querySelector('.view-tabs-filter-label');
       function closeTrigger() {
         if (filterBtn) filterBtn.setAttribute('aria-expanded', 'false');
         tabsHost.classList.remove('is-open');
       }
-      function syncTriggerLabel() {
-        const active = tabsHost.querySelector('.subtab[aria-current="true"]');
-        if (!active) return;
-        const txt = active.textContent.trim();
-        if (filterLabel) filterLabel.textContent = txt;
-      }
+      // syncTriggerLabel : kept as a no-op pour ne pas casser les appels
+      // existants en aval (renderProfiles click handler).
+      function syncTriggerLabel() {}
       if (filterBtn) {
         filterBtn.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -653,7 +648,6 @@
         document.addEventListener('click', (e) => {
           if (!filterBtn.contains(e.target) && !tabsHost.contains(e.target)) closeTrigger();
         });
-        syncTriggerLabel();
       }
 
       tabsHost.addEventListener('click', (e) => {
