@@ -293,13 +293,17 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* Sur mobile/tablette, les .tabs services partagent la largeur via
-   flex: 1 1 0 → chaque tab prend 1/n de la largeur dispo, le texte
-   wrap sur 2 lignes (ou plus) à l'intérieur quand il dépasse. */
+   flex: 1 1 0 → chaque tab prend 1/n. Texte clamp à 2 lignes max
+   (ellipsis si dépasse) — le user en veut deux, pas trois. */
 @media (max-width: 800px) {
   .solutions-head .tab {
     flex: 1 1 0;
     min-width: 0;
-    align-items: flex-start;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+            line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 
