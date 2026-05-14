@@ -337,7 +337,9 @@
       top: clamp(60px, 6vw, 90px);
       background: var(--white);
       padding: clamp(12px, 1.6vw, 18px) 0;
-      z-index: 5;
+      /* z-index > view-tabs (10) pour que le dropdown ouvert passe au-
+         dessus des view-tabs (Placements/Témoignages) du content-col. */
+      z-index: 15;
     }
     .categories-trigger {
       grid-area: trigger;
