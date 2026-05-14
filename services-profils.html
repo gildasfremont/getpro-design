@@ -351,8 +351,8 @@
     }
 
     /* bucket-tabs DANS view-tabs (déplacé par JS) : dropdown absolute
-       sous view-tabs sticky. Style éditorial : bordure --line subtile,
-       hairlines entre items, typo site, ombre légère pour le détacher. */
+       sous view-tabs sticky. Aplat blanc simple, pas de bordure ni
+       de hairline, juste les options dedans. */
     #bucket-tabs { display: none; }
     #bucket-tabs.is-open {
       display: flex;
@@ -362,14 +362,10 @@
       left: 0;
       right: 0;
       background: var(--white);
-      border: 1px solid var(--line);
-      box-shadow: 0 4px 12px rgba(6, 32, 4, 0.06);
-      overflow: hidden;
       z-index: 1;
     }
-    /* Override la règle desktop .categories-col .subtab. Item style en
-       hairline éditorial (border-bottom var(--line)), active souligné
-       comme partout sur le site (text-decoration: underline). */
+    /* Override la règle desktop .categories-col .subtab. Active souligné
+       comme les liens / subtabs du site. */
     #bucket-tabs .subtab {
       display: block;
       width: auto;
@@ -379,15 +375,12 @@
       text-align: left;
       border: none;
       border-radius: 0;
-      border-bottom: 1px solid var(--line);
-      background: var(--white);
+      background: none;
     }
-    #bucket-tabs .subtab:last-child { border-bottom: none; }
     #bucket-tabs .subtab[aria-current="true"] {
       text-decoration: underline;
       text-underline-offset: 4px;
     }
-    #bucket-tabs .subtab:hover { background: var(--bg); }
 
     /* scroll-margin-top mobile : SOUS la sticky bar (header + view-tabs). */
     .bucket-section,
