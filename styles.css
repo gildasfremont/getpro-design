@@ -1534,3 +1534,36 @@ button { font-family: inherit; cursor: pointer; }
     --pad-card-x: clamp(22px, 4.8vw, 50px);
   }
 }
+
+/* ---------- Scroll-to-top floating button ---------- */
+/* Injecté par partials.js sur toutes les pages. Visible à partir de 400px
+   de scroll. Bottom-right, respecte safe-area-inset sur iPhone. */
+.scroll-top-btn {
+  position: fixed;
+  bottom: calc(clamp(20px, 3vw, 40px) + env(safe-area-inset-bottom, 0px));
+  right: calc(clamp(20px, 3vw, 40px) + env(safe-area-inset-right, 0px));
+  width: clamp(44px, 4.5vw, 52px);
+  height: clamp(44px, 4.5vw, 52px);
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(6, 32, 4, 0.18);
+}
+.scroll-top-btn.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.scroll-top-btn:hover {
+  opacity: 0.88;
+}

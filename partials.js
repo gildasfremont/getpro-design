@@ -116,6 +116,24 @@
     const foot = document.querySelector('[data-footer]');
     if (foot) foot.innerHTML = footerHTML;
 
+    // Bouton flottant "remonter en haut de la page" injecté sur toutes
+    // les pages. Visible à partir d'un certain scroll.
+    if (!document.querySelector('.scroll-top-btn')) {
+      const scrollTopBtn = document.createElement('button');
+      scrollTopBtn.className = 'scroll-top-btn';
+      scrollTopBtn.type = 'button';
+      scrollTopBtn.setAttribute('aria-label', 'Remonter en haut de la page');
+      scrollTopBtn.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+      scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      });
+      document.body.appendChild(scrollTopBtn);
+      const updateVisibility = () => {
+        scrollTopBtn.classList.toggle('is-visible', window.scrollY > 400);
+      };
+      window.addEventListener('scroll', updateVisibility, { passive: true });
+      updateVisibility();
+    }
   };
 
   if (document.readyState === 'loading') {
