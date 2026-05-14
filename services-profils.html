@@ -362,22 +362,18 @@
       pointer-events: none;
     }
 
-    /* bucket-tabs dropdown : overlay flottant sous les view-tabs.
-       position: fixed → ne pousse pas le contenu, apparaît "au-dessus"
-       du view-body. top positionné juste sous les view-tabs sticky. */
+    /* bucket-tabs dropdown : inline dans le flow, juste sous les view-tabs
+       (categories-col est en grid-row 2, view-body en grid-row 3).
+       Caché par défaut, visible quand .is-open. */
     #bucket-tabs { display: none; }
     #bucket-tabs.is-open {
       display: flex;
       flex-direction: column;
-      position: fixed;
-      top: clamp(102px, 14vw, 140px);
-      left: var(--pad-x);
-      right: var(--pad-x);
       background: var(--white);
       border: 1px solid var(--ink);
       border-radius: 6px;
       overflow: hidden;
-      z-index: 50;
+      margin-top: clamp(4px, 0.6vw, 8px);
     }
     /* Override la règle desktop .categories-col .subtab qui mettait
        display: inline-block + width: max-content. Sur mobile chaque
