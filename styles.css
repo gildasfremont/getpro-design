@@ -1177,8 +1177,8 @@ button { font-family: inherit; cursor: pointer; }
   padding-top: clamp(6px, 0.8vw, 10px);
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  font-size: clamp(12px, 1vw, 14px);
+  gap: clamp(4px, 0.6vw, 8px);
+  font-size: clamp(15px, 1.4vw, 19px);
   line-height: 1.35;
   width: auto;
 }
