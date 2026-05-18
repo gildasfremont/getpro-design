@@ -280,19 +280,18 @@
   }
 
   /* ---------- Logos clients IA ---------- */
-  /* Même squelette que les autres sections du site (cf .logos-section
-     d'origine) : title à gauche, contenu indenté sur 4.8vw. Logos en
-     grid à hauteur uniforme — pattern clean, pro, pas de mise en page
-     "décorative" qui détonne avec le reste. */
+  /* Section avec title à gauche + grid de logos en dessous. Padding-block
+     interne pour l'air vertical. Horizontal padding hérité de .section
+     (pas redéfini ici pour éviter les conflits de cascade). */
   .ai-logos {
     display: flex;
     flex-direction: column;
     gap: clamp(30px, 4.8vw, 70px);
-    padding: clamp(40px, 5vw, 80px) var(--pad-x);
+    padding-block: clamp(40px, 5vw, 80px);
   }
   .ai-logos-title {
     padding-left: var(--pad-card-x);
-    padding-right: clamp(0px, 3.5vw, 50px);
+    padding-right: var(--pad-card-x);
   }
   .ai-logos-title h2 {
     font-size: var(--fs-section-title);
@@ -303,13 +302,10 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    /* Écarts plus serrés entre logos pour densifier la rangée maintenant
-       qu'on en affiche ~28. Padding-right généreux côté droit pour ne
-       pas que la dernière ligne s'étale jusqu'au bord du viewport. */
     column-gap: clamp(24px, 2.8vw, 48px);
     row-gap: clamp(20px, 2.4vw, 36px);
     padding-left: var(--pad-card-x);
-    padding-right: clamp(40px, 8vw, 140px);
+    padding-right: var(--pad-card-x);
   }
   .ai-logo {
     display: inline-flex;
