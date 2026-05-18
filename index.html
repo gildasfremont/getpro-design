@@ -256,29 +256,6 @@
     .manifesto-aside { padding-left: var(--pad-card-x); }
   }
 
-  /* ---------- Mobile : blocs blancs full-bleed ---------- */
-  /* Sur les pages clients/services, à <600px, les blocs blancs prennent
-     toute la largeur du viewport (margin négative qui annule la gouttière
-     de .section, padding-inline qui aligne le contenu interne sur --pad-x).
-     Même traitement sur home : case-cards Mistral/Lucca/Filigran et
-     manifesto-card "Depuis 2015" passent en full-bleed mobile.
-     Et tous les blocs APRÈS (solutions list, témoignage, ai-logos, CTAs)
-     repassent à un padding-left 0 pour rester alignés sur var(--pad-x)
-     de la section, comme le contenu interne des blocs blancs. */
-  @media (max-width: 600px) {
-    .case-card,
-    .manifesto-card {
-      margin-inline: calc(var(--pad-x) * -1);
-      padding-inline: var(--pad-x);
-    }
-    .manifesto-aside,
-    .ai-logos-title,
-    .ai-logos-grid {
-      padding-left: 0;
-    }
-    .see-all-bottom { margin-left: 0; }
-  }
-
   /* ---------- Logos clients IA ---------- */
   /* Section avec title à gauche + grid de logos en dessous. Padding-block
      interne pour l'air vertical. Horizontal padding hérité de .section
@@ -324,6 +301,30 @@
   .see-all-bottom {
     align-self: flex-start;
     margin-left: var(--pad-card-x);
+  }
+
+  /* ---------- Mobile <600px : full-bleed + alignement contenu ---------- */
+  /* Blocs blancs full-width (case-cards + manifesto-card) via margin
+     négative qui annule la gouttière .section, padding-inline rétablit
+     l'alignement du contenu interne sur --pad-x.
+     Blocs SANS bloc blanc (témoignage, ai-logos, solutions list, CTAs) :
+     padding-left 0 pour s'aligner sur --pad-x de la section = même X
+     que le contenu interne des blocs blancs au-dessus.
+     Cette règle est en BAS du style block pour avoir priorité sur les
+     définitions desktop des mêmes éléments (cascade same-specificity). */
+  @media (max-width: 600px) {
+    .case-card,
+    .manifesto-card {
+      margin-inline: calc(var(--pad-x) * -1);
+      padding-inline: var(--pad-x);
+    }
+    .manifesto-aside,
+    .ai-logos-title,
+    .ai-logos-grid {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .see-all-bottom { margin-left: 0; }
   }
 </style>
 </head>
