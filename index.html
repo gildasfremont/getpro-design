@@ -135,19 +135,15 @@
     -webkit-mask-size: contain;
             mask-size: contain;
   }
-  /* Lucca icon : carré arrondi --ink + caractère --bg (mêmes hex que les
-     CSS vars). Pas de mask-image — le SVG est déjà aux bonnes couleurs
-     natives, le caractère se "fond" dans le bg de page. */
-  .case-logo .symbol-lucca {
+  /* Lucca icon : utilisation d'un <img> direct (pas de bg-image sur span
+     comme les autres symbols) parce que le SVG lucca-icon a des couleurs
+     hardcodées (ink + bg) qui doivent être préservées — un mask aurait
+     mangé les cuts du "L" à l'intérieur du carré. */
+  .case-logo .case-logo-icon {
+    flex: none;
+    display: block;
     width: clamp(28px, 3.9vw, 56px);
     height: clamp(28px, 3.9vw, 56px);
-    background-color: transparent;
-    background-image: url('assets/lucca-icon.svg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    -webkit-mask-image: none;
-            mask-image: none;
   }
   /* Filigran icon (cropped from wordmark, viewBox 161×41) */
   .case-logo .symbol-filigran {
@@ -372,7 +368,7 @@
       <a class="case-card" href="clients.html#lucca" aria-label="Lucca · voir le témoignage">
         <header class="case-logo" aria-label="Lucca">
           <span class="name">Lucca</span>
-          <span class="symbol symbol-lucca" aria-hidden="true"></span>
+          <img class="case-logo-icon" src="assets/lucca-icon.svg" alt="" aria-hidden="true" />
         </header>
         <div class="case-text">
           <h2>Passer d'un management de startup à scale-up</h2>
@@ -452,7 +448,6 @@
         <a class="ai-logo" href="clients.html#contentsquare" aria-label="Contentsquare"><span class="ai-logo-mark contentsquare" aria-hidden="true"></span></a>
         <a class="ai-logo" href="clients.html#blablacar" aria-label="BlaBlaCar"><span class="ai-logo-mark blablacar" aria-hidden="true"></span></a>
         <a class="ai-logo" href="clients.html#manomano" aria-label="ManoMano"><span class="ai-logo-mark manomano" aria-hidden="true"></span></a>
-        <a class="ai-logo" href="clients.html#lucca" aria-label="Lucca"><span class="ai-logo-mark lucca" aria-hidden="true"></span></a>
         <a class="ai-logo" href="clients.html#eleven-labs" aria-label="Eleven Labs"><span class="ai-logo-mark eleven-labs" aria-hidden="true"></span></a>
         <a class="ai-logo" href="clients.html#agicap" aria-label="Agicap"><span class="ai-logo-mark agicap" aria-hidden="true"></span></a>
         <a class="ai-logo" href="clients.html#electra" aria-label="Electra"><span class="ai-logo-mark electra" aria-hidden="true"></span></a>
