@@ -175,18 +175,19 @@
   .case-image-lucca   { background-image: url('assets/Gsatge-0224-6.jpg'); }
   .case-image-filigran { background-image: url('assets/filigran-cover.jpg'); }
 
-  /* ---------- Manifesto editorial : card blanche full-width + témoignage ---------- */
-  /* "Depuis 2015" est un bloc blanc full-width qui fonctionne comme les
-     case-cards (Mistral / Lucca / Filigran) au-dessus. Le témoignage
-     passe en dessous, son texte aligné sur le contenu intérieur de la
-     card pour une continuité visuelle. */
+  /* ---------- Manifesto editorial : 2-col desktop / stack mobile ---------- */
+  /* Desktop : card "Depuis 2015" à gauche (50%), témoignage à droite,
+     centrés verticalement. Mobile (<800px) : stack vertical, card en
+     haut + témoignage en dessous, contenu de l'aside aligné sur le
+     contenu interne de la card (padding-left = --pad-card-x). */
   .manifesto {
     padding-block: var(--gap-section);
   }
   .manifesto-row {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(36px, 4.5vw, 70px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(32px, 4vw, 80px);
+    align-items: center;
   }
   .manifesto-card {
     background: var(--white);
@@ -204,8 +205,7 @@
   }
   /* Même typo que .solutions-overview-list p — référence éditoriale
      pour les paragraphes de section sur la home. Line-height 1.45 pour
-     respiration confortable (le 1.35 d'origine rendait les paragraphes
-     trop tassés/écrasés). */
+     respiration confortable. */
   .manifesto-card p,
   .manifesto-quote p,
   .manifesto-cta {
@@ -214,14 +214,13 @@
     margin: 0;
     max-width: var(--measure);
   }
-  /* Bloc témoignage en dessous de la card, posé sur le fond vert.
-     padding-left = --pad-card-x pour aligner le texte du témoignage
-     avec le texte à l'intérieur de la card (continuité visuelle). */
+  /* Témoignage : sur desktop, c'est la colonne droite du grid 2-col,
+     centré verticalement avec la card. Sur mobile, en dessous de la
+     card avec padding-left = --pad-card-x pour aligner sur son contenu. */
   .manifesto-aside {
     display: flex;
     flex-direction: column;
     gap: clamp(20px, 2vw, 32px);
-    padding-left: var(--pad-card-x);
   }
   .manifesto-quote {
     margin: 0;
@@ -249,7 +248,12 @@
     align-self: flex-start;
   }
   @media (max-width: 800px) {
-    .manifesto-aside { padding-left: var(--pad-card-x); }
+    .manifesto-row {
+      grid-template-columns: 1fr;
+    }
+    .manifesto-aside {
+      padding-left: var(--pad-card-x);
+    }
   }
 
   /* ---------- Logos clients IA ---------- */
