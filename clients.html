@@ -328,7 +328,8 @@
       gap: clamp(8px, 1.4vw, 14px);
     }
     .row-info { display: block; }
-    .logo-cell { display: none; }
+    /* Logo visible aussi en mobile : il apparaît au-dessus du nom
+       (row-info en flex column via display: block). */
     .row.active .tm-line { display: none; }
     .tm-full {
       display: none;
