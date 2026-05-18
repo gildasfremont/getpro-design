@@ -220,7 +220,7 @@
     font-size: clamp(15px, 1.4vw, 20px);
     line-height: 1.3;
   }
-  /* Plus de soulignement sur les noms cliquables — le ton sobre suffit,
+  /* Plus de soulignement sur les noms cliquables. Le ton sobre suffit,
      le hover/curseur signalent l'interactivité. */
 
   /* Logo sous le nom (taille discrète, pas le bloc principal). */
@@ -484,7 +484,7 @@
         const activeCls = c.slug === activeSlug ? ' active' : '';
         // Pas de span vide quand pas de logo : avec le layout en flex
         // column (logo au-dessus du nom), un span vide créerait un gap
-        // fantôme au-dessus du nom — on n'émet rien.
+        // fantôme au-dessus du nom, on n'émet rien.
         const logoCell = c.has_logo
           ? `<span class="logo-cell"><img class="row-logo" src="assets/${c.slug}.svg" alt="" loading="lazy" /></span>`
           : '';
@@ -602,7 +602,7 @@
           }
         } else {
           // Auto-focus la recherche à l'arrivée sur la page (desktop +
-          // mobile). Sur mobile ça ouvre le clavier virtuel — comportement
+          // mobile). Sur mobile ça ouvre le clavier virtuel, comportement
           // voulu pour faciliter la recherche immédiate.
           searchInput.focus({ preventScroll: true });
         }

@@ -23,7 +23,7 @@
   --gap-card:   clamp(28px, 3.8vw, 60px);
   --gap-text:   clamp(6px, 0.55vw, 8px);
   /* Largeur max d'une colonne de texte courant : ~70 caractères, milieu-haut
-     de la fourchette typo classique 45–75ch. Limite la fatigue de lecture
+     de la fourchette typo classique 45-75ch. Limite la fatigue de lecture
      sur grand écran sans être étouffant. */
   --measure:    70ch;
 
@@ -1350,7 +1350,7 @@ button { font-family: inherit; cursor: pointer; }
   gap: 6px 10px;
 }
 .profils-poste {
-  /* Chaque poste : nom + count en petit. Pas de virgule visible — le gap
+  /* Chaque poste : nom + count en petit. Pas de virgule visible, le gap
      suffit pour séparer visuellement. */
   white-space: nowrap;
 }
