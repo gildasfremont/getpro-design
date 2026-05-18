@@ -874,15 +874,17 @@ button { font-family: inherit; cursor: pointer; }
 .subtab--accent:hover {
   background: rgba(6, 32, 4, 0.3);
 }
-.subtab--accent[aria-current="page"] {
-  background: var(--ink);
-  color: var(--white);
-  border-color: var(--ink);
-}
-
 .subtab[aria-current="true"],
 .subtab[aria-current="page"] {
   background: var(--white);
+  border-color: var(--ink);
+}
+/* L'accent (+2000) doit garder son style filled-ink quand current.
+   Défini APRÈS la règle générique .subtab[aria-current] pour gagner
+   en cascade (même spécificité). */
+.subtab.subtab--accent[aria-current="page"] {
+  background: var(--ink);
+  color: var(--white);
   border-color: var(--ink);
 }
 /* Labels longs/courts pour les subtabs (Recrutement ponctuel → Ponctuel,
