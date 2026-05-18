@@ -1077,8 +1077,8 @@ button { font-family: inherit; cursor: pointer; }
    le texte s'étale sur toute la largeur). */
 .panel-section--with-team {
   display: grid;
-  grid-template-columns: minmax(180px, 0.22fr) 1fr;
-  column-gap: clamp(72px, 9vw, 160px);
+  grid-template-columns: minmax(280px, 0.44fr) 1fr;
+  column-gap: clamp(48px, 7vw, 120px);
   align-items: start;
 }
 .panel-section--with-team .team-side {
