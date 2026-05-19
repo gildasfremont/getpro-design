@@ -175,26 +175,19 @@
   .case-image-lucca   { background-image: url('assets/Gsatge-0224-6.jpg'); }
   .case-image-filigran { background-image: url('assets/filigran-cover.jpg'); }
 
-  /* ---------- Manifesto editorial : 2-col desktop / stack mobile ---------- */
-  /* Desktop : card "Depuis 2015" à gauche (50%), témoignage à droite,
-     centrés verticalement. Mobile (<800px) : stack vertical, card en
-     haut + témoignage en dessous, contenu de l'aside aligné sur le
-     contenu interne de la card (padding-left = --pad-card-x). */
+  /* ---------- Manifesto : Depuis 2015, paragraphes en 2 colonnes ---------- */
   .manifesto {
     padding-block: var(--gap-section);
   }
   .manifesto-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(32px, 4vw, 80px);
-    align-items: center;
+    display: block;
   }
   .manifesto-card {
     background: var(--white);
     padding: var(--pad-card-y) var(--pad-card-x);
     display: flex;
     flex-direction: column;
-    gap: clamp(20px, 2vw, 32px);
+    gap: clamp(24px, 2.6vw, 40px);
   }
   /* Titre "Depuis 2015". Même taille que les noms de boîtes des
      case-cards au-dessus (--fs-card-name) pour cohérence typo. */
@@ -203,57 +196,30 @@
     line-height: var(--lh-card-name);
     margin: 0;
   }
-  /* Même typo que .solutions-overview-list p (référence éditoriale
-     pour les paragraphes de section sur la home). Line-height 1.45 pour
-     respiration confortable. */
-  .manifesto-card p,
-  .manifesto-quote p,
+  /* Paragraphes en 2 colonnes (CSS columns). Sur mobile, single col. */
+  .manifesto-paragraphs {
+    column-count: 2;
+    column-gap: clamp(40px, 5vw, 80px);
+  }
+  .manifesto-paragraphs p {
+    font-size: clamp(18px, 2vw, 26px);
+    line-height: 1.45;
+    margin: 0 0 clamp(16px, 1.6vw, 22px);
+    break-inside: avoid;
+  }
+  .manifesto-paragraphs p:last-child {
+    margin-bottom: 0;
+  }
   .manifesto-cta {
     font-size: clamp(18px, 2vw, 26px);
     line-height: 1.45;
-    margin: 0;
-    max-width: var(--measure);
-  }
-  /* Témoignage : sur desktop, c'est la colonne droite du grid 2-col,
-     centré verticalement avec la card. Sur mobile, en dessous de la
-     card avec padding-left = --pad-card-x pour aligner sur son contenu. */
-  .manifesto-aside {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(20px, 2vw, 32px);
-  }
-  .manifesto-quote {
-    margin: 0;
-    padding: 0;
-  }
-  /* Auteur du témoignage : nom/rôle au-dessus, logo JeudiMerci en
-     dessous, le tout aligné à gauche. Composition sobre, type crédit
-     éditorial empilé. */
-  .manifesto-quote-author {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: clamp(8px, 0.9vw, 12px);
-    font-size: clamp(15px, 1.3vw, 18px);
-    line-height: 1.4;
-    margin-top: clamp(20px, 2.2vw, 36px);
-  }
-  .manifesto-quote-logo {
-    height: clamp(18px, 1.6vw, 22px);
-    width: auto;
-    display: block;
-    flex: none;
-  }
-  .manifesto-cta {
     align-self: flex-start;
   }
   @media (max-width: 800px) {
-    .manifesto-row {
-      grid-template-columns: 1fr;
+    .manifesto-paragraphs {
+      column-count: 1;
     }
-    .manifesto-aside {
-      padding-left: var(--pad-card-x);
-    }
+  }
   }
 
   /* ---------- Logos clients IA ---------- */
@@ -394,29 +360,6 @@
       </a>
     </section>
 
-    <!-- Manifesto editorial : white card 50% à gauche, témoignage hors-card à droite -->
-    <section class="manifesto section">
-      <div class="manifesto-row">
-        <div class="manifesto-card">
-          <h2 class="manifesto-title">Depuis 2015</h2>
-          <p>Dix ans à recruter des talents pour les meilleures équipes technologiques françaises. Du premier ingénieur de la startup qui éclôt aux fonctions de direction de la scale-up qui grossit.</p>
-          <p>Nous avons fait 2 000 recrutements et rencontré 60 000 talents depuis 2015. Nous suivons leurs trajectoires sur dix ans, leurs nouveaux postes, leurs nouvelles missions.</p>
-          <p>Quand vous nous appelez pour un poste critique, nos consultants savent à qui en parler, parce qu'ils connaissent, et depuis longtemps, les gens qu'ils recommandent.</p>
-          <p>Le marché du recrutement tech bouge par cycles. Nous avons toujours ajusté notre cabinet à chaque mouvement. Aujourd'hui, ce sont les dirigeants qui ont intégré l'IA à leur pratique que nos clients nous demandent en priorité, et c'est sur eux que se concentre notre travail de chasse directe.</p>
-        </div>
-        <aside class="manifesto-aside">
-          <blockquote class="manifesto-quote">
-            <p>« GetPro nous a accompagné dans le recrutement de notre CTO. GetPro nous a présenté des candidats ultra-qualifiés, et nous a accompagnés dans l’évaluation de leurs connaissances, mais aussi de leurs soft-skills. L’équipe GetPro a été très à l’écoute, transparente et force de proposition pour que nous réussissions à sourcer plus de candidats. Et en plus, nos candidats étaient très satisfaits de leurs échanges avec l’équipe GetPro. Bref, très belle expérience :) »</p>
-            <footer class="manifesto-quote-author">
-              <span>Leonie de Verdelhan, CEO</span>
-              <img src="assets/jeudimerci.svg" alt="JeudiMerci" class="manifesto-quote-logo" />
-            </footer>
-          </blockquote>
-          <a href="clients.html" class="text-arrow-link manifesto-cta">Retours d’expérience →</a>
-        </aside>
-      </div>
-    </section>
-
     <!-- Services : 3 entrées golden-path, layout éditorial existant -->
     <section class="solutions-overview section">
       <ul class="solutions-overview-list">
@@ -441,6 +384,23 @@
       </ul>
       <a href="tel:+33939289329" class="btn-outline solutions-overview-cta">Échanger avec un consultant</a>
     </section>
+
+    <!-- Manifesto : Depuis 2015, paragraphes en 2 colonnes -->
+    <section class="manifesto section">
+      <div class="manifesto-row">
+        <div class="manifesto-card">
+          <h2 class="manifesto-title">Depuis 2015</h2>
+          <div class="manifesto-paragraphs">
+            <p>Dix ans à recruter des talents pour les meilleures équipes technologiques françaises. Du premier ingénieur de la startup qui éclôt aux fonctions de direction de la scale-up qui grossit.</p>
+            <p>Nous avons fait 2 000 recrutements et rencontré 60 000 talents depuis 2015. Nous suivons leurs trajectoires sur dix ans, leurs nouveaux postes, leurs nouvelles missions.</p>
+            <p>Quand vous nous appelez pour un poste critique, nos consultants savent à qui en parler, parce qu'ils connaissent, et depuis longtemps, les gens qu'ils recommandent.</p>
+            <p>Le marché du recrutement tech bouge par cycles. Nous avons toujours ajusté notre cabinet à chaque mouvement. Aujourd'hui, ce sont les dirigeants qui ont intégré l'IA à leur pratique que nos clients nous demandent en priorité, et c'est sur eux que se concentre notre travail de chasse directe.</p>
+          </div>
+          <a href="clients.html" class="text-arrow-link manifesto-cta">Retours d’expérience →</a>
+        </div>
+      </div>
+    </section>
+
 
     <!-- Logos clients : entreprises françaises ambitieuses (AI + scale-ups) -->
     <section class="ai-logos section">
