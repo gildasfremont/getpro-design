@@ -30,6 +30,15 @@
     gap: clamp(20px, 2.1vw, 30px);
   }
 
+  /* Légende au-dessus de la grille de photos : indique discrètement
+     qu'on regarde l'équipe GetPro, pas des talents recrutés. */
+  .hero-team-caption {
+    font-size: clamp(13px, 1.1vw, 16px);
+    line-height: 1.4;
+    opacity: 0.6;
+    margin: 0;
+  }
+
   .hero-title {
     font-size: var(--fs-hero);
     line-height: var(--lh-hero);
@@ -304,6 +313,7 @@
           10 ans de recrutement au côté des plus belles entreprises de la Tech et de l'IA.
         </h1>
 
+        <p class="hero-team-caption">Nos consultants, dix ans de chasse en moyenne</p>
         <div class="grid-images" aria-label="Galerie consultants">
           <a class="tile tile-1" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-2" href="equipe.html" aria-label="Voir l'équipe"></a>
