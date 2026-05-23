@@ -236,6 +236,9 @@
     font-size: var(--fs-card-name);
     line-height: var(--lh-card-name);
     letter-spacing: -0.025em;
+    /* Medium : le nom de la boîte = label de marque, un cran plus affirmé
+       que le descriptif (regular) en dessous. */
+    font-weight: 500;
   }
 
   .case-logo .symbol {
@@ -329,7 +332,13 @@
     font-size: var(--fs-card-name);
     line-height: var(--lh-card-name);
     letter-spacing: -0.025em;
+    font-weight: 500;
     margin: 0;
+  }
+  /* Têtes de services (liens) en Medium : un cran d'autorité sur les
+     entrées du golden path. */
+  .solutions-overview-list h3 {
+    font-weight: 500;
   }
   /* Paragraphes en 2 colonnes (CSS columns). Sur mobile, single col. */
   .manifesto-paragraphs {
