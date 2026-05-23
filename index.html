@@ -47,11 +47,11 @@
   .hero-team-cta { grid-column: 1; justify-self: start; }
 
   .hero-title {
-    font-size: var(--fs-section-title);
-    line-height: 1.08;
+    font-size: clamp(28px, 3.5vw, 50px);
+    line-height: 1.05;
     /* Tracking serré sur le display bold : signature typo éditoriale /
        fondation (Prada, MoMA). */
-    letter-spacing: -0.025em;
+    letter-spacing: -0.03em;
     text-wrap: balance;
   }
   .hero-title strong {
@@ -99,7 +99,9 @@
      des case-cards en dessous (Mistral AI, etc.). */
   .hero-lede {
     display: grid;
-    grid-template-columns: 2fr 3fr;
+    /* Titre (col 1) plus large que le sous-titre : le display porte la
+       hiérarchie, le sous-titre l'accompagne. */
+    grid-template-columns: 3fr 2fr;
     column-gap: clamp(24px, 4vw, 80px);
     row-gap: clamp(10px, 1.2vw, 18px);
     padding-inline: var(--pad-card-x);
