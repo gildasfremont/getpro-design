@@ -13,6 +13,18 @@
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="styles.css?v=1" />
 <style>
+  /* La home garde son ancienne typo : titres en poids normal (sauf
+     <strong>), variables typo plus petites qu'ailleurs. Les autres
+     pages bénéficient des bumps globaux. */
+  .home h1, .home h2, .home h3, .home h4, .home h5, .home h6 {
+    font-weight: 400;
+  }
+  .home {
+    --fs-section-title: clamp(22px, 2.8vw, 36px);
+    --fs-card-title:    clamp(22px, 2.8vw, 36px);
+    --fs-card-name:     clamp(22px, 3.55vw, 52px);
+  }
+
   /* ---------- Hero ---------- */
   .hero {
     display: flex;
@@ -22,35 +34,33 @@
     padding-bottom: clamp(12px, 1.5vw, 24px);
   }
 
+  /* Hero side-by-side : titre/texte (col 1, plus large) + grille
+     équipe (col 2). */
   .hero-inner {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(24px, 3vw, 48px);
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: clamp(32px, 4vw, 64px);
+    align-items: start;
   }
 
-  /* Wrapper équipe : caption + grille de photos, avec un petit gap
-     entre les deux (la caption colle visuellement à la grille pour
-     bien indiquer qu'elle la décrit). */
+  /* Wrapper équipe : grille de photos + CTA en dessous. */
   .hero-team {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    column-gap: clamp(24px, 4vw, 80px);
-    row-gap: clamp(8px, 1vw, 14px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1vw, 14px);
+    /* On pousse le haut de la grille pour qu'il colle à la x-height
+       du titre (ABC Diatype : ~0.35em entre top du line-box et la
+       x-height). Plus net visuellement qu'aligner les bounding-box. */
+    margin-top: clamp(14px, 1.4vw, 22px);
   }
-  /* Photos en pleine largeur de la section, alignées avec le bord
-     gauche des case-cards (Mistral AI, Filigran...). */
-  .hero-team .grid-images { grid-column: 1 / -1; }
-  /* CTA décalé pour s'aligner sur le titre (= bord gauche du contenu
-     dans les case-cards). */
   .hero-team-cta {
-    grid-column: 1;
     justify-self: start;
-    margin-left: var(--pad-card-x);
   }
 
   .hero-title {
-    font-size: var(--fs-section-title);
-    line-height: 1.1;
+    font-size: clamp(36px, 4.8vw, 68px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
   .hero-title strong {
@@ -88,54 +98,54 @@
     color: var(--white);
     text-decoration: none;
   }
-  /* Hero en 2 colonnes : titre (col 1, 40%) + sous-titre/CTA (col 2,
-     60%). Les deux colonnes "posent" sur la même baseline bottom :
-     align-items: end. Sur mobile (≤700px), tout passe en une colonne.
-     padding-left: --pad-card-x pour aligner le titre avec le contenu
-     des case-cards en dessous (Mistral AI, etc.). */
+  /* Hero-lede : titre + sous-titre empilés dans la col de gauche.
+     Sticky pour suivre le scroll quand la grille photos (plus haute)
+     défile à droite. */
   .hero-lede {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    column-gap: clamp(24px, 4vw, 80px);
-    row-gap: clamp(10px, 1.2vw, 18px);
-    padding-left: var(--pad-card-x);
-    /* last baseline : aligne la dernière ligne du titre et du sous-titre
-       sur la même baseline typographique (pas juste leurs bottom boxes,
-       qui diffèrent à cause des line-height différentes). */
-    align-items: last baseline;
-  }
-  /* Variante Prod (sans sous-titre) : pas de colonnes, titre full-width. */
-  .hero-lede--single {
-    grid-template-columns: 1fr;
-  }
-  /* Variante Réseau (stacked) : titre puis sous-titre en colonne unique. */
-  .hero-lede--stacked {
-    grid-template-columns: 1fr;
-    align-items: start;
-  }
-  .hero-lede--stacked .hero-subtitle {
-    grid-column: 1;
-  }
-  .hero-subtitle {
-    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 1.6vw, 22px);
+    position: -webkit-sticky;
+    position: sticky;
+    top: calc(var(--header-h, 60px) + clamp(20px, 2.5vw, 40px));
+    align-self: start;
   }
   @media (max-width: 700px) {
-    /* Mobile : tout en 1 col, alignement uniforme sur le bord gauche
-       de la section (pas de padding-left interne) pour matcher la
-       colonne du contenu en dessous (case-cards). */
-    .hero-lede {
+    .hero-lede { position: static; }
+  }
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(10px, 1vw, 14px);
+    margin-top: clamp(8px, 1vw, 14px);
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: clamp(14px, 1.4vw, 20px) clamp(20px, 2vw, 32px);
+    border: none;
+    border-radius: 2px;
+    background: var(--ink);
+    color: var(--white);
+    text-decoration: none;
+    font-size: clamp(15px, 1.4vw, 18px);
+    font-weight: 700;
+    line-height: 1;
+    transition: opacity 0.15s ease;
+  }
+  .hero-cta:hover { opacity: 0.85; }
+  /* Variante secondaire en aplat gris : pour la 2e action si on veut
+     une hiérarchie. */
+  .hero-cta--secondary {
+    background: var(--btn);
+    color: var(--ink);
+  }
+  @media (max-width: 700px) {
+    /* Mobile : on repasse en stack (texte au-dessus des photos). */
+    .hero-inner {
       grid-template-columns: 1fr;
       align-items: start;
-      padding-left: 0;
     }
-    .hero-subtitle {
-      grid-column: 1;
-    }
-    .hero-team {
-      grid-template-columns: 1fr;
-      padding-left: 0;
-    }
-    .hero-team-cta { justify-self: start; }
   }
   .hero-team-cta {
     margin-top: clamp(8px, 1vw, 14px);
@@ -143,13 +153,16 @@
     font-size: clamp(18px, 2vw, 26px);
   }
 
-  /* ---------- Image grid : 8 cols × 2 rows = 16 consultants ---------- */
+  /* ---------- Image grid : 3 cols, le composant devient plus haut
+     que le texte. Le texte (col 1) est sticky pour suivre le scroll. */
   .hero-inner { position: relative; }
   .grid-images {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 0;
   }
+  /* On masque le 16e pour avoir une grille 3×5 propre (15 photos). */
+  .grid-images .tile:nth-child(16) { display: none; }
 
   .grid-images .tile {
     aspect-ratio: 272 / 309;
@@ -164,20 +177,8 @@
     transform: scale(1.03);
     z-index: 1;
   }
-  /* Paliers : on réduit les colonnes et on cache les tiles excédentaires
-     pour garder 2 lignes complètes à chaque breakpoint. */
-  @media (max-width: 1100px) {
-    .grid-images { grid-template-columns: repeat(6, 1fr); }
-    .grid-images .tile:nth-child(n+13) { display: none; }
-  }
-  @media (max-width: 800px) {
-    .grid-images { grid-template-columns: repeat(5, 1fr); }
-    .grid-images .tile:nth-child(n+11) { display: none; }
-  }
-  @media (max-width: 600px) {
-    .grid-images { grid-template-columns: repeat(4, 1fr); }
-    .grid-images .tile:nth-child(n+9) { display: none; }
-  }
+  /* Mobile : on garde le 4×4 puisqu'on stacke en 1 col et la grille
+     prend toute la largeur. */
   /* Consultants — 16 personnes listées dans equipe.html (hors équipe support). */
   .tile-1  { background-image: url('assets/team/anne-delarue.png'); }
   .tile-2  { background-image: url('assets/team/romain-pichou.jpg'); }
@@ -418,6 +419,10 @@
         <div class="hero-lede">
           <h1 class="hero-title"><strong>10 ans de recrutement<br>au côté des plus belles<br>entreprises de la Tech<br>et de l'IA.</strong></h1>
           <p class="hero-subtitle">La personne que vous allez embaucher<br>fait partie de notre réseau. Si nous<br>commencions par la contacter ?</p>
+          <div class="hero-ctas">
+            <a href="equipe.html" class="hero-cta">Notre équipe</a>
+            <a href="clients.html" class="hero-cta hero-cta--secondary">Clients</a>
+          </div>
         </div>
 
         <div class="hero-team">
@@ -439,7 +444,6 @@
           <a class="tile tile-15" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-16" href="equipe.html" aria-label="Voir l'équipe"></a>
           </div>
-          <a href="equipe.html" class="text-arrow-link hero-team-cta">Découvrir l'équipe →</a>
         </div>
       </div>
     </section>

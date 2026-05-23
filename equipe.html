@@ -40,8 +40,9 @@
   /* Titre Consultants : redimensionné plus modeste sur cette page
      pour ne pas écraser les photos qui sont l'élément principal. */
   .equipe-text .page-title {
-    font-size: clamp(36px, 5vw, 72px);
-    line-height: 1.05;
+    font-size: clamp(48px, 6.5vw, 96px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
   }
   .equipe-manifesto {
     display: flex;
@@ -49,12 +50,11 @@
     gap: clamp(14px, 1.4vw, 22px);
   }
   .equipe-manifesto p {
-    /* Même taille que .equipe-support-text plus bas pour cohérence
-       typographique sur la page. */
-    font-size: var(--fs-body);
-    line-height: 1.55;
+    /* Plus gros, ligne plus courte (40ch ≈ 600px) pour la lisibilité. */
+    font-size: clamp(18px, 1.8vw, 24px);
+    line-height: 1.45;
     margin: 0;
-    max-width: none;
+    max-width: 40ch;
   }
 
   /* Grille photos : 3-col, photos plus grandes / plus présentes. Gap

@@ -33,7 +33,7 @@
   --pad-x:      clamp(20px, 3.5vw, 50px);
   --pad-card-y: clamp(40px, 6.8vw, 100px);
   --pad-card-x: clamp(28px, 4.8vw, 70px);
-  --gap-section:clamp(40px, 5vw, 80px);
+  --gap-section:clamp(56px, 7vw, 120px);
   --gap-card:   clamp(28px, 3.8vw, 60px);
   --gap-text:   clamp(6px, 0.55vw, 8px);
   /* Largeur max d'une colonne de texte courant : ~70 caractères, milieu-haut
@@ -46,11 +46,11 @@
   --fs-page-title:    clamp(36px, 6.4vw, 92px);
   --fs-hero:          clamp(22px, 4.8vw, 68px);
   --lh-hero:          clamp(28px, 5.2vw, 74px);
-  --fs-section-title: clamp(22px, 2.8vw, 36px);
+  --fs-section-title: clamp(32px, 4vw, 60px);
   --lh-section-title: clamp(20px, 2.95vw, 43px);
-  --fs-card-name:     clamp(22px, 3.55vw, 52px);
+  --fs-card-name:     clamp(28px, 4.2vw, 68px);
   --lh-card-name:     clamp(26px, 4vw, 58px);
-  --fs-card-title:    clamp(22px, 2.8vw, 36px);
+  --fs-card-title:    clamp(32px, 4vw, 60px);
   --lh-card-title:    clamp(20px, 3.2vw, 46px);
   --fs-card-sub:      clamp(14px, 2.2vw, 32px);
   --lh-card-sub:      clamp(18px, 2.5vw, 36px);
@@ -76,7 +76,8 @@ html, body {
 
 img { display: block; max-width: 100%; }
 a   { color: inherit; text-decoration: none; }
-h1, h2, h3, h4, h5, h6, p, b, strong, th { margin: 0; font-weight: 400; }
+p, th { margin: 0; font-weight: 400; }
+h1, h2, h3, h4, h5, h6, b, strong { margin: 0; font-weight: 700; }
 button { font-family: inherit; cursor: pointer; }
 
 /* ---------- Page wrapper ---------- */
@@ -153,7 +154,9 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: center;
+  /* baseline : tous les items de la nav (inline + bouton Contact)
+     s'alignent sur leur baseline typographique, pas sur la box. */
+  align-items: baseline;
   column-gap: clamp(28px, 3.6vw, 56px);
   row-gap: clamp(8px, 1vw, 14px);
 }
@@ -169,17 +172,27 @@ button { font-family: inherit; cursor: pointer; }
   font-size: clamp(15px, 1.7vw, 24px);
   line-height: 1.15;
   letter-spacing: -0.02em;
+  font-weight: 700;
   text-decoration: none;
   text-underline-offset: clamp(4px, 0.5vw, 8px);
   transition: text-decoration-thickness 0.18s ease;
 }
-/* Contact : ghost button style (border ink, bg blanc, border-radius). */
+/* Contact : aplat gris translucide + texte ink gras. */
 .menu-right .menu-item--contact {
-  padding: clamp(8px, 0.85vw, 12px) clamp(12px, 1.1vw, 16px);
-  border: 1px solid var(--ink);
-  border-radius: clamp(6px, 0.5vw, 8px);
-  background: var(--white);
+  padding: clamp(10px, 1vw, 14px) clamp(16px, 1.4vw, 22px);
+  border: none;
+  border-radius: 2px;
+  background: var(--btn);
+  color: var(--ink);
   font-size: var(--fs-menu);
+  font-weight: 700;
+  transition: background 0.15s ease;
+}
+.menu-right .menu-item--contact:hover { background: rgba(6, 32, 4, 0.3); }
+/* Split visuel browse / action : pousse le Contact à droite avec
+   un espace plus généreux que le gap des autres items. */
+.menu-right .menu-item--contact-outside {
+  margin-left: auto;
 }
 .menu-right .menu-item--inline:hover {
   text-decoration: underline;
@@ -423,6 +436,7 @@ body.menu-open main > *:not(.header) {
   /* Même taille que les items de nav, pour cohérence visuelle. */
   font-size: clamp(17px, 1.7vw, 22px);
   line-height: 1.25;
+  font-weight: 700;
   white-space: nowrap;
   text-align: left;
   color: inherit;
@@ -433,7 +447,7 @@ body.menu-open main > *:not(.header) {
 .submenu-contact a {
   padding: clamp(8px, 0.85vw, 12px) clamp(12px, 1.1vw, 16px);
   border: 1px solid var(--ink);
-  border-radius: clamp(6px, 0.5vw, 8px);
+  border-radius: 2px;
   background: var(--white);
 }
 .submenu-contact a:hover,
@@ -447,7 +461,7 @@ body.menu-open main > *:not(.header) {
   font-size: var(--fs-page-title);
   line-height: 1.05;
   letter-spacing: -0.02em;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 /* ---------- Tabs (top-level) ---------- */
@@ -546,35 +560,40 @@ body.menu-open main > *:not(.header) {
   justify-content: space-between;
 }
 .rating-logo {
-  height: clamp(16px, 1.5vw, 22px);
+  height: clamp(20px, 1.8vw, 28px);
   width: auto;
   display: block;
 }
 .rating-stars {
-  font-size: clamp(13px, 1.1vw, 16px);
+  font-size: clamp(15px, 1.3vw, 18px);
   letter-spacing: 0.1em;
   line-height: 1.2;
 }
 
 /* ---------- Buttons ---------- */
+/* Boutons en aplat ink + texte blanc gras. Plus de ghost outline. */
 .btn-outline {
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: clamp(10px, 0.85vw, 12px) clamp(14px, 1.1vw, 16px);
-  border: 1px solid var(--ink);
-  border-radius: clamp(6px, 0.5vw, 8px);
+  padding: clamp(12px, 1vw, 16px) clamp(18px, 1.6vw, 24px);
+  border: none;
+  border-radius: 2px;
   font-size: var(--fs-menu);
   line-height: 1.25;
-  color: var(--ink);
+  font-weight: 700;
+  color: var(--white);
   cursor: pointer;
-  background: var(--white);
+  background: var(--ink);
   font-family: inherit;
   font-feature-settings: 'pnum' on, 'lnum' on;
   width: max-content;
   max-width: 100%;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
 }
+.btn-outline:hover { opacity: 0.85; }
 
 /* Lien texte + flèche : utilisé en complément d'un .btn-outline pour
    un CTA secondaire (ex : "Voir l'équipe →" sous le bouton consultant
@@ -640,7 +659,7 @@ body.menu-open main > *:not(.header) {
   /* nowrap : chaque lien tient sur une ligne ; les 3 liens tiennent
      ensemble sur une seule ligne grâce à la taille de police calée. */
   white-space: nowrap;
-  font-size: clamp(15px, 1.7vw, 24px);
+  font-size: clamp(20px, 2.4vw, 34px);
   line-height: 1.15;
   letter-spacing: -0.02em;
   text-decoration: underline;
@@ -683,18 +702,20 @@ body.menu-open main > *:not(.header) {
           mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
 }
 .foot-tagline {
-  font-size: clamp(16px, 1.5vw, 20px);
+  font-size: clamp(20px, 2vw, 28px);
   line-height: 1.4;
   margin: 0;
   letter-spacing: -0.01em;
   max-width: 38ch;
 }
 .foot-address {
-  font-size: clamp(13px, 1.1vw, 16px);
+  font-size: clamp(17px, 1.5vw, 22px);
   line-height: 1.5;
   margin: 0;
 }
-/* Adresse postale + contact côte à côte sous la tagline. */
+/* Adresse postale + contact côte à côte sous la tagline.
+   Phone aligné avec le code postal (= 2e ligne de l'adresse) via
+   margin-top compensant la 1re ligne de l'adresse. */
 .foot-address-row {
   display: flex;
   flex-wrap: wrap;
@@ -704,8 +725,8 @@ body.menu-open main > *:not(.header) {
 .foot-address-row .foot-contact {
   display: flex;
   flex-direction: column;
-  gap: clamp(4px, 0.4vw, 6px);
-  font-size: clamp(13px, 1.1vw, 16px);
+  gap: 0;
+  font-size: clamp(17px, 1.5vw, 22px);
   line-height: 1.5;
 }
 .foot-address-row .foot-contact a {
@@ -741,7 +762,7 @@ body.menu-open main > *:not(.header) {
 
 /* Ligne légale tout en bas à gauche du footer (sous la grille). */
 .foot-legal {
-  font-size: clamp(13px, 1.1vw, 16px);
+  font-size: clamp(15px, 1.3vw, 18px);
   opacity: 0.55;
 }
 .foot-legal a {
@@ -968,17 +989,22 @@ body.menu-open main > *:not(.header) {
   flex-direction: column;
   gap: clamp(28px, 3.4vw, 50px);
 }
-/* Titre de page (au-dessus des subtabs ou du contenu). */
+/* Titre de page : grand display éditorial type MoMA. Max-width
+   pour forcer le wrap sur plusieurs lignes lisibles. */
 .page-lede {
-  font-size: clamp(22px, 2.6vw, 36px);
-  line-height: 1.2;
-  margin: 0 0 clamp(8px, 1vw, 14px);
+  font-size: clamp(36px, 4.8vw, 72px);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+  margin: 0 0 clamp(28px, 3vw, 48px);
+  text-wrap: balance;
 }
 /* Sous-titre concret juste sous .page-lede : taille intermédiaire,
    opacity légèrement réduite, prend de l'air avant le contenu. */
 .page-sublede {
-  font-size: clamp(16px, 1.5vw, 20px);
-  line-height: 1.45;
+  font-size: clamp(18px, 1.8vw, 24px);
+  line-height: 1.4;
   margin: 0 0 clamp(28px, 3.5vw, 48px);
   max-width: 60ch;
 }
@@ -1068,7 +1094,8 @@ body.menu-open main > *:not(.header) {
    son parent flex et laisser le scroll s'activer. */
 .subtabs-row .subtabs {
   display: flex;
-  gap: clamp(6px, 0.7vw, 12px);
+  align-items: baseline;
+  gap: clamp(12px, 1.4vw, 22px);
   flex-wrap: nowrap;
   overflow-x: auto;
   min-width: 0;
@@ -1076,49 +1103,48 @@ body.menu-open main > *:not(.header) {
   -webkit-overflow-scrolling: touch;
 }
 .subtabs-row .subtabs::-webkit-scrollbar { display: none; }
-/* Cartouches rectangulaires avec léger border-radius. Inactif = fond gris
-   léger (var(--bg) sur le panel blanc), actif = fond blanc + fine bordure
-   sombre. Plus de hairline ni d'underline. */
+/* Subtabs : texte gras simple. Inactif = ink en opacity faible.
+   Actif = ink pleine opacity (gras devient un peu plus présent). */
 .subtab {
-  padding: clamp(10px, 1vw, 14px) clamp(16px, 1.6vw, 22px);
-  font-size: clamp(16px, 1.5vw, 20px);
+  padding: clamp(6px, 0.6vw, 10px) 0;
+  font-size: clamp(22px, 2.4vw, 34px);
   line-height: 1.25;
   cursor: pointer;
-  background: rgba(6, 32, 4, 0.06);
-  border: 1px solid transparent;
-  border-radius: clamp(6px, 0.5vw, 8px);
+  background: transparent;
+  border: none;
+  border-radius: 0;
   color: inherit;
+  opacity: 0.5;
   font-family: inherit;
+  font-weight: 700;
   position: relative;
   white-space: nowrap;
   flex-shrink: 0;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
 }
 .subtab:hover {
-  background: rgba(6, 32, 4, 0.12);
+  opacity: 1;
 }
-/* Subtab accent (+2000 recrutements) : poussé tout à droite + fond gris
-   translucide (même teinte que .btn-menu Contact) pour signaler que c'est
-   une entrée à part, pas une practice. */
+/* Subtab accent (+2000 recrutements) : poussé tout à droite + petit
+   cartouche aplat gris translucide (--btn) + texte ink gras pour
+   marquer qu'il sort du lot (entrée à part, pas une practice). */
 .subtab--accent {
   margin-left: auto;
+  padding: clamp(10px, 1vw, 14px) clamp(16px, 1.6vw, 22px);
   background: var(--btn);
+  color: var(--ink);
+  opacity: 1;
+  border-radius: 2px;
+  transition: background 0.15s ease;
 }
 .subtab--accent:hover {
   background: rgba(6, 32, 4, 0.3);
 }
-.subtab[aria-current="true"],
-.subtab[aria-current="page"] {
-  background: var(--white);
-  border-color: var(--ink);
-}
-/* L'actif passe en premier UNIQUEMENT dans la subtabs-row (Haut),
-   pas dans le bucket-tabs (catégories) où on conserve l'ordre source.
-   Exception : .subtab--accent (+2000 recrutements) reste toujours à
-   droite, même quand c'est la page active. */
-.subtabs-row .subtab[aria-current="true"]:not(.subtab--accent),
-.subtabs-row .subtab[aria-current="page"]:not(.subtab--accent) {
-  order: -1;
+/* Subtab active (sauf accent) : opacity pleine, le gras se lit. */
+.subtab[aria-current="true"]:not(.subtab--accent),
+.subtab[aria-current="page"]:not(.subtab--accent) {
+  opacity: 1;
 }
 /* Si l'accent (+2000) est actif, on annule son margin-left:auto pour
    qu'il vienne bien se positionner en tête au lieu d'être poussé à droite. */
@@ -1389,11 +1415,12 @@ body.menu-open main > *:not(.header) {
 .panel-section .content-side {
   display: flex;
   flex-direction: column;
-  gap: clamp(14px, 1.6vw, 22px);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  /* Col texte plus étroite avec beaucoup d'air à droite. */
-  max-width: 48ch;
+  gap: clamp(16px, 1.8vw, 26px);
+  font-size: clamp(18px, 1.8vw, 24px);
+  line-height: 1.45;
+  /* Col texte plus étroite (40ch ≈ ligne courte lisible) avec
+     beaucoup d'air à droite. */
+  max-width: 40ch;
   padding-right: clamp(40px, 10vw, 180px);
   box-sizing: content-box;
 }
@@ -1415,8 +1442,8 @@ body.menu-open main > *:not(.header) {
 }
 .consultant-row {
   display: grid;
-  grid-template-columns: minmax(60px, 76px) 1fr;
-  column-gap: clamp(10px, 1.2vw, 16px);
+  grid-template-columns: minmax(90px, 120px) 1fr;
+  column-gap: clamp(14px, 1.6vw, 22px);
   align-items: start;
 }
 .consultant-row .photo {
@@ -1431,7 +1458,7 @@ body.menu-open main > *:not(.header) {
   display: flex;
   flex-direction: column;
   gap: clamp(4px, 0.6vw, 8px);
-  font-size: clamp(16px, 1.5vw, 20px);
+  font-size: clamp(17px, 1.7vw, 22px);
   line-height: 1.35;
   width: auto;
 }
