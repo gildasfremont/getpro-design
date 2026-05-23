@@ -36,11 +36,17 @@
     grid-template-columns: 2fr 3fr;
     column-gap: clamp(24px, 4vw, 80px);
     row-gap: clamp(8px, 1vw, 14px);
-    padding-left: var(--pad-card-x);
   }
+  /* Photos en pleine largeur de la section, alignées avec le bord
+     gauche des case-cards (Mistral AI, Filigran...). */
   .hero-team .grid-images { grid-column: 1 / -1; }
-  /* Le CTA se cale à gauche de la col 1 (= bord gauche du titre). */
-  .hero-team-cta { grid-column: 1; justify-self: start; }
+  /* CTA décalé pour s'aligner sur le titre (= bord gauche du contenu
+     dans les case-cards). */
+  .hero-team-cta {
+    grid-column: 1;
+    justify-self: start;
+    margin-left: var(--pad-card-x);
+  }
 
   .hero-title {
     font-size: var(--fs-section-title);
