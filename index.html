@@ -36,7 +36,11 @@
     grid-template-columns: 2fr 3fr;
     column-gap: clamp(24px, 4vw, 80px);
     row-gap: clamp(8px, 1vw, 14px);
-    padding-left: var(--pad-card-x);
+    /* Inset gauche ET droite sur la colonne de contenu : la grille de
+       photos occupe exactement la même colonne [--pad-card-x → -(--pad-card-x)]
+       que les case-image en dessous (ratio bâti sur 1219px), au lieu de
+       déborder jusqu'au bord de section à droite. */
+    padding-inline: var(--pad-card-x);
   }
   .hero-team .grid-images { grid-column: 1 / -1; }
   /* Le CTA se cale à gauche de la col 1 (= bord gauche du titre). */
@@ -92,7 +96,7 @@
     grid-template-columns: 2fr 3fr;
     column-gap: clamp(24px, 4vw, 80px);
     row-gap: clamp(10px, 1.2vw, 18px);
-    padding-left: var(--pad-card-x);
+    padding-inline: var(--pad-card-x);
     /* last baseline : aligne la dernière ligne du titre et du sous-titre
        sur la même baseline typographique (pas juste leurs bottom boxes,
        qui diffèrent à cause des line-height différentes). */
@@ -120,14 +124,14 @@
     .hero-lede {
       grid-template-columns: 1fr;
       align-items: start;
-      padding-left: 0;
+      padding-inline: 0;
     }
     .hero-subtitle {
       grid-column: 1;
     }
     .hero-team {
       grid-template-columns: 1fr;
-      padding-left: 0;
+      padding-inline: 0;
     }
     .hero-team-cta { justify-self: start; }
   }
