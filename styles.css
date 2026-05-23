@@ -662,11 +662,12 @@ body.menu-open main > *:not(.header) {
   font-size: clamp(20px, 2.4vw, 34px);
   line-height: 1.15;
   letter-spacing: -0.02em;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
+  font-weight: 700;
+  text-decoration: none;
   text-underline-offset: clamp(4px, 0.5vw, 8px);
-  transition: text-decoration-thickness 0.18s ease;
+  transition: opacity 0.15s ease;
 }
+.foot-featured a:hover { opacity: 0.65; }
 .foot-featured a:hover {
   text-decoration-thickness: 2px;
 }
