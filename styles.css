@@ -660,11 +660,18 @@ body.menu-open main > *:not(.header) {
    tassé dans une seule colonne. */
 .foot-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
-  column-gap: clamp(28px, 3.5vw, 72px);
+  /* Marque à gauche (occupe l'espace libre), coordonnées + avis groupés
+     à droite : composition gauche/droite nette plutôt que des colonnes
+     qui flottent au milieu. */
+  grid-template-columns: 1fr auto auto;
+  column-gap: clamp(40px, 6vw, 120px);
   row-gap: clamp(36px, 4vw, 56px);
   align-items: start;
 }
+/* Les colonnes de droite (coordonnées, avis) ont une largeur lisible fixe
+   pour rester alignées et équilibrées. */
+.foot-coords,
+.ratings-stack { min-width: clamp(160px, 16vw, 220px); }
 
 /* Bloc brand : logo, tagline */
 .foot-brand {
@@ -692,23 +699,19 @@ body.menu-open main > *:not(.header) {
   line-height: 1.5;
   margin: 0;
 }
-/* Zones coordonnées (adresse + email) et téléphone : colonnes texte
-   distinctes, même rythme typographique. */
-.foot-coords,
-.foot-phone {
+/* Zone coordonnées : adresse + email + téléphone empilés. */
+.foot-coords {
   display: flex;
   flex-direction: column;
   gap: clamp(14px, 1.6vw, 22px);
   font-size: clamp(13px, 1.1vw, 16px);
   line-height: 1.5;
 }
-.foot-coords a,
-.foot-phone a {
+.foot-coords a {
   color: var(--ink);
   text-decoration: none;
 }
-.foot-coords a:hover,
-.foot-phone a:hover { text-decoration: underline; }
+.foot-coords a:hover { text-decoration: underline; }
 
 /* Ligne légale tout en bas à gauche du footer (sous la grille). */
 .foot-legal {
@@ -727,7 +730,7 @@ body.menu-open main > *:not(.header) {
    ≤560 : tout en 1 col, avis repassent en ligne. */
 @media (max-width: 900px) {
   .foot-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
   }
   .foot-brand {
     grid-column: 1 / -1;
