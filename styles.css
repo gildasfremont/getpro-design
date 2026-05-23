@@ -6,6 +6,20 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'ABC Diatype';
+  src: url('fonts/ABCDiatype-Medium-Trial.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ABC Diatype';
+  src: url('fonts/ABCDiatype-Bold-Trial.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ---------- Tokens ---------- */
 :root {
@@ -32,11 +46,11 @@
   --fs-page-title:    clamp(36px, 6.4vw, 92px);
   --fs-hero:          clamp(22px, 4.8vw, 68px);
   --lh-hero:          clamp(28px, 5.2vw, 74px);
-  --fs-section-title: clamp(18px, 2.7vw, 39px);
+  --fs-section-title: clamp(22px, 2.8vw, 36px);
   --lh-section-title: clamp(20px, 2.95vw, 43px);
   --fs-card-name:     clamp(22px, 3.55vw, 52px);
   --lh-card-name:     clamp(26px, 4vw, 58px);
-  --fs-card-title:    clamp(18px, 2.9vw, 42px);
+  --fs-card-title:    clamp(22px, 2.8vw, 36px);
   --lh-card-title:    clamp(20px, 3.2vw, 46px);
   --fs-card-sub:      clamp(14px, 2.2vw, 32px);
   --lh-card-sub:      clamp(18px, 2.5vw, 36px);
@@ -90,6 +104,9 @@ button { font-family: inherit; cursor: pointer; }
 }
 /* Restore the spacing that .header's padding-bottom used to provide */
 .header + * { margin-top: var(--gap-section); }
+/* Home : on laisse la margin-top section pleine. Le .hero a maintenant
+   son propre padding-top qui ajoute de l'air entre nav et hero. */
+.header + .hero { margin-top: 0; }
 
 /* Cible #solutions sur les pages Chasse/Renfort RH : un clic sur un
    cartouche tab/subtab navigue vers la nouvelle page avec #solutions →
@@ -102,15 +119,31 @@ button { font-family: inherit; cursor: pointer; }
 .menu {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-block: clamp(12px, 1.4vw, 20px);
-  gap: clamp(16px, 3vw, 55px);
+  padding-block: clamp(18px, 2.2vw, 32px);
+  gap: clamp(28px, 3.6vw, 56px);
+}
+/* Pousse le bloc d'options à droite : logo à gauche, options à droite,
+   nav équilibrée sur toute la largeur. */
+.menu-right { margin-left: auto; }
+/* Sur la home : aligne le menu-right sur la 2e colonne du hero-lede
+   (2fr 3fr) pour que "CDI & Freelance" colle au sous-titre. */
+@media (min-width: 701px) {
+  .home .menu {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    column-gap: clamp(24px, 4vw, 80px);
+    gap: clamp(24px, 4vw, 80px);
+  }
+  .home .menu .brand { grid-column: 1; justify-self: start; }
+  .home .menu-right { grid-column: 2; margin-left: 0; }
 }
 
 .brand {
   display: inline-block;
-  width: clamp(95px, 9.6vw, 137px);
-  height: clamp(20px, 1.95vw, 28px);
+  /* Calibré pour que la hauteur du logo ≈ la cap-height du texte de
+     la nav, et que les deux paraissent assis sur la même ligne. */
+  width: clamp(78px, 7.6vw, 110px);
+  height: clamp(16px, 1.55vw, 22px);
   background-color: var(--ink);
   -webkit-mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
           mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
@@ -118,8 +151,67 @@ button { font-family: inherit; cursor: pointer; }
 
 .menu-right {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   align-items: center;
-  gap: clamp(14px, 2.2vw, 32px);
+  column-gap: clamp(28px, 3.6vw, 56px);
+  row-gap: clamp(8px, 1vw, 14px);
+}
+.menu-right .menu-item {
+  font-size: clamp(17px, 1.7vw, 22px);
+  line-height: 1.25;
+}
+/* Items services (inline + trigger dropdown) : même style que le
+   .foot-featured du footer — taille généreuse, souligné fin, kerning
+   serré. Contact volontairement exclu. */
+.menu-right .menu-item--inline,
+.menu-right .menu-item--has-submenu {
+  font-size: clamp(15px, 1.7vw, 24px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  text-underline-offset: clamp(4px, 0.5vw, 8px);
+  transition: text-decoration-thickness 0.18s ease;
+}
+/* Contact : ghost button style (border ink, bg blanc, border-radius). */
+.menu-right .menu-item--contact {
+  padding: clamp(8px, 0.85vw, 12px) clamp(12px, 1.1vw, 16px);
+  border: 1px solid var(--ink);
+  border-radius: clamp(6px, 0.5vw, 8px);
+  background: var(--white);
+  font-size: var(--fs-menu);
+}
+.menu-right .menu-item--inline:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+.menu-right .menu-item--inline[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+/* Nav progressive en 4 étapes selon la largeur :
+   - ≥700px (stage 1) : 3 items inline + Contact à droite (par défaut)
+   - 481-700px (stage 2) : dropdown Solutions de recrutement + Contact
+   - 381-480px (stage 3) : dropdown contient Contact, plus de Contact externe
+   - ≤380px (stage 4) : label dropdown raccourci à "Solution" */
+.menu-right .menu-item--collapsed { display: none; }
+.submenu-contact { display: none; }
+.trigger-short { display: none; }
+.trigger-long { display: inline; }
+
+@media (max-width: 700px) {
+  .menu-right .menu-item--inline { display: none; }
+  /* Le wrapper CDI suit le même comportement que les autres items inline. */
+  .menu-right .menu-item-group--cdi { display: none; }
+  .menu-right .menu-item--collapsed { display: inline-flex; }
+}
+@media (max-width: 480px) {
+  .menu-right .menu-item--contact-outside { display: none; }
+  .submenu-contact { display: list-item; }
+}
+@media (max-width: 380px) {
+  .trigger-long { display: none; }
+  .trigger-short { display: inline; }
 }
 
 .menu-item {
@@ -130,6 +222,20 @@ button { font-family: inherit; cursor: pointer; }
   line-height: 1.25;
   cursor: pointer;
   white-space: nowrap;
+}
+/* Button-as-menu-item : on neutralise les styles UA (border, bg, padding)
+   pour qu'il rende comme un lien texte. */
+button.menu-item {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  color: inherit;
+}
+.menu-item[aria-current="page"]:not(.menu-item--has-submenu) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
 }
 
 
@@ -187,59 +293,153 @@ button { font-family: inherit; cursor: pointer; }
   display: inline-flex;
   align-items: center;
 }
-.menu-item--has-submenu .menu-caret {
+.menu-item--has-submenu {
+  /* Resserre l'écart entre le label et le chevron : on override le
+     gap par défaut de .menu-item (10px). */
+  gap: 4px;
+}
+.menu-item--has-submenu .menu-chevron {
   display: inline-block;
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 5px solid var(--ink);
+  flex-shrink: 0;
   transition: transform 0.18s ease;
+  transform: translateY(1px);
 }
-.menu-item-group:hover .menu-caret,
-.menu-item-group:focus-within .menu-caret,
-.menu-item--has-submenu[aria-expanded="true"] .menu-caret {
-  transform: rotate(180deg);
+.menu-item-group:hover .menu-chevron,
+.menu-item-group:focus-within .menu-chevron,
+.menu-item--has-submenu[aria-expanded="true"] .menu-chevron {
+  transform: translateY(0) rotate(180deg);
 }
+/* Submenu façon Fondation Cartier :
+   - container pleine largeur sous la nav (position absolute sur .header)
+   - une colonne interne (.submenu-list) dont la largeur = celle du
+     trigger (CSS var injectée par JS), poussée à droite via flex-end
+   - items left-aligned dans cette colonne : leur bord gauche s'aligne
+     sur le bord gauche du trigger ; si un item dépasse, il déborde à
+     droite (sous le bouton Contact, comportement voulu) */
+.menu-right .menu-item-group { position: static; }
 .submenu {
   position: absolute;
   top: 100%;
   left: 0;
+  right: 0;
   margin: 0;
-  padding: clamp(10px, 1vw, 14px) 0;
-  list-style: none;
+  /* Plus serré en haut (les items se rapprochent du trigger), plus
+     généreux en bas pour donner de l'air avant le contenu blurry. */
+  padding: 0 0 clamp(36px, 4vw, 60px);
   background: var(--bg);
-  min-width: 260px;
+  /* Le volet tombe : clip-path révèle le contenu du haut vers le bas. */
+  clip-path: inset(0 0 100% 0);
+  visibility: hidden;
+  transition: clip-path 0.28s ease, visibility 0s linear 0.28s;
+  z-index: 50;
+}
+/* Liste alignée pile sous le trigger via --trigger-left (mesuré en JS). */
+.submenu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: var(--trigger-left, 0);
   display: flex;
   flex-direction: column;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-4px);
-  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
-  z-index: 50;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  align-items: flex-start;
+  gap: clamp(16px, 1.6vw, 22px);
+  width: max-content;
 }
+/* Variante "stacked" : sous-items empilés verticalement sous le label
+   CDI & Freelance (desktop hover). On garde l'alignement à gauche
+   du logo via --trigger-left (hérité de .submenu-list). */
+.submenu-list--row {
+  gap: clamp(12px, 1.2vw, 18px);
+}
+/* +2000 recrutements : décollé du groupe des 3 practices au-dessus. */
+.submenu-list--row .submenu-list-spacer {
+  margin-top: clamp(16px, 1.8vw, 24px);
+}
+/* Petit label "Practices" au-dessus de la liste, aligné sur le 1er item. */
+.submenu-eyebrow {
+  margin-left: var(--trigger-left, 0);
+  font-size: clamp(13px, 1.1vw, 16px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.5;
+  margin-bottom: clamp(10px, 1.2vw, 16px);
+}
+/* Variante mobile : sections groupées avec titre + sous-items indentés. */
+.submenu-list--mobile {
+  gap: clamp(12px, 1.4vw, 18px);
+}
+.submenu-list--mobile .submenu-section {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vw, 12px);
+}
+.submenu-section-title {
+  font-weight: 500;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.submenu-sub {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 clamp(16px, 1.6vw, 22px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 0.8vw, 10px);
+}
+.submenu-sub a {
+  font-size: clamp(15px, 1.4vw, 18px);
+  opacity: 0.78;
+}
+.submenu-divider {
+  list-style: none;
+  height: 1px;
+  background: var(--line);
+  width: clamp(120px, 12vw, 180px);
+  margin: clamp(4px, 0.5vw, 8px) 0;
+}
+/* Quand le mega-menu est ouvert : on flou tout sauf la nav. Pas de
+   transition sur le flou : il apparaît instantanément, c'est le volet
+   qui anime sa descente. */
+body.menu-open main > *:not(.header) {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+}
+
 .menu-item-group:hover .submenu,
 .menu-item-group:focus-within .submenu,
+.menu-item-group.is-open .submenu,
 .menu-item--has-submenu[aria-expanded="true"] + .submenu,
 .menu-item-group:has(.menu-item--has-submenu[aria-expanded="true"]) .submenu {
-  opacity: 1;
+  clip-path: inset(0 0 0 0);
   visibility: visible;
-  transform: translateY(0);
+  transition: clip-path 0.28s ease, visibility 0s linear 0s;
 }
 .submenu a {
   display: block;
-  padding: clamp(8px, 0.9vw, 12px) clamp(16px, 1.5vw, 22px);
-  font-size: var(--fs-menu);
-  line-height: 1.3;
+  padding: 0;
+  /* Même taille que les items de nav, pour cohérence visuelle. */
+  font-size: clamp(17px, 1.7vw, 22px);
+  line-height: 1.25;
   white-space: nowrap;
+  text-align: left;
+  color: inherit;
 }
 .submenu a:hover,
-.submenu a:focus { background: rgba(0, 0, 0, 0.04); }
+.submenu a:focus { opacity: 0.65; }
+/* Contact dans le dropdown : ghost button comme le Contact en dehors. */
+.submenu-contact a {
+  padding: clamp(8px, 0.85vw, 12px) clamp(12px, 1.1vw, 16px);
+  border: 1px solid var(--ink);
+  border-radius: clamp(6px, 0.5vw, 8px);
+  background: var(--white);
+}
+.submenu-contact a:hover,
+.submenu-contact a:focus { opacity: 1; }
 .submenu a[aria-current="page"] {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+  text-decoration: none;
 }
 
 /* ---------- Page title ---------- */
@@ -327,6 +527,14 @@ button { font-family: inherit; cursor: pointer; }
   align-items: flex-start;
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
+/* Les 3 ratings (Google, Trustpilot, Trustfolio) en ligne sous l'adresse
+   dans le footer. */
+.ratings-stack {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: clamp(16px, 2vw, 28px);
+}
 
 /* Variante "deux boîtes" pour le rating en face du h1 Clients : les
    étoiles tombent au cap du titre, le logo aligne avec sa baseline.
@@ -343,7 +551,7 @@ button { font-family: inherit; cursor: pointer; }
   display: block;
 }
 .rating-stars {
-  font-size: clamp(11px, 1vw, 14px);
+  font-size: clamp(13px, 1.1vw, 16px);
   letter-spacing: 0.1em;
   line-height: 1.2;
 }
@@ -356,11 +564,12 @@ button { font-family: inherit; cursor: pointer; }
   gap: 8px;
   padding: clamp(10px, 0.85vw, 12px) clamp(14px, 1.1vw, 16px);
   border: 1px solid var(--ink);
+  border-radius: clamp(6px, 0.5vw, 8px);
   font-size: var(--fs-menu);
   line-height: 1.25;
   color: var(--ink);
   cursor: pointer;
-  background: transparent;
+  background: var(--white);
   font-family: inherit;
   font-feature-settings: 'pnum' on, 'lnum' on;
   width: max-content;
@@ -387,65 +596,12 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 800px) {
   .menu-label-full { display: none; }
   .menu-label-short { display: inline; }
-  /* Nav tightening dans la fenêtre 480-800px : gaps réduits, brand plus
-     petit pour laisser respirer les 4 items (Services, Clients,
-     Consultants, Contact) qui se côtoient sans hamburger. */
-  .menu { gap: clamp(12px, 2vw, 24px); }
-  .menu-right { gap: clamp(12px, 2.4vw, 22px); }
-  .menu-item, .btn-menu { font-size: 14px; line-height: 1.25; }
+  /* Nav resserrée légèrement en mobile mais on garde de l'air. */
+  .menu { gap: clamp(20px, 3vw, 32px); padding-block: clamp(16px, 3vw, 24px); }
+  .menu-right { column-gap: clamp(18px, 2.6vw, 28px); row-gap: clamp(6px, 1vw, 10px); }
+  .menu-right .menu-item, .menu-item, .btn-menu { font-size: 15px; line-height: 1.25; }
   .brand { width: clamp(82px, 9.6vw, 110px); height: clamp(18px, 1.95vw, 24px); }
   .btn-menu { padding: 8px 12px; }
-}
-/* Hamburger : sous 480px l'écart entre le brand et la nav devient comparable
-   à l'inter-item, on bascule en menu burger. Sticky du header conservé,
-   menu-right en absolute s'ancre sur le header (position sticky établit
-   un containing block). */
-@media (max-width: 480px) {
-  .menu-toggle { display: inline-flex; }
-  .menu-right {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: 0;
-    flex-direction: column;
-    align-items: stretch;
-    background: var(--bg);
-    padding: clamp(16px, 4vw, 24px) var(--pad-x);
-    gap: clamp(14px, 3vw, 20px);
-    z-index: 49;
-  }
-  .menu-toggle[aria-expanded="true"] ~ .menu-right { display: flex; }
-  /* Items : taille un cran plus grosse que la navbar pour le toucher
-     mobile, alignés à gauche. */
-  .menu-right .menu-item,
-  .menu-right .btn-menu {
-    font-size: clamp(18px, 4.5vw, 22px);
-    line-height: 1.3;
-  }
-  .menu-right .btn-menu {
-    align-self: flex-start;
-    padding: 10px 16px;
-  }
-  /* Mobile : le dropdown Services s'affiche en bloc empilé, pas en flyout.
-     Le parent "Services" devient un simple label, les 3 sous-items en
-     dessous avec une petite indentation. */
-  .menu-item-group { flex-direction: column; align-items: stretch; }
-  .menu-item--has-submenu .menu-caret { display: none; }
-  .submenu {
-    position: static;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    background: none;
-    box-shadow: none;
-    padding: clamp(6px, 1.5vw, 10px) 0 0;
-    min-width: 0;
-  }
-  .submenu a {
-    padding: clamp(6px, 1.5vw, 8px) clamp(12px, 3vw, 16px);
-    font-size: clamp(15px, 4vw, 18px);
-  }
 }
 
 /* ---------- Footer ----------
@@ -499,10 +655,11 @@ button { font-family: inherit; cursor: pointer; }
   text-decoration-thickness: 2px;
 }
 
-/* Grille standard du footer (sous le featured nav) */
+/* Grille standard du footer (sous le featured nav).
+   1 col : brand (qui contient logo, tagline, adresse+contact, ratings). */
 .foot-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: 1fr;
   column-gap: 0;
   row-gap: clamp(40px, 5vw, 70px);
   align-items: start;
@@ -526,17 +683,36 @@ button { font-family: inherit; cursor: pointer; }
           mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
 }
 .foot-tagline {
-  font-size: clamp(14px, 1.2vw, 18px);
+  font-size: clamp(16px, 1.5vw, 20px);
   line-height: 1.4;
   margin: 0;
   letter-spacing: -0.01em;
   max-width: 38ch;
 }
 .foot-address {
-  font-size: clamp(13px, 1.05vw, 16px);
+  font-size: clamp(13px, 1.1vw, 16px);
   line-height: 1.5;
   margin: 0;
 }
+/* Adresse postale + contact côte à côte sous la tagline. */
+.foot-address-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: flex-start;
+}
+.foot-address-row .foot-contact {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 0.4vw, 6px);
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1.5;
+}
+.foot-address-row .foot-contact a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.foot-address-row .foot-contact a:hover { text-decoration: underline; }
 
 /* Colonnes de liens petites, alignées start. */
 .foot-col {
@@ -563,15 +739,25 @@ button { font-family: inherit; cursor: pointer; }
   margin-top: clamp(12px, 1.5vw, 22px);
 }
 
+/* Ligne légale tout en bas à gauche du footer (sous la grille). */
+.foot-legal {
+  font-size: clamp(13px, 1.1vw, 16px);
+  opacity: 0.55;
+}
+.foot-legal a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.foot-legal a:hover { text-decoration: underline; }
+
 /* Responsive du footer.
    .foot-featured est en flex-wrap, donc s'adapte tout seul (les
    items wrappent quand il n'y a plus la place).
-   ≤1000 : .foot-grid passe en 3 cols.
-   ≤700  : .foot-grid en 2 cols (brand + contact spans full).
-   ≤460  : tout en 1 col. */
+   ≤1000 : brand reste large, on resserre les colonnes.
+   ≤700  : tout en 1 col. */
 @media (max-width: 1000px) {
   .foot-grid {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
   }
   .foot-contact {
     grid-column: 1;
@@ -671,7 +857,7 @@ button { font-family: inherit; cursor: pointer; }
 .solutions-overview-card h3 { align-self: end; }
 .solutions-overview-card p { align-self: start; }
 .solutions-overview-list h3 {
-  font-size: clamp(22px, 2.6vw, 36px);
+  font-size: var(--fs-section-title);
   line-height: 1.15;
   letter-spacing: -0.02em;
   text-decoration: underline;
@@ -778,11 +964,23 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .panel {
-  background: var(--white);
-  padding: var(--pad-card-y) var(--pad-card-x);
   display: flex;
   flex-direction: column;
   gap: clamp(28px, 3.4vw, 50px);
+}
+/* Titre de page (au-dessus des subtabs ou du contenu). */
+.page-lede {
+  font-size: clamp(22px, 2.6vw, 36px);
+  line-height: 1.2;
+  margin: 0 0 clamp(8px, 1vw, 14px);
+}
+/* Sous-titre concret juste sous .page-lede : taille intermédiaire,
+   opacity légèrement réduite, prend de l'air avant le contenu. */
+.page-sublede {
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.45;
+  margin: 0 0 clamp(28px, 3.5vw, 48px);
+  max-width: 60ch;
 }
 
 .panel-title {
@@ -828,6 +1026,37 @@ button { font-family: inherit; cursor: pointer; }
   justify-content: space-between;
   gap: clamp(20px, 2vw, 30px);
   flex-wrap: wrap;
+  /* Sticky pile sous la navbar. Le -1px évite un trait de contenu qui
+     bave entre header et subtabs à cause d'arrondis sous-pixel. */
+  position: -webkit-sticky;
+  position: sticky;
+  top: calc(var(--header-h, 60px) - 1px);
+  background: var(--bg);
+  padding-block: clamp(8px, 1vw, 14px);
+  z-index: 40;
+}
+/* Sur mobile, le bloc Haut prend toute la largeur du viewport (escape
+   le padding de la section). */
+@media (max-width: 800px) {
+  .subtabs-row {
+    margin-inline: calc(-1 * var(--pad-x));
+    padding-inline: var(--pad-x);
+  }
+}
+/* Affordance de scroll horizontal : fade subtil sur le bord droit, et
+   sur le bord gauche si on a déjà scrollé. Appliqué via classes
+   is-overflow-right / is-overflow-left posées par JS. */
+.subtabs-row .subtabs.is-overflow-right {
+  -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 40px), transparent 100%);
+          mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 40px), transparent 100%);
+}
+.subtabs-row .subtabs.is-overflow-left.is-overflow-right {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+}
+.subtabs-row .subtabs.is-overflow-left:not(.is-overflow-right) {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 100%);
 }
 /* Scoped à .subtabs-row : la hairline et le rythme horizontal sont propres
    à la nav des subtabs sur solutions/solutions-renfort. solutions-profils
@@ -852,10 +1081,10 @@ button { font-family: inherit; cursor: pointer; }
    sombre. Plus de hairline ni d'underline. */
 .subtab {
   padding: clamp(10px, 1vw, 14px) clamp(16px, 1.6vw, 22px);
-  font-size: clamp(14px, 1.4vw, 18px);
+  font-size: clamp(16px, 1.5vw, 20px);
   line-height: 1.25;
   cursor: pointer;
-  background: var(--bg);
+  background: rgba(6, 32, 4, 0.06);
   border: 1px solid transparent;
   border-radius: clamp(6px, 0.5vw, 8px);
   color: inherit;
@@ -866,7 +1095,7 @@ button { font-family: inherit; cursor: pointer; }
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 .subtab:hover {
-  background: #ececea;
+  background: rgba(6, 32, 4, 0.12);
 }
 /* Subtab accent (+2000 recrutements) : poussé tout à droite + fond gris
    translucide (même teinte que .btn-menu Contact) pour signaler que c'est
@@ -883,12 +1112,24 @@ button { font-family: inherit; cursor: pointer; }
   background: var(--white);
   border-color: var(--ink);
 }
-/* L'accent (+2000) doit garder son style filled-ink quand current.
-   Défini APRÈS la règle générique .subtab[aria-current] pour gagner
-   en cascade (même spécificité). */
+/* L'actif passe en premier UNIQUEMENT dans la subtabs-row (Haut),
+   pas dans le bucket-tabs (catégories) où on conserve l'ordre source.
+   Exception : .subtab--accent (+2000 recrutements) reste toujours à
+   droite, même quand c'est la page active. */
+.subtabs-row .subtab[aria-current="true"]:not(.subtab--accent),
+.subtabs-row .subtab[aria-current="page"]:not(.subtab--accent) {
+  order: -1;
+}
+/* Si l'accent (+2000) est actif, on annule son margin-left:auto pour
+   qu'il vienne bien se positionner en tête au lieu d'être poussé à droite. */
 .subtab.subtab--accent[aria-current="page"] {
-  background: var(--ink);
-  color: var(--white);
+  margin-left: 0;
+}
+/* L'accent (+2000) actif suit le même traitement que les autres
+   subtabs actifs : bg blanc + bordure ink. Plus de filled-ink. */
+.subtab.subtab--accent[aria-current="page"] {
+  background: var(--white);
+  color: inherit;
   border-color: var(--ink);
 }
 /* Labels longs/courts pour les subtabs (Recrutement ponctuel → Ponctuel,
@@ -1111,15 +1352,21 @@ button { font-family: inherit; cursor: pointer; }
 /* Cas clients inline dans content-side : la grille 2-col (verbatim |
    logo) ne tient pas dans une 60ch col. On force single-col, on shrink
    le logo, on l'aligne à gauche au-dessus du verbatim. */
+/* Pattern logo-above unifié : le logo apparaît au-dessus du verbatim,
+   suivi de l'attribution. Même structure que .company-block sur le
+   +2000 (cf. styles dans services-profils.html). */
 .cases-rows--inline {
   display: flex;
   flex-direction: column;
-  gap: clamp(20px, 2.5vw, 32px);
+  gap: clamp(32px, 3.4vw, 56px);
+  /* Le titre "Cas clients" a sauté : on garde le rythme en imposant une
+     respiration au-dessus du premier témoignage. */
+  margin-top: clamp(32px, 4vw, 64px);
 }
 .cases-rows--inline .case-row {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1vw, 14px);
+  gap: clamp(10px, 1.2vw, 18px);
 }
 .cases-rows--inline .case-row > * {
   padding-right: 0;
@@ -1129,13 +1376,13 @@ button { font-family: inherit; cursor: pointer; }
   display: block;
   align-self: flex-start;
   justify-self: start;
-  width: clamp(90px, 10vw, 120px);
+  width: clamp(80px, 9vw, 130px);
   height: clamp(20px, 2vw, 28px);
   margin-left: 0;
-  order: -1; /* logo above verbatim */
+  order: -1; /* logo au-dessus du verbatim */
 }
 .cases-rows--inline .case-row p {
-  max-width: 100%;
+  max-width: 42ch;
 }
 
 .panel-section--with-team .content-side,
@@ -1145,8 +1392,10 @@ button { font-family: inherit; cursor: pointer; }
   gap: clamp(14px, 1.6vw, 22px);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  /* ~60 caractères par ligne. La col occupe pas toute la largeur. */
-  max-width: 60ch;
+  /* Col texte plus étroite avec beaucoup d'air à droite. */
+  max-width: 48ch;
+  padding-right: clamp(40px, 10vw, 180px);
+  box-sizing: content-box;
 }
 .panel-section .content-side h3,
 .panel-section--with-team .content-side h3 {
@@ -1182,7 +1431,7 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   flex-direction: column;
   gap: clamp(4px, 0.6vw, 8px);
-  font-size: clamp(15px, 1.4vw, 19px);
+  font-size: clamp(16px, 1.5vw, 20px);
   line-height: 1.35;
   width: auto;
 }
@@ -1197,14 +1446,48 @@ button { font-family: inherit; cursor: pointer; }
   }
 }
 @media (max-width: 600px) {
-  /* Mobile : team-side passe au-dessus du content-side, même structure
-     photo+meta en row, juste pleine largeur. */
+  /* Mobile : team-side passe au-dessus du content-side. Les consultants
+     deviennent un rail horizontal scrollable (photo + meta empilées
+     verticalement par carte) au lieu d'une longue liste verticale qui
+     bouffe toute la hauteur de l'écran. */
   .panel-section--with-team {
     grid-template-columns: 1fr;
     row-gap: clamp(20px, 3vw, 32px);
   }
+  /* min-width: 0 indispensable : sans ça les enfants flex-row qui
+     overflow font grossir team-side au lieu de scroller dans le rail. */
+  .panel-section--with-team .team-side { min-width: 0; }
+  .consultants-stack {
+    flex-direction: row;
+    gap: clamp(14px, 3vw, 20px);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .consultants-stack::-webkit-scrollbar { display: none; }
   .consultant-row {
-    grid-template-columns: minmax(60px, 80px) 1fr;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    /* Cartes plus larges pour que les photos respirent et que la légende
+       (nom + rôle + expérience) tienne sans casser. */
+    width: clamp(180px, 56vw, 240px);
+    gap: clamp(10px, 1.6vw, 14px);
+    scroll-snap-align: start;
+  }
+  .consultant-row .photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+  }
+  .consultant-row .consultant-meta {
+    padding-top: 0;
+    font-size: clamp(15px, 4vw, 18px);
+    gap: clamp(2px, 0.6vw, 6px);
   }
 }
 
@@ -1340,14 +1623,14 @@ button { font-family: inherit; cursor: pointer; }
   gap: 4px;
 }
 .profils-cat small {
-  font-size: clamp(12px, 1vw, 14px);
+  font-size: clamp(13px, 1.1vw, 16px);
   opacity: 0.6;
 }
 .profils-cat-name {
   font-weight: 500;
 }
 .profils-postes {
-  font-size: clamp(14px, 1.2vw, 17px);
+  font-size: clamp(16px, 1.5vw, 20px);
   line-height: 1.5;
   display: flex;
   flex-wrap: wrap;
@@ -1461,7 +1744,7 @@ button { font-family: inherit; cursor: pointer; }
   gap: clamp(20px, 2vw, 32px);
 }
 .consultants-row--pair .consultant-meta {
-  font-size: clamp(15px, 1.3vw, 18px);
+  font-size: clamp(16px, 1.5vw, 20px);
 }
 
 @media (max-width: 1100px) {
@@ -1574,3 +1857,4 @@ button { font-family: inherit; cursor: pointer; }
 .scroll-top-btn:hover {
   opacity: 0.88;
 }
+

@@ -39,55 +39,87 @@
 
   const aria = (href) => isCurrent(href) ? ' aria-current="page"' : '';
 
+  // CDI & Freelance regroupe 4 practices : hover sur desktop révèle un
+  // sous-menu inline ; sur mobile c'est le hamburger qui montre tout.
   const navHTML = `
     <nav class="menu">
       <a href="index.html" class="brand" aria-label="GetPro"></a>
-      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-right">
-        <span class="menu-toggle-bars" aria-hidden="true"></span>
-      </button>
       <div class="menu-right" id="menu-right">
-        <a href="services-tech.html" class="menu-item"${aria('#services')}>Services</a>
-        <a href="clients.html" class="menu-item"${aria('clients.html')}>Clients</a>
-        <a href="equipe.html" class="menu-item"${aria('equipe.html')}>Équipe</a>
-        <a href="contact.html" class="btn-menu"${aria('contact.html')}>Contact</a>
+        <div class="menu-item-group menu-item-group--cdi">
+          <a href="services-tech.html" class="menu-item menu-item--inline"${aria('services-tech.html')}>CDI &amp; Freelance</a>
+          <div class="submenu submenu--inline" id="cdi-submenu">
+            <div class="submenu-eyebrow">Practices</div>
+            <ul class="submenu-list submenu-list--row">
+              <li><a href="services-produit.html"${aria('services-produit.html')}>Product &amp; Projects</a></li>
+              <li><a href="services-tech.html"${aria('services-tech.html')}>Tech, IA &amp; Data</a></li>
+              <li><a href="services-sales.html"${aria('services-sales.html')}>Customer &amp; Admin</a></li>
+              <li class="submenu-list-spacer"><a href="services-profils.html"${aria('services-profils.html')}>+2000 recrutements</a></li>
+            </ul>
+          </div>
+        </div>
+        <a href="services-renfort.html" class="menu-item menu-item--inline"${aria('services-renfort.html')}>RPO</a>
+        <a href="services-transition.html" class="menu-item menu-item--inline"${aria('services-transition.html')}>Management de transition</a>
+        <div class="menu-item-group menu-item--collapsed">
+          <button class="menu-item menu-item--has-submenu" type="button" aria-expanded="false" aria-controls="solutions-submenu"${SERVICES_PAGES.includes(path) ? ' aria-current="page"' : ''}>
+            <span class="trigger-long">Solutions de recrutement</span>
+            <span class="trigger-short">Solutions</span>
+            <svg class="menu-chevron" viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2.5 4.5L6 8l3.5-3.5"/>
+            </svg>
+          </button>
+          <div class="submenu" id="solutions-submenu">
+            <ul class="submenu-list submenu-list--mobile">
+              <li><a href="services-tech.html"${aria('services-tech.html')}>CDI &amp; Freelance</a></li>
+              <li><a href="services-renfort.html"${aria('services-renfort.html')}>RPO</a></li>
+              <li><a href="services-transition.html"${aria('services-transition.html')}>Management de transition</a></li>
+              <li><a href="clients.html"${aria('clients.html')}>Clients</a></li>
+              <li><a href="equipe.html"${aria('equipe.html')}>Équipe</a></li>
+              <li class="submenu-contact"><a href="contact.html"${aria('contact.html')}>Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <a href="contact.html" class="menu-item menu-item--contact menu-item--contact-outside"${aria('contact.html')}>Contact</a>
       </div>
     </nav>
   `;
 
   const footerHTML = `
     <nav class="foot-featured" aria-label="Services principaux">
-      <a href="services-tech.html"${aria('services-tech.html')}>Recrutements ponctuels</a>
-      <a href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement (RPO)</a>
-      <a href="services-transition.html"${aria('services-transition.html')}>Temps partagés &amp; Transition</a>
+      <a href="services-tech.html"${aria('services-tech.html')}>CDI &amp; Freelance</a>
+      <a href="services-renfort.html"${aria('services-renfort.html')}>RPO</a>
+      <a href="services-transition.html"${aria('services-transition.html')}>Management de transition</a>
+      <a href="clients.html"${aria('clients.html')}>Clients</a>
+      <a href="equipe.html"${aria('equipe.html')}>Équipe</a>
     </nav>
     <div class="foot-grid">
       <div class="foot-brand">
         <a href="index.html" class="foot-logo" aria-label="GetPro"></a>
         <p class="foot-tagline">Cabinet de chasse spécialisé tech, product, data, sales et dirigeants. Depuis 2015.</p>
-        <p class="foot-address">41 rue Faidherbe<br>75011 Paris</p>
-      </div>
-      <div class="foot-col">
-        <a href="services-tech.html"${aria('services-tech.html')}>Chasse Tech</a>
-        <a href="services-produit.html"${aria('services-produit.html')}>Chasse Product &amp; Projects</a>
-        <a href="services-sales.html"${aria('services-sales.html')}>Chasse Customer &amp; Admin</a>
-        <a href="services-renfort.html"${aria('services-renfort.html')}>Renfort en recrutement (RPO)</a>
-        <a href="services-transition.html"${aria('services-transition.html')}>Temps partagés &amp; Transition</a>
-      </div>
-      <div class="foot-col">
-        <a href="services-profils.html"${aria('services-profils.html')}>+2000 recrutements</a>
-        <a href="methode.html"${aria('methode.html')}>Méthode GetPro</a>
-        <a href="clients.html"${aria('clients.html')}>Clients</a>
-        <a href="equipe.html"${aria('equipe.html')}>Consultants</a>
-        <a href="mentions.html"${aria('mentions.html')}>Mentions légales</a>
-      </div>
-      <div class="foot-col foot-contact">
-        <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>
-        <a href="tel:+33939289329">09 39 28 93 29</a>
-        <div class="rating">
-          <img src="assets/google.svg" alt="Google" class="rating-logo" />
-          <span class="rating-stars">4,3 ★★★★★</span>
+        <div class="foot-address-row">
+          <p class="foot-address">41 rue Faidherbe<br>75011 Paris</p>
+          <div class="foot-contact">
+            <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>
+            <a href="tel:+33939289329">09 39 28 93 29</a>
+          </div>
+        </div>
+        <div class="ratings-stack">
+          <div class="rating">
+            <img src="assets/google.svg" alt="Google" class="rating-logo" />
+            <span class="rating-stars">4,3 ★★★★★</span>
+          </div>
+          <div class="rating">
+            <img src="assets/trustpilot.svg" alt="Trustpilot" class="rating-logo" />
+            <span class="rating-stars">5 ★★★★★</span>
+          </div>
+          <div class="rating">
+            <img src="assets/trustfolio.svg" alt="Trustfolio" class="rating-logo" />
+            <span class="rating-stars">4,9 ★★★★★</span>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="foot-legal">
+      <a href="mentions.html"${aria('mentions.html')}>Mentions légales</a>
     </div>
   `;
 
@@ -97,24 +129,112 @@
       nav.innerHTML = navHTML;
       // Hamburger toggle (visible sous 480px). aria-expanded change l'état,
       // le CSS utilise [aria-expanded="true"] pour révéler .menu-right.
-      const toggle = nav.querySelector('.menu-toggle');
-      if (toggle) {
-        toggle.addEventListener('click', () => {
-          const open = toggle.getAttribute('aria-expanded') === 'true';
-          toggle.setAttribute('aria-expanded', String(!open));
-          toggle.setAttribute('aria-label', open ? 'Ouvrir le menu' : 'Fermer le menu');
+      // Dropdown "Solutions de recrutement" : toggle aria-expanded au clic
+      // (le hover/focus suffit sur souris, le clic est nécessaire en touch).
+      // Mega-menus sur HOVER (et focus clavier). Deux triggers :
+      //   1. .menu-item-group--cdi : hover sur "CDI & Freelance" (desktop)
+      //   2. .menu-item-group (hamburger collapsé) : hover sur le bouton
+      //      "Menu" (apparait sous 700px)
+      // Le submenu est position:absolute donc visuellement hors du bounding
+      // box du group : on écoute mouseenter/leave SUR LE LIEN ET SUR LE
+      // SUBMENU séparément, avec un petit délai pour pouvoir traverser le
+      // gap. Le menu se ferme quand on quitte les deux (vers une autre
+      // option de la nav, ou par le bas du volet).
+      const submenuGroups = nav.querySelectorAll('.menu-item-group--cdi, .menu-item-group.menu-item--collapsed');
+      submenuGroups.forEach(group => {
+        const btn = group.querySelector('.menu-item--has-submenu');
+        const trigger = group.querySelector('.menu-item');
+        const submenu = group.querySelector('.submenu');
+        let closeTimer = null;
+        const setOpen = (open) => {
+          if (btn) btn.setAttribute('aria-expanded', String(open));
+          group.classList.toggle('is-open', open);
+          document.body.classList.toggle('menu-open', open);
+        };
+        const cancelClose = () => {
+          if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+        };
+        const scheduleClose = () => {
+          cancelClose();
+          closeTimer = setTimeout(() => setOpen(false), 140);
+        };
+        [trigger, submenu].filter(Boolean).forEach(el => {
+          el.addEventListener('mouseenter', () => { cancelClose(); setOpen(true); });
+          el.addEventListener('mouseleave', scheduleClose);
         });
-        // Ferme le menu au clic sur un lien (utile pour les ancres internes).
-        nav.querySelectorAll('.menu-right a').forEach(a => {
-          a.addEventListener('click', () => {
-            toggle.setAttribute('aria-expanded', 'false');
-            toggle.setAttribute('aria-label', 'Ouvrir le menu');
-          });
+        group.addEventListener('focusin', () => { cancelClose(); setOpen(true); });
+        group.addEventListener('focusout', (e) => {
+          if (!group.contains(e.relatedTarget)) scheduleClose();
         });
-      }
+      });
+
+      // Position des submenus via --trigger-left :
+      //   - submenu CDI : alignée pile sous le lien "CDI & Freelance"
+      //   - autres submenus (mobile hamburger) : alignés sur le bord
+      //     gauche du logo (façon Fondation Cartier)
+      const brand = nav.querySelector('.brand');
+      const cdiGroup = nav.querySelector('.menu-item-group--cdi');
+      const cdiLink = cdiGroup?.querySelector('.menu-item--inline');
+      const cdiSubmenu = cdiGroup?.querySelector('.submenu');
+      const otherSubmenus = nav.querySelectorAll('.menu-item-group:not(.menu-item-group--cdi) .submenu');
+      const syncSubmenu = () => {
+        const headerEl = document.querySelector('.header');
+        if (!headerEl) return;
+        const headerRect = headerEl.getBoundingClientRect();
+        if (brand && otherSubmenus.length) {
+          const brandRect = brand.getBoundingClientRect();
+          const triggerLeft = (brandRect.left - headerRect.left) + 'px';
+          otherSubmenus.forEach(s => s.style.setProperty('--trigger-left', triggerLeft));
+        }
+        if (cdiLink && cdiSubmenu) {
+          const linkRect = cdiLink.getBoundingClientRect();
+          cdiSubmenu.style.setProperty('--trigger-left', (linkRect.left - headerRect.left) + 'px');
+        }
+      };
+      syncSubmenu();
+      // Re-sync après chargement des polices (la nav peut shifter quand
+      // ABC Diatype prend le relais sur la fallback system).
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncSubmenu);
+      window.addEventListener('load', syncSubmenu);
+      window.addEventListener('resize', syncSubmenu);
+
+      // Hauteurs sticky reportées en CSS vars : header (--header-h),
+      // subtabs-row (--subtabs-h), categories-bar (--cats-h). Permet aux
+      // éléments en dessous de se caler précisément dans la stack.
+      const header = document.querySelector('.header');
+      const subtabsRow = document.querySelector('.subtabs-row');
+      const catsBar = document.querySelector('.categories-bar');
+      const syncStickyHeights = () => {
+        if (header) document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+        if (subtabsRow) document.documentElement.style.setProperty('--subtabs-h', subtabsRow.offsetHeight + 'px');
+        if (catsBar) document.documentElement.style.setProperty('--cats-h', catsBar.offsetHeight + 'px');
+      };
+      syncStickyHeights();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncStickyHeights);
+      window.addEventListener('load', syncStickyHeights);
+      window.addEventListener('resize', syncStickyHeights);
+
+      // Affordance de scroll horizontal sur les .subtabs (et autres listes
+      // scrollables marquées) : on bascule is-overflow-left/right selon
+      // la position de scroll pour que le mask fade apparaisse uniquement
+      // si le contenu déborde réellement.
+      const updateOverflowState = (el) => {
+        const max = el.scrollWidth - el.clientWidth;
+        const x = el.scrollLeft;
+        el.classList.toggle('is-overflow-left', x > 1);
+        el.classList.toggle('is-overflow-right', x < max - 1);
+      };
+      document.querySelectorAll('.subtabs-row .subtabs').forEach((el) => {
+        updateOverflowState(el);
+        el.addEventListener('scroll', () => updateOverflowState(el), { passive: true });
+        window.addEventListener('resize', () => updateOverflowState(el));
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => updateOverflowState(el));
+      });
+
     }
     const foot = document.querySelector('[data-footer]');
     if (foot) foot.innerHTML = footerHTML;
+
 
     // Bouton flottant "remonter en haut de la page" injecté sur toutes
     // les pages. Visible à partir d'un certain scroll.

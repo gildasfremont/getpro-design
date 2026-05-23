@@ -11,55 +11,137 @@
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=1" />
 <style>
   /* ---------- Hero ---------- */
   .hero {
     display: flex;
     flex-direction: column;
     gap: var(--gap-section);
-    /* Padding-bottom réduit : il accueille le CTA "Tous les consultants"
-       (~30px de haut + 17 de margin-top) avec un peu d'air en dessous,
-       mais sans creuser un trou avant le bloc Mistral. */
-    padding-bottom: clamp(30px, 3.4vw, 50px);
+    padding-top: clamp(24px, 3vw, 48px);
+    padding-bottom: clamp(12px, 1.5vw, 24px);
   }
 
   .hero-inner {
     display: flex;
     flex-direction: column;
-    gap: clamp(20px, 2.1vw, 30px);
+    gap: clamp(24px, 3vw, 48px);
   }
 
   /* Wrapper équipe : caption + grille de photos, avec un petit gap
      entre les deux (la caption colle visuellement à la grille pour
      bien indiquer qu'elle la décrit). */
   .hero-team {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(8px, 1vw, 14px);
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    column-gap: clamp(24px, 4vw, 80px);
+    row-gap: clamp(8px, 1vw, 14px);
+    padding-left: var(--pad-card-x);
   }
-  .hero-team-caption {
-    font-size: clamp(13px, 1.1vw, 16px);
-    line-height: 1.4;
-    opacity: 0.6;
-    margin: 0;
-  }
+  .hero-team .grid-images { grid-column: 1 / -1; }
+  /* Le CTA se cale à gauche de la col 1 (= bord gauche du titre). */
+  .hero-team-cta { grid-column: 1; justify-self: start; }
 
   .hero-title {
-    font-size: var(--fs-hero);
-    line-height: var(--lh-hero);
-    /* Pas de max-width : la phrase utilise toute la largeur du
-       container. La taille de font est calibrée (clamp 22/4.8vw/68)
-       pour que ~109 caractères tiennent en 3 lignes sur desktop et
-       restent sous 5 lignes sur mobile. */
+    font-size: var(--fs-section-title);
+    line-height: 1.1;
     text-wrap: balance;
   }
+  .hero-title strong {
+    font-weight: 700;
+  }
+  .hero-subtitle {
+    font-size: clamp(18px, 2vw, 26px);
+    line-height: 1.25;
+    margin: 0;
+  }
+  .hero-subtitle-cta {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    display: inline-block;
+    margin-top: clamp(16px, 2vw, 28px);
+  }
+  .hero-subtitle-cta:hover {
+    text-decoration-thickness: 2px;
+  }
+  /* Variante "ghost button noir" pour le CTA du sous-titre (Réseau). */
+  .hero-subtitle-cta--ghost {
+    text-decoration: none;
+    padding: clamp(10px, 1vw, 14px) clamp(16px, 1.4vw, 22px);
+    border: 1px solid var(--ink);
+    border-radius: clamp(6px, 0.5vw, 8px);
+    background: transparent;
+    font-size: clamp(15px, 1.4vw, 18px);
+    line-height: 1;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .hero-subtitle-cta--ghost:hover {
+    background: var(--ink);
+    color: var(--white);
+    text-decoration: none;
+  }
+  /* Hero en 2 colonnes : titre (col 1, 40%) + sous-titre/CTA (col 2,
+     60%). Les deux colonnes "posent" sur la même baseline bottom :
+     align-items: end. Sur mobile (≤700px), tout passe en une colonne.
+     padding-left: --pad-card-x pour aligner le titre avec le contenu
+     des case-cards en dessous (Mistral AI, etc.). */
+  .hero-lede {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    column-gap: clamp(24px, 4vw, 80px);
+    row-gap: clamp(10px, 1.2vw, 18px);
+    padding-left: var(--pad-card-x);
+    /* last baseline : aligne la dernière ligne du titre et du sous-titre
+       sur la même baseline typographique (pas juste leurs bottom boxes,
+       qui diffèrent à cause des line-height différentes). */
+    align-items: last baseline;
+  }
+  /* Variante Prod (sans sous-titre) : pas de colonnes, titre full-width. */
+  .hero-lede--single {
+    grid-template-columns: 1fr;
+  }
+  /* Variante Réseau (stacked) : titre puis sous-titre en colonne unique. */
+  .hero-lede--stacked {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .hero-lede--stacked .hero-subtitle {
+    grid-column: 1;
+  }
+  .hero-subtitle {
+    grid-column: 2;
+  }
+  @media (max-width: 700px) {
+    /* Mobile : tout en 1 col, alignement uniforme sur le bord gauche
+       de la section (pas de padding-left interne) pour matcher la
+       colonne du contenu en dessous (case-cards). */
+    .hero-lede {
+      grid-template-columns: 1fr;
+      align-items: start;
+      padding-left: 0;
+    }
+    .hero-subtitle {
+      grid-column: 1;
+    }
+    .hero-team {
+      grid-template-columns: 1fr;
+      padding-left: 0;
+    }
+    .hero-team-cta { justify-self: start; }
+  }
+  .hero-team-cta {
+    margin-top: clamp(8px, 1vw, 14px);
+    /* Même taille que .hero-subtitle pour cohérence typographique. */
+    font-size: clamp(18px, 2vw, 26px);
+  }
 
-  /* ---------- Image grid ---------- */
+  /* ---------- Image grid : 8 cols × 2 rows = 16 consultants ---------- */
   .hero-inner { position: relative; }
   .grid-images {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     gap: 0;
   }
 
@@ -69,32 +151,44 @@
     background-repeat: no-repeat;
     background-color: #d8e0d3;
     background-position: 50% 30%;
-    /* Tile = lien <a> vers Équipe ; pas d'effet hover, juste le curseur
-       pointer (héritage du <a>) pour signaler la cliquabilité. */
     display: block;
+    transition: transform 0.35s ease;
   }
-  /* Mid screen : 4 cols × 2 rows = 8 tiles visible (hide tiles 9 & 10) */
+  .grid-images .tile:hover {
+    transform: scale(1.03);
+    z-index: 1;
+  }
+  /* Paliers : on réduit les colonnes et on cache les tiles excédentaires
+     pour garder 2 lignes complètes à chaque breakpoint. */
   @media (max-width: 1100px) {
+    .grid-images { grid-template-columns: repeat(6, 1fr); }
+    .grid-images .tile:nth-child(n+13) { display: none; }
+  }
+  @media (max-width: 800px) {
+    .grid-images { grid-template-columns: repeat(5, 1fr); }
+    .grid-images .tile:nth-child(n+11) { display: none; }
+  }
+  @media (max-width: 600px) {
     .grid-images { grid-template-columns: repeat(4, 1fr); }
     .grid-images .tile:nth-child(n+9) { display: none; }
   }
-  /* Small screen : 3 cols × 3 rows = 9 tiles visible (only hide tile 10) */
-  @media (max-width: 700px) {
-    .grid-images { grid-template-columns: repeat(3, 1fr); }
-    .grid-images .tile:nth-child(9) { display: block; }
-    .grid-images .tile:nth-child(10) { display: none; }
-  }
-  /* Mix H/F alterné, fondateurs en fin de grille */
+  /* Consultants — 16 personnes listées dans equipe.html (hors équipe support). */
   .tile-1  { background-image: url('assets/team/anne-delarue.png'); }
-  .tile-2  { background-image: url('assets/team/theo-grandperrin.jpg'); }
+  .tile-2  { background-image: url('assets/team/romain-pichou.jpg'); }
   .tile-3  { background-image: url('assets/team/juliette-fabre.png'); }
-  .tile-4  { background-image: url('assets/team/die-astou-dioume.jpg'); }
-  .tile-5  { background-image: url('assets/team/nicolas-magne.jpg'); }
-  .tile-6  { background-image: url('assets/team/hugo-merdrignac.png'); }
+  .tile-4  { background-image: url('assets/team/emile-pennes.jpg'); }
+  .tile-5  { background-image: url('assets/team/die-astou-dioume.jpg'); }
+  .tile-6  { background-image: url('assets/team/guillaume-renard.png'); }
   .tile-7  { background-image: url('assets/team/claire-hubert.jpg'); }
-  .tile-8  { background-image: url('assets/team/romain-pichou.jpg'); }
-  .tile-9  { background-image: url('assets/team/zaia-bouchachia.png'); }
-  .tile-10 { background-image: url('assets/team/emile-pennes.jpg'); }
+  .tile-8  { background-image: url('assets/team/louis-fitamant.png'); }
+  .tile-9  { background-image: url('assets/team/lauren-pointon.jpg'); }
+  .tile-10 { background-image: url('assets/team/tony-beaugez.png'); }
+  .tile-11 { background-image: url('assets/team/zaia-bouchachia.png'); }
+  .tile-12 { background-image: url('assets/team/thomas-laigo.jpg'); }
+  .tile-13 { background-image: url('assets/team/laura-geneuil.png'); }
+  .tile-14 { background-image: url('assets/team/theo-grandperrin.jpg'); }
+  .tile-15 { background-image: url('assets/team/nicolas-magne.jpg'); }
+  .tile-16 { background-image: url('assets/team/hugo-merdrignac.png'); }
 
   /* ---------- Cases ---------- */
   .cases {
@@ -315,12 +409,12 @@
     <!-- Hero -->
     <section class="hero section">
       <div class="hero-inner">
-        <h1 class="hero-title">
-          10 ans de recrutement au côté des plus belles entreprises de la Tech et de l'IA.
-        </h1>
+        <div class="hero-lede">
+          <h1 class="hero-title"><strong>10 ans de recrutement<br>au côté des plus belles<br>entreprises de la Tech<br>et de l'IA.</strong></h1>
+          <p class="hero-subtitle">La personne que vous allez embaucher<br>fait partie de notre réseau. Si nous<br>commencions par la contacter ?</p>
+        </div>
 
         <div class="hero-team">
-          <p class="hero-team-caption">Nos consultants</p>
           <div class="grid-images" aria-label="Galerie consultants">
           <a class="tile tile-1" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-2" href="equipe.html" aria-label="Voir l'équipe"></a>
@@ -332,7 +426,14 @@
           <a class="tile tile-8" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-9" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-10" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="tile tile-11" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="tile tile-12" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="tile tile-13" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="tile tile-14" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="tile tile-15" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="tile tile-16" href="equipe.html" aria-label="Voir l'équipe"></a>
           </div>
+          <a href="equipe.html" class="text-arrow-link hero-team-cta">Découvrir l'équipe →</a>
         </div>
       </div>
     </section>
@@ -376,9 +477,8 @@
       </a>
     </section>
 
-    <!-- Services : 3 entrées golden-path, layout éditorial existant -->
+    <!-- Services : 3 entrées golden-path -->
     <section class="solutions-overview section">
-      <h2 class="solutions-overview-title">La personne que vous allez embaucher fait partie de notre réseau</h2>
       <ul class="solutions-overview-list">
         <li>
           <a class="solutions-overview-card" href="services-tech.html">
@@ -410,7 +510,7 @@
             <p>Dix ans à recruter des talents pour les meilleures équipes technologiques françaises. Du premier ingénieur de la startup qui éclôt aux fonctions de direction de la scale-up qui grossit.</p>
             <p>Nous avons fait 2 000 recrutements et rencontré 60 000 talents depuis 2015. Nous suivons leurs trajectoires sur dix ans, leurs nouveaux postes, leurs nouvelles missions.</p>
             <p>Quand vous nous appelez pour un poste critique, nos consultants savent à qui en parler, parce qu'ils connaissent, et depuis longtemps, les gens qu'ils recommandent.</p>
-            <p>Le marché du recrutement tech bouge par cycles. Nous avons toujours ajusté notre cabinet à chaque mouvement. Aujourd'hui, ce sont les dirigeants qui ont intégré l'IA à leur pratique que nos clients nous demandent en priorité, et c'est sur eux que se concentre notre travail de chasse directe.</p>
+            <p>Le marché du recrutement tech bouge par cycles. Nous avons toujours ajusté notre cabinet à chaque mouvement.</p>
           </div>
           <a href="clients.html" class="text-arrow-link manifesto-cta">Retours d’expérience →</a>
         </div>
@@ -459,6 +559,6 @@
     <footer class="site-footer" data-footer></footer>
 
   </main>
-  <script src="partials.js" defer></script>
+  <script src="partials.js?v=1" defer></script>
 </body>
 </html>

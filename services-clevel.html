@@ -11,7 +11,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=1" />
 <style>
   .photo-tony      { background-image: url('assets/team/tony-beaugez.png'); }
   .photo-theo      { background-image: url('assets/team/theo-grandperrin.jpg'); }
@@ -34,28 +34,20 @@
 
     <header class="header section" data-nav></header>
 
-    <section class="solutions section" id="solutions" style="scroll-margin-top: clamp(60px, 6vw, 80px);">
-      <div class="solutions-head">
-        <h1 class="page-title">Services</h1>
-        <nav class="tabs" aria-label="Services">
-            <a class="tab" href="services-tech.html#solutions" aria-current="page">Recrutements ponctuels</a>
-            <a class="tab" href="services-renfort.html#solutions">Renfort en recrutement (RPO)</a>
-            <a class="tab" href="services-transition.html#solutions">Temps partagés &amp; Transition</a>
-        </nav>
-      </div>
-
-      <div class="panel" data-solution="ponctuel">
+    <section class="solutions section" id="solutions" style="scroll-margin-top: clamp(60px, 6vw, 80px);"><h1 class="page-lede">Recrutements de dirigeants et de profils séniors en CDI et Freelance</h1>
+      <p class="page-sublede">À chaque fonction sa practice.</p>
+<div class="panel">
 
         <div class="subtabs-row">
           <nav class="subtabs" aria-label="Practices">
-            <a class="subtab" href="services-tech.html#solutions">Tech</a>
-            <a class="subtab" href="services-produit.html#solutions">Product &amp; Projects</a>
-            <a class="subtab" href="services-clevel.html#solutions" aria-current="page">C-Level</a>
+            <a class="subtab" href="services-tech.html">Tech</a>
+            <a class="subtab" href="services-produit.html">Product &amp; Projects</a>
+            <a class="subtab" href="services-clevel.html" aria-current="page">C-Level</a>
             <a class="subtab subtab--accent" href="services-profils.html">+2000 recrutements</a>
           </nav>
         </div>
 
-        <div class="subtab-body" data-subtab="clevel">
+        <div class="subtab-body">
           <section class="panel-section">
             <div class="consultants-row">
               <div class="consultant">
@@ -97,7 +89,6 @@
           </section>
 
           <section class="panel-section">
-            <h3>Cas clients</h3>
             <div class="cases-rows">
               <div class="case-row">
                 <p>Recrutement du CTO et du VP Engineering chez Electra dans la phase de scale Série B vers Série C.</p>
@@ -110,7 +101,7 @@
             </div>
           </section>
         </div>
-        <a href="clients.html" class="panel-foot-link">Tous nos clients →</a>
+        <a href="clients.html" class="btn-outline">Tous nos clients →</a>
       </div>
 
 
@@ -119,6 +110,6 @@
     <footer class="site-footer" data-footer></footer>
 
   </main>
-  <script src="partials.js" defer></script>
+  <script src="partials.js?v=1" defer></script>
 </body>
 </html>

@@ -11,7 +11,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=1" />
 <style>
   .solutions {
     display: flex;
@@ -42,7 +42,7 @@
     position: -webkit-sticky;
     position: sticky;
     top: clamp(44px, 6.7vw, 96px);
-    background: var(--white);
+    background: var(--bg);
     /* padding-block-start généreux : crée une bande blanche au-dessus du
        texte des tabs pour respirer quand le sticky vient se coller juste
        sous la nav. End 0 : la border-bottom touche pile la baseline. */
@@ -50,7 +50,7 @@
     border-bottom: 1px solid var(--line);
     /* Box-shadow vers le haut pour masquer le contenu qui pourrait
        passer à travers la zone sous le header. */
-    box-shadow: 0 -20px 0 0 var(--white);
+    box-shadow: 0 -20px 0 0 var(--bg);
     z-index: 10;
   }
   .view-tab {
@@ -79,73 +79,67 @@
      align-items: baseline → la baseline du 1er texte de chaque col
      s'aligne (Tech ↔ Postes alignés sur le bas du texte, pas sur
      le haut du box). */
+  /* Panel-body : 1 colonne sur tous les viewports. La nav par catégories
+     devient une bande horizontale sticky en haut du content (pattern
+     identique mobile/desktop). */
   .panel-body {
-    display: grid;
-    grid-template-columns: minmax(120px, 0.5fr) minmax(0, 1fr);
-    gap: clamp(28px, 4vw, 60px);
-    align-items: baseline;
-  }
-  /* Vue "Retour d'expérience" : les témoignages prennent toute la
-     largeur du panel, capés à --measure pour la lisibilité. */
-  .view-rdx .testimonials {
-    max-width: var(--measure);
-  }
-  /* Col 1 du panel-body : la liste des catégories (subtabs) avec le
-     rating Trustpilot dessous. Sticky pour rester visible pendant
-     que l'utilisateur scrolle la colonne de droite (postes ou
-     témoignages). top: ~100px pour laisser passer la nav sticky
-     au-dessus. align-self: start pour ne pas s'étirer sur toute la
-     hauteur du grid (sinon sticky n'a rien à faire). */
-  .categories-col {
     display: flex;
     flex-direction: column;
-    gap: clamp(28px, 3vw, 44px);
-    position: -webkit-sticky;
-    position: sticky;
-    top: clamp(44px, 6.7vw, 96px);
-    align-self: start;
-    /* Padding-top pour aérer Tech du haut du panel et matcher le padding
-       des view-tabs (Placements/Témoignages alignés sur Tech). */
-    padding-top: clamp(24px, 2.8vw, 40px);
-    /* Fond blanc + z-index pour masquer le contenu qui scroll derrière
-       la colonne sticky. */
-    background: var(--white);
-    z-index: 5;
   }
-  /* Bucket-tabs dans la categories-col (Tech, Product, Data... 8 items)
-     Scopés à .categories-col pour ne PAS écraser le styling cartouche
-     des .subtabs/.subtab globaux utilisés par les practices au-dessus
-     (Tech, IA & Data / Product & Projects / Customer & Admin / +2000). */
-  .categories-col .subtabs {
+  /* Categories : retirées. Tous les témoignages s'affichent en mur
+     continu dans le panel blanc. */
+  .categories-col { display: none; }
+  .categories-bar {
     display: flex;
-    flex-direction: column;
-    gap: clamp(10px, 1vw, 14px);
+    align-items: flex-end;
+    gap: clamp(4px, 0.4vw, 8px);
+    padding: clamp(12px, 1.6vw, 18px) var(--pad-x) 0;
+    min-width: 0;
   }
-  .categories-col .subtab {
-    padding: 0;
-    font-size: clamp(18px, 2vw, 28px);
+  .categories-col #bucket-tabs {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    gap: clamp(20px, 2.5vw, 36px);
+    overflow: hidden;
+    min-width: 0;
+  }
+  /* Tabs en texte simple : actif souligné par une stroke épaisse juste
+     en dessous, inactifs en gris léger. Pas de bordure, pas de fond. */
+  .categories-col #bucket-tabs .subtab {
+    padding: clamp(8px, 0.8vw, 12px) 0;
+    font-size: clamp(15px, 1.5vw, 19px);
     line-height: 1.25;
     cursor: pointer;
-    background: none;
+    background: transparent;
     border: none;
+    border-bottom: 2px solid transparent;
     border-radius: 0;
     color: inherit;
+    opacity: 0.55;
     font-family: inherit;
-    text-align: left;
-    display: inline-block;
-    width: max-content;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-bottom: -1px;
+    transition: opacity 0.15s ease, border-color 0.15s ease;
   }
-  .categories-col .subtab[aria-current="true"] {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    background: none;
-    border-color: transparent;
+  .categories-col #bucket-tabs .subtab:hover {
+    opacity: 1;
   }
-  /* Désactive le pseudo-bar global (.subtab[aria-current]::after,
-     une bande 2px de var(--ink) sous le tab) sinon on a un double
-     soulignement gras avec le text-decoration ci-dessus. Ici on garde
-     uniquement l'underline texte, plus discret. */
+  .categories-col #bucket-tabs .subtab[aria-current="true"] {
+    opacity: 1;
+    border-bottom-color: var(--ink);
+  }
   #bucket-tabs .subtab[aria-current="true"]::after { display: none; }
+  /* White panel : contient les testimonials, posé sous les tabs. */
+  .content-col {
+    min-width: 0;
+    background: var(--white);
+    padding: clamp(28px, 3.5vw, 56px) clamp(24px, 3vw, 48px);
+    border-radius: clamp(8px, 1vw, 12px);
+  }
   /* Filtres de sous-catégorie texte plain en row, underline sur
      l'actif. Même langage typographique que le reste du site
      (.subtab, .foot-featured, etc) : pas de pill / pas de bg fill. */
@@ -161,7 +155,7 @@
      border ink. */
   .filter-chip {
     padding: clamp(10px, 1vw, 14px) clamp(16px, 1.6vw, 22px);
-    font-size: clamp(14px, 1.4vw, 18px);
+    font-size: clamp(16px, 1.5vw, 20px);
     line-height: 1.25;
     background: var(--bg);
     border: 1px solid transparent;
@@ -188,22 +182,22 @@
      en même temps les subtabs (col 1) et les chips (par section)
      servent uniquement à scroller jusqu'à la bonne ancre. */
   .profiles-area {
-    font-size: clamp(16px, 1.6vw, 22px);
+    font-size: clamp(17px, 1.7vw, 22px);
     line-height: 1.25;
     display: flex;
     flex-direction: column;
     gap: clamp(28px, 3vw, 44px);
   }
+  /* Mur de témoignages Swiss design : multi-colonnes via CSS columns,
+     les .company-block ne sont pas coupés entre colonnes (break-inside:
+     avoid). Les colonnes ont une largeur min, le nombre s'adapte
+     automatiquement à la largeur du panel. */
   .bucket-section {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(12px, 1.4vw, 18px);
-    /* scroll-margin-top : compense la nav sticky + les view-tabs (~110px)
-       quand on scrolle vers une ancre via subtab/chip click. */
-    scroll-margin-top: 110px;
+    column-width: clamp(240px, 22vw, 320px);
+    column-gap: clamp(28px, 3vw, 56px);
   }
   .bucket-section-title {
-    font-size: clamp(22px, 2.4vw, 32px);
+    font-size: clamp(22px, 2.6vw, 36px);
     line-height: 1.2;
     margin: 0;
   }
@@ -216,7 +210,7 @@
     scroll-margin-top: 110px;
   }
   .profiles-sub-title {
-    font-size: clamp(16px, 1.4vw, 18px);
+    font-size: clamp(16px, 1.5vw, 20px);
     line-height: 1.25;
     opacity: 0.6;
     margin: 0 0 clamp(8px, 1vw, 12px);
@@ -246,24 +240,27 @@
   .testimonials {
     display: flex;
     flex-direction: column;
-    gap: clamp(48px, 5vw, 80px);
+    gap: clamp(40px, 4vw, 64px);
   }
   .company-block {
-    display: grid;
-    grid-template-columns: minmax(0, clamp(80px, 9vw, 130px)) minmax(0, 1fr);
-    gap: clamp(20px, 3vw, 50px);
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 1.2vw, 18px);
+    /* Ne pas couper un company-block au milieu d'une colonne. */
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    /* Espacement vertical entre blocs (le gap des flex ne s'applique
+       pas dans un parent column-based). */
+    margin-bottom: clamp(40px, 4vw, 64px);
   }
   .company-logo-cell {
-    position: -webkit-sticky;
-    position: sticky;
-    top: clamp(44px, 6.7vw, 96px);
-    align-self: start;
+    align-self: flex-start;
   }
   .company-logo-cell img {
-    height: clamp(20px, 2vw, 28px);
-    width: auto;
-    max-width: 100%;
+    width: clamp(80px, 9vw, 130px);
+    height: auto;
+    max-height: clamp(28px, 2.8vw, 40px);
     object-fit: contain;
     object-position: left center;
     display: block;
@@ -276,23 +273,22 @@
   .company-testimonials {
     display: flex;
     flex-direction: column;
-    gap: clamp(36px, 4vw, 60px);
+    gap: clamp(28px, 3vw, 44px);
   }
   .testimonial-card {
     display: flex;
     flex-direction: column;
-    gap: clamp(12px, 1.4vw, 18px);
+    gap: clamp(10px, 1.2vw, 18px);
   }
   .testimonial-quote {
-    font-size: clamp(18px, 2vw, 28px);
-    line-height: 1.4;
-    max-width: var(--measure);
+    font-size: clamp(14px, 1.25vw, 17px);
+    line-height: 1.45;
     margin: 0;
   }
   .testimonial-author {
     display: flex;
     flex-direction: column;
-    font-size: clamp(15px, 1.4vw, 18px);
+    font-size: clamp(13px, 1.1vw, 15px);
     line-height: 1.3;
   }
 
@@ -304,89 +300,81 @@
     .company-logo-cell {
       position: static;
     }
+    /* En mobile, pas de décalage : tout s'aligne à gauche. */
+    .company-testimonials {
+      margin-left: 0;
+    }
   }
 
-  /* Trigger desktop : caché partout (le bucket-tabs s'affiche directement
-     comme sidebar sur desktop, et un filter button distinct apparaît dans
-     view-tabs sur mobile). */
+  /* Trigger desktop : caché (legacy, l'élément peut encore exister
+     dans le HTML). */
   .categories-trigger { display: none; }
-  .view-tabs-filter { display: none; }
 
-  @media (max-width: 800px) {
-    .panel-title { max-width: none; }
-    /* Mobile : view-tabs sticky en haut + filter icon à droite. Le
-       bucket-tabs (catégories) est déplacé DANS view-tabs via JS pour
-       qu'il fasse partie de la sticky bar. categories-col (sidebar
-       desktop) est cachée. */
-    .panel-body { grid-template-columns: 1fr; }
-    .categories-col { display: none; }
-
-    .view-tabs {
-      top: clamp(44px, 6.7vw, 96px);
-      z-index: 15;
-      /* Containing block pour le dropdown absolute en dessous. sticky
-         crée déjà ce contexte mais on le rend explicite. */
-      position: -webkit-sticky;
-      position: sticky;
-    }
-    /* Filter button : poussé à droite, baseline alignée sur view-tabs. */
-    .view-tabs-filter {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-left: auto;
-      padding: 0 8px clamp(10px, 1.2vw, 16px);
-      background: none;
-      border: none;
-      color: inherit;
-      font-family: inherit;
-      font-size: 16px;
-      line-height: 1.25;
-      cursor: pointer;
-    }
-    .view-tabs-filter-icon {
-      flex-shrink: 0;
-      opacity: 0.8;
-      pointer-events: none;
-    }
-
-    /* bucket-tabs DANS view-tabs (déplacé par JS) : dropdown absolute
-       sous view-tabs sticky. Aplat blanc simple, pas de bordure ni
-       de hairline, juste les options dedans. */
-    #bucket-tabs { display: none; }
-    #bucket-tabs.is-open {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: var(--white);
-      z-index: 1;
-    }
-    /* Override la règle desktop .categories-col .subtab. Active souligné
-       comme les liens / subtabs du site. */
-    #bucket-tabs .subtab {
-      display: block;
-      width: auto;
-      padding: clamp(12px, 1.4vw, 16px) clamp(16px, 1.6vw, 22px);
-      font-size: var(--fs-body);
-      line-height: var(--lh-body);
-      text-align: left;
-      border: none;
-      border-radius: 0;
-      background: none;
-    }
-    #bucket-tabs .subtab[aria-current="true"] {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-
-    /* scroll-margin-top mobile : SOUS la sticky bar (header + view-tabs). */
-    .bucket-section,
-    .profiles-block {
-      scroll-margin-top: clamp(130px, 18vw, 180px);
-    }
+  .content-col { padding-top: clamp(28px, 3.4vw, 48px); }
+  /* Chevron "plus" à droite : visible uniquement si JS a détecté
+     de l'overflow et a peuplé .categories-overflow. */
+  .categories-more {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+  }
+  .categories-more[hidden] { display: none; }
+  .categories-more .chevron { transition: transform 0.18s ease; }
+  .categories-more[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+  /* Dropdown des items overflow : positionné juste sous la barre
+     categories. Le contenu en dessous est blur via body.cats-open. */
+  .categories-overflow {
+    list-style: none;
+    margin: 0;
+    padding: clamp(16px, 2.4vw, 28px) var(--pad-x) clamp(28px, 3.4vw, 40px);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    z-index: 29;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(14px, 1.8vw, 22px);
+  }
+  .categories-overflow[hidden] { display: none; }
+  .categories-overflow .subtab {
+    font-size: clamp(17px, 1.7vw, 22px);
+    padding: 0;
+    text-align: left;
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .categories-overflow .subtab[aria-current="true"] {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  /* Rating Trustpilot caché : prend de la place pour rien dans la barre. */
+  .categories-col .rating { display: none; }
+  /* Blur du contenu derrière (testimonials) quand le dropdown est ouvert.
+     Hors @media pour pouvoir cibler aussi le scrim global. */
+  body.cats-open .content-col {
+    filter: blur(8px);
+    pointer-events: none;
+    user-select: none;
+  }
+  .content-col { transition: filter 0.2s ease; }
+  /* Scroll-margin pour que les sections atterrissent sous les bars sticky
+     (header + subtabs + categories) avec de la respiration en plus. */
+  .bucket-section {
+    scroll-margin-top: calc(var(--header-h, 60px) + var(--subtabs-h, 50px) + var(--cats-h, 56px) + clamp(48px, 5vw, 80px));
   }
 </style>
 </head>
@@ -395,45 +383,38 @@
 
     <header class="header section" data-nav></header>
 
-    <section class="solutions section">
-      <div class="solutions-head">
-        <h1 class="page-title">Services</h1>
-        <nav class="tabs" aria-label="Services">
-            <a class="tab" href="services-tech.html" aria-current="page">Recrutements ponctuels</a>
-            <a class="tab" href="services-renfort.html">Renfort en recrutement (RPO)</a>
-            <a class="tab" href="services-transition.html">Temps partagés &amp; Transition</a>
-        </nav>
-      </div>
-
-      <div class="panel">
+    <section class="solutions section"><h1 class="page-lede">Recrutements de dirigeants et de profils séniors en CDI et Freelance</h1>
+      <p class="page-sublede">À chaque fonction sa practice.</p>
+<div class="panel">
 
         <div class="subtabs-row">
           <nav class="subtabs" aria-label="Practices">
-            <a class="subtab" href="services-tech.html#solutions">Tech, IA &amp; Data</a>
-            <a class="subtab" href="services-produit.html#solutions">Product &amp; Projects</a>
-            <a class="subtab" href="services-sales.html#solutions">Customer &amp; Admin</a>
+            <a class="subtab" href="services-tech.html">Tech, IA &amp; Data</a>
+            <a class="subtab" href="services-produit.html">Product &amp; Projects</a>
+            <a class="subtab" href="services-sales.html">Customer &amp; Admin</a>
             <a class="subtab subtab--accent" href="services-profils.html" aria-current="page">+2000 recrutements</a>
           </nav>
         </div>
 
         <div class="panel-body">
           <div class="categories-col">
-            <button class="categories-trigger" type="button" aria-expanded="false" aria-controls="bucket-tabs">
-              <span class="categories-trigger-label">Tech</span>
-              <svg class="chevron" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                <path d="M3.5 5.75L8 10.25l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-            <div class="subtabs" role="tablist" id="bucket-tabs">
-              <button class="subtab" role="tab" data-bucket="tech" aria-current="true">Tech</button>
-              <button class="subtab" role="tab" data-bucket="product">Product</button>
-              <button class="subtab" role="tab" data-bucket="data">Data</button>
-              <button class="subtab" role="tab" data-bucket="sales">Sales &amp; Customer</button>
-              <button class="subtab" role="tab" data-bucket="marketing">Marketing</button>
-              <button class="subtab" role="tab" data-bucket="ops">Ops. &amp; Admin</button>
-              <button class="subtab" role="tab" data-bucket="hr">HR</button>
-              <button class="subtab" role="tab" data-bucket="c-level">C-level</button>
+            <div class="categories-bar">
+              <div class="subtabs" role="tablist" id="bucket-tabs">
+                <button class="subtab" role="tab" data-bucket="tech" aria-current="true">Tech</button>
+                <button class="subtab" role="tab" data-bucket="product">Product</button>
+                <button class="subtab" role="tab" data-bucket="data">Data</button>
+                <button class="subtab" role="tab" data-bucket="sales">Sales &amp; Customer</button>
+                <button class="subtab" role="tab" data-bucket="marketing">Marketing</button>
+                <button class="subtab" role="tab" data-bucket="ops">Ops. &amp; Admin</button>
+                <button class="subtab" role="tab" data-bucket="hr">HR</button>
+              </div>
+              <button class="categories-more" type="button" aria-expanded="false" aria-controls="categories-overflow" aria-label="Plus de catégories" hidden>
+                <svg class="chevron" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                  <path d="M3.5 5.75L8 10.25l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
             </div>
+            <ul class="categories-overflow" id="categories-overflow" hidden></ul>
             <div class="rating">
               <img src="assets/trustpilot.svg" alt="Trustpilot" class="rating-logo" />
               <span class="rating-stars">5 ★★★★★</span>
@@ -441,26 +422,10 @@
           </div>
 
           <div class="content-col">
-            <div class="view-tabs" role="tablist" aria-label="Vue Placements / Témoignages">
-              <button class="view-tab" role="tab" data-view="postes" aria-current="true">Placements</button>
-              <button class="view-tab" role="tab" data-view="rdx">Témoignages</button>
-              <button class="view-tabs-filter" type="button" aria-expanded="false" aria-controls="bucket-tabs" aria-label="Filtrer par catégorie">
-                <svg class="view-tabs-filter-icon" viewBox="0 0 16 16" width="18" height="18" aria-hidden="true">
-                  <path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-                </svg>
-              </button>
-            </div>
-
-            <div class="view-body" data-view="postes">
-              <div class="profiles-area" id="profiles-area"></div>
-            </div>
-
-            <div class="view-body view-rdx" data-view="rdx" hidden>
-              <div class="testimonials" id="candidate-testimonials"></div>
-            </div>
+            <div class="testimonials" id="candidate-testimonials"></div>
           </div>
         </div>
-        <a href="clients.html" class="panel-foot-link">Tous nos clients →</a>
+        <a href="clients.html" class="btn-outline">Tous nos clients →</a>
       </div>
 
     </section>
@@ -468,144 +433,26 @@
     <footer class="site-footer" data-footer></footer>
 
   </main>
-  <script src="partials.js" defer></script>
+  <script src="partials.js?v=1" defer></script>
   <script>
     (function() {
       const tabsHost = document.getElementById('bucket-tabs');
-      const profilesArea = document.getElementById('profiles-area');
       const container = document.getElementById('candidate-testimonials');
       const escape = (s) => (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-      // View tabs (Postes / Retour d'expérience) : swap des deux blocs
-      // .view-body[data-view="postes"] et [data-view="rdx"].
-      const viewTabsHost = document.querySelector('.view-tabs');
-
-      // Helper réutilisé par le click handler ET le deep-link au load.
-      function activateView(target) {
-        if (!viewTabsHost) return;
-        viewTabsHost.querySelectorAll('.view-tab').forEach(b => {
-          if (b.dataset.view === target) b.setAttribute('aria-current', 'true');
-          else b.removeAttribute('aria-current');
-        });
-        document.querySelectorAll('.view-body[data-view]').forEach(v => {
-          if (v.dataset.view === target) v.removeAttribute('hidden');
-          else v.setAttribute('hidden', '');
-        });
-      }
-
-      // Deep-link via hash : #temoignages | #rdx ouvrent l'onglet
-      // Témoignages directement (utilisé par le manifeste home).
-      const initHash = (location.hash || '').replace(/^#/, '');
-      if (/^(temoignages?|rdx)$/i.test(initHash)) {
-        activateView('rdx');
-      }
-
-      // Move bucket-tabs DANS view-tabs sur mobile (pour qu'il fasse partie
-      // de la sticky bar et s'ouvre toujours sous les tabs même scrollé)
-      // et le restore dans categories-col sur desktop (sidebar pattern).
-      const categoriesCol = document.querySelector('.categories-col');
-      const mql = window.matchMedia('(max-width: 800px)');
-      function placeBucketTabs() {
-        if (!tabsHost) return;
-        if (mql.matches) {
-          if (viewTabsHost && tabsHost.parentElement !== viewTabsHost) {
-            viewTabsHost.appendChild(tabsHost);
-          }
-        } else {
-          if (categoriesCol && tabsHost.parentElement !== categoriesCol) {
-            const rating = categoriesCol.querySelector('.rating');
-            categoriesCol.insertBefore(tabsHost, rating || null);
-          }
-        }
-      }
-      placeBucketTabs();
-      mql.addEventListener?.('change', placeBucketTabs);
-
-      if (viewTabsHost) {
-        viewTabsHost.addEventListener('click', (e) => {
-          const btn = e.target.closest('.view-tab[data-view]');
-          if (!btn) return;
-          const target = btn.dataset.view;
-          activateView(target);
-          // Scroll vers la bucket-section active dans la nouvelle vue.
-          requestAnimationFrame(scrollToActiveBucket);
-        });
-      }
-
-      let metiers = {};
       let candidates = [];
       let activeBucket = tabsHost.querySelector('.subtab[aria-current="true"]')?.dataset.bucket || 'tech';
-      let activeSub = null;
 
-      // Scroll vers le haut de la combinaison [vue active × bucket actif].
-      // Appelé après click view-tab ET click bucket-tab. Instant, pas
-      // d'animation. scroll-margin-top sur .bucket-section gère le décalage
-      // pour ne pas atterrir derrière les sticky bars.
       function scrollToActiveBucket() {
-        const activeView = document.querySelector('.view-body:not([hidden])');
-        if (!activeView) return;
-        const target = activeView.querySelector(`.bucket-section[data-bucket="${activeBucket}"]`);
+        const target = container.querySelector(`.bucket-section[data-bucket="${activeBucket}"]`);
         if (target) target.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
 
-      // Ordre des buckets + leur libellé : on les lit depuis les subtabs
-      // de la col 1 pour rester DRY (source unique de vérité côté DOM).
       function bucketOrder() {
         return Array.from(tabsHost.querySelectorAll('.subtab[data-bucket]'))
           .map(b => ({ key: b.dataset.bucket, label: b.textContent.trim() }));
       }
 
-      // Postes : on rend toutes les catégories d'un coup, chacune dans
-      // sa propre <section data-bucket="..."> (ancre pour le scroll-to
-      // depuis les subtabs). Les sous-catégories deviennent des chips
-      // au-dessus des sous-blocs labellisés cliquer un chip scrolle
-      // au sous-bloc correspondant (data-bucket + data-sub).
-      function renderProfiles() {
-        profilesArea.innerHTML = bucketOrder().map(({ key, label }) => {
-          const data = metiers[key];
-          if (!data) return '';
-          let inner = '';
-          if (data.sub) {
-            const subs = Object.entries(data.sub).filter(([, s]) => s.postes.length > 0);
-            const chipsHtml = subs.length ? `<div class="filter-chips">${
-              subs.map(([slug, s]) =>
-                `<button class="filter-chip" type="button" data-bucket="${escape(key)}" data-sub="${escape(slug)}">${escape(s.label)}</button>`
-              ).join('')
-            }</div>` : '';
-            const blocksHtml = subs.map(([slug, s]) => {
-              const list = s.postes.map(p => `<span class="profile">${escape(p.name)}</span>`).join('');
-              return `<div class="profiles-block" data-bucket="${escape(key)}" data-sub="${escape(slug)}">
-                <h4 class="profiles-sub-title">${escape(s.label)}</h4>
-                ${list}
-              </div>`;
-            }).join('');
-            inner = chipsHtml + blocksHtml;
-          } else {
-            const list = data.postes.map(p => `<span class="profile">${escape(p.name)}</span>`).join('');
-            inner = `<div class="profiles-block" data-bucket="${escape(key)}">${list}</div>`;
-          }
-          return `<section class="bucket-section" data-bucket="${escape(key)}">
-            <h3 class="bucket-section-title">${escape(label)}</h3>
-            ${inner}
-          </section>`;
-        }).join('');
-      }
-
-      // Délégation sur les chips rendus dans profilesArea :
-      // click → scroll au sous-bloc ciblé.
-      profilesArea.addEventListener('click', (e) => {
-        const chip = e.target.closest('.filter-chip[data-bucket][data-sub]');
-        if (!chip) return;
-        const target = profilesArea.querySelector(
-          `.profiles-block[data-bucket="${chip.dataset.bucket}"][data-sub="${chip.dataset.sub}"]`
-        );
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-
-      // Témoignages : même logique, on rend une section par bucket
-      // (avec son titre) regroupant tous les témoignages candidats du
-      // bucket, eux-mêmes groupés par boîte. Les buckets sans témoignage
-      // sont omis pour éviter les sections vides bruyantes.
       function renderTestimonials() {
         const html = bucketOrder().map(({ key, label }) => {
           const list = candidates.filter(c => c.bucket === key);
@@ -623,7 +470,7 @@
             const cards = items.map(c => {
               const role = c.poste_canonique || c.intitule_original || 'Recruté';
               return `<article class="testimonial-card">
-                <p class="testimonial-quote">“${escape(c.text)}”</p>
+                <p class="testimonial-quote">"${escape(c.text)}"</p>
                 <div class="testimonial-author">
                   <div class="name">${escape(c.consumer_name)}</div>
                   <div class="role">${escape(role)}</div>
@@ -636,69 +483,182 @@
             </div>`;
           }).join('');
           return `<section class="bucket-section" data-bucket="${escape(key)}">
-            <h3 class="bucket-section-title">${escape(label)}</h3>
             ${blocks}
           </section>`;
         }).join('');
         container.innerHTML = html || `<div class="empty-state">Aucun témoignage candidat pour le moment.</div>`;
       }
 
-      // Filter button dans view-tabs (mobile) : ouvre/ferme le dropdown
-      // bucket-tabs. Icône seule, pas de label.
-      const filterBtn = document.querySelector('.view-tabs-filter');
-      function closeTrigger() {
-        if (filterBtn) filterBtn.setAttribute('aria-expanded', 'false');
-        tabsHost.classList.remove('is-open');
-      }
-      // syncTriggerLabel : kept as a no-op pour ne pas casser les appels
-      // existants en aval (renderProfiles click handler).
-      function syncTriggerLabel() {}
-      if (filterBtn) {
-        filterBtn.addEventListener('click', (e) => {
+      // Pattern priority+ : sur mobile (<=800px), les items qui ne tiennent
+      // pas dans la .categories-bar sont déplacés dans .categories-overflow,
+      // accessible via le bouton chevron .categories-more.
+      const bar = document.querySelector('.categories-bar');
+      const moreBtn = document.querySelector('.categories-more');
+      const overflowList = document.getElementById('categories-overflow');
+      const isMobile = () => window.matchMedia('(max-width: 800px)').matches;
+
+      const restoreAll = () => {
+        // Remet tous les items dans tabsHost dans leur ordre data-order.
+        if (!overflowList) return;
+        Array.from(overflowList.children).forEach((li) => {
+          const btn = li.firstElementChild;
+          if (btn) tabsHost.appendChild(btn);
+        });
+        overflowList.innerHTML = '';
+      };
+
+      const sortByOriginalOrder = () => {
+        const items = Array.from(tabsHost.querySelectorAll('.subtab'));
+        items.sort((a, b) => Number(a.dataset.order) - Number(b.dataset.order))
+             .forEach((el) => tabsHost.appendChild(el));
+      };
+
+      // Marque l'ordre original une fois pour pouvoir restaurer.
+      Array.from(tabsHost.querySelectorAll('.subtab')).forEach((el, i) => {
+        el.dataset.order = i;
+      });
+
+      const syncOverflow = () => {
+        if (!bar || !moreBtn || !overflowList) return;
+        restoreAll();
+        sortByOriginalOrder();
+
+        if (!isMobile()) {
+          moreBtn.hidden = true;
+          moreBtn.setAttribute('aria-expanded', 'false');
+          overflowList.hidden = true;
+          return;
+        }
+
+        const barWidth = bar.clientWidth;
+        const moreWidth = 36; // largeur du bouton + petit padding
+        const gap = parseFloat(getComputedStyle(tabsHost).columnGap) || 0;
+        const items = Array.from(tabsHost.querySelectorAll('.subtab'));
+
+        let total = 0;
+        let overflowStart = -1;
+        for (let i = 0; i < items.length; i++) {
+          total += items[i].offsetWidth + (i > 0 ? gap : 0);
+          if (total > barWidth - moreWidth) {
+            overflowStart = i;
+            break;
+          }
+        }
+
+        if (overflowStart >= 0) {
+          for (let i = overflowStart; i < items.length; i++) {
+            const li = document.createElement('li');
+            li.appendChild(items[i]);
+            overflowList.appendChild(li);
+          }
+          moreBtn.hidden = false;
+        } else {
+          moreBtn.hidden = true;
+        }
+        // Toujours fermé après resync.
+        moreBtn.setAttribute('aria-expanded', 'false');
+        overflowList.hidden = true;
+      };
+
+      const closeOverflow = () => {
+        if (!moreBtn) return;
+        moreBtn.setAttribute('aria-expanded', 'false');
+        if (overflowList) overflowList.hidden = true;
+      };
+
+      const openOverflow = () => {
+        if (!moreBtn) return;
+        moreBtn.setAttribute('aria-expanded', 'true');
+        if (overflowList) overflowList.hidden = false;
+        document.body.classList.add('cats-open');
+      };
+      const closeOverflowAndBlur = () => {
+        if (!moreBtn) return;
+        moreBtn.setAttribute('aria-expanded', 'false');
+        if (overflowList) overflowList.hidden = true;
+        document.body.classList.remove('cats-open');
+      };
+      if (moreBtn && overflowList) {
+        moreBtn.addEventListener('click', (e) => {
           e.stopPropagation();
-          const open = filterBtn.getAttribute('aria-expanded') === 'true';
-          filterBtn.setAttribute('aria-expanded', String(!open));
-          tabsHost.classList.toggle('is-open', !open);
+          const open = moreBtn.getAttribute('aria-expanded') === 'true';
+          if (open) closeOverflowAndBlur();
+          else openOverflow();
         });
         document.addEventListener('click', (e) => {
-          if (!filterBtn.contains(e.target) && !tabsHost.contains(e.target)) closeTrigger();
+          if (!moreBtn.contains(e.target) && !overflowList.contains(e.target)) {
+            closeOverflowAndBlur();
+          }
         });
       }
 
-      tabsHost.addEventListener('click', (e) => {
+      syncOverflow();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncOverflow);
+      window.addEventListener('load', syncOverflow);
+      window.addEventListener('resize', syncOverflow);
+
+      // Click handler delegated au niveau .categories-col pour attraper
+      // les clics dans tabsHost ET dans overflow (mêmes .subtab buttons).
+      const categoriesCol = document.querySelector('.categories-col');
+      categoriesCol.addEventListener('click', (e) => {
         const btn = e.target.closest('.subtab[data-bucket]');
         if (!btn) return;
         e.preventDefault();
-        // Click sur la cat déjà active : on ferme juste le dropdown.
-        if (btn.dataset.bucket === activeBucket) {
-          closeTrigger();
-          return;
-        }
         activeBucket = btn.dataset.bucket;
-        activeSub = null;
-        tabsHost.querySelectorAll('.subtab').forEach(b => {
-          if (b === btn) b.setAttribute('aria-current', 'true');
+        document.querySelectorAll('.categories-col .subtab').forEach(b => {
+          if (b.dataset.bucket === activeBucket) b.setAttribute('aria-current', 'true');
           else b.removeAttribute('aria-current');
         });
-        renderProfiles();
-        renderTestimonials();
-        syncTriggerLabel();
-        closeTrigger();
+        closeOverflowAndBlur();
         requestAnimationFrame(scrollToActiveBucket);
       });
 
-      Promise.all([
-        fetch('metiers.json').then(r => r.json()),
-        fetch('candidates.json').then(r => r.json())
-      ]).then(([m, c]) => {
-        metiers = m;
+      // Suit la position du scroll : marque comme active la bucket-section
+      // dont la majorité est visible. Met à jour aria-current sur les
+      // tabs en conséquence.
+      let scrollObserver = null;
+      const setActiveFromScroll = (key) => {
+        if (key === activeBucket) return;
+        activeBucket = key;
+        document.querySelectorAll('.categories-col .subtab').forEach(b => {
+          if (b.dataset.bucket === key) b.setAttribute('aria-current', 'true');
+          else b.removeAttribute('aria-current');
+        });
+      };
+      const observeBucketSections = () => {
+        if (scrollObserver) scrollObserver.disconnect();
+        const sections = container.querySelectorAll('.bucket-section');
+        if (!sections.length) return;
+        // rootMargin top négatif = la "ligne d'activation" est sous les
+        // bars sticky (header + subtabs + tabs categories). Bottom négatif
+        // pour ne déclencher qu'à partir du moment où la section occupe
+        // la moitié haute du viewport.
+        const stickyOffset = (document.querySelector('.header')?.offsetHeight || 60)
+                           + (document.querySelector('.subtabs-row')?.offsetHeight || 50)
+                           + (document.querySelector('.categories-col')?.offsetHeight || 56);
+        scrollObserver = new IntersectionObserver((entries) => {
+          // Choisit la section la plus haute parmi celles qui sont visibles.
+          const visible = entries
+            .filter(e => e.isIntersecting)
+            .map(e => ({ el: e.target, top: e.boundingClientRect.top }))
+            .sort((a, b) => a.top - b.top);
+          if (visible.length) {
+            setActiveFromScroll(visible[0].el.dataset.bucket);
+          }
+        }, {
+          rootMargin: `-${stickyOffset + 4}px 0px -50% 0px`,
+          threshold: 0,
+        });
+        sections.forEach(s => scrollObserver.observe(s));
+      };
+
+      fetch('candidates.json').then(r => r.json()).then(c => {
         candidates = c;
-        renderProfiles();
         renderTestimonials();
+        requestAnimationFrame(observeBucketSections);
       }).catch(err => {
         console.error('Failed to load data:', err);
-        profilesArea.innerHTML = '<div class="empty-state">Impossible de charger les profils pour le moment. Réessayez plus tard.</div>';
-        container.innerHTML = '';
+        container.innerHTML = '<div class="empty-state">Impossible de charger les témoignages.</div>';
       });
     })();
   </script>

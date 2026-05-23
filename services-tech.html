@@ -11,7 +11,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=1" />
 <style>
   .photo-tony     { background-image: url('assets/team/tony-beaugez.png'); }
   .photo-nicolas  { background-image: url('assets/team/nicolas-magne.jpg'); }
@@ -24,28 +24,20 @@
 
     <header class="header section" data-nav></header>
 
-    <section class="solutions section" id="solutions" style="scroll-margin-top: clamp(60px, 6vw, 80px);">
-      <div class="solutions-head">
-        <h1 class="page-title">Services</h1>
-        <nav class="tabs" aria-label="Services">
-            <a class="tab" href="services-tech.html#solutions" aria-current="page">Recrutements ponctuels</a>
-            <a class="tab" href="services-renfort.html#solutions">Renfort en recrutement (RPO)</a>
-            <a class="tab" href="services-transition.html#solutions">Temps partagés &amp; Transition</a>
-        </nav>
-      </div>
-
-      <div class="panel" data-solution="chasse">
+    <section class="solutions section" id="solutions" style="scroll-margin-top: clamp(60px, 6vw, 80px);"><h1 class="page-lede">Recrutements de dirigeants et de profils séniors en CDI et Freelance</h1>
+      <p class="page-sublede">À chaque fonction sa practice.</p>
+      <div class="panel">
 
         <div class="subtabs-row">
           <nav class="subtabs" aria-label="Practices">
-            <a class="subtab" href="services-tech.html#solutions" aria-current="page">Tech, IA &amp; Data</a>
-            <a class="subtab" href="services-produit.html#solutions">Product &amp; Projects</a>
-            <a class="subtab" href="services-sales.html#solutions">Customer &amp; Admin</a>
+            <a class="subtab" href="services-tech.html" aria-current="page">Tech, IA &amp; Data</a>
+            <a class="subtab" href="services-produit.html">Product &amp; Projects</a>
+            <a class="subtab" href="services-sales.html">Customer &amp; Admin</a>
             <a class="subtab subtab--accent" href="services-profils.html">+2000 recrutements</a>
           </nav>
         </div>
 
-        <div class="subtab-body" data-subtab="tech">
+        <div class="subtab-body">
           <section class="panel-section panel-section--with-team">
             <div class="team-side">
               <div class="consultants-stack">
@@ -95,7 +87,6 @@
 
               <p>Chaque mission commence par des conversations posées, une par une, avec les profils que nous suivons depuis plusieurs années ou que nous identifions nommément sur le marché. Pas de sourcing de masse. Vous recevez trois ou quatre candidats qualifiés, pas cinquante. La mission est lancée dans les quarante-huit heures qui suivent la signature, et nous restons en première ligne jusqu'à la prise de poste.</p>
 
-              <h3 class="content-side-h3">Cas clients</h3>
               <div class="cases-rows cases-rows--inline">
               <div class="case-row">
                 <div>
@@ -175,6 +166,7 @@
                 <span class="case-logo-mark bdl-capital-management" aria-label="BDL Capital Management"></span>
               </div>
                           </div>
+              <a href="clients.html" class="btn-outline">Tous nos clients →</a>
             </div>
           </section>
 
@@ -203,10 +195,9 @@
                   <div class="profils-postes"><span class="profils-poste">Ingénieur (généraliste)</span> <span class="profils-poste">Technicien de maintenance / méthodes</span> <span class="profils-poste">Ingénieur qualité</span> <span class="profils-poste">Ingénieur géophysique</span> <span class="profils-poste">Ingénieur procédés</span> <span class="profils-poste">Ingénieur électronique de puissance</span> <span class="profils-poste">Conducteur de travaux</span> <span class="profils-poste">Ingénieur hardware</span> <span class="profils-poste">Ingénieur structures / génie civil</span> <span class="profils-poste">Développeur embarqué</span> <span class="profils-poste">Chargé d'études exécution</span> <span class="profils-poste">Ingénieur automatisme</span></div>
                 </div>
             </div>
-            <a href="services-profils.html" class="text-arrow-link">Voir tous les métiers recrutés →</a>
+            <a href="services-profils.html" class="btn-outline">Témoignages →</a>
           </section>
         </div>
-        <a href="clients.html" class="panel-foot-link">Tous nos clients →</a>
       </div>
 
     </section>
@@ -214,6 +205,6 @@
     <footer class="site-footer" data-footer></footer>
 
   </main>
-  <script src="partials.js" defer></script>
+  <script src="partials.js?v=1" defer></script>
 </body>
 </html>

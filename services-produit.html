@@ -11,7 +11,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=1" />
 <style>
   .photo-guillaume { background-image: url('assets/team/guillaume-renard.png'); }
 </style>
@@ -21,28 +21,20 @@
 
     <header class="header section" data-nav></header>
 
-    <section class="solutions section" id="solutions" style="scroll-margin-top: clamp(60px, 6vw, 80px);">
-      <div class="solutions-head">
-        <h1 class="page-title">Services</h1>
-        <nav class="tabs" aria-label="Services">
-            <a class="tab" href="services-tech.html#solutions" aria-current="page">Recrutements ponctuels</a>
-            <a class="tab" href="services-renfort.html#solutions">Renfort en recrutement (RPO)</a>
-            <a class="tab" href="services-transition.html#solutions">Temps partagés &amp; Transition</a>
-        </nav>
-      </div>
-
-      <div class="panel" data-solution="chasse">
+    <section class="solutions section" id="solutions" style="scroll-margin-top: clamp(60px, 6vw, 80px);"><h1 class="page-lede">Recrutements de dirigeants et de profils séniors en CDI et Freelance</h1>
+      <p class="page-sublede">À chaque fonction sa practice.</p>
+      <div class="panel">
 
         <div class="subtabs-row">
           <nav class="subtabs" aria-label="Practices">
-            <a class="subtab" href="services-tech.html#solutions">Tech, IA &amp; Data</a>
-            <a class="subtab" href="services-produit.html#solutions" aria-current="page">Product &amp; Projects</a>
-            <a class="subtab" href="services-sales.html#solutions">Customer &amp; Admin</a>
+            <a class="subtab" href="services-tech.html">Tech, IA &amp; Data</a>
+            <a class="subtab" href="services-produit.html" aria-current="page">Product &amp; Projects</a>
+            <a class="subtab" href="services-sales.html">Customer &amp; Admin</a>
             <a class="subtab subtab--accent" href="services-profils.html">+2000 recrutements</a>
           </nav>
         </div>
 
-        <div class="subtab-body" data-subtab="produit">
+        <div class="subtab-body">
           <section class="panel-section panel-section--with-team">
             <div class="team-side">
               <div class="consultants-stack">
@@ -64,7 +56,6 @@
               <p>Guillaume Renard pilote la practice depuis Bordeaux. Sur les ponts CPTO, il travaille en binôme avec l'équipe Tech pour partager la lecture des enjeux techniques et produit. CDI, freelance, advisor : la modalité s'adapte au timing du board, pas au profil.</p>
               <a href="tel:+33939289329" class="btn-outline">Échanger avec Guillaume</a>
 
-              <h3 class="content-side-h3">Cas clients</h3>
               <div class="cases-rows cases-rows--inline">
               <div class="case-row">
                 <div>
@@ -95,6 +86,7 @@
                 <span class="case-logo-mark mojix" aria-label="Mojix"></span>
               </div>
                           </div>
+              <a href="clients.html" class="btn-outline">Tous nos clients →</a>
             </div>
           </section>
 
@@ -119,10 +111,9 @@
                   <div class="profils-postes"><span class="profils-poste">Chef de projet</span> <span class="profils-poste">Chef de projet digital</span> <span class="profils-poste">Consultant logiciels métiers / ERP</span> <span class="profils-poste">Consultant (généraliste)</span> <span class="profils-poste">Chef de projet énergie</span> <span class="profils-poste">Business Analyst</span> <span class="profils-poste">Consultant AMOA</span> <span class="profils-poste">Consultant transformation digitale</span> <span class="profils-poste">Chef de projet ERP / SI</span> <span class="profils-poste">Chef de projet technique</span> <span class="profils-poste">Agile Delivery Manager</span> <span class="profils-poste">Coach Agile</span></div>
                 </div>
             </div>
-            <a href="services-profils.html" class="text-arrow-link">Voir tous les métiers recrutés →</a>
+            <a href="services-profils.html" class="btn-outline">Témoignages →</a>
           </section>
         </div>
-        <a href="clients.html" class="panel-foot-link">Tous nos clients →</a>
       </div>
 
     </section>
@@ -130,6 +121,6 @@
     <footer class="site-footer" data-footer></footer>
 
   </main>
-  <script src="partials.js" defer></script>
+  <script src="partials.js?v=1" defer></script>
 </body>
 </html>

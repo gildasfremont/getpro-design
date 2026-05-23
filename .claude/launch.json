@@ -4,7 +4,7 @@
     {
       "name": "getpro-static",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "4321"],
+      "runtimeArgs": ["dev_server.py", "4321"],
       "port": 4321
     }
   ]

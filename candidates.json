@@ -764,7 +764,7 @@
     "sous_famille": "Direction Tech/Produit",
     "poste_canonique": "VP / Head of Tech-Produit",
     "intitule_original": "Directeur Technique",
-    "bucket": "c-level",
+    "bucket": "tech",
     "bucket_sub": null
   },
   {
@@ -908,7 +908,7 @@
     "sous_famille": "Direction Ops/Fonctionnelle",
     "poste_canonique": "Direction fonctionnelle (Ops, Finance, Supply, Conformité)",
     "intitule_original": "Manager Opérations",
-    "bucket": "c-level",
+    "bucket": "ops",
     "bucket_sub": null
   },
   {
@@ -1036,7 +1036,7 @@
     "sous_famille": "Direction commerciale & marketing",
     "poste_canonique": "VP / Head of Sales-Marketing",
     "intitule_original": "Directeur(trice) Business Development",
-    "bucket": "c-level",
+    "bucket": "sales",
     "bucket_sub": null
   },
   {
@@ -1180,7 +1180,7 @@
     "sous_famille": "Direction commerciale & marketing",
     "poste_canonique": "VP / Head of Sales-Marketing",
     "intitule_original": "Head of Marketing & Communication",
-    "bucket": "c-level",
+    "bucket": "sales",
     "bucket_sub": null
   },
   {
@@ -1388,7 +1388,7 @@
     "sous_famille": "Direction Tech/Produit",
     "poste_canonique": "VP / Head of Tech-Produit",
     "intitule_original": "Directeur(trice) de Projet",
-    "bucket": "c-level",
+    "bucket": "tech",
     "bucket_sub": null
   },
   {
@@ -1436,7 +1436,7 @@
     "sous_famille": "Direction Ops/Fonctionnelle",
     "poste_canonique": "Direction fonctionnelle (Ops, Finance, Supply, Conformité)",
     "intitule_original": "Head of Operations",
-    "bucket": "c-level",
+    "bucket": "ops",
     "bucket_sub": null
   },
   {
@@ -1628,7 +1628,7 @@
     "sous_famille": "Direction commerciale & marketing",
     "poste_canonique": "VP / Head of Sales-Marketing",
     "intitule_original": "Directeur(trice) de Clientèle",
-    "bucket": "c-level",
+    "bucket": "sales",
     "bucket_sub": null
   },
   {
@@ -2044,7 +2044,7 @@
     "sous_famille": "Direction Tech/Produit",
     "poste_canonique": "CTO",
     "intitule_original": "CTO",
-    "bucket": "c-level",
+    "bucket": "tech",
     "bucket_sub": null
   },
   {

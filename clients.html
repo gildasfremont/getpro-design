@@ -11,7 +11,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=1" />
 <style>
   .clients {
     display: flex;
@@ -118,7 +118,7 @@
   .clients-rest-title {
     margin-top: clamp(40px, 5vw, 70px);
     margin-bottom: clamp(20px, 2vw, 32px);
-    font-size: clamp(20px, 2vw, 28px);
+    font-size: clamp(20px, 2.2vw, 32px);
     line-height: 1.25;
     font-weight: 400;
     opacity: 0.6;
@@ -135,7 +135,7 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
     column-gap: clamp(20px, 3vw, 50px);
     row-gap: clamp(16px, 2vw, 28px);
-    font-size: clamp(14px, 1.2vw, 18px);
+    font-size: clamp(16px, 1.5vw, 20px);
     line-height: 1.25;
     align-items: center;
   }
@@ -217,7 +217,7 @@
     text-overflow: ellipsis;
     /* Plus petit que le témoignage à droite : il sert de légende sous
        le logo, le logo est l'identifiant principal de la marque. */
-    font-size: clamp(15px, 1.4vw, 20px);
+    font-size: clamp(16px, 1.5vw, 20px);
     line-height: 1.3;
   }
   /* Plus de soulignement sur les noms cliquables. Le ton sobre suffit,
@@ -418,7 +418,7 @@
     <footer class="site-footer" data-footer></footer>
 
   </main>
-  <script src="partials.js" defer></script>
+  <script src="partials.js?v=1" defer></script>
   <script>
     (function() {
       const searchInput = document.getElementById('clients-search');
