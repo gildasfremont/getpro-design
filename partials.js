@@ -98,10 +98,10 @@
       </div>
       <div class="foot-coords">
         <p class="foot-address">41 rue Faidherbe<br>75011 Paris</p>
-        <div class="foot-contact">
-          <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>
-          <a href="tel:+33939289329">09 39 28 93 29</a>
-        </div>
+        <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>
+      </div>
+      <div class="foot-phone">
+        <a href="tel:+33939289329">09 39 28 93 29</a>
       </div>
       <div class="ratings-stack">
         <div class="rating">
