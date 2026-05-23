@@ -127,8 +127,11 @@ button { font-family: inherit; cursor: pointer; }
    nav équilibrée sur toute la largeur. */
 .menu-right { margin-left: auto; }
 /* Sur la home : aligne le menu-right sur la 2e colonne du hero-lede
-   (2fr 3fr) pour que "CDI & Freelance" colle au sous-titre. */
-@media (min-width: 701px) {
+   (2fr 3fr) pour que "CDI & Freelance" colle au sous-titre. Active
+   uniquement au-dessus de 1066px : sous ce seuil, le menu-right n'a
+   plus la place pour les 4 items inline + Contact dans 60% de la
+   largeur, donc on repasse au layout flex par défaut. */
+@media (min-width: 1066px) {
   .home .menu {
     display: grid;
     grid-template-columns: 2fr 3fr;
