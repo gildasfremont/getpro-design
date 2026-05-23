@@ -527,12 +527,13 @@ body.menu-open main > *:not(.header) {
   align-items: flex-start;
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
-/* Les 3 avis (Google, Trustpilot, Trustfolio) empilés dans la zone droite
-   du footer. Repassent en ligne sur très petit écran (cf. media query). */
+/* Les 3 ratings (Google, Trustpilot, Trustfolio) en ligne sous l'adresse
+   dans le footer. */
 .ratings-stack {
   display: flex;
-  flex-direction: column;
-  gap: clamp(16px, 1.8vw, 26px);
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: clamp(16px, 2vw, 28px);
 }
 
 /* Variante "deux boîtes" pour le rating en face du h1 Clients : les
@@ -654,19 +655,20 @@ body.menu-open main > *:not(.header) {
   text-decoration-thickness: 2px;
 }
 
-/* Grille du footer (sous le featured nav) : 3 zones qui occupent toute la
-   largeur — marque (logo + tagline), coordonnées (adresse + contact), avis
-   (les 3 notes empilées). Évite le grand vide à droite quand tout était
-   tassé dans une seule colonne. */
+/* Grille standard du footer (sous le featured nav).
+   1 col : brand (qui contient logo, tagline, adresse+contact, ratings). */
 .foot-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
-  column-gap: clamp(28px, 3.5vw, 72px);
-  row-gap: clamp(36px, 4vw, 56px);
+  grid-template-columns: 1fr;
+  column-gap: 0;
+  row-gap: clamp(40px, 5vw, 70px);
   align-items: start;
 }
+.foot-grid > * {
+  padding-right: clamp(40px, 8vw, 120px);
+}
 
-/* Bloc brand : logo, tagline */
+/* Bloc brand : logo, tagline, adresse */
 .foot-brand {
   display: flex;
   flex-direction: column;
@@ -692,23 +694,50 @@ body.menu-open main > *:not(.header) {
   line-height: 1.5;
   margin: 0;
 }
-/* Zones coordonnées (adresse + email) et téléphone : colonnes texte
-   distinctes, même rythme typographique. */
-.foot-coords,
-.foot-phone {
+/* Adresse postale + contact côte à côte sous la tagline. */
+.foot-address-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: flex-start;
+}
+.foot-address-row .foot-contact {
   display: flex;
   flex-direction: column;
-  gap: clamp(14px, 1.6vw, 22px);
+  gap: clamp(4px, 0.4vw, 6px);
   font-size: clamp(13px, 1.1vw, 16px);
   line-height: 1.5;
 }
-.foot-coords a,
-.foot-phone a {
+.foot-address-row .foot-contact a {
   color: var(--ink);
   text-decoration: none;
 }
-.foot-coords a:hover,
-.foot-phone a:hover { text-decoration: underline; }
+.foot-address-row .foot-contact a:hover { text-decoration: underline; }
+
+/* Colonnes de liens petites, alignées start. */
+.foot-col {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 0.8vw, 14px);
+  font-size: var(--fs-menu);
+  line-height: 1.35;
+}
+.foot-col a {
+  color: var(--ink);
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+.foot-col a:hover { text-decoration: underline; }
+.foot-col a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Bloc contact : mêmes liens, plus le rating Google sous une petite
+   séparation visuelle (margin-top accentué). */
+.foot-contact .rating {
+  margin-top: clamp(12px, 1.5vw, 22px);
+}
 
 /* Ligne légale tout en bas à gauche du footer (sous la grille). */
 .foot-legal {
@@ -722,29 +751,50 @@ body.menu-open main > *:not(.header) {
 .foot-legal a:hover { text-decoration: underline; }
 
 /* Responsive du footer.
-   .foot-featured est en flex-wrap, donc s'adapte tout seul.
-   ≤900 : la marque passe pleine largeur, coordonnées + avis en 2 cols.
-   ≤560 : tout en 1 col, avis repassent en ligne. */
-@media (max-width: 900px) {
+   .foot-featured est en flex-wrap, donc s'adapte tout seul (les
+   items wrappent quand il n'y a plus la place).
+   ≤1000 : brand reste large, on resserre les colonnes.
+   ≤700  : tout en 1 col. */
+@media (max-width: 1000px) {
   .foot-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
   }
-  .foot-brand {
+  .foot-contact {
+    grid-column: 1;
+    grid-row: 2;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: clamp(20px, 3vw, 36px);
+    margin-top: clamp(16px, 2vw, 28px);
+    padding-right: 0;
+  }
+  .foot-contact .rating { margin-top: 0; }
+}
+@media (max-width: 700px) {
+  .foot-grid {
+    grid-template-columns: 1fr 1fr;
+    row-gap: clamp(28px, 4vw, 40px);
+  }
+  .foot-brand,
+  .foot-contact {
     grid-column: 1 / -1;
+    grid-row: auto;
+    padding-right: 0;
   }
 }
-@media (max-width: 560px) {
+@media (max-width: 460px) {
   .site-footer {
     padding-top: clamp(40px, 8vw, 60px);
   }
   .foot-grid {
     grid-template-columns: 1fr;
-    row-gap: clamp(28px, 4vw, 40px);
   }
-  .ratings-stack {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: clamp(16px, 2vw, 28px);
+  .foot-grid > * { padding-right: 0; }
+  .foot-contact {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
   }
 }
 

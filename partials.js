@@ -95,26 +95,26 @@
       <div class="foot-brand">
         <a href="index.html" class="foot-logo" aria-label="GetPro"></a>
         <p class="foot-tagline">Cabinet de chasse spécialisé tech, product, data, sales et dirigeants. Depuis 2015.</p>
-      </div>
-      <div class="foot-coords">
-        <p class="foot-address">41 rue Faidherbe<br>75011 Paris</p>
-        <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>
-      </div>
-      <div class="foot-phone">
-        <a href="tel:+33939289329">09 39 28 93 29</a>
-      </div>
-      <div class="ratings-stack">
-        <div class="rating">
-          <img src="assets/google.svg" alt="Google" class="rating-logo" />
-          <span class="rating-stars">4,3 ★★★★★</span>
+        <div class="foot-address-row">
+          <p class="foot-address">41 rue Faidherbe<br>75011 Paris</p>
+          <div class="foot-contact">
+            <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>
+            <a href="tel:+33939289329">09 39 28 93 29</a>
+          </div>
         </div>
-        <div class="rating">
-          <img src="assets/trustpilot.svg" alt="Trustpilot" class="rating-logo" />
-          <span class="rating-stars">5 ★★★★★</span>
-        </div>
-        <div class="rating">
-          <img src="assets/trustfolio.svg" alt="Trustfolio" class="rating-logo" />
-          <span class="rating-stars">4,9 ★★★★★</span>
+        <div class="ratings-stack">
+          <div class="rating">
+            <img src="assets/google.svg" alt="Google" class="rating-logo" />
+            <span class="rating-stars">4,3 ★★★★★</span>
+          </div>
+          <div class="rating">
+            <img src="assets/trustpilot.svg" alt="Trustpilot" class="rating-logo" />
+            <span class="rating-stars">5 ★★★★★</span>
+          </div>
+          <div class="rating">
+            <img src="assets/trustfolio.svg" alt="Trustfolio" class="rating-logo" />
+            <span class="rating-stars">4,9 ★★★★★</span>
+          </div>
         </div>
       </div>
     </div>
