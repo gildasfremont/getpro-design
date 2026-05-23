@@ -49,8 +49,11 @@
   }
 
   .hero-title {
-    font-size: var(--fs-section-title);
-    line-height: 1.1;
+    font-size: clamp(28px, 3.5vw, 50px);
+    line-height: 1.05;
+    /* Tracking serré sur le display bold : signature typo éditoriale /
+       fondation (Prada, MoMA). */
+    letter-spacing: -0.03em;
     text-wrap: balance;
   }
   .hero-title strong {
@@ -58,8 +61,11 @@
   }
   .hero-subtitle {
     font-size: clamp(18px, 2vw, 26px);
-    line-height: 1.25;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
     margin: 0;
+    /* Légèrement en retrait du titre : hiérarchie douce, pas un noir plein. */
+    opacity: 0.78;
   }
   .hero-subtitle-cta {
     color: inherit;
@@ -95,10 +101,12 @@
      des case-cards en dessous (Mistral AI, etc.). */
   .hero-lede {
     display: grid;
-    grid-template-columns: 2fr 3fr;
+    /* Titre (col 1) plus large que le sous-titre : le display porte la
+       hiérarchie, le sous-titre l'accompagne. */
+    grid-template-columns: 3fr 2fr;
     column-gap: clamp(24px, 4vw, 80px);
     row-gap: clamp(10px, 1.2vw, 18px);
-    padding-left: var(--pad-card-x);
+    padding-inline: var(--pad-card-x);
     /* last baseline : aligne la dernière ligne du titre et du sous-titre
        sur la même baseline typographique (pas juste leurs bottom boxes,
        qui diffèrent à cause des line-height différentes). */
@@ -126,14 +134,14 @@
     .hero-lede {
       grid-template-columns: 1fr;
       align-items: start;
-      padding-left: 0;
+      padding-inline: 0;
     }
     .hero-subtitle {
       grid-column: 1;
     }
     .hero-team {
       grid-template-columns: 1fr;
-      padding-left: 0;
+      padding-inline: 0;
     }
     .hero-team-cta { justify-self: start; }
   }
@@ -214,6 +222,8 @@
     background: var(--white);
     color: inherit;
     text-decoration: none;
+    /* Cadre fixe : l'image zoome légèrement au survol sans déborder. */
+    overflow: hidden;
   }
   a.case-card { cursor: pointer; }
 
@@ -227,6 +237,10 @@
   .case-logo .name {
     font-size: var(--fs-card-name);
     line-height: var(--lh-card-name);
+    letter-spacing: -0.025em;
+    /* Medium : le nom de la boîte = label de marque, un cran plus affirmé
+       que le descriptif (regular) en dessous. */
+    font-weight: 500;
   }
 
   .case-logo .symbol {
@@ -275,7 +289,7 @@
     flex-direction: column;
     gap: var(--gap-text);
   }
-  .case-text h2  { font-size: var(--fs-card-title); line-height: var(--lh-card-title); }
+  .case-text h2  { font-size: var(--fs-card-title); line-height: var(--lh-card-title); letter-spacing: -0.02em; transition: text-decoration-thickness 0.18s ease; }
   .case-text .sub{ font-size: var(--fs-card-sub);   line-height: var(--lh-card-sub); }
 
   .case-image {
@@ -285,6 +299,16 @@
     background-position: center;
     background-repeat: no-repeat;
     background-color: #cfd9c5;
+    transform-origin: center;
+    transition: transform 0.6s cubic-bezier(0.2, 0, 0, 1);
+  }
+  /* Survol sobre : zoom doux de l'image dans son cadre + titre souligné,
+     même langage de motion que les tiles consultants et les logos. */
+  a.case-card:hover .case-image { transform: scale(1.03); }
+  a.case-card:hover .case-text h2 {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
   }
   .case-image-mistral { background-image: url('assets/initial-arthur-mensch-mistral-ai-portrait.jpg'); }
   .case-image-lucca   { background-image: url('assets/Gsatge-0224-6.jpg'); }
@@ -309,7 +333,14 @@
   .manifesto-title {
     font-size: var(--fs-card-name);
     line-height: var(--lh-card-name);
+    letter-spacing: -0.025em;
+    font-weight: 500;
     margin: 0;
+  }
+  /* Têtes de services (liens) en Medium : un cran d'autorité sur les
+     entrées du golden path. */
+  .solutions-overview-list h3 {
+    font-weight: 500;
   }
   /* Paragraphes en 2 colonnes (CSS columns). Sur mobile, single col. */
   .manifesto-paragraphs {
@@ -353,6 +384,7 @@
   .ai-logos-title h2 {
     font-size: var(--fs-section-title);
     line-height: var(--lh-section-title);
+    letter-spacing: -0.02em;
     max-width: clamp(320px, 75vw, 1050px);
   }
   .ai-logos-grid {
