@@ -481,7 +481,7 @@
               <div class="company-testimonials">${cards}</div>
             </div>`;
           }).join('');
-          return `<section class="bucket-section" data-bucket="${escape(key)}">
+          return `<section class="bucket-section" id="bucket-${escape(key)}" data-bucket="${escape(key)}">
             ${blocks}
           </section>`;
         }).join('');
@@ -655,6 +655,13 @@
         candidates = c;
         renderTestimonials();
         requestAnimationFrame(observeBucketSections);
+        // Si l'URL contient #bucket-xxx, le navigateur a essayé de
+        // scroller avant que les sections existent. On scrolle à la
+        // main maintenant qu'elles sont rendues.
+        if (location.hash && location.hash.startsWith('#bucket-')) {
+          const target = document.querySelector(location.hash);
+          if (target) requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
+        }
       }).catch(err => {
         console.error('Failed to load data:', err);
         container.innerHTML = '<div class="empty-state">Impossible de charger les témoignages.</div>';

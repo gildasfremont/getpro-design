@@ -1454,7 +1454,10 @@ body.menu-open main > *:not(.header) {
   display: grid;
   grid-template-columns: minmax(90px, 120px) 1fr;
   column-gap: clamp(14px, 1.6vw, 22px);
-  align-items: start;
+  /* Meta (nom/rôle/exp) collée au bas de la photo, plus net
+     visuellement que start (les lignes de texte cherchent le bord
+     bas de l'image). */
+  align-items: end;
 }
 .consultant-row .photo {
   aspect-ratio: 1 / 2;
@@ -1464,22 +1467,38 @@ body.menu-open main > *:not(.header) {
   background-position: 50% 22%;
 }
 .consultant-row .consultant-meta {
-  padding-top: clamp(6px, 0.8vw, 10px);
+  padding-bottom: clamp(8px, 1vw, 14px);
   display: flex;
   flex-direction: column;
-  gap: clamp(4px, 0.6vw, 8px);
+  gap: clamp(2px, 0.3vw, 4px);
   font-size: clamp(17px, 1.7vw, 22px);
   line-height: 1.35;
   width: auto;
 }
-.consultant-row .consultant-name { font-weight: 500; }
-.consultant-row .consultant-role { opacity: 0.72; }
-.consultant-row .consultant-exp { opacity: 0.5; font-size: 0.92em; }
+/* Nom / rôle / expérience tous au même gris, façon MoMA gallery
+   (cohérent avec equipe.html). */
+.consultant-row .consultant-name,
+.consultant-row .consultant-role,
+.consultant-row .consultant-exp {
+  color: var(--ink);
+  opacity: 0.55;
+  font-weight: 400;
+}
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .panel-section--with-team {
     grid-template-columns: minmax(220px, 0.4fr) 1fr;
     column-gap: clamp(20px, 3vw, 36px);
+  }
+  /* Sous 900px, on stacke le consultant-row : photo au-dessus, meta
+     en dessous, le tout justifié à gauche (1 col). */
+  .consultant-row {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .consultant-row .consultant-meta {
+    padding-top: clamp(6px, 1vw, 10px);
+    padding-bottom: 0;
   }
 }
 @media (max-width: 600px) {
