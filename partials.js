@@ -45,6 +45,8 @@
     <nav class="menu">
       <a href="index.html" class="brand" aria-label="GetPro"></a>
       <div class="menu-right" id="menu-right">
+        <a href="services-transition.html" class="menu-item menu-item--inline"${aria('services-transition.html')}>Management de transition</a>
+        <a href="services-renfort.html" class="menu-item menu-item--inline"${aria('services-renfort.html')}>RPO</a>
         <div class="menu-item-group menu-item-group--cdi">
           <a href="services-tech.html" class="menu-item menu-item--inline"${aria('services-tech.html')}>CDI &amp; Freelance</a>
           <div class="submenu submenu--inline" id="cdi-submenu">
@@ -57,8 +59,6 @@
             </ul>
           </div>
         </div>
-        <a href="services-renfort.html" class="menu-item menu-item--inline"${aria('services-renfort.html')}>RPO</a>
-        <a href="services-transition.html" class="menu-item menu-item--inline"${aria('services-transition.html')}>Management de transition</a>
         <div class="menu-item-group menu-item--collapsed">
           <button class="menu-item menu-item--has-submenu" type="button" aria-expanded="false" aria-controls="solutions-submenu"${SERVICES_PAGES.includes(path) ? ' aria-current="page"' : ''}>
             <span class="trigger-long">Solutions de recrutement</span>
