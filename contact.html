@@ -67,6 +67,20 @@
     object-fit: contain;
   }
 
+  /* Téléphone : gros et gras sous les value props, cliquable. Margin
+     négatif pour resserrer avec les props (qui sont au-dessus). */
+  .contact-phone {
+    display: inline-block;
+    font-size: clamp(28px, 3.6vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    margin-top: clamp(-60px, -4vw, -30px);
+  }
+  .contact-phone:hover { text-decoration: underline; text-underline-offset: 6px; }
+
   /* Bandeau de logos clients (monochromes) */
   .prop-logos {
     display: flex;
@@ -204,6 +218,8 @@
               </ul>
             </div>
           </div>
+
+          <a class="contact-phone" href="tel:+33939289329">09&nbsp;39&nbsp;28&nbsp;93&nbsp;29</a>
 
           <form class="contact-form" action="mailto:bonjour@getpro.com" method="POST" enctype="text/plain">
             <div class="form-field form-field--full">

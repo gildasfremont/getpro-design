@@ -126,20 +126,19 @@ button { font-family: inherit; cursor: pointer; }
 /* Pousse le bloc d'options à droite : logo à gauche, options à droite,
    nav équilibrée sur toute la largeur. */
 .menu-right { margin-left: auto; }
-/* Sur la home : aligne le menu-right sur la 2e colonne du hero-lede
-   (2fr 3fr) pour que "CDI & Freelance" colle au sous-titre. Active
-   uniquement au-dessus de 1066px : sous ce seuil, le menu-right n'a
-   plus la place pour les 4 items inline + Contact dans 60% de la
-   largeur, donc on repasse au layout flex par défaut. */
+/* Sur la home (index.html uniquement) : aligne le menu-right sur la 2e
+   colonne du hero-lede (2fr 3fr) pour que "CDI & Freelance" colle au
+   sous-titre. Scopé à .page-home pour ne pas contraindre les autres
+   pages qui partagent .home comme classe de layout. */
 @media (min-width: 1066px) {
-  .home .menu {
+  .page-home .menu {
     display: grid;
     grid-template-columns: 2fr 3fr;
     column-gap: clamp(24px, 4vw, 80px);
     gap: clamp(24px, 4vw, 80px);
   }
-  .home .menu .brand { grid-column: 1; justify-self: start; }
-  .home .menu-right { grid-column: 2; margin-left: 0; }
+  .page-home .menu .brand { grid-column: 1; justify-self: start; }
+  .page-home .menu-right { grid-column: 2; margin-left: 0; }
 }
 
 .brand {
@@ -160,8 +159,11 @@ button { font-family: inherit; cursor: pointer; }
   /* baseline : tous les items de la nav (inline + bouton Contact)
      s'alignent sur leur baseline typographique, pas sur la box. */
   align-items: baseline;
-  column-gap: clamp(28px, 3.6vw, 56px);
+  column-gap: clamp(20px, 2.4vw, 40px);
   row-gap: clamp(8px, 1vw, 14px);
+  /* Ne pas rétrécir dans le flex parent : on prend la largeur nécessaire
+     à tous les items sur une ligne, le brand s'occupe du reste. */
+  flex-shrink: 0;
 }
 .menu-right .menu-item {
   font-size: clamp(17px, 1.7vw, 22px);
@@ -210,6 +212,69 @@ button { font-family: inherit; cursor: pointer; }
    - 481-700px (stage 2) : dropdown Solutions de recrutement + Contact
    - 381-480px (stage 3) : dropdown contient Contact, plus de Contact externe
    - ≤380px (stage 4) : label dropdown raccourci à "Solution" */
+/* Hamburger : visible sur desktop, masqué sur mobile (où le dropdown
+   "Solutions" prend le relais et contient ces pages). Masqué aussi sur
+   la home : ses entrées (Clients, Équipe) sont déjà exposées via les
+   CTA du hero, et le grid 2fr/3fr de .page-home contraint la nav. */
+.menu-right .menu-item-group.menu-item-group--more { position: relative; }
+.page-home .menu-right .menu-item-group--more { display: none; }
+.menu-right .menu-item--more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(8px, 0.8vw, 12px);
+  background: none;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.15s ease;
+}
+.menu-right .menu-item--more:hover,
+.menu-right .menu-item-group--more:hover .menu-item--more,
+.menu-right .menu-item-group--more:focus-within .menu-item--more {
+  background: rgba(6, 32, 4, 0.08);
+}
+
+/* Submenu du hamburger : petit volet ancré sous le bouton, aligné à
+   droite. Pas de full-width band comme les autres submenus.
+   Sélecteur sur-spécifié pour vaincre les règles .submenu de base
+   définies plus bas dans le fichier. */
+.menu-right .submenu.submenu--more {
+  position: absolute;
+  top: 100%;
+  left: auto;
+  right: 0;
+  width: max-content;
+  min-width: 180px;
+  padding: clamp(14px, 1.4vw, 20px) clamp(18px, 1.8vw, 24px);
+  background: var(--bg);
+  border: 1px solid rgba(6, 32, 4, 0.12);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(6, 32, 4, 0.08);
+  clip-path: none;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+}
+.menu-right .menu-item-group--more:hover .submenu.submenu--more,
+.menu-right .menu-item-group--more:focus-within .submenu.submenu--more,
+.menu-right .menu-item-group--more.is-open .submenu.submenu--more {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0s;
+}
+.submenu--more .submenu-list {
+  margin-left: 0;
+  gap: clamp(10px, 1vw, 14px);
+}
+.submenu--more .submenu-list a {
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 500;
+}
+
 .menu-right .menu-item--collapsed { display: none; }
 .submenu-contact { display: none; }
 .trigger-short { display: none; }
@@ -219,6 +284,9 @@ button { font-family: inherit; cursor: pointer; }
   .menu-right .menu-item--inline { display: none; }
   /* Le wrapper CDI suit le même comportement que les autres items inline. */
   .menu-right .menu-item-group--cdi { display: none; }
+  /* Le hamburger desktop disparaît : le dropdown Solutions contient déjà
+     Clients, Équipe, Articles sur mobile. */
+  .menu-right .menu-item-group--more { display: none; }
   .menu-right .menu-item--collapsed { display: inline-flex; }
 }
 @media (max-width: 480px) {
@@ -550,7 +618,7 @@ body.menu-open main > *:not(.header) {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: clamp(16px, 2vw, 28px);
+  gap: clamp(28px, 4vw, 56px);
 }
 
 /* Variante "deux boîtes" pour le rating en face du h1 Clients : les
