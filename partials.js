@@ -107,6 +107,7 @@
       <a href="services-transition.html"${aria('services-transition.html')}>Management de transition</a>
       <a href="clients.html"${aria('clients.html')}>Clients</a>
       <a href="equipe.html"${aria('equipe.html')}>Équipe</a>
+      <a href="articles.html"${aria('articles.html')}>Articles</a>
     </nav>
     <div class="foot-grid">
       <div class="foot-brand">
