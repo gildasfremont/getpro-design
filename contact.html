@@ -21,7 +21,7 @@
     padding-bottom: var(--gap-section);
   }
 
-  /* Conteneur central : value props + form, posé directement sur la page */
+  /* Conteneur central : value props + form, posé directement sur la page */
   .form-panel-inner {
     width: 100%;
     max-width: 980px;
@@ -31,7 +31,7 @@
     gap: clamp(48px, 5.5vw, 90px);
   }
 
-  /* Bandeau value props : 2 colonnes serrées, sans label, hairline en bas */
+  /* Bandeau value props : 2 colonnes serrées, sans label, hairline en bas */
   .contact-props {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -84,8 +84,8 @@
     opacity: 0.9;
   }
 
-  /* Form : grille unifiée avec hairlines entre les champs.
-     Technique : grid avec gap 1px + bg ink-line qui transparaît dans les
+  /* Form : grille unifiée avec hairlines entre les champs.
+     Technique : grid avec gap 1px + bg ink-line qui transparaît dans les
      gaps. Chaque .form-field a son propre bg var(--bg), label inside top,
      input below. Pas de marge entre les champs. */
   .contact-form {

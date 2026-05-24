@@ -19,10 +19,10 @@
     gap: 0;
     padding-bottom: var(--gap-section);
   }
-  /* .solutions-head + .solutions-title-row : règles globales dans
+  /* .solutions-head + .solutions-title-row : règles globales dans
      styles.css (cf. services-tech.html / services-renfort.html). */
 
-  /* Col 2 du panel-body : view-tabs (Postes / Retour d'expérience) en
+  /* Col 2 du panel-body : view-tabs (Postes / Retour d'expérience) en
      haut, et le contenu de la vue active en dessous. Le filtrage par
      catégorie (col 1) s'applique aux deux vues. */
   .content-col {
@@ -43,9 +43,9 @@
     position: sticky;
     top: clamp(44px, 6.7vw, 96px);
     background: var(--bg);
-    /* padding-block-start généreux : crée une bande blanche au-dessus du
+    /* padding-block-start généreux : crée une bande blanche au-dessus du
        texte des tabs pour respirer quand le sticky vient se coller juste
-       sous la nav. End 0 : la border-bottom touche pile la baseline. */
+       sous la nav. End 0 : la border-bottom touche pile la baseline. */
     padding-block: clamp(24px, 2.8vw, 40px) 0;
     border-bottom: 1px solid var(--line);
     /* Box-shadow vers le haut pour masquer le contenu qui pourrait
@@ -54,7 +54,7 @@
     z-index: 10;
   }
   .view-tab {
-    /* Pas de padding-top : Placements aligne sa baseline sur "Tech" dans
+    /* Pas de padding-top : Placements aligne sa baseline sur "Tech" dans
        la col 1. Padding-bottom pour respirer entre le texte et le trait. */
     padding: 0 0 clamp(10px, 1.2vw, 16px);
     font-size: clamp(18px, 2vw, 28px);
@@ -75,18 +75,18 @@
   }
   .view-body[hidden] { display: none; }
 
-  /* Vue "Postes" : 2 cols categories | profils.
+  /* Vue "Postes" : 2 cols categories | profils.
      align-items: baseline → la baseline du 1er texte de chaque col
      s'aligne (Tech ↔ Postes alignés sur le bas du texte, pas sur
      le haut du box). */
-  /* Panel-body : 1 colonne sur tous les viewports. La nav par catégories
+  /* Panel-body : 1 colonne sur tous les viewports. La nav par catégories
      devient une bande horizontale sticky en haut du content (pattern
      identique mobile/desktop). */
   .panel-body {
     display: flex;
     flex-direction: column;
   }
-  /* Categories : retirées. Tous les témoignages s'affichent en mur
+  /* Categories : retirées. Tous les témoignages s'affichent en mur
      continu dans le panel blanc. */
   .categories-col { display: none; }
   .categories-bar {
@@ -106,7 +106,7 @@
     overflow: hidden;
     min-width: 0;
   }
-  /* Tabs en texte simple : actif souligné par une stroke épaisse juste
+  /* Tabs en texte simple : actif souligné par une stroke épaisse juste
      en dessous, inactifs en gris léger. Pas de bordure, pas de fond. */
   .categories-col #bucket-tabs .subtab {
     padding: clamp(8px, 0.8vw, 12px) 0;
@@ -133,7 +133,7 @@
     border-bottom-color: var(--ink);
   }
   #bucket-tabs .subtab[aria-current="true"]::after { display: none; }
-  /* White panel : contient les testimonials, posé sous les tabs. */
+  /* White panel : contient les testimonials, posé sous les tabs. */
   .content-col {
     min-width: 0;
     background: var(--white);
@@ -142,7 +142,7 @@
   }
   /* Filtres de sous-catégorie texte plain en row, underline sur
      l'actif. Même langage typographique que le reste du site
-     (.subtab, .foot-featured, etc) : pas de pill / pas de bg fill. */
+     (.subtab, .foot-featured, etc) : pas de pill / pas de bg fill. */
   .filter-chips {
     display: flex;
     flex-wrap: wrap;
@@ -150,7 +150,7 @@
     margin-bottom: clamp(24px, 2.8vw, 40px);
   }
   .filter-chips[hidden] { display: none; }
-  /* Cartouches : même langage que les subtabs CDI/Freelance/C-Level
+  /* Cartouches : même langage que les subtabs CDI/Freelance/C-Level
      sur les pages Chasse/Renfort. Inactif = bg léger, actif = white +
      border ink. */
   .filter-chip {
@@ -177,7 +177,7 @@
     gap: clamp(6px, 0.7vw, 12px);
   }
 
-  /* Profiles : single column flat list, même taille que la liste
+  /* Profiles : single column flat list, même taille que la liste
      des noms sur la page Clients. Toutes les catégories sont rendues
      en même temps les subtabs (col 1) et les chips (par section)
      servent uniquement à scroller jusqu'à la bonne ancre. */
@@ -188,7 +188,7 @@
     flex-direction: column;
     gap: clamp(28px, 3vw, 44px);
   }
-  /* Mur de témoignages Swiss design : multi-colonnes via CSS columns,
+  /* Mur de témoignages Swiss design : multi-colonnes via CSS columns,
      les .company-block ne sont pas coupés entre colonnes (break-inside:
      avoid). Les colonnes ont une largeur min, le nombre s'adapte
      automatiquement à la largeur du panel. */
@@ -232,7 +232,7 @@
   }
 
   /* Témoignages groupés par boîte. Chaque .company-block est un grid
-     2 cols : logo (sticky) à gauche, liste des témoignages à droite.
+     2 cols : logo (sticky) à gauche, liste des témoignages à droite.
      Quand l'utilisateur scrolle dans les témoignages d'une boîte, le
      logo reste visible il libère la place quand on arrive au
      groupe suivant. Reprend le pattern visuel de la liste Clients
@@ -300,18 +300,18 @@
     .company-logo-cell {
       position: static;
     }
-    /* En mobile, pas de décalage : tout s'aligne à gauche. */
+    /* En mobile, pas de décalage : tout s'aligne à gauche. */
     .company-testimonials {
       margin-left: 0;
     }
   }
 
-  /* Trigger desktop : caché (legacy, l'élément peut encore exister
+  /* Trigger desktop : caché (legacy, l'élément peut encore exister
      dans le HTML). */
   .categories-trigger { display: none; }
 
   .content-col { padding-top: clamp(28px, 3.4vw, 48px); }
-  /* Chevron "plus" à droite : visible uniquement si JS a détecté
+  /* Chevron "plus" à droite : visible uniquement si JS a détecté
      de l'overflow et a peuplé .categories-overflow. */
   .categories-more {
     flex-shrink: 0;
@@ -329,7 +329,7 @@
   .categories-more[hidden] { display: none; }
   .categories-more .chevron { transition: transform 0.18s ease; }
   .categories-more[aria-expanded="true"] .chevron { transform: rotate(180deg); }
-  /* Dropdown des items overflow : positionné juste sous la barre
+  /* Dropdown des items overflow : positionné juste sous la barre
      categories. Le contenu en dessous est blur via body.cats-open. */
   .categories-overflow {
     list-style: none;
@@ -361,7 +361,7 @@
     text-decoration: underline;
     text-underline-offset: 4px;
   }
-  /* Rating Trustpilot caché : prend de la place pour rien dans la barre. */
+  /* Rating Trustpilot caché : prend de la place pour rien dans la barre. */
   .categories-col .rating { display: none; }
   /* Blur du contenu derrière (testimonials) quand le dropdown est ouvert.
      Hors @media pour pouvoir cibler aussi le scrim global. */
@@ -464,8 +464,8 @@
           }
           const blocks = Array.from(groups.values()).map(({ meta, items }) => {
             const logoOrName = meta.has_logo
-              ? `<img src="assets/${meta.company_slug}.svg" alt="${escape(meta.company_name)}" />`
-              : `<span class="company-name-fallback">${escape(meta.company_name)}</span>`;
+              ? `<img src="assets/${meta.company_slug}.svg" alt="${escape(meta.company_name)}" />`
+              : `<span class="company-name-fallback">${escape(meta.company_name)}</span>`;
             const cards = items.map(c => {
               const role = c.poste_canonique || c.intitule_original || 'Recruté';
               return `<article class="testimonial-card">
@@ -488,7 +488,7 @@
         container.innerHTML = html || `<div class="empty-state">Aucun témoignage candidat pour le moment.</div>`;
       }
 
-      // Pattern priority+ : sur mobile (<=800px), les items qui ne tiennent
+      // Pattern priority+ : sur mobile (<=800px), les items qui ne tiennent
       // pas dans la .categories-bar sont déplacés dans .categories-overflow,
       // accessible via le bouton chevron .categories-more.
       const bar = document.querySelector('.categories-bar');
@@ -518,7 +518,7 @@
       });
 
       const syncOverflow = () => {
-        if (!bar || !moreBtn || !overflowList) return;
+        if (!bar || !moreBtn || !overflowList) return;
         restoreAll();
         sortByOriginalOrder();
 
@@ -537,7 +537,7 @@
         let total = 0;
         let overflowStart = -1;
         for (let i = 0; i < items.length; i++) {
-          total += items[i].offsetWidth + (i > 0 ? gap : 0);
+          total += items[i].offsetWidth + (i > 0 ? gap : 0);
           if (total > barWidth - moreWidth) {
             overflowStart = i;
             break;
@@ -585,7 +585,7 @@
           else openOverflow();
         });
         document.addEventListener('click', (e) => {
-          if (!moreBtn.contains(e.target) && !overflowList.contains(e.target)) {
+          if (!moreBtn.contains(e.target) && !overflowList.contains(e.target)) {
             closeOverflowAndBlur();
           }
         });
@@ -612,7 +612,7 @@
         requestAnimationFrame(scrollToActiveBucket);
       });
 
-      // Suit la position du scroll : marque comme active la bucket-section
+      // Suit la position du scroll : marque comme active la bucket-section
       // dont la majorité est visible. Met à jour aria-current sur les
       // tabs en conséquence.
       let scrollObserver = null;

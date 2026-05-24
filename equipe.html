@@ -20,7 +20,7 @@
     gap: 0;
   }
 
-  /* 2 colonnes : titre + manifeste à gauche (col réduite pour faire
+  /* 2 colonnes : titre + manifeste à gauche (col réduite pour faire
      respirer les photos), grille photos à droite (col élargie). */
   .equipe-row {
     display: grid;
@@ -37,7 +37,7 @@
     flex-direction: column;
     gap: clamp(20px, 2.4vw, 36px);
   }
-  /* Titre Consultants : redimensionné plus modeste sur cette page
+  /* Titre Consultants : redimensionné plus modeste sur cette page
      pour ne pas écraser les photos qui sont l'élément principal. */
   .equipe-text .page-title {
     font-size: clamp(48px, 6.5vw, 96px);
@@ -57,9 +57,9 @@
     max-width: 40ch;
   }
 
-  /* Grille photos : 3-col, photos plus grandes / plus présentes. Gap
+  /* Grille photos : 3-col, photos plus grandes / plus présentes. Gap
      horizontal 0 (cartes se touchent latéralement) + row-gap pour
-     respirer entre les lignes. Pas de padding-left : le gap entre les
+     respirer entre les lignes. Pas de padding-left : le gap entre les
      colonnes (manifeste / photos) suffit à séparer visuellement, sans
      créer un décalage à droite des photos dans leur propre colonne. */
   .team-grid {
@@ -68,7 +68,7 @@
     column-gap: 0;
     row-gap: clamp(28px, 3.4vw, 56px);
     /* Pousse la grille pour que le haut des photos s'aligne sur la
-       x-height du titre "Équipe" (ABC Diatype : ~0.3em du top du
+       x-height du titre "Équipe" (ABC Diatype : ~0.3em du top du
        line-box au x-height). */
     margin-top: clamp(14px, 1.8vw, 28px);
   }
@@ -112,7 +112,7 @@
   .team-card:focus-visible .team-photo::after {
     opacity: 1;
   }
-  /* Au survol de la carte : underline sur la mention d'expérience. */
+  /* Au survol de la carte : underline sur la mention d'expérience. */
   .team-card:hover .team-exp,
   .team-card:focus-visible .team-exp {
     text-decoration: underline;
@@ -120,7 +120,7 @@
     text-decoration-thickness: 1px;
   }
   /* Caption alignée sur le bord gauche de la photo (padding-left 0).
-     Pas de bg blanc : le caption est posé directement sur le bg de
+     Pas de bg blanc : le caption est posé directement sur le bg de
      page. Couleurs uniformes en --ink (plus de gris). */
   .team-caption {
     padding: clamp(8px, 0.9vw, 14px) 0 0;
@@ -129,7 +129,7 @@
     gap: clamp(2px, 0.3vw, 4px);
   }
   /* Toutes les légendes (nom + rôle + expérience) au même gris,
-     façon MoMA gallery : type neutre, pas de hiérarchie color. */
+     façon MoMA gallery : type neutre, pas de hiérarchie color. */
   .team-name,
   .team-role,
   .team-exp {
@@ -139,7 +139,7 @@
     opacity: 0.55;
     font-weight: 400;
   }
-  /* "X ans d'expérience" est un lien LinkedIn : pas d'underline par
+  /* "X ans d'expérience" est un lien LinkedIn : pas d'underline par
      défaut (clean), underline au hover pour signaler la cliquabilité. */
   a.team-exp {
     text-decoration: none;
@@ -174,7 +174,7 @@
   .photo-jonathan  { background-image: url('assets/team/jonathan-banigo.jpg'); }
   .photo-dylan     { background-image: url('assets/team/dylan-khoury.png'); }
 
-  /* Encart support : photos à GAUCHE (3 cards), texte à DROITE en
+  /* Encart support : photos à GAUCHE (3 cards), texte à DROITE en
      colonne très réduite. Pas de hairline. Margin-top juste pour
      respirer après la grille consultants. */
   .equipe-support {
@@ -198,7 +198,7 @@
     color: inherit;
   }
 
-  /* Breakpoint principal : photos plein largeur, texte en single col. */
+  /* Breakpoint principal : photos plein largeur, texte en single col. */
   @media (max-width: 900px) {
     .equipe-row {
       grid-template-columns: 1fr;
@@ -209,7 +209,7 @@
     }
   }
 
-  /* Sous 700px : texte VISIBLE en haut, photos en bas. Layout simple et lisible. */
+  /* Sous 700px : texte VISIBLE en haut, photos en bas. Layout simple et lisible. */
   @media (max-width: 700px) {
     .equipe-row {
       display: flex;
@@ -248,7 +248,7 @@
   @media (max-width: 900px) {
     .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
-  /* Mobile : on garde 2 cols pour que les photos restent à taille
+  /* Mobile : on garde 2 cols pour que les photos restent à taille
      raisonnable. Un seul col avec aspect 1/2 ferait des photos
      gigantesques. */
   @media (max-width: 480px) {

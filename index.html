@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="styles.css?v=1" />
 <style>
-  /* La home garde son ancienne typo : titres en poids normal (sauf
+  /* La home garde son ancienne typo : titres en poids normal (sauf
      <strong>), variables typo plus petites qu'ailleurs. Les autres
      pages bénéficient des bumps globaux. */
   .home h1, .home h2, .home h3, .home h4, .home h5, .home h6 {
@@ -34,7 +34,7 @@
     padding-bottom: clamp(12px, 1.5vw, 24px);
   }
 
-  /* Hero side-by-side : titre/texte (col 1, plus large) + grille
+  /* Hero side-by-side : titre/texte (col 1, plus large) + grille
      équipe (col 2). */
   .hero-inner {
     display: grid;
@@ -43,13 +43,13 @@
     align-items: start;
   }
 
-  /* Wrapper équipe : grille de photos + CTA en dessous. */
+  /* Wrapper équipe : grille de photos + CTA en dessous. */
   .hero-team {
     display: flex;
     flex-direction: column;
     gap: clamp(8px, 1vw, 14px);
     /* On pousse le haut de la grille pour qu'il colle à la x-height
-       du titre (ABC Diatype : ~0.35em entre top du line-box et la
+       du titre (ABC Diatype : ~0.35em entre top du line-box et la
        x-height). Plus net visuellement qu'aligner les bounding-box. */
     margin-top: clamp(14px, 1.4vw, 22px);
   }
@@ -98,7 +98,7 @@
     color: var(--white);
     text-decoration: none;
   }
-  /* Hero-lede : titre + sous-titre empilés dans la col de gauche.
+  /* Hero-lede : titre + sous-titre empilés dans la col de gauche.
      Sticky pour suivre le scroll quand la grille photos (plus haute)
      défile à droite. */
   .hero-lede {
@@ -134,14 +134,14 @@
     transition: opacity 0.15s ease;
   }
   .hero-cta:hover { opacity: 0.85; }
-  /* Variante secondaire en aplat gris : pour la 2e action si on veut
+  /* Variante secondaire en aplat gris : pour la 2e action si on veut
      une hiérarchie. */
   .hero-cta--secondary {
     background: var(--btn);
     color: var(--ink);
   }
   @media (max-width: 700px) {
-    /* Mobile : on repasse en stack (texte au-dessus des photos). */
+    /* Mobile : on repasse en stack (texte au-dessus des photos). */
     .hero-inner {
       grid-template-columns: 1fr;
       align-items: start;
@@ -153,7 +153,7 @@
     font-size: clamp(18px, 2vw, 26px);
   }
 
-  /* ---------- Image grid : 3 cols, le composant devient plus haut
+  /* ---------- Image grid : 3 cols, le composant devient plus haut
      que le texte. Le texte (col 1) est sticky pour suivre le scroll. */
   .hero-inner { position: relative; }
   .grid-images {
@@ -177,7 +177,7 @@
     transform: scale(1.03);
     z-index: 1;
   }
-  /* Mobile : on garde le 4×4 puisqu'on stacke en 1 col et la grille
+  /* Mobile : on garde le 4×4 puisqu'on stacke en 1 col et la grille
      prend toute la largeur. */
   /* Consultants — 16 personnes listées dans equipe.html (hors équipe support). */
   .tile-1  { background-image: url('assets/team/anne-delarue.png'); }
@@ -251,7 +251,7 @@
     -webkit-mask-size: contain;
             mask-size: contain;
   }
-  /* Lucca icon : utilisation d'un <img> direct (pas de bg-image sur span
+  /* Lucca icon : utilisation d'un <img> direct (pas de bg-image sur span
      comme les autres symbols) parce que le SVG lucca-icon a des couleurs
      hardcodées (ink + bg) qui doivent être préservées. Un mask aurait
      mangé les cuts du "L" à l'intérieur du carré. */
@@ -291,7 +291,7 @@
   .case-image-lucca   { background-image: url('assets/Gsatge-0224-6.jpg'); }
   .case-image-filigran { background-image: url('assets/filigran-cover.jpg'); }
 
-  /* ---------- Manifesto : Depuis 2015, paragraphes en 2 colonnes ---------- */
+  /* ---------- Manifesto : Depuis 2015, paragraphes en 2 colonnes ---------- */
   .manifesto {
     padding-block: var(--gap-section);
   }
@@ -418,7 +418,7 @@
       <div class="hero-inner">
         <div class="hero-lede">
           <h1 class="hero-title"><strong>10 ans de recrutement<br>au côté des plus belles<br>entreprises de la Tech<br>et de l'IA.</strong></h1>
-          <p class="hero-subtitle">La personne que vous allez embaucher<br>fait partie de notre réseau. Si nous<br>commencions par la contacter ?</p>
+          <p class="hero-subtitle">La personne que vous allez embaucher<br>fait partie de notre réseau. Si nous<br>commencions par la contacter ?</p>
           <div class="hero-ctas">
             <a href="equipe.html" class="hero-cta">Notre équipe</a>
             <a href="clients.html" class="hero-cta hero-cta--secondary">Clients</a>
