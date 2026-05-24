@@ -67,17 +67,27 @@
     object-fit: contain;
   }
 
-  /* Téléphone : gros et gras sous les value props, cliquable. Margin
-     négatif pour resserrer avec les props (qui sont au-dessus). */
+  /* Bloc téléphone : occupe la colonne droite des contact-props, posé
+     en haut. Label discret au-dessus, numéro en gros gras cliquable. */
+  .prop-block--phone {
+    align-self: start;
+    gap: clamp(10px, 1vw, 16px);
+  }
+  .prop-eyebrow {
+    font-size: clamp(13px, 1.1vw, 16px);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.5;
+  }
   .contact-phone {
     display: inline-block;
-    font-size: clamp(28px, 3.6vw, 52px);
+    font-size: clamp(28px, 3.6vw, 48px);
     line-height: 1.1;
     letter-spacing: -0.02em;
     font-weight: 700;
     color: var(--ink);
     text-decoration: none;
-    margin-top: clamp(-60px, -4vw, -30px);
   }
   .contact-phone:hover { text-decoration: underline; text-underline-offset: 6px; }
 
@@ -209,17 +219,15 @@
                 <li>Mission lancée sous 48 heures</li>
                 <li>Shortlist commentée en 60 minutes</li>
                 <li>Time-to-fill moyen de 50 jours</li>
-              </ul>
-            </div>
-            <div class="prop-block">
-              <ul>
                 <li>800 recrutements cette année</li>
                 <li>Expérience candidat 5&nbsp;étoiles <img class="inline-mark" src="assets/trustfolio.svg" alt="Trustfolio" /></li>
               </ul>
             </div>
+            <div class="prop-block prop-block--phone">
+              <span class="prop-eyebrow">Ou par téléphone</span>
+              <a class="contact-phone" href="tel:+33939289329">09&nbsp;39&nbsp;28&nbsp;93&nbsp;29</a>
+            </div>
           </div>
-
-          <a class="contact-phone" href="tel:+33939289329">09&nbsp;39&nbsp;28&nbsp;93&nbsp;29</a>
 
           <form class="contact-form" action="mailto:bonjour@getpro.com" method="POST" enctype="text/plain">
             <div class="form-field form-field--full">
