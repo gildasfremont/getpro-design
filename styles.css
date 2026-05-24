@@ -1386,18 +1386,7 @@ a.foot-line:hover { text-decoration: underline; }
 }
 .panel-section--with-team .team-side {
   display: block;
-  /* Sticky : la colonne photos suit le scroll de content-side jusqu'à
-     ce qu'elle atteigne le bas de la grid (panel-section), où elle
-     "release" et scroll naturellement. top compense le header sticky. */
-  position: -webkit-sticky;
-  position: sticky;
-  top: clamp(60px, 6vw, 90px);
   align-self: start;
-}
-@media (max-width: 600px) {
-  /* Mobile : la team-side passe au-dessus, on désactive le sticky pour
-     éviter un comportement bizarre quand on stacke en 1 col. */
-  .panel-section--with-team .team-side { position: static; }
 }
 
 /* H3 inline dans le content-side (sections fusionnées : intro / Pas de
