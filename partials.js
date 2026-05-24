@@ -94,7 +94,7 @@
     <div class="foot-grid">
       <div class="foot-brand">
         <a href="index.html" class="foot-logo" aria-label="GetPro"></a>
-        <p class="foot-tagline">Cabinet de chasse spécialisé tech, product, data, sales et dirigeants. Depuis 2015.</p>
+        <p class="foot-tagline">Cabinet de chasse spécialisé experts et dirigeants pour la Tech et l'IA. Depuis 2015.</p>
         <div class="foot-address-row">
           <p class="foot-address">41 rue Faidherbe<br>75011 Paris</p>
           <div class="foot-contact">

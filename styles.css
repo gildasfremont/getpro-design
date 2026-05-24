@@ -772,7 +772,7 @@ body.menu-open main > *:not(.header) {
 
 /* Ligne légale tout en bas à gauche du footer (sous la grille). */
 .foot-legal {
-  font-size: clamp(15px, 1.3vw, 18px);
+  font-size: clamp(17px, 1.5vw, 22px);
   opacity: 0.55;
 }
 .foot-legal a {
