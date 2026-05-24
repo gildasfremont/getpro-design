@@ -737,6 +737,16 @@ body.menu-open main > *:not(.header) {
   letter-spacing: -0.01em;
   max-width: 38ch;
 }
+/* Wrapper qui pose l'adresse-row et les ratings côte à côte sur une
+   seule ligne. Wrappe en colonne sur petits écrans. */
+.foot-info-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: clamp(40px, 6vw, 90px);
+  row-gap: clamp(24px, 3vw, 40px);
+}
+
 /* Adresse postale + contact en grille 2 colonnes × 2 lignes : chaque
    bout est un item autonome (rue / ville / email / téléphone), donc
    pas de bricolage d'alignement. DOM en ordre vertical naturel (rue,
