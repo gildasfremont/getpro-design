@@ -56,6 +56,17 @@
     margin: 0;
     max-width: 40ch;
   }
+  /* Note Glassdoor sous le manifeste : logo posé puis étoiles, échelle
+     calée sur le corps du texte. */
+  .equipe-rating {
+    margin-top: clamp(4px, 0.6vw, 10px);
+  }
+  .equipe-rating .rating-logo {
+    height: clamp(22px, 2vw, 30px);
+  }
+  .equipe-rating .rating-stars {
+    font-size: clamp(15px, 1.4vw, 18px);
+  }
 
   /* Grille photos : 3-col, photos plus grandes / plus présentes. Gap
      horizontal 0 (cartes se touchent latéralement) + row-gap pour
@@ -272,6 +283,10 @@
           <h1 class="page-title">Équipe</h1>
           <div class="equipe-manifesto">
           <p>Nos consultants sont chez GetPro depuis longtemps, certains depuis dix ans. Un chasseur qui débute reconstruit son réseau à chaque mission. Un consultant senior connaît déjà les gens qu'il va vous présenter, il les a vus évoluer poste après poste, il sait qui pèse vraiment et qui pèse seulement sur son CV. C'est cette mémoire longue que nous vous vendons.</p>
+          <div class="rating equipe-rating">
+            <img src="assets/glassdoor.svg" alt="Glassdoor" class="rating-logo" />
+            <span class="rating-stars">4,7&nbsp;★★★★★</span>
+          </div>
                   </div>
         </aside>
 
