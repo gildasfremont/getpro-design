@@ -126,14 +126,14 @@ button { font-family: inherit; cursor: pointer; }
 /* Pousse le bloc d'options à droite : logo à gauche, options à droite,
    nav équilibrée sur toute la largeur. */
 .menu-right { margin-left: auto; }
-/* Sur la home (index.html uniquement) : aligne le menu-right sur la 2e
-   colonne du hero-lede (2fr 3fr) pour que "CDI & Freelance" colle au
-   sous-titre. Scopé à .page-home pour ne pas contraindre les autres
-   pages qui partagent .home comme classe de layout. */
+/* Sur la home (index.html uniquement) : aligne le menu-right à droite
+   en laissant assez de place pour les 4 items inline + hamburger +
+   Contact. Scopé à .page-home pour ne pas contraindre les autres pages
+   qui partagent .home comme classe de layout. */
 @media (min-width: 1066px) {
   .page-home .menu {
     display: grid;
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 1fr 2fr;
     column-gap: clamp(24px, 4vw, 80px);
     gap: clamp(24px, 4vw, 80px);
   }
@@ -213,12 +213,8 @@ button { font-family: inherit; cursor: pointer; }
    - 381-480px (stage 3) : dropdown contient Contact, plus de Contact externe
    - ≤380px (stage 4) : label dropdown raccourci à "Solution" */
 /* Hamburger : trigger discret qui ouvre le même mega-menu band que CDI
-   & Freelance (clip-path slide-down). Items dans la submenu alignés sur
-   le bord gauche du logo (via --trigger-left mis à jour par le JS pour
-   les "autres" submenus). Masqué sur mobile : le dropdown "Solutions"
-   contient déjà ces pages. Masqué sur la home : Clients et Équipe sont
-   exposées via les CTA du hero, et le grid 2fr/3fr contraint la nav. */
-.page-home .menu-right .menu-item-group--more { display: none; }
+   & Freelance (clip-path slide-down). Items alignés pile sous l'icône.
+   Masqué sur mobile : le dropdown "Solutions" contient déjà ces pages. */
 .menu-right .menu-item--more {
   display: inline-flex;
   align-items: center;
