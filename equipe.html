@@ -67,6 +67,10 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 0;
     row-gap: clamp(28px, 3.4vw, 56px);
+    /* Pousse la grille pour que le haut des photos s'aligne sur la
+       x-height du titre "Équipe" (ABC Diatype : ~0.3em du top du
+       line-box au x-height). */
+    margin-top: clamp(14px, 1.8vw, 28px);
   }
   .team-card {
     display: flex;
