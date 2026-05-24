@@ -126,21 +126,6 @@ button { font-family: inherit; cursor: pointer; }
 /* Pousse le bloc d'options à droite : logo à gauche, options à droite,
    nav équilibrée sur toute la largeur. */
 .menu-right { margin-left: auto; }
-/* Sur la home (index.html uniquement) : aligne le menu-right à droite
-   en laissant assez de place pour les 4 items inline + hamburger +
-   Contact. Scopé à .page-home pour ne pas contraindre les autres pages
-   qui partagent .home comme classe de layout. */
-@media (min-width: 1066px) {
-  .page-home .menu {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    column-gap: clamp(24px, 4vw, 80px);
-    gap: clamp(24px, 4vw, 80px);
-  }
-  .page-home .menu .brand { grid-column: 1; justify-self: start; }
-  .page-home .menu-right { grid-column: 2; margin-left: 0; }
-}
-
 .brand {
   display: inline-block;
   /* Calibré pour que la hauteur du logo ≈ la cap-height du texte de
