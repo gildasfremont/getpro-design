@@ -197,15 +197,6 @@ button { font-family: inherit; cursor: pointer; }
    - 481-700px (stage 2) : dropdown Solutions de recrutement + Contact
    - 381-480px (stage 3) : dropdown contient Contact, plus de Contact externe
    - ≤380px (stage 4) : label dropdown raccourci à "Solution" */
-/* Cluster de fin de nav : hamburger + Contact collés (gap serré) pour
-   former une unité visuelle à droite. Les options du hamburger se
-   posent visuellement sous ce cluster — pas d'écart avec Contact. */
-.menu-right .menu-end {
-  display: inline-flex;
-  align-items: center;
-  gap: clamp(8px, 0.8vw, 14px);
-}
-
 /* Hamburger : trigger discret qui ouvre le même mega-menu band que CDI
    & Freelance (clip-path slide-down). Items alignés pile sous l'icône.
    Masqué sur mobile : le dropdown "Solutions" contient déjà ces pages. */

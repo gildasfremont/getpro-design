@@ -79,23 +79,21 @@
             </ul>
           </div>
         </div>
-        <div class="menu-end">
-          <div class="menu-item-group menu-item-group--more">
-            <button class="menu-item menu-item--more" type="button" aria-expanded="false" aria-controls="more-submenu" aria-label="Plus de pages">
-              <svg viewBox="0 0 18 14" width="20" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-                <path d="M1 2h16M1 7h16M1 12h16"/>
-              </svg>
-            </button>
-            <div class="submenu" id="more-submenu">
-              <ul class="submenu-list submenu-list--row">
-                <li><a href="clients.html"${aria('clients.html')}>Clients</a></li>
-                <li><a href="equipe.html"${aria('equipe.html')}>Équipe</a></li>
-                <li><a href="articles.html"${aria('articles.html')}>Articles</a></li>
-              </ul>
-            </div>
+        <div class="menu-item-group menu-item-group--more">
+          <button class="menu-item menu-item--more" type="button" aria-expanded="false" aria-controls="more-submenu" aria-label="Plus de pages">
+            <svg viewBox="0 0 18 14" width="20" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+              <path d="M1 2h16M1 7h16M1 12h16"/>
+            </svg>
+          </button>
+          <div class="submenu" id="more-submenu">
+            <ul class="submenu-list submenu-list--row">
+              <li><a href="clients.html"${aria('clients.html')}>Clients</a></li>
+              <li><a href="equipe.html"${aria('equipe.html')}>Équipe</a></li>
+              <li><a href="articles.html"${aria('articles.html')}>Articles</a></li>
+            </ul>
           </div>
-          <a href="contact.html" class="menu-item menu-item--contact menu-item--contact-outside"${aria('contact.html')}>Contact</a>
         </div>
+        <a href="contact.html" class="menu-item menu-item--contact menu-item--contact-outside"${aria('contact.html')}>Contact</a>
       </div>
     </nav>
   `;
@@ -159,7 +157,7 @@
       // SUBMENU séparément, avec un petit délai pour pouvoir traverser le
       // gap. Le menu se ferme quand on quitte les deux (vers une autre
       // option de la nav, ou par le bas du volet).
-      const submenuGroups = nav.querySelectorAll('.menu-item-group--cdi, .menu-item-group.menu-item--collapsed');
+      const submenuGroups = nav.querySelectorAll('.menu-item-group--cdi, .menu-item-group--more, .menu-item-group.menu-item--collapsed');
       submenuGroups.forEach(group => {
         const btn = group.querySelector('.menu-item--has-submenu');
         const trigger = group.querySelector('.menu-item');
