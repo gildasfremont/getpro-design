@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GetPro Articles</title>
+<meta name="description" content="Articles GetPro : recrutement tech, IA, cybersécurité, panoramas des métiers et benchmarks des cabinets spécialisés." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta property="og:title" content="GetPro Articles" />
+<meta property="og:description" content="Articles GetPro : recrutement tech, IA, cybersécurité, panoramas des métiers et benchmarks." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_FR" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="styles.css?v=1" />
+<style>
+  .articles {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: var(--gap-section);
+    gap: clamp(28px, 3vw, 48px);
+  }
+
+  /* Titre + intro côte-à-côte, façon Équipe : titre à gauche, lede à
+     droite. */
+  .articles-head {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: clamp(40px, 6vw, 100px);
+    align-items: start;
+  }
+  .articles-head .page-title {
+    font-size: clamp(48px, 6.5vw, 96px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+  .articles-lede {
+    font-size: clamp(18px, 1.8vw, 24px);
+    line-height: 1.45;
+    margin: 0;
+    max-width: 48ch;
+  }
+
+  /* Liste des articles : ligne par article, hairlines top/bottom,
+     ratio titre / méta façon journal en ligne. Hover = soulignement du
+     titre + lift léger du chevron. */
+  .articles-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid rgba(6, 32, 4, 0.15);
+  }
+  .article-row {
+    border-bottom: 1px solid rgba(6, 32, 4, 0.15);
+  }
+  .article-link {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 8fr) auto;
+    gap: clamp(20px, 3vw, 56px);
+    align-items: baseline;
+    padding: clamp(20px, 2.4vw, 36px) 0;
+    color: var(--ink);
+    text-decoration: none;
+    transition: opacity 0.18s ease;
+  }
+  .article-link:hover { opacity: 0.7; }
+  .article-meta {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(4px, 0.4vw, 8px);
+    font-size: clamp(14px, 1.1vw, 17px);
+    line-height: 1.3;
+    color: var(--ink);
+    opacity: 0.55;
+  }
+  .article-cat { letter-spacing: 0.02em; }
+  .article-date {
+    font-feature-settings: 'pnum' on, 'lnum' on;
+  }
+  .article-title {
+    font-size: clamp(22px, 2.6vw, 38px);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    font-weight: 700;
+    margin: 0;
+  }
+  .article-arrow {
+    font-size: clamp(20px, 2vw, 28px);
+    line-height: 1;
+    color: var(--ink);
+    opacity: 0.45;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+  }
+  .article-link:hover .article-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 800px) {
+    .articles-head {
+      grid-template-columns: 1fr;
+      gap: clamp(20px, 3vw, 32px);
+    }
+    .articles-head .page-title {
+      font-size: clamp(48px, 13vw, 88px);
+    }
+    .article-link {
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        "meta arrow"
+        "title arrow";
+      row-gap: clamp(8px, 1vw, 14px);
+    }
+    .article-meta { grid-area: meta; flex-direction: row; gap: clamp(8px, 1.2vw, 14px); }
+    .article-title { grid-area: title; }
+    .article-arrow { grid-area: arrow; align-self: center; }
+  }
+</style>
+</head>
+<body>
+  <main class="home">
+
+    <header class="header section" data-nav></header>
+
+    <section class="articles section">
+      <div class="articles-head">
+        <h1 class="page-title">Articles</h1>
+        <p class="articles-lede">Recrutement tech, IA, cybersécurité. Panoramas des métiers émergents et benchmarks des cabinets spécialisés. Écrit par les consultants.</p>
+      </div>
+
+      <ul class="articles-list">
+
+        <li class="article-row">
+          <a class="article-link" href="https://www.getpro.co/toolbox/internaliser-externaliser-recrutements-ia-cybersecurite" target="_blank" rel="noopener">
+            <div class="article-meta">
+              <span class="article-cat">Recrutement tech</span>
+              <span class="article-date">28 avril 2025</span>
+            </div>
+            <h2 class="article-title">Faut-il internaliser ou externaliser vos recrutements en IA et cybersécurité&nbsp;?</h2>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+
+        <li class="article-row">
+          <a class="article-link" href="https://www.getpro.co/toolbox/ai-act-recrutement-guide" target="_blank" rel="noopener">
+            <div class="article-meta">
+              <span class="article-cat">Recrutement tech</span>
+              <span class="article-date">22 avril 2025</span>
+            </div>
+            <h2 class="article-title">AI Act &amp; Recrutement&nbsp;: le guide 2025 pour rester dans les clous</h2>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+
+        <li class="article-row">
+          <a class="article-link" href="https://www.getpro.co/toolbox/limpact-de-la-legislation-sur-les-postes-en-ia-et-cybersecurite" target="_blank" rel="noopener">
+            <div class="article-meta">
+              <span class="article-cat">Recrutement tech</span>
+              <span class="article-date">14 avril 2025</span>
+            </div>
+            <h2 class="article-title">L'impact de la législation sur les postes en IA et cybersécurité</h2>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+
+        <li class="article-row">
+          <a class="article-link" href="https://www.getpro.co/toolbox/les-metiers-emergents-en-cybersecurite" target="_blank" rel="noopener">
+            <div class="article-meta">
+              <span class="article-cat">Recrutement tech</span>
+              <span class="article-date">14 avril 2025</span>
+            </div>
+            <h2 class="article-title">Les métiers émergents en cybersécurité</h2>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+
+        <li class="article-row">
+          <a class="article-link" href="https://www.getpro.co/toolbox/intelligence-artificielle-metiers-cles" target="_blank" rel="noopener">
+            <div class="article-meta">
+              <span class="article-cat">Recrutement tech</span>
+              <span class="article-date">7 avril 2025</span>
+            </div>
+            <h2 class="article-title">Les métiers clés de l'intelligence artificielle&nbsp;: panorama et enjeux</h2>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+
+        <li class="article-row">
+          <a class="article-link" href="https://www.getpro.co/toolbox/cybersecurite-tendances-enjeux" target="_blank" rel="noopener">
+            <div class="article-meta">
+              <span class="article-cat">Recrutement tech</span>
+              <span class="article-date">7 avril 2025</span>
+            </div>
+            <h2 class="article-title">Cybersécurité&nbsp;: tendances et enjeux en 2025</h2>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+
+        <li class="article-row">
+          <a class="article-link" href="https://www.getpro.co/toolbox/top-10-des-cabinets-de-recrutement-specialises-dans-les-metiers-du-product" target="_blank" rel="noopener">
+            <div class="article-meta">
+              <span class="article-cat">Nos tops</span>
+              <span class="article-date">31 mars 2025</span>
+            </div>
+            <h2 class="article-title">Top 10 des cabinets de recrutement spécialisés dans les métiers du Product</h2>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+
+        <li class="article-row">
+          <a class="article-link" href="https://www.getpro.co/toolbox/meilleurs-cabinets-recrutement-metiers-data" target="_blank" rel="noopener">
+            <div class="article-meta">
+              <span class="article-cat">Nos tops</span>
+              <span class="article-date">31 mars 2025</span>
+            </div>
+            <h2 class="article-title">Les meilleurs cabinets de recrutement spécialisés dans les métiers de la Data</h2>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+
+        <li class="article-row">
+          <a class="article-link" href="https://www.getpro.co/toolbox/cabinet-recrutement-cybersecurite" target="_blank" rel="noopener">
+            <div class="article-meta">
+              <span class="article-cat">Nos tops</span>
+              <span class="article-date">24 mars 2025</span>
+            </div>
+            <h2 class="article-title">Top 10 des cabinets de recrutement spécialisés dans la cybersécurité</h2>
+            <span class="article-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+
+    <footer class="site-footer" data-footer></footer>
+
+  </main>
+  <script src="partials.js?v=1" defer></script>
+</body>
+</html>

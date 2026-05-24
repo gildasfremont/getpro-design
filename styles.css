@@ -212,11 +212,12 @@ button { font-family: inherit; cursor: pointer; }
    - 481-700px (stage 2) : dropdown Solutions de recrutement + Contact
    - 381-480px (stage 3) : dropdown contient Contact, plus de Contact externe
    - ≤380px (stage 4) : label dropdown raccourci à "Solution" */
-/* Hamburger : visible sur desktop, masqué sur mobile (où le dropdown
-   "Solutions" prend le relais et contient ces pages). Masqué aussi sur
-   la home : ses entrées (Clients, Équipe) sont déjà exposées via les
-   CTA du hero, et le grid 2fr/3fr de .page-home contraint la nav. */
-.menu-right .menu-item-group.menu-item-group--more { position: relative; }
+/* Hamburger : trigger discret qui ouvre le même mega-menu band que CDI
+   & Freelance (clip-path slide-down). Items dans la submenu alignés sur
+   le bord gauche du logo (via --trigger-left mis à jour par le JS pour
+   les "autres" submenus). Masqué sur mobile : le dropdown "Solutions"
+   contient déjà ces pages. Masqué sur la home : Clients et Équipe sont
+   exposées via les CTA du hero, et le grid 2fr/3fr contraint la nav. */
 .page-home .menu-right .menu-item-group--more { display: none; }
 .menu-right .menu-item--more {
   display: inline-flex;
@@ -230,49 +231,9 @@ button { font-family: inherit; cursor: pointer; }
   border-radius: 2px;
   transition: background 0.15s ease;
 }
-.menu-right .menu-item--more:hover,
 .menu-right .menu-item-group--more:hover .menu-item--more,
 .menu-right .menu-item-group--more:focus-within .menu-item--more {
   background: rgba(6, 32, 4, 0.08);
-}
-
-/* Submenu du hamburger : petit volet ancré sous le bouton, aligné à
-   droite. Pas de full-width band comme les autres submenus.
-   Sélecteur sur-spécifié pour vaincre les règles .submenu de base
-   définies plus bas dans le fichier. */
-.menu-right .submenu.submenu--more {
-  position: absolute;
-  top: 100%;
-  left: auto;
-  right: 0;
-  width: max-content;
-  min-width: 180px;
-  padding: clamp(14px, 1.4vw, 20px) clamp(18px, 1.8vw, 24px);
-  background: var(--bg);
-  border: 1px solid rgba(6, 32, 4, 0.12);
-  border-radius: 4px;
-  box-shadow: 0 8px 24px rgba(6, 32, 4, 0.08);
-  clip-path: none;
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(-4px);
-  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
-}
-.menu-right .menu-item-group--more:hover .submenu.submenu--more,
-.menu-right .menu-item-group--more:focus-within .submenu.submenu--more,
-.menu-right .menu-item-group--more.is-open .submenu.submenu--more {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0s;
-}
-.submenu--more .submenu-list {
-  margin-left: 0;
-  gap: clamp(10px, 1vw, 14px);
-}
-.submenu--more .submenu-list a {
-  font-size: clamp(16px, 1.5vw, 20px);
-  font-weight: 500;
 }
 
 .menu-right .menu-item--collapsed { display: none; }

@@ -65,8 +65,8 @@
               <path d="M1 2h16M1 7h16M1 12h16"/>
             </svg>
           </button>
-          <div class="submenu submenu--more" id="more-submenu">
-            <ul class="submenu-list submenu-list--col">
+          <div class="submenu" id="more-submenu">
+            <ul class="submenu-list submenu-list--row">
               <li><a href="clients.html"${aria('clients.html')}>Clients</a></li>
               <li><a href="equipe.html"${aria('equipe.html')}>Équipe</a></li>
               <li><a href="articles.html"${aria('articles.html')}>Articles</a></li>
