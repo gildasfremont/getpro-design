@@ -40,6 +40,52 @@
     max-width: 48ch;
   }
 
+  /* Tabs années en haut : sticky sous la navbar, items gras façon
+     subtabs des pages services. Click → scroll vers la section année. */
+  .year-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(20px, 2.4vw, 40px);
+    position: -webkit-sticky;
+    position: sticky;
+    top: calc(var(--header-h, 60px) - 1px);
+    background: var(--bg);
+    padding-block: clamp(10px, 1.2vw, 16px);
+    z-index: 30;
+    border-bottom: 1px solid rgba(6, 32, 4, 0.15);
+  }
+  .year-tab {
+    font-size: clamp(22px, 2.4vw, 34px);
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    opacity: 0.5;
+    text-decoration: none;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    transition: opacity 0.15s ease;
+  }
+  .year-tab:hover { opacity: 0.8; }
+  .year-tab.is-active { opacity: 1; }
+
+  /* Sections par année : eyebrow + liste d'articles. scroll-margin-top
+     compense la nav sticky + les year-tabs. */
+  .year-section {
+    scroll-margin-top: calc(var(--header-h, 60px) + clamp(60px, 6vw, 90px));
+  }
+  .year-section + .year-section {
+    margin-top: clamp(40px, 5vw, 70px);
+  }
+  .year-eyebrow {
+    font-size: clamp(14px, 1.2vw, 17px);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.5;
+    margin-bottom: clamp(12px, 1.2vw, 18px);
+    font-feature-settings: 'pnum' on, 'lnum' on;
+  }
+
   /* Liste des articles : ligne par article, hairlines top/bottom,
      ratio titre / méta façon journal en ligne. Hover = soulignement du
      titre + lift léger du chevron. */
@@ -113,8 +159,33 @@
     .article-meta { grid-area: meta; flex-direction: row; gap: clamp(8px, 1.2vw, 14px); }
     .article-title { grid-area: title; }
     .article-arrow { grid-area: arrow; align-self: center; }
+    .year-tabs { gap: clamp(14px, 3vw, 24px); }
+    .year-tab { font-size: clamp(20px, 5vw, 28px); }
   }
 </style>
+<script>
+  // Active year tab : observe les sections année et marque le tab
+  // correspondant comme actif quand la section croise la viewport.
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = Array.from(document.querySelectorAll('.year-tab'));
+      const sections = Array.from(document.querySelectorAll('.year-section'));
+      if (!tabs.length || !sections.length) return;
+      const tabFor = (id) => tabs.find(t => t.getAttribute('href') === '#' + id);
+      const setActive = (id) => {
+        tabs.forEach(t => t.classList.toggle('is-active', t.getAttribute('href') === '#' + id));
+      };
+      // Initial : premier
+      setActive(sections[0].id);
+      const io = new IntersectionObserver((entries) => {
+        const visible = entries.filter(e => e.isIntersecting).sort((a, b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top);
+        if (visible.length) setActive(visible[0].target.id);
+      }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+      sections.forEach(s => io.observe(s));
+    });
+  })();
+</script>
 </head>
 <body>
   <main class="home">
@@ -124,111 +195,3214 @@
     <section class="articles section">
       <div class="articles-head">
         <h1 class="page-title">Articles</h1>
-        <p class="articles-lede">Recrutement tech, IA, cybersécurité. Panoramas des métiers émergents et benchmarks des cabinets spécialisés. Écrit par les consultants.</p>
+        <p class="articles-lede">Recrutement tech, IA, cybersécurité. Panoramas des métiers, benchmarks des cabinets, enjeux RH. Écrit par les consultants depuis 2019.</p>
       </div>
 
-      <ul class="articles-list">
+      <nav class="year-tabs" aria-label="Filtrer par année">
+        <a class="year-tab" href="#year-2025" data-year="2025">2025</a>
+        <a class="year-tab" href="#year-2024" data-year="2024">2024</a>
+        <a class="year-tab" href="#year-2023" data-year="2023">2023</a>
+        <a class="year-tab" href="#year-2022" data-year="2022">2022</a>
+        <a class="year-tab" href="#year-2021" data-year="2021">2021</a>
+        <a class="year-tab" href="#year-2020" data-year="2020">2020</a>
+        <a class="year-tab" href="#year-2019" data-year="2019">2019</a>
+      </nav>
 
-        <li class="article-row">
-          <a class="article-link" href="https://www.getpro.co/toolbox/internaliser-externaliser-recrutements-ia-cybersecurite" target="_blank" rel="noopener">
-            <div class="article-meta">
-              <span class="article-cat">Recrutement tech</span>
-              <span class="article-date">28 avril 2025</span>
-            </div>
-            <h2 class="article-title">Faut-il internaliser ou externaliser vos recrutements en IA et cybersécurité&nbsp;?</h2>
-            <span class="article-arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-
-        <li class="article-row">
-          <a class="article-link" href="https://www.getpro.co/toolbox/ai-act-recrutement-guide" target="_blank" rel="noopener">
-            <div class="article-meta">
-              <span class="article-cat">Recrutement tech</span>
-              <span class="article-date">22 avril 2025</span>
-            </div>
-            <h2 class="article-title">AI Act &amp; Recrutement&nbsp;: le guide 2025 pour rester dans les clous</h2>
-            <span class="article-arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-
-        <li class="article-row">
-          <a class="article-link" href="https://www.getpro.co/toolbox/limpact-de-la-legislation-sur-les-postes-en-ia-et-cybersecurite" target="_blank" rel="noopener">
-            <div class="article-meta">
-              <span class="article-cat">Recrutement tech</span>
-              <span class="article-date">14 avril 2025</span>
-            </div>
-            <h2 class="article-title">L'impact de la législation sur les postes en IA et cybersécurité</h2>
-            <span class="article-arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-
-        <li class="article-row">
-          <a class="article-link" href="https://www.getpro.co/toolbox/les-metiers-emergents-en-cybersecurite" target="_blank" rel="noopener">
-            <div class="article-meta">
-              <span class="article-cat">Recrutement tech</span>
-              <span class="article-date">14 avril 2025</span>
-            </div>
-            <h2 class="article-title">Les métiers émergents en cybersécurité</h2>
-            <span class="article-arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-
-        <li class="article-row">
-          <a class="article-link" href="https://www.getpro.co/toolbox/intelligence-artificielle-metiers-cles" target="_blank" rel="noopener">
-            <div class="article-meta">
-              <span class="article-cat">Recrutement tech</span>
-              <span class="article-date">7 avril 2025</span>
-            </div>
-            <h2 class="article-title">Les métiers clés de l'intelligence artificielle&nbsp;: panorama et enjeux</h2>
-            <span class="article-arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-
-        <li class="article-row">
-          <a class="article-link" href="https://www.getpro.co/toolbox/cybersecurite-tendances-enjeux" target="_blank" rel="noopener">
-            <div class="article-meta">
-              <span class="article-cat">Recrutement tech</span>
-              <span class="article-date">7 avril 2025</span>
-            </div>
-            <h2 class="article-title">Cybersécurité&nbsp;: tendances et enjeux en 2025</h2>
-            <span class="article-arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-
-        <li class="article-row">
-          <a class="article-link" href="https://www.getpro.co/toolbox/top-10-des-cabinets-de-recrutement-specialises-dans-les-metiers-du-product" target="_blank" rel="noopener">
-            <div class="article-meta">
-              <span class="article-cat">Nos tops</span>
-              <span class="article-date">31 mars 2025</span>
-            </div>
-            <h2 class="article-title">Top 10 des cabinets de recrutement spécialisés dans les métiers du Product</h2>
-            <span class="article-arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-
-        <li class="article-row">
-          <a class="article-link" href="https://www.getpro.co/toolbox/meilleurs-cabinets-recrutement-metiers-data" target="_blank" rel="noopener">
-            <div class="article-meta">
-              <span class="article-cat">Nos tops</span>
-              <span class="article-date">31 mars 2025</span>
-            </div>
-            <h2 class="article-title">Les meilleurs cabinets de recrutement spécialisés dans les métiers de la Data</h2>
-            <span class="article-arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-
-        <li class="article-row">
-          <a class="article-link" href="https://www.getpro.co/toolbox/cabinet-recrutement-cybersecurite" target="_blank" rel="noopener">
-            <div class="article-meta">
-              <span class="article-cat">Nos tops</span>
-              <span class="article-date">24 mars 2025</span>
-            </div>
-            <h2 class="article-title">Top 10 des cabinets de recrutement spécialisés dans la cybersécurité</h2>
-            <span class="article-arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-
-      </ul>
+        <section class="year-section" id="year-2025">
+          <div class="year-eyebrow">2025</div>
+          <ul class="articles-list">
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/internaliser-externaliser-recrutements-ia-cybersecurite" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">28 avr 2025</span>
+                </div>
+                <h2 class="article-title">Faut-il internaliser ou externaliser vos recrutements en IA et cybersécurité ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/ai-act-recrutement-guide" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">22 avr 2025</span>
+                </div>
+                <h2 class="article-title">AI Act &amp; Recrutement : le guide 2025 pour rester dans les clous</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/limpact-de-la-legislation-sur-les-postes-en-ia-et-cybersecurite" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">14 avr 2025</span>
+                </div>
+                <h2 class="article-title">L'impact de la législation sur les postes en IA et cybersécurité</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/les-metiers-emergents-en-cybersecurite" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">14 avr 2025</span>
+                </div>
+                <h2 class="article-title">Les métiers émergents en cybersécurité</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/intelligence-artificielle-metiers-cles" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">7 avr 2025</span>
+                </div>
+                <h2 class="article-title">Les métiers clés de l'intelligence artificielle : panorama et enjeux</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/cybersecurite-tendances-enjeux" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">7 avr 2025</span>
+                </div>
+                <h2 class="article-title">Cybersécurité : tendances et enjeux en 2025</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-10-des-cabinets-de-recrutement-specialises-dans-les-metiers-du-product" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">31 mars 2025</span>
+                </div>
+                <h2 class="article-title">Top 10 des cabinets de recrutement spécialisés dans les métiers du Product</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/meilleurs-cabinets-recrutement-metiers-data" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">31 mars 2025</span>
+                </div>
+                <h2 class="article-title">Les meilleurs cabinets de recrutement spécialisés dans les métiers de la Data</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/cabinet-recrutement-cybersecurite" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">24 mars 2025</span>
+                </div>
+                <h2 class="article-title">Top 10 des cabinets de recrutement spécialisés dans la cybersécurité</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/meilleurs-cabinets-recrutement-intelligence-artificielle" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">17 mars 2025</span>
+                </div>
+                <h2 class="article-title">Top 10 des cabinets de recrutement spécialisés dans l'IA</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recrutement-les-phrases-qui-font-fuir-les-candidats" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">20 janv 2025</span>
+                </div>
+                <h2 class="article-title">Recrutement : les phrases qui font fuir les candidats</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/manager-transition-generaliste" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">13 janv 2025</span>
+                </div>
+                <h2 class="article-title">Pourquoi les managers de transition sont souvent des « super généralistes »</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/manager-transition-vs-consultant-differences" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">6 janv 2025</span>
+                </div>
+                <h2 class="article-title">Manager de transition vs consultant : quelles différences ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section class="year-section" id="year-2024">
+          <div class="year-eyebrow">2024</div>
+          <ul class="articles-list">
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/cabinet-recruitment-process-outsourcing-choix" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">17 déc 2024</span>
+                </div>
+                <h2 class="article-title">Top des meilleurs cabinets spécialistes du RPO</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recruter-manager-transition" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">17 déc 2024</span>
+                </div>
+                <h2 class="article-title">Recruter un manager de transition : les clefs pour faire le bon choix</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/consultant-recrutement-rpo" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">10 déc 2024</span>
+                </div>
+                <h2 class="article-title">Le profil d'un consultant en recrutement RPO : un expert au service des entreprises</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recruitment-process-outsourcing-apercu-dune-mission" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">9 déc 2024</span>
+                </div>
+                <h2 class="article-title">Recruitment Process Outsourcing : aperçu d'une mission</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/combien-coute-une-prestation-de-rpo" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">2 déc 2024</span>
+                </div>
+                <h2 class="article-title">Combien coûte une prestation de RPO ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/developpeur-kotlin" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">27 nov 2024</span>
+                </div>
+                <h2 class="article-title">Fiche métier : Développeur Kotlin</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/manager-transition-communication-crise" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">26 nov 2024</span>
+                </div>
+                <h2 class="article-title">Avoir recours à un manager de transition pour gérer une communication de crise</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/reussir-conduite-changement-entreprise" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">18 nov 2024</span>
+                </div>
+                <h2 class="article-title">Les étapes clés pour réussir une conduite du changement en entreprise</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/management-transition-marche-se-lancer" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">12 nov 2024</span>
+                </div>
+                <h2 class="article-title">Management de transition : le marché est-il propice pour se lancer ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/contrat-management-transition" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">6 nov 2024</span>
+                </div>
+                <h2 class="article-title">Contrat de management de transition : les éléments essentiels</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/ia-recrutement-applications-avantages-limites" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">6 nov 2024</span>
+                </div>
+                <h2 class="article-title">Comment l'intelligence artificielle transforme le recrutement : applications, avantages et limites</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/conjoncture-incertaine-que-penser-du-rpo" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">29 oct 2024</span>
+                </div>
+                <h2 class="article-title">Conjoncture incertaine : que penser du RPO ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/vp-engineering-fiche-metier" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">29 oct 2024</span>
+                </div>
+                <h2 class="article-title">VP Engineering : Fiche Métier</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/role-manager-transition" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">23 oct 2024</span>
+                </div>
+                <h2 class="article-title">Quel est le rôle d'un manager de transition ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/machine-learning-engineer" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">21 oct 2024</span>
+                </div>
+                <h2 class="article-title">Machine Learning Engineer</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/erreurs-eviter-recruter-dirigeant" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">3 sept 2024</span>
+                </div>
+                <h2 class="article-title">8 erreurs à éviter pour recruter votre dirigeant</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/cout-par-recrutement-que-faut-il-en-penser" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">27 août 2024</span>
+                </div>
+                <h2 class="article-title">Coût par recrutement : que faut-il en penser ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/chatgpt-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">27 août 2024</span>
+                </div>
+                <h2 class="article-title">ChatGPT et recrutement : les meilleurs GPTs à utiliser pour recruter</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/developpeur-vuejs" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">5 août 2024</span>
+                </div>
+                <h2 class="article-title">Développeur Vue.js — Fiche métier</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/developpeur-python" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">29 juil 2024</span>
+                </div>
+                <h2 class="article-title">Développeur Python : un acteur clé du développement logiciel</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/developpeur-go" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">26 juil 2024</span>
+                </div>
+                <h2 class="article-title">Développeur Go : un expert du langage Golang</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/developpeur-react" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">26 juil 2024</span>
+                </div>
+                <h2 class="article-title">Développeur React</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/developpeur-sap" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">26 juil 2024</span>
+                </div>
+                <h2 class="article-title">Développeur SAP</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/sourcing-recrutement-strategie" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">24 juil 2024</span>
+                </div>
+                <h2 class="article-title">Sourcing en recrutement : créer une stratégie de sourcing pertinente</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recrutement-kpi" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">28 juin 2024</span>
+                </div>
+                <h2 class="article-title">Recrutement : quels sont les indicateurs clés ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/la-psychometrie-quest-ce-que-cest" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">27 juin 2024</span>
+                </div>
+                <h2 class="article-title">La psychométrie, qu'est-ce que c'est ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/integration-drh-temps-partage" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">19 juin 2024</span>
+                </div>
+                <h2 class="article-title">Intégration d'un DRH à temps partagé : plan d'action pour les entreprises</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recrutement-formation-conseil-drh-temps-partage" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">12 juin 2024</span>
+                </div>
+                <h2 class="article-title">Recrutement, formation, conseil : les multiples casquettes du DRH à temps partagé</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recruteur-externalise" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">4 juin 2024</span>
+                </div>
+                <h2 class="article-title">Faire appel à un recruteur externalisé, c'est possible ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/cabinet-recrutement-tech-questions" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">21 mai 2024</span>
+                </div>
+                <h2 class="article-title">Cabinet de recrutement tech : on répond à toutes vos questions</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/avantages-drh-temps-partage" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">13 mai 2024</span>
+                </div>
+                <h2 class="article-title">Les avantages du DRH à temps partagé pour les PME</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recrutement-evaluer-potentiel-candidat" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">23 avr 2024</span>
+                </div>
+                <h2 class="article-title">Recrutement : comment évaluer efficacement le potentiel d'un candidat ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/guide-recrutement-startup" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">2 avr 2024</span>
+                </div>
+                <h2 class="article-title">Guide Complet du recrutement en startup en 2024</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-cabinets-recrutement-energie" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">19 mars 2024</span>
+                </div>
+                <h2 class="article-title">Top 10 des cabinets de recrutement spécialisés dans l'énergie</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/accompagnement-recrutement-etapes" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">19 mars 2024</span>
+                </div>
+                <h2 class="article-title">Accompagnement au recrutement : les grandes étapes clés</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-meilleurs-cabinets-management-transition" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">7 févr 2024</span>
+                </div>
+                <h2 class="article-title">Top 10 des cabinets de management de transition</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-cabinets-recrutement-dirigeants" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">30 janv 2024</span>
+                </div>
+                <h2 class="article-title">Top des cabinets de recrutement de cadres et dirigeants</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/guide-complet-recrutement-digital" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">23 janv 2024</span>
+                </div>
+                <h2 class="article-title">Le Guide Complet du Recrutement Digital en 2025</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/drh-transition-avantages" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">16 janv 2024</span>
+                </div>
+                <h2 class="article-title">Pourquoi opter pour un DRH de Transition ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-cabinets-recrutement-commerciaux" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">5 janv 2024</span>
+                </div>
+                <h2 class="article-title">Top 10 des cabinets de recrutement de commerciaux</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-cabinets-recrutement-it" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">1 janv 2024</span>
+                </div>
+                <h2 class="article-title">Top 10 des cabinets de recrutement dans l'IT</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section class="year-section" id="year-2023">
+          <div class="year-eyebrow">2023</div>
+          <ul class="articles-list">
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-cabinets-recrutement-lille" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">20 déc 2023</span>
+                </div>
+                <h2 class="article-title">Top 10 des cabinets de recrutement à Lille</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-10-cabinets-recrutement-nice" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">20 déc 2023</span>
+                </div>
+                <h2 class="article-title">Top 10 des cabinets de recrutement à Nice</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-10-cabinets-recrutement-finance" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">5 déc 2023</span>
+                </div>
+                <h2 class="article-title">Top 10 des meilleurs cabinets de recrutement dans la Finance</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-cabinet-recrutement-marketing" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">21 nov 2023</span>
+                </div>
+                <h2 class="article-title">Top 10 des cabinets de recrutement Marketing</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-10-cabinets-recrutement-banque-assurance" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">14 nov 2023</span>
+                </div>
+                <h2 class="article-title">Top 10 des meilleurs cabinets de recrutement dans le secteur banque et assurance</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/charge-recrutement-missions-formations-salaires" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">31 oct 2023</span>
+                </div>
+                <h2 class="article-title">Chargé de recrutement : missions, formation, salaire</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recrutement-approche-directe-avantages-inconvenients" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">27 oct 2023</span>
+                </div>
+                <h2 class="article-title">Recrutement par approche directe : avantages et inconvénients</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/tout-savoir-recrutement-digital" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">3 oct 2023</span>
+                </div>
+                <h2 class="article-title">Tout savoir sur le recrutement digital</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/meilleurs-cabinets-recrutement-lyon" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">26 sept 2023</span>
+                </div>
+                <h2 class="article-title">Top 8 des meilleurs cabinets de recrutement à Lyon</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/meilleurs-cabinets-recrutement-toulouse" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">19 sept 2023</span>
+                </div>
+                <h2 class="article-title">Top 7 des meilleurs cabinets de recrutement à Toulouse</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/meilleurs-cabinets-recrutement-rennes" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">12 sept 2023</span>
+                </div>
+                <h2 class="article-title">Top 8 des meilleurs cabinets de recrutement à Rennes</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-meilleurs-cabinets-recrutement-montpellier" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">6 sept 2023</span>
+                </div>
+                <h2 class="article-title">Top 8 des meilleurs cabinets de recrutement à Montpellier</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/test-personnalite-ethique-confidentialite" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">29 août 2023</span>
+                </div>
+                <h2 class="article-title">Test de personnalité professionnel : éthique et confidentialité</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/developpeur-jeux-video" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">23 août 2023</span>
+                </div>
+                <h2 class="article-title">Fiche métier : Développeur de jeux vidéos</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/assessment-recrutement-evaluer-vos-candidats" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">21 août 2023</span>
+                </div>
+                <h2 class="article-title">Assessment et recrutement : Comment bien évaluer vos candidats ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-7-cabinets-recrutement-digital-nantes" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">3 août 2023</span>
+                </div>
+                <h2 class="article-title">Top 7 des meilleurs cabinets de recrutement à Nantes</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/drh-conge-maternite-solutions" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">2 août 2023</span>
+                </div>
+                <h2 class="article-title">DRH en congé maternité : Quelles solutions s'offrent à vous ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recruter-head-of-competences-leadership" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">26 juil 2023</span>
+                </div>
+                <h2 class="article-title">Recruter un head of : comment évaluer les compétences de leadership d'un candidat ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/stack-les-plus-recherchees-2023" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">19 juil 2023</span>
+                </div>
+                <h2 class="article-title">Les stacks les plus recherchées dans le recrutement IT en 2023</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-recruter-et-fideliser-profils-it" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">12 juil 2023</span>
+                </div>
+                <h2 class="article-title">Comment recruter et fidéliser les profils IT ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/evaluation-psychometriques-recrutement-dirigeant" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">4 juil 2023</span>
+                </div>
+                <h2 class="article-title">Le rôle des évaluations psychométriques dans le recrutement d'un dirigeant</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/les-defis-de-la-chasse-de-tete" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">29 juin 2023</span>
+                </div>
+                <h2 class="article-title">Les défis de la chasse de tête</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/qu-est-ce-que-la-chasse-de-tete" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">19 juin 2023</span>
+                </div>
+                <h2 class="article-title">Qu'est-ce que la chasse de tête ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/erreurs-a-eviter-recrutement-dirigeants" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">19 juin 2023</span>
+                </div>
+                <h2 class="article-title">Les erreurs à éviter lors du processus de recrutement d'un dirigeant</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/chasse-de-tetes-recrutement-dirigeants" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">12 juin 2023</span>
+                </div>
+                <h2 class="article-title">Pourquoi faire appel à un cabinet de recrutement dans le cadre du recrutement d'un dirigeant</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/outils-recrutement-digital" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">31 mai 2023</span>
+                </div>
+                <h2 class="article-title">Les outils du recrutement digital</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/strategie-recrutement-digital" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">31 mai 2023</span>
+                </div>
+                <h2 class="article-title">Comment optimiser votre stratégie de recrutement digital ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recruter-soft-skills" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">31 mai 2023</span>
+                </div>
+                <h2 class="article-title">Recruter via les soft skills, une fausse bonne idée ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/13-question-developpeur-entretien" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">29 mai 2023</span>
+                </div>
+                <h2 class="article-title">13 questions à poser à un développeur en entretien</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-bien-utiliser-un-test-de-personnalite" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">17 mai 2023</span>
+                </div>
+                <h2 class="article-title">Comment (bien) utiliser un test de personnalité pour recruter ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/reduire-time-to-fill" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">3 mai 2023</span>
+                </div>
+                <h2 class="article-title">Les clefs pour réduire votre time to fill</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recrutement-tech-optimiser-experience-candidat" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">28 avr 2023</span>
+                </div>
+                <h2 class="article-title">Comment optimiser votre expérience candidat ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/licenciements-tech-stop-ou-encore" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">18 avr 2023</span>
+                </div>
+                <h2 class="article-title">Licenciements dans le monde de la tech : stop ou encore ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/crise-tech-cabinet-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">13 avr 2023</span>
+                </div>
+                <h2 class="article-title">Crise(s) de la tech dans l'histoire : quelle place pour les cabinets de recrutement ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-7-meilleurs-cabinets-recrutement-digital-marseille" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">5 avr 2023</span>
+                </div>
+                <h2 class="article-title">Top 7 des meilleurs cabinets de recrutement digital à Marseille</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/passer-par-un-cabinet-recrutement-tech" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">4 avr 2023</span>
+                </div>
+                <h2 class="article-title">Les bonnes raisons de passer par un cabinet de recrutement tech</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/evaluation-candidats-soft-skills" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">28 mars 2023</span>
+                </div>
+                <h2 class="article-title">Quelles sont les meilleures solutions d'évaluation des soft skills ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/8-meilleurs-podcasts-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">22 mars 2023</span>
+                </div>
+                <h2 class="article-title">Les 8 meilleurs podcasts qui parlent de recrutement</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/frameworks-frontend" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">14 mars 2023</span>
+                </div>
+                <h2 class="article-title">Quels sont les meilleurs frameworks front-end en 2023 ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/licenciement-rupture-conventionnelle" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">14 mars 2023</span>
+                </div>
+                <h2 class="article-title">Licenciement économique ou rupture conventionnelle : avantages et inconvénients ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/lassitude-au-travail-comment-l-eviter" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">14 mars 2023</span>
+                </div>
+                <h2 class="article-title">Éviter la lassitude au travail : comment créer des parcours d'évolution pour vos collaborateurs ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/pourquoi-entretien-fit" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">2 mars 2023</span>
+                </div>
+                <h2 class="article-title">Pourquoi faire un entretien de fit ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/vocabulaire-metiers-product" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">28 févr 2023</span>
+                </div>
+                <h2 class="article-title">Comprendre le vocabulaire des métiers du Product</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/augmenter-chances-attirer-chasseurs-tete" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Comment augmenter vos chances de vous faire chasser ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-tourner-la-page-de-votre-ancien-emploi" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Comment tourner la page de votre ancien emploi ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comprendre-le-syndrome-du-scarabee" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Comprendre le syndrome du scarabée</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/encourager-une-mobilite-douce-en-entreprise" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Pourquoi encourager une mobilité douce en entreprise ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/etat-des-lieux-des-inegalites-hommes-femmes-en-2022" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">État des lieux des inégalités hommes femmes en 2022</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-conserver-un-bon-equilibre-vie-pro-vie-perso" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Comment conserver un bon équilibre vie pro / vie perso ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/tout-savoir-sur-le-cse" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Tout savoir sur le CSE</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-et-quand-relancer-un-recruteur-apres-un-entretien" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Comment (et quand) relancer un recruteur après un entretien ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/droit-a-la-deconnexion-comment-rester-dans-les-clous" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Droit à la déconnexion : comment rester dans les clous ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-dematerialiser-ses-documents-rh" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Comment dématérialiser ses documents RH ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/orientation-comment-bien-choisir-son-ecole" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Orientation : comment bien choisir son école ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/tout-savoir-sur-le-recrutement-dun-alternant" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Tout savoir sur le recrutement d'un alternant !</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/social-learning-quest-ce-que-cest" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Social Learning : qu'est-ce que c'est ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/mix-generationnel-entreprises" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Les avantages d'avoir un mix générationnel au sein de votre entreprise</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/creche-entreprise" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Les avantages d'une crèche d'entreprise</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-faire-face-a-la-penurie-de-competences" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Comment faire face à la pénurie de compétences ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/transformer-stage-cdi" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">24 févr 2023</span>
+                </div>
+                <h2 class="article-title">Comment transformer son stage en CDI ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/plus-efficace-au-travail" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">21 févr 2023</span>
+                </div>
+                <h2 class="article-title">Comment devenir plus efficace pendant son temps de travail ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/reconversion-professionnelle-changer-de-vie" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">20 févr 2023</span>
+                </div>
+                <h2 class="article-title">Reconversion professionnelle : Ils ont décidé de changer de vie</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-reussir-votre-reconversion-professionnelle" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">20 févr 2023</span>
+                </div>
+                <h2 class="article-title">Comment réussir votre reconversion professionnelle ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/cheques-vacances-avantage-salaries-entreprises" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">20 févr 2023</span>
+                </div>
+                <h2 class="article-title">Chèques-Vacances : un avantage pour les salariés et l'entreprise</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/vaincre-syndrome-imposteur" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">20 févr 2023</span>
+                </div>
+                <h2 class="article-title">Syndrome de l'imposteur : comment y mettre un terme</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/flex-office-la-nouvelle-norme" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">20 févr 2023</span>
+                </div>
+                <h2 class="article-title">Flex office, la nouvelle norme ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/esprit-start-up" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">20 févr 2023</span>
+                </div>
+                <h2 class="article-title">Avez-vous l'esprit start-up ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/rse-actions-entreprises" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">17 févr 2023</span>
+                </div>
+                <h2 class="article-title">RSE : 10 actions concrètes à mettre en place</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/contrat-expatriation" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">17 févr 2023</span>
+                </div>
+                <h2 class="article-title">Le contrat d'expatriation pour les salariés de A à Z</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/le-syndrome-dhubris-decryptage" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">10 févr 2023</span>
+                </div>
+                <h2 class="article-title">Le syndrome d'hubris : décryptage</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/rediger-annonce-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">10 févr 2023</span>
+                </div>
+                <h2 class="article-title">Rédiger une annonce de recrutement optimale : tous nos conseils</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/5-raisons-embaucher-candidat-reconversion-professionnelle" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">9 févr 2023</span>
+                </div>
+                <h2 class="article-title">5 raisons d'embaucher un candidat en reconversion professionnelle</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/pourquoi-cdi-contrats" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">9 févr 2023</span>
+                </div>
+                <h2 class="article-title">Pourquoi le CDI ne fait plus autant rêver qu'avant ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/valoriser-experiences-entretien" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">9 févr 2023</span>
+                </div>
+                <h2 class="article-title">Comment valoriser vos expériences en entretien ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/syndrome-imposteur" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">9 févr 2023</span>
+                </div>
+                <h2 class="article-title">Syndrome de l'imposteur : le comprendre et le déceler</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/quete-sens-travail" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">2 févr 2023</span>
+                </div>
+                <h2 class="article-title">La quête du sens au travail</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/travailler-salarie-troubles-psychiques" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">2 févr 2023</span>
+                </div>
+                <h2 class="article-title">Travailler avec un salarié atteint de troubles psychiques</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/les-rh-mal-aimes" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">20 janv 2023</span>
+                </div>
+                <h2 class="article-title">Les RH : les grands mal-aimés des entreprises ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/turnover-entreprise" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">20 janv 2023</span>
+                </div>
+                <h2 class="article-title">Comment limiter le turnover en entreprise ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/association-en-tant-qu-etudiant" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">20 janv 2023</span>
+                </div>
+                <h2 class="article-title">Insertion professionnelle : s'engager dans une association en tant qu'étudiant</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recruter-senior-start-up" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">20 janv 2023</span>
+                </div>
+                <h2 class="article-title">Pourquoi recruter des seniors pour votre start-up ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/no-code-rh" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">17 janv 2023</span>
+                </div>
+                <h2 class="article-title">Le No-Code : quelle utilité pour les RH ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/digital-nomad" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">17 janv 2023</span>
+                </div>
+                <h2 class="article-title">Digital nomad : une nouvelle tendance ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/alternance-allier-travail-etudes" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">17 janv 2023</span>
+                </div>
+                <h2 class="article-title">Alternance : 4 conseils pour allier travail et études</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/work-couples-travail" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">17 janv 2023</span>
+                </div>
+                <h2 class="article-title">Amitié au travail : le phénomène des « work couples »</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/metiers-tech-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">17 janv 2023</span>
+                </div>
+                <h2 class="article-title">Les métiers tech qui recrutent le plus en 2023</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/people-analytics" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">12 janv 2023</span>
+                </div>
+                <h2 class="article-title">People Analytics : la data, le nouveau visage des ressources humaines</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/conges-illimites" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">11 janv 2023</span>
+                </div>
+                <h2 class="article-title">Congés illimités : révolution ou illusion ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/entretiens-dembauche-physiques" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">11 janv 2023</span>
+                </div>
+                <h2 class="article-title">Vers la fin des entretiens d'embauche en physique ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/salariees-enceintes-quels-sont-vos-droits" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">10 janv 2023</span>
+                </div>
+                <h2 class="article-title">Salariées enceintes : quels sont vos droits ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/reussir-son-cv-conseils" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">10 janv 2023</span>
+                </div>
+                <h2 class="article-title">CV : 7 conseils pour taper dans l'oeil des recruteurs</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/burnout-causes-et-consequences" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">10 janv 2023</span>
+                </div>
+                <h2 class="article-title">Burn-out : causes et conséquences</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/gestion-de-conflit-role-manager" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">10 janv 2023</span>
+                </div>
+                <h2 class="article-title">Gestion de conflit en entreprise : le rôle du manager</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/choisir-votre-sirh" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">10 janv 2023</span>
+                </div>
+                <h2 class="article-title">5 critères clés pour choisir votre SIRH</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/burnout-comment-sen-sortir" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">6 janv 2023</span>
+                </div>
+                <h2 class="article-title">Burnout : Comment s'en sortir ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/salaire-en-entretien" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">6 janv 2023</span>
+                </div>
+                <h2 class="article-title">Comment aborder la question du salaire en entretien</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/onboarding-accueillir-une-nouvelle-recrue" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">6 janv 2023</span>
+                </div>
+                <h2 class="article-title">Onboarding : bien accueillir une nouvelle recrue en 10 étapes</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/transidentite-au-travail" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">6 janv 2023</span>
+                </div>
+                <h2 class="article-title">Comment bien accompagner la transidentité au travail ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/le-rgpd-en-2022" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">6 janv 2023</span>
+                </div>
+                <h2 class="article-title">Où en est-on sur le RGPD en 2023 ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-7-cabinets-recrutement-digital-bordeaux" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">5 janv 2023</span>
+                </div>
+                <h2 class="article-title">Top 7 des meilleurs cabinets de recrutement digital à Bordeaux</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/concilier-vie-etudiante-et-entrepreneuriale" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">5 janv 2023</span>
+                </div>
+                <h2 class="article-title">Témoignage : Comment concilier vie étudiante et vie entrepreneuriale</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/reussir-entretien-annuel-evaluation" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">5 janv 2023</span>
+                </div>
+                <h2 class="article-title">Candidats : Comment réussir son entretien annuel d'évaluation ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/conseils-reussir-entretien-embauche" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">5 janv 2023</span>
+                </div>
+                <h2 class="article-title">7 conseils pour réussir votre entretien d'embauche</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/faire-un-vie" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">3 janv 2023</span>
+                </div>
+                <h2 class="article-title">VIE : Tout savoir le volontariat international en entreprise</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/booster-sa-marque-employeur" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">3 janv 2023</span>
+                </div>
+                <h2 class="article-title">Comment booster sa marque employeur ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/conge-parentalite" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">3 janv 2023</span>
+                </div>
+                <h2 class="article-title">Égalité en entreprise : Osez le congé parentalité</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/manager-en-full-remote" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">3 janv 2023</span>
+                </div>
+                <h2 class="article-title">Comment bien manager en full remote ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/gestion-conflit-entreprise-quest-ce-que-cest" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">3 janv 2023</span>
+                </div>
+                <h2 class="article-title">Gestion de conflit en entreprise : de quoi s'agit-il ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/semaine-4-jours" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">3 janv 2023</span>
+                </div>
+                <h2 class="article-title">Semaine de 4 jours : bonne ou mauvaise idée ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section class="year-section" id="year-2022">
+          <div class="year-eyebrow">2022</div>
+          <ul class="articles-list">
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/signer-un-contrat-de-travail" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">30 déc 2022</span>
+                </div>
+                <h2 class="article-title">Ce qu'il faut savoir avant de signer un contrat de travail</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top-8-cabinets-recrutement-paris" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos tops</span>
+                  <span class="article-date">29 déc 2022</span>
+                </div>
+                <h2 class="article-title">Top 8 des meilleurs cabinets de recrutement digital à Paris</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/conge-menstruel-en-entreprise" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">28 déc 2022</span>
+                </div>
+                <h2 class="article-title">Congé menstruel en entreprise : et si on en parlait ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/marche-emploi-developpement-mobile" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">28 déc 2022</span>
+                </div>
+                <h2 class="article-title">Le marché de l'emploi pour le développement mobile en 2023</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/etudiants-comment-trouver-un-stage" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">28 déc 2022</span>
+                </div>
+                <h2 class="article-title">Étudiants : Comment trouver un stage ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/7-questions-accepter-un-emploi" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">28 déc 2022</span>
+                </div>
+                <h2 class="article-title">7 questions à se poser avant d'accepter un emploi</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/harcelement-au-travail-prevenir-agir" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">28 déc 2022</span>
+                </div>
+                <h2 class="article-title">Harcèlement au travail : Comment prévenir et agir ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/optimiser-profil-linkedin" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">28 déc 2022</span>
+                </div>
+                <h2 class="article-title">Comment optimiser son profil Linkedin ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recrutement-de-demain" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">28 déc 2022</span>
+                </div>
+                <h2 class="article-title">À quoi ressemble le recrutement de demain ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/remote-impact-valeur-travail" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">28 déc 2022</span>
+                </div>
+                <h2 class="article-title">Remote : Quel impact sur la valeur travail</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/entretien-embauche-collectif" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">28 déc 2022</span>
+                </div>
+                <h2 class="article-title">Comment réussir son entretien d'embauche collectif ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/femmes-entreprises-tech" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">26 déc 2022</span>
+                </div>
+                <h2 class="article-title">Quelle place pour les femmes dans les entreprises tech ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/garder-le-cap-recherche-emploi" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">23 déc 2022</span>
+                </div>
+                <h2 class="article-title">Comment garder le cap pendant votre recherche d'emploi ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/lettre-de-motivation-obligatoire" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">23 déc 2022</span>
+                </div>
+                <h2 class="article-title">La lettre de motivation est-elle encore vraiment obligatoire ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/6-questions-sur-la-psychometrie" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">23 déc 2022</span>
+                </div>
+                <h2 class="article-title">6 questions que vous vous posez sur la psychométrie</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/vae-validation-acquis-experience" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">15 déc 2022</span>
+                </div>
+                <h2 class="article-title">Tout savoir sur la validation des acquis de l'expérience (VAE)</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/emploi-handicap-integration-travail" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">15 déc 2022</span>
+                </div>
+                <h2 class="article-title">Emploi et handicap : comment bien intégrer un collaborateur en situation de handicap ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/pre-onboarding-preavis" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">13 déc 2022</span>
+                </div>
+                <h2 class="article-title">Pré onboarding : gardez le lien avec vos candidats pendant leur préavis</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/reussir-entretien-embauche" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">9 déc 2022</span>
+                </div>
+                <h2 class="article-title">Comment réussir son entretien d'embauche (au talent) ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recruter-collaborateurs-etrangers" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">8 déc 2022</span>
+                </div>
+                <h2 class="article-title">Pourquoi et comment embaucher des collaborateurs étrangers</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/alternatives-linkedin-pour-recruter" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">8 déc 2022</span>
+                </div>
+                <h2 class="article-title">Les meilleures alternatives à Linkedin pour recruter</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/devenir-consultant-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">2 déc 2022</span>
+                </div>
+                <h2 class="article-title">Comment devenir consultant en recrutement ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/annoncer-depart-collaborateur" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">1 déc 2022</span>
+                </div>
+                <h2 class="article-title">Comment annoncer le départ d'un collaborateur</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/gepp" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Enjeux RH</span>
+                  <span class="article-date">1 déc 2022</span>
+                </div>
+                <h2 class="article-title">Comment mettre en place une GEPP ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/avantages-recrutement-externe" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">25 nov 2022</span>
+                </div>
+                <h2 class="article-title">Le recrutement externe : quels sont les avantages</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/rpo-recrutement-3-0" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">15 nov 2022</span>
+                </div>
+                <h2 class="article-title">RPO : le recrutement 3.0</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/executive-search" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">10 nov 2022</span>
+                </div>
+                <h2 class="article-title">Executive Search : Comment réussir le recrutement de dirigeants ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/difference-test-de-personnalite-test-psychometrique" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">3 nov 2022</span>
+                </div>
+                <h2 class="article-title">Quelles différences entre un test de personnalité et un test psychométrique ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recrutement-faut-il-se-fier-aux-tests-de-personnalite" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">26 oct 2022</span>
+                </div>
+                <h2 class="article-title">Recrutement : faut-il se fier aux tests de personnalité ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/utiliser-linkedin-recruiter" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">17 oct 2022</span>
+                </div>
+                <h2 class="article-title">Comment utiliser LinkedIn Recruiter de façon optimale ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/grande-demission-impact-tech" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">13 oct 2022</span>
+                </div>
+                <h2 class="article-title">Grande démission : quel impact sur le recrutement tech en France ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/construire-cas-pratique" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">6 oct 2022</span>
+                </div>
+                <h2 class="article-title">Comment construire un cas pratique ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/mad-skills" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">29 sept 2022</span>
+                </div>
+                <h2 class="article-title">Les mad skills, qu'est-ce que c'est ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/business-developer-zoom-sur-un-metier-meconsidere" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">22 sept 2022</span>
+                </div>
+                <h2 class="article-title">Business developer : Zoom sur un métier méconsidéré</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/meilleures-formations-rh-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">8 sept 2022</span>
+                </div>
+                <h2 class="article-title">Quelles sont les meilleures formations RH et recrutement ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/product-marketing-manager" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">8 sept 2022</span>
+                </div>
+                <h2 class="article-title">Un Product Marketing Manager, qu'est-ce que c'est ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/software-craftsmanship" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">26 août 2022</span>
+                </div>
+                <h2 class="article-title">Software Craftsmanship, quesaco ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/construire-grille-salaires" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">22 août 2022</span>
+                </div>
+                <h2 class="article-title">Comment construire une grille de salaires ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/les-metiers-du-developpement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">4 août 2022</span>
+                </div>
+                <h2 class="article-title">Tout ce qu'il faut savoir sur les métiers du développement</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/cooptation" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">29 juil 2022</span>
+                </div>
+                <h2 class="article-title">Que faut-il penser de la cooptation ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/7-questions-rpo" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">21 juil 2022</span>
+                </div>
+                <h2 class="article-title">7 Questions sur le RPO</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/concevoir-test-personnalite" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">15 juil 2022</span>
+                </div>
+                <h2 class="article-title">Psychométrie : comment concevoir un test de personnalité ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/idees-recues-chasse-de-tete" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">7 juil 2022</span>
+                </div>
+                <h2 class="article-title">La mauvaise réputation des cabinets de chasse de tête : mythe ou réalité ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/formations-comment-sy-retrouver" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">4 juil 2022</span>
+                </div>
+                <h2 class="article-title">Les formations, comment s'y retrouver ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/hpi" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">27 juin 2022</span>
+                </div>
+                <h2 class="article-title">Le recrutement des profils HPI</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/rpo-cle-apres-covid" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">16 juin 2022</span>
+                </div>
+                <h2 class="article-title">Recruitment Process Outsourcing : la clé de l'après-covid</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/clefs-entretien" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">2 juin 2022</span>
+                </div>
+                <h2 class="article-title">Les clés pour mener un (super) entretien d'embauche</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/ghosting-candidat" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">30 mai 2022</span>
+                </div>
+                <h2 class="article-title">Ghosting, no show dans le recrutement : quand les candidats se font désirer</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/methode-star" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">19 mai 2022</span>
+                </div>
+                <h2 class="article-title">La méthode STAR</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recrutement-it" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">12 mai 2022</span>
+                </div>
+                <h2 class="article-title">Les 3 grandes spécificités du recrutement dans l'IT</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/growth-hacking" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">5 mai 2022</span>
+                </div>
+                <h2 class="article-title">Growth Hacking : de quoi parle-t-on exactement ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recrutement-digital" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">28 avr 2022</span>
+                </div>
+                <h2 class="article-title">Comment le digital a-t-il fait évoluer le recrutement ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/generalistes-specialistes-recruter" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">26 avr 2022</span>
+                </div>
+                <h2 class="article-title">Spécialistes ou généralistes, lesquels recruter ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/7-canaux-pour-recruter-developpeurs" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">26 avr 2022</span>
+                </div>
+                <h2 class="article-title">7 canaux pour recruter des (bons) développeurs</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/prise-de-references-entretien-candidat" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">26 avr 2022</span>
+                </div>
+                <h2 class="article-title">Entretien candidat : comment effectuer une bonne prise de références ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/deux-defis-rh-post-levee-de-fonds" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">26 avr 2022</span>
+                </div>
+                <h2 class="article-title">Trois défis RH post levée de fonds et comment les surmonter</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/ia-code" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">25 avr 2022</span>
+                </div>
+                <h2 class="article-title">L'IA et le code : le futur du développement ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/travail-talent-partner-rpo" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">7 avr 2022</span>
+                </div>
+                <h2 class="article-title">Un Talent Partner RPO, qu'est-ce que c'est ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/les-metiers-et-formations-de-la-blockchain-en-france" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">1 avr 2022</span>
+                </div>
+                <h2 class="article-title">La blockchain en France en 2022 : métiers et formations</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/cout-recrutement-rate" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">24 mars 2022</span>
+                </div>
+                <h2 class="article-title">Le coût d'un recrutement raté (ça pique)</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/top10-softskills-entreprise" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">18 mars 2022</span>
+                </div>
+                <h2 class="article-title">Les 10 soft skills les plus recherchées en entreprises</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recruter-quand-pas-geek" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">10 mars 2022</span>
+                </div>
+                <h2 class="article-title">Comment recruter des profils tech quand on n'est pas « geek » ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/infrastructure-as-code" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">2 mars 2022</span>
+                </div>
+                <h2 class="article-title">Infrastructure as Code : L'automatisation au service de votre entreprise</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/bspce" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">17 févr 2022</span>
+                </div>
+                <h2 class="article-title">Tout savoir sur les BSPCE</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/next40-ft120-les-dessous-de-la-generation-2022" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">11 févr 2022</span>
+                </div>
+                <h2 class="article-title">Next40, French Tech 120 : les dessous de la génération 2022</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/les-cles-pour-bien-utiliser-un-referentiel-de-competences" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">1 févr 2022</span>
+                </div>
+                <h2 class="article-title">Les clés pour bien utiliser un référentiel de compétences</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/sysadmin" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">28 janv 2022</span>
+                </div>
+                <h2 class="article-title">Sys Admin</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/data-engineer-fiche-metier" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">21 janv 2022</span>
+                </div>
+                <h2 class="article-title">Data Engineer : zoom sur un métier encore méconnu</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/meilleur-moment-dispositif-rpo" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">10 janv 2022</span>
+                </div>
+                <h2 class="article-title">À quel moment déployer un dispositif de RPO ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/metiers-produit-tout-savoir-sur-les-metiers-indispensable-a-toute-equipe-product" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">5 janv 2022</span>
+                </div>
+                <h2 class="article-title">Métiers Produit : tout savoir sur les métiers indispensables</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section class="year-section" id="year-2021">
+          <div class="year-eyebrow">2021</div>
+          <ul class="articles-list">
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/levee-de-fonds-novembre-2021" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">22 déc 2021</span>
+                </div>
+                <h2 class="article-title">L'actualité des levées de fonds de Novembre 2021</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comprendre-metiers-commerciaux-sales" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">16 déc 2021</span>
+                </div>
+                <h2 class="article-title">SDR, BDR, KAM : métiers commerciaux, qui fait quoi ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/tout-savoir-sur-les-metiers-de-la-data" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">13 déc 2021</span>
+                </div>
+                <h2 class="article-title">Tout savoir sur les métiers de la Data</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/tout-savoir-sur-les-metiers-du-marketing" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">2 déc 2021</span>
+                </div>
+                <h2 class="article-title">Tout savoir sur les métiers du marketing</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/developpeurs-comment-reussir-votre-veille-technologique" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">25 nov 2021</span>
+                </div>
+                <h2 class="article-title">Développeurs : comment réussir votre veille technologique ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/rpo-allie-processus-rh" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">18 nov 2021</span>
+                </div>
+                <h2 class="article-title">RPO : le meilleur allié de vos processus RH</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/levees-fonds-octobre" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">9 nov 2021</span>
+                </div>
+                <h2 class="article-title">L'actualité des levées de fonds Octobre 2021</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/tout-comprendre-sur-les-differents-types-de-cabinets-de-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">5 nov 2021</span>
+                </div>
+                <h2 class="article-title">Tout comprendre sur les différents types de cabinets de recrutement</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-faire-de-la-rse-un-atout-pour-vos-recrutements" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">27 oct 2021</span>
+                </div>
+                <h2 class="article-title">Comment faire de la RSE un atout pour vos recrutements ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/questions-interdites-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">19 oct 2021</span>
+                </div>
+                <h2 class="article-title">Recruteurs : les questions interdites lors d'un entretien de recrutement</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recrutement-volumique-rpo" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">14 oct 2021</span>
+                </div>
+                <h2 class="article-title">Recruter 100 personnes en 1 an, mission impossible ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/deepword-quesaco" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">4 oct 2021</span>
+                </div>
+                <h2 class="article-title">Deepwork, quesaco ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/soft-skills-quand-la-science-eclaire-le-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">1 oct 2021</span>
+                </div>
+                <h2 class="article-title">Soft skills : quand la science éclaire le recrutement</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/talent-acquisition-manager" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">21 sept 2021</span>
+                </div>
+                <h2 class="article-title">Talent Acquisition Manager en cabinet de chasse vs recruteur en RPO</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/reussir-sourcing-linkedin" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">14 sept 2021</span>
+                </div>
+                <h2 class="article-title">Comment réussir son sourcing sur LinkedIn ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/fideliser-collaborateurs" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">8 sept 2021</span>
+                </div>
+                <h2 class="article-title">5 leviers pour fidéliser vos collaborateurs</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recruteurs-nouveaux-developpeurs" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">30 août 2021</span>
+                </div>
+                <h2 class="article-title">Et si les recruteurs étaient les nouveaux développeurs ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/langage-web-a-la-mode" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">23 août 2021</span>
+                </div>
+                <h2 class="article-title">Développeurs web : les langages à la mode</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/rediger-message-approche" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">11 août 2021</span>
+                </div>
+                <h2 class="article-title">Recruteur tech : Comment rédiger un bon message d'approche ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/relation-cabinet-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">9 août 2021</span>
+                </div>
+                <h2 class="article-title">Comment optimiser votre relation avec un cabinet de recrutement ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/entretien-structure" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">2 août 2021</span>
+                </div>
+                <h2 class="article-title">Entretien structuré : l'entretien d'embauche 2.0</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/rpo-alternant" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">27 juil 2021</span>
+                </div>
+                <h2 class="article-title">Le RPO : la clé pour réussir votre campagne d'alternants ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/devenir-developpeur-meilleur-ecole-developpement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">22 juil 2021</span>
+                </div>
+                <h2 class="article-title">Quelle est la meilleure école de développement ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/chasseur-de-tete-tout-savoir-sur-approche-directe" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">30 juin 2021</span>
+                </div>
+                <h2 class="article-title">Chasseurs de tête : tout savoir sur l'approche directe</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/methodes-agiles-comment-sy-retrouver" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">28 juin 2021</span>
+                </div>
+                <h2 class="article-title">Méthodes agiles : Comment s'y retrouver ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/tout-savoir-sur-deno-le-runtime-javascript-qui-monte" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">28 juin 2021</span>
+                </div>
+                <h2 class="article-title">Tout savoir sur Deno, le runtime Javascript qui monte</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/culture-fit-et-recrutement-sappuyer-sur-les-valeurs-de-votre-entreprise" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">23 juin 2021</span>
+                </div>
+                <h2 class="article-title">Culture fit et recrutement : s'appuyer sur les valeurs de votre entreprise</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recruitment-process-outsourcing-avenir-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">15 juin 2021</span>
+                </div>
+                <h2 class="article-title">Et si le Recruitment Process Outsourcing était l'avenir du recrutement ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/expliquer-succes-rust" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">2 juin 2021</span>
+                </div>
+                <h2 class="article-title">Comment expliquer le succès de Rust ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/lead-developer" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">26 mai 2021</span>
+                </div>
+                <h2 class="article-title">Lead Developer</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/promesse-embauche-modele" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">20 mai 2021</span>
+                </div>
+                <h2 class="article-title">Tout savoir sur la promesse d'embauche modèle</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/no-code-low-code-que-faut-il-en-penser" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">10 mai 2021</span>
+                </div>
+                <h2 class="article-title">No Code, Low code : que faut-il en penser ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/vocabulaire-start-up-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">6 mai 2021</span>
+                </div>
+                <h2 class="article-title">Petit glossaire du vocabulaire en startup</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/ux-ui" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">5 mai 2021</span>
+                </div>
+                <h2 class="article-title">UI, UX, quesaco ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/choix-consultant-rpo" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">28 avr 2021</span>
+                </div>
+                <h2 class="article-title">Un bon consultant RPO, qu'est-ce que c'est ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/difficulte-recruter-commerciaux" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">20 avr 2021</span>
+                </div>
+                <h2 class="article-title">Pourquoi est-ce si compliqué de recruter des Sales pour une entreprise tech ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/scrum-master" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">16 avr 2021</span>
+                </div>
+                <h2 class="article-title">Scrum Master</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/cto" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">8 avr 2021</span>
+                </div>
+                <h2 class="article-title">Chief Technical Officer</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/concevoir-processus-de-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">31 mars 2021</span>
+                </div>
+                <h2 class="article-title">Comment concevoir un processus de recrutement ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/developpeur-frontend-ou-backend" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">25 mars 2021</span>
+                </div>
+                <h2 class="article-title">Développeur Front-end ou Backend : en finir avec les doutes</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/commencer-rpo-externalisation-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">18 mars 2021</span>
+                </div>
+                <h2 class="article-title">Externalisation des recrutements : les clés pour bien commencer votre dispositif RPO</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/startup-early-stage" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">10 mars 2021</span>
+                </div>
+                <h2 class="article-title">Startups early stage : faire appel à des chasseurs de talents comme GetPro, une drôle d'idée ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/developpeur-node-js" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">5 mars 2021</span>
+                </div>
+                <h2 class="article-title">Développeur Node.js</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recruter-profils-rares-et-en-tension" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">25 févr 2021</span>
+                </div>
+                <h2 class="article-title">Recrutement tech : recruter des profils rares et en tension</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recrutement-c-level" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">17 févr 2021</span>
+                </div>
+                <h2 class="article-title">Les clés pour recruter un C-Level</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/qa-engineer" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">9 févr 2021</span>
+                </div>
+                <h2 class="article-title">QA Engineer</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/recrutement-tech-specificites" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">3 févr 2021</span>
+                </div>
+                <h2 class="article-title">Recrutement tech : plongée au cœur du réacteur !</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-convaincre-un-candidat-que-vous-voulez-vraiment" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">28 janv 2021</span>
+                </div>
+                <h2 class="article-title">Comment convaincre un candidat que vous voulez vraiment ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/psychometrie-interet-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">20 janv 2021</span>
+                </div>
+                <h2 class="article-title">Psychométrie : quel intérêt pour vos recrutements</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/quel-est-le-meilleur-classement-des-ecoles-de-commerce" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">13 janv 2021</span>
+                </div>
+                <h2 class="article-title">Quel est le meilleur classement des écoles de commerce ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/pourquoi-faire-appel-chasseurs-de-tete" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recrutement tech</span>
+                  <span class="article-date">5 janv 2021</span>
+                </div>
+                <h2 class="article-title">Pourquoi faire appel à des chasseurs de tête pour vos recrutements tech ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section class="year-section" id="year-2020">
+          <div class="year-eyebrow">2020</div>
+          <ul class="articles-list">
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/remuneration-variable-avantages-inconvenients" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">23 déc 2020</span>
+                </div>
+                <h2 class="article-title">Rémunération variable, que faut-il en penser ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/quels-sont-les-meilleurs-tests-de-personnalite" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">17 déc 2020</span>
+                </div>
+                <h2 class="article-title">Quels sont les meilleurs tests de personnalité ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/ingenieur-devops" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">10 déc 2020</span>
+                </div>
+                <h2 class="article-title">Le métier d'Ingénieur Devops : ce qu'il faut savoir</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/reussir-onboarding-distance" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">3 déc 2020</span>
+                </div>
+                <h2 class="article-title">Onboarding à distance : comment le réussir ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-structurer-un-processus-de-recrutement-en-plein-confinement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">27 nov 2020</span>
+                </div>
+                <h2 class="article-title">Comment structurer un processus de recrutement en plein confinement ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/teletravail-obligatoire-conseils" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">19 nov 2020</span>
+                </div>
+                <h2 class="article-title">Télétravail obligatoire : 10 conseils pour survivre !</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/externalisation-du-recrutement-tout-savoir-sur-le-rpo" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">9 nov 2020</span>
+                </div>
+                <h2 class="article-title">Externalisation du recrutement : tout savoir sur le RPO</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/meilleur-classement-ecoles-ingenieur-recrutement" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">5 nov 2020</span>
+                </div>
+                <h2 class="article-title">Quel est le meilleur classement des écoles d'ingénieur pour les recruteurs tech ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/customer-success-manager" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">29 oct 2020</span>
+                </div>
+                <h2 class="article-title">Customer Success Manager</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/developpeur-fullstack" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">22 oct 2020</span>
+                </div>
+                <h2 class="article-title">Qu'est-ce qu'un développeur Fullstack</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/papi-test-personnalite" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">15 oct 2020</span>
+                </div>
+                <h2 class="article-title">Le PAPI : un test de personnalité historique, à l'épreuve du temps</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/le-big-5-test-recrutement-scientifique" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">9 oct 2020</span>
+                </div>
+                <h2 class="article-title">Le BIG FIVE, un outil de recrutement fiable et efficace !</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/utiliser-les-tests-de-personnalite-pour-ameliorer-la-performance-des-collaborateurs-recrutes" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">1 oct 2020</span>
+                </div>
+                <h2 class="article-title">Utiliser les tests de personnalité pour améliorer la performance des collaborateurs recrutés</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/mbti" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">23 sept 2020</span>
+                </div>
+                <h2 class="article-title">Test MBTI : tout savoir sur le plus populaire des tests de personnalité</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/evaluation-des-candidats-les-methodes-qui-marchent-vs-celles-qui-ne-marchent-pas" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">17 sept 2020</span>
+                </div>
+                <h2 class="article-title">Évaluation des candidats : les méthodes qui marchent vs celles qui ne marchent pas</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/chief-product-officer" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">14 sept 2020</span>
+                </div>
+                <h2 class="article-title">Chief Product Officer : tout savoir sur le rôle du CPO</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/psychometrie" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">7 sept 2020</span>
+                </div>
+                <h2 class="article-title">Psychométrie : évaluer les candidats avec une approche statistique</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/evaluation-candidats" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Recruiter est une science</span>
+                  <span class="article-date">25 août 2020</span>
+                </div>
+                <h2 class="article-title">L'évaluation des candidats en RH, au fil du temps</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/travail-remote-indispensable" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">18 août 2020</span>
+                </div>
+                <h2 class="article-title">Travailler en remote : un indispensable à offrir aux candidats ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-tirer-profit-de-linkedin-pour-ses-recrutements" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">6 août 2020</span>
+                </div>
+                <h2 class="article-title">Comment tirer profit de LinkedIn pour ses recrutements ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/product-owner" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Fiches métiers</span>
+                  <span class="article-date">31 juil 2020</span>
+                </div>
+                <h2 class="article-title">Product Owner : le chef d'orchestre du développement Produit</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-recruter-un-collaborateur-etranger-non-ressortissant-de-lunion-europeenne" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">30 juin 2020</span>
+                </div>
+                <h2 class="article-title">Comment recruter un collaborateur étranger non ressortissant de l'Union Européenne ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-recruter-un-collaborateur-etranger-europeen" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">25 juin 2020</span>
+                </div>
+                <h2 class="article-title">Comment recruter un collaborateur étranger européen ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/onboarding" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">23 juin 2020</span>
+                </div>
+                <h2 class="article-title">Onboarding : comment mettre en place un processus d'intégration efficace ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-choisir-un-ats-pour-son-entreprise" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">10 juin 2020</span>
+                </div>
+                <h2 class="article-title">Comment choisir un ATS pour son entreprise ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/comment-developper-la-marque-employeur-de-son-entreprise" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">9 juin 2020</span>
+                </div>
+                <h2 class="article-title">Comment développer la marque employeur de son entreprise ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/quelle-est-lhistoire-du-rpo" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">1 juin 2020</span>
+                </div>
+                <h2 class="article-title">Quelle est l'histoire du RPO ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/quest-ce-que-le-rpo" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">1 juin 2020</span>
+                </div>
+                <h2 class="article-title">Qu'est-ce que le RPO ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/quand-faut-il-mettre-en-place-un-dispositif-rpo" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">19 mai 2020</span>
+                </div>
+                <h2 class="article-title">Quand faut-il mettre en place un dispositif RPO ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/quels-sont-les-avantages-du-rpo" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">RPO</span>
+                  <span class="article-date">19 mai 2020</span>
+                </div>
+                <h2 class="article-title">Quels sont les avantages du RPO ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section class="year-section" id="year-2019">
+          <div class="year-eyebrow">2019</div>
+          <ul class="articles-list">
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/3-idees-contre-intuitives-pour-les-entrepreneurs" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">4 juin 2019</span>
+                </div>
+                <h2 class="article-title">3 idées contre-intuitives pour les entrepreneurs</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li class="article-row">
+              <a class="article-link" href="https://www.getpro.co/toolbox/centrale-supelec-42-qui-forme-les-meilleurs" target="_blank" rel="noopener">
+                <div class="article-meta">
+                  <span class="article-cat">Nos conseils en recrutement</span>
+                  <span class="article-date">12 avr 2019</span>
+                </div>
+                <h2 class="article-title">Centrale Supélec vs 42 : qui forme les meilleurs développeurs ?</h2>
+                <span class="article-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          </ul>
+        </section>
     </section>
 
     <footer class="site-footer" data-footer></footer>
