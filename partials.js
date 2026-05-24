@@ -185,25 +185,32 @@
 
       // Position des submenus via --trigger-left :
       //   - submenu CDI : alignée pile sous le lien "CDI & Freelance"
-      //   - autres submenus (mobile hamburger) : alignés sur le bord
-      //     gauche du logo (façon Fondation Cartier)
+      //   - hamburger (more) : alignée pile sous l'icône hamburger
+      //   - submenu Solutions mobile : aligné sur le bord gauche du logo
       const brand = nav.querySelector('.brand');
       const cdiGroup = nav.querySelector('.menu-item-group--cdi');
       const cdiLink = cdiGroup?.querySelector('.menu-item--inline');
       const cdiSubmenu = cdiGroup?.querySelector('.submenu');
-      const otherSubmenus = nav.querySelectorAll('.menu-item-group:not(.menu-item-group--cdi) .submenu');
+      const moreGroup = nav.querySelector('.menu-item-group--more');
+      const moreTrigger = moreGroup?.querySelector('.menu-item--more');
+      const moreSubmenu = moreGroup?.querySelector('.submenu');
+      const mobileSubmenus = nav.querySelectorAll('.menu-item-group:not(.menu-item-group--cdi):not(.menu-item-group--more) .submenu');
       const syncSubmenu = () => {
         const headerEl = document.querySelector('.header');
         if (!headerEl) return;
         const headerRect = headerEl.getBoundingClientRect();
-        if (brand && otherSubmenus.length) {
+        if (brand && mobileSubmenus.length) {
           const brandRect = brand.getBoundingClientRect();
           const triggerLeft = (brandRect.left - headerRect.left) + 'px';
-          otherSubmenus.forEach(s => s.style.setProperty('--trigger-left', triggerLeft));
+          mobileSubmenus.forEach(s => s.style.setProperty('--trigger-left', triggerLeft));
         }
         if (cdiLink && cdiSubmenu) {
           const linkRect = cdiLink.getBoundingClientRect();
           cdiSubmenu.style.setProperty('--trigger-left', (linkRect.left - headerRect.left) + 'px');
+        }
+        if (moreTrigger && moreSubmenu) {
+          const triggerRect = moreTrigger.getBoundingClientRect();
+          moreSubmenu.style.setProperty('--trigger-left', (triggerRect.left - headerRect.left) + 'px');
         }
       };
       syncSubmenu();
