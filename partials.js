@@ -114,11 +114,10 @@
         <a href="index.html" class="foot-logo" aria-label="GetPro"></a>
         <p class="foot-tagline">Cabinet de chasse spécialisé experts et dirigeants pour la Tech et l'IA. Depuis 2015.</p>
         <div class="foot-address-row">
-          <p class="foot-address">41 rue Faidherbe<br>75011 Paris</p>
-          <div class="foot-contact">
-            <a href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>
-            <a href="tel:+33939289329">09 39 28 93 29</a>
-          </div>
+          <p class="foot-line foot-street">41 rue Faidherbe</p>
+          <p class="foot-line foot-city">75011 Paris</p>
+          <a class="foot-line foot-email" href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>
+          <a class="foot-line foot-phone" href="tel:+33939289329">09&nbsp;39&nbsp;28&nbsp;93&nbsp;29</a>
         </div>
         <div class="ratings-stack">
           <div class="rating">

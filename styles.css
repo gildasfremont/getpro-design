@@ -737,32 +737,35 @@ body.menu-open main > *:not(.header) {
   letter-spacing: -0.01em;
   max-width: 38ch;
 }
-.foot-address {
+/* Adresse postale + contact en grille 2 colonnes × 2 lignes : chaque
+   bout est un item autonome (rue / ville / email / téléphone), donc
+   pas de bricolage d'alignement. DOM en ordre vertical naturel (rue,
+   ville, email, téléphone) ; grid-auto-flow column place rue+ville
+   en col 1 et email+téléphone en col 2. Sur mobile la grille passe à
+   1 col et l'ordre reste lisible (adresse complète puis contact). */
+.foot-address-row {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-template-rows: auto auto;
+  grid-auto-flow: column;
+  column-gap: clamp(28px, 4vw, 56px);
+  row-gap: 0;
+}
+.foot-line {
   font-size: clamp(17px, 1.5vw, 22px);
   line-height: 1.5;
   margin: 0;
-}
-/* Adresse postale + contact côte à côte sous la tagline.
-   Phone aligné avec le code postal (= 2e ligne de l'adresse) via
-   margin-top compensant la 1re ligne de l'adresse. */
-.foot-address-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(28px, 4vw, 56px);
-  align-items: flex-start;
-}
-.foot-address-row .foot-contact {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  font-size: clamp(17px, 1.5vw, 22px);
-  line-height: 1.5;
-}
-.foot-address-row .foot-contact a {
   color: var(--ink);
   text-decoration: none;
 }
-.foot-address-row .foot-contact a:hover { text-decoration: underline; }
+a.foot-line:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .foot-address-row {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+  }
+}
 
 /* Colonnes de liens petites, alignées start. */
 .foot-col {
