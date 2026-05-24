@@ -59,20 +59,6 @@
         </div>
         <a href="services-renfort.html" class="menu-item menu-item--inline"${aria('services-renfort.html')}>RPO</a>
         <a href="services-transition.html" class="menu-item menu-item--inline"${aria('services-transition.html')}>Management de transition</a>
-        <div class="menu-item-group menu-item-group--more">
-          <button class="menu-item menu-item--more" type="button" aria-expanded="false" aria-controls="more-submenu" aria-label="Plus de pages">
-            <svg viewBox="0 0 18 14" width="20" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-              <path d="M1 2h16M1 7h16M1 12h16"/>
-            </svg>
-          </button>
-          <div class="submenu" id="more-submenu">
-            <ul class="submenu-list submenu-list--row">
-              <li><a href="clients.html"${aria('clients.html')}>Clients</a></li>
-              <li><a href="equipe.html"${aria('equipe.html')}>Équipe</a></li>
-              <li><a href="articles.html"${aria('articles.html')}>Articles</a></li>
-            </ul>
-          </div>
-        </div>
         <div class="menu-item-group menu-item--collapsed">
           <button class="menu-item menu-item--has-submenu" type="button" aria-expanded="false" aria-controls="solutions-submenu"${SERVICES_PAGES.includes(path) ? ' aria-current="page"' : ''}>
             <span class="trigger-long">Solutions de recrutement</span>
@@ -93,7 +79,23 @@
             </ul>
           </div>
         </div>
-        <a href="contact.html" class="menu-item menu-item--contact menu-item--contact-outside"${aria('contact.html')}>Contact</a>
+        <div class="menu-end">
+          <div class="menu-item-group menu-item-group--more">
+            <button class="menu-item menu-item--more" type="button" aria-expanded="false" aria-controls="more-submenu" aria-label="Plus de pages">
+              <svg viewBox="0 0 18 14" width="20" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                <path d="M1 2h16M1 7h16M1 12h16"/>
+              </svg>
+            </button>
+            <div class="submenu" id="more-submenu">
+              <ul class="submenu-list submenu-list--row">
+                <li><a href="clients.html"${aria('clients.html')}>Clients</a></li>
+                <li><a href="equipe.html"${aria('equipe.html')}>Équipe</a></li>
+                <li><a href="articles.html"${aria('articles.html')}>Articles</a></li>
+              </ul>
+            </div>
+          </div>
+          <a href="contact.html" class="menu-item menu-item--contact menu-item--contact-outside"${aria('contact.html')}>Contact</a>
+        </div>
       </div>
     </nav>
   `;
