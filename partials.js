@@ -69,9 +69,9 @@
           </button>
           <div class="submenu" id="solutions-submenu">
             <ul class="submenu-list submenu-list--mobile">
-              <li><a href="services-tech.html"${aria('services-tech.html')}>CDI &amp; Freelance</a></li>
-              <li><a href="services-renfort.html"${aria('services-renfort.html')}>RPO</a></li>
               <li><a href="services-transition.html"${aria('services-transition.html')}>Management de transition</a></li>
+              <li><a href="services-renfort.html"${aria('services-renfort.html')}>RPO</a></li>
+              <li><a href="services-tech.html"${aria('services-tech.html')}>CDI &amp; Freelance</a></li>
               <li><a href="clients.html"${aria('clients.html')}>Clients</a></li>
               <li><a href="equipe.html"${aria('equipe.html')}>Équipe</a></li>
               <li><a href="articles.html"${aria('articles.html')}>Articles</a></li>
@@ -100,9 +100,9 @@
 
   const footerHTML = `
     <nav class="foot-featured" aria-label="Services principaux">
-      <a href="services-tech.html"${aria('services-tech.html')}>CDI &amp; Freelance</a>
-      <a href="services-renfort.html"${aria('services-renfort.html')}>RPO</a>
       <a href="services-transition.html"${aria('services-transition.html')}>Management de transition</a>
+      <a href="services-renfort.html"${aria('services-renfort.html')}>RPO</a>
+      <a href="services-tech.html"${aria('services-tech.html')}>CDI &amp; Freelance</a>
       <a href="clients.html"${aria('clients.html')}>Clients</a>
       <a href="equipe.html"${aria('equipe.html')}>Équipe</a>
       <a href="articles.html"${aria('articles.html')}>Articles</a>
