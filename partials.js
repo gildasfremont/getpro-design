@@ -50,8 +50,8 @@
           <div class="submenu submenu--inline" id="cdi-submenu">
             <div class="submenu-eyebrow">Practices</div>
             <ul class="submenu-list submenu-list--row">
-              <li><a href="services-produit.html"${aria('services-produit.html')}>Product &amp; Projects</a></li>
               <li><a href="services-tech.html"${aria('services-tech.html')}>Tech, IA &amp; Data</a></li>
+              <li><a href="services-produit.html"${aria('services-produit.html')}>Product &amp; Projects</a></li>
               <li><a href="services-sales.html"${aria('services-sales.html')}>Customer &amp; Admin</a></li>
               <li class="submenu-list-spacer"><a href="services-profils.html"${aria('services-profils.html')}>+2000 recrutements</a></li>
             </ul>
