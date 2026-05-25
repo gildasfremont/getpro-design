@@ -153,16 +153,35 @@
     font-size: clamp(18px, 2vw, 26px);
   }
 
-  /* ---------- Image grid : 3 cols, le composant devient plus haut
-     que le texte. Le texte (col 1) est sticky pour suivre le scroll. */
+  /* ---------- Image grid : 5 cols × 6 rows = 30 cellules.
+     Mur hybride : photos team (couleur) + logos clients (monochrome ink),
+     alternance pseudo-checkerboard (15 + 15). Photos = visage du cabinet,
+     logos = track record. */
   .hero-inner { position: relative; }
   .grid-images {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 0;
   }
-  /* On masque le 16e pour avoir une grille 3×5 propre (15 photos). */
-  .grid-images .tile:nth-child(16) { display: none; }
+  /* Cellule logo : fond bg neutre + SVG en mask ink, padding 22% pour
+     respirer. Opacité par défaut subtile, hover full. */
+  .grid-images .logo {
+    background-color: var(--bg);
+    display: block;
+    aspect-ratio: 272 / 309;
+    position: relative;
+    transition: opacity 0.25s ease;
+    opacity: 0.65;
+  }
+  .grid-images .logo::after {
+    content: "";
+    position: absolute;
+    inset: 22%;
+    background-color: var(--ink);
+    -webkit-mask: var(--logo-src) center / contain no-repeat;
+            mask: var(--logo-src) center / contain no-repeat;
+  }
+  .grid-images .logo:hover { opacity: 1; }
 
   .grid-images .tile {
     aspect-ratio: 272 / 309;
@@ -426,23 +445,37 @@
         </div>
 
         <div class="hero-team">
-          <div class="grid-images" aria-label="Galerie consultants">
+          <div class="grid-images" aria-label="Mur équipe & clients">
           <a class="tile tile-1" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="blablacar" style="--logo-src: url('assets/blablacar.svg');"></a>
           <a class="tile tile-2" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="contentsquare" style="--logo-src: url('assets/contentsquare.svg');"></a>
           <a class="tile tile-3" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="mistral-ai" style="--logo-src: url('assets/mistral-ai.svg');"></a>
           <a class="tile tile-4" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="canal-plus" style="--logo-src: url('assets/canal-plus.svg');"></a>
           <a class="tile tile-5" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="agicap" style="--logo-src: url('assets/agicap.svg');"></a>
           <a class="tile tile-6" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="yubo" style="--logo-src: url('assets/yubo.svg');"></a>
           <a class="tile tile-7" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="lucca" style="--logo-src: url('assets/lucca.svg');"></a>
           <a class="tile tile-8" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="electra" style="--logo-src: url('assets/electra.svg');"></a>
           <a class="tile tile-9" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="spiko" style="--logo-src: url('assets/spiko.svg');"></a>
           <a class="tile tile-10" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="partoo" style="--logo-src: url('assets/partoo.svg');"></a>
           <a class="tile tile-11" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="pricemoov" style="--logo-src: url('assets/pricemoov.svg');"></a>
           <a class="tile tile-12" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="silae" style="--logo-src: url('assets/silae.svg');"></a>
           <a class="tile tile-13" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="tiime" style="--logo-src: url('assets/tiime.svg');"></a>
           <a class="tile tile-14" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="wematch-live" style="--logo-src: url('assets/wematch-live.svg');"></a>
           <a class="tile tile-15" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-16" href="equipe.html" aria-label="Voir l'équipe"></a>
+          <a class="logo" href="clients.html" aria-label="reelevant" style="--logo-src: url('assets/reelevant.svg');"></a>
           </div>
         </div>
       </div>
