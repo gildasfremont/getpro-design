@@ -153,27 +153,32 @@
     font-size: clamp(18px, 2vw, 26px);
   }
 
-  /* ---------- Image grid : 5 cols × 6 rows = 30 cellules.
-     Mur hybride : photos team (couleur) + logos clients (monochrome ink),
-     alternance pseudo-checkerboard (15 + 15). Photos = visage du cabinet,
-     logos = track record. */
+  /* ---------- Image grid : 6 cols × 6 rows = 36 cellules, mur dense
+     de logos clients. Concept : chaque cellule est un logo. Les 15
+     cellules "photo" remplacent l'ink du logo par une photo team —
+     on voit le visage à travers le shape du logo. Les autres cellules
+     sont des logos pleins ink (track record). */
   .hero-inner { position: relative; }
   .grid-images {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 0;
   }
-  /* Cellule logo : fond bg neutre + SVG en mask ink, padding 22% pour
-     respirer. Opacité par défaut subtile, hover full. */
-  .grid-images .logo {
+  /* Base : chaque cellule est carrée pour densifier le mur. */
+  .grid-images .cell {
     background-color: var(--bg);
     display: block;
-    aspect-ratio: 272 / 309;
+    aspect-ratio: 1 / 1;
     position: relative;
     transition: opacity 0.25s ease;
-    opacity: 0.65;
   }
-  .grid-images .logo::after {
+  /* Logo "plein ink" : SVG appliqué en mask sur un fond ink. */
+  /* Plain logo : ink monochrome sur fond bg, padding 22%. Subtil pour
+     former le mur en arrière-plan. */
+  .grid-images .cell.logo {
+    opacity: 0.4;
+  }
+  .grid-images .cell.logo::after {
     content: "";
     position: absolute;
     inset: 22%;
@@ -181,7 +186,27 @@
     -webkit-mask: var(--logo-src) center / contain no-repeat;
             mask: var(--logo-src) center / contain no-repeat;
   }
-  .grid-images .logo:hover { opacity: 1; }
+  .grid-images .cell.logo:hover { opacity: 0.75; }
+  /* Photo cell : full bleed portrait en couleur + logo en filigrane
+     overlay (mode multiply pour qu'il s'imprime sur la photo sans la
+     cacher). Concept de calques : on voit le visage ET le logo. */
+  .grid-images .cell.photo {
+    background-image: var(--photo-src);
+    background-size: cover;
+    background-position: 50% 30%;
+    overflow: hidden;
+  }
+  .grid-images .cell.photo::after {
+    content: "";
+    position: absolute;
+    inset: 18%;
+    background-color: var(--ink);
+    -webkit-mask: var(--logo-src) center / contain no-repeat;
+            mask: var(--logo-src) center / contain no-repeat;
+    opacity: 0.65;
+    mix-blend-mode: multiply;
+  }
+  .grid-images .cell.photo:hover::after { opacity: 0.3; }
 
   .grid-images .tile {
     aspect-ratio: 272 / 309;
@@ -446,36 +471,42 @@
 
         <div class="hero-team">
           <div class="grid-images" aria-label="Mur équipe & clients">
-          <a class="tile tile-1" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="blablacar" style="--logo-src: url('assets/blablacar.svg');"></a>
-          <a class="tile tile-2" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="contentsquare" style="--logo-src: url('assets/contentsquare.svg');"></a>
-          <a class="tile tile-3" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="mistral-ai" style="--logo-src: url('assets/mistral-ai.svg');"></a>
-          <a class="tile tile-4" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="canal-plus" style="--logo-src: url('assets/canal-plus.svg');"></a>
-          <a class="tile tile-5" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="agicap" style="--logo-src: url('assets/agicap.svg');"></a>
-          <a class="tile tile-6" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="yubo" style="--logo-src: url('assets/yubo.svg');"></a>
-          <a class="tile tile-7" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="lucca" style="--logo-src: url('assets/lucca.svg');"></a>
-          <a class="tile tile-8" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="electra" style="--logo-src: url('assets/electra.svg');"></a>
-          <a class="tile tile-9" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="spiko" style="--logo-src: url('assets/spiko.svg');"></a>
-          <a class="tile tile-10" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="partoo" style="--logo-src: url('assets/partoo.svg');"></a>
-          <a class="tile tile-11" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="pricemoov" style="--logo-src: url('assets/pricemoov.svg');"></a>
-          <a class="tile tile-12" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="silae" style="--logo-src: url('assets/silae.svg');"></a>
-          <a class="tile tile-13" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="tiime" style="--logo-src: url('assets/tiime.svg');"></a>
-          <a class="tile tile-14" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="wematch-live" style="--logo-src: url('assets/wematch-live.svg');"></a>
-          <a class="tile tile-15" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="logo" href="clients.html" aria-label="reelevant" style="--logo-src: url('assets/reelevant.svg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/blablacar.svg'); --photo-src: url('assets/team/anne-delarue.png');"></a>
+          <a class="cell logo" href="clients.html" aria-label="contentsquare" style="--logo-src: url('assets/contentsquare.svg');"></a>
+          <a class="cell logo" href="clients.html" aria-label="mistral-ai" style="--logo-src: url('assets/mistral-ai.svg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/canal-plus.svg'); --photo-src: url('assets/team/romain-pichou.jpg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/agicap.svg'); --photo-src: url('assets/team/laura-geneuil.png');"></a>
+          <a class="cell logo" href="clients.html" aria-label="yubo" style="--logo-src: url('assets/yubo.svg');"></a>
+          <a class="cell logo" href="clients.html" aria-label="lucca" style="--logo-src: url('assets/lucca.svg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/electra.svg'); --photo-src: url('assets/team/juliette-fabre.png');"></a>
+          <a class="cell logo" href="clients.html" aria-label="spiko" style="--logo-src: url('assets/spiko.svg');"></a>
+          <a class="cell logo" href="clients.html" aria-label="partoo" style="--logo-src: url('assets/partoo.svg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/pricemoov.svg'); --photo-src: url('assets/team/emile-pennes.jpg');"></a>
+          <a class="cell logo" href="clients.html" aria-label="silae" style="--logo-src: url('assets/silae.svg');"></a>
+          <a class="cell logo" href="clients.html" aria-label="tiime" style="--logo-src: url('assets/tiime.svg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/wematch-live.svg'); --photo-src: url('assets/team/die-astou-dioume.jpg');"></a>
+          <a class="cell logo" href="clients.html" aria-label="reelevant" style="--logo-src: url('assets/reelevant.svg');"></a>
+          <a class="cell logo" href="clients.html" aria-label="konverso" style="--logo-src: url('assets/konverso.svg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/biron.svg'); --photo-src: url('assets/team/guillaume-renard.png');"></a>
+          <a class="cell logo" href="clients.html" aria-label="branded" style="--logo-src: url('assets/branded.svg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/buildrz.svg'); --photo-src: url('assets/team/hugo-merdrignac.png');"></a>
+          <a class="cell logo" href="clients.html" aria-label="wavo" style="--logo-src: url('assets/wavo.svg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/bowo.svg'); --photo-src: url('assets/team/claire-hubert.jpg');"></a>
+          <a class="cell logo" href="clients.html" aria-label="appenin" style="--logo-src: url('assets/appenin.svg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/axione.svg'); --photo-src: url('assets/team/lauren-pointon.jpg');"></a>
+          <a class="cell logo" href="clients.html" aria-label="adagio" style="--logo-src: url('assets/adagio.svg');"></a>
+          <a class="cell logo" href="clients.html" aria-label="andjaro" style="--logo-src: url('assets/andjaro.svg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/blacksales.svg'); --photo-src: url('assets/team/louis-fitamant.png');"></a>
+          <a class="cell logo" href="clients.html" aria-label="altarea" style="--logo-src: url('assets/altarea.svg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/bridger.svg'); --photo-src: url('assets/team/nicolas-magne.jpg');"></a>
+          <a class="cell logo" href="clients.html" aria-label="beam" style="--logo-src: url('assets/beam.svg');"></a>
+          <a class="cell logo" href="clients.html" aria-label="ai-cargo-foundation" style="--logo-src: url('assets/ai-cargo-foundation.svg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/360learning.svg'); --photo-src: url('assets/team/tony-beaugez.png');"></a>
+          <a class="cell logo" href="clients.html" aria-label="a2mac1" style="--logo-src: url('assets/a2mac1.svg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/acolyt.svg'); --photo-src: url('assets/team/theo-grandperrin.jpg');"></a>
+          <a class="cell logo" href="clients.html" aria-label="activeviam" style="--logo-src: url('assets/activeviam.svg');"></a>
+          <a class="cell photo" href="equipe.html" aria-label="Voir l'équipe" style="--logo-src: url('assets/alsid.svg'); --photo-src: url('assets/team/thomas-laigo.jpg');"></a>
+          <a class="cell logo" href="clients.html" aria-label="amazingcontent" style="--logo-src: url('assets/amazingcontent.svg');"></a>
           </div>
         </div>
       </div>
