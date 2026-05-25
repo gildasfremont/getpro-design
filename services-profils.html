@@ -448,8 +448,13 @@
       }
 
       function bucketOrder() {
-        return Array.from(tabsHost.querySelectorAll('.subtab[data-bucket]'))
-          .map(b => ({ key: b.dataset.bucket, label: b.textContent.trim() }));
+        // Cherche les bucket-tabs partout dans .categories-col (tabsHost ET
+        // overflow), puis trie selon l'ordre original (data-order). Sinon
+        // sur mobile, si syncOverflow a déjà déplacé des tabs dans
+        // overflowList avant le premier render, ces buckets disparaissent.
+        const all = Array.from(document.querySelectorAll('.categories-col .subtab[data-bucket]'));
+        all.sort((a, b) => (Number(a.dataset.order) || 0) - (Number(b.dataset.order) || 0));
+        return all.map(b => ({ key: b.dataset.bucket, label: b.textContent.trim() }));
       }
 
       function renderTestimonials() {
