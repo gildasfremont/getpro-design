@@ -467,14 +467,21 @@
       function filteredClients() {
         if (!searchQuery) return sorted;
         const q = norm(searchQuery);
-        // Match sur le name principal et sur les aliases (anciens noms,
-        // marques alternatives, ex: Pono → Covalt). Les aliases ne
-        // s'affichent pas dans la liste, ils servent juste à retrouver
-        // l'entrée par un nom familier.
+        // Match sur tous les champs textuels : nom, aliases, description,
+        // verbatim, contact (nom + rôle), domaine, statut.
         return sorted.filter(c => {
-          if (norm(c.name).includes(q)) return true;
-          if (Array.isArray(c.aliases) && c.aliases.some(a => norm(a).includes(q))) return true;
-          return false;
+          const haystack = [
+            c.name,
+            c.description,
+            c.verbatim,
+            c.contact_name,
+            c.contact_role,
+            c.domaine,
+            c.status_label,
+            c.statut,
+            ...(Array.isArray(c.aliases) ? c.aliases : []),
+          ].filter(Boolean).map(norm).join(' ');
+          return haystack.includes(q);
         });
       }
 
