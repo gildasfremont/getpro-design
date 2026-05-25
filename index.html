@@ -180,13 +180,19 @@
      espace, logos serrés bout à bout, chaque ligne décalée
      horizontalement pour casser la régularité. Logos en bg color → ils
      "gravent" leur silhouette dans la photo. */
+  /* Veil étendu au-delà du grid (-50% sur chaque côté) puis tourné à
+     45° pour que les lignes traversent en diagonale. .grid-images doit
+     overflow:hidden pour clipper. */
+  .grid-images { overflow: hidden; }
   .logo-veil {
     position: absolute;
-    inset: 0;
+    inset: -50%;
     pointer-events: none;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    gap: clamp(31px, 3.1vw, 45px);
+    transform: rotate(45deg);
+    transform-origin: center;
     z-index: 2;
   }
   .logo-veil-row {
@@ -197,9 +203,6 @@
     margin-left: var(--offset, 0);
     flex: 0 0 auto;
     min-height: 0;
-  }
-  .logo-veil {
-    gap: 0;
   }
   /* Logo "glass dans la silhouette" : la silhouette du logo porte
      l'effet glass (blur + voile blanc), la photo reste nette tout
@@ -218,9 +221,7 @@
   .logo-veil-row > .veil-logo + .veil-logo {
     margin-left: -5px;
   }
-  .logo-veil-row + .logo-veil-row {
-    margin-top: -5px;
-  }
+
   .grid-images .tile {
     aspect-ratio: 272 / 309;
     background-size: cover;
