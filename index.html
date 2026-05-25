@@ -201,31 +201,25 @@
   .logo-veil {
     gap: 0;
   }
-  /* Logo "inverse glass" : la cellule entière a un fond glass (blur +
-     bg blanc translucide), et la silhouette du logo découpe un trou
-     dans ce glass — on voit la photo nette là où est le logo, et le
-     glass tout autour. Effet "stamp" inversé. */
+  /* Logo "glass dans la silhouette" : la silhouette du logo porte
+     l'effet glass (blur + voile blanc), la photo reste nette tout
+     autour. Marges négatives -5px → les cellules se chevauchent. */
   .logo-veil-row .veil-logo {
     display: inline-block;
     width: clamp(112px, 13.4vw, 197px);
     height: clamp(31px, 3.1vw, 45px);
-    /* Glass clair sans frost : voile blanc translucide uniforme, pas
-       de blur. La photo reste lisible derrière, juste légèrement
-       atténuée. */
     background: rgba(255, 255, 255, 0.28);
-    /* Deux masks composés : le full-rect en bg + le logo qui creuse un
-       trou via xor / exclude. */
-    -webkit-mask-image: var(--logo-src), linear-gradient(#000, #000);
-            mask-image: var(--logo-src), linear-gradient(#000, #000);
-    -webkit-mask-position: center, center;
-            mask-position: center, center;
-    -webkit-mask-size: contain, 100% 100%;
-            mask-size: contain, 100% 100%;
-    -webkit-mask-repeat: no-repeat, no-repeat;
-            mask-repeat: no-repeat, no-repeat;
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
+    -webkit-backdrop-filter: blur(8px) saturate(140%);
+            backdrop-filter: blur(8px) saturate(140%);
+    -webkit-mask: var(--logo-src) center / contain no-repeat;
+            mask: var(--logo-src) center / contain no-repeat;
     flex-shrink: 0;
+  }
+  .logo-veil-row > .veil-logo + .veil-logo {
+    margin-left: -5px;
+  }
+  .logo-veil-row + .logo-veil-row {
+    margin-top: -5px;
   }
   .grid-images .tile {
     aspect-ratio: 272 / 309;
