@@ -202,10 +202,11 @@
   }
   .hero-tabs {
     display: flex;
-    justify-content: flex-end;
-    gap: clamp(24px, 2.8vw, 44px);
+    justify-content: stretch;
+    gap: 0;
   }
   .hero-tab {
+    flex: 1;
     padding: clamp(14px, 1.6vw, 24px) 0;
     font-size: clamp(24px, 2.8vw, 34px);
     line-height: 1.25;
@@ -216,8 +217,7 @@
     color: var(--ink);
     cursor: pointer;
     opacity: 0.5;
-    text-align: left;
-    transition: opacity 0.15s ease;
+    text-align: center;
     position: relative;
   }
   .hero-tab:hover { opacity: 1; }
@@ -229,21 +229,20 @@
     position: relative;
     display: inline-block;
   }
-  .hero-tab-label::after {
+  .hero-tab::after {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
-    bottom: calc(-1 * clamp(14px, 1.6vw, 24px));
+    bottom: 0;
     height: 2px;
     background: var(--ink);
     opacity: 0;
-    transition: opacity 0.15s ease;
   }
-  .hero-tab:hover .hero-tab-label::after {
+  .hero-tab:hover::after {
     opacity: 0.3;
   }
-  .hero-tab[aria-current="true"] .hero-tab-label::after {
+  .hero-tab[aria-current="true"]::after {
     opacity: 1;
   }
 
