@@ -158,11 +158,9 @@
   .hero-inner { position: relative; }
   .grid-images {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 0;
   }
-  /* On masque le 16e pour avoir une grille 3×5 propre (15 photos). */
-  .grid-images .tile:nth-child(16) { display: none; }
 
   .grid-images .tile {
     aspect-ratio: 272 / 309;
@@ -181,7 +179,6 @@
      prend toute la largeur. */
   /* Consultants — 16 personnes listées dans equipe.html (hors équipe support). */
   .tile-1  { background-image: url('assets/team/anne-delarue.png'); }
-  .tile-2  { background-image: url('assets/team/romain-pichou.jpg'); }
   .tile-3  { background-image: url('assets/team/juliette-fabre.png'); }
   .tile-4  { background-image: url('assets/team/emile-pennes.jpg'); }
   .tile-5  { background-image: url('assets/team/die-astou-dioume.jpg'); }
@@ -195,7 +192,6 @@
   .tile-13 { background-image: url('assets/team/laura-geneuil.png'); }
   .tile-14 { background-image: url('assets/team/theo-grandperrin.jpg'); }
   .tile-15 { background-image: url('assets/team/nicolas-magne.jpg'); }
-  .tile-16 { background-image: url('assets/team/hugo-merdrignac.png'); }
 
   /* ---------- Cases ---------- */
   .cases {
@@ -428,7 +424,6 @@
         <div class="hero-team">
           <div class="grid-images" aria-label="Galerie consultants">
           <a class="tile tile-1" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-2" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-3" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-4" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-5" href="equipe.html" aria-label="Voir l'équipe"></a>
@@ -442,7 +437,6 @@
           <a class="tile tile-13" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-14" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-15" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-16" href="equipe.html" aria-label="Voir l'équipe"></a>
           </div>
         </div>
       </div>
