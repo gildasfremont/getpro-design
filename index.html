@@ -181,11 +181,24 @@
     position: relative;
   }
   .hero-tab:hover { opacity: 1; }
-  .hero-tab[aria-current="true"] {
-    opacity: 1;
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: clamp(8px, 1vw, 14px);
+  .hero-tab[aria-current="true"] { opacity: 1; }
+  /* Wrapper du texte : permet de placer une underline qui épouse
+     EXACTEMENT la largeur du label, et de la positionner pile en bas
+     du tab (au ras du panel) via bottom calc(-padding-bottom). */
+  .hero-tab-label {
+    position: relative;
+    display: inline-block;
+  }
+  .hero-tab[aria-current="true"] .hero-tab-label::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    /* La pseudo dépasse le label de la valeur du padding-bottom du tab
+       → tombe pile sur la top edge du panel. */
+    bottom: calc(-1 * clamp(12px, 1.4vw, 20px));
+    height: 2px;
+    background: var(--ink);
   }
 
   /* Panel Clients : fond blanc, liste de rows (logo + nom + extrait
@@ -507,8 +520,8 @@
         <div class="hero-team">
           <div class="hero-tabs-row">
             <nav class="hero-tabs" aria-label="Équipe ou clients">
-              <button type="button" class="hero-tab" data-pane="equipe" aria-current="true">Équipe</button>
-              <button type="button" class="hero-tab" data-pane="clients">Clients</button>
+              <button type="button" class="hero-tab" data-pane="equipe" aria-current="true"><span class="hero-tab-label">Équipe</span></button>
+              <button type="button" class="hero-tab" data-pane="clients"><span class="hero-tab-label">Clients</span></button>
             </nav>
           </div>
           <div class="hero-pane" data-pane="equipe">
