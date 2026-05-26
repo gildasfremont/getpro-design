@@ -105,9 +105,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 /* Restore the spacing that .header's padding-bottom used to provide */
 .header + * { margin-top: var(--gap-section); }
-/* Home : on laisse la margin-top section pleine. Le .hero a maintenant
-   son propre padding-top qui ajoute de l'air entre nav et hero. */
-.header + .hero { margin-top: 0; }
+/* Home : on laisse la marge globale .header + * (clamp 56-120) jouer
+   son rôle. Le hero respire comme les sections des pages secondaires. */
 
 /* Cible #solutions sur les pages Chasse/Renfort RH : un clic sur un
    cartouche tab/subtab navigue vers la nouvelle page avec #solutions →
