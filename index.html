@@ -161,6 +161,20 @@
   .hero-tabs-row {
     margin-bottom: 0;
   }
+  .hero-tabs-row .subtab {
+    font-weight: 400;
+    padding-bottom: clamp(6px, 0.8vw, 10px);
+  }
+  .hero-tabs-row .subtab[aria-current="true"]::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: var(--ink);
+  }
 
   /* Panel Clients : fond blanc, liste de rows (logo + nom + extrait
      temoignage), même structure que la page Clients. Click → goto
@@ -213,21 +227,6 @@
     -webkit-box-orient: vertical;
   }
 
-  /* Indicateur underline sous la tab active dans le hero (pattern de la
-     screenshot ref : Software | Hardware | ML & IA). On rétablit l'after
-     uniquement dans le contexte .hero-tabs-row pour ne pas casser les
-     subtabs services qui utilisent un autre signal (opacity seul). */
-  .hero-tabs-row .subtab { padding-bottom: clamp(6px, 0.8vw, 10px); }
-  .hero-tabs-row .subtab[aria-current="true"]::after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background: var(--ink);
-  }
 
   .grid-images {
     display: grid;
@@ -635,8 +634,33 @@
       function loadClients() {
         if (loaded) return;
         loaded = true;
+        // Reprend l'ordre de la page Clients (COOL_ORDER d'abord, reste alpha)
+        const COOL_ORDER = [
+          'mistral-ai','eleven-labs','dust','filigran','kili-technology',
+          'mindee','harfanglab','sipearl','unifai','autrice-ai',
+          'webyn-ai','ai-cargo-foundation',
+          'yubo','voggt','voodoo','kisskissbankbank','joko',
+          'cheerz','lunii','mwm','madbox','kabeen','ron-dorff',
+          'lemlist','onefinestay','splio',
+          'electra','contentsquare','doctrine','evaneos','jobteaser',
+          'pigment','lucca','partoo','getaround','matera','agicap',
+          'blablacar','carrefour','carrefour-2','decathlon','jcdecaux',
+          'canal-plus','rakuten','rakuten-dx','total','porsche-france',
+          'edf-enr','oscaro','prestashop',
+          'flaire','manomano','libeo','leetchi','kard','foodles',
+          'spiko','cybelangel','twicpics','jus-mundi','mytraffic',
+        ];
+        const RANK = new Map(COOL_ORDER.map((s, i) => [s, i]));
+        const rankOf = (s) => RANK.has(s) ? RANK.get(s) : Infinity;
+
         fetch('clients.json').then(r => r.json()).then(clients => {
-          const withTm = clients.filter(c => c.has_testimonial);
+          const withTm = clients
+            .filter(c => c.has_testimonial)
+            .sort((a, b) => {
+              const ra = rankOf(a.slug), rb = rankOf(b.slug);
+              if (ra !== rb) return ra - rb;
+              return a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
+            });
           clientsList.innerHTML = withTm.map(c => {
             const logo = c.has_logo
               ? `<img class="row-logo" src="assets/${c.slug}.svg" alt="${escape(c.name)}" loading="lazy" />`
