@@ -162,13 +162,29 @@
   .hero-tabs-row {
     margin-bottom: 0;
   }
-  .hero-tabs-row .subtab {
-    font-weight: 400;
-    padding-bottom: clamp(6px, 0.8vw, 10px);
+  .hero-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
-  .hero-tabs-row .subtab[aria-current="true"]::after {
+  .hero-tab {
+    padding: clamp(12px, 1.4vw, 20px) clamp(8px, 1vw, 14px);
+    font-size: clamp(18px, 2vw, 26px);
+    line-height: 1.25;
+    font-family: inherit;
+    font-weight: 400;
+    background: transparent;
+    border: none;
+    color: var(--ink);
+    cursor: pointer;
+    opacity: 0.5;
+    text-align: center;
+    transition: opacity 0.15s ease;
+    position: relative;
+  }
+  .hero-tab:hover { opacity: 1; }
+  .hero-tab[aria-current="true"] { opacity: 1; }
+  .hero-tab[aria-current="true"]::after {
     content: "";
-    display: block;
     position: absolute;
     left: 0;
     right: 0;
@@ -190,42 +206,31 @@
     padding: 0;
     display: flex;
     flex-direction: column;
+    gap: clamp(18px, 2vw, 28px);
   }
   .hero-clients-row {
     display: flex;
     flex-direction: column;
-    gap: clamp(4px, 0.5vw, 8px);
-    padding: clamp(14px, 1.4vw, 20px) 0;
-    border-top: 1px solid rgba(6, 32, 4, 0.12);
+    gap: clamp(6px, 0.8vw, 10px);
     color: var(--ink);
     text-decoration: none;
     transition: opacity 0.18s ease;
   }
-  .hero-clients-row:first-child { border-top: none; padding-top: clamp(4px, 0.5vw, 8px); }
   .hero-clients-row:hover { opacity: 0.7; }
-  .hero-clients-row .row-head {
-    display: flex;
-    align-items: center;
-    gap: clamp(10px, 1vw, 16px);
-  }
   .hero-clients-row .row-logo {
-    height: clamp(18px, 1.8vw, 24px);
+    height: clamp(20px, 2vw, 28px);
     width: auto;
-    flex-shrink: 0;
+    align-self: flex-start;
   }
   .hero-clients-row .row-name {
-    font-size: clamp(15px, 1.4vw, 19px);
-    font-weight: 700;
+    font-size: clamp(14px, 1.3vw, 17px);
+    font-weight: 400;
     letter-spacing: -0.01em;
   }
   .hero-clients-row .row-tm {
     font-size: clamp(13px, 1.2vw, 16px);
     line-height: 1.4;
-    opacity: 0.7;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    opacity: 0.55;
   }
 
 
@@ -492,10 +497,10 @@
         </div>
 
         <div class="hero-team">
-          <div class="subtabs-row hero-tabs-row">
-            <nav class="subtabs" aria-label="Équipe ou clients">
-              <button type="button" class="subtab" data-pane="equipe" aria-current="true">Équipe</button>
-              <button type="button" class="subtab" data-pane="clients">Clients</button>
+          <div class="hero-tabs-row">
+            <nav class="hero-tabs" aria-label="Équipe ou clients">
+              <button type="button" class="hero-tab" data-pane="equipe" aria-current="true">Équipe</button>
+              <button type="button" class="hero-tab" data-pane="clients">Clients</button>
             </nav>
           </div>
           <div class="hero-pane" data-pane="equipe">
@@ -624,7 +629,7 @@
     // Bascule entre les panes Équipe / Clients dans le hero + chargement
     // de la liste clients depuis clients.json à la première bascule.
     (function () {
-      const tabs = document.querySelectorAll('.hero-tabs-row .subtab[data-pane]');
+      const tabs = document.querySelectorAll('.hero-tab[data-pane]');
       const panes = document.querySelectorAll('.hero-pane[data-pane]');
       const clientsList = document.getElementById('hero-clients-list');
       if (!tabs.length || !panes.length) return;
@@ -667,10 +672,8 @@
               ? `<img class="row-logo" src="assets/${c.slug}.svg" alt="${escape(c.name)}" loading="lazy" />`
               : '';
             return `<li><a class="hero-clients-row" href="clients.html#${escape(c.slug)}">
-              <div class="row-head">
-                ${logo}
-                <span class="row-name">${escape(c.name)}</span>
-              </div>
+              ${logo}
+              <span class="row-name">${escape(c.name)}</span>
               <div class="row-tm">"${escape(c.verbatim || '')}"</div>
             </a></li>`;
           }).join('');
