@@ -463,6 +463,12 @@
     align-self: flex-start;
     margin-left: var(--pad-card-x);
   }
+  /* Variante large : CTA bottom de la home, plus présent. */
+  .see-all-bottom--large {
+    font-size: clamp(20px, 2.2vw, 30px);
+    padding: clamp(18px, 1.8vw, 28px) clamp(28px, 2.8vw, 44px);
+    border-radius: clamp(3px, 0.3vw, 6px);
+  }
 
   /* ---------- Mobile <600px : full-bleed + alignement contenu ---------- */
   /* Blocs blancs full-width (case-cards + manifesto-card) via margin
@@ -594,7 +600,7 @@
     <section class="ai-logos section">
       <div class="ai-logos-title">
         <h2>Nous réalisons les plans de recrutement des entreprises françaises les plus ambitieuses.</h2>
-      </div>      <a href="contact.html" class="btn-outline see-all-bottom">Échanger avec un consultant</a>
+      </div>      <a href="contact.html" class="btn-outline see-all-bottom see-all-bottom--large">Échanger avec un consultant</a>
     </section>
 
     <footer class="site-footer" data-footer></footer>
