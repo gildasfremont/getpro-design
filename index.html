@@ -39,7 +39,7 @@
   .hero-inner {
     display: grid;
     grid-template-columns: 3fr 2fr;
-    gap: clamp(32px, 4vw, 64px);
+    gap: clamp(48px, 5vw, 64px);
     align-items: start;
   }
 
@@ -50,7 +50,7 @@
     display: flex;
     flex-direction: column;
     gap: 0;
-    margin-top: clamp(-60px, -3.6vw, -30px);
+    margin-top: clamp(-90px, -5.5vw, -50px);
   }
   .hero-team-cta {
     justify-self: start;
@@ -146,6 +146,42 @@
       grid-template-columns: 1fr;
       align-items: start;
     }
+    .hero-title {
+      font-size: clamp(32px, 8vw, 52px);
+    }
+    .hero-team {
+      margin-top: 0;
+    }
+    .hero-tabs {
+      display: inline-flex !important;
+      gap: 4px !important;
+      background: #d8e0d3 !important;
+      border-radius: 10px;
+      padding: 4px;
+      margin-bottom: 16px;
+    }
+    .hero-tab {
+      padding: 10px 22px !important;
+      font-size: 15px !important;
+      font-weight: 600 !important;
+      color: var(--ink) !important;
+      opacity: 0.45 !important;
+      border: none !important;
+      background: transparent !important;
+      border-radius: 7px !important;
+      box-shadow: none !important;
+    }
+    .hero-tab[aria-current="true"] {
+      opacity: 1 !important;
+      background: var(--bg) !important;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08) !important;
+    }
+    .hero-tab-label::after {
+      display: none !important;
+    }
+    .hero-subtitle {
+      font-size: clamp(20px, 4vw, 30px);
+    }
   }
   .hero-team-cta {
     margin-top: clamp(8px, 1vw, 14px);
@@ -163,11 +199,12 @@
   }
   .hero-tabs {
     display: flex;
+    justify-content: flex-end;
     gap: clamp(24px, 2.8vw, 44px);
   }
   .hero-tab {
-    padding: clamp(12px, 1.4vw, 20px) 0;
-    font-size: clamp(18px, 2vw, 26px);
+    padding: clamp(14px, 1.6vw, 24px) 0;
+    font-size: clamp(24px, 2.8vw, 34px);
     line-height: 1.25;
     font-family: inherit;
     font-weight: 400;
@@ -189,16 +226,22 @@
     position: relative;
     display: inline-block;
   }
-  .hero-tab[aria-current="true"] .hero-tab-label::after {
+  .hero-tab-label::after {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
-    /* La pseudo dépasse le label de la valeur du padding-bottom du tab
-       → tombe pile sur la top edge du panel. */
-    bottom: calc(-1 * clamp(12px, 1.4vw, 20px));
+    bottom: calc(-1 * clamp(14px, 1.6vw, 24px));
     height: 2px;
     background: var(--ink);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .hero-tab:hover .hero-tab-label::after {
+    opacity: 0.3;
+  }
+  .hero-tab[aria-current="true"] .hero-tab-label::after {
+    opacity: 1;
   }
 
   /* Panel Clients : fond blanc, liste de rows (logo + nom + extrait
@@ -423,6 +466,7 @@
   @media (max-width: 800px) {
     .manifesto-paragraphs {
       column-count: 1;
+      padding-right: clamp(16px, 4vw, 32px);
     }
   }
 
@@ -441,8 +485,8 @@
     padding-right: var(--pad-card-x);
   }
   .ai-logos-title h2 {
-    font-size: var(--fs-section-title);
-    line-height: var(--lh-section-title);
+    font-size: clamp(28px, 3.6vw, 52px);
+    line-height: 1.15;
     max-width: clamp(320px, 75vw, 1050px);
   }
   .ai-logos-grid {
@@ -513,7 +557,7 @@
       <div class="hero-inner">
         <div class="hero-lede">
           <h1 class="hero-title"><strong>10 ans de recrutement<br>au côté des plus belles<br>entreprises de la Tech<br>et de l'IA.</strong></h1>
-          <p class="hero-subtitle">La personne que vous allez embaucher<br>fait partie de notre réseau. Si nous<br>commencions par la contacter ?</p>
+          <p class="hero-subtitle">La personne que vous allez embaucher fait partie de notre réseau : si nous commencions par la contacter ?</p>
 
         </div>
 

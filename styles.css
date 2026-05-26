@@ -47,13 +47,13 @@
   --fs-hero:          clamp(22px, 4.8vw, 68px);
   --lh-hero:          clamp(28px, 5.2vw, 74px);
   --fs-section-title: clamp(32px, 4vw, 60px);
-  --lh-section-title: clamp(20px, 2.95vw, 43px);
+  --lh-section-title: 1.15;
   --fs-card-name:     clamp(28px, 4.2vw, 68px);
-  --lh-card-name:     clamp(26px, 4vw, 58px);
+  --lh-card-name:     1.1;
   --fs-card-title:    clamp(32px, 4vw, 60px);
-  --lh-card-title:    clamp(20px, 3.2vw, 46px);
+  --lh-card-title:    1.15;
   --fs-card-sub:      clamp(14px, 2.2vw, 32px);
-  --lh-card-sub:      clamp(18px, 2.5vw, 36px);
+  --lh-card-sub:      1.3;
   --fs-quote:         clamp(15px, 2.2vw, 32px);
   --lh-quote:         clamp(22px, 2.75vw, 40px);
   --fs-tab:           clamp(15px, 1.85vw, 24px);
@@ -733,10 +733,12 @@ body.menu-open main > *:not(.header) {
   transition: opacity 0.15s ease;
 }
 .foot-featured a:hover { opacity: 0.65; }
-.foot-featured a:hover {
+.foot-featured a:not(.menu-item--two):hover {
+  text-decoration: underline;
   text-decoration-thickness: 2px;
 }
-.foot-featured a[aria-current="page"] {
+.foot-featured a:not(.menu-item--two)[aria-current="page"] {
+  text-decoration: underline;
   text-decoration-thickness: 2px;
 }
 /* Variante 2 lignes : titre + sous-titre dans le foot-featured.
@@ -766,26 +768,11 @@ body.menu-open main > *:not(.header) {
   text-underline-offset: clamp(4px, 0.5vw, 8px);
 }
 .foot-featured a.menu-item--two .mi-sub {
-  font-weight: 400;
-  opacity: 0.55;
-  font-size: 0.7em;
+  font-weight: 700;
+  opacity: 1;
+  font-size: 0.95em;
   letter-spacing: -0.01em;
-}
-
-/* Variante 2 lignes dans le submenu mobile (Solutions de recrutement). */
-.submenu-list--mobile a.menu-item--two {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-  text-decoration: none;
-}
-.submenu-list--mobile a.menu-item--two .mi-title { font-weight: 700; }
-.submenu-list--mobile a.menu-item--two .mi-sub {
-  font-weight: 400;
-  opacity: 0.55;
-  font-size: 0.7em;
-  letter-spacing: -0.01em;
+  line-height: 1.35;
 }
 
 /* Grille standard du footer (sous le featured nav).
@@ -929,6 +916,16 @@ a.foot-line:hover { text-decoration: underline; }
     grid-column: 1 / -1;
     grid-row: auto;
     padding-right: 0;
+  }
+  .foot-featured a.menu-item--two {
+    flex-direction: row;
+    gap: 0.35em;
+    align-items: baseline;
+  }
+  .foot-featured a.menu-item--two .mi-sub {
+    font-size: inherit;
+    font-weight: inherit;
+    opacity: 1;
   }
 }
 @media (max-width: 460px) {
