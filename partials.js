@@ -45,10 +45,10 @@
     <nav class="menu">
       <a href="index.html" class="brand" aria-label="GetPro"></a>
       <div class="menu-right" id="menu-right">
-        <a href="services-transition.html" class="menu-item menu-item--inline"${aria('services-transition.html')}>Management de transition</a>
-        <a href="services-renfort.html" class="menu-item menu-item--inline"${aria('services-renfort.html')}>RPO</a>
+        <a href="services-transition.html" class="menu-item menu-item--inline menu-item--two"${aria('services-transition.html')}><span class="mi-title">Dirigeants</span><span class="mi-sub">à la demande</span></a>
+        <a href="services-renfort.html" class="menu-item menu-item--inline menu-item--two"${aria('services-renfort.html')}><span class="mi-title">Recruteurs</span><span class="mi-sub">à la demande</span></a>
         <div class="menu-item-group menu-item-group--cdi">
-          <a href="services-tech.html" class="menu-item menu-item--inline"${aria('services-tech.html')}>CDI &amp; Freelance</a>
+          <a href="services-tech.html" class="menu-item menu-item--inline menu-item--two"${aria('services-tech.html')}><span class="mi-title">Chasse de tête</span><span class="mi-sub">CDI &amp; Freelance</span></a>
           <div class="submenu submenu--inline" id="cdi-submenu">
             <div class="submenu-eyebrow">Practices</div>
             <ul class="submenu-list submenu-list--row">

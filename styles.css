@@ -166,6 +166,23 @@ button { font-family: inherit; cursor: pointer; }
   text-underline-offset: clamp(4px, 0.5vw, 8px);
   transition: text-decoration-thickness 0.18s ease;
 }
+/* Variante 2 lignes : titre + sous-titre (le sous-titre est sans gras
+   et grisé, le titre garde le poids 700). */
+.menu-right .menu-item--two {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  line-height: 1.1;
+}
+.menu-right .menu-item--two .mi-title {
+  font-weight: 700;
+}
+.menu-right .menu-item--two .mi-sub {
+  font-weight: 400;
+  opacity: 0.55;
+  letter-spacing: -0.01em;
+}
 /* Contact : aplat gris translucide + texte ink gras. */
 .menu-right .menu-item--contact {
   padding: clamp(10px, 1vw, 14px) clamp(16px, 1.4vw, 22px);
