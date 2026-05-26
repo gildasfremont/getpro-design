@@ -127,10 +127,9 @@ button { font-family: inherit; cursor: pointer; }
 .menu-right { margin-left: auto; }
 .brand {
   display: inline-block;
-  /* Calibré pour que la hauteur du logo ≈ la cap-height du texte de
-     la nav, et que les deux paraissent assis sur la même ligne. */
-  width: clamp(78px, 7.6vw, 110px);
-  height: clamp(16px, 1.55vw, 22px);
+  /* Plus grand pour équilibrer les nav items à 2 lignes. */
+  width: clamp(130px, 12vw, 180px);
+  height: clamp(28px, 2.7vw, 38px);
   background-color: var(--ink);
   -webkit-mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
           mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
@@ -140,9 +139,10 @@ button { font-family: inherit; cursor: pointer; }
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  /* baseline : tous les items de la nav (inline + bouton Contact)
-     s'alignent sur leur baseline typographique, pas sur la box. */
-  align-items: baseline;
+  /* center : avec des items à 2 lignes, on centre verticalement plutôt
+     que de baseline-aligner (ça mettrait le logo sur la 1ʳᵉ ligne du
+     titre des items et le sous-titre déborderait en bas). */
+  align-items: center;
   column-gap: clamp(20px, 2.4vw, 40px);
   row-gap: clamp(8px, 1vw, 14px);
   /* Ne pas rétrécir dans le flex parent : on prend la largeur nécessaire
