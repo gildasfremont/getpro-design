@@ -204,7 +204,6 @@ button { font-family: inherit; cursor: pointer; }
 .menu-right .menu-item--two {
   text-decoration: none;
   opacity: 1;
-  transition: opacity 0.15s ease;
 }
 .menu-right .menu-item--inline:hover,
 .menu-right .menu-item-group--cdi:hover .menu-item--two {
@@ -713,7 +712,6 @@ body.menu-open main > *:not(.header) {
   font-weight: 700;
   text-decoration: none;
   text-underline-offset: clamp(4px, 0.5vw, 8px);
-  transition: opacity 0.15s ease;
 }
 .foot-featured a:hover { opacity: 0.65; }
 .foot-featured a:not(.menu-item--two):hover {
