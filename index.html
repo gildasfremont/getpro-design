@@ -162,29 +162,39 @@
     margin-bottom: clamp(8px, 1vw, 14px);
   }
 
-  /* Panel Clients : fond blanc, wall de logos en ink monochrome. */
+  /* Panel Clients : fond blanc, wall de logos en ink monochrome.
+     Réutilise .ai-logo / .ai-logo-mark de styles.css (mêmes dimensions,
+     mêmes assets). Layout : CSS columns 2 — chaque logo coule naturellement
+     left-aligned dans sa colonne, pas de quadrillage forcé. */
   .hero-pane[data-pane="clients"] {
     background: var(--white);
-    padding: clamp(20px, 2.2vw, 36px);
+    padding: clamp(24px, 2.6vw, 40px);
   }
   .client-wall {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: clamp(18px, 2vw, 32px);
-    row-gap: clamp(24px, 2.6vw, 40px);
-    align-items: center;
+    columns: 2;
+    column-gap: clamp(24px, 2.8vw, 44px);
   }
-  .client-logo {
+  .client-wall .ai-logo {
+    break-inside: avoid;
+    margin-bottom: clamp(18px, 2vw, 28px);
+  }
+  .client-wall .ai-logo:last-child { margin-bottom: 0; }
+
+  /* Indicateur underline sous la tab active dans le hero (pattern de la
+     screenshot ref : Software | Hardware | ML & IA). On rétablit l'after
+     uniquement dans le contexte .hero-tabs-row pour ne pas casser les
+     subtabs services qui utilisent un autre signal (opacity seul). */
+  .hero-tabs-row .subtab { padding-bottom: clamp(6px, 0.8vw, 10px); }
+  .hero-tabs-row .subtab[aria-current="true"]::after {
+    content: "";
     display: block;
-    width: 100%;
-    height: clamp(22px, 2.4vw, 32px);
-    background-color: var(--ink);
-    -webkit-mask: var(--logo-src) center / contain no-repeat;
-            mask: var(--logo-src) center / contain no-repeat;
-    opacity: 0.85;
-    transition: opacity 0.2s ease;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: var(--ink);
   }
-  .client-logo:hover { opacity: 1; }
 
   .grid-images {
     display: grid;
@@ -475,30 +485,34 @@
           </div>
           <div class="hero-pane" data-pane="clients" hidden>
             <div class="client-wall">
-              <span class="client-logo" style="--logo-src: url('assets/mistral-ai.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/contentsquare.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/blablacar.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/canal-plus.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/decathlon.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/agicap.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/lucca.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/partoo.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/electra.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/silae.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/tiime.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/yubo.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/dust.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/codspeed.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/cybelangel.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/biron.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/a2mac1.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/axione.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/corwave.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/altarea.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/capco.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/corum-lepargne.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/xpollens.svg');" aria-hidden="true"></span>
-              <span class="client-logo" style="--logo-src: url('assets/carrefour.svg');" aria-hidden="true"></span>
+              <a class="ai-logo" href="clients.html#mistral-ai" aria-label="Mistral AI"><span class="ai-logo-mark mistral-ai" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#contentsquare" aria-label="Contentsquare"><span class="ai-logo-mark contentsquare" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#blablacar" aria-label="BlaBlaCar"><span class="ai-logo-mark blablacar" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#manomano" aria-label="ManoMano"><span class="ai-logo-mark manomano" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#eleven-labs" aria-label="Eleven Labs"><span class="ai-logo-mark eleven-labs" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#agicap" aria-label="Agicap"><span class="ai-logo-mark agicap" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#electra" aria-label="Electra"><span class="ai-logo-mark electra" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#doctrine" aria-label="Doctrine"><span class="ai-logo-mark doctrine" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#mindee" aria-label="Mindee"><span class="ai-logo-mark mindee" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#filigran" aria-label="Filigran"><span class="ai-logo-mark filigran" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#foodles" aria-label="Foodles"><span class="ai-logo-mark foodles" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#pigment" aria-label="Pigment"><span class="ai-logo-mark pigment" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#harfanglab" aria-label="Harfanglab"><span class="ai-logo-mark harfanglab" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#matera" aria-label="Matera"><span class="ai-logo-mark matera" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#kili-technology" aria-label="Kili Technology"><span class="ai-logo-mark kili" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#sipearl" aria-label="SiPearl"><span class="ai-logo-mark sipearl" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#joko" aria-label="Joko"><span class="ai-logo-mark joko" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#cybelangel" aria-label="CybelAngel"><span class="ai-logo-mark cybelangel" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#linkurious" aria-label="Linkurious"><span class="ai-logo-mark linkurious" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#mytraffic" aria-label="Mytraffic"><span class="ai-logo-mark mytraffic" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#trustpair" aria-label="Trustpair"><span class="ai-logo-mark trustpair" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#konverso" aria-label="Konverso"><span class="ai-logo-mark konverso" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#whoz" aria-label="Whoz"><span class="ai-logo-mark whoz" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#stoik" aria-label="Stoïk"><span class="ai-logo-mark stoik" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#wematch-live" aria-label="Wematch.live"><span class="ai-logo-mark wematch-live" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#reelevant" aria-label="Reelevant"><span class="ai-logo-mark reelevant" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#pricemoov" aria-label="Pricemoov"><span class="ai-logo-mark pricemoov" aria-hidden="true"></span></a>
+              <a class="ai-logo" href="clients.html#ai-cargo-foundation" aria-label="AI Cargo Foundation"><span class="ai-logo-mark ai-cargo-foundation" aria-hidden="true"></span></a>
             </div>
           </div>
         </div>
