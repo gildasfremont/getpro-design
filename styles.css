@@ -291,7 +291,7 @@ button.menu-item {
   font-family: inherit;
   color: inherit;
 }
-.menu-item[aria-current="page"]:not(.menu-item--has-submenu):not(.menu-item--contact) {
+.menu-item[aria-current="page"]:not(.menu-item--has-submenu):not(.menu-item--contact):not(.menu-item--two) {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 6px;
