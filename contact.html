@@ -36,7 +36,12 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     column-gap: clamp(40px, 5vw, 80px);
-    row-gap: clamp(28px, 3vw, 44px);
+    align-items: start;
+  }
+  .prop-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 2vw, 32px);
   }
   .prop-block {
     display: flex;
@@ -82,7 +87,7 @@
   }
   .contact-phone {
     display: inline-block;
-    font-size: clamp(28px, 3.6vw, 48px);
+    font-size: clamp(20px, 2.2vw, 30px);
     line-height: 1.1;
     letter-spacing: -0.02em;
     font-weight: 700;
@@ -197,7 +202,7 @@
   .btn-primary:hover { background: #0a3209; }
 
   @media (max-width: 800px) {
-    .contact-props { grid-template-columns: 1fr; }
+    .contact-props { grid-template-columns: 1fr; row-gap: clamp(32px, 4vw, 48px); }
     .contact-form  { grid-template-columns: 1fr; }
     .form-submit   { flex-direction: column; align-items: stretch; }
     .form-submit .btn-primary { justify-content: center; }
@@ -223,9 +228,15 @@
                 <li>Expérience candidat 5&nbsp;étoiles <img class="inline-mark" src="assets/trustfolio.svg" alt="Trustfolio" /></li>
               </ul>
             </div>
-            <div class="prop-block prop-block--phone">
-              <span class="prop-eyebrow">Ou par téléphone</span>
-              <a class="contact-phone" href="tel:+33939289329">09&nbsp;39&nbsp;28&nbsp;93&nbsp;29</a>
+            <div class="prop-contacts">
+              <div class="prop-block prop-block--phone">
+                <span class="prop-eyebrow">Par mail</span>
+                <a class="contact-phone" href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>
+              </div>
+              <div class="prop-block prop-block--phone">
+                <span class="prop-eyebrow">Ou par téléphone</span>
+                <a class="contact-phone" href="tel:+33939289329">09&nbsp;39&nbsp;28&nbsp;93&nbsp;29</a>
+              </div>
             </div>
           </div>
 

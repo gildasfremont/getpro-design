@@ -200,30 +200,15 @@ button { font-family: inherit; cursor: pointer; }
 .menu-right .menu-item--contact-outside {
   margin-left: auto;
 }
-.menu-right .menu-item--inline:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-}
-.menu-right .menu-item--inline[aria-current="page"] {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-}
-/* Variante 2 lignes : on retire le soulignement global et on ne
-   souligne que le .mi-title (la 1ʳᵉ ligne). */
-.menu-right .menu-item--two,
-.menu-right .menu-item--two:hover,
-.menu-right .menu-item--two[aria-current="page"] {
+.menu-right .menu-item--inline,
+.menu-right .menu-item--two {
   text-decoration: none;
+  opacity: 1;
+  transition: opacity 0.15s ease;
 }
-.menu-right .menu-item--two:hover .mi-title {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: clamp(3px, 0.4vw, 6px);
-}
-.menu-right .menu-item--two[aria-current="page"] .mi-title {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: clamp(3px, 0.4vw, 6px);
+.menu-right .menu-item--inline:hover,
+.menu-right .menu-item-group--cdi:hover .menu-item--two {
+  opacity: 0.65;
 }
 /* Nav progressive en 4 étapes selon la largeur :
    - ≥700px (stage 1) : 3 items inline + Contact à droite (par défaut)
@@ -292,9 +277,7 @@ button.menu-item {
   color: inherit;
 }
 .menu-item[aria-current="page"]:not(.menu-item--has-submenu):not(.menu-item--contact):not(.menu-item--two) {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 6px;
+  text-decoration: none;
 }
 /* Contact = bouton, pas un lien. État "page courante" : aplat ink
    inversé (fond ink, texte blanc), pas de soulignement. */
@@ -734,12 +717,10 @@ body.menu-open main > *:not(.header) {
 }
 .foot-featured a:hover { opacity: 0.65; }
 .foot-featured a:not(.menu-item--two):hover {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
+  text-decoration: none;
 }
 .foot-featured a:not(.menu-item--two)[aria-current="page"] {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
+  text-decoration: none;
 }
 /* Variante 2 lignes : titre + sous-titre dans le foot-featured.
    Le lien devient flex-column, le mi-sub est grisé et sans gras. */
@@ -758,14 +739,10 @@ body.menu-open main > *:not(.header) {
   font-weight: 700;
 }
 .foot-featured a.menu-item--two:hover .mi-title {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: clamp(4px, 0.5vw, 8px);
+  text-decoration: none;
 }
 .foot-featured a.menu-item--two[aria-current="page"] .mi-title {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: clamp(4px, 0.5vw, 8px);
+  text-decoration: none;
 }
 .foot-featured a.menu-item--two .mi-sub {
   font-weight: 700;
@@ -1219,7 +1196,7 @@ a.foot-line:hover { text-decoration: underline; }
 .subtabs-row .subtabs {
   display: flex;
   align-items: baseline;
-  gap: clamp(12px, 1.4vw, 22px);
+  gap: clamp(20px, 2.4vw, 40px);
   flex-wrap: nowrap;
   overflow-x: auto;
   min-width: 0;
