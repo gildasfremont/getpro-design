@@ -604,7 +604,7 @@
         if (activeSlug) {
           const li = namesHost.querySelector(`li.row[data-slug="${activeSlug}"]`);
           if (li) {
-            const targetY = li.getBoundingClientRect().top + window.scrollY - 80;
+            const targetY = li.getBoundingClientRect().top + window.scrollY - 180;
             window.scrollTo({ top: Math.max(0, targetY), behavior: 'auto' });
           }
         } else {
