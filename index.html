@@ -43,13 +43,14 @@
     align-items: start;
   }
 
-  /* Wrapper équipe : tabs + panel, sans margin-top. Comme dans les
-     pages secondaires : le top du bloc s'aligne avec le top du grid
-     (= top du titre). */
+  /* Wrapper équipe : margin-top négatif pour que le top du panel
+     blanc (sous la ligne des tabs) tombe pile sur le top du x-height
+     du titre à gauche. Les tabs viennent donc au-dessus. */
   .hero-team {
     display: flex;
     flex-direction: column;
     gap: 0;
+    margin-top: clamp(-60px, -3.6vw, -30px);
   }
   .hero-team-cta {
     justify-self: start;
