@@ -153,9 +153,39 @@
     font-size: clamp(18px, 2vw, 26px);
   }
 
-  /* ---------- Image grid : 3 cols, le composant devient plus haut
-     que le texte. Le texte (col 1) est sticky pour suivre le scroll. */
+  /* ---------- Image grid : 2 cols. */
   .hero-inner { position: relative; }
+
+  /* Tabs Équipe / Clients posées au-dessus du panel : reprend le style
+     subtabs des pages services (texte gras, opacity 0.5 inactif, 1 actif). */
+  .hero-tabs-row {
+    margin-bottom: clamp(8px, 1vw, 14px);
+  }
+
+  /* Panel Clients : fond blanc, wall de logos en ink monochrome. */
+  .hero-pane[data-pane="clients"] {
+    background: var(--white);
+    padding: clamp(20px, 2.2vw, 36px);
+  }
+  .client-wall {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: clamp(18px, 2vw, 32px);
+    row-gap: clamp(24px, 2.6vw, 40px);
+    align-items: center;
+  }
+  .client-logo {
+    display: block;
+    width: 100%;
+    height: clamp(22px, 2.4vw, 32px);
+    background-color: var(--ink);
+    -webkit-mask: var(--logo-src) center / contain no-repeat;
+            mask: var(--logo-src) center / contain no-repeat;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+  .client-logo:hover { opacity: 1; }
+
   .grid-images {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -415,13 +445,17 @@
         <div class="hero-lede">
           <h1 class="hero-title"><strong>10 ans de recrutement<br>au côté des plus belles<br>entreprises de la Tech<br>et de l'IA.</strong></h1>
           <p class="hero-subtitle">La personne que vous allez embaucher<br>fait partie de notre réseau. Si nous<br>commencions par la contacter ?</p>
-          <div class="hero-ctas">
-            <a href="equipe.html" class="hero-cta">Équipe</a>
-            <a href="clients.html" class="hero-cta hero-cta--secondary">Clients</a>
-          </div>
+
         </div>
 
         <div class="hero-team">
+          <div class="subtabs-row hero-tabs-row">
+            <nav class="subtabs" aria-label="Équipe ou clients">
+              <button type="button" class="subtab" data-pane="equipe" aria-current="true">Équipe</button>
+              <button type="button" class="subtab" data-pane="clients">Clients</button>
+            </nav>
+          </div>
+          <div class="hero-pane" data-pane="equipe">
           <div class="grid-images" aria-label="Galerie consultants">
           <a class="tile tile-1" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-3" href="equipe.html" aria-label="Voir l'équipe"></a>
@@ -437,6 +471,35 @@
           <a class="tile tile-13" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-14" href="equipe.html" aria-label="Voir l'équipe"></a>
           <a class="tile tile-15" href="equipe.html" aria-label="Voir l'équipe"></a>
+          </div>
+          </div>
+          <div class="hero-pane" data-pane="clients" hidden>
+            <div class="client-wall">
+              <span class="client-logo" style="--logo-src: url('assets/mistral-ai.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/contentsquare.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/blablacar.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/canal-plus.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/decathlon.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/agicap.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/lucca.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/partoo.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/electra.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/silae.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/tiime.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/yubo.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/dust.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/codspeed.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/cybelangel.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/biron.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/a2mac1.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/axione.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/corwave.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/altarea.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/capco.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/corum-lepargne.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/xpollens.svg');" aria-hidden="true"></span>
+              <span class="client-logo" style="--logo-src: url('assets/carrefour.svg');" aria-hidden="true"></span>
+            </div>
           </div>
         </div>
       </div>
@@ -539,5 +602,26 @@
 
   </main>
   <script src="partials.js?v=1" defer></script>
+  <script>
+    // Bascule entre les panes Équipe / Clients dans le hero.
+    (function () {
+      const tabs = document.querySelectorAll('.hero-tabs-row .subtab[data-pane]');
+      const panes = document.querySelectorAll('.hero-pane[data-pane]');
+      if (!tabs.length || !panes.length) return;
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.pane;
+          tabs.forEach(t => {
+            if (t.dataset.pane === target) t.setAttribute('aria-current', 'true');
+            else t.removeAttribute('aria-current');
+          });
+          panes.forEach(p => {
+            if (p.dataset.pane === target) p.hidden = false;
+            else p.hidden = true;
+          });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
