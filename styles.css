@@ -668,10 +668,10 @@ body.menu-open main > *:not(.header) {
   padding: clamp(50px, 6vw, 90px) var(--pad-x) clamp(36px, 4vw, 56px);
   border-top: 1px solid var(--line);
 }
-/* Ratings (Google/Trustpilot/Trustfolio) à droite, alignés avec la
-   2e ligne du grid adresse (ville + téléphone) — c'est leur baseline
-   visuelle qui doit coller à la 2e ligne. */
-.site-footer .foot-info-row { align-items: flex-end; }
+/* Ratings (Google/Trustpilot/Trustfolio) : top aligné avec le top du
+   grid adresse, pour que les étoiles tombent sur la 1ʳᵉ ligne et les
+   logos de marque tombent sur la 2ᵉ ligne (75011 Paris / téléphone). */
+.site-footer .foot-info-row { align-items: flex-start; }
 
 /* "Featured nav" en haut du footer (façon MoMA) : 3 liens-vedette
    gros et clairs vers les solutions phares (Recrutement salarié,
