@@ -143,7 +143,7 @@ button { font-family: inherit; cursor: pointer; }
      que de baseline-aligner (ça mettrait le logo sur la 1ʳᵉ ligne du
      titre des items et le sous-titre déborderait en bas). */
   align-items: center;
-  column-gap: clamp(20px, 2.4vw, 40px);
+  column-gap: clamp(32px, 3.6vw, 64px);
   row-gap: clamp(8px, 1vw, 14px);
   /* Ne pas rétrécir dans le flex parent : on prend la largeur nécessaire
      à tous les items sur une ligne, le brand s'occupe du reste. */
