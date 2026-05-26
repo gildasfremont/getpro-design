@@ -43,13 +43,14 @@
     align-items: start;
   }
 
-  /* Wrapper équipe : tabs + panel. Pas de margin-top : le padding-top
-     du .hero-tab aligne le texte des tabs sur la x-height du titre à
-     gauche (sans pousser tout le bloc vers le bas). */
+  /* Wrapper équipe : tabs + panel. margin-top compense l'ascender du
+     titre pour que le haut du panel s'aligne sur le HAUT du x-height
+     du titre (top des lettres minuscules de "10 ans..."). */
   .hero-team {
     display: flex;
     flex-direction: column;
     gap: 0;
+    margin-top: clamp(14px, 1.4vw, 22px);
   }
   .hero-team-cta {
     justify-self: start;
