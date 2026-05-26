@@ -43,14 +43,14 @@
     align-items: start;
   }
 
-  /* Wrapper équipe : tabs + panel. margin-top compense l'ascender du
-     titre pour que le haut du panel s'aligne sur le HAUT du x-height
-     du titre (top des lettres minuscules de "10 ans..."). */
+  /* Wrapper équipe : margin-top négatif pour que le panel (sous la
+     barre des tabs) s'aligne avec le top du x-height du titre. Les
+     tabs sont donc au-dessus du x-height. */
   .hero-team {
     display: flex;
     flex-direction: column;
     gap: 0;
-    margin-top: clamp(14px, 1.4vw, 22px);
+    margin-top: clamp(-60px, -3.6vw, -30px);
   }
   .hero-team-cta {
     justify-self: start;
