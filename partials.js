@@ -69,9 +69,9 @@
           </button>
           <div class="submenu" id="solutions-submenu">
             <ul class="submenu-list submenu-list--mobile">
-              <li><a href="services-transition.html"${aria('services-transition.html')}>Management de transition</a></li>
-              <li><a href="services-renfort.html"${aria('services-renfort.html')}>RPO</a></li>
-              <li><a href="services-tech.html"${aria('services-tech.html')}>CDI &amp; Freelance</a></li>
+              <li><a class="menu-item--two" href="services-transition.html"${aria('services-transition.html')}><span class="mi-title">Dirigeants</span><span class="mi-sub">à la demande</span></a></li>
+              <li><a class="menu-item--two" href="services-renfort.html"${aria('services-renfort.html')}><span class="mi-title">Recruteurs</span><span class="mi-sub">à la demande</span></a></li>
+              <li><a class="menu-item--two" href="services-tech.html"${aria('services-tech.html')}><span class="mi-title">Chasse de tête</span><span class="mi-sub">CDI &amp; Freelance</span></a></li>
               <li><a href="clients.html"${aria('clients.html')}>Clients</a></li>
               <li><a href="equipe.html"${aria('equipe.html')}>Équipe</a></li>
               <li><a href="articles.html"${aria('articles.html')}>Articles</a></li>
@@ -100,9 +100,9 @@
 
   const footerHTML = `
     <nav class="foot-featured" aria-label="Services principaux">
-      <a href="services-transition.html"${aria('services-transition.html')}>Management de transition</a>
-      <a href="services-renfort.html"${aria('services-renfort.html')}>RPO</a>
-      <a href="services-tech.html"${aria('services-tech.html')}>CDI &amp; Freelance</a>
+      <a class="menu-item--two" href="services-transition.html"${aria('services-transition.html')}><span class="mi-title">Dirigeants</span><span class="mi-sub">à la demande</span></a>
+      <a class="menu-item--two" href="services-renfort.html"${aria('services-renfort.html')}><span class="mi-title">Recruteurs</span><span class="mi-sub">à la demande</span></a>
+      <a class="menu-item--two" href="services-tech.html"${aria('services-tech.html')}><span class="mi-title">Chasse de tête</span><span class="mi-sub">CDI &amp; Freelance</span></a>
       <a href="clients.html"${aria('clients.html')}>Clients</a>
       <a href="equipe.html"${aria('equipe.html')}>Équipe</a>
       <a href="articles.html"${aria('articles.html')}>Articles</a>

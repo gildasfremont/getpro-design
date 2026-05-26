@@ -739,6 +739,54 @@ body.menu-open main > *:not(.header) {
 .foot-featured a[aria-current="page"] {
   text-decoration-thickness: 2px;
 }
+/* Variante 2 lignes : titre + sous-titre dans le foot-featured.
+   Le lien devient flex-column, le mi-sub est grisé et sans gras. */
+.foot-featured a.menu-item--two {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  line-height: 1.1;
+  text-decoration: none;
+}
+.foot-featured a.menu-item--two:hover,
+.foot-featured a.menu-item--two[aria-current="page"] {
+  text-decoration: none;
+}
+.foot-featured a.menu-item--two .mi-title {
+  font-weight: 700;
+}
+.foot-featured a.menu-item--two:hover .mi-title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: clamp(4px, 0.5vw, 8px);
+}
+.foot-featured a.menu-item--two[aria-current="page"] .mi-title {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: clamp(4px, 0.5vw, 8px);
+}
+.foot-featured a.menu-item--two .mi-sub {
+  font-weight: 400;
+  opacity: 0.55;
+  font-size: 0.7em;
+  letter-spacing: -0.01em;
+}
+
+/* Variante 2 lignes dans le submenu mobile (Solutions de recrutement). */
+.submenu-list--mobile a.menu-item--two {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  text-decoration: none;
+}
+.submenu-list--mobile a.menu-item--two .mi-title { font-weight: 700; }
+.submenu-list--mobile a.menu-item--two .mi-sub {
+  font-weight: 400;
+  opacity: 0.55;
+  font-size: 0.7em;
+  letter-spacing: -0.01em;
+}
 
 /* Grille standard du footer (sous le featured nav).
    1 col : brand (qui contient logo, tagline, adresse+contact, ratings). */
