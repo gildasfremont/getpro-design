@@ -159,26 +159,59 @@
   /* Tabs Équipe / Clients posées au-dessus du panel : reprend le style
      subtabs des pages services (texte gras, opacity 0.5 inactif, 1 actif). */
   .hero-tabs-row {
-    margin-bottom: clamp(8px, 1vw, 14px);
+    margin-bottom: 0;
   }
 
-  /* Panel Clients : fond blanc, wall de logos en ink monochrome.
-     Réutilise .ai-logo / .ai-logo-mark de styles.css (mêmes dimensions,
-     mêmes assets). Layout : CSS columns 2 — chaque logo coule naturellement
-     left-aligned dans sa colonne, pas de quadrillage forcé. */
+  /* Panel Clients : fond blanc, liste de rows (logo + nom + extrait
+     temoignage), même structure que la page Clients. Click → goto
+     clients.html#<slug> et la page Clients ouvre le témoignage. */
   .hero-pane[data-pane="clients"] {
     background: var(--white);
-    padding: clamp(24px, 2.6vw, 40px);
+    padding: clamp(16px, 1.8vw, 28px) clamp(20px, 2.2vw, 32px);
   }
-  .client-wall {
-    columns: 2;
-    column-gap: clamp(24px, 2.8vw, 44px);
+  .hero-clients-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
   }
-  .client-wall .ai-logo {
-    break-inside: avoid;
-    margin-bottom: clamp(18px, 2vw, 28px);
+  .hero-clients-row {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(4px, 0.5vw, 8px);
+    padding: clamp(14px, 1.4vw, 20px) 0;
+    border-top: 1px solid rgba(6, 32, 4, 0.12);
+    color: var(--ink);
+    text-decoration: none;
+    transition: opacity 0.18s ease;
   }
-  .client-wall .ai-logo:last-child { margin-bottom: 0; }
+  .hero-clients-row:first-child { border-top: none; padding-top: clamp(4px, 0.5vw, 8px); }
+  .hero-clients-row:hover { opacity: 0.7; }
+  .hero-clients-row .row-head {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1vw, 16px);
+  }
+  .hero-clients-row .row-logo {
+    height: clamp(18px, 1.8vw, 24px);
+    width: auto;
+    flex-shrink: 0;
+  }
+  .hero-clients-row .row-name {
+    font-size: clamp(15px, 1.4vw, 19px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .hero-clients-row .row-tm {
+    font-size: clamp(13px, 1.2vw, 16px);
+    line-height: 1.4;
+    opacity: 0.7;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
 
   /* Indicateur underline sous la tab active dans le hero (pattern de la
      screenshot ref : Software | Hardware | ML & IA). On rétablit l'after
@@ -484,36 +517,7 @@
           </div>
           </div>
           <div class="hero-pane" data-pane="clients" hidden>
-            <div class="client-wall">
-              <a class="ai-logo" href="clients.html#mistral-ai" aria-label="Mistral AI"><span class="ai-logo-mark mistral-ai" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#contentsquare" aria-label="Contentsquare"><span class="ai-logo-mark contentsquare" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#blablacar" aria-label="BlaBlaCar"><span class="ai-logo-mark blablacar" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#manomano" aria-label="ManoMano"><span class="ai-logo-mark manomano" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#eleven-labs" aria-label="Eleven Labs"><span class="ai-logo-mark eleven-labs" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#agicap" aria-label="Agicap"><span class="ai-logo-mark agicap" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#electra" aria-label="Electra"><span class="ai-logo-mark electra" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#doctrine" aria-label="Doctrine"><span class="ai-logo-mark doctrine" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#mindee" aria-label="Mindee"><span class="ai-logo-mark mindee" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#filigran" aria-label="Filigran"><span class="ai-logo-mark filigran" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#foodles" aria-label="Foodles"><span class="ai-logo-mark foodles" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#pigment" aria-label="Pigment"><span class="ai-logo-mark pigment" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#harfanglab" aria-label="Harfanglab"><span class="ai-logo-mark harfanglab" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#matera" aria-label="Matera"><span class="ai-logo-mark matera" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#kili-technology" aria-label="Kili Technology"><span class="ai-logo-mark kili" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#sipearl" aria-label="SiPearl"><span class="ai-logo-mark sipearl" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#joko" aria-label="Joko"><span class="ai-logo-mark joko" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#cybelangel" aria-label="CybelAngel"><span class="ai-logo-mark cybelangel" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#linkurious" aria-label="Linkurious"><span class="ai-logo-mark linkurious" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#mytraffic" aria-label="Mytraffic"><span class="ai-logo-mark mytraffic" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#trustpair" aria-label="Trustpair"><span class="ai-logo-mark trustpair" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#konverso" aria-label="Konverso"><span class="ai-logo-mark konverso" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#whoz" aria-label="Whoz"><span class="ai-logo-mark whoz" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#stoik" aria-label="Stoïk"><span class="ai-logo-mark stoik" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#wematch-live" aria-label="Wematch.live"><span class="ai-logo-mark wematch-live" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#reelevant" aria-label="Reelevant"><span class="ai-logo-mark reelevant" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#pricemoov" aria-label="Pricemoov"><span class="ai-logo-mark pricemoov" aria-hidden="true"></span></a>
-              <a class="ai-logo" href="clients.html#ai-cargo-foundation" aria-label="AI Cargo Foundation"><span class="ai-logo-mark ai-cargo-foundation" aria-hidden="true"></span></a>
-            </div>
+            <ul class="hero-clients-list" id="hero-clients-list" data-loading></ul>
           </div>
         </div>
       </div>
@@ -617,11 +621,40 @@
   </main>
   <script src="partials.js?v=1" defer></script>
   <script>
-    // Bascule entre les panes Équipe / Clients dans le hero.
+    // Bascule entre les panes Équipe / Clients dans le hero + chargement
+    // de la liste clients depuis clients.json à la première bascule.
     (function () {
       const tabs = document.querySelectorAll('.hero-tabs-row .subtab[data-pane]');
       const panes = document.querySelectorAll('.hero-pane[data-pane]');
+      const clientsList = document.getElementById('hero-clients-list');
       if (!tabs.length || !panes.length) return;
+
+      const escape = (s) => (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+      let loaded = false;
+      function loadClients() {
+        if (loaded) return;
+        loaded = true;
+        fetch('clients.json').then(r => r.json()).then(clients => {
+          const withTm = clients.filter(c => c.has_testimonial);
+          clientsList.innerHTML = withTm.map(c => {
+            const logo = c.has_logo
+              ? `<img class="row-logo" src="assets/${c.slug}.svg" alt="${escape(c.name)}" loading="lazy" />`
+              : '';
+            return `<li><a class="hero-clients-row" href="clients.html#${escape(c.slug)}">
+              <div class="row-head">
+                ${logo}
+                <span class="row-name">${escape(c.name)}</span>
+              </div>
+              <div class="row-tm">"${escape(c.verbatim || '')}"</div>
+            </a></li>`;
+          }).join('');
+          clientsList.removeAttribute('data-loading');
+        }).catch(() => {
+          clientsList.innerHTML = '<li>Impossible de charger les clients.</li>';
+        });
+      }
+
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
           const target = tab.dataset.pane;
@@ -633,6 +666,7 @@
             if (p.dataset.pane === target) p.hidden = false;
             else p.hidden = true;
           });
+          if (target === 'clients') loadClients();
         });
       });
     })();
