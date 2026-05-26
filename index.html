@@ -181,15 +181,11 @@
     position: relative;
   }
   .hero-tab:hover { opacity: 1; }
-  .hero-tab[aria-current="true"] { opacity: 1; }
-  .hero-tab[aria-current="true"]::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background: var(--ink);
+  .hero-tab[aria-current="true"] {
+    opacity: 1;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: clamp(8px, 1vw, 14px);
   }
 
   /* Panel Clients : fond blanc, liste de rows (logo + nom + extrait
