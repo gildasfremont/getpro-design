@@ -671,7 +671,8 @@
               const ra = rankOf(a.slug), rb = rankOf(b.slug);
               if (ra !== rb) return ra - rb;
               return a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
-            });
+            })
+            .slice(0, 14);
           clientsList.innerHTML = withTm.map(c => {
             const logo = c.has_logo
               ? `<img class="row-logo" src="assets/${c.slug}.svg" alt="${escape(c.name)}" loading="lazy" />`
