@@ -329,47 +329,50 @@
     border-radius: clamp(3px, 0.3vw, 6px);
   }
 
-  /* ---------- Pillars (grid aligned with cases) ---------- */
-  .pillars {
-    padding: clamp(48px, 6vw, 96px) var(--pad-card-x);
-    display: flex;
-    flex-direction: column;
-    gap: clamp(36px, 4vw, 64px);
-  }
-  .pillar {
+  /* ---------- Services panel ---------- */
+  .services-panel {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
     column-gap: var(--col-gap);
+    padding: clamp(48px, 6vw, 96px) calc(var(--pad-x) + var(--pad-card-x));
   }
-  .pillar-title {
-    font-size: clamp(20px, 2.2vw, 32px);
+  .services-panel-sidebar {
+    grid-column: 1 / -1;
+    margin-bottom: clamp(16px, 2vw, 32px);
+  }
+  .home .services-panel-title {
+    font-size: clamp(40px, 5vw, 72px);
     font-weight: 700;
-    line-height: 1.3;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
     margin: 0;
   }
-  .pillar p {
-    margin: 0;
+  .services-content {
+    grid-column: 2;
+  }
+  .services-intro {
     font-size: clamp(20px, 2.2vw, 32px);
     line-height: 1.3;
-  }
-  @media (max-width: 600px) {
-    .pillar {
-      grid-template-columns: 1fr;
-      row-gap: clamp(8px, 1.2vw, 14px);
-    }
-  }
-
-  /* ---------- Services panel ---------- */
-  .services-panel {
-    padding: clamp(48px, 6vw, 96px) var(--pad-card-x);
-  }
-  .services-panel-title {
-    font-size: clamp(28px, 3.2vw, 48px);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
     margin: 0 0 clamp(32px, 4vw, 64px);
   }
+  .services-intro p {
+    margin: 0 0 0.8em;
+  }
+  .services-intro p:last-child {
+    margin-bottom: 0;
+  }
+  .services-intro a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 0.8px;
+    text-decoration-color: rgba(6, 32, 4, 0.35);
+  }
+  .services-intro a:hover {
+    text-decoration-color: inherit;
+  }
   .services-list {
+    grid-column: 1 / -1;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -380,7 +383,7 @@
     border-top: 1px solid rgba(6, 32, 4, 0.12);
   }
   .services-list li:last-child {
-    border-bottom: 1px solid rgba(6, 32, 4, 0.12);
+    border-bottom: none;
   }
   .service-link {
     display: grid;
@@ -395,19 +398,33 @@
     opacity: 0.6;
   }
   .service-name {
-    font-size: clamp(17px, 1.8vw, 24px);
+    font-size: clamp(20px, 2.2vw, 32px);
     line-height: 1.3;
     font-weight: 700;
     letter-spacing: -0.01em;
   }
   .service-desc {
-    font-size: clamp(17px, 1.8vw, 24px);
-    line-height: 1.35;
+    font-size: clamp(20px, 2.2vw, 32px);
+    line-height: 1.3;
   }
   @media (max-width: 600px) {
+    .services-panel {
+      grid-template-columns: 1fr;
+    }
+    .services-panel-sidebar {
+      grid-row: auto;
+      position: static;
+      margin-bottom: clamp(16px, 2vw, 24px);
+    }
+    .services-content {
+      grid-column: 1;
+    }
+    .services-list {
+      grid-column: 1;
+    }
     .service-link {
       grid-template-columns: 1fr;
-      row-gap: clamp(6px, 1vw, 10px);
+      row-gap: clamp(4px, 0.5vw, 8px);
     }
   }
 
@@ -450,7 +467,9 @@
         <h2 class="hero-manifesto-title">La personne que vous allez embaucher est dans notre réseau</h2>
         <div class="hero-manifesto-cols">
           <p class="manifesto-intro">Depuis 2015, notre équipe a mené plus de 4 000 recrutements<sup>1</sup>, des premières startups IA aux directions tech des grands groupes du CAC 40. Cette expérience a construit plus qu’une base de contacts : un réseau vivant d’experts, d’équipes et de dirigeants.</p>
-          <p>Nos clients entrent parfois chez nous pour recruter un ingénieur, puis reviennent pour structurer leur comité de direction. Cette continuité nous permet d’accumuler ce qui ne se documente pas : savoir qui peut travailler avec qui et dans quel contexte. Notre ancienneté sur un marché qui évolue vite nous donne une lecture que les nouveaux entrants n’ont pas.</p>
+          <p>Nos clients entrent chez nous pour recruter un ingénieur, puis reviennent pour structurer leur comité de direction.</p>
+          <p>Cette continuité nous permet d’accumuler ce qui ne se documente pas : savoir qui peut travailler avec qui et dans quel contexte.</p>
+          <p>Notre ancienneté sur un marché qui évolue vite nous donne une lecture que les nouveaux entrants n’ont pas.</p>
         </div>
         <p class="hero-footnote"><sup>1</sup> <a href="services-profils.html#practices">50% en cabinet</a>, 50% en <a href="services-renfort.html">délégation de recruteurs</a></p>
       </div>
@@ -499,21 +518,17 @@
     </section>
 
 
-    <!-- Pillars -->
-    <section class="pillars section">
-      <div class="pillar">
-        <h3 class="pillar-title">Les fondateurs en première ligne</h3>
-        <p>Chez GetPro, les fondateurs restent impliqués dans les missions, au contact direct des fondateurs et des directions accompagnées. Soutenus par notre outil propriétaire, développé en interne, nos consultants connaissent la tech, ses métiers et ses codes. Cela se sent dans les échanges et crée une relation de confiance des deux côtés.</p>
-      </div>
-      <div class="pillar">
-        <h3 class="pillar-title">Un moment sensible, traité comme tel</h3>
-        <p>Un recrutement clé est toujours un moment sensible : pour l'entreprise qui joue une partie de son organisation, comme pour le candidat qui engage une étape de sa carrière. Nous le traitons avec l'attention qu'il mérite.</p>
-      </div>
-    </section>
-
     <!-- Services -->
     <section class="services-panel section">
-      <h2 class="services-panel-title">Nos services</h2>
+      <div class="services-panel-sidebar">
+        <h2 class="services-panel-title">Services</h2>
+      </div>
+      <div class="services-content">
+      <div class="services-intro">
+        <p>Un recrutement est toujours un moment sensible : pour l’entreprise qui joue une partie de son organisation, comme pour le candidat qui engage une étape de sa carrière. Nous le traitons avec l’attention qu’il mérite.</p>
+        <p>Soutenus par notre outil propriétaire, développé en interne, nos consultants connaissent la tech, ses métiers et ses codes. On peut sentir dans les échanges une forte relation de confiance (qu’on retrouve dans les <a href="clients.html">témoignages candidats</a>).</p>
+      </div>
+      </div>
       <ul class="services-list">
         <li><a href="services-transition.html" class="service-link">
           <span class="service-name">Transition &amp; temps partagé</span>
