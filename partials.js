@@ -270,6 +270,18 @@
       window.addEventListener('scroll', updateVisibility, { passive: true });
       updateVisibility();
     }
+
+    // Header compact on scroll : masque la 2e ligne (.mi-sub)
+    // et réduit le padding pour gagner en hauteur.
+    const headerEl = document.querySelector('.header');
+    if (headerEl) {
+      const compactThreshold = 50;
+      const updateCompact = () => {
+        headerEl.classList.toggle('header--compact', window.scrollY > compactThreshold);
+      };
+      window.addEventListener('scroll', updateCompact, { passive: true });
+      updateCompact();
+    }
   };
 
   if (document.readyState === 'loading') {

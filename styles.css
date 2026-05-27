@@ -102,6 +102,7 @@ button { font-family: inherit; cursor: pointer; }
   top: 0;
   z-index: 50;
   background: var(--bg);
+  transition: none;
 }
 /* Restore the spacing that .header's padding-bottom used to provide */
 .header + * { margin-top: var(--gap-section); }
@@ -121,6 +122,7 @@ button { font-family: inherit; cursor: pointer; }
   align-items: center;
   padding-block: clamp(18px, 2.2vw, 32px);
   gap: clamp(28px, 3.6vw, 56px);
+  transition: padding 0.25s ease;
 }
 /* Pousse le bloc d'options à droite : logo à gauche, options à droite,
    nav équilibrée sur toute la largeur. */
@@ -182,6 +184,17 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 400;
   opacity: 1;
   letter-spacing: -0.01em;
+  transition: opacity 0.25s ease, max-height 0.25s ease, margin-top 0.25s ease;
+  max-height: 1.6em;
+  overflow: hidden;
+}
+/* Compact header on scroll */
+.header--compact .menu {
+  padding-block: clamp(10px, 1.2vw, 16px);
+}
+.header--compact .menu-right .menu-item--two .mi-sub {
+  opacity: 0;
+  max-height: 0;
 }
 /* Contact : aplat gris translucide + texte ink gras. */
 .menu-right .menu-item--contact {
