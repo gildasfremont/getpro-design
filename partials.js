@@ -99,14 +99,6 @@
   `;
 
   const footerHTML = `
-    <nav class="foot-featured" aria-label="Services principaux">
-      <a class="menu-item--two" href="services-transition.html"${aria('services-transition.html')}><span class="mi-title">Dirigeants</span><span class="mi-sub">à la demande</span></a>
-      <a class="menu-item--two" href="services-renfort.html"${aria('services-renfort.html')}><span class="mi-title">Recruteurs</span><span class="mi-sub">à la demande</span></a>
-      <a class="menu-item--two" href="services-tech.html"${aria('services-tech.html')}><span class="mi-title">Chasse de tête</span><span class="mi-sub">CDI &amp; Freelance</span></a>
-      <a href="clients.html"${aria('clients.html')}>Clients</a>
-      <a href="equipe.html"${aria('equipe.html')}>Équipe</a>
-      <a href="articles.html"${aria('articles.html')}>Articles</a>
-    </nav>
     <div class="foot-grid">
       <div class="foot-brand">
         <a href="index.html" class="foot-logo" aria-label="GetPro"></a>
