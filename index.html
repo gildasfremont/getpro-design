@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="stylesheet" href="styles.css?v=1" />
 <style>
-  /* La home garde son ancienne typo : titres en poids normal (sauf
+  /* La home garde son ancienne typo : titres en poids normal (sauf
      <strong>), variables typo plus petites qu'ailleurs. Les autres
      pages bénéficient des bumps globaux. */
   .home h1, .home h2, .home h3, .home h4, .home h5, .home h6 {
@@ -23,286 +23,39 @@
     --fs-section-title: clamp(22px, 2.8vw, 36px);
     --fs-card-title:    clamp(22px, 2.8vw, 36px);
     --fs-card-name:     clamp(22px, 3.55vw, 52px);
+    --col-gap: clamp(40px, 6vw, 110px);
   }
 
-  /* ---------- Hero ---------- */
+  /* ---------- Hero V2 : titre full-width → grille 5×2 → manifesto ---------- */
   .hero {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-section);
+    gap: 0;
     padding-top: clamp(24px, 3vw, 48px);
     padding-bottom: clamp(12px, 1.5vw, 24px);
   }
 
-  /* Hero side-by-side : titre/texte (col 1, plus large) + grille
-     équipe (col 2). */
-  .hero-inner {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    gap: clamp(48px, 5vw, 64px);
-    align-items: start;
-  }
-
-  /* Wrapper équipe : margin-top négatif pour que le top du panel
-     blanc (sous la ligne des tabs) tombe pile sur le top du x-height
-     du titre à gauche. Les tabs viennent donc au-dessus. */
-  .hero-team {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin-top: clamp(-90px, -5.5vw, -50px);
-  }
-  .hero-team-cta {
-    justify-self: start;
-  }
-
   .hero-title {
-    font-size: clamp(24px, 4.8vw, 68px);
+    font-size: clamp(32px, 5.5vw, 80px);
     line-height: 1.05;
     letter-spacing: -0.02em;
     text-wrap: balance;
+    margin-bottom: clamp(28px, 3.5vw, 56px);
+    margin-left: var(--pad-card-x);
   }
   .hero-title strong {
     font-weight: 700;
   }
-  .hero-subtitle {
-    font-size: clamp(20px, 2.2vw, 28px);
-    line-height: 1.3;
-    margin: 0;
-    max-width: none;
-  }
-  .hero-subtitle-cta {
-    color: inherit;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 4px;
-    display: inline-block;
-    margin-top: clamp(16px, 2vw, 28px);
-  }
-  .hero-subtitle-cta:hover {
-    text-decoration-thickness: 2px;
-  }
-  /* Variante "ghost button noir" pour le CTA du sous-titre (Réseau). */
-  .hero-subtitle-cta--ghost {
-    text-decoration: none;
-    padding: clamp(10px, 1vw, 14px) clamp(16px, 1.4vw, 22px);
-    border: 1px solid var(--ink);
-    border-radius: clamp(6px, 0.5vw, 8px);
-    background: transparent;
-    font-size: clamp(15px, 1.4vw, 18px);
-    line-height: 1;
-    transition: background 0.15s ease, color 0.15s ease;
-  }
-  .hero-subtitle-cta--ghost:hover {
-    background: var(--ink);
-    color: var(--white);
-    text-decoration: none;
-  }
-  /* Hero-lede : titre + sous-titre empilés dans la col de gauche.
-     Sticky pour suivre le scroll quand la grille photos (plus haute)
-     défile à droite. */
-  .hero-lede {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(14px, 1.6vw, 22px);
-    position: -webkit-sticky;
-    position: sticky;
-    top: calc(var(--header-h, 60px) + clamp(20px, 2.5vw, 40px));
-    align-self: start;
-  }
-  @media (max-width: 700px) {
-    .hero-lede { position: static; }
-  }
-  .hero-ctas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: clamp(10px, 1vw, 14px);
-    margin-top: clamp(8px, 1vw, 14px);
-  }
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    padding: clamp(18px, 1.8vw, 26px) clamp(26px, 2.5vw, 40px);
-    border: none;
-    border-radius: 2px;
-    background: var(--ink);
-    color: var(--white);
-    text-decoration: none;
-    font-size: clamp(18px, 1.8vw, 24px);
-    font-weight: 700;
-    line-height: 1;
-    transition: opacity 0.15s ease;
-  }
-  .hero-cta:hover { opacity: 0.85; }
-  /* Variante secondaire en aplat gris : pour la 2e action si on veut
-     une hiérarchie. */
-  .hero-cta--secondary {
-    background: var(--white);
-    color: var(--ink);
-  }
-  @media (max-width: 700px) {
-    /* Mobile : on repasse en stack (texte au-dessus des photos). */
-    .hero-inner {
-      grid-template-columns: 1fr;
-      align-items: start;
-    }
-    .hero-title {
-      font-size: clamp(32px, 8vw, 52px);
-    }
-    .hero-team {
-      margin-top: 0;
-    }
-    .hero-tabs {
-      display: inline-flex !important;
-      gap: 4px !important;
-      background: #d8e0d3 !important;
-      border-radius: 10px;
-      padding: 4px;
-      margin-bottom: 16px;
-    }
-    .hero-tab {
-      padding: 10px 22px !important;
-      font-size: 15px !important;
-      font-weight: 600 !important;
-      color: var(--ink) !important;
-      opacity: 0.45 !important;
-      border: none !important;
-      background: transparent !important;
-      border-radius: 7px !important;
-      box-shadow: none !important;
-    }
-    .hero-tab[aria-current="true"] {
-      opacity: 1 !important;
-      background: var(--bg) !important;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08) !important;
-    }
-    .hero-tab-label::after {
-      display: none !important;
-    }
-    .hero-tab::after {
-      display: none !important;
-    }
-    .hero-subtitle {
-      font-size: clamp(20px, 4vw, 30px);
-    }
-    .grid-images .tile:nth-child(n+9) {
-      display: none;
-    }
-  }
-  .hero-team-cta {
-    margin-top: clamp(8px, 1vw, 14px);
-    /* Même taille que .hero-subtitle pour cohérence typographique. */
-    font-size: clamp(18px, 2vw, 26px);
-  }
 
-  /* ---------- Image grid : 2 cols. */
-  .hero-inner { position: relative; }
-
-  /* Tabs Équipe / Clients posées au-dessus du panel : reprend le style
-     subtabs des pages services (texte gras, opacity 0.5 inactif, 1 actif). */
-  .hero-tabs-row {
-    margin-bottom: 0;
-  }
-  .hero-tabs {
-    display: flex;
-    justify-content: stretch;
-    gap: 0;
-  }
-  .hero-tab {
-    flex: 1;
-    padding: clamp(14px, 1.6vw, 24px) 0;
-    font-size: clamp(24px, 2.8vw, 34px);
-    line-height: 1.25;
-    font-family: inherit;
-    font-weight: 700;
-    background: transparent;
-    border: none;
-    color: var(--ink);
-    cursor: pointer;
-    opacity: 0.5;
-    text-align: center;
-    position: relative;
-  }
-  .hero-tab:hover { opacity: 1; }
-  .hero-tab[aria-current="true"] { opacity: 1; }
-  /* Wrapper du texte : permet de placer une underline qui épouse
-     EXACTEMENT la largeur du label, et de la positionner pile en bas
-     du tab (au ras du panel) via bottom calc(-padding-bottom). */
-  .hero-tab-label {
-    position: relative;
-    display: inline-block;
-  }
-  .hero-tab::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background: var(--ink);
-    opacity: 0;
-  }
-  .hero-tab:hover::after {
-    opacity: 0.3;
-  }
-  .hero-tab[aria-current="true"]::after {
-    opacity: 1;
-  }
-
-  /* Panel Clients : fond blanc, liste de rows (logo + nom + extrait
-     temoignage), même structure que la page Clients. Click → goto
-     clients.html#<slug> et la page Clients ouvre le témoignage. */
-  .hero-pane[data-pane="clients"] {
-    background: var(--white);
-    padding: 0 clamp(20px, 2.2vw, 32px) clamp(18px, 2vw, 28px);
-  }
-  .hero-pane[data-pane="clients"] .hero-clients-list {
-    padding-top: clamp(18px, 2vw, 28px);
-  }
-  .hero-clients-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: clamp(18px, 2vw, 28px);
-  }
-  .hero-clients-row {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(6px, 0.8vw, 10px);
-    color: var(--ink);
-    text-decoration: none;
-    transition: opacity 0.18s ease;
-  }
-  .hero-clients-row:hover { opacity: 0.7; }
-  .hero-clients-row .row-logo {
-    height: clamp(20px, 2vw, 28px);
-    width: auto;
-    align-self: flex-start;
-  }
-  .hero-clients-row .row-name {
-    font-size: clamp(14px, 1.3vw, 17px);
-    font-weight: 400;
-    letter-spacing: -0.01em;
-  }
-  .hero-clients-row .row-tm {
-    font-size: clamp(16px, 1.6vw, 21px);
-    line-height: 1.4;
-    opacity: 0.55;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-
-
+  /* Grille photos : 5 colonnes, 2 lignes (10 photos).
+     Margin négatif pour annuler le padding de .section et passer
+     en full-bleed dans le conteneur .home. */
   .grid-images {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 0;
+    margin-inline: calc(var(--pad-x) * -1);
   }
-
   .grid-images .tile {
     aspect-ratio: 3 / 4;
     background-size: cover;
@@ -316,9 +69,138 @@
     transform: scale(1.03);
     z-index: 1;
   }
-  /* Mobile : on garde le 4×4 puisqu'on stacke en 1 col et la grille
-     prend toute la largeur. */
-  /* Consultants — 16 personnes listées dans equipe.html (hors équipe support). */
+
+  /* Manifesto intégré au hero : layout MoMA, sidebar gauche + contenu à droite. */
+  .hero-manifesto {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    column-gap: var(--col-gap);
+    row-gap: clamp(18px, 2vw, 32px);
+    background: var(--white);
+    padding: var(--pad-card-y) var(--pad-card-x);
+  }
+  .hero-manifesto-sidebar {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-self: start;
+    position: sticky;
+    top: calc(var(--header-h, 60px) + 24px);
+  }
+  .hero-manifesto-sidebar span {
+    font-size: clamp(15px, 1.4vw, 20px);
+    line-height: 1.4;
+    color: var(--green);
+  }
+  .hero-manifesto-sidebar .sidebar-label {
+    font-size: clamp(12px, 1vw, 15px);
+    font-weight: 700;
+    margin-top: 12px;
+    opacity: 0.5;
+  }
+  .hero-manifesto-sidebar .sidebar-label:first-child {
+    margin-top: 0;
+  }
+  .hero-manifesto-sidebar .sidebar-link {
+    font-size: clamp(15px, 1.4vw, 20px);
+    margin-top: clamp(20px, 2vw, 32px);
+    color: var(--green);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 0.8px;
+    text-decoration-color: rgba(6, 32, 4, 0.35);
+  }
+  .hero-manifesto-sidebar .sidebar-link:hover {
+    text-decoration-color: inherit;
+  }
+  .home .hero-manifesto-title {
+    grid-column: 2;
+    font-size: clamp(26px, 3vw, 46px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+  .hero-manifesto-cols {
+    grid-column: 2;
+  }
+  .hero-manifesto-cols p {
+    font-size: clamp(20px, 2.2vw, 32px);
+    line-height: 1.3;
+    margin: 0 0 clamp(14px, 1.4vw, 22px);
+  }
+  .hero-manifesto-cols p.manifesto-intro {
+    font-size: clamp(24px, 2.8vw, 40px);
+    line-height: 1.25;
+    margin-bottom: clamp(20px, 2vw, 32px);
+  }
+  .hero-manifesto-cols p:last-child {
+    margin-bottom: 0;
+  }
+  .hero-footnote {
+    grid-column: 2;
+    font-size: clamp(13px, 1.1vw, 16px);
+    line-height: 1.5;
+    color: rgba(6, 32, 4, 0.55);
+    margin: clamp(6px, 0.8vw, 12px) 0 0;
+  }
+  .hero-footnote sup {
+    font-size: 0.75em;
+    vertical-align: super;
+    margin-right: 2px;
+  }
+  .hero-manifesto-cols sup {
+    font-size: 0.65em;
+    vertical-align: super;
+    opacity: 0.5;
+  }
+  .hero-manifesto a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 0.8px;
+    text-decoration-skip-ink: auto;
+    text-decoration-color: rgba(6, 32, 4, 0.35);
+  }
+  .hero-manifesto a:hover {
+    text-decoration-color: inherit;
+  }
+
+  @media (max-width: 700px) {
+    .hero-title {
+      font-size: clamp(32px, 8vw, 52px);
+    }
+    .grid-images {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .grid-images .tile:nth-child(n+7) {
+      display: none;
+    }
+    .hero-manifesto {
+      grid-template-columns: 1fr;
+    }
+    .hero-manifesto-sidebar {
+      grid-row: auto;
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 2px 12px;
+    }
+    .hero-manifesto-title {
+      grid-column: 1;
+      font-size: clamp(22px, 5vw, 36px);
+      max-width: none;
+    }
+    .hero-manifesto-cols {
+      grid-column: 1;
+    }
+    .hero-footnote {
+      grid-column: 1;
+    }
+  }
+
+  /* Consultants */
   .tile-1  { background-image: url('assets/team/anne-delarue.png'); }
   .tile-2  { background-image: url('assets/team/romain-pichou.jpg'); }
   .tile-3  { background-image: url('assets/team/juliette-fabre.png'); }
@@ -329,43 +211,47 @@
   .tile-8  { background-image: url('assets/team/louis-fitamant.png'); }
   .tile-9  { background-image: url('assets/team/lauren-pointon.jpg'); }
   .tile-10 { background-image: url('assets/team/tony-beaugez.png'); }
-  .tile-11 { background-image: url('assets/team/zaia-bouchachia.png'); }
-  .tile-12 { background-image: url('assets/team/thomas-laigo.jpg'); }
-  .tile-13 { background-image: url('assets/team/laura-geneuil.png'); }
-  .tile-14 { background-image: url('assets/team/theo-grandperrin.jpg'); }
-  .tile-15 { background-image: url('assets/team/nicolas-magne.jpg'); }
 
   /* ---------- Cases ---------- */
   .cases {
     display: flex;
     flex-direction: column;
     gap: 0;
-    /* Top réduit pour resserrer photos↔Mistral. Bottom inchangé. */
-    padding-block-start: clamp(20px, 2.4vw, 36px);
-    padding-block-end: var(--gap-section);
+    padding-block-start: 0;
+    padding-block-end: 0;
   }
 
   .case-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-card);
-    padding: var(--pad-card-y) var(--pad-card-x);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    column-gap: var(--col-gap);
+    row-gap: var(--gap-card);
+    padding: clamp(40px, 5vw, 72px) var(--pad-card-x) clamp(20px, 3vw, 48px);
     background: var(--white);
     color: inherit;
     text-decoration: none;
+    border-bottom: 1px solid rgba(6, 32, 4, 0.12);
   }
-  a.case-card { cursor: pointer; }
+  .case-card:last-child {
+    border-bottom: none;
+  }
 
   .case-logo {
+    grid-column: 1;
+    grid-row: 1 / span 2;
     display: flex;
-    align-items: center;
-    gap: clamp(10px, 1.4vw, 20px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(8px, 1vw, 14px);
+    align-self: start;
+    position: sticky;
+    top: calc(var(--header-h, 60px) + 24px);
   }
-  /* Default alignment (center) is right for Mistral too flag at mid-cap-height */
 
   .case-logo .name {
-    font-size: var(--fs-card-name);
-    line-height: var(--lh-card-name);
+    font-size: clamp(15px, 1.4vw, 20px);
+    line-height: 1.4;
+    color: var(--green);
   }
 
   .case-logo .symbol {
@@ -375,12 +261,9 @@
             mask-repeat: no-repeat;
     -webkit-mask-position: left center;
             mask-position: left center;
-    /* alpha pour que les paths noirs des SVG (luminance 0) ne soient pas
-       rendus transparents par le masque. */
     -webkit-mask-mode: alpha;
             mask-mode: alpha;
   }
-  /* Mistral flag (icon-only SVG) */
   .case-logo .symbol-mistral {
     width: clamp(24px, 3.6vw, 52px);
     height: clamp(16px, 2.5vw, 36px);
@@ -389,17 +272,12 @@
     -webkit-mask-size: contain;
             mask-size: contain;
   }
-  /* Lucca icon : utilisation d'un <img> direct (pas de bg-image sur span
-     comme les autres symbols) parce que le SVG lucca-icon a des couleurs
-     hardcodées (ink + bg) qui doivent être préservées. Un mask aurait
-     mangé les cuts du "L" à l'intérieur du carré. */
   .case-logo .case-logo-icon {
     flex: none;
     display: block;
     width: clamp(28px, 3.9vw, 56px);
     height: clamp(28px, 3.9vw, 56px);
   }
-  /* Filigran icon (cropped from wordmark, viewBox 161×41) */
   .case-logo .symbol-filigran {
     width: clamp(28px, 3.9vw, 56px);
     height: clamp(28px, 3.9vw, 56px);
@@ -410,14 +288,16 @@
   }
 
   .case-text {
+    grid-column: 2;
     display: flex;
     flex-direction: column;
     gap: var(--gap-text);
   }
-  .case-text h2  { font-size: var(--fs-card-title); line-height: var(--lh-card-title); }
+  .case-text h2  { font-size: var(--fs-card-title); line-height: var(--lh-card-title); font-weight: 700; }
   .case-text .sub{ font-size: var(--fs-card-sub);   line-height: var(--lh-card-sub); }
 
   .case-image {
+    grid-column: 2;
     width: 100%;
     aspect-ratio: 1219 / 490;
     background-size: cover;
@@ -425,129 +305,261 @@
     background-repeat: no-repeat;
     background-color: #cfd9c5;
   }
+  .case-quote {
+    grid-column: 2;
+    font-size: clamp(20px, 2.2vw, 32px);
+    line-height: 1.3;
+  }
+  .case-quote cite {
+    display: block;
+    font-style: normal;
+    margin-top: clamp(8px, 1vw, 14px);
+  }
   .case-image-mistral { background-image: url('assets/initial-arthur-mensch-mistral-ai-portrait.jpg'); }
   .case-image-lucca   { background-image: url('assets/Gsatge-0224-6.jpg'); }
   .case-image-filigran { background-image: url('assets/filigran-cover.jpg'); }
-
-  /* ---------- Manifesto : Depuis 2015, paragraphes en 2 colonnes ---------- */
-  .manifesto {
-    padding-block: var(--gap-section);
-  }
-  .manifesto-row {
-    display: block;
-  }
-  .manifesto-card {
-    background: var(--white);
-    padding: var(--pad-card-y) var(--pad-card-x);
-    display: flex;
-    flex-direction: column;
-    gap: clamp(24px, 2.6vw, 40px);
-  }
-  /* Titre "Depuis 2015". Même taille que les noms de boîtes des
-     case-cards au-dessus (--fs-card-name) pour cohérence typo. */
-  .manifesto-title {
-    font-size: var(--fs-card-name);
-    line-height: var(--lh-card-name);
-    margin: 0;
-  }
-  /* Paragraphes en 2 colonnes (CSS columns). Sur mobile, single col. */
-  .manifesto-paragraphs {
-    column-count: 2;
-    column-gap: clamp(40px, 5vw, 80px);
-  }
-  .manifesto-paragraphs p {
-    font-size: clamp(18px, 2vw, 26px);
-    line-height: 1.45;
-    margin: 0 0 clamp(16px, 1.6vw, 22px);
-    break-inside: avoid;
-  }
-  .manifesto-paragraphs p:last-child {
-    margin-bottom: 0;
-  }
-  .manifesto-cta {
-    font-size: clamp(18px, 2vw, 26px);
-    line-height: 1.45;
-    align-self: flex-end;
-  }
-  @media (max-width: 800px) {
-    .manifesto-paragraphs {
-      column-count: 1;
-      padding-right: clamp(16px, 4vw, 32px);
-    }
-  }
-
-  /* ---------- Logos clients IA ---------- */
-  /* Section avec title à gauche + grid de logos en dessous. Padding-block
-     interne pour l'air vertical. Horizontal padding hérité de .section
-     (pas redéfini ici pour éviter les conflits de cascade). */
-  .ai-logos {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(30px, 4.8vw, 70px);
-    padding-block: clamp(40px, 5vw, 80px);
-  }
-  .ai-logos-title {
-    padding-left: var(--pad-card-x);
-    padding-right: var(--pad-card-x);
-  }
-  .ai-logos-title h2 {
-    font-size: clamp(28px, 3.6vw, 52px);
-    line-height: 1.15;
-    max-width: clamp(320px, 75vw, 1050px);
-  }
-  .ai-logos-grid {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    column-gap: clamp(24px, 2.8vw, 48px);
-    row-gap: clamp(20px, 2.4vw, 36px);
-    padding-left: var(--pad-card-x);
-    padding-right: var(--pad-card-x);
-  }
-  .ai-logo {
-    display: inline-flex;
-    align-items: center;
-    color: inherit;
-    text-decoration: none;
-    transition: opacity 0.18s ease;
-  }
-  .ai-logo:hover { opacity: 0.7; }
-  .ai-logo img {
-    height: clamp(26px, 2.8vw, 40px);
-    width: auto;
-    display: block;
-  }
 
   .see-all-bottom {
     align-self: flex-start;
     margin-left: var(--pad-card-x);
   }
-  /* Variante large : CTA bottom de la home, plus présent. */
   .see-all-bottom--large {
     font-size: clamp(20px, 2.2vw, 30px);
     padding: clamp(18px, 1.8vw, 28px) clamp(28px, 2.8vw, 44px);
     border-radius: clamp(3px, 0.3vw, 6px);
   }
 
-  /* ---------- Mobile <600px : full-bleed + alignement contenu ---------- */
-  /* Blocs blancs full-width (case-cards + manifesto-card) via margin
-     négative qui annule la gouttière .section, padding-inline rétablit
-     l'alignement du contenu interne sur --pad-x.
-     Blocs SANS bloc blanc (témoignage, ai-logos, solutions list, CTAs) :
-     padding-left 0 pour s'aligner sur --pad-x de la section = même X
-     que le contenu interne des blocs blancs au-dessus.
-     Cette règle est en BAS du style block pour avoir priorité sur les
-     définitions desktop des mêmes éléments (cascade same-specificity). */
+  /* ---------- Home clients list ---------- */
+  .home-clients {
+    padding-block: 0;
+  }
+
+  /* Plain logo grid inside the home clients panel */
+  .home-clients-panel .clients-list-plain {
+    list-style: none;
+    margin: 0;
+    margin-top: clamp(48px, 5vw, 80px);
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: clamp(20px, 3vw, 50px);
+    row-gap: clamp(16px, 2vw, 28px);
+    font-size: clamp(16px, 1.5vw, 20px);
+    line-height: 1.25;
+    align-items: center;
+  }
+  .home-clients-panel .clients-list-plain li {
+    color: inherit;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+  }
+  .home-clients-panel .clients-list-plain li img {
+    display: block;
+    height: clamp(16px, 1.8vw, 24px);
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: left center;
+  }
+  .home-clients-panel {
+    background: var(--white);
+    padding: var(--pad-card-y) var(--pad-card-x);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(32px, 4vw, 56px);
+  }
+  .home-clients-panel .clients-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    column-gap: clamp(40px, 6vw, 110px);
+    row-gap: clamp(48px, 5vw, 80px);
+    font-size: clamp(20px, 2.2vw, 32px);
+    line-height: 1.3;
+  }
+  .home-clients-panel .row {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    align-items: start;
+    position: relative;
+    transition: opacity 0.18s ease;
+  }
+  .home-clients-panel .row.clickable { cursor: pointer; }
+  .home-clients-panel .row-info {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.2vw, 18px);
+    min-width: 0;
+  }
+  .home-clients-panel a.name-link {
+    display: block;
+    color: inherit;
+    pointer-events: none;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: clamp(16px, 1.5vw, 20px);
+    line-height: 1.3;
+  }
+  .home-clients-panel .logo-cell {
+    display: block;
+    min-width: 0;
+  }
+  .home-clients-panel .row-logo {
+    display: block;
+    height: clamp(20px, 2vw, 28px);
+    width: auto;
+    max-width: clamp(100px, 11vw, 150px);
+    object-fit: contain;
+    object-position: left center;
+  }
+  .home-clients-panel .row-tm {
+    display: block;
+    position: relative;
+    min-width: 0;
+  }
+  .home-clients-panel .tm-line {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+            line-clamp: 2;
+    -webkit-box-orient: vertical;
+    opacity: 0.4;
+    overflow: hidden;
+    line-height: 1.3;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .home-clients-panel .row:hover .tm-line {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 0.8px;
+    text-decoration-color: rgba(6, 32, 4, 0.35);
+  }
+  .home-clients-panel .tm-full {
+    display: none;
+    flex-direction: column;
+    gap: clamp(14px, 1.6vw, 24px);
+  }
+  .home-clients-panel .row.active .tm-full { display: flex; }
+  .home-clients-panel .row.active .tm-line { display: none; }
+  .home-clients-panel .testimonial-quote {
+    margin: 0;
+    line-height: 1.3;
+  }
+  .home-clients-panel .testimonial-author .name { line-height: 1.3; }
+  .home-clients-panel .testimonial-author .role { line-height: 1.3; }
+  .home-clients-panel .testimonial-footer {
+    display: flex;
+    align-items: center;
+    gap: clamp(20px, 3vw, 40px);
+    flex-wrap: wrap;
+  }
+  .home-clients-panel .testimonial-footer .website {
+    line-height: 1.3;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .home-clients-panel .testimonial-footer .defunct {
+    line-height: 1.3;
+    opacity: 0.6;
+    font-style: italic;
+  }
+  .home-clients-cta {
+    align-self: flex-start;
+  }
+  @media (max-width: 900px) {
+    .home-clients-panel .clients-list-plain { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
   @media (max-width: 600px) {
-    .case-card,
-    .manifesto-card {
+    .home-clients-panel .clients-list-plain { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (max-width: 400px) {
+    .home-clients-panel .clients-list-plain { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 600px) {
+    .home-clients-panel .clients-list {
+      grid-template-columns: 1fr;
+      row-gap: clamp(32px, 4.5vw, 48px);
+    }
+    .home-clients-panel .row {
+      grid-column: 1;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(12px, 1.8vw, 18px);
+    }
+    .home-clients-panel .row-info {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(6px, 1vw, 10px);
+    }
+    .home-clients-panel {
       margin-inline: calc(var(--pad-x) * -1);
       padding-inline: var(--pad-x);
     }
-    .ai-logos-title,
-    .ai-logos-grid {
-      padding-left: 0;
-      padding-right: 0;
+  }
+
+  /* ---------- Services panel ---------- */
+  .services-panel {
+    padding: clamp(48px, 6vw, 96px) var(--pad-card-x);
+  }
+  .services-panel-title {
+    font-size: clamp(28px, 3.2vw, 48px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 clamp(32px, 4vw, 64px);
+  }
+  .services-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .services-list li {
+    border-top: 1px solid rgba(6, 32, 4, 0.12);
+  }
+  .services-list li:last-child {
+    border-bottom: 1px solid rgba(6, 32, 4, 0.12);
+  }
+  .service-link {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    column-gap: var(--col-gap);
+    padding: clamp(20px, 2.4vw, 36px) 0;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.15s ease;
+  }
+  .service-link:hover {
+    opacity: 0.6;
+  }
+  .service-name {
+    font-size: clamp(17px, 1.8vw, 24px);
+    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .service-desc {
+    font-size: clamp(17px, 1.8vw, 24px);
+    line-height: 1.35;
+  }
+  @media (max-width: 600px) {
+    .service-link {
+      grid-template-columns: 1fr;
+      row-gap: clamp(6px, 1vw, 10px);
+    }
+  }
+
+  /* ---------- Mobile <600px : full-bleed ---------- */
+  @media (max-width: 600px) {
+    .case-card {
+      margin-inline: calc(var(--pad-x) * -1);
+      padding-inline: var(--pad-x);
     }
     .see-all-bottom { margin-left: 0; }
   }
@@ -558,182 +570,268 @@
 
     <header class="header section" data-nav></header>
 
-    <!-- Hero -->
+    <!-- Hero V2 -->
     <section class="hero section">
-      <div class="hero-inner">
-        <div class="hero-lede">
-          <h1 class="hero-title"><strong>10 ans de recrutement<br>au côté des plus belles<br>entreprises Tech<br>et IA.</strong></h1>
-          <p class="hero-subtitle">La personne que vous allez embaucher fait partie de notre réseau : si nous commencions par la contacter ?</p>
+      <h1 class="hero-title"><strong>10 ans de recrutement<br>au côté des plus belles<br>entreprises Tech<br>et IA.</strong></h1>
 
-        </div>
+      <div class="grid-images" aria-label="Galerie consultants">
+        <a class="tile tile-1" href="equipe.html" aria-label="Voir l'équipe"></a>
+        <a class="tile tile-2" href="equipe.html" aria-label="Voir l'équipe"></a>
+        <a class="tile tile-3" href="equipe.html" aria-label="Voir l'équipe"></a>
+        <a class="tile tile-4" href="equipe.html" aria-label="Voir l'équipe"></a>
+        <a class="tile tile-5" href="equipe.html" aria-label="Voir l'équipe"></a>
+        <a class="tile tile-6" href="equipe.html" aria-label="Voir l'équipe"></a>
+        <a class="tile tile-7" href="equipe.html" aria-label="Voir l'équipe"></a>
+        <a class="tile tile-8" href="equipe.html" aria-label="Voir l'équipe"></a>
+        <a class="tile tile-9" href="equipe.html" aria-label="Voir l'équipe"></a>
+        <a class="tile tile-10" href="equipe.html" aria-label="Voir l'équipe"></a>
+      </div>
 
-        <div class="hero-team">
-          <div class="hero-tabs-row">
-            <nav class="hero-tabs" aria-label="Équipe ou clients">
-              <button type="button" class="hero-tab" data-pane="equipe" aria-current="true"><span class="hero-tab-label">Équipe</span></button>
-              <button type="button" class="hero-tab" data-pane="clients"><span class="hero-tab-label">Clients</span></button>
-            </nav>
-          </div>
-          <div class="hero-pane" data-pane="equipe">
-          <div class="grid-images" aria-label="Galerie consultants">
-          <a class="tile tile-1" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-2" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-3" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-4" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-5" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-6" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-7" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-8" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-9" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-10" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-11" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-12" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-13" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-14" href="equipe.html" aria-label="Voir l'équipe"></a>
-          <a class="tile tile-15" href="equipe.html" aria-label="Voir l'équipe"></a>
-          </div>
-          </div>
-          <div class="hero-pane" data-pane="clients" hidden>
-            <ul class="hero-clients-list" id="hero-clients-list" data-loading></ul>
-          </div>
+      <div class="hero-manifesto">
+        <aside class="hero-manifesto-sidebar">
+          <a href="equipe.html" class="sidebar-link">Toute l’équipe GetPro ↗</a>
+        </aside>
+        <h2 class="hero-manifesto-title">La personne que vous allez embaucher est dans notre réseau</h2>
+        <div class="hero-manifesto-cols">
+          <p class="manifesto-intro">Depuis 2015, notre équipe a mené plus de 4 000 recrutements<sup>1</sup>, des premières startups IA aux directions tech des grands groupes du CAC 40. Cette expérience a construit plus qu’une base de contacts : un réseau vivant d’experts, d’équipes et de dirigeants.</p>
+          <p>Nos clients entrent parfois chez nous pour recruter un ingénieur, puis reviennent pour structurer leur comité de direction. Cette continuité nous permet d’accumuler ce qui ne se documente pas : savoir qui peut travailler avec qui et dans quel contexte.</p>
+          <p>Chez GetPro, les fondateurs restent impliqués dans les missions, au contact direct des fondateurs et des directions accompagnées. Soutenus par notre outil propriétaire, développé en interne, nos consultants connaissent la tech, ses métiers et ses codes. Cela se sent dans les échanges et crée une relation de confiance des deux côtés.</p>
+          <p>Un recrutement clé est toujours un moment sensible : pour l’entreprise qui joue une partie de son organisation, comme pour le candidat qui engage une étape de sa carrière. Nous le traitons avec l’attention qu’il mérite.</p>
+          <p>Depuis dix ans, nous recrutons les talents Tech et IA partout en Europe.</p>
         </div>
+        <p class="hero-footnote"><sup>1</sup> <a href="services-profils.html#practices">50% en cabinet</a>, 50% en <a href="services-renfort.html">délégation de recruteurs</a></p>
       </div>
     </section>
 
     <!-- Cases -->
-    <section class="manifesto section">
-      <div class="manifesto-row">
-        <div class="manifesto-card">
-          <h2 class="manifesto-title">Depuis 2015</h2>
-          <div class="manifesto-paragraphs">
-            <p>Dix ans à recruter des talents pour les meilleures équipes technologiques françaises. Du premier ingénieur de la startup qui éclôt aux fonctions de direction de la scale-up qui grossit.</p>
-            <p>Nous avons fait 2 000 recrutements directs et rencontré 60 000 talents depuis 2015. Sans compter les embauches des recruteurs RPO mis à la disposition de nos clients avec de gros plans de recrutement (+900 rien qu'en 2025).</p>
-            <p>Quand vous nous appelez pour un poste critique, nos consultants savent à qui en parler, parce qu'ils connaissent, et depuis longtemps, les gens qu'ils recommandent.</p>
-            <p>Le marché du recrutement tech bouge par cycles. Nous avons toujours ajusté notre cabinet à chaque mouvement.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="cases section">
-      <a class="case-card" href="clients.html#mistral-ai" aria-label="Mistral AI · voir le témoignage">
+      <div class="case-card">
         <header class="case-logo case-logo--mistral" aria-label="Mistral AI">
-          <span class="name">Mistral AI</span>
           <span class="symbol symbol-mistral" aria-hidden="true"></span>
+          <span class="name">Mistral AI</span>
         </header>
         <div class="case-text">
           <h2>Convaincre face à Google et Anthropic</h2>
           <div class="sub">110+ recrutements avec GetPro en 2025 pour le géant français de l'IA</div>
         </div>
         <div class="case-image case-image-mistral" role="img" aria-label="Arthur Mensch"></div>
-      </a>
+        <div class="case-quote">« Mistral est en hypercroissance et recrute plusieurs centaines de profils sur un pool de talents mondialisé. Les collaborateurs de GetPro ont bien saisi le challenge : sur un marché tech sous tension, ce qui contraint la croissance n'est pas le volume de candidatures mais la qualité de chaque sélection, la vélocité du processus et l'adéquation culturelle. Les shortlists qualifiées, les opportunités de responsabilités chez Mistral et le rythme des entretiens maintiennent un taux d'acceptation élevé. Les quatre RPO se sont bien intégrés à nos équipes et leur savoir-faire nous permet de scaler sans rupture opérationnelle. »<cite>Charles de Fréminville<br>DRH</cite></div>
+      </div>
 
-      <a class="case-card" href="clients.html#lucca" aria-label="Lucca · voir le témoignage">
+      <div class="case-card">
         <header class="case-logo" aria-label="Lucca">
-          <span class="name">Lucca</span>
           <img class="case-logo-icon" src="assets/lucca-icon.svg" alt="" aria-hidden="true" />
+          <span class="name">Lucca</span>
         </header>
         <div class="case-text">
-          <h2>Passer d'un management de startup à scale-up</h2>
-          <div class="sub">De 40 à 800 salariés, 10 ans de partenariat avec GetPro</div>
+          <h2>Passer d'un codir de startup à scale-up</h2>
+          <div class="sub">De 40 à 800 salariés, 10 ans de partenariat avec GetPro</div>
         </div>
         <div class="case-image case-image-lucca" role="img" aria-label="Lucca"></div>
-      </a>
+        <div class="case-quote">« Getpro nous a aidé à trouver un profil C-level rare dans des délais très courts. L'équipe a été d'une efficacité remarquable et a toujours été présente pour nous aider dans ce difficile recrutement. Merci à eux ! La principale réussite est d'avoir réussi à nous trouver un candidat qui réponde à des critères d'exigence très élevés et accepte la culture et la politique de rémunération très atypiques de Lucca. C'était une vraie gageure. Je tiens également à souligner les délais et le nombre de cand… »<cite>Damien Grandemenge<br>Directeur Général</cite></div>
+      </div>
 
-      <a class="case-card" href="clients.html#filigran" aria-label="Filigran · voir le témoignage">
+      <div class="case-card">
         <header class="case-logo" aria-label="Filigran">
-          <span class="name">Filigran</span>
           <span class="symbol symbol-filigran" aria-hidden="true"></span>
+          <span class="name">Filigran</span>
         </header>
         <div class="case-text">
-          <h2>Embaucher rapidement avec un modèle hybride</h2>
-          <div class="sub">10 recrutements en RPO + 20 par le cabinet en 6 mois</div>
+          <h2>Embaucher vite avec un modèle hybride</h2>
+          <div class="sub">10 recrutements en RPO + 20 par le cabinet en 6 mois</div>
         </div>
         <div class="case-image case-image-filigran" role="img" aria-label="Filigran"></div>
-      </a>
+        <div class="case-quote">« Sourcing de profils tech atypiques, prestation de RPO en phase de scaling, accompagnement humain lors d'un audit de sécurité. Propositions pertinentes, dans un calendrier contraint. Très bonnes propositions de profils, nos attentes ont été parfaitement comprises et entendues. »<cite>Sophie Hubaut<br>Senior HR & Legal Manager</cite></div>
+      </div>
     </section>
 
-    <!-- Manifesto : Depuis 2015, paragraphes en 2 colonnes -->
+    <!-- Clients list -->
+    <section class="home-clients section">
+      <div class="home-clients-panel">
+        <ul class="clients-list" id="home-clients-list" role="list"></ul>
+        <ul class="clients-list-plain" id="home-logo-wall" role="list"></ul>
+        <a href="clients.html" class="btn-outline home-clients-cta">Et aussi 350 autres →</a>
+      </div>
+    </section>
 
-
-    <!-- Logos clients : entreprises françaises ambitieuses (AI + scale-ups) -->
+    <!-- Services -->
+    <section class="services-panel section">
+      <h2 class="services-panel-title">Nos services</h2>
+      <ul class="services-list">
+        <li><a href="services-transition.html" class="service-link">
+          <span class="service-name">Transition &amp; temps partagé</span>
+          <span class="service-desc">Faire tenir une fonction critique tout de suite, sans recruter trop tôt en CDI, avec un dirigeant senior capable de cadrer le rôle, structurer l'équipe et préparer la suite.</span>
+        </a></li>
+        <li><a href="services-renfort.html" class="service-link">
+          <span class="service-name">RPO &amp; renfort recrutement</span>
+          <span class="service-desc">Absorber un volume de recrutements tech, data, IA ou sales tech avec un recruteur intégré à vos outils, tout en gardant le standard GetPro sur la qualification, le suivi et le reporting.</span>
+        </a></li>
+        <li><a href="services-tech.html" class="service-link">
+          <span class="service-name">Tech, IA &amp; Data</span>
+          <span class="service-desc">Recruter des profils techniques ou dirigeants qualifiés sur leur pratique réelle, leur rapport à l'IA, leur stack et leur capacité à faire progresser une équipe.</span>
+        </a></li>
+        <li><a href="services-produit.html" class="service-link">
+          <span class="service-name">Product &amp; Projects</span>
+          <span class="service-desc">Trouver les profils Produit, Design ou Delivery capables d'arbitrer au bon niveau pour votre stade de developpement.</span>
+        </a></li>
+        <li><a href="services-sales.html" class="service-link">
+          <span class="service-name">Customer, Sales, Marketing, Admin &amp; Ops</span>
+          <span class="service-desc">Recruter les fonctions qui structurent la croissance et l'exécution avec une lecture senior du pipeline, des priorités et de la capacité à embarquer une équipe.</span>
+        </a></li>
+      </ul>
+    </section>
 
     <footer class="site-footer" data-footer></footer>
 
   </main>
   <script src="partials.js?v=1" defer></script>
   <script>
-    // Bascule entre les panes Équipe / Clients dans le hero + chargement
-    // de la liste clients depuis clients.json à la première bascule.
     (function () {
-      const tabs = document.querySelectorAll('.hero-tab[data-pane]');
-      const panes = document.querySelectorAll('.hero-pane[data-pane]');
-      const clientsList = document.getElementById('hero-clients-list');
-      if (!tabs.length || !panes.length) return;
+      var EXCLUDED = {'mistral-ai':1, 'lucca':1, 'filigran':1, 'rakuten-dx':1, 'carrefour-2':1, 'flaire':1, 'dust':1};
+      var FEATURED_TM = ['electra','foodles','kili-technology','jcdecaux','kisskissbankbank'];
+      var FEATURED_RANK = {};
+      FEATURED_TM.forEach(function (s, i) { FEATURED_RANK[s] = i; });
+      var COOL_ORDER = [
+        'mistral-ai','eleven-labs','dust','filigran','kili-technology',
+        'mindee','harfanglab','sipearl','unifai','autrice-ai',
+        'webyn-ai','ai-cargo-foundation',
+        'yubo','voggt','voodoo','kisskissbankbank','joko',
+        'cheerz','lunii','mwm','madbox','kabeen','ron-dorff',
+        'lemlist','onefinestay','splio',
+        'electra','contentsquare','doctrine','evaneos','jobteaser',
+        'pigment','lucca','partoo','getaround','matera','agicap',
+        'blablacar','carrefour','carrefour-2','decathlon','jcdecaux',
+        'canal-plus','rakuten','rakuten-dx','total','porsche-france',
+        'edf-enr','oscaro','prestashop',
+        'flaire','manomano','libeo','leetchi','kard','foodles',
+        'spiko','cybelangel','twicpics','jus-mundi','mytraffic'
+      ];
+      var RANK = {};
+      COOL_ORDER.forEach(function (s, i) { RANK[s] = i; });
 
-      const escape = (s) => (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      var escape = function (s) { return (s || '').replace(/[&<>"']/g, function (c) {
+        return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+      }); };
 
-      let loaded = false;
-      function loadClients() {
-        if (loaded) return;
-        loaded = true;
-        // Reprend l'ordre de la page Clients (COOL_ORDER d'abord, reste alpha)
-        const COOL_ORDER = [
-          'mistral-ai','eleven-labs','dust','filigran','kili-technology',
-          'mindee','harfanglab','sipearl','unifai','autrice-ai',
-          'webyn-ai','ai-cargo-foundation',
-          'yubo','voggt','voodoo','kisskissbankbank','joko',
-          'cheerz','lunii','mwm','madbox','kabeen','ron-dorff',
-          'lemlist','onefinestay','splio',
-          'electra','contentsquare','doctrine','evaneos','jobteaser',
-          'pigment','lucca','partoo','getaround','matera','agicap',
-          'blablacar','carrefour','carrefour-2','decathlon','jcdecaux',
-          'canal-plus','rakuten','rakuten-dx','total','porsche-france',
-          'edf-enr','oscaro','prestashop',
-          'flaire','manomano','libeo','leetchi','kard','foodles',
-          'spiko','cybelangel','twicpics','jus-mundi','mytraffic',
-        ];
-        const RANK = new Map(COOL_ORDER.map((s, i) => [s, i]));
-        const rankOf = (s) => RANK.has(s) ? RANK.get(s) : Infinity;
+      var namesHost = document.getElementById('home-clients-list');
 
-        fetch('clients.json').then(r => r.json()).then(clients => {
-          const withTm = clients
-            .filter(c => c.has_testimonial)
-            .sort((a, b) => {
-              const ra = rankOf(a.slug), rb = rankOf(b.slug);
-              if (ra !== rb) return ra - rb;
-              return a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
-            })
-            .slice(0, 14);
-          clientsList.innerHTML = withTm.map(c => {
-            const logo = c.has_logo
-              ? `<img class="row-logo" src="assets/${c.slug}.svg" alt="${escape(c.name)}" loading="lazy" />`
+      function rowHTML(c) {
+        var clickableCls = c.has_testimonial ? ' clickable' : '';
+        var activeCls = '';
+        var logoCell = c.has_logo
+          ? '<span class="logo-cell"><img class="row-logo" src="assets/' + c.slug + '.svg" alt="" loading="lazy" /></span>'
+          : '';
+
+        var tmCell = '<span class="row-tm"></span>';
+        if (c.has_testimonial) {
+          var websiteOrDefunct = c.status_label
+            ? '<span class="defunct">' + escape(c.status_label) + '</span>'
+            : c.domaine
+              ? '<a class="website" href="https://' + escape(c.domaine.replace(/^https?:\/\//,'')) + '" target="_blank" rel="noopener">' + escape(c.domaine.replace(/^https?:\/\//,'')) + ' \u2197</a>'
               : '';
-            return `<li><a class="hero-clients-row" href="clients.html#${escape(c.slug)}">
-              ${logo}
-              <span class="row-name">${escape(c.name)}</span>
-              <div class="row-tm">"${escape(c.verbatim || '')}"</div>
-            </a></li>`;
-          }).join('');
-          clientsList.removeAttribute('data-loading');
-        }).catch(() => {
-          clientsList.innerHTML = '<li>Impossible de charger les clients.</li>';
-        });
+          tmCell = '<span class="row-tm">'
+            + '<span class="tm-line">"' + escape(c.verbatim || '') + '"</span>'
+            + '<div class="tm-full">'
+            + '<p class="testimonial-quote">"' + escape(c.verbatim || '') + '"</p>'
+            + '<div class="testimonial-author">'
+            + '<div class="name">' + escape(c.contact_name || '') + '</div>'
+            + '<div class="role">' + escape(c.contact_role || '') + '</div>'
+            + '</div>'
+            + (websiteOrDefunct ? '<div class="testimonial-footer">' + websiteOrDefunct + '</div>' : '')
+            + '</div>'
+            + '</span>';
+        }
+
+        return '<li class="row' + clickableCls + activeCls + '" data-slug="' + c.slug + '">'
+          + '<div class="row-info">'
+          + logoCell
+          + '<a href="#" class="name-link" data-slug="' + c.slug + '">' + escape(c.name) + '</a>'
+          + '</div>'
+          + tmCell
+          + '</li>';
       }
 
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          const target = tab.dataset.pane;
-          tabs.forEach(t => {
-            if (t.dataset.pane === target) t.setAttribute('aria-current', 'true');
-            else t.removeAttribute('aria-current');
-          });
-          panes.forEach(p => {
-            if (p.dataset.pane === target) p.hidden = false;
-            else p.hidden = true;
-          });
-          if (target === 'clients') loadClients();
-        });
+      function renderList(list) {
+        namesHost.innerHTML = list.map(rowHTML).join('');
+      }
+
+      namesHost.addEventListener('click', function (e) {
+        if (e.target.closest('.tm-full a.website')) return;
+        var li = e.target.closest('li.row.clickable');
+        if (!li) return;
+        e.preventDefault();
+        li.classList.toggle('active');
+      });
+      fetch('clients.json').then(function (r) { return r.json(); }).then(function (clients) {
+        // Testimonials list (20 clients with logo + testimonial, not already case-cards)
+        var list = clients
+          .filter(function (c) { return c.has_logo && c.has_testimonial && !EXCLUDED[c.slug]; })
+          .sort(function (a, b) {
+            var fa = FEATURED_RANK[a.slug] != null ? FEATURED_RANK[a.slug] : 9999;
+            var fb = FEATURED_RANK[b.slug] != null ? FEATURED_RANK[b.slug] : 9999;
+            if (fa !== fb) return fa - fb;
+            var ra = RANK[a.slug] != null ? RANK[a.slug] : 9999;
+            var rb = RANK[b.slug] != null ? RANK[b.slug] : 9999;
+            if (ra !== rb) return ra - rb;
+            return a.name.localeCompare(b.name, 'fr', {sensitivity:'base'});
+          })
+          .slice(0, 20);
+        window.__homeClientsList = list;
+        renderList(list);
+        // Pre-open first 5 testimonials
+        var rows = namesHost.querySelectorAll('li.row.clickable');
+        for (var j = 0; j < Math.min(5, rows.length); j++) {
+          rows[j].classList.add('active');
+          activeSlug = rows[j].dataset.slug;
+        }
+
+        // "Et aussi" logo grid : clients with logo, not in case cards, not in testimonials
+        var tmSlugs = {};
+        list.forEach(function (c) { tmSlugs[c.slug] = 1; });
+        var logos = clients
+          .filter(function (c) { return c.has_logo && !EXCLUDED[c.slug] && !tmSlugs[c.slug]; })
+          .sort(function (a, b) {
+            var ra = RANK[a.slug] != null ? RANK[a.slug] : 9999;
+            var rb = RANK[b.slug] != null ? RANK[b.slug] : 9999;
+            if (ra !== rb) return ra - rb;
+            return a.name.localeCompare(b.name, 'fr', {sensitivity:'base'});
+          })
+          .slice(0, 50);
+        var wallEl = document.getElementById('home-logo-wall');
+        if (wallEl) {
+          wallEl.innerHTML = logos.map(function (c) {
+            return '<li data-slug="' + escape(c.slug) + '"><img src="assets/' + escape(c.slug) + '.svg" alt="' + escape(c.name) + '" /></li>';
+          }).join('');
+
+          // Normalize logo sizes by visual area.
+          // For each logo, h = baseH * sqrt(medianRatio / ratio), clamped.
+          // This makes wide wordmarks shorter and compact icons taller,
+          // so all logos carry roughly the same visual weight.
+          var BASE_H = 21;
+          var MEDIAN_R = 4.0;
+          var MIN_H = 14;
+          var MAX_H = 30;
+          var imgs = wallEl.querySelectorAll('img');
+          var pending = imgs.length;
+          function normalizeOne(img) {
+            var w = img.naturalWidth;
+            var h = img.naturalHeight;
+            if (!w || !h) return;
+            var ratio = w / h;
+            var target = BASE_H * Math.sqrt(MEDIAN_R / ratio);
+            target = Math.max(MIN_H, Math.min(MAX_H, Math.round(target)));
+            img.style.height = target + 'px';
+          }
+          for (var i = 0; i < imgs.length; i++) {
+            (function (img) {
+              if (img.complete && img.naturalWidth) {
+                normalizeOne(img);
+              } else {
+                img.addEventListener('load', function () { normalizeOne(img); });
+              }
+            })(imgs[i]);
+          }
+        }
       });
     })();
   </script>

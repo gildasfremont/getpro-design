@@ -256,6 +256,9 @@
   }
   .company-logo-cell {
     align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(6px, 0.6vw, 10px);
   }
   .company-logo-cell img {
     width: clamp(80px, 9vw, 130px);
@@ -264,6 +267,11 @@
     object-fit: contain;
     object-position: left center;
     display: block;
+  }
+  .company-name-label {
+    font-size: clamp(13px, 1.1vw, 16px);
+    line-height: 1.25;
+    opacity: 0.5;
   }
   .company-name-fallback {
     font-size: clamp(18px, 2vw, 28px);
@@ -383,7 +391,7 @@
 
     <header class="header section" data-nav></header>
 
-    <section class="solutions section"><h1 class="page-lede">Recrutements de dirigeants en CDI et Freelance. Une practice par fonction.</h1>
+    <section class="solutions section"><h1 class="page-lede">Recrutements d'experts et dirigeants en CDI et Freelance. Une practice par fonction.</h1>
 <div class="panel" id="practices" style="scroll-margin-top: var(--header-h, 60px);">
 
         <div class="subtabs-row">
@@ -469,7 +477,7 @@
           }
           const blocks = Array.from(groups.values()).map(({ meta, items }) => {
             const logoOrName = meta.has_logo
-              ? `<img src="assets/${meta.company_slug}.svg" alt="${escape(meta.company_name)}" />`
+              ? `<img src="assets/${meta.company_slug}.svg" alt="${escape(meta.company_name)}" /><span class="company-name-label">${escape(meta.company_name)}</span>`
               : `<span class="company-name-fallback">${escape(meta.company_name)}</span>`;
             const cards = items.map(c => {
               const role = c.poste_canonique || c.intitule_original || 'Recruté';
