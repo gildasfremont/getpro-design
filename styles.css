@@ -607,6 +607,12 @@ body.menu-open main > *:not(.header) {
   width: auto;
   display: block;
 }
+.site-footer .rating-logo {
+  filter: brightness(0) invert(1);
+}
+.site-footer .rating:first-child .rating-logo {
+  height: clamp(16px, 1.4vw, 22px);
+}
 .rating-stars {
   font-size: clamp(15px, 1.3vw, 18px);
   letter-spacing: 0.1em;
@@ -682,7 +688,8 @@ body.menu-open main > *:not(.header) {
   flex-direction: column;
   gap: clamp(50px, 6vw, 90px);
   padding: clamp(50px, 6vw, 90px) var(--pad-x) clamp(36px, 4vw, 56px);
-  border-top: 1px solid var(--line);
+  background: var(--ink);
+  color: var(--bg);
 }
 /* Ratings (Google/Trustpilot/Trustfolio) : top aligné avec le top du
    grid adresse, pour que les étoiles tombent sur la 1ʳᵉ ligne et les
@@ -773,7 +780,7 @@ body.menu-open main > *:not(.header) {
   display: block;
   width: clamp(140px, 15vw, 220px);
   height: clamp(28px, 3vw, 44px);
-  background-color: var(--ink);
+  background-color: var(--bg);
   -webkit-mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
           mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
 }
@@ -812,7 +819,7 @@ body.menu-open main > *:not(.header) {
   font-size: clamp(17px, 1.5vw, 22px);
   line-height: 1.5;
   margin: 0;
-  color: var(--ink);
+  color: var(--bg);
   text-decoration: none;
 }
 a.foot-line:hover { text-decoration: underline; }
@@ -833,7 +840,7 @@ a.foot-line:hover { text-decoration: underline; }
   line-height: 1.35;
 }
 .foot-col a {
-  color: var(--ink);
+  color: var(--bg);
   text-decoration: none;
   text-underline-offset: 4px;
 }
@@ -855,7 +862,7 @@ a.foot-line:hover { text-decoration: underline; }
   opacity: 0.55;
 }
 .foot-legal a {
-  color: var(--ink);
+  color: var(--bg);
   text-decoration: none;
 }
 .foot-legal a:hover { text-decoration: underline; }
