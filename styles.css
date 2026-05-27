@@ -691,10 +691,9 @@ body.menu-open main > *:not(.header) {
   background: var(--ink);
   color: var(--bg);
 }
-/* Ratings (Google/Trustpilot/Trustfolio) : top aligné avec le top du
-   grid adresse, pour que les étoiles tombent sur la 1ʳᵉ ligne et les
-   logos de marque tombent sur la 2ᵉ ligne (75011 Paris / téléphone). */
-.site-footer .foot-info-row { align-items: flex-start; }
+/* Ratings (Google/Trustpilot/Trustfolio) : bas aligné avec le bas du
+   grid adresse, pour que les logos tombent sur la ligne du téléphone. */
+.site-footer .foot-info-row { align-items: flex-end; }
 
 /* "Featured nav" en haut du footer (façon MoMA) : 3 liens-vedette
    gros et clairs vers les solutions phares (Recrutement salarié,
