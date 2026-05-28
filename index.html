@@ -362,10 +362,10 @@
     display: grid;
     grid-template-columns: 1fr;
     align-items: stretch;
-    row-gap: clamp(4px, 0.8vw, 12px);
+    row-gap: clamp(12px, 1.5vw, 24px);
   }
   .process-row .process-text {
-    margin-bottom: clamp(8px, 1.4vw, 20px);
+    margin-bottom: clamp(16px, 2vw, 32px);
   }
   .quote-wrap {
     display: grid;
@@ -392,8 +392,8 @@
     max-width: var(--measure);
   }
   .home .quote-title {
-    font-size: var(--fs-quote);
-    line-height: var(--lh-quote);
+    font-size: clamp(20px, 2.4vw, 28px);
+    line-height: 1.25;
     font-weight: 700;
     letter-spacing: -0.01em;
     margin: 0;
@@ -594,6 +594,9 @@
       grid-template-columns: 1fr;
       row-gap: clamp(4px, 1vw, 8px);
     }
+    .service-link .service-team {
+      grid-column: 1;
+    }
     .home .services-panel-title {
       font-size: clamp(28px, 7vw, 40px);
     }
@@ -645,7 +648,6 @@
           <div class="sub">110+ recrutements avec GetPro en 2025 pour le géant français de l'IA</div>
         </div>
         <div class="case-image case-image-mistral" role="img" aria-label="Arthur Mensch"></div>
-        <div class="case-quote">« Mistral est en hypercroissance et recrute plusieurs centaines de profils sur un pool de talents mondialisé. Les collaborateurs de GetPro ont bien saisi le challenge : sur un marché tech sous tension, ce qui contraint la croissance n'est pas le volume de candidatures mais la qualité de chaque sélection, la vélocité du processus et l'adéquation culturelle. Les shortlists qualifiées, les opportunités de responsabilités chez Mistral et le rythme des entretiens maintiennent un taux d'acceptation élevé. Les quatre RPO se sont bien intégrés à nos équipes et leur savoir-faire nous permet de scaler sans rupture opérationnelle. »<cite>Charles de Fréminville<br>DRH</cite></div>
       </div>
 
       <div class="case-card">
@@ -658,7 +660,6 @@
           <div class="sub">De 40 à 800 salariés, 10 ans de partenariat avec GetPro</div>
         </div>
         <div class="case-image case-image-lucca" role="img" aria-label="Lucca"></div>
-        <div class="case-quote">« Getpro nous a aidé à trouver un profil C-level rare dans des délais très courts. L'équipe a été d'une efficacité remarquable et a toujours été présente pour nous aider dans ce difficile recrutement. Merci à eux ! La principale réussite est d'avoir réussi à nous trouver un candidat qui réponde à des critères d'exigence très élevés et accepte la culture et la politique de rémunération très atypiques de Lucca. C'était une vraie gageure. Je tiens également à souligner les délais et le nombre de candidats proposés (finalement excellents compte-tenu de la rareté des profils ciblés) »<cite>Damien Grandemenge<br>Directeur Général</cite></div>
       </div>
 
       <div class="case-card">
@@ -671,7 +672,6 @@
           <div class="sub">10 recrutements en RPO + 20 par le cabinet en 6 mois</div>
         </div>
         <div class="case-image case-image-filigran" role="img" aria-label="Filigran"></div>
-        <div class="case-quote">« Sourcing de profils tech atypiques, prestation de RPO en phase de scaling, accompagnement humain lors d'un audit de sécurité. Propositions pertinentes, dans un calendrier contraint. Très bonnes propositions de profils, nos attentes ont été parfaitement comprises et entendues. »<cite>Sophie Hubaut<br>Senior HR & Legal Manager</cite></div>
       </div>
     </section>
 
@@ -688,14 +688,12 @@
         <div class="quote-wrap">
           <div class="quote-image quote-image--emile" role="img" aria-label="Émile Pennes, consultant GetPro"></div>
           <div class="quote-card">
-            <h3 class="quote-title">CTO chez Decathlon</h3>
             <p>Émile suivait depuis quatre ans un CTO heureux dans son poste, exactement le profil que cherchait Decathlon. Il a fallu six rendez-vous étalés sur trois mois pour que la conversation bascule. La signature est arrivée la semaine suivante.</p>
           </div>
         </div>
         <div class="quote-wrap">
           <div class="quote-image quote-image--nicolas" role="img" aria-label="Nicolas Magne, consultant GetPro"></div>
           <div class="quote-card">
-            <h3 class="quote-title">Premiers ingénieurs chez Spiko</h3>
             <p>Quand Nicolas a recruté le premier développeur de <a href="https://www.spiko.io" target="_blank" rel="noopener">Spiko</a>, l'équipe tenait dans une pièce. Il a recruté ce profil, puis le suivant. Trois ans plus tard, près de la moitié des ingénieurs de la fintech sont passés par GetPro.</p>
           </div>
         </div>
