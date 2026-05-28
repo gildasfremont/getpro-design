@@ -196,6 +196,13 @@ button { font-family: inherit; cursor: pointer; }
   opacity: 0;
   max-height: 0;
 }
+.header--compact:hover .menu {
+  padding-block: clamp(14px, 1.6vw, 24px);
+}
+.header--compact:hover .menu-right .menu-item--two .mi-sub {
+  opacity: 1;
+  max-height: 1.6em;
+}
 /* Contact : aplat gris translucide + texte ink gras. */
 .menu-right .menu-item--contact {
   padding: clamp(10px, 1vw, 14px) clamp(16px, 1.4vw, 22px);
@@ -765,25 +772,17 @@ body.menu-open main > *:not(.header) {
 }
 
 /* Grille standard du footer (sous le featured nav).
-   1 col : brand (qui contient logo, tagline, adresse+contact, ratings). */
+   Grille 1fr / 3fr alignée sur le reste de la page.
+   Logo + adresse à gauche, tagline + ratings à droite. */
 .foot-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  column-gap: 0;
-  row-gap: clamp(40px, 5vw, 70px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  column-gap: clamp(40px, 6vw, 110px);
+  row-gap: clamp(32px, 4vw, 56px);
   align-items: start;
 }
-.foot-grid > * {
-  padding-right: clamp(40px, 8vw, 120px);
-}
-
-/* Bloc brand : logo, tagline, adresse */
-.foot-brand {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(20px, 2vw, 32px);
-}
 .foot-logo {
+  grid-column: 1;
   display: block;
   width: clamp(140px, 15vw, 220px);
   height: clamp(28px, 3vw, 44px);
@@ -792,61 +791,53 @@ body.menu-open main > *:not(.header) {
           mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
 }
 .foot-tagline {
+  grid-column: 2;
   font-size: clamp(20px, 2vw, 28px);
   line-height: 1.4;
   margin: 0;
   letter-spacing: -0.01em;
   max-width: 38ch;
 }
-/* Grille footer : adresse + contact + 3 ratings sur une ligne.
-   5 colonnes : adresse | contact | Google | Trustpilot | Trustfolio.
-   Les ratings forment un sous-système aligné entre eux. */
-.foot-info-row {
-  display: grid;
-  grid-template-columns: max-content max-content 1fr;
-  align-items: end;
-  column-gap: clamp(28px, 4vw, 56px);
-  row-gap: 0;
-}
-.foot-address-row {
-  display: contents;
-}
-.foot-address-row .foot-street { grid-column: 1; grid-row: 1; }
-.foot-address-row .foot-city   { grid-column: 1; grid-row: 2; }
-.foot-address-row .foot-email  { grid-column: 2; grid-row: 1; }
-.foot-address-row .foot-phone  { grid-column: 2; grid-row: 2; }
-/* Ratings : bloc flex aligné en bas, gap serré entre les 3. */
-.foot-info-row .ratings-stack {
-  grid-column: 3;
-  grid-row: 1 / 3;
-  align-self: end;
+.foot-address {
+  grid-column: 1;
   display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.foot-ratings {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(24px, 3vw, 48px);
   align-items: flex-end;
-  gap: clamp(20px, 2.5vw, 40px);
 }
 .foot-line {
-  font-size: clamp(17px, 1.5vw, 22px);
+  font-size: clamp(15px, 1.3vw, 20px);
   line-height: 1.5;
   margin: 0;
   color: var(--bg);
   text-decoration: none;
 }
 a.foot-line:hover { text-decoration: underline; }
+.foot-legal-link {
+  grid-column: 1;
+  font-size: clamp(15px, 1.3vw, 20px);
+  color: var(--bg);
+  opacity: 0.45;
+  text-decoration: none;
+}
+.foot-legal-link:hover { text-decoration: underline; }
 
-@media (max-width: 600px) {
-  .foot-info-row {
-    grid-template-columns: 1fr 1fr;
-    row-gap: clamp(16px, 2vw, 24px);
+@media (max-width: 700px) {
+  .foot-grid {
+    grid-template-columns: 1fr;
+    row-gap: clamp(20px, 3vw, 32px);
   }
-  .foot-address-row .foot-street { grid-column: 1; grid-row: 1; }
-  .foot-address-row .foot-city   { grid-column: 1; grid-row: 2; }
-  .foot-address-row .foot-email  { grid-column: 2; grid-row: 1; }
-  .foot-address-row .foot-phone  { grid-column: 2; grid-row: 2; }
-  .foot-info-row .ratings-stack {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    flex-wrap: wrap;
-  }
+  .foot-logo,
+  .foot-tagline,
+  .foot-address,
+  .foot-ratings,
+  .foot-legal-link { grid-column: 1; }
 }
 
 /* Colonnes de liens petites, alignées start. */
@@ -874,74 +865,7 @@ a.foot-line:hover { text-decoration: underline; }
   margin-top: clamp(12px, 1.5vw, 22px);
 }
 
-/* Ligne légale tout en bas à gauche du footer (sous la grille). */
-.foot-legal {
-  font-size: clamp(17px, 1.5vw, 22px);
-  opacity: 0.55;
-}
-.foot-legal a {
-  color: var(--bg);
-  text-decoration: none;
-}
-.foot-legal a:hover { text-decoration: underline; }
-
-/* Responsive du footer.
-   .foot-featured est en flex-wrap, donc s'adapte tout seul (les
-   items wrappent quand il n'y a plus la place).
-   ≤1000 : brand reste large, on resserre les colonnes.
-   ≤700  : tout en 1 col. */
-@media (max-width: 1000px) {
-  .foot-grid {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  }
-  .foot-contact {
-    grid-column: 1;
-    grid-row: 2;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: clamp(20px, 3vw, 36px);
-    margin-top: clamp(16px, 2vw, 28px);
-    padding-right: 0;
-  }
-  .foot-contact .rating { margin-top: 0; }
-}
-@media (max-width: 700px) {
-  .foot-grid {
-    grid-template-columns: 1fr 1fr;
-    row-gap: clamp(28px, 4vw, 40px);
-  }
-  .foot-brand,
-  .foot-contact {
-    grid-column: 1 / -1;
-    grid-row: auto;
-    padding-right: 0;
-  }
-  .foot-featured a.menu-item--two {
-    flex-direction: row;
-    gap: 0.35em;
-    align-items: baseline;
-  }
-  .foot-featured a.menu-item--two .mi-sub {
-    font-size: inherit;
-    font-weight: inherit;
-    opacity: 1;
-  }
-}
-@media (max-width: 460px) {
-  .site-footer {
-    padding-top: clamp(40px, 8vw, 60px);
-  }
-  .foot-grid {
-    grid-template-columns: 1fr;
-  }
-  .foot-grid > * { padding-right: 0; }
-  .foot-contact {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-  }
-}
+/* Legacy foot-legal et responsive footer (remplacés par .foot-legal-link et grille 1fr/3fr) */
 
 /* ---------- Solutions overview (golden path home) ----------
    Section entre Process et Logos avec les 3 entrées du chemin

@@ -75,6 +75,7 @@
               <li><a href="clients.html"${aria('clients.html')}>Clients</a></li>
               <li><a href="equipe.html"${aria('equipe.html')}>Équipe</a></li>
               <li><a href="articles.html"${aria('articles.html')}>Articles</a></li>
+              <li><a href="candidats.html"${aria('candidats.html')}>Accès candidats</a></li>
               <li class="submenu-contact"><a href="contact.html"${aria('contact.html')}>Contact</a></li>
             </ul>
           </div>
@@ -90,6 +91,7 @@
               <li><a href="clients.html"${aria('clients.html')}>Clients</a></li>
               <li><a href="equipe.html"${aria('equipe.html')}>Équipe</a></li>
               <li><a href="articles.html"${aria('articles.html')}>Articles</a></li>
+              <li><a href="candidats.html"${aria('candidats.html')}>Accès candidats</a></li>
             </ul>
           </div>
         </div>
@@ -100,35 +102,28 @@
 
   const footerHTML = `
     <div class="foot-grid">
-      <div class="foot-brand">
-        <a href="index.html" class="foot-logo" aria-label="GetPro"></a>
-        <p class="foot-tagline">Cabinet de chasse spécialisé experts et dirigeants pour la Tech et l'IA. Depuis 2015.</p>
-        <div class="foot-info-row">
-          <div class="foot-address-row">
-            <p class="foot-line foot-street">41 rue Faidherbe</p>
-            <p class="foot-line foot-city">75011 Paris</p>
-            <a class="foot-line foot-email" href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>
-            <a class="foot-line foot-phone" href="tel:+33939289329">09&nbsp;39&nbsp;28&nbsp;93&nbsp;29</a>
-          </div>
-          <div class="ratings-stack">
-            <div class="rating">
-              <img src="assets/google.svg" alt="Google" class="rating-logo" />
-              <span class="rating-stars">4,3 ★★★★★</span>
-            </div>
-            <div class="rating">
-              <img src="assets/trustpilot.svg" alt="Trustpilot" class="rating-logo" />
-              <span class="rating-stars">5 ★★★★★</span>
-            </div>
-            <div class="rating">
-              <img src="assets/trustfolio.svg" alt="Trustfolio" class="rating-logo" />
-              <span class="rating-stars">4,9 ★★★★★</span>
-            </div>
-          </div>
+      <a href="index.html" class="foot-logo" aria-label="GetPro"></a>
+      <p class="foot-tagline">Cabinet de chasse spécialisé experts et dirigeants pour la Tech et l'IA. Depuis 2015.</p>
+      <div class="foot-address">
+        <p class="foot-line">41 rue Faidherbe, 75011 Paris</p>
+        <a class="foot-line" href="mailto:bonjour@getpro.com">bonjour@getpro.com</a>
+        <a class="foot-line" href="tel:+33939289329">09&nbsp;39&nbsp;28&nbsp;93&nbsp;29</a>
+      </div>
+      <div class="foot-ratings">
+        <div class="rating">
+          <img src="assets/google.svg" alt="Google" class="rating-logo" />
+          <span class="rating-stars">4,3 ★★★★★</span>
+        </div>
+        <div class="rating">
+          <img src="assets/trustpilot.svg" alt="Trustpilot" class="rating-logo" />
+          <span class="rating-stars">5 ★★★★★</span>
+        </div>
+        <div class="rating">
+          <img src="assets/trustfolio.svg" alt="Trustfolio" class="rating-logo" />
+          <span class="rating-stars">4,9 ★★★★★</span>
         </div>
       </div>
-    </div>
-    <div class="foot-legal">
-      <a href="mentions.html"${aria('mentions.html')}>Mentions légales</a>
+      <a href="mentions.html" class="foot-legal-link"${aria('mentions.html')}>Mentions légales</a>
     </div>
   `;
 
