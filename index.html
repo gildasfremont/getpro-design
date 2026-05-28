@@ -224,36 +224,24 @@
   }
 
   .case-card {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-    column-gap: var(--col-gap);
-    row-gap: var(--gap-card);
-    padding: clamp(40px, 5vw, 72px) var(--pad-card-x) clamp(48px, 6vw, 96px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-card);
+    padding: var(--pad-card-y) var(--pad-card-x);
     background: var(--white);
     color: inherit;
     text-decoration: none;
-    border-bottom: 1px solid rgba(6, 32, 4, 0.12);
-  }
-  .case-card:last-child {
-    border-bottom: none;
   }
 
   .case-logo {
-    grid-column: 1;
-    grid-row: 1 / span 2;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: clamp(8px, 1vw, 14px);
-    align-self: start;
-    position: sticky;
-    top: calc(var(--header-h, 60px) + 24px);
+    align-items: center;
+    gap: clamp(10px, 1.4vw, 20px);
   }
 
   .case-logo .name {
-    font-size: clamp(15px, 1.4vw, 20px);
-    line-height: 1.4;
-    color: var(--green);
+    font-size: var(--fs-card-name);
+    line-height: var(--lh-card-name);
   }
 
   .case-logo .symbol {
@@ -290,7 +278,6 @@
   }
 
   .case-text {
-    grid-column: 2;
     display: flex;
     flex-direction: column;
     gap: var(--gap-text);
@@ -299,7 +286,6 @@
   .case-text .sub{ font-size: var(--fs-card-sub);   line-height: var(--lh-card-sub); }
 
   .case-image {
-    grid-column: 2;
     width: 100%;
     aspect-ratio: 1219 / 490;
     background-size: cover;
@@ -682,7 +668,6 @@
         <div class="process-text">
           <h2 class="process-text-title">La personne que vous allez embaucher est dans notre réseau</h2>
           <p>Depuis 2015, notre équipe a mené plus de 4 000 recrutements<sup>1</sup>, des premières startups IA aux directions tech des grands groupes du CAC 40. Cette expérience a construit plus qu'une base de contacts : un réseau vivant d'experts, d'équipes et de dirigeants.</p>
-          <p>Notre ancienneté et cette continuité sur un marché qui évolue continuellement nous donnent une lecture que les nouveaux entrants n'ont pas et nous permettent de savoir qui peut travailler avec qui et dans quel contexte.</p>
           <p class="process-footnote"><sup>1</sup> <a href="services-profils.html#practices">50% en cabinet</a>, 50% en <a href="services-renfort.html">délégation de recruteurs</a></p>
         </div>
         <div class="quote-wrap">
@@ -691,74 +676,26 @@
             <p>Émile suivait depuis quatre ans un CTO heureux dans son poste, exactement le profil que cherchait Decathlon. Il a fallu six rendez-vous étalés sur trois mois pour que la conversation bascule. La signature est arrivée la semaine suivante.</p>
           </div>
         </div>
-        <div class="quote-wrap">
-          <div class="quote-image quote-image--nicolas" role="img" aria-label="Nicolas Magne, consultant GetPro"></div>
-          <div class="quote-card">
-            <p>Quand Nicolas a recruté le premier développeur de <a href="https://www.spiko.io" target="_blank" rel="noopener">Spiko</a>, l'équipe tenait dans une pièce. Il a recruté ce profil, puis le suivant. Trois ans plus tard, près de la moitié des ingénieurs de la fintech sont passés par GetPro.</p>
-          </div>
-        </div>
       </div>
     </section>
 
     <!-- Services -->
     <section class="services-panel section">
-      <div class="services-content">
-      <div class="services-intro">
-        <h3 class="services-intro-title">Un recrutement est un moment sensible</h3>
-        <p>Pour l’entreprise qui joue une partie de son organisation avec un timing souvent serré et pour le candidat qui engage une étape de sa carrière.</p>
-        <p>Soutenus par notre outillage propriétaire développé en interne, nos consultants connaissent la tech, ses métiers et ses codes.</p>
-        <p>Dans les échanges on sent toujours une forte relation de confiance qu’on retrouve dans les <a href="clients.html">témoignages clients</a> et <a href="clients.html">candidats</a>.</p>
-      </div>
-      </div>
       <div class="services-panel-sidebar">
         <h2 class="services-panel-title">Une équipe dédiée par solution</h2>
       </div>
       <ul class="services-list">
         <li><a href="services-transition.html" class="service-link">
-          <span class="service-name">Transition &amp; temps partagé</span>
+          <span class="service-name">Dirigeants à la demande</span>
           <span class="service-desc">Faire tenir une fonction critique tout de suite, sans recruter trop tôt en CDI, avec un dirigeant senior capable de cadrer le rôle, structurer l'équipe et préparer la suite.</span>
-          <span class="service-team" aria-hidden="true">
-            <span class="team-avatar" style="background-image:url('assets/team/romain-pichou.jpg')"></span>
-            <span class="team-avatar" style="background-image:url('assets/team/emile-pennes.jpg')"></span>
-          </span>
         </a></li>
         <li><a href="services-renfort.html" class="service-link">
-          <span class="service-name">RPO &amp; renfort recrutement</span>
+          <span class="service-name">Recruteurs à la demande</span>
           <span class="service-desc">Absorber un volume de recrutements tech, data, IA ou sales tech avec un recruteur intégré à vos outils, tout en gardant le standard GetPro sur la qualification, le suivi et le reporting.</span>
-          <span class="service-team" aria-hidden="true">
-            <span class="team-avatar" style="background-image:url('assets/team/anne-delarue.png')"></span>
-            <span class="team-avatar" style="background-image:url('assets/team/juliette-fabre.png')"></span>
-            <span class="team-avatar" style="background-image:url('assets/team/thomas-laigo.jpg')"></span>
-            <span class="team-avatar" style="background-image:url('assets/team/die-astou-dioume.jpg')"></span>
-            <span class="team-avatar" style="background-image:url('assets/team/lauren-pointon.jpg')"></span>
-          </span>
         </a></li>
         <li><a href="services-tech.html" class="service-link">
-          <span class="service-name">Tech, IA &amp; Data</span>
-          <span class="service-desc">Recruter des profils techniques ou dirigeants qualifiés sur leur pratique réelle, leur rapport à l'IA, leur stack et leur capacité à faire progresser une équipe.</span>
-          <span class="service-team" aria-hidden="true">
-            <span class="team-avatar" style="background-image:url('assets/team/tony-beaugez.png')"></span>
-            <span class="team-avatar" style="background-image:url('assets/team/nicolas-magne.jpg')"></span>
-            <span class="team-avatar" style="background-image:url('assets/team/hugo-merdrignac.png')"></span>
-            <span class="team-avatar" style="background-image:url('assets/team/theo-grandperrin.jpg')"></span>
-          </span>
-        </a></li>
-        <li><a href="services-produit.html" class="service-link">
-          <span class="service-name">Product &amp; Projects</span>
-          <span class="service-desc">Trouver les profils Produit, Design ou Delivery capables d'arbitrer au bon niveau pour votre stade de developpement.</span>
-          <span class="service-team" aria-hidden="true">
-            <span class="team-avatar" style="background-image:url('assets/team/guillaume-renard.png')"></span>
-          </span>
-        </a></li>
-        <li><a href="services-sales.html" class="service-link">
-          <span class="service-name">Customer, Sales, Marketing, Admin &amp; Ops</span>
-          <span class="service-desc">Recruter les fonctions qui structurent la croissance et l'exécution avec une lecture senior du pipeline, des priorités et de la capacité à embarquer une équipe.</span>
-          <span class="service-team" aria-hidden="true">
-            <span class="team-avatar" style="background-image:url('assets/team/louis-fitamant.png')"></span>
-            <span class="team-avatar" style="background-image:url('assets/team/zaia-bouchachia.png')"></span>
-            <span class="team-avatar" style="background-image:url('assets/team/claire-hubert.jpg')"></span>
-            <span class="team-avatar" style="background-image:url('assets/team/laura-geneuil.png')"></span>
-          </span>
+          <span class="service-name">Chasse de tête CDI &amp; Freelance</span>
+          <span class="service-desc">Recruter en CDI ou freelance sur les practices Tech &amp; IA, Produit et Sales &amp; Ops, du premier ingénieur aux fonctions de direction.</span>
         </a></li>
       </ul>
     </section>
