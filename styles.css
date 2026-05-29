@@ -143,7 +143,6 @@ button { font-family: inherit; cursor: pointer; }
   align-items: center;
   padding-block: clamp(18px, 2.2vw, 32px);
   gap: clamp(28px, 3.6vw, 56px);
-  transition: padding 0.25s ease;
 }
 /* Pousse le bloc d'options à droite : logo à gauche, options à droite,
    nav équilibrée sur toute la largeur. */
@@ -203,26 +202,28 @@ button { font-family: inherit; cursor: pointer; }
 }
 .menu-right .menu-item--two .mi-sub {
   font-weight: 400;
-  opacity: 1;
   letter-spacing: -0.01em;
-  transition: opacity 0.25s ease, max-height 0.25s ease, margin-top 0.25s ease;
-  max-height: 1.6em;
-  overflow: hidden;
 }
-/* Compact header on scroll */
-.header--compact .menu {
-  padding-block: clamp(10px, 1.2vw, 16px);
+/* Shrunk header on scroll : tout reste visible, juste plus petit. */
+.header--shrunk .menu {
+  padding-block: clamp(10px, 1.4vw, 18px);
 }
-.header--compact .menu-right .menu-item--two .mi-sub {
-  opacity: 0;
-  max-height: 0;
+.header--shrunk .brand {
+  width: clamp(100px, 9vw, 138px);
+  height: clamp(22px, 2vw, 28px);
 }
-.header--compact:hover .menu {
-  padding-block: clamp(14px, 1.6vw, 24px);
+.header--shrunk .menu-right .menu-item {
+  font-size: clamp(14px, 1.3vw, 17px);
 }
-.header--compact:hover .menu-right .menu-item--two .mi-sub {
-  opacity: 1;
-  max-height: 1.6em;
+.header--shrunk .menu-right .menu-item--inline,
+.header--shrunk .menu-right .menu-item--has-submenu {
+  font-size: clamp(13px, 1.3vw, 18px);
+}
+.header--shrunk .menu-right .menu-item--two .mi-sub {
+  font-size: 0.78em;
+}
+.header--shrunk .menu-right .menu-item--contact {
+  padding: clamp(8px, 0.8vw, 11px) clamp(13px, 1.1vw, 17px);
 }
 /* Contact : aplat gris translucide + texte ink gras. */
 .menu-right .menu-item--contact {

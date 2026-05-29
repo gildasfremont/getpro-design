@@ -266,16 +266,16 @@
       updateVisibility();
     }
 
-    // Header compact on scroll : masque la 2e ligne (.mi-sub)
-    // et réduit le padding pour gagner en hauteur.
+    // Header shrunk on scroll : réduit les tailles (logo, items, padding)
+    // pour gagner en hauteur sans rien masquer.
     const headerEl = document.querySelector('.header');
     if (headerEl) {
-      const compactThreshold = 50;
-      const updateCompact = () => {
-        headerEl.classList.toggle('header--compact', window.scrollY > compactThreshold);
+      const shrinkThreshold = 50;
+      const updateShrunk = () => {
+        headerEl.classList.toggle('header--shrunk', window.scrollY > shrinkThreshold);
       };
-      window.addEventListener('scroll', updateCompact, { passive: true });
-      updateCompact();
+      window.addEventListener('scroll', updateShrunk, { passive: true });
+      updateShrunk();
     }
   };
 

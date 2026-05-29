@@ -64,11 +64,6 @@
     background-color: #d8e0d3;
     background-position: 50% 30%;
     display: block;
-    transition: transform 0.35s ease;
-  }
-  .grid-images .tile:hover {
-    transform: scale(1.03);
-    z-index: 1;
   }
 
   /* Manifesto intégré au hero : layout MoMA, sidebar gauche + contenu à droite. */
@@ -218,16 +213,15 @@
   .cases {
     display: flex;
     flex-direction: column;
-    gap: 0;
-    padding-block-start: 0;
-    padding-block-end: 0;
+    gap: clamp(8px, 1vw, 16px);
+    padding-block: clamp(40px, 5vw, 80px) clamp(56px, 7vw, 120px);
   }
 
   .case-card {
     display: flex;
     flex-direction: column;
     gap: var(--gap-card);
-    padding: var(--pad-card-y) var(--pad-card-x);
+    padding: clamp(56px, 8vw, 140px) clamp(40px, 6vw, 110px);
     background: var(--white);
     color: inherit;
     text-decoration: none;
@@ -356,25 +350,24 @@
   .quote-wrap {
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    column-gap: clamp(40px, 8vw, 140px);
-    align-items: center;
-    padding: clamp(16px, 2vw, 32px) clamp(24px, 6vw, 90px);
-    background: var(--bg);
+    align-items: stretch;
+    background: var(--white);
+    overflow: hidden;
   }
   .quote-image {
-    aspect-ratio: 3 / 4;
     background-color: var(--bg);
     background-position: top center;
     background-size: cover;
     background-repeat: no-repeat;
-    justify-self: center;
-    width: 100%;
-    max-width: clamp(200px, 22vw, 320px);
+    min-height: clamp(280px, 36vw, 540px);
+    align-self: stretch;
   }
   .quote-card {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: clamp(16px, 1.8vw, 28px);
+    padding: clamp(28px, 4vw, 72px) clamp(28px, 5vw, 80px);
     max-width: var(--measure);
   }
   .home .quote-title {
@@ -388,6 +381,12 @@
     font-size: var(--fs-quote);
     line-height: var(--lh-quote);
     margin: 0;
+  }
+  .quote-card p.quote-attribution {
+    font-size: clamp(13px, 1.05vw, 16px);
+    line-height: 1.5;
+    color: rgba(6, 32, 4, 0.55);
+    margin-top: clamp(16px, 2vw, 32px);
   }
   .quote-image--guillaume {
     background-image: url('assets/team/guillaume-renard.png');
@@ -472,6 +471,55 @@
     }
     .quote-image { max-width: clamp(220px, 60vw, 320px); }
     .process-text { padding: clamp(28px, 4vw, 40px) clamp(20px, 4vw, 40px); }
+  }
+
+  /* ---------- Candidates testimonials ---------- */
+  .candidates {
+    padding-block: clamp(56px, 7vw, 120px);
+  }
+  .candidate-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(8px, 1vw, 16px);
+  }
+  .candidate-card {
+    background: var(--white);
+    padding: clamp(28px, 3vw, 48px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 2.2vw, 36px);
+  }
+  .candidate-logo {
+    height: clamp(24px, 2.4vw, 36px);
+    width: auto;
+    align-self: flex-start;
+    object-fit: contain;
+  }
+  .candidate-card blockquote {
+    margin: 0;
+    font-size: var(--fs-quote);
+    line-height: var(--lh-quote);
+    flex: 1;
+  }
+  .candidate-card cite {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: clamp(14px, 1.05vw, 16px);
+    line-height: 1.4;
+  }
+  .candidate-name {
+    font-weight: 700;
+  }
+  .candidate-role {
+    color: rgba(6, 32, 4, 0.6);
+  }
+  @media (max-width: 800px) {
+    .candidate-grid { grid-template-columns: 1fr; }
   }
 
   /* ---------- Services panel ---------- */
@@ -673,16 +721,16 @@
         <div class="quote-wrap">
           <div class="quote-image quote-image--emile" role="img" aria-label="Émile Pennes, consultant GetPro"></div>
           <div class="quote-card">
-            <p>Émile suivait depuis quatre ans un CTO heureux dans son poste, exactement le profil que cherchait Decathlon. Il a fallu six rendez-vous étalés sur trois mois pour que la conversation bascule. La signature est arrivée la semaine suivante.</p>
+            <p>Quand Electra a cherché un Ruby on Rails capable de piloter une équipe pointue avec une vraie connaissance de l'électricité, la personne était déjà dans le réseau d'Émile depuis dix ans : il l'avait recruté pour Talentoday une décennie plus tôt, devenu CTO entre-temps. La mise en relation s'est faite dans la foulée.</p>
+            <p class="quote-attribution">Émile Pennes est consultant chez GetPro depuis 2012. Il en est aussi le co-CEO.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Services -->
     <section class="services-panel section">
       <div class="services-panel-sidebar">
-        <h2 class="services-panel-title">Une équipe dédiée par solution</h2>
+        <h2 class="services-panel-title">Solutions de recrutement</h2>
       </div>
       <ul class="services-list">
         <li><a href="services-transition.html" class="service-link">
@@ -699,6 +747,29 @@
         </a></li>
       </ul>
     </section>
+
+    <!-- Témoignages candidats C-level -->
+    <section class="candidates section">
+      <ul class="candidate-grid">
+        <li class="candidate-card">
+          <img class="candidate-logo" src="assets/rosaly.svg" alt="Rosaly" loading="lazy" />
+          <blockquote>« Super expérience avec GetPro. J'ai eu la chance d'être accompagnée par Tala, un suivi irréprochable et un relationnel au top. »</blockquote>
+          <cite><span class="candidate-name">Deborah Labre</span><span class="candidate-role">Head of Marketing &amp; Communication, Rosaly</span></cite>
+        </li>
+        <li class="candidate-card">
+          <img class="candidate-logo" src="assets/carrefour.svg" alt="Carrefour" loading="lazy" />
+          <blockquote>« Un accompagnement parfait. GetPro est toujours à l'écoute et même très proactif. Toujours disponibles quand j'avais une question. »</blockquote>
+          <cite><span class="candidate-name">Olivier Brune</span><span class="candidate-role">Head of Operations, Carrefour</span></cite>
+        </li>
+        <li class="candidate-card">
+          <img class="candidate-logo" src="assets/quipment.svg" alt="Quipment" loading="lazy" />
+          <blockquote>« Une écoute active qui leur permet de mesurer l'appétence des candidats pour le poste, ce qui bénéficie au candidat et à l'entreprise qui recrute. »</blockquote>
+          <cite><span class="candidate-name">Laurent Helmstetter</span><span class="candidate-role">Directeur Technique, Quipment</span></cite>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Services -->
 
     <footer class="site-footer" data-footer></footer>
 
