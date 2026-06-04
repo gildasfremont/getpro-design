@@ -3,59 +3,106 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GetPro Cabinet de chasse Tech</title>
-<meta name="description" content="Cabinet de chasse spécialisé sur le secteur de l'innovation depuis 2015. Nous mettons en relation les talents les plus pointus et les meilleures entreprises technologiques. Recrutements ponctuels, renfort en recrutement, temps partagés et transition." />
+<title>GetPro — Cabinet de chasse Tech & IA</title>
+<meta name="description" content="GetPro chasse depuis 2015 les profils tech, produit et go-to-market les plus pointus pour les meilleures entreprises technologiques françaises." />
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-<meta property="og:title" content="GetPro Cabinet de chasse Tech" />
-<meta property="og:description" content="Cabinet de chasse spécialisé sur le secteur de l'innovation depuis 2015. Nous mettons en relation les talents les plus pointus et les meilleures entreprises technologiques." />
+<meta property="og:title" content="GetPro — Cabinet de chasse Tech & IA" />
+<meta property="og:description" content="GetPro chasse depuis 2015 les profils tech, produit et go-to-market les plus pointus pour les meilleures entreprises technologiques françaises." />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="stylesheet" href="styles.css?v=1" />
+<link rel="stylesheet" href="styles.css" />
 <style>
-  /* La home garde son ancienne typo : titres en poids normal (sauf
-     <strong>), variables typo plus petites qu'ailleurs. Les autres
-     pages bénéficient des bumps globaux. */
-  .home h1, .home h2, .home h3, .home h4, .home h5, .home h6 {
-    font-weight: 400;
-  }
+  /* ===========================================================
+     HOME — vibe éditoriale GetPro (cartes blanches, gros titres
+     bold, splits texte/image, murs de logos, rythme par hairlines).
+     Bold réel : ABC Diatype Bold (700).
+     =========================================================== */
+
+  .home h1, .home h2, .home h3, .home h4, .home h5, .home h6 { font-weight: 400; }
+  .home strong, .home b { font-weight: 700; }
   .home {
-    --fs-section-title: clamp(22px, 2.8vw, 36px);
-    --fs-card-title:    clamp(22px, 2.8vw, 36px);
-    --fs-card-name:     clamp(22px, 3.55vw, 52px);
-    --col-gap: clamp(40px, 6vw, 110px);
+    --fs-section-title: clamp(28px, 3.4vw, 48px);
+    --fs-card-title:    clamp(24px, 3vw, 40px);
+    --fs-card-name:     clamp(24px, 3.55vw, 52px);
+    --col-gap:          clamp(40px, 6vw, 110px);
+    --muted:            rgba(6, 32, 4, 0.55);
+    --ink-2:            #0E3A16; /* vert sombre, un cran plus clair que --ink */
   }
 
-  /* ---------- Hero V2 : titre full-width → grille 5×2 → manifesto ---------- */
+  /* ---------- Hero ---------- */
   .hero {
     display: flex;
     flex-direction: column;
     gap: 0;
     padding-top: clamp(12px, 1.5vw, 24px);
-    padding-bottom: clamp(12px, 1.5vw, 24px);
-    margin-bottom: clamp(40px, 6vw, 96px);
+    margin-bottom: clamp(56px, 7vw, 120px);
   }
-
   .hero-title {
-    font-size: clamp(32px, 5.5vw, 80px);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    text-wrap: balance;
-    margin-bottom: clamp(28px, 3.5vw, 56px);
+    font-size: clamp(30px, 4.3vw, 62px);
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    margin: 0 0 clamp(28px, 3.4vw, 52px);
     margin-left: var(--pad-card-x);
+    max-width: none;
   }
-  .hero-title strong {
-    font-weight: 700;
+  .hero-title strong { font-weight: 700; }
+
+  /* Group button (segmented) Équipe / Clients */
+  .hero-toggle {
+    position: relative;
+    display: inline-flex;
+    align-self: flex-start;
+    margin-left: var(--pad-card-x);
+    margin-bottom: clamp(24px, 2.6vw, 40px);
+    padding: 4px;
+    gap: 2px;
+    background: rgba(6, 32, 4, 0.06);
+    border-radius: 999px;
+  }
+  /* Pilule glissante (thumb) : largeur + position pilotées en JS */
+  .hero-toggle-thumb {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 0;
+    width: 0;
+    border-radius: 999px;
+    background: var(--ink);
+    transform: translateX(0);
+    transition: transform 0.36s cubic-bezier(0.4, 0, 0.2, 1), width 0.36s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .hero-toggle-btn {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: rgba(6, 32, 4, 0.6);
+    font-family: inherit;
+    font-size: clamp(14px, 1.4vw, 18px);
+    line-height: 1;
+    padding: clamp(9px, 0.95vw, 13px) clamp(18px, 1.9vw, 28px);
+    border-radius: 999px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    transition: color 0.26s ease;
+  }
+  .hero-toggle-btn[aria-selected="true"] { color: var(--bg); font-weight: 700; }
+  .hero-toggle-btn[aria-selected="false"]:hover { color: var(--ink); }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-toggle-thumb { transition: none; }
   }
 
-  /* Grille photos : 5 colonnes, 2 lignes (10 photos).
-     Margin négatif pour annuler le padding de .section et passer
-     en full-bleed dans le conteneur .home. */
+  /* Galeries full-bleed */
+  .hero-gallery { margin-inline: calc(var(--pad-x) * -1); }
+  .hero-view[hidden] { display: none; }
+
   .grid-images {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0;
-    margin-inline: calc(var(--pad-x) * -1);
   }
   .grid-images .tile {
     aspect-ratio: 3 / 4;
@@ -65,584 +112,339 @@
     background-position: 50% 30%;
     display: block;
   }
+  .tile-1  { background-image: url('assets/team/anne-delarue.png'); }
+  .tile-2  { background-image: url('assets/team/theo-grandperrin.jpg'); }
+  .tile-3  { background-image: url('assets/team/juliette-fabre.png'); }
+  .tile-4  { background-image: url('assets/team/die-astou-dioume.jpg'); }
+  .tile-5  { background-image: url('assets/team/nicolas-magne.jpg'); }
+  .tile-6  { background-image: url('assets/team/hugo-merdrignac.png'); }
+  .tile-7  { background-image: url('assets/team/claire-hubert.jpg'); }
+  .tile-8  { background-image: url('assets/team/romain-pichou.jpg'); }
+  .tile-9  { background-image: url('assets/team/zaia-bouchachia.png'); }
+  .tile-10 { background-image: url('assets/team/emile-pennes.jpg'); }
 
-  /* Manifesto intégré au hero : layout MoMA, sidebar gauche + contenu à droite. */
-  .hero-manifesto {
+  /* Mur de logos clients */
+  /* Le mur occupe exactement le même rectangle que la grille équipe :
+     5 colonnes × 7 rangées dans le ratio 15/8 (= 5 tuiles 3/4 sur 2 rangées).
+     Toggle Équipe/Clients → aucune variation de hauteur. */
+  .logo-wall {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-    column-gap: var(--col-gap);
-    row-gap: clamp(18px, 2vw, 32px);
-    background: var(--white);
-    padding: var(--pad-card-y) var(--pad-card-x);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    aspect-ratio: 15 / 8;
+    background: var(--ink-2);
   }
-  .hero-manifesto-sidebar {
-    grid-column: 1;
-    grid-row: 1 / span 3;
+  .lw-cell {
     display: flex;
-    flex-direction: column;
-    gap: 6px;
-    align-self: start;
-    position: sticky;
-    top: calc(var(--header-h, 60px) + 24px);
+    align-items: center;
+    justify-content: center;
+    padding: clamp(10px, 1.4vw, 26px);
+    min-height: 0;
   }
-  .hero-manifesto-sidebar span {
-    font-size: clamp(15px, 1.4vw, 20px);
-    line-height: 1.4;
-    color: var(--green);
+  /* Logos en clair (silhouette crème) sur le fond sombre */
+  .logo-wall { --lw-h: clamp(18px, 1.9vw, 30px); }
+  .lw-cell img {
+    max-width: 100%;
+    /* --s : facteur d'équilibrage par logo (squint test) */
+    max-height: calc(var(--lw-h) * var(--s, 1));
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.82;
+    transition: opacity 0.15s ease;
   }
-  .hero-manifesto-sidebar .sidebar-label {
-    font-size: clamp(12px, 1vw, 15px);
-    font-weight: 700;
-    margin-top: 12px;
-    opacity: 0.5;
-  }
-  .hero-manifesto-sidebar .sidebar-label:first-child {
-    margin-top: 0;
-  }
-  .hero-manifesto-sidebar .sidebar-link {
-    font-size: clamp(15px, 1.4vw, 20px);
-    margin-top: clamp(20px, 2vw, 32px);
-    color: var(--green);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-thickness: 0.8px;
-    text-decoration-color: rgba(6, 32, 4, 0.35);
-  }
-  .hero-manifesto-sidebar .sidebar-link:hover {
-    text-decoration-color: inherit;
-  }
-  .home .hero-manifesto-title {
-    grid-column: 2;
-    font-size: clamp(26px, 3vw, 46px);
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-  }
-  .hero-manifesto-cols {
-    grid-column: 2;
-  }
-  .hero-manifesto-cols p {
-    font-size: clamp(20px, 2.2vw, 32px);
-    line-height: 1.3;
-    margin: 0 0 clamp(14px, 1.4vw, 22px);
-  }
-  .hero-manifesto-cols p.manifesto-intro {
-    font-size: clamp(24px, 2.8vw, 40px);
-    line-height: 1.25;
-    margin-bottom: clamp(20px, 2vw, 32px);
-  }
-  .hero-manifesto-cols p:last-child {
-    margin-bottom: 0;
-  }
-  .hero-footnote {
-    grid-column: 2;
+  .lw-cell:hover img { opacity: 1; }
+  /* Logos déjà bicolores (forme claire + détail vert) : pas de filtre */
+  .lw-cell img.lw-img-raw { filter: none; opacity: 1; }
+  .lw-cell--more span {
     font-size: clamp(13px, 1.1vw, 16px);
-    line-height: 1.5;
-    color: rgba(6, 32, 4, 0.55);
-    margin: clamp(6px, 0.8vw, 12px) 0 0;
+    line-height: 1.3;
+    color: rgba(247, 249, 246, 0.55);
+    text-align: center;
+    transition: color 0.15s ease;
   }
-  .hero-footnote sup {
-    font-size: 0.75em;
-    vertical-align: super;
-    margin-right: 2px;
+  .lw-cell--more:hover span { color: var(--bg); }
+  .lw-cell--more u { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  /* Sous 1100px la grille photos passe à 4 colonnes : le mur suit en flux libre. */
+  @media (max-width: 1100px) {
+    .logo-wall { grid-template-columns: repeat(4, 1fr); grid-template-rows: none; aspect-ratio: auto; }
+    .lw-cell { aspect-ratio: 5 / 2; }
   }
-  .hero-manifesto-cols sup {
-    font-size: 0.65em;
-    vertical-align: super;
-    opacity: 0.5;
-  }
-  .hero-manifesto a {
-    color: inherit;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    text-decoration-thickness: 0.8px;
-    text-decoration-skip-ink: auto;
-    text-decoration-color: rgba(6, 32, 4, 0.35);
-  }
-  .hero-manifesto a:hover {
-    text-decoration-color: inherit;
+  @media (max-width: 600px) {
+    .logo-wall { grid-template-columns: repeat(3, 1fr); }
   }
 
   @media (max-width: 700px) {
-    .hero-title {
-      font-size: clamp(32px, 8vw, 52px);
-      margin-left: 0;
-    }
-    .grid-images {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .grid-images .tile:nth-child(n+7) {
-      display: none;
-    }
-    .hero-manifesto {
-      grid-template-columns: 1fr;
-    }
-    .hero-manifesto-sidebar {
-      grid-row: auto;
-      position: static;
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 2px 12px;
-    }
-    .home .hero-manifesto-title {
-      grid-column: 1;
-      font-size: clamp(22px, 6vw, 36px);
-      max-width: none;
-    }
-    .hero-manifesto-cols {
-      grid-column: 1;
-    }
-    .hero-footnote {
-      grid-column: 1;
-    }
+    .hero-title { margin-left: 0; max-width: none; }
+    .hero-toggle { margin-left: 0; }
+    .grid-images { grid-template-columns: repeat(3, 1fr); }
+    .grid-images .tile:nth-child(n+10) { display: none; }
   }
 
-  /* Consultants */
-  .tile-1  { background-image: url('assets/team/anne-delarue.png'); }
-  .tile-2  { background-image: url('assets/team/romain-pichou.jpg'); }
-  .tile-3  { background-image: url('assets/team/juliette-fabre.png'); }
-  .tile-4  { background-image: url('assets/team/emile-pennes.jpg'); }
-  .tile-5  { background-image: url('assets/team/die-astou-dioume.jpg'); }
-  .tile-6  { background-image: url('assets/team/guillaume-renard.png'); }
-  .tile-7  { background-image: url('assets/team/claire-hubert.jpg'); }
-  .tile-8  { background-image: url('assets/team/louis-fitamant.png'); }
-  .tile-9  { background-image: url('assets/team/lauren-pointon.jpg'); }
-  .tile-10 { background-image: url('assets/team/tony-beaugez.png'); }
-
-  /* ---------- Cases ---------- */
+  /* ---------- Études de cas (cartes blanches) ---------- */
   .cases {
     display: flex;
     flex-direction: column;
     gap: clamp(8px, 1vw, 16px);
-    padding-block: clamp(40px, 5vw, 80px) clamp(56px, 7vw, 120px);
+    padding-block: clamp(8px, 1vw, 16px) clamp(56px, 7vw, 120px);
   }
-
   .case-card {
+    background: var(--white);
+    padding: clamp(40px, 5.5vw, 96px) clamp(32px, 5vw, 96px);
     display: flex;
     flex-direction: column;
-    gap: var(--gap-card);
-    padding: clamp(56px, 8vw, 140px) clamp(40px, 6vw, 110px);
-    background: var(--white);
-    color: inherit;
-    text-decoration: none;
   }
-
+  /* Eyebrow : identité client discrète, au-dessus du titre */
   .case-logo {
     display: flex;
     align-items: center;
-    gap: clamp(10px, 1.4vw, 20px);
+    gap: clamp(8px, 0.9vw, 13px);
+    margin-bottom: clamp(18px, 1.8vw, 28px);
   }
-
   .case-logo .name {
-    font-size: var(--fs-card-name);
-    line-height: var(--lh-card-name);
+    font-size: clamp(16px, 1.45vw, 21px);
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
-
   .case-logo .symbol {
     flex: none;
     background-color: var(--ink);
-    -webkit-mask-repeat: no-repeat;
-            mask-repeat: no-repeat;
-    -webkit-mask-position: left center;
-            mask-position: left center;
-    -webkit-mask-mode: alpha;
-            mask-mode: alpha;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-position: left center; mask-position: left center;
+    -webkit-mask-mode: alpha; mask-mode: alpha;
   }
   .case-logo .symbol-mistral {
-    width: clamp(24px, 3.6vw, 52px);
-    height: clamp(16px, 2.5vw, 36px);
-    -webkit-mask-image: url('assets/mistral-ai.svg');
-            mask-image: url('assets/mistral-ai.svg');
-    -webkit-mask-size: contain;
-            mask-size: contain;
+    width: clamp(18px, 1.9vw, 26px); height: clamp(12px, 1.3vw, 18px);
+    -webkit-mask-image: url('assets/mistral-ai.svg'); mask-image: url('assets/mistral-ai.svg');
+    -webkit-mask-size: contain; mask-size: contain;
   }
   .case-logo .case-logo-icon {
-    flex: none;
-    display: block;
-    width: clamp(28px, 3.9vw, 56px);
-    height: clamp(28px, 3.9vw, 56px);
+    flex: none; display: block;
+    width: clamp(20px, 2vw, 28px); height: clamp(20px, 2vw, 28px);
   }
-  .case-logo .symbol-filigran {
-    width: clamp(28px, 3.9vw, 56px);
-    height: clamp(28px, 3.9vw, 56px);
-    -webkit-mask-image: url('assets/filigran.svg');
-            mask-image: url('assets/filigran.svg');
-    -webkit-mask-size: auto 100%;
-            mask-size: auto 100%;
+  /* Titre : le héros de la carte */
+  .case-head { display: flex; flex-direction: column; gap: clamp(12px, 1.1vw, 18px); margin-bottom: clamp(30px, 3.4vw, 56px); }
+  .case-head h2 {
+    font-size: clamp(30px, 3.7vw, 54px);
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+    max-width: 18ch;
   }
-
-  .case-text {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-text);
+  .case-head .sub {
+    font-size: clamp(16px, 1.45vw, 21px);
+    line-height: 1.45;
+    color: var(--muted);
+    max-width: 50ch;
   }
-  .case-text h2  { font-size: var(--fs-card-title); line-height: var(--lh-card-title); font-weight: 700; }
-  .case-text .sub{ font-size: var(--fs-card-sub);   line-height: var(--lh-card-sub); }
-
+  /* Image : bandeau cinématique court, en support */
   .case-image {
     width: 100%;
-    aspect-ratio: 1219 / 490;
+    aspect-ratio: 5 / 2;
+    max-height: clamp(260px, 30vw, 440px);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-color: #cfd9c5;
+    margin-bottom: clamp(30px, 3.4vw, 56px);
   }
-  .case-quote {
-    grid-column: 2;
-    font-size: clamp(20px, 2.2vw, 32px);
-    line-height: 1.3;
+  .case-image-mistral { background-image: url('assets/initial-arthur-mensch-mistral-ai-portrait.jpg'); background-position: center 30%; }
+  .case-image-lucca   { background-image: url('assets/Gsatge-0224-6.jpg'); background-position: center 26%; }
+  /* Citation : pull-quote large mais sous le titre dans la hiérarchie */
+  .case-quote { margin: 0; max-width: 44ch; }
+  .case-quote p {
+    font-size: clamp(19px, 2.05vw, 30px);
+    line-height: 1.34;
+    letter-spacing: -0.01em;
+    margin: 0;
   }
   .case-quote cite {
-    display: block;
+    display: flex; flex-direction: column;
     font-style: normal;
-    margin-top: clamp(8px, 1vw, 14px);
+    margin-top: clamp(18px, 1.8vw, 28px);
+    font-size: clamp(15px, 1.2vw, 18px);
+    line-height: 1.4;
   }
-  .case-image-mistral { background-image: url('assets/initial-arthur-mensch-mistral-ai-portrait.jpg'); }
-  .case-image-lucca   { background-image: url('assets/Gsatge-0224-6.jpg'); }
-  .case-image-filigran { background-image: url('assets/filigran-cover.jpg'); }
-
-  .see-all-bottom {
-    align-self: flex-start;
-    margin-left: var(--pad-card-x);
-  }
-  .see-all-bottom--large {
-    font-size: clamp(20px, 2.2vw, 30px);
-    padding: clamp(18px, 1.8vw, 28px) clamp(28px, 2.8vw, 44px);
-    border-radius: clamp(3px, 0.3vw, 6px);
-  }
-
-  /* ---------- Cases mobile ---------- */
+  .case-quote .cq-name { font-weight: 700; }
+  .case-quote .cq-role { color: var(--muted); }
   @media (max-width: 700px) {
-    .case-card {
-      grid-template-columns: 1fr;
-    }
-    .case-logo {
-      grid-row: auto;
-      position: static;
-      flex-direction: row;
-      align-items: center;
-      gap: clamp(6px, 1.5vw, 10px);
-    }
-    .case-text { grid-column: 1; }
-    .case-image { grid-column: 1; }
-    .case-quote { grid-column: 1; font-size: clamp(17px, 4.5vw, 22px); }
-    .case-quote cite { font-size: clamp(14px, 3.5vw, 17px); }
-    .case-text h2 { font-size: clamp(22px, 5.5vw, 30px); }
-    .see-all-bottom { margin-left: 0; }
+    .case-head h2, .case-head .sub, .case-quote { max-width: none; }
   }
 
-  /* ---------- Process / consultant ---------- */
-  .process {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(24px, 3vw, 40px);
-    padding-block: var(--gap-section);
-  }
-  .process-row {
+  /* ---------- Trois offres (pattern services-list) ---------- */
+  .offers {
     display: grid;
-    grid-template-columns: 1fr;
-    align-items: stretch;
-    row-gap: clamp(12px, 1.5vw, 24px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    column-gap: var(--col-gap);
+    row-gap: clamp(28px, 3vw, 48px);
+    padding: clamp(56px, 7vw, 120px) calc(var(--pad-x) + var(--pad-card-x));
   }
-  .process-row .process-text {
-    margin-bottom: clamp(16px, 2vw, 32px);
+  .offers-sidebar { grid-column: 1; }
+  .home .offers-title {
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    margin: 0;
   }
-  .quote-wrap {
+  .offers-list {
+    grid-column: 2;
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column;
+  }
+  .offer {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: clamp(20px, 2.4vw, 40px);
+    align-items: baseline;
+    padding: clamp(24px, 2.8vw, 44px) 0;
+    border-top: 1px solid var(--line);
+    color: inherit;
+  }
+  .offer:last-child { border-bottom: 1px solid var(--line); }
+  .offer-index {
+    font-size: clamp(15px, 1.3vw, 18px);
+    color: var(--muted);
+    font-feature-settings: 'pnum' on, 'lnum' on;
+  }
+  .offer-body { display: flex; flex-direction: column; gap: clamp(8px, 0.9vw, 14px); }
+  .offer-name {
+    font-size: clamp(24px, 2.8vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+  a.offer .offer-name {
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 1.5px;
+    transition: text-decoration-color 0.15s ease;
+  }
+  a.offer:hover .offer-name { text-decoration-color: currentColor; }
+  .offer-desc {
+    font-size: var(--fs-quote);
+    line-height: 1.35;
+    color: var(--muted);
+    max-width: 46ch;
+  }
+  @media (max-width: 800px) {
+    .offers { grid-template-columns: 1fr; padding-inline: var(--pad-x); }
+    .offers-sidebar, .offers-list { grid-column: 1; }
+    .home .offers-title { font-size: clamp(30px, 7vw, 44px); }
+  }
+
+  /* ---------- Réseau (split image / texte) ---------- */
+  .network { padding-block: clamp(40px, 5vw, 80px); }
+  .network-row { display: flex; flex-direction: column; gap: clamp(28px, 3.5vw, 56px); }
+  .home .network-title {
+    font-size: clamp(30px, 3.6vw, 56px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin: 0;
+    margin-left: var(--pad-card-x);
+    max-width: 20ch;
+    text-wrap: balance;
+  }
+  .network-card {
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     align-items: stretch;
     background: var(--white);
     overflow: hidden;
   }
-  .quote-image {
-    background-color: var(--bg);
-    background-position: top center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    min-height: clamp(280px, 36vw, 540px);
-    align-self: stretch;
+  .network-image {
+    background: url('assets/team/emile-pennes.jpg') top center / cover no-repeat;
+    background-color: #cfd9c5;
+    min-height: clamp(320px, 40vw, 600px);
   }
-  .quote-card {
-    display: flex;
-    flex-direction: column;
+  .network-text {
+    display: flex; flex-direction: column;
     justify-content: center;
-    gap: clamp(16px, 1.8vw, 28px);
-    padding: clamp(28px, 4vw, 72px) clamp(28px, 5vw, 80px);
+    gap: clamp(18px, 1.8vw, 28px);
+    padding: clamp(36px, 5vw, 88px) clamp(32px, 5vw, 88px);
     max-width: var(--measure);
   }
-  .home .quote-title {
-    font-size: clamp(20px, 2.4vw, 28px);
-    line-height: 1.25;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    margin: 0;
-  }
-  .quote-card p {
-    font-size: var(--fs-quote);
-    line-height: var(--lh-quote);
-    margin: 0;
-  }
-  .quote-card p.quote-attribution {
-    font-size: clamp(13px, 1.05vw, 16px);
-    line-height: 1.5;
-    color: rgba(6, 32, 4, 0.55);
-    margin-top: clamp(16px, 2vw, 32px);
-  }
-  .quote-image--guillaume {
-    background-image: url('assets/team/guillaume-renard.png');
-    background-size: 118%;
-    background-position: top center;
-  }
-  .quote-image--emile     { background-image: url('assets/team/emile-pennes.jpg'); }
-  .quote-image--nicolas {
-    background-image: url('assets/team/nicolas-magne.jpg');
-    background-size: 118%;
-    background-position: top center;
-  }
-  .process-text {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(16px, 2.7vw, 40px);
-    padding-block: clamp(28px, 6.8vw, 100px);
-    max-width: clamp(420px, 50vw, 640px);
-    margin-inline: auto;
-  }
-  .service-team {
-    display: flex;
-    grid-column: 2;
-    margin-top: clamp(8px, 1.2vw, 16px);
-  }
-  .service-team .team-avatar {
-    display: block;
-    flex: 0 0 auto;
-    width: clamp(28px, 2.4vw, 40px);
-    aspect-ratio: 3 / 4;
-    background-color: var(--bg);
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-  }
-  .home h2.process-text-title {
-    font-size: clamp(32px, 3.4vw, 48px);
-    line-height: 1.15;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin: 0;
-    max-width: var(--measure);
-  }
-  .process-text p {
-    font-size: var(--fs-quote);
-    line-height: var(--lh-quote);
-    max-width: var(--measure);
-  }
-  .process-text p:first-of-type {
-    font-size: clamp(22px, 2.4vw, 30px);
+  .network-text p { font-size: var(--fs-quote); line-height: var(--lh-quote); margin: 0; }
+  .network-text p:first-child {
+    font-size: clamp(22px, 2.4vw, 32px);
     line-height: 1.25;
     letter-spacing: -0.01em;
-    font-weight: 400;
-  }
-  .process-text p.process-footnote {
-    font-size: clamp(16px, 1.4vw, 20px);
-    line-height: 1.5;
-    color: rgba(6, 32, 4, 0.55);
-    margin-top: clamp(8px, 1.2vw, 16px);
-  }
-  .process-text p.process-footnote sup {
-    font-size: 0.75em;
-    vertical-align: super;
-    line-height: 0;
-    margin-right: 2px;
-  }
-  .process-text p sup {
-    font-size: 0.6em;
-    vertical-align: super;
-    line-height: 0;
-  }
-  .process-text .text-arrow-link {
-    font-size: var(--fs-quote);
-    line-height: var(--lh-quote);
   }
   @media (max-width: 800px) {
-    .process-row { grid-template-columns: 1fr; }
-    .quote-wrap {
-      grid-template-columns: 1fr;
-      row-gap: clamp(20px, 4vw, 32px);
-      padding: clamp(28px, 6vw, 48px) clamp(20px, 4vw, 32px);
-    }
-    .quote-image { max-width: clamp(220px, 60vw, 320px); }
-    .process-text { padding: clamp(28px, 4vw, 40px) clamp(20px, 4vw, 40px); }
+    .home .network-title { margin-left: 0; max-width: none; }
+    .network-card { grid-template-columns: 1fr; }
+    .network-image { min-height: clamp(260px, 60vw, 340px); }
   }
 
-  /* ---------- Candidates testimonials ---------- */
-  .candidates {
+  /* ---------- Expérience candidat ---------- */
+  .candidate-xp {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: var(--col-gap);
+    row-gap: clamp(32px, 4vw, 56px);
     padding-block: clamp(56px, 7vw, 120px);
+    align-items: start;
   }
-  .candidate-grid {
-    list-style: none;
+  .cx-intro { display: flex; flex-direction: column; gap: clamp(18px, 1.8vw, 28px); position: sticky; top: calc(var(--header-h, 60px) + 28px); }
+  .home .cx-title {
+    font-size: clamp(30px, 3.4vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 700;
     margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 16ch;
+  }
+  .cx-lead { font-size: var(--fs-quote); line-height: 1.35; margin: 0; }
+  .cx-note { font-size: clamp(15px, 1.2vw, 18px); line-height: 1.5; color: var(--muted); margin: 0; }
+  .cx-note strong { font-weight: 700; color: var(--ink); }
+
+  .cx-carousel { display: flex; flex-direction: column; gap: clamp(18px, 1.8vw, 28px); }
+  .cx-track {
+    display: flex;
     gap: clamp(8px, 1vw, 16px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
-  .candidate-card {
+  .cx-track::-webkit-scrollbar { display: none; }
+  .cx-card {
+    scroll-snap-align: start;
+    flex: 0 0 100%;
+    box-sizing: border-box;
     background: var(--white);
-    padding: clamp(28px, 3vw, 48px);
+    padding: clamp(32px, 4vw, 64px);
     display: flex;
     flex-direction: column;
-    gap: clamp(20px, 2.2vw, 36px);
+    gap: clamp(24px, 2.6vw, 40px);
+    min-height: clamp(300px, 30vw, 380px);
   }
-  .candidate-logo {
-    height: clamp(24px, 2.4vw, 36px);
-    width: auto;
-    align-self: flex-start;
-    object-fit: contain;
+  .cx-card img.cx-logo { height: clamp(22px, 2.2vw, 32px); width: auto; align-self: flex-start; object-fit: contain; }
+  .cx-quote { margin: 0; font-size: clamp(19px, 2.1vw, 30px); line-height: 1.3; letter-spacing: -0.01em; flex: 1; }
+  .cx-cite { font-style: normal; display: flex; flex-direction: column; gap: 2px; font-size: clamp(14px, 1.1vw, 17px); line-height: 1.4; }
+  .cx-name { font-weight: 700; }
+  .cx-role { color: var(--muted); }
+
+  .cx-controls { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .cx-dots { display: flex; gap: 8px; }
+  .cx-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--line); border: none; padding: 0; cursor: pointer; transition: background 0.15s ease; }
+  .cx-dot.is-active { background: var(--ink); }
+  .cx-arrows { display: flex; gap: 8px; }
+  .cx-arrow {
+    width: clamp(40px, 3.6vw, 48px); height: clamp(40px, 3.6vw, 48px);
+    border: 1px solid var(--ink); background: transparent; color: var(--ink);
+    display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
   }
-  .candidate-card blockquote {
-    margin: 0;
-    font-size: var(--fs-quote);
-    line-height: var(--lh-quote);
-    flex: 1;
-  }
-  .candidate-card cite {
-    font-style: normal;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    font-size: clamp(14px, 1.05vw, 16px);
-    line-height: 1.4;
-  }
-  .candidate-name {
-    font-weight: 700;
-  }
-  .candidate-role {
-    color: rgba(6, 32, 4, 0.6);
-  }
+  .cx-arrow:hover { background: var(--ink); color: var(--bg); }
+  .cx-arrow svg { width: 18px; height: 18px; }
   @media (max-width: 800px) {
-    .candidate-grid { grid-template-columns: 1fr; }
-  }
-
-  /* ---------- Services panel ---------- */
-  .services-panel {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-    column-gap: var(--col-gap);
-    padding: clamp(48px, 6vw, 96px) calc(var(--pad-x) + var(--pad-card-x));
-  }
-  .services-panel-sidebar {
-    grid-column: 1 / -1;
-    margin: clamp(48px, 6vw, 96px) 0 clamp(32px, 4vw, 64px);
-  }
-  .home .services-panel-title {
-    font-size: clamp(40px, 5vw, 72px);
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin: 0;
-  }
-  .services-content {
-    grid-column: 1 / -1;
-    max-width: clamp(420px, 50vw, 640px);
-    margin-inline: auto;
-  }
-  .services-intro {
-    font-size: clamp(20px, 2.2vw, 32px);
-    line-height: 1.3;
-    margin: 0 0 clamp(32px, 4vw, 64px);
-  }
-  .home .services-intro-title {
-    font-size: clamp(28px, 3vw, 42px);
-    line-height: 1.15;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin: 0 0 clamp(16px, 1.6vw, 28px);
-  }
-  .services-intro p {
-    margin: 0 0 0.8em;
-  }
-  .services-intro p:last-child {
-    margin-bottom: 0;
-  }
-  .services-intro a {
-    color: inherit;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    text-decoration-thickness: 0.8px;
-    text-decoration-color: rgba(6, 32, 4, 0.35);
-  }
-  .services-intro a:hover {
-    text-decoration-color: inherit;
-  }
-  .services-list {
-    grid-column: 1 / -1;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-  }
-  .service-link {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-    column-gap: var(--col-gap);
-    padding: clamp(20px, 2.4vw, 36px) 0;
-    text-decoration: none;
-    color: inherit;
-  }
-  .service-link .service-name {
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    text-underline-offset: 4px;
-    text-decoration-thickness: 1.5px;
-    transition: text-decoration-color 0.15s ease;
-  }
-  .service-link:hover .service-name {
-    text-decoration-color: currentColor;
-  }
-  .service-name {
-    font-size: clamp(20px, 2.2vw, 32px);
-    line-height: 1.3;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-  .service-desc {
-    font-size: clamp(20px, 2.2vw, 32px);
-    line-height: 1.3;
-  }
-  @media (max-width: 700px) {
-    .services-panel {
-      grid-template-columns: 1fr;
-      padding-inline: var(--pad-x);
-    }
-    .services-panel-sidebar {
-      grid-row: auto;
-      margin-bottom: clamp(8px, 1.5vw, 16px);
-    }
-    .services-content {
-      grid-column: 1;
-    }
-    .services-list {
-      grid-column: 1;
-    }
-    .service-link {
-      grid-template-columns: 1fr;
-      row-gap: clamp(4px, 1vw, 8px);
-    }
-    .service-link .service-team {
-      grid-column: 1;
-    }
-    .home .services-panel-title {
-      font-size: clamp(28px, 7vw, 40px);
-    }
-  }
-
-  /* ---------- Mobile <600px : full-bleed ---------- */
-  @media (max-width: 600px) {
-    .case-card {
-      margin-inline: calc(var(--pad-x) * -1);
-      padding-inline: var(--pad-x);
-    }
-    .see-all-bottom { margin-left: 0; }
+    .candidate-xp { grid-template-columns: 1fr; }
+    .cx-intro { position: static; }
+    .home .cx-title { max-width: none; }
   }
 </style>
 </head>
@@ -651,129 +453,285 @@
 
     <header class="header section" data-nav></header>
 
-    <!-- Hero V2 -->
+    <!-- Hero -->
     <section class="hero section">
-      <h1 class="hero-title"><strong>10 ans de recrutement<br>au côté des plus belles<br>entreprises Tech<br>et IA.</strong></h1>
+      <h1 class="hero-title"><strong>10 ans de recrutement aux côtés des<br>plus belles entreprises Tech et IA.</strong></h1>
 
-      <div class="grid-images" aria-label="Galerie consultants">
-        <a class="tile tile-1" href="equipe.html" aria-label="Voir l'équipe"></a>
-        <a class="tile tile-2" href="equipe.html" aria-label="Voir l'équipe"></a>
-        <a class="tile tile-3" href="equipe.html" aria-label="Voir l'équipe"></a>
-        <a class="tile tile-4" href="equipe.html" aria-label="Voir l'équipe"></a>
-        <a class="tile tile-5" href="equipe.html" aria-label="Voir l'équipe"></a>
-        <a class="tile tile-6" href="equipe.html" aria-label="Voir l'équipe"></a>
-        <a class="tile tile-7" href="equipe.html" aria-label="Voir l'équipe"></a>
-        <a class="tile tile-8" href="equipe.html" aria-label="Voir l'équipe"></a>
-        <a class="tile tile-9" href="equipe.html" aria-label="Voir l'équipe"></a>
-        <a class="tile tile-10" href="equipe.html" aria-label="Voir l'équipe"></a>
+      <div class="hero-toggle" role="tablist" aria-label="Galerie">
+        <span class="hero-toggle-thumb" aria-hidden="true"></span>
+        <button class="hero-toggle-btn" id="tab-equipe" type="button" role="tab" aria-selected="true" aria-controls="view-equipe">Équipe</button>
+        <button class="hero-toggle-btn" id="tab-clients" type="button" role="tab" aria-selected="false" aria-controls="view-clients">Clients</button>
       </div>
 
-    </section>
-
-    <!-- Cases -->
-    <section class="cases section">
-      <div class="case-card">
-        <header class="case-logo case-logo--mistral" aria-label="Mistral AI">
-          <span class="symbol symbol-mistral" aria-hidden="true"></span>
-          <span class="name">Mistral AI</span>
-        </header>
-        <div class="case-text">
-          <h2>Convaincre face à Google et Anthropic</h2>
-          <div class="sub">110+ recrutements avec GetPro en 2025 pour le géant français de l'IA</div>
+      <div class="hero-gallery">
+        <div class="hero-view" id="view-equipe" role="tabpanel" aria-labelledby="tab-equipe">
+          <div class="grid-images" aria-label="L'équipe GetPro">
+            <a class="tile tile-1" href="equipe.html" aria-label="Voir l'équipe"></a>
+            <a class="tile tile-2" href="equipe.html" aria-label="Voir l'équipe"></a>
+            <a class="tile tile-3" href="equipe.html" aria-label="Voir l'équipe"></a>
+            <a class="tile tile-4" href="equipe.html" aria-label="Voir l'équipe"></a>
+            <a class="tile tile-5" href="equipe.html" aria-label="Voir l'équipe"></a>
+            <a class="tile tile-6" href="equipe.html" aria-label="Voir l'équipe"></a>
+            <a class="tile tile-7" href="equipe.html" aria-label="Voir l'équipe"></a>
+            <a class="tile tile-8" href="equipe.html" aria-label="Voir l'équipe"></a>
+            <a class="tile tile-9" href="equipe.html" aria-label="Voir l'équipe"></a>
+            <a class="tile tile-10" href="equipe.html" aria-label="Voir l'équipe"></a>
+          </div>
         </div>
-        <div class="case-image case-image-mistral" role="img" aria-label="Arthur Mensch"></div>
-      </div>
 
-      <div class="case-card">
-        <header class="case-logo" aria-label="Lucca">
-          <img class="case-logo-icon" src="assets/lucca-icon.svg" alt="" aria-hidden="true" />
-          <span class="name">Lucca</span>
-        </header>
-        <div class="case-text">
-          <h2>Passer d'un codir de startup à scale-up</h2>
-          <div class="sub">De 40 à 800 salariés, 10 ans de partenariat avec GetPro</div>
-        </div>
-        <div class="case-image case-image-lucca" role="img" aria-label="Lucca"></div>
-      </div>
-
-      <div class="case-card">
-        <header class="case-logo" aria-label="Filigran">
-          <span class="symbol symbol-filigran" aria-hidden="true"></span>
-          <span class="name">Filigran</span>
-        </header>
-        <div class="case-text">
-          <h2>Embaucher vite avec un modèle hybride</h2>
-          <div class="sub">10 recrutements en RPO + 20 par le cabinet en 6 mois</div>
-        </div>
-        <div class="case-image case-image-filigran" role="img" aria-label="Filigran"></div>
-      </div>
-    </section>
-
-
-    <!-- Process / consultant -->
-    <section class="process section">
-      <div class="process-row">
-        <div class="process-text">
-          <h2 class="process-text-title">La personne que vous allez embaucher est dans notre réseau</h2>
-          <p>Depuis 2015, notre équipe a mené plus de 4 000 recrutements<sup>1</sup>, des premières startups IA aux directions tech des grands groupes du CAC 40. Cette expérience a construit plus qu'une base de contacts : un réseau vivant d'experts, d'équipes et de dirigeants.</p>
-          <p class="process-footnote"><sup>1</sup> <a href="services-profils.html#practices">50% en cabinet</a>, 50% en <a href="services-renfort.html">délégation de recruteurs</a></p>
-        </div>
-        <div class="quote-wrap">
-          <div class="quote-image quote-image--emile" role="img" aria-label="Émile Pennes, consultant GetPro"></div>
-          <div class="quote-card">
-            <p>Quand Electra a cherché un Ruby on Rails capable de piloter une équipe pointue avec une vraie connaissance de l'électricité, la personne était déjà dans le réseau d'Émile depuis dix ans : il l'avait recruté pour Talentoday une décennie plus tôt, devenu CTO entre-temps. La mise en relation s'est faite dans la foulée.</p>
-            <p class="quote-attribution">Émile Pennes est consultant chez GetPro depuis 2012. Il en est aussi le co-CEO.</p>
+        <div class="hero-view" id="view-clients" role="tabpanel" aria-labelledby="tab-clients" hidden>
+          <div class="logo-wall" aria-label="Nos clients">
+            <a class="lw-cell" href="clients.html#mistral-ai"><img style="--s:1.42" src="assets/mistral-ai.svg" alt="Mistral AI" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#contentsquare"><img style="--s:1.4" src="assets/contentsquare.svg" alt="Contentsquare" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#carrefour"><img style="--s:1.5" src="assets/carrefour.svg" alt="Carrefour" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#decathlon"><img style="--s:0.7" src="assets/decathlon.svg" alt="Decathlon" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#spiko"><img style="--s:1.2" src="assets/spiko.svg" alt="Spiko" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#lucca"><img class="lw-img-raw" style="--s:0.9" src="assets/lucca-wall.svg" alt="Lucca" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#electra"><img style="--s:0.75" src="assets/electra.svg" alt="Electra" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#front"><img style="--s:0.8" src="assets/front.svg" alt="Front" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#ivalua"><img style="--s:1.25" src="assets/ivalua.svg" alt="Ivalua" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#silae"><img style="--s:1.18" src="assets/silae.svg" alt="Silae" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#stoik"><img style="--s:1.2" src="assets/stoik.svg" alt="Stoïk" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#agicap"><img style="--s:1.1" src="assets/agicap.svg" alt="Agicap" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#sinch"><img style="--s:1.2" src="assets/sinch.svg" alt="Sinch" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#eleven-labs"><img style="--s:1.18" src="assets/eleven-labs.svg" alt="Eleven Labs" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#kactus"><img style="--s:1.12" src="assets/kactus.svg" alt="Kactus" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#foodles"><img style="--s:1.2" src="assets/foodles.svg" alt="Foodles" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#leetchi"><img style="--s:0.92" src="assets/leetchi.svg" alt="Leetchi" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#legalstart"><img style="--s:0.8" src="assets/legalstart.svg" alt="Legalstart" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#oscaro"><img style="--s:1.28" src="assets/oscaro.svg" alt="Oscaro" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#madbox"><img style="--s:0.72" src="assets/madbox.svg" alt="Madbox" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#rosaly"><img style="--s:1.2" src="assets/rosaly.svg" alt="Rosaly" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#saqara"><img style="--s:0.88" src="assets/saqara.svg" alt="Saqara" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#thom"><img style="--s:1.05" src="assets/thom.svg" alt="Thom Group" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#tinubu"><img style="--s:1.22" src="assets/tinubu.svg" alt="Tinubu" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#upflow"><img style="--s:1.12" src="assets/upflow.svg" alt="Upflow" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#weward"><img class="lw-img-raw" style="--s:0.9" src="assets/weward-wall.svg" alt="WeWard" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#whoz"><img style="--s:1.18" src="assets/whoz.svg" alt="Whoz" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#dayuse"><img style="--s:0.85" src="assets/dayuse.svg" alt="Dayuse" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#heyteam"><img style="--s:0.85" src="assets/heyteam.svg" alt="HeyTeam" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#fincome"><img class="lw-img-raw" style="--s:0.9" src="assets/fincome-wall.svg" alt="Fincome" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#may"><img style="--s:1.2" src="assets/may.svg" alt="May" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#unifai"><img style="--s:0.8" src="assets/unifai.svg" alt="Unifai" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#yogosha"><img style="--s:1.15" src="assets/yogosha.svg" alt="Yogosha" loading="lazy" /></a>
+            <a class="lw-cell" href="clients.html#kardinal"><img style="--s:0.88" src="assets/kardinal.svg" alt="Kardinal" loading="lazy" /></a>
+            <a class="lw-cell lw-cell--more" href="clients.html"><span>Voir <u>tous</u> les clients →</span></a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="services-panel section">
-      <div class="services-panel-sidebar">
-        <h2 class="services-panel-title">Solutions de recrutement</h2>
+    <!-- Études de cas -->
+    <section class="cases section">
+      <article class="case-card">
+        <header class="case-logo" aria-label="Mistral AI">
+          <span class="symbol symbol-mistral" aria-hidden="true"></span>
+          <span class="name">Mistral AI</span>
+        </header>
+        <div class="case-head">
+          <h2>Convaincre face à Google et Anthropic</h2>
+          <div class="sub">6 recruteurs GetPro déployés à plein temps pour réaliser 150 recrutements en 2025.</div>
+        </div>
+        <div class="case-image case-image-mistral" role="img" aria-label="Arthur Mensch, Mistral AI"></div>
+        <blockquote class="case-quote">
+          <p>Sur un marché tech sous tension, ce qui contraint la croissance n'est pas le volume de candidatures mais la qualité de chaque sélection, la vélocité du processus et l'adéquation culturelle. Les six RPO se sont intégrés à nos équipes et leur savoir-faire nous permet de scaler sans rupture opérationnelle.</p>
+          <cite><span class="cq-name">Charles de Fréminville</span><span class="cq-role">Chief People Officer, Mistral AI</span></cite>
+        </blockquote>
+      </article>
+
+      <article class="case-card">
+        <header class="case-logo" aria-label="Lucca">
+          <img class="case-logo-icon" src="assets/lucca-icon.svg" alt="" aria-hidden="true" />
+          <span class="name">Lucca</span>
+        </header>
+        <div class="case-head">
+          <h2>Recruter des dirigeants à chaque étape de la croissance</h2>
+          <div class="sub">10 ans d'accompagnement dans le recrutement des dirigeants de Lucca.</div>
+        </div>
+        <div class="case-image case-image-lucca" role="img" aria-label="Gilles Sagé, Lucca"></div>
+        <blockquote class="case-quote">
+          <p>L'équipe executive search de GetPro a toujours été d'une efficacité remarquable pour nous aider sur nos recrutements de dirigeants. La principale difficulté était de trouver des candidats qui répondent à des critères d'exigence très élevés et acceptent la culture et la politique de rémunération très atypiques de Lucca.</p>
+          <cite><span class="cq-name">Gilles Sagé</span><span class="cq-role">CEO, Lucca</span></cite>
+        </blockquote>
+      </article>
+    </section>
+
+    <!-- Trois offres -->
+    <section class="offers section">
+      <div class="offers-sidebar">
+        <h2 class="offers-title">Trois offres</h2>
       </div>
-      <ul class="services-list">
-        <li><a href="services-transition.html" class="service-link">
-          <span class="service-name">Dirigeants à la demande</span>
-          <span class="service-desc">Faire tenir une fonction critique tout de suite, sans recruter trop tôt en CDI, avec un dirigeant senior capable de cadrer le rôle, structurer l'équipe et préparer la suite.</span>
-        </a></li>
-        <li><a href="services-renfort.html" class="service-link">
-          <span class="service-name">Recruteurs à la demande</span>
-          <span class="service-desc">Absorber un volume de recrutements tech, data, IA ou sales tech avec un recruteur intégré à vos outils, tout en gardant le standard GetPro sur la qualification, le suivi et le reporting.</span>
-        </a></li>
-        <li><a href="services-tech.html" class="service-link">
-          <span class="service-name">Chasse de tête CDI &amp; Freelance</span>
-          <span class="service-desc">Recruter en CDI ou freelance sur les practices Tech &amp; IA, Produit et Sales &amp; Ops, du premier ingénieur aux fonctions de direction.</span>
-        </a></li>
-      </ul>
-    </section>
-
-    <!-- Témoignages candidats C-level -->
-    <section class="candidates section">
-      <ul class="candidate-grid">
-        <li class="candidate-card">
-          <img class="candidate-logo" src="assets/rosaly.svg" alt="Rosaly" loading="lazy" />
-          <blockquote>« Super expérience avec GetPro. J'ai eu la chance d'être accompagnée par Tala, un suivi irréprochable et un relationnel au top. »</blockquote>
-          <cite><span class="candidate-name">Deborah Labre</span><span class="candidate-role">Head of Marketing &amp; Communication, Rosaly</span></cite>
+      <ul class="offers-list">
+        <li>
+          <a class="offer" href="services-transition.html">
+            <span class="offer-index">01</span>
+            <span class="offer-body">
+              <span class="offer-name">Dirigeants à la demande</span>
+              <span class="offer-desc">CTO, DRH, DAF : des dirigeants mobilisables rapidement sur vos enjeux stratégiques.</span>
+            </span>
+          </a>
         </li>
-        <li class="candidate-card">
-          <img class="candidate-logo" src="assets/carrefour.svg" alt="Carrefour" loading="lazy" />
-          <blockquote>« Un accompagnement parfait. GetPro est toujours à l'écoute et même très proactif. Toujours disponibles quand j'avais une question. »</blockquote>
-          <cite><span class="candidate-name">Olivier Brune</span><span class="candidate-role">Head of Operations, Carrefour</span></cite>
+        <li>
+          <a class="offer" href="services-renfort.html">
+            <span class="offer-index">02</span>
+            <span class="offer-body">
+              <span class="offer-name">Recruteurs à la demande</span>
+              <span class="offer-desc">45 consultants RPO déployés en France, en Europe et aux États-Unis.</span>
+            </span>
+          </a>
         </li>
-        <li class="candidate-card">
-          <img class="candidate-logo" src="assets/quipment.svg" alt="Quipment" loading="lazy" />
-          <blockquote>« Une écoute active qui leur permet de mesurer l'appétence des candidats pour le poste, ce qui bénéficie au candidat et à l'entreprise qui recrute. »</blockquote>
-          <cite><span class="candidate-name">Laurent Helmstetter</span><span class="candidate-role">Directeur Technique, Quipment</span></cite>
+        <li>
+          <a class="offer" href="services-tech.html">
+            <span class="offer-index">03</span>
+            <span class="offer-body">
+              <span class="offer-name">Chasse de tête Freelance &amp; CDI</span>
+              <span class="offer-desc">2 000 recrutements depuis 2015 sur les practices Produit, IA, Tech et Go-to-Market.</span>
+            </span>
+          </a>
         </li>
       </ul>
     </section>
 
-    <!-- Services -->
+    <!-- Réseau -->
+    <section class="network section">
+      <div class="network-row">
+        <h2 class="network-title">« Le candidat que vous allez recruter fait très probablement partie de notre réseau. »</h2>
+        <div class="network-card">
+          <div class="network-image" role="img" aria-label="Émile Pennes, consultant GetPro"></div>
+          <div class="network-text">
+            <p>Nous avions noté que Thomas F. présentait des qualités exceptionnelles. Dix ans après, il est devenu CTO d'une licorne française.</p>
+            <p>La plupart des freelances avec qui nous travaillons avaient déjà collaboré avec GetPro. La fiabilité est le premier critère lorsque l'on déploie un dirigeant en temps partagé ou un manager de transition.</p>
+            <p>Nous avons recruté 4 000 personnes en dix ans. Cela nous donne un recul important sur les qualités des candidats et leur capacité à réussir les missions qui leur sont confiées.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Expérience candidat -->
+    <section class="candidate-xp section">
+      <div class="cx-intro">
+        <h2 class="cx-title">On n'a pas deux fois l'occasion de faire bonne impression.</h2>
+        <p class="cx-lead">Chaque candidat qui passe par GetPro est un futur collaborateur. Nous voulons qu'il garde de votre processus de recrutement une expérience à la hauteur.</p>
+        <p class="cx-note">Notre approche est notée <strong>4,9/5</strong> par les candidats.</p>
+      </div>
+
+      <div class="cx-carousel">
+        <div class="cx-track" id="cx-track">
+          <figure class="cx-card">
+            <img class="cx-logo" src="assets/spiko.svg" alt="Spiko" loading="lazy" />
+            <blockquote class="cx-quote">« J'ai eu la chance d'être accompagné par Nicolas pendant tout mon process de recrutement. Il a su répondre à toutes mes questions et m'orienter vers les bonnes ressources pour les entretiens. »</blockquote>
+            <figcaption class="cx-cite"><span class="cx-name">Mayeul Hechinger-Pascot</span><span class="cx-role">Spiko</span></figcaption>
+          </figure>
+          <figure class="cx-card">
+            <img class="cx-logo" src="assets/electra.svg" alt="Electra" loading="lazy" />
+            <blockquote class="cx-quote">« J'ai suivi le process avec Nicolas et tout s'est très bien passé, du premier contact à la proposition. Un très bon suivi et de très bons conseils à chaque étape, en toute bienveillance. »</blockquote>
+            <figcaption class="cx-cite"><span class="cx-name">Yanis Mansour</span><span class="cx-role">Electra</span></figcaption>
+          </figure>
+          <figure class="cx-card">
+            <img class="cx-logo" src="assets/rosaly.svg" alt="Rosaly" loading="lazy" />
+            <blockquote class="cx-quote">« Super expérience avec GetPro. J'ai eu la chance d'être accompagnée par Tala : un suivi irréprochable et un relationnel au top du début à la fin. »</blockquote>
+            <figcaption class="cx-cite"><span class="cx-name">Deborah Labre</span><span class="cx-role">Rosaly</span></figcaption>
+          </figure>
+          <figure class="cx-card">
+            <img class="cx-logo" src="assets/canal-plus.svg" alt="Canal+" loading="lazy" />
+            <blockquote class="cx-quote">« Un accompagnement parfait. GetPro est toujours à l'écoute, même très proactif, et disponible à chaque fois que j'avais une question. »</blockquote>
+            <figcaption class="cx-cite"><span class="cx-name">Olivier Brune</span><span class="cx-role">Canal+</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="cx-controls">
+          <div class="cx-dots" id="cx-dots" role="tablist" aria-label="Avis candidats"></div>
+          <div class="cx-arrows">
+            <button class="cx-arrow" type="button" id="cx-prev" aria-label="Avis précédent">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="cx-arrow" type="button" id="cx-next" aria-label="Avis suivant">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer class="site-footer" data-footer></footer>
 
   </main>
+
+  <script>
+    // Toggle Équipe / Clients sur le hero.
+    (function () {
+      var toggle = document.querySelector('.hero-toggle');
+      var thumb = toggle && toggle.querySelector('.hero-toggle-thumb');
+      var tabs = [document.getElementById('tab-equipe'), document.getElementById('tab-clients')].filter(Boolean);
+      var views = { 'tab-equipe': 'view-equipe', 'tab-clients': 'view-clients' };
+      function moveThumb() {
+        if (!thumb) return;
+        var active = tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0];
+        if (!active) return;
+        thumb.style.width = active.offsetWidth + 'px';
+        thumb.style.transform = 'translateX(' + active.offsetLeft + 'px)';
+      }
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) {
+            var on = t === tab;
+            t.setAttribute('aria-selected', String(on));
+            document.getElementById(views[t.id]).hidden = !on;
+          });
+          moveThumb();
+        });
+      });
+      // Position initiale sans animation (on désactive la transition le temps du 1er placement).
+      if (thumb) {
+        thumb.style.transition = 'none';
+        moveThumb();
+        requestAnimationFrame(function () { thumb.style.transition = ''; });
+      }
+      window.addEventListener('resize', moveThumb);
+      window.addEventListener('load', moveThumb);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveThumb);
+    })();
+
+    // Carrousel avis candidats : scroll-snap + dots + flèches.
+    (function () {
+      var track = document.getElementById('cx-track');
+      var dotsWrap = document.getElementById('cx-dots');
+      if (!track || !dotsWrap) return;
+      var cards = Array.prototype.slice.call(track.querySelectorAll('.cx-card'));
+      var dots = cards.map(function (_, i) {
+        var b = document.createElement('button');
+        b.className = 'cx-dot' + (i === 0 ? ' is-active' : '');
+        b.type = 'button';
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-label', 'Avis ' + (i + 1));
+        b.addEventListener('click', function () { go(i); });
+        dotsWrap.appendChild(b);
+        return b;
+      });
+      var current = 0;
+      function go(i) {
+        current = Math.max(0, Math.min(cards.length - 1, i));
+        var delta = cards[current].getBoundingClientRect().left - track.getBoundingClientRect().left;
+        track.scrollBy({ left: delta, behavior: 'smooth' });
+        dots.forEach(function (d, k) { d.classList.toggle('is-active', k === current); });
+      }
+      function sync() {
+        var trackMid = track.getBoundingClientRect().left + track.clientWidth / 2;
+        var best = 0, bestD = Infinity;
+        cards.forEach(function (c, i) {
+          var r = c.getBoundingClientRect();
+          var d = Math.abs(r.left + r.width / 2 - trackMid);
+          if (d < bestD) { bestD = d; best = i; }
+        });
+        current = best;
+        dots.forEach(function (d, i) { d.classList.toggle('is-active', i === current); });
+      }
+      track.addEventListener('scroll', function () { window.requestAnimationFrame(sync); }, { passive: true });
+      document.getElementById('cx-prev').addEventListener('click', function () { go(current - 1); });
+      document.getElementById('cx-next').addEventListener('click', function () { go(current + 1); });
+      window.addEventListener('resize', sync);
+    })();
+  </script>
   <script src="partials.js?v=1" defer></script>
 </body>
 </html>
