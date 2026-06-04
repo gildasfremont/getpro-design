@@ -6,6 +6,41 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'ABC Diatype';
+  src: url('fonts/ABCDiatype-Medium-Trial.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ABC Diatype';
+  src: url('fonts/ABCDiatype-Bold-Trial.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ABC Diatype';
+  src: url('fonts/ABCDiatype-RegularItalic-Trial.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ABC Diatype';
+  src: url('fonts/ABCDiatype-MediumItalic-Trial.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ABC Diatype';
+  src: url('fonts/ABCDiatype-BoldItalic-Trial.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
 
 /* ---------- Tokens ---------- */
 :root {
@@ -19,30 +54,30 @@
   --pad-x:      clamp(20px, 3.5vw, 50px);
   --pad-card-y: clamp(40px, 6.8vw, 100px);
   --pad-card-x: clamp(28px, 4.8vw, 70px);
-  --gap-section:clamp(40px, 5vw, 80px);
+  --gap-section:clamp(56px, 7vw, 120px);
   --gap-card:   clamp(28px, 3.8vw, 60px);
   --gap-text:   clamp(6px, 0.55vw, 8px);
   /* Largeur max d'une colonne de texte courant : ~70 caractères, milieu-haut
-     de la fourchette typo classique 45–75ch. Limite la fatigue de lecture
+     de la fourchette typo classique 45-75ch. Limite la fatigue de lecture
      sur grand écran sans être étouffant. */
   --measure:    70ch;
 
   --fs-brand:         clamp(20px, 3.1vw, 45px);
-  --fs-menu:          clamp(14px, 1.65vw, 22px);
-  --fs-page-title:    clamp(36px, 6.4vw, 92px);
-  --fs-hero:          clamp(18px, 3.0vw, 44px);
-  --lh-hero:          clamp(22px, 3.4vw, 49px);
-  --fs-section-title: clamp(18px, 2.7vw, 39px);
-  --lh-section-title: clamp(20px, 2.95vw, 43px);
-  --fs-card-name:     clamp(22px, 3.55vw, 52px);
-  --lh-card-name:     clamp(26px, 4vw, 58px);
-  --fs-card-title:    clamp(18px, 2.9vw, 42px);
-  --lh-card-title:    clamp(20px, 3.2vw, 46px);
+  --fs-menu:          clamp(14px, 1.25vw, 18px);
+  --fs-page-title:    clamp(56px, 7vw, 110px);
+  --fs-hero:          clamp(22px, 4.8vw, 68px);
+  --lh-hero:          clamp(28px, 5.2vw, 74px);
+  --fs-section-title: clamp(32px, 4vw, 60px);
+  --lh-section-title: 1.15;
+  --fs-card-name:     clamp(28px, 4.2vw, 68px);
+  --lh-card-name:     1.1;
+  --fs-card-title:    clamp(32px, 4vw, 60px);
+  --lh-card-title:    1.15;
   --fs-card-sub:      clamp(14px, 2.2vw, 32px);
-  --lh-card-sub:      clamp(18px, 2.5vw, 36px);
-  --fs-quote:         clamp(15px, 2.2vw, 32px);
-  --lh-quote:         clamp(22px, 2.75vw, 40px);
-  --fs-tab:           clamp(16px, 2vw, 30px);
+  --lh-card-sub:      1.3;
+  --fs-quote:         clamp(17px, 2.2vw, 32px);
+  --lh-quote:         clamp(24px, 2.75vw, 40px);
+  --fs-tab:           clamp(15px, 1.85vw, 24px);
   --fs-body:          clamp(15px, 1.65vw, 22px);
   --lh-body:          clamp(22px, 2.2vw, 30px);
 }
@@ -62,7 +97,8 @@ html, body {
 
 img { display: block; max-width: 100%; }
 a   { color: inherit; text-decoration: none; }
-h1, h2, h3, h4, h5, h6, p, b, strong, th { margin: 0; font-weight: 400; }
+p, th { margin: 0; font-weight: 400; }
+h1, h2, h3, h4, h5, h6, b, strong { margin: 0; font-weight: 700; }
 button { font-family: inherit; cursor: pointer; }
 
 /* ---------- Page wrapper ---------- */
@@ -87,22 +123,35 @@ button { font-family: inherit; cursor: pointer; }
   top: 0;
   z-index: 50;
   background: var(--bg);
+  transition: none;
 }
 /* Restore the spacing that .header's padding-bottom used to provide */
 .header + * { margin-top: var(--gap-section); }
+/* Home : on laisse la marge globale .header + * (clamp 56-120) jouer
+   son rôle. Le hero respire comme les sections des pages secondaires. */
+
+/* Cible #solutions sur les pages Chasse/Renfort RH : un clic sur un
+   cartouche tab/subtab navigue vers la nouvelle page avec #solutions →
+   scroll-margin-top compense la hauteur du header sticky pour que le
+   page-title "Solutions" atterrisse pile sous la nav. */
+#solutions {
+  scroll-margin-top: clamp(60px, 6vw, 80px);
+}
 
 .menu {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-block: clamp(12px, 1.4vw, 20px);
-  gap: clamp(16px, 3vw, 55px);
+  padding-block: clamp(18px, 2.2vw, 32px);
+  gap: clamp(28px, 3.6vw, 56px);
 }
-
+/* Pousse le bloc d'options à droite : logo à gauche, options à droite,
+   nav équilibrée sur toute la largeur. */
+.menu-right { margin-left: auto; }
 .brand {
   display: inline-block;
-  width: clamp(95px, 9.6vw, 137px);
-  height: clamp(20px, 1.95vw, 28px);
+  /* Plus grand pour équilibrer les nav items à 2 lignes. */
+  width: clamp(130px, 12vw, 180px);
+  height: clamp(28px, 2.7vw, 38px);
   background-color: var(--ink);
   -webkit-mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
           mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
@@ -110,8 +159,144 @@ button { font-family: inherit; cursor: pointer; }
 
 .menu-right {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /* center : avec des items à 2 lignes, on centre verticalement plutôt
+     que de baseline-aligner (ça mettrait le logo sur la 1ʳᵉ ligne du
+     titre des items et le sous-titre déborderait en bas). */
   align-items: center;
-  gap: clamp(16px, 3.4vw, 50px);
+  column-gap: clamp(32px, 3.6vw, 64px);
+  row-gap: clamp(8px, 1vw, 14px);
+  /* Ne pas rétrécir dans le flex parent : on prend la largeur nécessaire
+     à tous les items sur une ligne, le brand s'occupe du reste. */
+  flex-shrink: 0;
+}
+.menu-right .menu-item {
+  font-size: clamp(17px, 1.7vw, 22px);
+  line-height: 1.25;
+}
+/* Items services (inline + trigger dropdown) : même style que le
+   .foot-featured du footer — taille généreuse, souligné fin, kerning
+   serré. Contact volontairement exclu. */
+.menu-right .menu-item--inline,
+.menu-right .menu-item--has-submenu {
+  font-size: clamp(15px, 1.7vw, 24px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-decoration: none;
+  text-underline-offset: clamp(4px, 0.5vw, 8px);
+  transition: text-decoration-thickness 0.18s ease;
+}
+/* Variante 2 lignes : titre + sous-titre (le sous-titre est sans gras
+   et grisé, le titre garde le poids 700). */
+.menu-right .menu-item--two {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  line-height: 1.1;
+}
+.menu-right .menu-item--two .mi-title {
+  font-weight: 700;
+}
+.menu-right .menu-item--two .mi-sub {
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+/* Shrunk header on scroll : tout reste visible, juste plus petit. */
+.header--shrunk .menu {
+  padding-block: clamp(10px, 1.4vw, 18px);
+}
+.header--shrunk .brand {
+  width: clamp(100px, 9vw, 138px);
+  height: clamp(22px, 2vw, 28px);
+}
+.header--shrunk .menu-right .menu-item {
+  font-size: clamp(14px, 1.3vw, 17px);
+}
+.header--shrunk .menu-right .menu-item--inline,
+.header--shrunk .menu-right .menu-item--has-submenu {
+  font-size: clamp(13px, 1.3vw, 18px);
+}
+.header--shrunk .menu-right .menu-item--two .mi-sub {
+  font-size: 0.78em;
+}
+.header--shrunk .menu-right .menu-item--contact {
+  padding: clamp(8px, 0.8vw, 11px) clamp(13px, 1.1vw, 17px);
+}
+/* Contact : aplat gris translucide + texte ink gras. */
+.menu-right .menu-item--contact {
+  padding: clamp(10px, 1vw, 14px) clamp(16px, 1.4vw, 22px);
+  border: none;
+  border-radius: 2px;
+  background: var(--btn);
+  color: var(--ink);
+  font-size: var(--fs-menu);
+  font-weight: 700;
+  transition: background 0.15s ease;
+}
+.menu-right .menu-item--contact:hover { background: rgba(6, 32, 4, 0.3); }
+/* Split visuel browse / action : pousse le Contact à droite avec
+   un espace plus généreux que le gap des autres items. */
+.menu-right .menu-item--contact-outside {
+  margin-left: auto;
+}
+.menu-right .menu-item--inline,
+.menu-right .menu-item--two {
+  text-decoration: none;
+  opacity: 1;
+}
+.menu-right .menu-item--inline:hover,
+.menu-right .menu-item-group--cdi:hover .menu-item--two {
+  opacity: 0.65;
+}
+/* Nav progressive en 4 étapes selon la largeur :
+   - ≥700px (stage 1) : 3 items inline + Contact à droite (par défaut)
+   - 481-700px (stage 2) : dropdown Solutions de recrutement + Contact
+   - 381-480px (stage 3) : dropdown contient Contact, plus de Contact externe
+   - ≤380px (stage 4) : label dropdown raccourci à "Solution" */
+/* Hamburger : trigger discret qui ouvre le même mega-menu band que CDI
+   & Freelance (clip-path slide-down). Items alignés pile sous l'icône.
+   Masqué sur mobile : le dropdown "Solutions" contient déjà ces pages. */
+.menu-right .menu-item--more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(8px, 0.8vw, 12px);
+  background: none;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.15s ease;
+}
+.menu-right .menu-item-group--more:hover .menu-item--more,
+.menu-right .menu-item-group--more:focus-within .menu-item--more {
+  background: rgba(6, 32, 4, 0.08);
+}
+
+.menu-right .menu-item--collapsed { display: none; }
+.submenu-contact { display: none; }
+.trigger-short { display: none; }
+.trigger-long { display: inline; }
+
+@media (max-width: 700px) {
+  .menu-right .menu-item--inline { display: none; }
+  /* Le wrapper CDI suit le même comportement que les autres items inline. */
+  .menu-right .menu-item-group--cdi { display: none; }
+  /* Le hamburger desktop disparaît : le dropdown Solutions contient déjà
+     Clients, Équipe, Articles sur mobile. */
+  .menu-right .menu-item-group--more { display: none; }
+  .menu-right .menu-item--collapsed { display: inline-flex; }
+}
+@media (max-width: 480px) {
+  .menu-right .menu-item--contact-outside { display: none; }
+  .submenu-contact { display: list-item; }
+}
+@media (max-width: 380px) {
+  .trigger-long { display: none; }
+  .trigger-short { display: inline; }
 }
 
 .menu-item {
@@ -122,6 +307,27 @@ button { font-family: inherit; cursor: pointer; }
   line-height: 1.25;
   cursor: pointer;
   white-space: nowrap;
+}
+/* Button-as-menu-item : on neutralise les styles UA (border, bg, padding)
+   pour qu'il rende comme un lien texte. */
+button.menu-item {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  color: inherit;
+}
+.menu-item[aria-current="page"]:not(.menu-item--has-submenu):not(.menu-item--contact):not(.menu-item--two) {
+  text-decoration: none;
+}
+/* Contact = bouton, pas un lien. État "page courante" : aplat ink
+   inversé (fond ink, texte blanc), pas de soulignement. */
+.menu-right .menu-item--contact[aria-current="page"] {
+  background: var(--ink);
+  color: var(--white);
+}
+.menu-right .menu-item--contact[aria-current="page"]:hover {
+  background: #0a3209;
 }
 
 
@@ -136,12 +342,205 @@ button { font-family: inherit; cursor: pointer; }
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
 
+/* Hamburger : caché par défaut, visible sous 480px (cf. media query plus bas).
+   Trois barres construites avec un span + ::before/::after, pas de SVG. */
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.menu-toggle-bars,
+.menu-toggle-bars::before,
+.menu-toggle-bars::after {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--ink);
+  border-radius: 2px;
+}
+.menu-toggle-bars {
+  position: relative;
+}
+.menu-toggle-bars::before,
+.menu-toggle-bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+.menu-toggle-bars::before { top: -7px; }
+.menu-toggle-bars::after  { top:  7px; }
+
+/* ---------- Menu dropdown (Services) ----------
+   Le parent "Services" révèle au hover/focus un sous-menu de 3 liens.
+   Position absolue ancrée sur le parent. Sur écran sans hover (touch),
+   le JS bascule aria-expanded au clic. */
+.menu-item-group {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.menu-item--has-submenu {
+  /* Resserre l'écart entre le label et le chevron : on override le
+     gap par défaut de .menu-item (10px). */
+  gap: 4px;
+}
+.menu-item--has-submenu .menu-chevron {
+  display: inline-block;
+  flex-shrink: 0;
+  transition: transform 0.18s ease;
+  transform: translateY(1px);
+}
+.menu-item-group:hover .menu-chevron,
+.menu-item-group:focus-within .menu-chevron,
+.menu-item--has-submenu[aria-expanded="true"] .menu-chevron {
+  transform: translateY(0) rotate(180deg);
+}
+/* Submenu façon Fondation Cartier :
+   - container pleine largeur sous la nav (position absolute sur .header)
+   - une colonne interne (.submenu-list) dont la largeur = celle du
+     trigger (CSS var injectée par JS), poussée à droite via flex-end
+   - items left-aligned dans cette colonne : leur bord gauche s'aligne
+     sur le bord gauche du trigger ; si un item dépasse, il déborde à
+     droite (sous le bouton Contact, comportement voulu) */
+.menu-right .menu-item-group { position: static; }
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  /* Plus serré en haut (les items se rapprochent du trigger), plus
+     généreux en bas pour donner de l'air avant le contenu blurry. */
+  padding: 0 0 clamp(36px, 4vw, 60px);
+  background: var(--bg);
+  /* Le volet tombe : clip-path révèle le contenu du haut vers le bas. */
+  clip-path: inset(0 0 100% 0);
+  visibility: hidden;
+  transition: clip-path 0.28s ease, visibility 0s linear 0.28s;
+  z-index: 50;
+}
+/* Liste alignée pile sous le trigger via --trigger-left (mesuré en JS). */
+.submenu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: var(--trigger-left, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(16px, 1.6vw, 22px);
+  width: max-content;
+}
+/* Variante "stacked" : sous-items empilés verticalement sous le label
+   CDI & Freelance (desktop hover). On garde l'alignement à gauche
+   du logo via --trigger-left (hérité de .submenu-list). */
+.submenu-list--row {
+  gap: clamp(12px, 1.2vw, 18px);
+}
+/* +2000 recrutements : décollé du groupe des 3 practices au-dessus. */
+.submenu-list--row .submenu-list-spacer {
+  margin-top: clamp(16px, 1.8vw, 24px);
+}
+/* Petit label "Practices" au-dessus de la liste, aligné sur le 1er item. */
+.submenu-eyebrow {
+  margin-left: var(--trigger-left, 0);
+  font-size: clamp(13px, 1.1vw, 16px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.5;
+  margin-bottom: clamp(10px, 1.2vw, 16px);
+}
+/* Variante mobile : sections groupées avec titre + sous-items indentés. */
+.submenu-list--mobile {
+  gap: clamp(12px, 1.4vw, 18px);
+}
+.submenu-list--mobile .submenu-section {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vw, 12px);
+}
+.submenu-section-title {
+  font-weight: 500;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.submenu-sub {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 clamp(16px, 1.6vw, 22px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 0.8vw, 10px);
+}
+.submenu-sub a {
+  font-size: clamp(15px, 1.4vw, 18px);
+  opacity: 0.78;
+}
+.submenu-divider {
+  list-style: none;
+  height: 1px;
+  background: var(--line);
+  width: clamp(120px, 12vw, 180px);
+  margin: clamp(4px, 0.5vw, 8px) 0;
+}
+/* Quand le mega-menu est ouvert : on flou tout sauf la nav. Pas de
+   transition sur le flou : il apparaît instantanément, c'est le volet
+   qui anime sa descente. */
+body.menu-open main > *:not(.header) {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.menu-item-group:hover .submenu,
+.menu-item-group:focus-within .submenu,
+.menu-item-group.is-open .submenu,
+.menu-item--has-submenu[aria-expanded="true"] + .submenu,
+.menu-item-group:has(.menu-item--has-submenu[aria-expanded="true"]) .submenu {
+  clip-path: inset(0 0 0 0);
+  visibility: visible;
+  transition: clip-path 0.28s ease, visibility 0s linear 0s;
+}
+.submenu a {
+  display: block;
+  padding: 0;
+  /* Même taille que les items de nav, pour cohérence visuelle. */
+  font-size: clamp(17px, 1.7vw, 22px);
+  line-height: 1.25;
+  font-weight: 700;
+  white-space: nowrap;
+  text-align: left;
+  color: inherit;
+}
+.submenu a:hover,
+.submenu a:focus { opacity: 0.65; }
+/* Contact dans le dropdown : ghost button comme le Contact en dehors. */
+.submenu-contact a {
+  padding: clamp(8px, 0.85vw, 12px) clamp(12px, 1.1vw, 16px);
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  background: var(--white);
+}
+.submenu-contact a:hover,
+.submenu-contact a:focus { opacity: 1; }
+.submenu a[aria-current="page"] {
+  text-decoration: none;
+}
+
 /* ---------- Page title ---------- */
 .page-title {
   font-size: var(--fs-page-title);
   line-height: 1.05;
   letter-spacing: -0.02em;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 /* ---------- Tabs (top-level) ---------- */
@@ -152,7 +551,7 @@ button { font-family: inherit; cursor: pointer; }
 .tab {
   display: inline-flex;
   align-items: center;
-  padding: 14px 0;
+  padding: clamp(14px, 1.4vw, 20px) 0;
   font-size: var(--fs-tab);
   line-height: 1.2;
   cursor: pointer;
@@ -161,12 +560,46 @@ button { font-family: inherit; cursor: pointer; }
   background: none;
   color: inherit;
 }
-.tab[aria-current="true"]::after {
+.tab[aria-current="true"]::after,
+.tab[aria-current="page"]::after {
   content: "";
   position: absolute;
-  left: 0; right: 0; bottom: -1px;
+  /* bottom: 0 → le trait actif se pose pile sur la baseline du tab,
+     donc sur le bord supérieur du panel/grid blanc qui suit. Pas de
+     mordre dans la div blanche. */
+  left: 0; right: 0; bottom: 0;
   height: 2px;
   background: var(--ink);
+}
+
+/* Solutions : la dernière tab ("+2000 recrutements") est poussée à droite
+   pour distinguer "métiers/résultats" des deux groupes Chasse / Renfort RH.
+   Et la nav .tabs prend toute la largeur pour que margin-left: auto pousse. */
+.solutions-head .tabs { width: 100%; }
+.tab--push-right { margin-left: auto; align-self: center; }
+/* Quand le btn-outline "+2000 recrutements" est sur la page Métiers,
+   on le remplit pour signifier l'état actif (équivalent du underline
+   sur les .tab classiques). */
+.btn-outline.tab--push-right[aria-current="page"] {
+  background: var(--ink);
+  color: var(--white);
+}
+
+/* Sur mobile (<600px), les .tabs scrollent latéralement quand elles
+   dépassent l'écran. Chaque tab a une max-width qui force le texte à
+   wrap sur 2 lignes (pas d'ellipsis, juste un wrap naturel). */
+@media (max-width: 600px) {
+  .solutions-head .tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .solutions-head .tabs::-webkit-scrollbar { display: none; }
+  .solutions-head .tab {
+    flex-shrink: 0;
+    max-width: 14ch;
+  }
 }
 
 /* ---------- Ratings (Trustpilot / Trustfolio / Google / Glassdoor) ---------- */
@@ -178,98 +611,382 @@ button { font-family: inherit; cursor: pointer; }
 }
 .rating {
   display: flex;
-  /* column-reverse : les étoiles visuellement au-dessus, le logo de marque
-     (Trustpilot/Trustfolio/Google) en bas. Combiné avec align-items:
-     flex-end sur les title-rows, le bas du logo (= bas des lettres
-     "Trustpilot") s'aligne proprement avec la baseline du titre h1.
-     L'ordre DOM reste img → span pour conserver la sémantique
-     "marque puis note" pour les lecteurs d'écran. */
+  /* column-reverse : les étoiles visuellement au-dessus, le logo
+     de marque (Trustpilot/Trustfolio/Google) en bas. L'ordre DOM
+     reste img → span pour la sémantique "marque puis note"
+     (lecteurs d'écran). */
   flex-direction: column-reverse;
-  gap: 4px;
+  gap: clamp(4px, 0.5vw, 8px);
   align-items: flex-start;
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
+/* Les 3 ratings (Google, Trustpilot, Trustfolio) en ligne sous l'adresse
+   dans le footer. */
+.ratings-stack {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: clamp(28px, 4vw, 56px);
+}
+
+/* Variante "deux boîtes" pour le rating en face du h1 Clients : les
+   étoiles tombent au cap du titre, le logo aligne avec sa baseline.
+   align-self: stretch remplit la hauteur du title-row (= hauteur du
+   h1) ; justify-content: space-between pousse stars (visual top via
+   column-reverse) en haut et logo (visual bottom) en bas. */
+.clients-title-row > .rating {
+  align-self: stretch;
+  justify-content: space-between;
+}
+.clients-title-row .rating-logo {
+  height: clamp(14px, 1.3vw, 20px);
+}
+.clients-title-row .rating-stars {
+  font-size: clamp(13px, 1.1vw, 16px);
+}
 .rating-logo {
-  height: clamp(16px, 1.5vw, 22px);
+  height: clamp(20px, 1.8vw, 28px);
   width: auto;
   display: block;
 }
+.site-footer .rating-logo {
+  filter: brightness(0) invert(1);
+  height: clamp(16px, 1.4vw, 22px);
+}
 .rating-stars {
-  font-size: clamp(11px, 1vw, 14px);
+  font-size: clamp(15px, 1.3vw, 18px);
   letter-spacing: 0.1em;
   line-height: 1.2;
 }
 
-/* Variante "mobile only" du rating : sur Solutions, on remonte Trustpilot
-   à côté du h1 "Solutions" en mobile (au lieu de le laisser dans
-   .panel-title-row, où il sert de pendant à un titre h2 long et fait
-   moche en petit écran). Toggle via media query plus bas. */
-.rating-mobile-only { display: none; }
-
 /* ---------- Buttons ---------- */
+/* Boutons en aplat ink + texte blanc gras. Plus de ghost outline. */
 .btn-outline {
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: clamp(10px, 0.85vw, 12px) clamp(14px, 1.1vw, 16px);
-  border: 1px solid var(--ink);
+  padding: clamp(12px, 1vw, 16px) clamp(18px, 1.6vw, 24px);
+  border: none;
+  border-radius: 2px;
   font-size: var(--fs-menu);
   line-height: 1.25;
-  color: var(--ink);
+  font-weight: 700;
+  color: var(--white);
   cursor: pointer;
-  background: transparent;
+  background: var(--ink);
   font-family: inherit;
   font-feature-settings: 'pnum' on, 'lnum' on;
   width: max-content;
   max-width: 100%;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
 }
+.btn-outline:hover { opacity: 0.85; }
+
+/* Lien texte + flèche : utilisé en complément d'un .btn-outline pour
+   un CTA secondaire (ex : "Voir l'équipe →" sous le bouton consultant
+   sur la home, "Suite : X →" en bas des pages Solutions). */
+.text-arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-menu);
+  line-height: 1.25;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-thickness 0.18s ease;
+}
+.text-arrow-link:hover { text-decoration-thickness: 2px; }
 
 .menu-label-short { display: none; }
 @media (max-width: 800px) {
   .menu-label-full { display: none; }
   .menu-label-short { display: inline; }
-}
-@media (max-width: 460px) {
-  .menu { gap: 10px; }
-  .menu-right { gap: 10px; }
-  .btn-menu { padding: 6px 10px; }
+  /* Nav resserrée légèrement en mobile mais on garde de l'air. */
+  .menu { gap: clamp(20px, 3vw, 32px); padding-block: clamp(16px, 3vw, 24px); }
+  .menu-right { column-gap: clamp(18px, 2.6vw, 28px); row-gap: clamp(6px, 1vw, 10px); }
+  .menu-right .menu-item, .menu-item, .btn-menu { font-size: 15px; line-height: 1.25; }
+  .brand { width: clamp(82px, 9.6vw, 110px); height: clamp(18px, 1.95vw, 24px); }
+  .btn-menu { padding: 8px 12px; }
 }
 
-/* ---------- Footer ---------- */
+/* ---------- Footer ----------
+   Layout éditorial : gros wordmark GetPro à gauche en bloc brand
+   (logo + tagline + adresse), 3 colonnes de liens à droite (Solutions
+   détaillées, pages générales, contact + rating). Brand prend 1.7fr
+   pour donner du poids visuel au logo, qui est ~2x la taille de la
+   nav, façon statement. Hairline top en plus du padding généreux.
+
+   Même rythme de colonnes que .two-col (Solutions) et .legal-grid
+   (Mentions) : column-gap 0, chaque colonne respire avec un
+   padding-right interne. La 2ᵉ / 3ᵉ / 4ᵉ colonne tombent à des
+   positions prévisibles (1.7+1+1+1 = 4.7fr → cuts à ~36% / 57% / 79%). */
 .site-footer {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(24px, 3vw, 50px);
-  padding: clamp(40px, 5vw, 70px) var(--pad-x);
-  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(50px, 6vw, 90px);
+  padding: clamp(50px, 6vw, 90px) var(--pad-x) clamp(36px, 4vw, 56px);
+  background: var(--ink);
+  color: var(--bg);
 }
 
+/* "Featured nav" en haut du footer (façon MoMA) : 3 liens-vedette
+   gros et clairs vers les solutions phares (Recrutement salarié,
+   Freelance, RH de transition). Flex justify-start avec gap fixe
+   entre items pas de grille (déséquilibrée à cause des labels
+   de longueurs différentes). */
+.foot-featured {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: clamp(24px, 3vw, 56px);
+}
+.foot-featured a {
+  display: inline-flex;
+  align-items: baseline;
+  /* nowrap : chaque lien tient sur une ligne ; les 3 liens tiennent
+     ensemble sur une seule ligne grâce à la taille de police calée. */
+  white-space: nowrap;
+  font-size: clamp(15px, 1.7vw, 24px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-decoration: none;
+  text-underline-offset: clamp(4px, 0.5vw, 8px);
+}
+.foot-featured a:hover { opacity: 0.65; }
+.foot-featured a:not(.menu-item--two):hover {
+  text-decoration: none;
+}
+.foot-featured a:not(.menu-item--two)[aria-current="page"] {
+  text-decoration: none;
+}
+/* Variante 2 lignes : titre + sous-titre dans le foot-featured.
+   Le lien devient flex-column, le mi-sub est grisé et sans gras. */
+.foot-featured a.menu-item--two {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  line-height: 1.1;
+  text-decoration: none;
+}
+.foot-featured a.menu-item--two:hover,
+.foot-featured a.menu-item--two[aria-current="page"] {
+  text-decoration: none;
+}
+.foot-featured a.menu-item--two .mi-title {
+  font-weight: 700;
+}
+.foot-featured a.menu-item--two:hover .mi-title {
+  text-decoration: none;
+}
+.foot-featured a.menu-item--two[aria-current="page"] .mi-title {
+  text-decoration: none;
+}
+.foot-featured a.menu-item--two .mi-sub {
+  font-weight: 400;
+  opacity: 1;
+  font-size: 0.95em;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+/* Grille standard du footer (sous le featured nav).
+   Grille 1fr / 3fr alignée sur le reste de la page.
+   Logo + adresse à gauche, tagline + ratings à droite. */
+.foot-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  column-gap: clamp(40px, 6vw, 110px);
+  row-gap: clamp(32px, 4vw, 56px);
+  align-items: start;
+}
+.foot-logo {
+  grid-column: 1;
+  display: block;
+  width: clamp(140px, 15vw, 220px);
+  height: clamp(28px, 3vw, 44px);
+  background-color: var(--bg);
+  -webkit-mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
+          mask: url('assets/getpro-logo.svg') left center / contain no-repeat;
+}
+.foot-tagline {
+  grid-column: 2;
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.4;
+  margin: 0;
+  letter-spacing: -0.01em;
+  max-width: 38ch;
+}
+.foot-address {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.foot-ratings {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(24px, 3vw, 48px);
+  align-items: flex-end;
+}
+.foot-line {
+  font-size: clamp(15px, 1.3vw, 20px);
+  line-height: 1.5;
+  margin: 0;
+  color: var(--bg);
+  text-decoration: none;
+}
+a.foot-line:hover { text-decoration: underline; }
+.foot-legal-link {
+  grid-column: 1;
+  font-size: clamp(15px, 1.3vw, 20px);
+  color: var(--bg);
+  opacity: 0.45;
+  text-decoration: none;
+}
+.foot-legal-link:hover { text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .foot-grid {
+    grid-template-columns: 1fr;
+    row-gap: clamp(20px, 3vw, 32px);
+  }
+  .foot-logo,
+  .foot-tagline,
+  .foot-address,
+  .foot-ratings,
+  .foot-legal-link { grid-column: 1; }
+}
+
+/* Colonnes de liens petites, alignées start. */
 .foot-col {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 0.7vw, 12px);
+  gap: clamp(8px, 0.8vw, 14px);
   font-size: var(--fs-menu);
-  line-height: 1.4;
+  line-height: 1.35;
 }
-
-.foot-col h3 {
-  font-size: var(--fs-menu);
-  line-height: 1.3;
-  margin-bottom: clamp(4px, 0.4vw, 8px);
-}
-
 .foot-col a {
-  color: var(--ink);
-  opacity: 0.85;
+  color: var(--bg);
+  text-decoration: none;
+  text-underline-offset: 4px;
 }
-.foot-col a:hover { opacity: 1; }
+.foot-col a:hover { text-decoration: underline; }
+.foot-col a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Bloc contact : mêmes liens, plus le rating Google sous une petite
+   séparation visuelle (margin-top accentué). */
+.foot-contact .rating {
+  margin-top: clamp(12px, 1.5vw, 22px);
+}
+
+/* Legacy foot-legal et responsive footer (remplacés par .foot-legal-link et grille 1fr/3fr) */
+
+/* ---------- Solutions overview (golden path home) ----------
+   Section entre Process et Logos avec les 3 entrées du chemin
+   solutions : Chasse, Renfort et outils RH, Métiers recrutés.
+   Layout éditorial : hairline en haut de chaque card, titre + 1
+   ligne descriptive, flèche en haut-droite. Hover tire l'opacité. */
+.solutions-overview {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5vw, 70px);
+  padding-block: clamp(60px, 7vw, 110px);
+}
+.solutions-overview-title {
+  font-size: var(--fs-section-title);
+  line-height: var(--lh-section-title);
+  padding-left: var(--pad-card-x);
+  padding-right: var(--pad-card-x);
+  margin: 0;
+  max-width: clamp(320px, 75vw, 1050px);
+}
+@media (max-width: 600px) {
+  .solutions-overview-title { padding-left: 0; padding-right: 0; }
+}
+.solutions-overview-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 clamp(0px, 3.5vw, 50px) 0 var(--pad-card-x);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 2 rows (titre, paragraphe) partagées via subgrid sur les <li>.
+     row 1 = max hauteur des titres → tous les titres s'alignent en
+     bas. row 2 = paragraphes qui commencent tous à la même y.
+     row-gap sert ici autant pour l'espace titre/paragraphe que
+     pour l'espace inter-card-rows quand le grid wrap, donc valeur
+     de compromise. */
+  grid-template-rows: auto auto;
+  column-gap: 0;
+  row-gap: clamp(20px, 2.4vw, 32px);
+}
+.solutions-overview-list > li {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 2;
+  padding-right: clamp(40px, 5vw, 90px);
+}
+/* Le bloc entier est cliquable : .solutions-overview-card hérite des
+   2 lignes (titre + paragraphe) du subgrid de son parent <li>. */
+.solutions-overview-card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 2;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.18s ease;
+}
+.solutions-overview-card:hover { opacity: 0.7; }
+.solutions-overview-card h3 { align-self: end; }
+.solutions-overview-card p { align-self: start; }
+.solutions-overview-list h3 {
+  font-size: var(--fs-section-title);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: clamp(5px, 0.5vw, 8px);
+  transition: text-decoration-thickness 0.18s ease;
+}
+.solutions-overview-card:hover h3 {
+  text-decoration-thickness: 2px;
+}
+.solutions-overview-list p {
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.45;
+  margin: 0;
+  max-width: 32ch;
+}
+/* Lien inline dans le paragraphe (ex : freelance dans Chasse) */
+.solutions-overview-list p a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-thickness 0.18s ease;
+}
+.solutions-overview-list p a:hover {
+  text-decoration-thickness: 2px;
+}
 
 @media (max-width: 800px) {
-  .site-footer { grid-template-columns: repeat(2, 1fr); }
+  .solutions-overview-list { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 460px) {
-  .site-footer { grid-template-columns: 1fr; }
+@media (max-width: 600px) {
+  .solutions-overview-list {
+    grid-template-columns: 1fr;
+    /* Mobile : padding-left 0 pour aligner avec le contenu interne des
+       blocs blancs full-bleed (cf .case-card, .manifesto-card sur
+       index.html). Tout le contenu se cale sur --pad-x de la section. */
+    padding-left: 0;
+  }
 }
 
 /* ---------- Solutions pages (Chasse + Renfort RH) ---------- */
@@ -300,18 +1017,23 @@ button { font-family: inherit; cursor: pointer; }
   padding-bottom: clamp(16px, 3.4vw, 48px);
 }
 
-/* Two-line top tabs : main label on top + subtitle below.
-   Même rythme que les onglets simples (.tabs / .tab) sur Equipe :
-   padding 14px 0, gap clamp entre les onglets, pas de padding horizontal. */
+/* Top-level tabs (Solutions : Chasse / Renfort et outils RH).
+   Même rythme que les onglets simples (.tabs / .tab) sur Équipe :
+   padding clamp 16-24, gap clamp entre les onglets, pas de padding
+   horizontal. */
 .tabs-2 {
   display: flex;
   gap: clamp(20px, 2.7vw, 40px);
 }
 .tab-2 {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 14px 0;
+  display: inline-flex;
+  align-items: center;
+  padding: clamp(14px, 1.4vw, 20px) 0;
+  /* Même taille que .tab d'Équipe (--fs-tab) onglets top-level
+     cohérents d'une page à l'autre. */
+  font-size: var(--fs-tab);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   background: none;
   border: none;
   color: inherit;
@@ -320,44 +1042,79 @@ button { font-family: inherit; cursor: pointer; }
   text-align: left;
   position: relative;
 }
-.tab-2 .main {
-  font-size: var(--fs-tab);
-  line-height: 1.2;
-}
-.tab-2 .sub {
-  font-size: clamp(13px, 1.2vw, 18px);
-  line-height: 1.3;
-}
 .tab-2[aria-current="page"]::after,
 .tab-2[aria-current="true"]::after {
   content: "";
   position: absolute;
-  left: 0; right: 0; bottom: -1px;
+  /* Posé pile sur le bord supérieur du .panel : bottom 0 + 2px de hauteur
+     veut dire que le trait remonte de 2px au-dessus du panel sans mordre
+     dedans. */
+  left: 0; right: 0; bottom: 0;
   height: 2px;
   background: var(--ink);
 }
 
 .panel {
-  background: var(--white);
-  padding: var(--pad-card-y) var(--pad-card-x);
   display: flex;
   flex-direction: column;
-  gap: clamp(48px, 6vw, 100px);
+  gap: clamp(28px, 3.4vw, 50px);
+}
+/* Titre de page : grand display éditorial type MoMA. Max-width
+   pour forcer le wrap sur plusieurs lignes lisibles. */
+.page-lede {
+  font-size: clamp(36px, 4.8vw, 72px);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+  margin: 0 0 clamp(28px, 3vw, 48px);
+  text-wrap: balance;
+}
+/* Sous-titre concret juste sous .page-lede : taille intermédiaire,
+   opacity légèrement réduite, prend de l'air avant le contenu. */
+.page-sublede {
+  font-size: clamp(18px, 1.8vw, 24px);
+  line-height: 1.4;
+  margin: 0 0 clamp(28px, 3.5vw, 48px);
+  max-width: 60ch;
 }
 
 .panel-title {
-  font-size: var(--fs-card-title);
-  line-height: var(--lh-card-title);
-  letter-spacing: -0.025em;
+  /* Réduit en importance : ce n'est qu'une intro à l'intérieur du panel,
+     le h1 "Solutions" porte déjà le poids du titre de page. */
+  font-size: clamp(20px, 2.2vw, 32px);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
 }
 
 .panel-title-row {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: clamp(20px, 3vw, 50px);
   flex-wrap: wrap;
 }
+/* Le titre prend l'espace dispo et wrap si besoin ; les subtabs gardent
+   leur largeur naturelle à droite. Quand le titre passe sur 2 lignes,
+   align-items: flex-end aligne les subtabs sur la ligne du bas. */
+.panel-title-row .panel-title {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Lien "Tous nos clients →" en bas-droite du .panel sur les pages
+   Solutions / Renfort / Métiers. Soulignement classique éditorial,
+   align-self: flex-end pour le pousser à droite du panel content. */
+.panel-foot-link {
+  align-self: flex-end;
+  font-size: var(--fs-menu);
+  line-height: 1.25;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-thickness 0.18s ease;
+}
+.panel-foot-link:hover { text-decoration-thickness: 2px; }
 
 .subtabs-row {
   display: flex;
@@ -365,6 +1122,37 @@ button { font-family: inherit; cursor: pointer; }
   justify-content: space-between;
   gap: clamp(20px, 2vw, 30px);
   flex-wrap: wrap;
+  /* Sticky pile sous la navbar. Le -1px évite un trait de contenu qui
+     bave entre header et subtabs à cause d'arrondis sous-pixel. */
+  position: -webkit-sticky;
+  position: sticky;
+  top: calc(var(--header-h, 60px) - 1px);
+  background: var(--bg);
+  padding-block: clamp(8px, 1vw, 14px);
+  z-index: 40;
+}
+/* Sur mobile, le bloc Haut prend toute la largeur du viewport (escape
+   le padding de la section). */
+@media (max-width: 800px) {
+  .subtabs-row {
+    margin-inline: calc(-1 * var(--pad-x));
+    padding-inline: var(--pad-x);
+  }
+}
+/* Affordance de scroll horizontal : fade subtil sur le bord droit, et
+   sur le bord gauche si on a déjà scrollé. Appliqué via classes
+   is-overflow-right / is-overflow-left posées par JS. */
+.subtabs-row .subtabs.is-overflow-right {
+  -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 40px), transparent 100%);
+          mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 40px), transparent 100%);
+}
+.subtabs-row .subtabs.is-overflow-left.is-overflow-right {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+}
+.subtabs-row .subtabs.is-overflow-left:not(.is-overflow-right) {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 100%);
 }
 /* Scoped à .subtabs-row : la hairline et le rythme horizontal sont propres
    à la nav des subtabs sur solutions/solutions-renfort. solutions-profils
@@ -376,27 +1164,69 @@ button { font-family: inherit; cursor: pointer; }
    son parent flex et laisser le scroll s'activer. */
 .subtabs-row .subtabs {
   display: flex;
-  gap: clamp(20px, 3vw, 50px);
+  align-items: baseline;
+  gap: clamp(20px, 2.4vw, 40px);
   flex-wrap: nowrap;
   overflow-x: auto;
   min-width: 0;
-  border-bottom: 1px solid var(--line);
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
 .subtabs-row .subtabs::-webkit-scrollbar { display: none; }
+/* Subtabs : texte gras simple. Inactif = ink en opacity faible.
+   Actif = ink pleine opacity (gras devient un peu plus présent). */
 .subtab {
-  padding: 14px 0;
-  font-size: var(--fs-body);
+  padding: clamp(6px, 0.6vw, 10px) 0;
+  font-size: clamp(22px, 2.4vw, 34px);
   line-height: 1.25;
   cursor: pointer;
-  background: none;
+  background: transparent;
   border: none;
+  border-radius: 0;
   color: inherit;
+  opacity: 0.5;
   font-family: inherit;
+  font-weight: 700;
   position: relative;
   white-space: nowrap;
   flex-shrink: 0;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+.subtab:hover {
+  opacity: 1;
+}
+/* Subtab accent (+2000 recrutements) : poussé tout à droite + petit
+   cartouche aplat gris translucide (--btn) + texte ink gras pour
+   marquer qu'il sort du lot (entrée à part, pas une practice). */
+.subtab--accent {
+  margin-left: auto;
+  padding: clamp(10px, 1vw, 14px) clamp(16px, 1.6vw, 22px);
+  background: var(--btn);
+  color: var(--ink);
+  opacity: 1;
+  border-radius: 2px;
+  transition: background 0.15s ease;
+}
+.subtab--accent:hover {
+  background: rgba(6, 32, 4, 0.3);
+}
+/* Subtab active (sauf accent) : opacity pleine, le gras se lit. */
+.subtab[aria-current="true"]:not(.subtab--accent),
+.subtab[aria-current="page"]:not(.subtab--accent) {
+  opacity: 1;
+}
+/* Si l'accent (+2000) est actif, on annule son margin-left:auto pour
+   qu'il vienne bien se positionner en tête au lieu d'être poussé à droite. */
+.subtab.subtab--accent[aria-current="page"] {
+  margin-left: 0;
+}
+/* L'accent (+2000) actif suit le même traitement que les autres
+   subtabs actifs : bg blanc + bordure ink. Plus de filled-ink. */
+.subtab.subtab--accent[aria-current="page"] {
+  background: var(--white);
+  color: inherit;
+  border-color: var(--ink);
 }
 /* Labels longs/courts pour les subtabs (Recrutement ponctuel → Ponctuel,
    En continu → Continu, RPO mensuel → RPO). Par défaut on affiche le label
@@ -406,13 +1236,8 @@ button { font-family: inherit; cursor: pointer; }
    des subtabs (space-between du parent). En mobile, il bascule au-dessus
    et prend toute la largeur (cf. media query). */
 .subtabs-row > .btn-outline { flex-shrink: 0; }
-.subtab[aria-current="true"]::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: -1px;
-  height: 2px;
-  background: var(--ink);
-}
+/* L'ancien indicateur underline n'a plus lieu d'être avec les cartouches. */
+.subtab[aria-current="true"]::after { display: none; }
 
 .subtab-body {
   display: flex;
@@ -445,12 +1270,23 @@ button { font-family: inherit; cursor: pointer; }
   line-height: var(--lh-body);
 }
 .two-col > * {
-  padding-right: clamp(40px, 8vw, 120px);
-  /* Cap typo en cas de chute en 1 col (≤ 800px). */
+  /* Padding-right plus modeste : à viewport moyen (700-1100), la grille
+     50/50 amputée d'un padding 8vw devenait trop étroite (la ligne
+     wrappait avant "échangé avec nous, a compris votre projet, a").
+     On vise une colonne content ≈ 45-55ch lisible. */
+  padding-right: clamp(20px, 4vw, 60px);
   max-width: var(--measure);
 }
 .two-col p { margin-bottom: clamp(14px, 1.6vw, 24px); }
 .two-col p:last-child { margin-bottom: 0; }
+
+/* Mobile : la grille 50/50 amputerait le texte à <700px. On passe en
+   single-col, padding-right neutralisé pour récupérer la pleine largeur.
+   Pas de baisse de --fs-body : la lisibilité du corps reste intransigeante. */
+@media (max-width: 700px) {
+  .two-col { grid-template-columns: 1fr; row-gap: clamp(18px, 4vw, 28px); }
+  .two-col > * { padding-right: 0; max-width: 100%; }
+}
 
 /* Cas clients : même grille 50/50 que .two-col pour aligner texte de gauche
    et logo de droite. */
@@ -472,6 +1308,17 @@ button { font-family: inherit; cursor: pointer; }
   line-height: var(--lh-body);
   max-width: var(--measure);
 }
+/* Mobile : stack le case-row en single-col, logo en bas plus petit pour
+   ne pas écraser visuellement le verbatim au-dessus. */
+@media (max-width: 700px) {
+  .case-row {
+    grid-template-columns: 1fr;
+    row-gap: clamp(14px, 3vw, 22px);
+  }
+  .case-row > * { padding-right: 0; }
+  .case-row .case-logo-mark { width: clamp(80px, 22vw, 130px); }
+}
+
 .case-logo-mark {
   justify-self: start;
   width: clamp(100px, 12vw, 170px);
@@ -479,24 +1326,470 @@ button { font-family: inherit; cursor: pointer; }
   background-color: var(--ink);
   -webkit-mask: left center / contain no-repeat;
           mask: left center / contain no-repeat;
-  /* mask-mode: alpha — sinon les paths noirs des SVG (luminance 0) sont
+  /* mask-mode: alpha sinon les paths noirs des SVG (luminance 0) sont
      rendus transparents et le logo est tronqué. Avec alpha tous les paths
      opaques (blancs comme noirs) contribuent au masque. */
   -webkit-mask-mode: alpha;
           mask-mode: alpha;
 }
+
+/* Logo en couleurs natives (img). Sert dans les case-row où le mask
+   produirait un blob ink (logos multi-couleurs façon Mistral). On garde
+   .case-logo-mark pour les wordmark-only style monochrome compatible. */
+.case-logo-img {
+  justify-self: start;
+  align-self: center;
+  width: auto;
+  max-width: clamp(110px, 14vw, 180px);
+  max-height: clamp(28px, 3vw, 48px);
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+  display: block;
+}
+@media (max-width: 700px) {
+  .case-logo-img {
+    max-width: clamp(90px, 24vw, 140px);
+    max-height: clamp(26px, 6vw, 36px);
+  }
+}
 .case-logo-mark.electra  { -webkit-mask-image: url('assets/electra.svg');           mask-image: url('assets/electra.svg'); }
 .case-logo-mark.japhy    { -webkit-mask-image: url('assets/japhy.svg');             mask-image: url('assets/japhy.svg'); }
 .case-logo-mark.filigran { -webkit-mask-image: url('assets/filigran.svg');          mask-image: url('assets/filigran.svg'); }
 .case-logo-mark.mistral  { -webkit-mask-image: url('assets/mistral-ai_wordmark.svg'); mask-image: url('assets/mistral-ai_wordmark.svg'); }
-.case-logo-mark.lucca    { -webkit-mask-image: url('assets/lucca.svg');             mask-image: url('assets/lucca.svg'); }
+.case-logo-mark.lucca    { -webkit-mask-image: url('assets/Lucca-Logo-White.svg');  mask-image: url('assets/Lucca-Logo-White.svg'); }
 .case-logo-mark.flaire   { -webkit-mask-image: url('assets/flaire.svg');            mask-image: url('assets/flaire.svg'); }
+.case-logo-mark.pono     { -webkit-mask-image: url('assets/pono.svg');              mask-image: url('assets/pono.svg'); }
+.case-logo-mark.fasterize  { -webkit-mask-image: url('assets/fasterize.svg');     mask-image: url('assets/fasterize.svg'); }
+.case-logo-mark.wildsense  { -webkit-mask-image: url('assets/wildsense.svg');     mask-image: url('assets/wildsense.svg'); }
+.case-logo-mark.jeudimerci { -webkit-mask-image: url('assets/jeudimerci.svg');    mask-image: url('assets/jeudimerci.svg'); }
+.case-logo-mark.deepmove   { -webkit-mask-image: url('assets/deepmove.svg');      mask-image: url('assets/deepmove.svg'); }
+.case-logo-mark.kardinal   { -webkit-mask-image: url('assets/kardinal.svg');      mask-image: url('assets/kardinal.svg'); }
+.case-logo-mark.stoik      { -webkit-mask-image: url('assets/stoik.svg');         mask-image: url('assets/stoik.svg'); }
+.case-logo-mark.matera     { -webkit-mask-image: url('assets/matera.svg');        mask-image: url('assets/matera.svg'); }
+.case-logo-mark.kili       { -webkit-mask-image: url('assets/kili-technology.svg'); mask-image: url('assets/kili-technology.svg'); }
+.case-logo-mark.smartrenting { -webkit-mask-image: url('assets/smartrenting.svg'); mask-image: url('assets/smartrenting.svg'); }
+.case-logo-mark.smart-impulse { -webkit-mask-image: url('assets/smart-impulse.svg'); mask-image: url('assets/smart-impulse.svg'); }
+.case-logo-mark.lucile-woodward { -webkit-mask-image: url('assets/lucile-woodward.svg'); mask-image: url('assets/lucile-woodward.svg'); }
+.case-logo-mark.in-store-media-france { -webkit-mask-image: url('assets/in-store-media-france.svg'); mask-image: url('assets/in-store-media-france.svg'); }
+.case-logo-mark.bdl-capital-management { -webkit-mask-image: url('assets/bdl-capital-management.svg'); mask-image: url('assets/bdl-capital-management.svg'); }
+.case-logo-mark.avanteam    { -webkit-mask-image: url('assets/avanteam.svg'); mask-image: url('assets/avanteam.svg'); }
+.case-logo-mark.bluekango   { -webkit-mask-image: url('assets/bluekango.svg'); mask-image: url('assets/bluekango.svg'); }
+.case-logo-mark.carrefour   { -webkit-mask-image: url('assets/carrefour.svg'); mask-image: url('assets/carrefour.svg'); }
+.case-logo-mark.corwave     { -webkit-mask-image: url('assets/corwave.svg'); mask-image: url('assets/corwave.svg'); }
+.case-logo-mark.foodles     { -webkit-mask-image: url('assets/foodles.svg'); mask-image: url('assets/foodles.svg'); }
+.case-logo-mark.keon        { -webkit-mask-image: url('assets/keon.svg'); mask-image: url('assets/keon.svg'); }
+.case-logo-mark.medialog    { -webkit-mask-image: url('assets/medialog.svg'); mask-image: url('assets/medialog.svg'); }
+.case-logo-mark.mojix       { -webkit-mask-image: url('assets/mojix.svg'); mask-image: url('assets/mojix.svg'); }
+.case-logo-mark.quipment    { -webkit-mask-image: url('assets/quipment.svg'); mask-image: url('assets/quipment.svg'); }
+.case-logo-mark.rosaly      { -webkit-mask-image: url('assets/rosaly.svg'); mask-image: url('assets/rosaly.svg'); }
+.case-logo-mark.spiko       { -webkit-mask-image: url('assets/spiko.svg'); mask-image: url('assets/spiko.svg'); }
+.case-logo-mark.yubo        { -webkit-mask-image: url('assets/yubo.svg'); mask-image: url('assets/yubo.svg'); }
 
-/* Consultants row — photos en grille 4 colonnes (3 puis 2 en responsive),
+.case-logo-mark.agicap                  { -webkit-mask-image: url('assets/agicap.svg'); mask-image: url('assets/agicap.svg'); }
+.case-logo-mark.bowo                    { -webkit-mask-image: url('assets/bowo.svg'); mask-image: url('assets/bowo.svg'); }
+.case-logo-mark.contentsquare           { -webkit-mask-image: url('assets/contentsquare.svg'); mask-image: url('assets/contentsquare.svg'); }
+.case-logo-mark.decathlon               { -webkit-mask-image: url('assets/decathlon.svg'); mask-image: url('assets/decathlon.svg'); }
+.case-logo-mark.enioka-haute-couture    { -webkit-mask-image: url('assets/enioka-haute-couture.svg'); mask-image: url('assets/enioka-haute-couture.svg'); }
+.case-logo-mark.eurecia                 { -webkit-mask-image: url('assets/eurecia.svg'); mask-image: url('assets/eurecia.svg'); }
+.case-logo-mark.harfanglab              { -webkit-mask-image: url('assets/harfanglab.svg'); mask-image: url('assets/harfanglab.svg'); }
+.case-logo-mark.id-capture              { -webkit-mask-image: url('assets/id-capture.svg'); mask-image: url('assets/id-capture.svg'); }
+.case-logo-mark.les-cuistots-migrateurs { -webkit-mask-image: url('assets/les-cuistots-migrateurs.svg'); mask-image: url('assets/les-cuistots-migrateurs.svg'); }
+.case-logo-mark.linkurious              { -webkit-mask-image: url('assets/linkurious.svg'); mask-image: url('assets/linkurious.svg'); }
+.case-logo-mark.logipren                { -webkit-mask-image: url('assets/logipren.svg'); mask-image: url('assets/logipren.svg'); }
+.case-logo-mark.spotlight-earth         { -webkit-mask-image: url('assets/spotlight-earth.svg'); mask-image: url('assets/spotlight-earth.svg'); }
+.case-logo-mark.webyn-ai                { -webkit-mask-image: url('assets/webyn-ai.svg'); mask-image: url('assets/webyn-ai.svg'); }
+.case-logo-mark.wematch-live            { -webkit-mask-image: url('assets/wematch-live.svg'); mask-image: url('assets/wematch-live.svg'); }
+
+/* Attribution sous un verbatim de témoignage client : ligne courte façon
+   credit, taille un cran plus petite que le corps, opacité réduite pour
+   ne pas concurrencer le verbatim au-dessus. */
+.case-attribution {
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1.3;
+  margin-top: clamp(10px, 1.2vw, 14px);
+  opacity: 0.72;
+}
+
+/* ---------- Panel section avec équipe (practices chasse) ----------
+   Layout 2-col : photos+meta empilés à gauche (chaque ligne = photo +
+   nom/rôle/expérience à côté, photos qui se touchent verticalement),
+   contenu à droite capé à 60ch (le reste est padding pour éviter que
+   le texte s'étale sur toute la largeur). */
+.panel-section--with-team {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.44fr) 1fr;
+  column-gap: clamp(48px, 7vw, 120px);
+  align-items: start;
+}
+.panel-section--with-team .team-side {
+  display: block;
+  align-self: start;
+}
+
+/* H3 inline dans le content-side (sections fusionnées : intro / Pas de
+   sourcing / Cas clients). Marge symétrique pour respirer. */
+.content-side .content-side-h3 {
+  margin-top: clamp(20px, 3vw, 44px);
+  margin-bottom: clamp(12px, 1.2vw, 16px);
+}
+
+/* Cas clients inline dans content-side : la grille 2-col (verbatim |
+   logo) ne tient pas dans une 60ch col. On force single-col, on shrink
+   le logo, on l'aligne à gauche au-dessus du verbatim. */
+/* Pattern logo-above unifié : le logo apparaît au-dessus du verbatim,
+   suivi de l'attribution. Même structure que .company-block sur le
+   +2000 (cf. styles dans services-profils.html). */
+.cases-rows--inline {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 3.4vw, 56px);
+  /* Le titre "Cas clients" a sauté : on garde le rythme en imposant une
+     respiration au-dessus du premier témoignage. */
+  margin-top: clamp(32px, 4vw, 64px);
+}
+.cases-rows--inline .case-row {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.2vw, 18px);
+}
+.cases-rows--inline .case-row > * {
+  padding-right: 0;
+  max-width: 100%;
+}
+.cases-rows--inline .case-row .case-logo-mark {
+  display: block;
+  align-self: flex-start;
+  justify-self: start;
+  width: clamp(80px, 9vw, 130px);
+  height: clamp(20px, 2vw, 28px);
+  margin-left: 0;
+  order: -1; /* logo au-dessus du verbatim */
+}
+.cases-rows--inline .case-row p {
+  max-width: 42ch;
+}
+
+.panel-section--with-team .content-side,
+.panel-section .content-side {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 1.8vw, 26px);
+  font-size: clamp(18px, 1.8vw, 24px);
+  line-height: 1.45;
+  /* Col texte plus étroite (40ch ≈ ligne courte lisible) avec
+     beaucoup d'air à droite. */
+  max-width: 40ch;
+  padding-right: clamp(40px, 10vw, 180px);
+  box-sizing: content-box;
+}
+.panel-section .content-side h3,
+.panel-section--with-team .content-side h3 {
+  margin-bottom: clamp(4px, 0.5vw, 8px);
+}
+.panel-section .content-side p,
+.panel-section--with-team .content-side p {
+  margin: 0;
+}
+
+/* Une consultant-row = 1 photo (gauche, rectangle vertical, touche celle
+   du dessus) + bloc meta (nom + rôle + expérience) à droite. */
+.consultants-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* photos qui se touchent par le haut */
+}
+.consultant-row {
+  display: grid;
+  grid-template-columns: minmax(90px, 120px) 1fr;
+  column-gap: clamp(14px, 1.6vw, 22px);
+  /* Meta (nom/rôle/exp) collée au bas de la photo, plus net
+     visuellement que start (les lignes de texte cherchent le bord
+     bas de l'image). */
+  align-items: end;
+}
+.consultant-row .photo {
+  aspect-ratio: 1 / 2;
+  background-size: auto 140%;
+  background-repeat: no-repeat;
+  background-color: #d8e0d3;
+  background-position: 50% 22%;
+}
+.consultant-row .consultant-meta {
+  padding-bottom: clamp(8px, 1vw, 14px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2px, 0.3vw, 4px);
+  font-size: clamp(17px, 1.7vw, 22px);
+  line-height: 1.35;
+  width: auto;
+}
+/* Nom / rôle / expérience tous au même gris, façon MoMA gallery
+   (cohérent avec equipe.html). */
+.consultant-row .consultant-name,
+.consultant-row .consultant-role,
+.consultant-row .consultant-exp {
+  color: var(--ink);
+  opacity: 0.55;
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .panel-section--with-team {
+    grid-template-columns: minmax(220px, 0.4fr) 1fr;
+    column-gap: clamp(20px, 3vw, 36px);
+  }
+  /* Sous 900px, on stacke le consultant-row : photo au-dessus, meta
+     en dessous, le tout justifié à gauche (1 col). */
+  .consultant-row {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .consultant-row .consultant-meta {
+    padding-top: clamp(6px, 1vw, 10px);
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 600px) {
+  /* Mobile : team-side passe au-dessus du content-side. Les consultants
+     deviennent un rail horizontal scrollable (photo + meta empilées
+     verticalement par carte) au lieu d'une longue liste verticale qui
+     bouffe toute la hauteur de l'écran. */
+  .panel-section--with-team {
+    grid-template-columns: 1fr;
+    row-gap: clamp(20px, 3vw, 32px);
+  }
+  /* min-width: 0 indispensable : sans ça les enfants flex-row qui
+     overflow font grossir team-side au lieu de scroller dans le rail. */
+  .panel-section--with-team .team-side { min-width: 0; }
+  .consultants-stack {
+    flex-direction: row;
+    gap: clamp(14px, 3vw, 20px);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .consultants-stack::-webkit-scrollbar { display: none; }
+  .consultant-row {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    /* Cartes plus larges pour que les photos respirent et que la légende
+       (nom + rôle + expérience) tienne sans casser. */
+    width: clamp(180px, 56vw, 240px);
+    gap: clamp(10px, 1.6vw, 14px);
+    scroll-snap-align: start;
+  }
+  .consultant-row .photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+  }
+  .consultant-row .consultant-meta {
+    padding-top: 0;
+    font-size: clamp(15px, 4vw, 18px);
+    gap: clamp(2px, 0.6vw, 6px);
+  }
+}
+
+
+/* AI-logos en mono-color : variante mask du wall home ----------
+   Même dimensions que .ai-logo img (height 26-40px), masquée en ink. */
+.ai-logo-mark {
+  display: inline-block;
+  width: clamp(100px, 11vw, 160px);
+  height: clamp(26px, 2.8vw, 40px);
+  background-color: var(--ink);
+  -webkit-mask: left center / contain no-repeat;
+          mask: left center / contain no-repeat;
+  -webkit-mask-mode: alpha;
+          mask-mode: alpha;
+}
+.ai-logo-mark.agicap                { -webkit-mask-image: url('assets/agicap.svg'); mask-image: url('assets/agicap.svg'); }
+.ai-logo-mark.ai-cargo-foundation   { -webkit-mask-image: url('assets/ai-cargo-foundation.svg'); mask-image: url('assets/ai-cargo-foundation.svg'); }
+.ai-logo-mark.blablacar             { -webkit-mask-image: url('assets/blablacar.svg'); mask-image: url('assets/blablacar.svg'); }
+.ai-logo-mark.contentsquare         { -webkit-mask-image: url('assets/contentsquare.svg'); mask-image: url('assets/contentsquare.svg'); }
+.ai-logo-mark.cybelangel            { -webkit-mask-image: url('assets/cybelangel.svg'); mask-image: url('assets/cybelangel.svg'); }
+.ai-logo-mark.doctrine              { -webkit-mask-image: url('assets/doctrine.svg'); mask-image: url('assets/doctrine.svg'); }
+.ai-logo-mark.electra               { -webkit-mask-image: url('assets/electra.svg'); mask-image: url('assets/electra.svg'); }
+.ai-logo-mark.eleven-labs           { -webkit-mask-image: url('assets/eleven-labs.svg'); mask-image: url('assets/eleven-labs.svg'); }
+.ai-logo-mark.filigran              { -webkit-mask-image: url('assets/filigran.svg'); mask-image: url('assets/filigran.svg'); }
+.ai-logo-mark.foodles               { -webkit-mask-image: url('assets/foodles.svg'); mask-image: url('assets/foodles.svg'); }
+.ai-logo-mark.harfanglab            { -webkit-mask-image: url('assets/harfanglab.svg'); mask-image: url('assets/harfanglab.svg'); }
+.ai-logo-mark.joko                  { -webkit-mask-image: url('assets/joko.svg'); mask-image: url('assets/joko.svg'); }
+.ai-logo-mark.kili                  { -webkit-mask-image: url('assets/kili-technology.svg'); mask-image: url('assets/kili-technology.svg'); }
+.ai-logo-mark.konverso              { -webkit-mask-image: url('assets/konverso.svg'); mask-image: url('assets/konverso.svg'); }
+.ai-logo-mark.linkurious            { -webkit-mask-image: url('assets/linkurious.svg'); mask-image: url('assets/linkurious.svg'); }
+.ai-logo-mark.manomano              { -webkit-mask-image: url('assets/manomano.svg'); mask-image: url('assets/manomano.svg'); }
+.ai-logo-mark.matera                { -webkit-mask-image: url('assets/matera.svg'); mask-image: url('assets/matera.svg'); }
+.ai-logo-mark.mindee                { -webkit-mask-image: url('assets/mindee.svg'); mask-image: url('assets/mindee.svg'); }
+.ai-logo-mark.mistral               { -webkit-mask-image: url('assets/mistral-ai_wordmark.svg'); mask-image: url('assets/mistral-ai_wordmark.svg'); }
+.ai-logo-mark.mytraffic             { -webkit-mask-image: url('assets/mytraffic.svg'); mask-image: url('assets/mytraffic.svg'); }
+.ai-logo-mark.pigment               { -webkit-mask-image: url('assets/pigment.svg'); mask-image: url('assets/pigment.svg'); }
+.ai-logo-mark.pricemoov             { -webkit-mask-image: url('assets/pricemoov.svg'); mask-image: url('assets/pricemoov.svg'); }
+.ai-logo-mark.reelevant             { -webkit-mask-image: url('assets/reelevant.svg'); mask-image: url('assets/reelevant.svg'); }
+.ai-logo-mark.sipearl               { -webkit-mask-image: url('assets/sipearl.svg'); mask-image: url('assets/sipearl.svg'); }
+.ai-logo-mark.stoik                 { -webkit-mask-image: url('assets/stoik.svg'); mask-image: url('assets/stoik.svg'); }
+.ai-logo-mark.trustpair             { -webkit-mask-image: url('assets/trustpair.svg'); mask-image: url('assets/trustpair.svg'); }
+.ai-logo-mark.wematch-live          { -webkit-mask-image: url('assets/wematch-live.svg'); mask-image: url('assets/wematch-live.svg'); }
+.ai-logo-mark.whoz                  { -webkit-mask-image: url('assets/whoz.svg'); mask-image: url('assets/whoz.svg'); }
+
+/* Logo wall (services-renfort) : grille de logos clients, taille
+   uniforme façon hall des partenaires. Inspirée du .ai-logos-grid
+   de la home mais plus compacte (intégrée dans un panel-section). */
+.logos-wall {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: clamp(28px, 3.4vw, 56px);
+  row-gap: clamp(20px, 2.4vw, 36px);
+  margin-top: clamp(20px, 2.4vw, 36px);
+}
+.logo-tile {
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.18s ease;
+}
+.logo-tile:hover { opacity: 0.7; }
+.logo-tile img {
+  height: clamp(22px, 2.4vw, 34px);
+  width: auto;
+  display: block;
+}
+/* Variante monochrome (mask) du logo-tile : utilisée dans le logo wall
+   de services-renfort où on veut tous les logos en ink, peu importe la
+   palette native du SVG. Hérite des mêmes dimensions que .logo-tile img. */
+.logo-tile-mark {
+  display: inline-block;
+  width: clamp(80px, 9vw, 130px);
+  height: clamp(22px, 2.4vw, 34px);
+  background-color: var(--ink);
+  -webkit-mask: left center / contain no-repeat;
+          mask: left center / contain no-repeat;
+  -webkit-mask-mode: alpha;
+          mask-mode: alpha;
+}
+.logo-tile-mark.mistral  { -webkit-mask-image: url('assets/mistral-ai_wordmark.svg'); mask-image: url('assets/mistral-ai_wordmark.svg'); }
+.logo-tile-mark.decathlon{ -webkit-mask-image: url('assets/decathlon.svg');           mask-image: url('assets/decathlon.svg'); }
+.logo-tile-mark.filigran { -webkit-mask-image: url('assets/filigran.svg');            mask-image: url('assets/filigran.svg'); }
+.logo-tile-mark.foodles  { -webkit-mask-image: url('assets/foodles.svg');             mask-image: url('assets/foodles.svg'); }
+.logo-tile-mark.electra  { -webkit-mask-image: url('assets/electra.svg');             mask-image: url('assets/electra.svg'); }
+.logo-tile-mark.stoik    { -webkit-mask-image: url('assets/stoik.svg');               mask-image: url('assets/stoik.svg'); }
+.logo-tile-mark.contentsquare { -webkit-mask-image: url('assets/contentsquare.svg');  mask-image: url('assets/contentsquare.svg'); }
+.logo-tile-mark.agicap   { -webkit-mask-image: url('assets/agicap.svg');              mask-image: url('assets/agicap.svg'); }
+.logo-tile-mark.harfanglab { -webkit-mask-image: url('assets/harfanglab.svg');        mask-image: url('assets/harfanglab.svg'); }
+.logo-tile-mark.kili     { -webkit-mask-image: url('assets/kili-technology.svg');     mask-image: url('assets/kili-technology.svg'); }
+.logo-tile-mark.blablacar  { -webkit-mask-image: url('assets/blablacar.svg');         mask-image: url('assets/blablacar.svg'); }
+.logo-tile-mark.doctrine   { -webkit-mask-image: url('assets/doctrine.svg');          mask-image: url('assets/doctrine.svg'); }
+.logo-tile-mark.manomano   { -webkit-mask-image: url('assets/manomano.svg');          mask-image: url('assets/manomano.svg'); }
+.logo-tile-mark.pigment    { -webkit-mask-image: url('assets/pigment.svg');           mask-image: url('assets/pigment.svg'); }
+.logo-tile-mark.joko       { -webkit-mask-image: url('assets/joko.svg');              mask-image: url('assets/joko.svg'); }
+.logo-tile-mark.eleven-labs{ -webkit-mask-image: url('assets/eleven-labs.svg');       mask-image: url('assets/eleven-labs.svg'); }
+.logo-tile-mark.mindee     { -webkit-mask-image: url('assets/mindee.svg');            mask-image: url('assets/mindee.svg'); }
+.logo-tile-mark.cybelangel { -webkit-mask-image: url('assets/cybelangel.svg');        mask-image: url('assets/cybelangel.svg'); }
+.logo-tile-mark.matera     { -webkit-mask-image: url('assets/matera.svg');            mask-image: url('assets/matera.svg'); }
+.logo-tile-mark.trustpair  { -webkit-mask-image: url('assets/trustpair.svg');         mask-image: url('assets/trustpair.svg'); }
+.logo-tile-mark.mytraffic  { -webkit-mask-image: url('assets/mytraffic.svg');         mask-image: url('assets/mytraffic.svg'); }
+
+/* Section "Profils recrutés sur cette offre" en bas de chaque services-*.
+   Reprend la grille .two-col (catégorie à gauche, postes à droite)
+   mais sans les bordures de cases. Chaque .profils-row est une ligne
+   famille de métiers + postes inline. */
+.profils-intro {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  max-width: var(--measure);
+  margin-bottom: clamp(20px, 2.5vw, 36px);
+}
+.profils-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.5vw, 36px);
+  margin-bottom: clamp(24px, 3vw, 40px);
+}
+.profils-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.32fr) 1fr;
+  column-gap: clamp(24px, 3vw, 48px);
+  row-gap: clamp(10px, 1.4vw, 16px);
+  align-items: baseline;
+  padding-top: clamp(14px, 1.6vw, 22px);
+  border-top: 1px solid var(--line);
+}
+.profils-cat {
+  font-size: var(--fs-body);
+  line-height: 1.3;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.profils-cat small {
+  font-size: clamp(13px, 1.1vw, 16px);
+  opacity: 0.6;
+}
+.profils-cat-name {
+  font-weight: 500;
+}
+.profils-postes {
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+.profils-poste {
+  /* Chaque poste : nom + count en petit. Pas de virgule visible, le gap
+     suffit pour séparer visuellement. */
+  white-space: nowrap;
+}
+.profils-poste small {
+  font-size: 0.78em;
+  opacity: 0.5;
+  margin-left: 2px;
+}
+@media (max-width: 700px) {
+  .profils-row {
+    grid-template-columns: 1fr;
+    row-gap: clamp(8px, 1.6vw, 12px);
+  }
+}
+
+
+/* Byline consultant attaché à un case-row : petit avatar rond + nom/rôle.
+   Sert quand on veut montrer qui pilote la mission présentée (ex : Camille
+   sur le case Pono dans Renfort RH > Cas clients). Plus discret qu'une
+   .featured-consultant complète, façon credit / crédit. */
+.case-consultant {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.5vw, 18px);
+  margin-top: clamp(16px, 2vw, 24px);
+}
+.case-consultant .photo {
+  width: clamp(40px, 4vw, 56px);
+  height: clamp(40px, 4vw, 56px);
+  border-radius: 50%;
+  background-size: auto 140%;
+  background-repeat: no-repeat;
+  background-position: 50% 22%;
+  background-color: #d8e0d3;
+  flex-shrink: 0;
+}
+.case-consultant-meta {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1.3;
+}
+/* Consultants row photos en grille 4 colonnes (3 puis 2 en responsive),
    yeux calés à ~22% de la hauteur de la cellule portrait 1:2. */
 .consultants-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   column-gap: 0;
   row-gap: clamp(24px, 2.5vw, 36px);
 }
@@ -514,23 +1807,64 @@ button { font-family: inherit; cursor: pointer; }
   background-position: 50% 22%;
 }
 .consultant-meta {
-  width: 66.667%;
+  /* Largeur élargie + font plus petite : avec 5 cols, les noms type
+     "Zaïa Bouchachia" ou "Hugo Merdrignac" doivent tenir sans wrap
+     ou avec un wrap propre. */
+  width: 90%;
   display: flex;
   flex-direction: column;
-  font-size: var(--fs-body);
+  font-size: clamp(13px, 1.1vw, 16px);
   line-height: 1.3;
 }
-.consultant-role { opacity: 0.7; }
 
-@media (max-width: 1000px) {
+/* Variante verticale (Outils & ATS) : chaque consultant occupe une ligne,
+   photo carrée à gauche, meta à droite. Override la grid 4-col par un
+   flex column. */
+.consultants-row--vertical {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2vw, 30px);
+}
+.consultants-row--vertical .consultant {
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(20px, 2vw, 30px);
+}
+.consultants-row--vertical .consultant .photo {
+  width: clamp(90px, 9vw, 130px);
+  aspect-ratio: 1 / 1;
+  background-size: cover;
+  background-position: 50% 18%;
+  flex-shrink: 0;
+}
+.consultants-row--vertical .consultant-meta {
+  width: auto;
+  flex: 1;
+}
+
+/* Variante pair (Temps partagé & transition) : 2 consultants en grand,
+   photos larges côte-à-côte façon CTA, pas la grille 5 cols par défaut. */
+.consultants-row--pair {
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(20px, 2vw, 32px);
+}
+.consultants-row--pair .consultant-meta {
+  font-size: clamp(16px, 1.5vw, 20px);
+}
+
+@media (max-width: 1100px) {
+  .consultants-row { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 800px) {
   .consultants-row { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 800px) {
-  /* Quand on perd la place pour 2 cols côte à côte, on stacke — mais col 1
-     ne grossit pas pour autant : la grille reste en 1 col à 50% du panel,
-     col 2 passe simplement en dessous. */
+  /* Quand on perd la place pour 2 cols côte à côte, on stacke en 1 col.
+     La col fait 75% du panel (pas 50%) sinon la mesure de ligne
+     devient trop étroite et "échangé avec nous, a compris votre
+     projet, a" ne tient plus, alors qu'on a la place. */
   .two-col {
-    grid-template-columns: minmax(0, 50%);
+    grid-template-columns: minmax(0, 75%);
   }
   .two-col > * { padding-right: 0; }
   /* .case-row reste à 2 cols + padding-right interne (logo plus petit en
@@ -538,28 +1872,22 @@ button { font-family: inherit; cursor: pointer; }
   .panel-title { max-width: none; }
   .consultants-row { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 600px) {
-  /* En dessous de 600px, le 50% devient trop étroit (~280px) :
-     on libère et le contenu prend toute la largeur. */
+@media (max-width: 460px) {
+  /* Sous 460, le 50% devient vraiment trop étroit (~180-200px) :
+     on libère et le contenu prend toute la largeur. Au-dessus
+     (460-800), la grille reste à 1 col de 50% même mesure de
+     ligne qu'en desktop pour la lisibilité. */
   .two-col { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
   /* Subtabs en mobile : on bascule sur les labels courts quand un short
      existe (Ponctuel / Continu / RPO ; Freelance, DRH de transition,
-     Outils & ATS gardent leur label original). */
+     Outils & ATS gardent leur label original). Cette réduction libère
+     de la place pour que "Profils couverts" reste à droite des
+     subtabs sans wrapper on ne switche le layout que beaucoup plus
+     bas (cf. media query 460 plus loin). */
   .subtab-label-full { display: none; }
   .subtab-label-short { display: inline; }
-  /* En mobile, .subtabs-row passe en grid 1 colonne : ça permet de
-     placer "Profils couverts" au-dessus (order: -1) à sa largeur de
-     contenu (justify-self: start, aligné à gauche avec le reste du
-     contenu de la section). Au-dessus de 600px, on reste en flex
-     avec space-between : bouton à droite des subtabs. */
-  .subtabs-row {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-  .subtabs-row > .btn-outline {
-    order: -1;
-    justify-self: start;
-  }
   /* Panel "full-bleed" en mobile : la box blanche prend toute la largeur
      du viewport. On annule la gouttière de .section via une marge
      négative égale à --pad-x, et on aligne le padding interne du panel
@@ -572,19 +1900,66 @@ button { font-family: inherit; cursor: pointer; }
     margin-inline: calc(var(--pad-x) * -1);
     padding-inline: var(--pad-x);
   }
-  /* Solutions : on remonte Trustpilot à côté du h1 "Solutions". Le
-     rating dans .panel-title-row (à côté du h2 "À chaque besoin…")
-     est masqué — on n'en garde qu'un visible. Pour que h1 et rating
-     partagent la 1ʳᵉ ligne du title-row, on force .tabs-2 à wrapper
-     en pleine largeur dessous via flex-basis: 100%.
-     Le padding-bottom du h1 est mis à 0 en mobile : utile en desktop
-     pour respirer entre Solutions et le panel, contre-productif
-     quand le rating vient s'aligner à côté. align-items reste sur
-     flex-end (héritage), ce qui aligne le bas du logo Trustpilot
-     (visuellement en bas du rating grâce au column-reverse) avec
-     la baseline du titre. */
-  .rating-mobile-only { display: flex; }
-  .panel-title-row .ratings-row { display: none; }
-  .solutions-title-row .page-title { padding-bottom: 0; }
-  .solutions-title-row .tabs-2 { flex-basis: 100%; }
 }
+@media (max-width: 460px) {
+  /* Sous 460, même avec les labels courts (Ponctuel / Continu /
+     Freelance), il n'y a plus la place pour le bouton "Profils
+     couverts" à droite. On bascule .subtabs-row en grid 1 col,
+     bouton au-dessus à gauche (order: -1, justify-self: start).
+     Au-dessus de 460, le bouton reste à droite des subtabs via le
+     space-between du parent flex. */
+  .subtabs-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .subtabs-row > .btn-outline {
+    order: -1;
+    justify-self: start;
+  }
+}
+
+/* Mobile compact spacing : réduire légèrement les gaps/paddings sur petits
+   écrans, sans écraser le contenu (les valeurs trop tassées rendent visuel
+   "écrasé"). */
+@media (max-width: 600px) {
+  :root {
+    --gap-section: clamp(32px, 5vw, 48px);
+    --gap-card: clamp(22px, 3.8vw, 36px);
+    --pad-card-y: clamp(32px, 6.8vw, 60px);
+    --pad-card-x: clamp(22px, 4.8vw, 50px);
+  }
+}
+
+/* ---------- Scroll-to-top floating button ---------- */
+/* Injecté par partials.js sur toutes les pages. Visible à partir de 400px
+   de scroll. Bottom-right, respecte safe-area-inset sur iPhone. */
+.scroll-top-btn {
+  position: fixed;
+  bottom: calc(clamp(20px, 3vw, 40px) + env(safe-area-inset-bottom, 0px));
+  right: calc(clamp(20px, 3vw, 40px) + env(safe-area-inset-right, 0px));
+  width: clamp(44px, 4.5vw, 52px);
+  height: clamp(44px, 4.5vw, 52px);
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(6, 32, 4, 0.18);
+}
+.scroll-top-btn.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.scroll-top-btn:hover {
+  opacity: 0.88;
+}
+
