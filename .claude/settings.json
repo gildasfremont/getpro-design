@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "f=$(jq -r '.tool_input.file_path // empty'); case \"$f\" in *.png|*.PNG|*.jpg|*.JPG|*.jpeg|*.JPEG|*.gif|*.GIF|*.webp|*.WEBP) sz=$(stat -c%s \"$f\" 2>/dev/null || echo 0); if [ \"$sz\" -gt 204800 ]; then jq -n --arg path \"$f\" --arg sz \"$sz\" '{hookSpecificOutput:{hookEventName:\"PreToolUse\",permissionDecision:\"deny\",permissionDecisionReason:(\"Image \\($path) is \\($sz) bytes (>200KB). Reading binary images saturates context. Use Bash with `identify`/`file`/`stat` for metadata, or delegate visual work to an Explore subagent.\")}}'; fi;; esac"
+          }
+        ]
+      }
+    ]
+  }
+}
